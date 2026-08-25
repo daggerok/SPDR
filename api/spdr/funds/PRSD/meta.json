@@ -1,0 +1,111 @@
+{
+  "ticker": "PRSD",
+  "name": "State Street Short Duration IG Public & Private Credit ETF",
+  "category": "Fixed Income Sector",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-short-duration-ig-public-private-credit-etf-prsd",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-prsd.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-prsd.xlsx",
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-prsd.pdf"
+  },
+  "expenseRatio": {
+    "display": "0.45%",
+    "value": 0.45
+  },
+  "nav": {
+    "display": "$24.95",
+    "value": 24.95,
+    "asOfDate": "Aug 21 2026"
+  },
+  "aum": {
+    "display": "$113.51 M",
+    "value": 113510000,
+    "asOfDate": "Aug 21 2026"
+  },
+  "pricing": {
+    "exchange": "NYSE ARCA",
+    "closePrice": "$24.96",
+    "premiumDiscount": "0.03%"
+  },
+  "inceptionDate": "Sep 09 2025",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Jul 31 2026",
+      "mo1": 0.13,
+      "mo1Text": "0.13%",
+      "qtd": 0.13,
+      "qtdText": "0.13%",
+      "ytd": 1.61,
+      "ytdText": "1.61%",
+      "yr1": null,
+      "yr1Text": null,
+      "yr3": null,
+      "yr3Text": null,
+      "yr5": null,
+      "yr5Text": null,
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 3.11,
+      "sinceInceptionText": "3.11%",
+      "inceptionDate": "Sep 09 2025"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": 0.18,
+      "mo1Text": "0.18%",
+      "qtd": 0.88,
+      "qtdText": "0.88%",
+      "ytd": 1.48,
+      "ytdText": "1.48%",
+      "yr1": null,
+      "yr1Text": null,
+      "yr3": null,
+      "yr3Text": null,
+      "yr5": null,
+      "yr5Text": null,
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 2.97,
+      "sinceInceptionText": "2.97%"
+    }
+  },
+  "distributions": {
+    "headers": [
+      "Frequency",
+      "Ex-Date",
+      "Record Date",
+      "Payable Date",
+      "Dividend",
+      "ST Cap Gains",
+      "LT Cap Gains"
+    ],
+    "rows": [
+      [
+        "Monthly",
+        "08/03/2026",
+        "08/03/2026",
+        "08/06/2026",
+        "0.085211",
+        "-",
+        "-"
+      ]
+    ]
+  },
+  "holdings": {
+    "totalRows": 166,
+    "pageSize": 250,
+    "pageCount": 1,
+    "pages": [
+      "./holdings/001.json"
+    ],
+    "asOfDate": "21-Aug-2026"
+  },
+  "history": {
+    "totalRows": 240,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./history/001.json"
+    ]
+  }
+}

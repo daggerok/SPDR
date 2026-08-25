@@ -1,0 +1,113 @@
+{
+  "ticker": "OBND",
+  "name": "State Street Loomis Sayles Opportunistic Bond ETF",
+  "category": "Fixed Income Sector",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-loomis-sayles-opportunistic-bond-etf-obnd",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-obnd.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-obnd.xlsx",
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-obnd.pdf"
+  },
+  "expenseRatio": {
+    "display": "0.55%",
+    "value": 0.55
+  },
+  "nav": {
+    "display": "$25.43",
+    "value": 25.43,
+    "asOfDate": "Aug 21 2026"
+  },
+  "aum": {
+    "display": "$57.21 M",
+    "value": 57210000,
+    "asOfDate": "Aug 21 2026"
+  },
+  "pricing": {
+    "exchange": "Cboe BZX Exchange, Inc",
+    "closePrice": "$25.33",
+    "premiumDiscount": "-0.37%"
+  },
+  "inceptionDate": "Sep 27 2021",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Jul 31 2026",
+      "mo1": -0.81,
+      "mo1Text": "-0.81%",
+      "qtd": -0.81,
+      "qtdText": "-0.81%",
+      "ytd": 0.73,
+      "ytdText": "0.73%",
+      "yr1": 3.96,
+      "yr1Text": "3.96%",
+      "yr3": 6.16,
+      "yr3Text": "6.16%",
+      "yr5": null,
+      "yr5Text": null,
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 2.17,
+      "sinceInceptionText": "2.17%",
+      "inceptionDate": "Sep 27 2021"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": 0.24,
+      "mo1Text": "0.24%",
+      "qtd": 2.29,
+      "qtdText": "2.29%",
+      "ytd": 1.56,
+      "ytdText": "1.56%",
+      "yr1": 5.12,
+      "yr1Text": "5.12%",
+      "yr3": 6.76,
+      "yr3Text": "6.76%",
+      "yr5": null,
+      "yr5Text": null,
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 2.38,
+      "sinceInceptionText": "2.38%"
+    }
+  },
+  "distributions": {
+    "headers": [
+      "Frequency",
+      "Ex-Date",
+      "Record Date",
+      "Payable Date",
+      "Dividend",
+      "ST Cap Gains",
+      "LT Cap Gains"
+    ],
+    "rows": [
+      [
+        "Monthly",
+        "08/03/2026",
+        "08/03/2026",
+        "08/06/2026",
+        "0.142779",
+        "-",
+        "-"
+      ]
+    ]
+  },
+  "holdings": {
+    "totalRows": 448,
+    "pageSize": 250,
+    "pageCount": 2,
+    "pages": [
+      "./holdings/001.json",
+      "./holdings/002.json"
+    ],
+    "asOfDate": "21-Aug-2026"
+  },
+  "history": {
+    "totalRows": 1231,
+    "pageSize": 1000,
+    "pageCount": 2,
+    "pages": [
+      "./history/001.json",
+      "./history/002.json"
+    ]
+  }
+}

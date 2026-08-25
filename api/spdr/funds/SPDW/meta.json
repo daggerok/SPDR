@@ -1,0 +1,124 @@
+{
+  "ticker": "SPDW",
+  "name": "State Street SPDR Portfolio Developed World ex-US ETF",
+  "category": "Equity",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-portfolio-developed-world-ex-us-etf-spdw",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-spdw.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-spdw.xlsx",
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-spdw.pdf"
+  },
+  "expenseRatio": {
+    "display": "0.03%",
+    "value": 0.03
+  },
+  "nav": {
+    "display": "$51.96",
+    "value": 51.96,
+    "asOfDate": "Aug 21 2026"
+  },
+  "aum": {
+    "display": "$42,116.36 M",
+    "value": 42116360000,
+    "asOfDate": "Aug 21 2026"
+  },
+  "pricing": {
+    "exchange": "NYSE ARCA",
+    "closePrice": "$52.02",
+    "premiumDiscount": "0.09%"
+  },
+  "inceptionDate": "Apr 20 2007",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Jul 31 2026",
+      "mo1": 0.19,
+      "mo1Text": "0.19%",
+      "qtd": 0.19,
+      "qtdText": "0.19%",
+      "ytd": 14.69,
+      "ytdText": "14.69%",
+      "yr1": 29.55,
+      "yr1Text": "29.55%",
+      "yr3": 17.89,
+      "yr3Text": "17.89%",
+      "yr5": 9.81,
+      "yr5Text": "9.81%",
+      "yr10": 9.88,
+      "yr10Text": "9.88%",
+      "sinceInception": 5.11,
+      "sinceInceptionText": "5.11%",
+      "inceptionDate": "Apr 20 2007"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": -0.82,
+      "mo1Text": "-0.82%",
+      "qtd": 14.01,
+      "qtdText": "14.01%",
+      "ytd": 14.48,
+      "ytdText": "14.48%",
+      "yr1": 28.32,
+      "yr1Text": "28.32%",
+      "yr3": 19.21,
+      "yr3Text": "19.21%",
+      "yr5": 9.81,
+      "yr5Text": "9.81%",
+      "yr10": 10.39,
+      "yr10Text": "10.39%",
+      "sinceInception": 5.12,
+      "sinceInceptionText": "5.12%"
+    }
+  },
+  "distributions": {
+    "headers": [
+      "Frequency",
+      "Ex-Date",
+      "Record Date",
+      "Payable Date",
+      "Dividend",
+      "ST Cap Gains",
+      "LT Cap Gains"
+    ],
+    "rows": [
+      [
+        "Semi-Annually",
+        "06/22/2026",
+        "06/22/2026",
+        "06/26/2026",
+        "0.722053",
+        "-",
+        "-"
+      ]
+    ]
+  },
+  "holdings": {
+    "totalRows": 2456,
+    "pageSize": 250,
+    "pageCount": 10,
+    "pages": [
+      "./holdings/001.json",
+      "./holdings/002.json",
+      "./holdings/003.json",
+      "./holdings/004.json",
+      "./holdings/005.json",
+      "./holdings/006.json",
+      "./holdings/007.json",
+      "./holdings/008.json",
+      "./holdings/009.json",
+      "./holdings/010.json"
+    ],
+    "asOfDate": "21-Aug-2026"
+  },
+  "history": {
+    "totalRows": 4869,
+    "pageSize": 1000,
+    "pageCount": 5,
+    "pages": [
+      "./history/001.json",
+      "./history/002.json",
+      "./history/003.json",
+      "./history/004.json",
+      "./history/005.json"
+    ]
+  }
+}

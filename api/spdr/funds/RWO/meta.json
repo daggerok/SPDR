@@ -1,0 +1,115 @@
+{
+  "ticker": "RWO",
+  "name": "State Street SPDR Dow Jones Global Real Estate ETF",
+  "category": "Alternative Sector",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-dow-jones-global-real-estate-etf-rwo",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-rwo.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-rwo.xlsx",
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-rwo.pdf"
+  },
+  "expenseRatio": {
+    "display": "0.50%",
+    "value": 0.5
+  },
+  "nav": {
+    "display": "$50.57",
+    "value": 50.57,
+    "asOfDate": "Aug 21 2026"
+  },
+  "aum": {
+    "display": "$1,279.51 M",
+    "value": 1279510000,
+    "asOfDate": "Aug 21 2026"
+  },
+  "pricing": {
+    "exchange": "NYSE ARCA",
+    "closePrice": "$50.52",
+    "premiumDiscount": "0.01%"
+  },
+  "inceptionDate": "May 07 2008",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Jul 31 2026",
+      "mo1": 2.99,
+      "mo1Text": "2.99%",
+      "qtd": 2.99,
+      "qtdText": "2.99%",
+      "ytd": 14.66,
+      "ytdText": "14.66%",
+      "yr1": 20.99,
+      "yr1Text": "20.99%",
+      "yr3": 10.13,
+      "yr3Text": "10.13%",
+      "yr5": 2.59,
+      "yr5Text": "2.59%",
+      "yr10": 3.38,
+      "yr10Text": "3.38%",
+      "sinceInception": 4.06,
+      "sinceInceptionText": "4.06%",
+      "inceptionDate": "May 07 2008"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": 1.93,
+      "mo1Text": "1.93%",
+      "qtd": 9.73,
+      "qtdText": "9.73%",
+      "ytd": 11.33,
+      "ytdText": "11.33%",
+      "yr1": 16.22,
+      "yr1Text": "16.22%",
+      "yr3": 10.37,
+      "yr3Text": "10.37%",
+      "yr5": 2.86,
+      "yr5Text": "2.86%",
+      "yr10": 3.51,
+      "yr10Text": "3.51%",
+      "sinceInception": 3.91,
+      "sinceInceptionText": "3.91%"
+    }
+  },
+  "distributions": {
+    "headers": [
+      "Frequency",
+      "Ex-Date",
+      "Record Date",
+      "Payable Date",
+      "Dividend",
+      "ST Cap Gains",
+      "LT Cap Gains"
+    ],
+    "rows": [
+      [
+        "Quarterly",
+        "06/22/2026",
+        "06/22/2026",
+        "06/24/2026",
+        "0.437206",
+        "-",
+        "-"
+      ]
+    ]
+  },
+  "holdings": {
+    "totalRows": 241,
+    "pageSize": 250,
+    "pageCount": 1,
+    "pages": [
+      "./holdings/001.json"
+    ],
+    "asOfDate": "21-Aug-2026"
+  },
+  "history": {
+    "totalRows": 4602,
+    "pageSize": 1000,
+    "pageCount": 5,
+    "pages": [
+      "./history/001.json",
+      "./history/002.json",
+      "./history/003.json",
+      "./history/004.json",
+      "./history/005.json"
+    ]
+  }
+}

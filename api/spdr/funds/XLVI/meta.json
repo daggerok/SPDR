@@ -1,0 +1,111 @@
+{
+  "ticker": "XLVI",
+  "name": "State Street Health Care Select Sector SPDR Premium Income ETF",
+  "category": "Equity",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-health-care-select-sector-spdr-premium-income-etf-xlvi",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-xlvi.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-xlvi.xlsx",
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-xlvi.pdf"
+  },
+  "expenseRatio": {
+    "display": "0.35%",
+    "value": 0.35
+  },
+  "nav": {
+    "display": "$27.19",
+    "value": 27.19,
+    "asOfDate": "Aug 21 2026"
+  },
+  "aum": {
+    "display": "$23.38 M",
+    "value": 23380000,
+    "asOfDate": "Aug 21 2026"
+  },
+  "pricing": {
+    "exchange": "NYSE ARCA",
+    "closePrice": "$27.21",
+    "premiumDiscount": "0.02%"
+  },
+  "inceptionDate": "Jul 29 2025",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Jul 31 2026",
+      "mo1": 1.77,
+      "mo1Text": "1.77%",
+      "qtd": 1.77,
+      "qtdText": "1.77%",
+      "ytd": 6.88,
+      "ytdText": "6.88%",
+      "yr1": 23.54,
+      "yr1Text": "23.54%",
+      "yr3": null,
+      "yr3Text": null,
+      "yr5": null,
+      "yr5Text": null,
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 20.37,
+      "sinceInceptionText": "20.37%",
+      "inceptionDate": "Jul 29 2025"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": 4.81,
+      "mo1Text": "4.81%",
+      "qtd": 8.18,
+      "qtdText": "8.18%",
+      "ytd": 5.02,
+      "ytdText": "5.02%",
+      "yr1": null,
+      "yr1Text": null,
+      "yr3": null,
+      "yr3Text": null,
+      "yr5": null,
+      "yr5Text": null,
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 18.39,
+      "sinceInceptionText": "18.39%"
+    }
+  },
+  "distributions": {
+    "headers": [
+      "Frequency",
+      "Ex-Date",
+      "Record Date",
+      "Payable Date",
+      "Dividend",
+      "ST Cap Gains",
+      "LT Cap Gains"
+    ],
+    "rows": [
+      [
+        "Monthly",
+        "08/03/2026",
+        "08/03/2026",
+        "08/05/2026",
+        "0.220362",
+        "-",
+        "-"
+      ]
+    ]
+  },
+  "holdings": {
+    "totalRows": 4,
+    "pageSize": 250,
+    "pageCount": 1,
+    "pages": [
+      "./holdings/001.json"
+    ],
+    "asOfDate": "21-Aug-2026"
+  },
+  "history": {
+    "totalRows": 269,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./history/001.json"
+    ]
+  }
+}

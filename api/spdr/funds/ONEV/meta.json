@@ -1,0 +1,114 @@
+{
+  "ticker": "ONEV",
+  "name": "State Street SPDR Russell 1000 Low Volatility Focus ETF",
+  "category": "Equity",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-russell-1000-low-volatility-focus-etf-onev",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-onev.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-onev.xlsx",
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-onev.pdf"
+  },
+  "expenseRatio": {
+    "display": "0.20%",
+    "value": 0.2
+  },
+  "nav": {
+    "display": "$151.09",
+    "value": 151.09,
+    "asOfDate": "Aug 21 2026"
+  },
+  "aum": {
+    "display": "$306.72 M",
+    "value": 306720000,
+    "asOfDate": "Aug 21 2026"
+  },
+  "pricing": {
+    "exchange": "NYSE ARCA",
+    "closePrice": "$151.00",
+    "premiumDiscount": "-0.02%"
+  },
+  "inceptionDate": "Dec 02 2015",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Jul 31 2026",
+      "mo1": 3.41,
+      "mo1Text": "3.41%",
+      "qtd": 3.41,
+      "qtdText": "3.41%",
+      "ytd": 12.17,
+      "ytdText": "12.17%",
+      "yr1": 16.88,
+      "yr1Text": "16.88%",
+      "yr3": 11.88,
+      "yr3Text": "11.88%",
+      "yr5": 8.82,
+      "yr5Text": "8.82%",
+      "yr10": 11.26,
+      "yr10Text": "11.26%",
+      "sinceInception": 11.63,
+      "sinceInceptionText": "11.63%",
+      "inceptionDate": "Dec 02 2015"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": 2.41,
+      "mo1Text": "2.41%",
+      "qtd": 7.12,
+      "qtdText": "7.12%",
+      "ytd": 8.47,
+      "ytdText": "8.47%",
+      "yr1": 12.96,
+      "yr1Text": "12.96%",
+      "yr3": 11.77,
+      "yr3Text": "11.77%",
+      "yr5": 8.59,
+      "yr5Text": "8.59%",
+      "yr10": 11.26,
+      "yr10Text": "11.26%",
+      "sinceInception": 11.38,
+      "sinceInceptionText": "11.38%"
+    }
+  },
+  "distributions": {
+    "headers": [
+      "Frequency",
+      "Ex-Date",
+      "Record Date",
+      "Payable Date",
+      "Dividend",
+      "ST Cap Gains",
+      "LT Cap Gains"
+    ],
+    "rows": [
+      [
+        "Quarterly",
+        "06/22/2026",
+        "06/22/2026",
+        "06/24/2026",
+        "0.761642",
+        "-",
+        "-"
+      ]
+    ]
+  },
+  "holdings": {
+    "totalRows": 450,
+    "pageSize": 250,
+    "pageCount": 2,
+    "pages": [
+      "./holdings/001.json",
+      "./holdings/002.json"
+    ],
+    "asOfDate": "21-Aug-2026"
+  },
+  "history": {
+    "totalRows": 2695,
+    "pageSize": 1000,
+    "pageCount": 3,
+    "pages": [
+      "./history/001.json",
+      "./history/002.json",
+      "./history/003.json"
+    ]
+  }
+}

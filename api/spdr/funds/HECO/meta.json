@@ -1,0 +1,111 @@
+{
+  "ticker": "HECO",
+  "name": "State Street Galaxy Hedged Digital Asset Ecosystem ETF",
+  "category": "Equity",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-galaxy-hedged-digital-asset-ecosystem-etf-heco",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-heco.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-heco.xlsx",
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-heco.pdf"
+  },
+  "expenseRatio": {
+    "display": "0.90%",
+    "value": 0.9
+  },
+  "nav": {
+    "display": "$62.34",
+    "value": 62.34,
+    "asOfDate": "Aug 21 2026"
+  },
+  "aum": {
+    "display": "$79.80 M",
+    "value": 79800000,
+    "asOfDate": "Aug 21 2026"
+  },
+  "pricing": {
+    "exchange": "NASDAQ REGULAR MARKET",
+    "closePrice": "$62.37",
+    "premiumDiscount": "0.07%"
+  },
+  "inceptionDate": "Sep 09 2024",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Jul 31 2026",
+      "mo1": -5.25,
+      "mo1Text": "-5.25%",
+      "qtd": -5.25,
+      "qtdText": "-5.25%",
+      "ytd": 61.6,
+      "ytdText": "61.60%",
+      "yr1": 85.84,
+      "yr1Text": "85.84%",
+      "yr3": null,
+      "yr3Text": null,
+      "yr5": null,
+      "yr5Text": null,
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 66.66,
+      "sinceInceptionText": "66.66%",
+      "inceptionDate": "Sep 09 2024"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": 1.43,
+      "mo1Text": "1.43%",
+      "qtd": 72.35,
+      "qtdText": "72.35%",
+      "ytd": 70.55,
+      "ytdText": "70.55%",
+      "yr1": 100.88,
+      "yr1Text": "100.88%",
+      "yr3": null,
+      "yr3Text": null,
+      "yr5": null,
+      "yr5Text": null,
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 75.89,
+      "sinceInceptionText": "75.89%"
+    }
+  },
+  "distributions": {
+    "headers": [
+      "Frequency",
+      "Ex-Date",
+      "Record Date",
+      "Payable Date",
+      "Dividend",
+      "ST Cap Gains",
+      "LT Cap Gains"
+    ],
+    "rows": [
+      [
+        "Annually",
+        "12/29/2025",
+        "12/29/2025",
+        "12/31/2025",
+        "0.000000",
+        "0.000000",
+        "0.000000"
+      ]
+    ]
+  },
+  "holdings": {
+    "totalRows": 67,
+    "pageSize": 250,
+    "pageCount": 1,
+    "pages": [
+      "./holdings/001.json"
+    ],
+    "asOfDate": "21-Aug-2026"
+  },
+  "history": {
+    "totalRows": 490,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./history/001.json"
+    ]
+  }
+}

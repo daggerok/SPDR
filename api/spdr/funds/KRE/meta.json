@@ -1,0 +1,116 @@
+{
+  "ticker": "KRE",
+  "name": "State Street SPDR S&P Regional Banking ETF",
+  "category": "Equity",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-regional-banking-etf-kre",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-kre.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-kre.xlsx",
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-kre.pdf"
+  },
+  "expenseRatio": {
+    "display": "0.35%",
+    "value": 0.35
+  },
+  "nav": {
+    "display": "$74.85",
+    "value": 74.85,
+    "asOfDate": "Aug 21 2026"
+  },
+  "aum": {
+    "display": "$3,941.03 M",
+    "value": 3941030000,
+    "asOfDate": "Aug 21 2026"
+  },
+  "pricing": {
+    "exchange": "NYSE ARCA",
+    "closePrice": "$74.86",
+    "premiumDiscount": "0.01%"
+  },
+  "inceptionDate": "Jun 19 2006",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Jul 31 2026",
+      "mo1": 1.71,
+      "mo1Text": "1.71%",
+      "qtd": 1.71,
+      "qtdText": "1.71%",
+      "ytd": 18.71,
+      "ytdText": "18.71%",
+      "yr1": 29.74,
+      "yr1Text": "29.74%",
+      "yr3": 19.32,
+      "yr3Text": "19.32%",
+      "yr5": 6.9,
+      "yr5Text": "6.90%",
+      "yr10": 9.31,
+      "yr10Text": "9.31%",
+      "sinceInception": 4.83,
+      "sinceInceptionText": "4.83%",
+      "inceptionDate": "Jun 19 2006"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": 8.13,
+      "mo1Text": "8.13%",
+      "qtd": 15.57,
+      "qtdText": "15.57%",
+      "ytd": 16.71,
+      "ytdText": "16.71%",
+      "yr1": 28.9,
+      "yr1Text": "28.90%",
+      "yr3": 25.84,
+      "yr3Text": "25.84%",
+      "yr5": 5.55,
+      "yr5Text": "5.55%",
+      "yr10": 9.58,
+      "yr10Text": "9.58%",
+      "sinceInception": 4.76,
+      "sinceInceptionText": "4.76%"
+    }
+  },
+  "distributions": {
+    "headers": [
+      "Frequency",
+      "Ex-Date",
+      "Record Date",
+      "Payable Date",
+      "Dividend",
+      "ST Cap Gains",
+      "LT Cap Gains"
+    ],
+    "rows": [
+      [
+        "Quarterly",
+        "06/22/2026",
+        "06/22/2026",
+        "06/24/2026",
+        "0.416731",
+        "-",
+        "-"
+      ]
+    ]
+  },
+  "holdings": {
+    "totalRows": 160,
+    "pageSize": 250,
+    "pageCount": 1,
+    "pages": [
+      "./holdings/001.json"
+    ],
+    "asOfDate": "21-Aug-2026"
+  },
+  "history": {
+    "totalRows": 5079,
+    "pageSize": 1000,
+    "pageCount": 6,
+    "pages": [
+      "./history/001.json",
+      "./history/002.json",
+      "./history/003.json",
+      "./history/004.json",
+      "./history/005.json",
+      "./history/006.json"
+    ]
+  }
+}

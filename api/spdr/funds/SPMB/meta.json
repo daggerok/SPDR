@@ -1,0 +1,125 @@
+{
+  "ticker": "SPMB",
+  "name": "State Street SPDR Portfolio Mortgage Backed Bond ETF",
+  "category": "Fixed Income Sector",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-portfolio-mortgage-backed-bond-etf-spmb",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-spmb.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-spmb.xlsx",
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-spmb.pdf"
+  },
+  "expenseRatio": {
+    "display": "0.04%",
+    "value": 0.04
+  },
+  "nav": {
+    "display": "$21.97",
+    "value": 21.97,
+    "asOfDate": "Aug 21 2026"
+  },
+  "aum": {
+    "display": "$7,117.41 M",
+    "value": 7117410000,
+    "asOfDate": "Aug 21 2026"
+  },
+  "pricing": {
+    "exchange": "NYSE ARCA",
+    "closePrice": "$21.96",
+    "premiumDiscount": "-0.01%"
+  },
+  "inceptionDate": "Jan 15 2009",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Jul 31 2026",
+      "mo1": -1.44,
+      "mo1Text": "-1.44%",
+      "qtd": -1.44,
+      "qtdText": "-1.44%",
+      "ytd": -0.4,
+      "ytdText": "-0.40%",
+      "yr1": 4.06,
+      "yr1Text": "4.06%",
+      "yr3": 4.06,
+      "yr3Text": "4.06%",
+      "yr5": 0.01,
+      "yr5Text": "0.01%",
+      "yr10": 1.09,
+      "yr10Text": "1.09%",
+      "sinceInception": 2.18,
+      "sinceInceptionText": "2.18%",
+      "inceptionDate": "Jan 15 2009"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": 0.22,
+      "mo1Text": "0.22%",
+      "qtd": 0.59,
+      "qtdText": "0.59%",
+      "ytd": 1.05,
+      "ytdText": "1.05%",
+      "yr1": 5.15,
+      "yr1Text": "5.15%",
+      "yr3": 4.54,
+      "yr3Text": "4.54%",
+      "yr5": 0.43,
+      "yr5Text": "0.43%",
+      "yr10": 1.26,
+      "yr10Text": "1.26%",
+      "sinceInception": 2.28,
+      "sinceInceptionText": "2.28%"
+    }
+  },
+  "distributions": {
+    "headers": [
+      "Frequency",
+      "Ex-Date",
+      "Record Date",
+      "Payable Date",
+      "Dividend",
+      "ST Cap Gains",
+      "LT Cap Gains"
+    ],
+    "rows": [
+      [
+        "Monthly",
+        "08/03/2026",
+        "08/03/2026",
+        "08/06/2026",
+        "0.071598",
+        "-",
+        "-"
+      ]
+    ]
+  },
+  "holdings": {
+    "totalRows": 2729,
+    "pageSize": 250,
+    "pageCount": 11,
+    "pages": [
+      "./holdings/001.json",
+      "./holdings/002.json",
+      "./holdings/003.json",
+      "./holdings/004.json",
+      "./holdings/005.json",
+      "./holdings/006.json",
+      "./holdings/007.json",
+      "./holdings/008.json",
+      "./holdings/009.json",
+      "./holdings/010.json",
+      "./holdings/011.json"
+    ],
+    "asOfDate": "21-Aug-2026"
+  },
+  "history": {
+    "totalRows": 4429,
+    "pageSize": 1000,
+    "pageCount": 5,
+    "pages": [
+      "./history/001.json",
+      "./history/002.json",
+      "./history/003.json",
+      "./history/004.json",
+      "./history/005.json"
+    ]
+  }
+}

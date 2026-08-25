@@ -1,0 +1,115 @@
+{
+  "ticker": "PSK",
+  "name": "State Street SPDR ICE Preferred Securities ETF",
+  "category": "Equity",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-ice-preferred-securities-etf-psk",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-psk.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-psk.xlsx",
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-psk.pdf"
+  },
+  "expenseRatio": {
+    "display": "0.45%",
+    "value": 0.45
+  },
+  "nav": {
+    "display": "$29.61",
+    "value": 29.61,
+    "asOfDate": "Aug 21 2026"
+  },
+  "aum": {
+    "display": "$673.56 M",
+    "value": 673560000,
+    "asOfDate": "Aug 21 2026"
+  },
+  "pricing": {
+    "exchange": "NYSE ARCA",
+    "closePrice": "$29.59",
+    "premiumDiscount": "0.03%"
+  },
+  "inceptionDate": "Sep 16 2009",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Jul 31 2026",
+      "mo1": -0.4,
+      "mo1Text": "-0.40%",
+      "qtd": -0.4,
+      "qtdText": "-0.40%",
+      "ytd": -1.37,
+      "ytdText": "-1.37%",
+      "yr1": 0.08,
+      "yr1Text": "0.08%",
+      "yr3": 2.99,
+      "yr3Text": "2.99%",
+      "yr5": -1.17,
+      "yr5Text": "-1.17%",
+      "yr10": 1.68,
+      "yr10Text": "1.68%",
+      "sinceInception": 4.41,
+      "sinceInceptionText": "4.41%",
+      "inceptionDate": "Sep 16 2009"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": -0.84,
+      "mo1Text": "-0.84%",
+      "qtd": 0.99,
+      "qtdText": "0.99%",
+      "ytd": -0.97,
+      "ytdText": "-0.97%",
+      "yr1": 3.3,
+      "yr1Text": "3.30%",
+      "yr3": 3.56,
+      "yr3Text": "3.56%",
+      "yr5": -1.13,
+      "yr5Text": "-1.13%",
+      "yr10": 1.79,
+      "yr10Text": "1.79%",
+      "sinceInception": 4.46,
+      "sinceInceptionText": "4.46%"
+    }
+  },
+  "distributions": {
+    "headers": [
+      "Frequency",
+      "Ex-Date",
+      "Record Date",
+      "Payable Date",
+      "Dividend",
+      "ST Cap Gains",
+      "LT Cap Gains"
+    ],
+    "rows": [
+      [
+        "Monthly",
+        "08/03/2026",
+        "08/03/2026",
+        "08/06/2026",
+        "0.180000",
+        "-",
+        "-"
+      ]
+    ]
+  },
+  "holdings": {
+    "totalRows": 165,
+    "pageSize": 250,
+    "pageCount": 1,
+    "pages": [
+      "./holdings/001.json"
+    ],
+    "asOfDate": "21-Aug-2026"
+  },
+  "history": {
+    "totalRows": 4262,
+    "pageSize": 1000,
+    "pageCount": 5,
+    "pages": [
+      "./history/001.json",
+      "./history/002.json",
+      "./history/003.json",
+      "./history/004.json",
+      "./history/005.json"
+    ]
+  }
+}

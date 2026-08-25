@@ -1,0 +1,120 @@
+{
+  "ticker": "GMF",
+  "name": "State Street SPDR S&P Emerging Asia Pacific ETF",
+  "category": "Equity",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-emerging-asia-pacific-etf-gmf",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-gmf.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-gmf.xlsx",
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-gmf.pdf"
+  },
+  "expenseRatio": {
+    "display": "0.49%",
+    "value": 0.49
+  },
+  "nav": {
+    "display": "$156.84",
+    "value": 156.84,
+    "asOfDate": "Aug 21 2026"
+  },
+  "aum": {
+    "display": "$431.30 M",
+    "value": 431300000,
+    "asOfDate": "Aug 21 2026"
+  },
+  "pricing": {
+    "exchange": "NYSE ARCA",
+    "closePrice": "$155.61",
+    "premiumDiscount": "-0.57%"
+  },
+  "inceptionDate": "Mar 20 2007",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Jul 31 2026",
+      "mo1": -2.77,
+      "mo1Text": "-2.77%",
+      "qtd": -2.77,
+      "qtdText": "-2.77%",
+      "ytd": 9.44,
+      "ytdText": "9.44%",
+      "yr1": 19.52,
+      "yr1Text": "19.52%",
+      "yr3": 15.31,
+      "yr3Text": "15.31%",
+      "yr5": 6.38,
+      "yr5Text": "6.38%",
+      "yr10": 9.17,
+      "yr10Text": "9.17%",
+      "sinceInception": 7.2,
+      "sinceInceptionText": "7.20%",
+      "inceptionDate": "Mar 20 2007"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": 0.74,
+      "mo1Text": "0.74%",
+      "qtd": 18,
+      "qtdText": "18.00%",
+      "ytd": 12.56,
+      "ytdText": "12.56%",
+      "yr1": 25.73,
+      "yr1Text": "25.73%",
+      "yr3": 18.72,
+      "yr3Text": "18.72%",
+      "yr5": 5.37,
+      "yr5Text": "5.37%",
+      "yr10": 9.94,
+      "yr10Text": "9.94%",
+      "sinceInception": 7.39,
+      "sinceInceptionText": "7.39%"
+    }
+  },
+  "distributions": {
+    "headers": [
+      "Frequency",
+      "Ex-Date",
+      "Record Date",
+      "Payable Date",
+      "Dividend",
+      "ST Cap Gains",
+      "LT Cap Gains"
+    ],
+    "rows": [
+      [
+        "Semi-Annually",
+        "06/22/2026",
+        "06/22/2026",
+        "06/26/2026",
+        "0.655080",
+        "-",
+        "-"
+      ]
+    ]
+  },
+  "holdings": {
+    "totalRows": 1310,
+    "pageSize": 250,
+    "pageCount": 6,
+    "pages": [
+      "./holdings/001.json",
+      "./holdings/002.json",
+      "./holdings/003.json",
+      "./holdings/004.json",
+      "./holdings/005.json",
+      "./holdings/006.json"
+    ],
+    "asOfDate": "21-Aug-2026"
+  },
+  "history": {
+    "totalRows": 4892,
+    "pageSize": 1000,
+    "pageCount": 5,
+    "pages": [
+      "./history/001.json",
+      "./history/002.json",
+      "./history/003.json",
+      "./history/004.json",
+      "./history/005.json"
+    ]
+  }
+}

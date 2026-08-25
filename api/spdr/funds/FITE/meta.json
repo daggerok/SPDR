@@ -1,0 +1,113 @@
+{
+  "ticker": "FITE",
+  "name": "State Street SPDR S&P Kensho Future Security ETF",
+  "category": "Equity",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-kensho-future-security-etf-fite",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-fite.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-fite.xlsx",
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-fite.pdf"
+  },
+  "expenseRatio": {
+    "display": "0.45%",
+    "value": 0.45
+  },
+  "nav": {
+    "display": "$112.18",
+    "value": 112.18,
+    "asOfDate": "Aug 21 2026"
+  },
+  "aum": {
+    "display": "$150.32 M",
+    "value": 150320000,
+    "asOfDate": "Aug 21 2026"
+  },
+  "pricing": {
+    "exchange": "NYSE ARCA",
+    "closePrice": "$112.10",
+    "premiumDiscount": "-0.01%"
+  },
+  "inceptionDate": "Dec 26 2017",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Jul 31 2026",
+      "mo1": -5.11,
+      "mo1Text": "-5.11%",
+      "qtd": -5.11,
+      "qtdText": "-5.11%",
+      "ytd": 25.14,
+      "ytdText": "25.14%",
+      "yr1": 39.65,
+      "yr1Text": "39.65%",
+      "yr3": 29.3,
+      "yr3Text": "29.30%",
+      "yr5": 15.64,
+      "yr5Text": "15.64%",
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 16.59,
+      "sinceInceptionText": "16.59%",
+      "inceptionDate": "Dec 26 2017"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": -3.91,
+      "mo1Text": "-3.91%",
+      "qtd": 31.4,
+      "qtdText": "31.40%",
+      "ytd": 31.88,
+      "ytdText": "31.88%",
+      "yr1": 48.21,
+      "yr1Text": "48.21%",
+      "yr3": 32.28,
+      "yr3Text": "32.28%",
+      "yr5": 17.03,
+      "yr5Text": "17.03%",
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 17.49,
+      "sinceInceptionText": "17.49%"
+    }
+  },
+  "distributions": {
+    "headers": [
+      "Frequency",
+      "Ex-Date",
+      "Record Date",
+      "Payable Date",
+      "Dividend",
+      "ST Cap Gains",
+      "LT Cap Gains"
+    ],
+    "rows": [
+      [
+        "Quarterly",
+        "06/22/2026",
+        "06/22/2026",
+        "06/24/2026",
+        "0.010686",
+        "-",
+        "-"
+      ]
+    ]
+  },
+  "holdings": {
+    "totalRows": 79,
+    "pageSize": 250,
+    "pageCount": 1,
+    "pages": [
+      "./holdings/001.json"
+    ],
+    "asOfDate": "21-Aug-2026"
+  },
+  "history": {
+    "totalRows": 2175,
+    "pageSize": 1000,
+    "pageCount": 3,
+    "pages": [
+      "./history/001.json",
+      "./history/002.json",
+      "./history/003.json"
+    ]
+  }
+}

@@ -1,0 +1,1584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SPDR ETF holdings to Watchlist from the static api/spdr JSON feed." />
+  <title>SPDR ETF Holdings to Watchlist</title>
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+
+  <!-- Inter font (same as Amplify / iShares apps) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind (CDN, no build step for local Bun workflow) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } }
+    }
+  </script>
+
+  <!-- Babel standalone: compile inline TypeScript in this single index.html, same no-build style as daggerok/Amplify -->
+  <script src="https://unpkg.com/@babel/standalone@7.24.0/babel.min.js"></script>
+
+  <!-- Synchronous theme init (prevents flash, same strategy as Amplify / iShares) -->
+  <script>
+    (function () {
+      var dark = localStorage.getItem('spdr-theme') === 'dark';
+      document.documentElement.classList.toggle('dark', dark);
+      document.documentElement.style.backgroundColor = dark ? '#020617' : '#f8fafc';
+    })();
+  </script>
+
+  <style>
+    @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+    .animate-fade-in{animation:fadeIn .3s ease-out}
+
+    /* Themed scrollbars (same slate palette as Amplify / iShares) */
+    .themed-scroll::-webkit-scrollbar{width:10px;height:10px}
+    .themed-scroll::-webkit-scrollbar-track{background:transparent}
+    .themed-scroll::-webkit-scrollbar-thumb{background-color:#cbd5e1;border-radius:8px;border:2px solid transparent;background-clip:padding-box}
+    .themed-scroll::-webkit-scrollbar-thumb:hover{background-color:#94a3b8}
+    .dark .themed-scroll::-webkit-scrollbar-thumb{background-color:#334155}
+    .dark .themed-scroll::-webkit-scrollbar-thumb:hover{background-color:#475569}
+    .themed-scroll::-webkit-scrollbar-corner{background:transparent}
+    .themed-scroll{scrollbar-width:thin;scrollbar-color:#cbd5e1 transparent}
+    .dark .themed-scroll{scrollbar-color:#334155 transparent}
+
+    .selected-row{background:#eff6ff}
+    .dark .selected-row{background:rgba(30,64,175,.22)}
+
+    /*
+     * Scroll fix (also applied to daggerok/iShares): only the table scrolls.
+     * The JS layer sizes #table-scroll to the real viewport rest; overscroll
+     * containment stops wheel momentum from chaining to the document, which
+     * used to produce a small up/down page shift when the table was full.
+     */
+    #table-scroll{overscroll-behavior:contain}
+
+    /* Detail navigation expands into place after an ETF is selected. */
+    main.space-y-6 > #selected-tabs-panel{max-height:0;margin-top:0;overflow:hidden;opacity:0;transform:translateY(-10px);padding-top:0;padding-bottom:0;border-color:transparent;transition:max-height .32s ease,margin-top .32s ease,padding .32s ease,opacity .22s ease,transform .32s ease,border-color .22s ease}
+    main.space-y-6 > #selected-tabs-panel.is-visible{max-height:8rem;margin-top:1.5rem;padding-top:1rem;padding-bottom:1rem;opacity:1;transform:translateY(0);border-color:rgb(226 232 240)}
+    .dark main.space-y-6 > #selected-tabs-panel.is-visible{border-color:rgb(51 65 85)}
+
+    @keyframes tableRefresh{from{opacity:.32;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+    #table-body.table-content-enter{animation:tableRefresh .22s ease-out}
+    @media (prefers-reduced-motion:reduce){#table-body.table-content-enter{animation:none}main.space-y-6 > #selected-tabs-panel{transition:none}}
+  </style>
+</head>
+<body class="min-h-screen font-sans bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300">
+  <div class="min-h-screen flex flex-col animate-fade-in">
+
+    <!-- Header: intentionally mirrors daggerok/Amplify look and feel -->
+    <header class="bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 px-4 sm:px-8 py-3 flex flex-wrap justify-between items-center gap-3 z-40 shadow-xs shrink-0">
+      <div class="flex flex-1 flex-wrap items-center gap-x-3 gap-y-1.5 min-w-0">
+        <div class="flex items-start gap-3 min-w-0">
+          <svg class="w-6 h-6 text-blue-600 dark:text-blue-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 7l-8.5 8.5-5-5L2 17" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7h6v6" />
+          </svg>
+          <h1 class="min-w-0 text-xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">SPDR ETF Holdings to Watchlist</h1>
+        </div>
+        <span id="app-subtitle" class="basis-full sm:basis-auto text-sm text-slate-500 dark:text-slate-400">
+          Search SPDR ETFs, select rows, then use the Watchlist tab. Data comes from
+          <a href="./api/spdr/index.json" target="_blank" rel="noopener noreferrer" class="font-semibold text-blue-600 dark:text-blue-400 hover:underline">api/spdr/index.json</a>
+          generated from
+          <a href="https://www.ssga.com/us/en/intermediary/etfs/fund-finder" target="_blank" rel="noopener noreferrer" class="font-semibold text-blue-600 dark:text-blue-400 hover:underline">SSGA SPDR ETFs</a>
+        </span>
+      </div>
+      <div class="flex items-center gap-3 shrink-0">
+        <span id="ticker-count" class="bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 text-sm font-semibold px-3.5 py-1.5 rounded-full border border-blue-200 dark:border-blue-500/30">
+          Loading…
+        </span>
+        <button id="theme-toggle" class="p-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700 transition text-base leading-none" title="Toggle Theme">🌙</button>
+      </div>
+    </header>
+
+    <main class="flex-1 w-full max-w-full p-4 sm:p-8 space-y-6">
+
+      <!-- Search, Tabs & Action Bar -->
+      <div class="flex flex-col lg:flex-row justify-between items-center gap-4 bg-white dark:bg-slate-800/80 p-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm backdrop-blur">
+
+        <!-- One full-text search input. It filters ETFs, fund sheets or watchlist rows case-insensitively. -->
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search ETFs, fund names, holdings, tickers, CUSIPs/ISINs, SEDOLs..."
+          disabled
+          class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-2 w-full lg:w-96 focus:outline-none focus:border-blue-500 text-sm placeholder-slate-400 dark:placeholder-slate-500 disabled:opacity-50 disabled:cursor-not-allowed shrink-0 transition"
+        />
+
+        <!-- ETF catalogue tabs: All ETFs + SPDR asset-class categories. -->
+        <div id="tabs-bar" class="hidden flex flex-wrap items-center justify-center gap-1.5 overflow-x-auto py-1 w-full max-w-full flex-1 themed-scroll"></div>
+
+        <!-- Actions intentionally match Amplify / iShares naming and placement -->
+        <div class="flex flex-wrap items-center gap-2.5 w-full lg:w-auto justify-end shrink-0">
+          <button id="copy-btn" disabled class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-lg text-sm font-medium transition active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-200 dark:hover:bg-slate-700 disabled:hover:bg-slate-100 dark:disabled:hover:bg-slate-800">Copy Tickers</button>
+          <button id="export-csv-btn" disabled class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-blue-600">Export .csv</button>
+          <button id="export-txt-btn" disabled class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-emerald-600">Export .txt</button>
+          <button id="reset-btn" disabled class="bg-rose-100 dark:bg-rose-900/40 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-700/50 px-3 py-2 rounded-lg text-sm font-medium transition active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-rose-200 dark:hover:bg-rose-800/60 disabled:hover:bg-rose-100 dark:disabled:hover:bg-rose-900/40">Clear</button>
+          <button id="blacklist-btn" class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-lg text-sm font-medium transition active:scale-95 hover:bg-slate-200 dark:hover:bg-slate-700" title="Manage the blacklist of ETFs hidden from All ETFs (kept in browser localStorage)" aria-expanded="false">Blacklist</button>
+        </div>
+
+      </div>
+
+      <!-- Blacklist manager: blacklisted ETFs are hidden from All ETFs and stored in localStorage. -->
+      <div id="blacklist-panel" class="hidden bg-white dark:bg-slate-800/80 p-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm backdrop-blur">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-2.5">
+          <input type="text" id="blacklist-input" placeholder="Add ETF tickers to blacklist (e.g. SPY, XLK)" class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-2 w-full sm:w-80 focus:outline-none focus:border-blue-500 text-sm placeholder-slate-400 dark:placeholder-slate-500 transition" />
+          <div class="flex flex-wrap items-center gap-2.5">
+            <button id="blacklist-add-btn" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition active:scale-95">Add</button>
+            <button id="blacklist-clear-btn" class="bg-rose-100 dark:bg-rose-900/40 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-700/50 px-3 py-2 rounded-lg text-sm font-medium transition active:scale-95 hover:bg-rose-200 dark:hover:bg-rose-800/60">Clear Blacklist</button>
+          </div>
+        </div>
+        <div id="blacklist-chips" class="flex flex-wrap gap-1.5 mt-3"></div>
+        <p id="blacklist-empty" class="text-xs text-slate-400 dark:text-slate-500 mt-3">The blacklist is empty. Blacklisted ETFs disappear from All ETFs (and from selection), and are kept in your browser localStorage.</p>
+      </div>
+
+      <!-- Selected ETF detail tabs appear immediately above the table. -->
+      <nav id="selected-tabs-panel" class="bg-white dark:bg-slate-800/80 px-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm backdrop-blur" aria-label="Selected ETF detail views">
+        <div id="selected-tabs-bar" class="flex flex-wrap items-center justify-center gap-1.5 overflow-x-auto py-1 w-full max-w-full themed-scroll"></div>
+      </nav>
+
+      <!-- Data Table Container -->
+      <div class="bg-white dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm backdrop-blur overflow-hidden">
+        <div id="table-scroll" class="overflow-x-auto overflow-y-auto themed-scroll">
+          <table class="w-full text-left border-collapse whitespace-nowrap">
+            <thead id="table-head" class="bg-slate-50 dark:bg-slate-900/95 text-slate-500 dark:text-slate-400 text-xs uppercase tracking-wider border-b border-slate-200 dark:border-slate-700 sticky top-0 z-20 backdrop-blur">
+              <tr>
+                <th class="py-3.5 px-4 w-12 text-center" title="Row index">#</th>
+                <th class="py-3.5 px-4" title="Column 1">Column 1</th>
+              </tr>
+            </thead>
+            <tbody id="table-body" class="divide-y divide-slate-100 dark:divide-slate-700/50 text-sm">
+              <tr>
+                <td colspan="10" class="py-12 text-center text-slate-400 dark:text-slate-500">Loading SPDR ETF catalog…</td>
+              </tr>
+            </tbody>
+          </table>
+          <div id="static-load-sentinel" class="hidden py-3 text-center text-xs text-slate-500 dark:text-slate-400 cursor-pointer" aria-live="polite">
+            <span id="static-load-status"></span>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script type="text/babel" data-presets="typescript">
+    /**
+     * @file SPDR Watchlist Application
+     * Client-side static feed viewer for api/spdr/** with multi-ETF Watchlist
+     * aggregation. Same single-file approach as daggerok/Amplify: the paginated
+     * static API and lazy sheet loading follow daggerok/iShares.
+     */
+
+    // =========================================================================
+    // 1. Types, constants & storage keys
+    // =========================================================================
+
+    type ActiveTab = string;
+    type SortDirection = 'asc' | 'desc';
+    type TableRow = Record<string, unknown> & { searchIndex?: string };
+
+    type MonthQuarterReturns = {
+      asOfDate?: string | null;
+      mo1?: number | null; qtd?: number | null; ytd?: number | null;
+      yr1?: number | null; yr3?: number | null; yr5?: number | null; yr10?: number | null;
+      sinceInception?: number | null;
+      inceptionDate?: string | null;
+    };
+
+    type IndexFund = {
+      ticker: string;
+      name: string;
+      category: string;
+      fundPage: string;
+      dataFile: string;
+      ter: string | null;
+      terValue: number | null;
+      nav: string | null;
+      navValue: number | null;
+      aum: string | null;
+      aumValue: number | null;
+      asOfDate: string | null;
+      inceptionDate: string | null;
+      exchange: string | null;
+      closePrice: string | null;
+      premiumDiscount: string | null;
+      distributions: { frequency: string; exDate: string; dividend: string } | null;
+      returns: { monthEnd: MonthQuarterReturns; quarterEnd: MonthQuarterReturns };
+      holdings: number;
+      history: number;
+    };
+
+    type FundMeta = {
+      ticker: string;
+      name: string;
+      category: string;
+      source: Record<string, string | null>;
+      expenseRatio: { display: string | null; value: number | null };
+      nav: { display: string | null; value: number | null; asOfDate: string | null };
+      aum: { display: string | null; value: number | null; asOfDate: string | null };
+      pricing: { exchange: string | null; closePrice: string | null; premiumDiscount: string | null };
+      inceptionDate: string | null;
+      returns: { monthEnd: MonthQuarterReturns; quarterEnd: MonthQuarterReturns };
+      distributions: { headers: string[]; rows: string[][] };
+      holdings: PageManifest;
+      history: PageManifest;
+    };
+
+    type PageManifest = { totalRows: number; pageSize: number; pageCount: number; pages: string[]; asOfDate?: string };
+    type Sheet = { headers: string[]; rows: string[][] };
+
+    type FundRow = IndexFund & {
+      searchIndex: string;
+      ytd?: number | null;
+      yr1?: number | null;
+      yr3?: number | null;
+      yr5?: number | null;
+      yr10?: number | null;
+      si?: number | null;
+      returnAsOf?: string | null;
+    };
+
+    type WatchlistRow = {
+      symbol: string;
+      name: string;
+      funds: string[];
+      fundCount: number;
+      weightSum: number;
+      maxWeight: number;
+      cusips: string[];
+      identifier: string;
+      searchIndex: string;
+    };
+
+    const INDEX_URL = './api/spdr/index.json';
+    const THEME_KEY = 'spdr-theme';
+    const SELECTED_KEY = 'spdr-selected-etfs';
+    const BLACKLIST_KEY = 'spdr-blacklisted-etfs';
+    const ACTIVE_FUND_KEY = 'spdr-active-fund';
+    const SEARCHES_KEY = 'spdr-searches';
+    const DEFAULT_SELECTED_TICKERS = ['SPY', 'XLK'];
+
+    /** Hover explanations for table headers. Native `title` tooltips. */
+    const COLUMN_TOOLTIPS: Record<string, string> = {
+      '#': 'Row index in current table view.',
+      Use: 'Use / Multi-ETF Selection — Check this box to include this ETF\'s underlying holdings in the combined Watchlist tab.',
+      Ticker: 'Ticker Symbol — Unique stock market identifier for the fund or security.',
+      'Fund Name': 'Fund Name — Official legal name of the SPDR exchange-traded fund (ETF).',
+      Category: 'Asset Class — SSGA asset-class grouping (Equity, Fixed Income, Commodity...).',
+      Name: 'Security Name — Full registered legal name of the company or underlying financial asset.',
+      Identifier: 'CUSIP / ISIN — Security identifier used when no exchange ticker is published (bonds).',
+      SEDOL: 'SEDOL — Stock Exchange Daily Official List identifier.',
+      TER: 'Gross Expense Ratio — Total annual fund operating expenses as a % of assets.',
+      NAV: 'NAV (Net Asset Value) — Per-share dollar value of the fund.',
+      'Net Assets': 'Net Assets (AUM) — Total market value of all fund assets minus liabilities.',
+      Weight: 'Weight — Position weight as a percentage of the fund\'s total net assets.',
+      'Weight Sum': 'Weight Sum — Summed weight of this holding across all selected ETFs (%).',
+      'Max Weight': 'Max Weight — Highest single-fund weight for this holding across selected ETFs (%).',
+      '# ETFs': 'Number of selected ETFs that currently hold this security.',
+      ETFs: 'Selected ETFs holding this security.',
+      YTD: 'YTD NAV total return, month-end series (SSGA "Month End").',
+      '1Y': '1-year NAV return, month-end series.',
+      '3Y': '3-year average annual NAV return (CAGR), month-end series.',
+      '5Y': '5-year average annual NAV return (CAGR), month-end series.',
+      '10Y': '10-year average annual NAV return (CAGR), month-end series.',
+      'SI Ann.': 'Since-inception annualized NAV return, month-end series.',
+      'Return As Of': 'As-of date of the month-end return series.',
+      Inception: 'Fund inception date.',
+      Exchange: 'Primary listing exchange.',
+      Close: 'Most recent closing market price.',
+      'Prem/Disc': 'Premium / Discount — Closing price versus NAV (%).',
+      Holdings: 'Rows in the fund\'s latest daily holdings file.',
+      History: 'Rows in the fund\'s NAV history file.',
+      'As Of': 'NAV / AUM as-of date.',
+      Frequency: 'Distribution frequency (Monthly, Quarterly...).',
+      'Ex-Date': 'Ex-dividend date of the latest distribution.',
+      Dividend: 'Latest dividend per share.',
+      Shares: 'Shares held by the fund.',
+      Coupon: 'Bond annual coupon rate (%).',
+      Maturity: 'Bond maturity date.',
+      'Market Value': 'Position market value in local currency.',
+      Section: 'Section — Grouping of the overview metric (Fund, Cost, Returns, Holdings).',
+      Metric: 'Metric — Overview metric name.',
+      Value: 'Overview metric value.',
+      Date: 'NAV history date.',
+      'Shares Outstanding': 'Fund shares outstanding on that date.',
+      'Total Net Assets': 'Fund total net assets on that date (USD).',
+    };
+
+    // =========================================================================
+    // 2. DOM references & application state
+    // =========================================================================
+
+    const el = {
+      subtitle: document.getElementById('app-subtitle') as HTMLElement,
+      tickerCount: document.getElementById('ticker-count') as HTMLElement,
+      themeToggle: document.getElementById('theme-toggle') as HTMLButtonElement,
+      searchInput: document.getElementById('search-input') as HTMLInputElement,
+      tabsBar: document.getElementById('tabs-bar') as HTMLElement,
+      copyBtn: document.getElementById('copy-btn') as HTMLButtonElement,
+      exportCsvBtn: document.getElementById('export-csv-btn') as HTMLButtonElement,
+      exportTxtBtn: document.getElementById('export-txt-btn') as HTMLButtonElement,
+      resetBtn: document.getElementById('reset-btn') as HTMLButtonElement,
+      blacklistBtn: document.getElementById('blacklist-btn') as HTMLButtonElement,
+      blacklistPanel: document.getElementById('blacklist-panel') as HTMLElement,
+      blacklistInput: document.getElementById('blacklist-input') as HTMLInputElement,
+      blacklistAddBtn: document.getElementById('blacklist-add-btn') as HTMLButtonElement,
+      blacklistClearBtn: document.getElementById('blacklist-clear-btn') as HTMLButtonElement,
+      blacklistChips: document.getElementById('blacklist-chips') as HTMLElement,
+      blacklistEmpty: document.getElementById('blacklist-empty') as HTMLElement,
+      selectedTabsPanel: document.getElementById('selected-tabs-panel') as HTMLElement,
+      selectedTabsBar: document.getElementById('selected-tabs-bar') as HTMLElement,
+      tableScroll: document.getElementById('table-scroll') as HTMLElement,
+      tableHead: document.getElementById('table-head') as HTMLElement,
+      tableBody: document.getElementById('table-body') as HTMLElement,
+      staticLoadSentinel: document.getElementById('static-load-sentinel') as HTMLElement,
+      staticLoadStatus: document.getElementById('static-load-status') as HTMLElement,
+    };
+
+    type AppState = {
+      funds: FundRow[];
+      selected: Set<string>;
+      blacklist: Set<string>;
+      activeTab: ActiveTab;
+      activeFundTicker: string | null;
+      queryByTab: Record<string, string>;
+      sortKey: string;
+      sortDir: SortDirection;
+      generatedAt: string | null;
+      counts: { funds: number; holdings: number; history: number } | null;
+    };
+
+    const state: AppState = {
+      funds: [],
+      selected: new Set(DEFAULT_SELECTED_TICKERS),
+      blacklist: new Set(),
+      activeTab: 'All',
+      activeFundTicker: null,
+      queryByTab: {},
+      sortKey: 'rank',
+      sortDir: 'asc',
+      generatedAt: null,
+      counts: null,
+    };
+
+    // Lazy per-fund data: meta.json + accumulated sheet pages (iShares-style).
+    const fundMetaCache = new Map<string, FundMeta>();
+    const sheetState = new Map<string, { headers: string[]; rows: string[][]; nextPage: number; manifest: PageManifest; loading: boolean }>();
+    let sheetGeneration = 0;
+
+    // =========================================================================
+    // 3. Small helpers
+    // =========================================================================
+
+    function byId(id: string): any {
+      const element = document.getElementById(id);
+      if (!element) throw new Error(`Missing element #${id}`);
+      return element;
+    }
+
+    function escapeHtml(value: unknown): string {
+      return String(value ?? '').replace(/[&<>"']/g, char => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;',
+      }[char] || char));
+    }
+
+    function numberOrNull(value: unknown): number | null {
+      if (typeof value === 'number') return Number.isFinite(value) ? value : null;
+      if (typeof value !== 'string' || value.trim() === '' || value.trim() === '-') return null;
+      const parsed = Number(value.replace(/[$,%\s,]/g, ''));
+      return Number.isFinite(parsed) ? parsed : null;
+    }
+
+    function numberCell(value: unknown): string {
+      const parsed = numberOrNull(value);
+      return parsed === null ? '' : String(parsed);
+    }
+
+    function formatPercent(value: number | null | undefined): string {
+      if (value === null || value === undefined || !Number.isFinite(value)) return '—';
+      return `${value.toFixed(2)}%`;
+    }
+
+    function formatAum(value: number | null | undefined): string {
+      if (value === null || value === undefined || !Number.isFinite(value)) return '—';
+      if (value >= 1e12) return `$${(value / 1e12).toFixed(2)}T`;
+      if (value >= 1e9) return `$${(value / 1e9).toFixed(2)}B`;
+      if (value >= 1e6) return `$${(value / 1e6).toFixed(2)}M`;
+      if (value >= 1e3) return `$${(value / 1e3).toFixed(2)}K`;
+      return `$${value.toFixed(2)}`;
+    }
+
+    function sanitizeTicker(value: unknown): string {
+      return String(value ?? '').replace(/[^A-Za-z0-9]/g, '').toUpperCase();
+    }
+
+    function normalizeSearchText(value: string): string {
+      return value.trim().toLowerCase();
+    }
+
+    function getHeaderTooltip(header: string): string {
+      const clean = String(header).trim();
+      const keys = Object.keys(COLUMN_TOOLTIPS);
+      for (let i = 0; i < keys.length; i++) {
+        if (keys[i].toLowerCase() === clean.toLowerCase()) return COLUMN_TOOLTIPS[keys[i]];
+      }
+      return clean;
+    }
+
+    async function copyText(text: string): Promise<void> {
+      try {
+        await navigator.clipboard.writeText(text);
+        return;
+      } catch {
+        // Fall through to the legacy path.
+      }
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.focus();
+      textarea.select();
+      document.execCommand('copy');
+      textarea.remove();
+    }
+
+    function downloadText(text: string, fileName: string, mime: string): void {
+      const blob = new Blob([text], { type: mime });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function toCsv(rows: string[][]): string {
+      return rows
+        .map(row => row.map(cell => {
+          const value = String(cell ?? '');
+          return /[",\n]/.test(value) ? `"${value.replace(/"/g, '""')}"` : value;
+        }).join(','))
+        .join('\n');
+    }
+
+    function exportFileName(scope: string, extension: string): string {
+      const stamp = new Date().toISOString().slice(0, 10);
+      return `spdr-${scope.toLowerCase().replace(/\s+/g, '-')}-${stamp}.${extension}`;
+    }
+
+    // =========================================================================
+    // 4. Theme
+    // =========================================================================
+
+    function applyTheme(dark: boolean): void {
+      document.documentElement.classList.toggle('dark', dark);
+      el.themeToggle.textContent = dark ? '☀️' : '🌙';
+    }
+
+    // =========================================================================
+    // 5. Static API loading (api/spdr/**, iShares-style pagination)
+    // =========================================================================
+
+    async function fetchJson(url: string): Promise<any> {
+      const response = await fetch(url, { headers: { Accept: 'application/json' }, cache: 'no-cache' });
+      if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+      return response.json();
+    }
+
+    async function loadCatalog(): Promise<void> {
+      setStatus('Loading SPDR ETF data from api/spdr/index.json…', 'info');
+      const data = await fetchJson(INDEX_URL);
+      state.funds = (data.funds || [])
+        .map((fund: IndexFund) => normalizeFundRow(fund))
+        .sort((a: FundRow, b: FundRow) => a.ticker.localeCompare(b.ticker));
+      state.generatedAt = data.generatedAt || null;
+      state.counts = data.counts || null;
+
+      // A restored selection/blacklist must reference known funds only.
+      state.blacklist = new Set([...state.blacklist].filter(ticker => state.funds.some(fund => fund.ticker === ticker)));
+      state.selected = new Set([...state.selected].filter(ticker => state.funds.some(fund => fund.ticker === ticker) && !state.blacklist.has(ticker)));
+      if (!state.selected.size && state.funds.length) {
+        for (const ticker of DEFAULT_SELECTED_TICKERS) {
+          if (state.funds.some(fund => fund.ticker === ticker) && !state.blacklist.has(ticker)) state.selected.add(ticker);
+        }
+      }
+      if (state.activeFundTicker && !state.selected.has(state.activeFundTicker)) {
+        state.activeFundTicker = [...state.selected][0] || null;
+      }
+      if (!state.activeFundTicker) state.activeFundTicker = [...state.selected][0] || null;
+
+      el.searchInput.disabled = false;
+      [el.copyBtn, el.exportCsvBtn, el.exportTxtBtn, el.resetBtn].forEach(button => { button.disabled = false; });
+      ensureValidTab();
+      render();
+      void ensureHoldingsForSelection();
+      if (state.activeFundTicker) void loadFundMeta(state.activeFundTicker);
+    }
+
+    /** Flattens index.json month-end metrics onto the row so sorting works. */
+    function normalizeFundRow(fund: IndexFund): FundRow {
+      const monthEnd = fund.returns?.monthEnd || {};
+      const quarterEnd = fund.returns?.quarterEnd || {};
+      const row: FundRow = {
+        ...fund,
+        ytd: monthEnd.ytd ?? null,
+        yr1: monthEnd.yr1 ?? null,
+        yr3: monthEnd.yr3 ?? null,
+        yr5: monthEnd.yr5 ?? null,
+        yr10: monthEnd.yr10 ?? null,
+        si: monthEnd.sinceInception ?? null,
+        returnAsOf: monthEnd.asOfDate ?? null,
+        searchIndex: '',
+      };
+      row.searchIndex = [
+        fund.ticker, fund.name, fund.category, fund.ter, fund.nav, fund.aum,
+        fund.exchange, fund.inceptionDate, fund.asOfDate, monthEnd.asOfDate,
+        fund.distributions?.frequency, quarterEnd.asOfDate,
+      ].map(value => String(value ?? '').toLowerCase()).join(' ');
+      return row;
+    }
+
+    async function loadFundMeta(ticker: string): Promise<FundMeta | null> {
+      const cached = fundMetaCache.get(ticker);
+      if (cached) return cached;
+      try {
+        const meta = await fetchJson(`./api/spdr/funds/${encodeURIComponent(ticker)}/meta.json`);
+        fundMetaCache.set(ticker, meta);
+        return meta;
+      } catch (error) {
+        console.warn(`Failed to load meta.json for ${ticker}:`, error);
+        return null;
+      }
+    }
+
+    function sheetKey(ticker: string, sheet: 'holdings' | 'history'): string {
+      return `${ticker}:${sheet}`;
+    }
+
+    function resetSheetPaging(): void {
+      sheetGeneration += 1;
+    }
+
+    async function fetchPage(ticker: string, pagePath: string): Promise<{ headers: string[]; rows: string[][] }> {
+      const path = String(pagePath).replace(/^\.?\//, '');
+      const page = await fetchJson(`./api/spdr/funds/${encodeURIComponent(ticker)}/${path}`);
+      const headers: string[] = Array.isArray(page.headers) ? page.headers : [];
+      const rows: any[] = Array.isArray(page.rows) ? page.rows : [];
+      return { headers, rows: rows.map(row => headers.map(header => String(row[header] ?? ''))) };
+    }
+
+    /** Loads the first page of a paginated sheet and prepares lazy appending. */
+    async function ensureSheet(ticker: string, sheet: 'holdings' | 'history', manifest: PageManifest): Promise<void> {
+      const key = sheetKey(ticker, sheet);
+      if (sheetState.has(key) || !manifest || !manifest.pages?.length) return;
+      sheetState.set(key, { headers: [], rows: [], nextPage: 0, manifest, loading: false });
+      await loadNextSheetPage(ticker, sheet);
+    }
+
+    async function loadNextSheetPage(ticker: string, sheet: 'holdings' | 'history'): Promise<void> {
+      const key = sheetKey(ticker, sheet);
+      const entry = sheetState.get(key);
+      if (!entry || entry.loading || entry.nextPage >= entry.manifest.pages.length) return;
+      entry.loading = true;
+      renderStaticLoadSentinel();
+      try {
+        const generation = sheetGeneration;
+        const page = await fetchPage(ticker, entry.manifest.pages[entry.nextPage]);
+        if (generation !== sheetGeneration) return;
+        if (!entry.headers.length && page.headers.length) entry.headers = page.headers;
+        entry.rows = entry.rows.concat(page.rows);
+        entry.nextPage += 1;
+        if (state.activeTab === detailTabId(ticker, sheet)) render();
+      } catch (error) {
+        console.error(`Failed to load ${ticker} ${sheet} page:`, error);
+      } finally {
+        entry.loading = false;
+        renderStaticLoadSentinel();
+      }
+    }
+
+    /**
+     * Watchlist aggregation needs every holdings page of every selected ETF
+     * (same pipeline as daggerok/iShares). Pages are fetched sequentially per
+     * fund and cached, so revisits only download what is missing.
+     */
+    async function ensureHoldingsForSelection(): Promise<void> {
+      const tickers = [...state.selected];
+      await Promise.all(tickers.map(async ticker => {
+        const meta = await loadFundMeta(ticker);
+        if (!meta?.holdings?.pages?.length) return;
+        const key = sheetKey(ticker, 'holdings');
+        if (!sheetState.has(key)) {
+          sheetState.set(key, { headers: [], rows: [], nextPage: 0, manifest: meta.holdings, loading: false });
+        }
+        const entry = sheetState.get(key)!;
+        while (entry.nextPage < entry.manifest.pages.length) {
+          await loadNextSheetPage(ticker, 'holdings');
+          if (state.activeTab === 'Watchlist') render();
+        }
+      }));
+      if (state.activeTab === 'Watchlist') render();
+    }
+
+    const staticLoadObserver =
+      typeof IntersectionObserver === 'function'
+        ? new IntersectionObserver(
+            entries => {
+              if (entries.some(entry => entry.isIntersecting)) void maybeLoadMoreRows();
+            },
+            { root: el.tableScroll, rootMargin: '600px 0px' },
+          )
+        : null;
+
+    function activeSheet(): { ticker: string; sheet: 'holdings' | 'history' } | null {
+      const match = /^(.+):(holdings|history)$/.exec(state.activeTab.includes(':') ? state.activeTab : '');
+      if (!match) return null;
+      return { ticker: match[1], sheet: match[2] as 'holdings' | 'history' };
+    }
+
+    async function maybeLoadMoreRows(): Promise<void> {
+      const active = activeSheet();
+      if (!active) return;
+      await loadNextSheetPage(active.ticker, active.sheet);
+    }
+
+    el.staticLoadSentinel.addEventListener('click', () => void maybeLoadMoreRows());
+    staticLoadObserver?.observe(el.staticLoadSentinel);
+    el.tableScroll.addEventListener('scroll', () => {
+      const active = activeSheet();
+      if (!active) return;
+      const entry = sheetState.get(sheetKey(active.ticker, active.sheet));
+      if (!entry || entry.loading || entry.nextPage >= entry.manifest.pages.length) return;
+      const distanceToBottom = el.tableScroll.scrollHeight - el.tableScroll.scrollTop - el.tableScroll.clientHeight;
+      if (distanceToBottom < 600) void loadNextSheetPage(active.ticker, active.sheet);
+    }, { passive: true });
+
+    function renderStaticLoadSentinel(): void {
+      const active = activeSheet();
+      if (!active) {
+        el.staticLoadSentinel.classList.add('hidden');
+        return;
+      }
+      const entry = sheetState.get(sheetKey(active.ticker, active.sheet));
+      if (!entry) {
+        el.staticLoadSentinel.classList.add('hidden');
+        return;
+      }
+      const more = entry.nextPage < entry.manifest.pages.length;
+      el.staticLoadSentinel.classList.toggle('hidden', !more);
+      el.staticLoadStatus.textContent = entry.loading ? 'Loading more rows…' : more ? 'Scroll or click to load more rows…' : '';
+    }
+
+    // =========================================================================
+    // 6. Tabs
+    // =========================================================================
+
+    function detailTabId(ticker: string, view: string): string {
+      return `${ticker}:${view}`;
+    }
+
+    function activeDetailTicker(): string | null {
+      return state.activeFundTicker && state.selected.has(state.activeFundTicker) ? state.activeFundTicker : null;
+    }
+
+    function uniqueCategories(): string[] {
+      const counts = new Map<string, number>();
+      state.funds.forEach(fund => counts.set(fund.category, (counts.get(fund.category) || 0) + 1));
+      return [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).map(([name]) => name);
+    }
+
+    function getTabs(): Array<{ id: ActiveTab; label: string; count: number }> {
+      const tabs: Array<{ id: ActiveTab; label: string; count: number }> = [
+        { id: 'All', label: 'All ETFs', count: visibleFundsForTab('All').length },
+      ];
+      uniqueCategories().forEach(category => {
+        tabs.push({ id: category, label: category, count: visibleFundsForTab(category).length });
+      });
+      tabs.push({ id: 'Watchlist', label: 'Watchlist', count: getDedupedWatchlistRows().length });
+      return tabs;
+    }
+
+    function getSelectedTabs(): Array<{ id: ActiveTab; label: string; count: number }> {
+      const tabs: Array<{ id: ActiveTab; label: string; count: number }> = [];
+      const ticker = activeDetailTicker();
+      if (!ticker) return tabs;
+      const fund = state.funds.find(item => item.ticker === ticker);
+      tabs.push({ id: detailTabId(ticker, 'overview'), label: `${ticker} Overview`, count: 0 });
+      tabs.push({ id: detailTabId(ticker, 'holdings'), label: `${ticker} Holdings`, count: fund?.holdings ?? 0 });
+      tabs.push({ id: detailTabId(ticker, 'history'), label: `${ticker} History`, count: fund?.history ?? 0 });
+      tabs.push({ id: detailTabId(ticker, 'distributions'), label: `${ticker} Distributions`, count: 0 });
+      return tabs;
+    }
+
+    function getAllTabIds(): ActiveTab[] {
+      return [...getTabs().map(tab => tab.id), ...getSelectedTabs().map(tab => tab.id)];
+    }
+
+    function ensureValidTab(): void {
+      const tabIds = getAllTabIds();
+      if (!tabIds.includes(state.activeTab)) state.activeTab = 'All';
+    }
+
+    function renderTabs(): void {
+      const tabs = getTabs();
+      const showWatchlist = state.selected.size > 0;
+      const visibleTabs = showWatchlist ? tabs : tabs.filter(tab => tab.id !== 'Watchlist');
+
+      el.tabsBar.classList.remove('hidden');
+      el.tabsBar.innerHTML = '';
+      renderTabButtons(el.tabsBar, visibleTabs);
+
+      // Detail tabs panel expands only when an ETF is selected (Amplify animation).
+      const selectedTabs = getSelectedTabs();
+      el.selectedTabsPanel.classList.toggle('is-visible', selectedTabs.length > 0);
+      el.selectedTabsBar.innerHTML = '';
+      if (selectedTabs.length) renderTabButtons(el.selectedTabsBar, selectedTabs);
+    }
+
+    function renderTabButtons(container: HTMLElement, tabs: Array<{ id: ActiveTab; label: string; count: number }>): void {
+      const activeClasses = 'bg-blue-600 text-white font-medium border-blue-500 shadow-sm';
+      const inactiveClasses = 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-200 dark:hover:bg-slate-700 border-slate-200 dark:border-slate-700';
+      tabs.forEach(tab => {
+        const isActive = tab.id === state.activeTab;
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = `px-3.5 py-1.5 rounded-full text-xs transition border whitespace-nowrap ${isActive ? activeClasses : inactiveClasses}`;
+        button.innerHTML = `${escapeHtml(tab.label)}${tab.count ? ` <span class="opacity-70">(${tab.count})</span>` : ''}`;
+        button.addEventListener('click', () => {
+          state.activeTab = tab.id;
+          const detail = /^(.+):(.+)$/.exec(tab.id);
+          if (detail && ['overview', 'holdings', 'history', 'distributions'].includes(detail[2])) {
+            state.activeFundTicker = detail[1];
+            void loadFundMeta(detail[1]).then(() => {
+              const meta = fundMetaCache.get(detail[1]);
+              if (meta) {
+                void ensureSheet(detail[1], 'holdings', meta.holdings);
+                void ensureSheet(detail[1], 'history', meta.history);
+              }
+            });
+          }
+          syncSearchInput();
+          render();
+        });
+        container.appendChild(button);
+      });
+    }
+
+    // =========================================================================
+    // 7. Table rendering
+    // =========================================================================
+
+    function render(): void {
+      ensureValidTab();
+      renderTabs();
+      renderBlacklistPanel();
+      animateTableUpdate();
+      if (state.activeTab === 'Watchlist') renderWatchlistTable();
+      else {
+        const detail = /^(.+):(overview|holdings|history|distributions)$/.exec(state.activeTab);
+        if (detail) renderDetailTable(detail[1], detail[2] as any);
+        else renderFundsTable();
+      }
+      fitTableHeight();
+    }
+
+    function animateTableUpdate(): void {
+      el.tableBody.classList.remove('table-content-enter');
+      void el.tableBody.offsetWidth; // reflow to restart the animation
+      el.tableBody.classList.add('table-content-enter');
+    }
+
+    function visibleFundsForTab(tab: ActiveTab): FundRow[] {
+      return state.funds.filter(fund => (tab === 'All' || fund.category === tab) && !state.blacklist.has(fund.ticker));
+    }
+
+    function currentQuery(): string {
+      return state.queryByTab[state.activeTab] || '';
+    }
+
+    function setCurrentQuery(value: string): void {
+      if (value) state.queryByTab[state.activeTab] = value;
+      else delete state.queryByTab[state.activeTab];
+      persistSearches();
+    }
+
+    function syncSearchInput(): void {
+      el.searchInput.placeholder = state.activeTab === 'Watchlist'
+        ? 'Search aggregated watchlist holdings…'
+        : 'Search ETFs, fund names, holdings, tickers, CUSIPs/ISINs, SEDOLs...';
+    }
+
+    function filterRows<T extends { searchIndex?: string }>(rows: T[]): T[] {
+      const query = normalizeSearchText(currentQuery());
+      if (!query) return rows;
+      return rows.filter(row => (row.searchIndex || '').includes(query));
+    }
+
+    function sortValue(row: Record<string, unknown>, key: string): unknown {
+      return row[key];
+    }
+
+    function compareValues(a: unknown, b: unknown): number {
+      const an = numberOrNull(a as any);
+      const bn = numberOrNull(b as any);
+      if (an !== null && bn !== null) return an - bn;
+      const as = String(a ?? '');
+      const bs = String(b ?? '');
+      if (/^\d{1,2}-[A-Za-z]{3}-\d{4}$/.test(as) || /^\d{1,2}-[A-Za-z]{3}-\d{4}$/.test(bs)) {
+        const ad = Date.parse(as.replace(/-/g, ' '));
+        const bd = Date.parse(bs.replace(/-/g, ' '));
+        if (!Number.isNaN(ad) && !Number.isNaN(bd)) return ad - bd;
+      }
+      return as.localeCompare(bs, undefined, { numeric: true });
+    }
+
+    function sortRows<T extends Record<string, unknown>>(rows: T[]): T[] {
+      const direction = state.sortDir === 'asc' ? 1 : -1;
+      const key = state.sortKey;
+      if (key === 'rank') return rows;
+      return [...rows].sort((a, b) => compareValues(sortValue(a, key), sortValue(b, key)) * direction);
+    }
+
+    function sortHeader(label: string, key: string, numeric = false): string {
+      const active = state.sortKey === key;
+      const arrow = active ? (state.sortDir === 'asc' ? ' ↑' : ' ↓') : '';
+      const align = numeric ? ' text-right' : '';
+      const tooltip = getHeaderTooltip(label);
+      return `<th class="py-3.5 px-4${align}" title="${escapeHtml(tooltip)}"><button data-sort="${escapeHtml(key)}" title="${escapeHtml(tooltip)}" class="uppercase tracking-wider hover:text-blue-600 dark:hover:text-blue-400">${escapeHtml(label)}${arrow}</button></th>`;
+    }
+
+    function indexHeader(): string {
+      const candidates = state.funds.filter(fund => !state.blacklist.has(fund.ticker) && (state.activeTab === 'All' || fund.category === state.activeTab));
+      const allSelected = candidates.length > 0 && state.selected.size === candidates.length;
+      return `<th class="py-3.5 px-4 w-12 text-center" title="Row index">#</th>
+        <th class="py-3.5 px-4 w-12 text-center" title="${escapeHtml(COLUMN_TOOLTIPS.Use)}">
+          <input type="checkbox" id="select-all-checkbox" ${allSelected ? 'checked' : ''} class="rounded border-slate-300 dark:border-slate-600 text-blue-600 focus:ring-blue-500 cursor-pointer" />
+        </th>`;
+    }
+
+    function bindSortHeaders(): void {
+      el.tableHead.querySelectorAll('button[data-sort]').forEach((button: any) => {
+        button.addEventListener('click', () => {
+          const key = button.dataset.sort || 'rank';
+          if (state.sortKey === key) state.sortDir = state.sortDir === 'asc' ? 'desc' : 'asc';
+          else {
+            state.sortKey = key;
+            state.sortDir = ['ticker', 'name', 'category', 'symbol', 'section', 'metric', 'identifier'].includes(key) ? 'asc' : 'desc';
+          }
+          render();
+        });
+      });
+      const checkbox = el.tableHead.querySelector('#select-all-checkbox');
+      if (checkbox) {
+        checkbox.addEventListener('change', (event: any) => {
+          toggleSelectAll(event.target.checked);
+        });
+      }
+    }
+
+    function renderFundsTable(): void {
+      const rows = sortRows(filterRows(visibleFundsForTab(state.activeTab).map(fund => ({ ...fund }))) as any[]);
+      const monthEnd = (fund: FundRow) => fund.returns?.monthEnd || {};
+      el.tableHead.innerHTML = `
+        <tr>
+          ${indexHeader()}
+          ${sortHeader('Ticker', 'ticker')}
+          ${sortHeader('Fund Name', 'name')}
+          ${sortHeader('Category', 'category')}
+          ${sortHeader('TER', 'terValue', true)}
+          ${sortHeader('NAV', 'navValue', true)}
+          ${sortHeader('Net Assets', 'aumValue', true)}
+          ${sortHeader('YTD', 'ytd', true)}
+          ${sortHeader('1Y', 'yr1', true)}
+          ${sortHeader('3Y', 'yr3', true)}
+          ${sortHeader('5Y', 'yr5', true)}
+          ${sortHeader('10Y', 'yr10', true)}
+          ${sortHeader('SI Ann.', 'si', true)}
+          ${sortHeader('Return As Of', 'returnAsOf')}
+          ${sortHeader('Inception', 'inceptionDate')}
+          ${sortHeader('Exchange', 'exchange')}
+          ${sortHeader('Close', 'closePriceValue', true)}
+          ${sortHeader('Prem/Disc', 'premiumDiscountValue', true)}
+          ${sortHeader('Holdings', 'holdings', true)}
+          ${sortHeader('History', 'history', true)}
+          ${sortHeader('As Of', 'asOfDate')}
+        </tr>
+      `;
+      bindSortHeaders();
+
+      if (!rows.length) {
+        el.tableBody.innerHTML = `<tr><td colspan="21" class="py-12 text-center text-slate-400 dark:text-slate-500">No ETFs match your search.</td></tr>`;
+      } else {
+        el.tableBody.innerHTML = rows.map((fund: any, index: number) => {
+          const selected = state.selected.has(fund.ticker);
+          const me = monthEnd(fund as FundRow);
+          return `
+            <tr class="${selected ? 'selected-row' : ''} hover:bg-slate-50 dark:hover:bg-slate-800/60 transition cursor-pointer" data-ticker="${escapeHtml(fund.ticker)}">
+              <td class="py-2.5 px-4 text-slate-400 dark:text-slate-500 text-xs">${index + 1}</td>
+              <td class="py-2.5 px-4 text-center">
+                <input type="checkbox" data-use-ticker="${escapeHtml(fund.ticker)}" ${selected ? 'checked' : ''} class="rounded border-slate-300 dark:border-slate-600 text-blue-600 focus:ring-blue-500 cursor-pointer" title="${escapeHtml(COLUMN_TOOLTIPS.Use)}" />
+              </td>
+              <td class="py-2.5 px-4 font-semibold text-blue-600 dark:text-blue-400">
+                <a href="${escapeHtml(fund.fundPage || '#')}" target="_blank" rel="noopener noreferrer" class="hover:underline" onclick="event.stopPropagation()">${escapeHtml(fund.ticker)}</a>
+              </td>
+              <td class="py-2.5 px-4 max-w-72 truncate" title="${escapeHtml(fund.name)}">${escapeHtml(fund.name)}</td>
+              <td class="py-2.5 px-4 text-slate-500 dark:text-slate-400">${escapeHtml(fund.category || '—')}</td>
+              <td class="py-2.5 px-4 text-right">${fund.ter ?? '—'}</td>
+              <td class="py-2.5 px-4 text-right">${fund.nav ?? '—'}</td>
+              <td class="py-2.5 px-4 text-right">${formatAum(fund.aumValue)}</td>
+              <td class="py-2.5 px-4 text-right">${formatPercent(me.ytd)}</td>
+              <td class="py-2.5 px-4 text-right">${formatPercent(me.yr1)}</td>
+              <td class="py-2.5 px-4 text-right">${formatPercent(me.yr3)}</td>
+              <td class="py-2.5 px-4 text-right">${formatPercent(me.yr5)}</td>
+              <td class="py-2.5 px-4 text-right">${formatPercent(me.yr10)}</td>
+              <td class="py-2.5 px-4 text-right">${formatPercent(me.sinceInception)}</td>
+              <td class="py-2.5 px-4 text-slate-500 dark:text-slate-400">${escapeHtml(me.asOfDate || '—')}</td>
+              <td class="py-2.5 px-4 text-slate-500 dark:text-slate-400">${escapeHtml(fund.inceptionDate || '—')}</td>
+              <td class="py-2.5 px-4 text-slate-500 dark:text-slate-400">${escapeHtml(fund.exchange || '—')}</td>
+              <td class="py-2.5 px-4 text-right">${fund.closePrice ?? '—'}</td>
+              <td class="py-2.5 px-4 text-right">${fund.premiumDiscount ?? '—'}</td>
+              <td class="py-2.5 px-4 text-right">${fund.holdings ? Number(fund.holdings).toLocaleString('en-US') : '—'}</td>
+              <td class="py-2.5 px-4 text-right">${fund.history ? Number(fund.history).toLocaleString('en-US') : '—'}</td>
+              <td class="py-2.5 px-4 text-slate-500 dark:text-slate-400">${escapeHtml(fund.asOfDate || '—')}</td>
+            </tr>
+          `;
+        }).join('');
+      }
+
+      el.tableBody.querySelectorAll('tr[data-ticker]').forEach(row => {
+        row.addEventListener('click', (event) => {
+          if ((event.target as HTMLElement).closest('input, a')) return;
+          const ticker = (row as any).dataset.ticker;
+          setActiveFund(ticker);
+        });
+      });
+      el.tableBody.querySelectorAll('input[data-use-ticker]').forEach(checkbox => {
+        checkbox.addEventListener('change', (event) => {
+          const ticker = (checkbox as any).dataset.useTicker;
+          toggleFund(ticker, (event.target as HTMLInputElement).checked);
+        });
+      });
+
+      el.tickerCount.textContent = `${rows.length} ETFs`;
+      const selected = state.selected.size;
+      const queryText = currentQuery() ? ` matching "${currentQuery()}"` : '';
+      renderSubtitle(`Showing ${rows.length} of ${state.funds.length} SPDR ETFs${queryText}. ${selected} selected for the Watchlist.`);
+      renderStaticLoadSentinel();
+    }
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    type HoldingPosition = { fund: string; symbol: string; name: string; weight: number; cusip: string };
+
+    function sheetPositions(ticker: string): HoldingPosition[] {
+      const entry = sheetState.get(sheetKey(ticker, 'holdings'));
+      if (!entry || !entry.headers.length) return [];
+      const tickerIndex = entry.headers.findIndex(header => /^ticker$/i.test(header));
+      const identifierIndex = entry.headers.findIndex(header => /^identifier$/i.test(header));
+      const nameIndex = entry.headers.findIndex(header => /^name$/i.test(header));
+      const weightIndex = entry.headers.findIndex(header => /^weight$/i.test(header));
+      const sedolIndex = entry.headers.findIndex(header => /^sedol$/i.test(header));
+      return entry.rows
+        .map(row => {
+          const symbol = tickerIndex >= 0 ? (row[tickerIndex] || '').trim() : '';
+          const identifier = identifierIndex >= 0 ? (row[identifierIndex] || '').trim() : '';
+          const name = nameIndex >= 0 ? (row[nameIndex] || '').trim() : '';
+          const weight = weightIndex >= 0 ? numberOrNull(row[weightIndex]) : null;
+          return {
+            fund: ticker,
+            symbol: symbol || identifier,
+            name,
+            weight: weight ?? 0,
+            cusip: identifier || (sedolIndex >= 0 ? row[sedolIndex] : ''),
+          };
+        })
+        .filter(position => position.symbol !== '' && position.symbol !== '-');
+    }
+
+    function getSelectedPositions(): HoldingPosition[] {
+      return [...state.selected].flatMap(ticker => sheetPositions(ticker));
+    }
+
+    function getDedupedWatchlistRows(): WatchlistRow[] {
+      const map = new Map<string, WatchlistRow>();
+      for (const position of getSelectedPositions()) {
+        const symbol = position.symbol;
+        if (!map.has(symbol)) {
+          map.set(symbol, {
+            symbol,
+            name: position.name,
+            funds: [],
+            fundCount: 0,
+            weightSum: 0,
+            maxWeight: 0,
+            cusips: [],
+            identifier: '',
+            searchIndex: '',
+          });
+        }
+        const row = map.get(symbol)!;
+        if (!row.funds.includes(position.fund)) row.funds.push(position.fund);
+        row.weightSum += position.weight;
+        row.maxWeight = Math.max(row.maxWeight, position.weight);
+        if (position.cusip && !row.cusips.includes(position.cusip)) row.cusips.push(position.cusip);
+        if (position.name) row.name = position.name;
+      }
+      map.forEach(row => {
+        row.fundCount = row.funds.length;
+        row.funds.sort();
+        row.cusips.sort();
+        row.identifier = row.cusips[0] || '';
+        row.searchIndex = [row.symbol, row.name, row.cusips.join(' '), row.funds.join(' ')].join(' ').toLowerCase();
+      });
+      return [...map.values()];
+    }
+
+    function getVisibleWatchlistRows(): WatchlistRow[] {
+      return sortRows(filterRows(getDedupedWatchlistRows()) as any[]) as any;
+    }
+
+    function renderWatchlistTable(): void {
+      const rows = getVisibleWatchlistRows();
+      el.tableHead.innerHTML = `
+        <tr>
+          <th class="py-3.5 px-4 w-12 text-center" title="Row index">#</th>
+          ${sortHeader('Ticker', 'symbol')}
+          ${sortHeader('Name', 'name')}
+          ${sortHeader('ETFs', 'funds')}
+          ${sortHeader('# ETFs', 'fundCount', true)}
+          ${sortHeader('Weight Sum', 'weightSum', true)}
+          ${sortHeader('Max Weight', 'maxWeight', true)}
+          ${sortHeader('Identifier', 'identifier')}
+        </tr>
+      `;
+      bindSortHeaders();
+
+      if (!state.selected.size) {
+        el.tableBody.innerHTML = `<tr><td colspan="8" class="py-12 text-center text-slate-400 dark:text-slate-500">Select ETFs in All ETFs to build the aggregated Watchlist.</td></tr>`;
+      } else if (!rows.length) {
+        el.tableBody.innerHTML = `<tr><td colspan="8" class="py-12 text-center text-slate-400 dark:text-slate-500">Loading holdings of ${state.selected.size} selected ETFs… or no rows match your search.</td></tr>`;
+      } else {
+        const badge = 'px-1.5 py-0.5 rounded bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-500/30 text-xs font-semibold';
+        el.tableBody.innerHTML = rows.map((row, index) => `
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/60 transition">
+            <td class="py-2.5 px-4 text-slate-400 dark:text-slate-500 text-xs">${index + 1}</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-600 dark:text-blue-400">${escapeHtml(row.symbol)}</td>
+            <td class="py-2.5 px-4 max-w-96 truncate" title="${escapeHtml(row.name)}">${escapeHtml(row.name || '—')}</td>
+            <td class="py-2.5 px-4">
+              <div class="flex flex-wrap gap-1 max-w-80">
+                ${row.funds.slice(0, 6).map(ticker => `<span class="${badge}">${escapeHtml(ticker)}</span>`).join('')}
+                ${row.funds.length > 6 ? `<span class="text-xs text-slate-400">+${row.funds.length - 6}</span>` : ''}
+              </div>
+            </td>
+            <td class="py-2.5 px-4 text-right font-semibold">${row.fundCount}</td>
+            <td class="py-2.5 px-4 text-right">${row.weightSum.toFixed(3)}%</td>
+            <td class="py-2.5 px-4 text-right">${row.maxWeight.toFixed(3)}%</td>
+            <td class="py-2.5 px-4 text-slate-400 dark:text-slate-500 text-xs">${escapeHtml(row.cusips[0] || '—')}</td>
+          </tr>
+        `).join('');
+      }
+
+      const positions = getSelectedPositions().length;
+      el.tickerCount.textContent = `${rows.length} holdings`;
+      renderSubtitle(`Watchlist aggregates ${positions} underlying holdings of ${state.selected.size} selected ETFs. Deduplicated by ticker (or identifier for bonds).`);
+      renderStaticLoadSentinel();
+    }
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    function renderDetailTable(ticker: string, view: 'overview' | 'holdings' | 'history' | 'distributions'): void {
+      const meta = fundMetaCache.get(ticker);
+      if (view === 'overview') return renderOverviewTable(ticker, meta);
+      if (view === 'distributions') return renderDistributionsTable(ticker, meta);
+      const sheet = view as 'holdings' | 'history';
+      const fund = state.funds.find(item => item.ticker === ticker);
+      if (!sheetState.has(sheetKey(ticker, sheet)) && !fundMetaCache.has(ticker)) {
+        const catalogCount = sheet === 'holdings' ? fund?.holdings : fund?.history;
+        if (!catalogCount) {
+          el.tableHead.innerHTML = `<tr><th class="py-3.5 px-4">#</th><th class="py-3.5 px-4">${escapeHtml(ticker)}</th></tr>`;
+          el.tableBody.innerHTML = `<tr><td colspan="2" class="py-12 text-center text-slate-400 dark:text-slate-500">${escapeHtml(ticker)} publishes no ${sheet === 'holdings' ? 'holdings workbook' : 'NAV history workbook'} (catalog-only fund, e.g. a commodity trust).</td></tr>`;
+          el.tickerCount.textContent = ticker;
+          renderSubtitle(`${ticker} is catalog-only: SSGA publishes no ${sheet} file for it.`);
+          renderStaticLoadSentinel();
+          return;
+        }
+        el.tableHead.innerHTML = `<tr><th class="py-3.5 px-4">#</th><th class="py-3.5 px-4">Loading…</th></tr>`;
+        el.tableBody.innerHTML = `<tr><td colspan="2" class="py-12 text-center text-slate-400 dark:text-slate-500">Loading ${ticker} ${sheet}…</td></tr>`;
+        void loadFundMeta(ticker).then(loaded => {
+          if (!loaded) {
+            el.tableBody.innerHTML = `<tr><td colspan="2" class="py-12 text-center text-rose-500">Unable to load meta.json for ${escapeHtml(ticker)}</td></tr>`;
+            return;
+          }
+          void ensureSheet(ticker, sheet, sheet === 'holdings' ? loaded.holdings : loaded.history).then(() => render());
+        });
+        return;
+      }
+      renderSheetTable(ticker, sheet);
+    }
+
+    function renderSheetTable(ticker: string, sheet: 'holdings' | 'history'): void {
+      const entry = sheetState.get(sheetKey(ticker, sheet))!;
+      const headers = entry.headers;
+      const numericHeaders = ['Weight', 'Shares Held', 'Shares Outstanding', 'Total Net Assets', 'Par Value', 'Market Value', 'Coupon', 'NAV'];
+      const rows = sortRows(filterRows(entry.rows.map(row => ({
+        values: row,
+        searchIndex: row.join(' ').toLowerCase(),
+        ...Object.fromEntries(headers.map((header, index) => [`col${index}`, row[index] ?? ''])),
+      }))) as any[]);
+
+      el.tableHead.innerHTML = `
+        <tr>
+          <th class="py-3.5 px-4 w-12 text-center" title="Row index">#</th>
+          ${headers.map((header, index) => sortHeader(header || `Col ${index + 1}`, `col${index}`, numericHeaders.includes(header))).join('')}
+        </tr>
+      `;
+      bindSortHeaders();
+
+      if (!rows.length) {
+        el.tableBody.innerHTML = `<tr><td colspan="${headers.length + 1}" class="py-12 text-center text-slate-400 dark:text-slate-500">No rows match your search${entry.loading ? ' (still loading…)' : ''}.</td></tr>`;
+      } else {
+        el.tableBody.innerHTML = rows.map((row: any, index: number) => `
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/60 transition">
+            <td class="py-2.5 px-4 text-slate-400 dark:text-slate-500 text-xs">${index + 1}</td>
+            ${(row.values as string[]).map((cell, columnIndex) => `
+              <td class="py-2.5 px-4 ${numericHeaders.includes(headers[columnIndex]) ? 'text-right' : ''}">${escapeHtml(cell === '' ? '—' : cell)}</td>
+            `).join('')}
+          </tr>
+        `).join('');
+      }
+
+      el.tickerCount.textContent = `${ticker}`;
+      const loadedCount = entry.rows.length;
+      renderSubtitle(`${ticker} ${sheet === 'holdings' ? 'Holdings' : 'NAV History'} — ${loadedCount.toLocaleString('en-US')} of ${(entry.manifest.totalRows || 0).toLocaleString('en-US')} rows loaded${entry.manifest.asOfDate ? ` (as of ${escapeHtml(entry.manifest.asOfDate)})` : ''}.`);
+      renderStaticLoadSentinel();
+    }
+
+    function renderOverviewTable(ticker: string, meta: FundMeta | undefined): void {
+      const fund = state.funds.find(item => item.ticker === ticker);
+      if (!fund) {
+        el.tableBody.innerHTML = `<tr><td class="py-12 text-center text-slate-400">Select an ETF row to see ETF details.</td></tr>`;
+        return;
+      }
+      const me = fund.returns?.monthEnd || {};
+      const qe = fund.returns?.quarterEnd || {};
+      const overview: Array<[string, string, unknown]> = [
+        ['Fund', 'Ticker', fund.ticker],
+        ['Fund', 'Fund Name', fund.name],
+        ['Fund', 'Fund Page', fund.fundPage],
+        ['Fund', 'Asset Class', fund.category],
+        ['Fund', 'Inception', fund.inceptionDate],
+        ['Fund', 'Exchange', fund.exchange],
+        ['Fund', 'Factsheet', meta?.source?.factsheet],
+        ['Cost', 'TER (Gross Expense Ratio)', fund.ter],
+        ['Price', 'NAV', fund.nav],
+        ['Price', 'Close Price', fund.closePrice],
+        ['Price', 'Premium / Discount', fund.premiumDiscount],
+        ['Price', 'As Of', fund.asOfDate],
+        ['Assets', 'Net Assets', formatAum(fund.aumValue)],
+        ['Assets', 'Net Assets (published)', fund.aum],
+        ['Returns', 'Month-End As Of', me.asOfDate],
+        ['Returns', 'YTD (ME)', formatPercent(me.ytd)],
+        ['Returns', '1Y (ME)', formatPercent(me.yr1)],
+        ['Returns', '3Y CAGR (ME)', formatPercent(me.yr3)],
+        ['Returns', '5Y CAGR (ME)', formatPercent(me.yr5)],
+        ['Returns', '10Y CAGR (ME)', formatPercent(me.yr10)],
+        ['Returns', 'SI Ann. (ME)', formatPercent(me.sinceInception)],
+        ['Returns', 'Quarter-End As Of', qe.asOfDate],
+        ['Returns', 'YTD (QE)', formatPercent(qe.ytd)],
+        ['Returns', '1Y (QE)', formatPercent(qe.yr1)],
+        ['Returns', '3Y CAGR (QE)', formatPercent(qe.yr3)],
+        ['Returns', '5Y CAGR (QE)', formatPercent(qe.yr5)],
+        ['Returns', '10Y CAGR (QE)', formatPercent(qe.yr10)],
+        ['Returns', 'SI Ann. (QE)', formatPercent(qe.sinceInception)],
+        ['Distributions', 'Frequency', fund.distributions?.frequency],
+        ['Distributions', 'Ex-Date', fund.distributions?.exDate],
+        ['Distributions', 'Latest Dividend', fund.distributions?.dividend],
+        ['Holdings', 'Holdings Rows', fund.holdings],
+        ['Holdings', 'Holdings As Of', meta?.holdings?.asOfDate],
+        ['Holdings', 'History Rows', fund.history],
+      ];
+      const rows = sortRows(filterRows(overview.map(([section, metric, value]) => ({
+        section, metric, value: value === null || value === undefined || value === '' ? '—' : value,
+        searchIndex: `${section} ${metric} ${value}`.toLowerCase(),
+      }))) as any[]);
+
+      el.tableHead.innerHTML = `
+        <tr>
+          <th class="py-3.5 px-4 w-12 text-center" title="Row index">#</th>
+          ${sortHeader('Section', 'section')}
+          ${sortHeader('Metric', 'metric')}
+          ${sortHeader('Value', 'value')}
+        </tr>
+      `;
+      bindSortHeaders();
+      el.tableBody.innerHTML = rows.length
+        ? rows.map((row: any, index: number) => `
+            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/60 transition">
+              <td class="py-2.5 px-4 text-slate-400 dark:text-slate-500 text-xs">${index + 1}</td>
+              <td class="py-2.5 px-4 text-slate-500 dark:text-slate-400">${escapeHtml(row.section)}</td>
+              <td class="py-2.5 px-4 font-medium">${escapeHtml(row.metric)}</td>
+              <td class="py-2.5 px-4 ${/^https?:\/\//.test(String(row.value)) ? '' : ''}">${
+                /^https?:\/\//.test(String(row.value))
+                  ? `<a class="text-blue-600 dark:text-blue-400 hover:underline" href="${escapeHtml(row.value)}" target="_blank" rel="noopener noreferrer">open link</a>`
+                  : escapeHtml(row.value)
+              }</td>
+            </tr>
+          `).join('')
+        : `<tr><td colspan="4" class="py-12 text-center text-slate-400 dark:text-slate-500">No overview metrics match your search.</td></tr>`;
+
+      el.tickerCount.textContent = ticker;
+      renderSubtitle(`${ticker} overview · ${rows.length} metrics. ME = SSGA month-end NAV series, QE = quarter-end NAV series.`);
+      renderStaticLoadSentinel();
+    }
+
+    function renderDistributionsTable(ticker: string, meta: FundMeta | undefined): void {
+      const worksheet = meta?.distributions;
+      const headers = worksheet?.headers || [];
+      const rows = sortRows(filterRows((worksheet?.rows || []).map(row => ({
+        values: row,
+        searchIndex: row.join(' ').toLowerCase(),
+        ...Object.fromEntries(headers.map((header, index) => [`col${index}`, row[index] ?? ''])),
+      }))) as any[]);
+
+      el.tableHead.innerHTML = `
+        <tr>
+          <th class="py-3.5 px-4 w-12 text-center" title="Row index">#</th>
+          ${headers.map((header, index) => sortHeader(header, `col${index}`)).join('')}
+        </tr>
+      `;
+      bindSortHeaders();
+      el.tableBody.innerHTML = rows.length
+        ? rows.map((row: any, index: number) => `
+            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/60 transition">
+              <td class="py-2.5 px-4 text-slate-400 dark:text-slate-500 text-xs">${index + 1}</td>
+              ${(row.values as string[]).map(cell => `<td class="py-2.5 px-4">${escapeHtml(cell || '—')}</td>`).join('')}
+            </tr>
+          `).join('')
+        : `<tr><td colspan="${headers.length + 1}" class="py-12 text-center text-slate-400 dark:text-slate-500">No published distribution for ${escapeHtml(ticker)}.</td></tr>`;
+
+      el.tickerCount.textContent = ticker;
+      renderSubtitle(`${ticker} distributions · latest row from the SSGA dividend feed (frequency, ex-date, payable date, dividend, capital gains).`);
+      renderStaticLoadSentinel();
+    }
+
+    // =========================================================================
+    // 8. Subtitle & status
+    // =========================================================================
+
+    function renderSubtitle(text: string): void {
+      const generated = state.generatedAt ? new Date(state.generatedAt).toLocaleString() : '';
+      const countsText = state.counts ? `${state.counts.funds} ETFs · ${(state.counts.holdings || 0).toLocaleString('en-US')} holdings rows · ${(state.counts.history || 0).toLocaleString('en-US')} history rows` : '';
+      el.subtitle.innerHTML = `
+        <span class="block sm:inline">${escapeHtml(text)}</span>
+        <span class="block sm:inline">·${generated ? ` updated ${escapeHtml(generated)}` : ''}${countsText ? ` · ${escapeHtml(countsText)}.` : '.'} Data: <a href="./api/spdr/index.json" target="_blank" rel="noopener noreferrer" class="font-semibold text-blue-600 dark:text-blue-400 hover:underline">api/spdr/index.json</a></span>
+      `;
+    }
+
+    function setStatus(message: string, kind: 'info' | 'error'): void {
+      el.tableBody.innerHTML = `<tr><td colspan="10" class="py-12 text-center ${kind === 'error' ? 'text-rose-500 dark:text-rose-300' : 'text-slate-400 dark:text-slate-500'}">${escapeHtml(message)}</td></tr>`;
+    }
+
+    // =========================================================================
+    // 9. Selection & blacklist
+    // =========================================================================
+
+    function toggleFund(tickerRaw: string, select: boolean): void {
+      const ticker = sanitizeTicker(tickerRaw);
+      if (select) state.selected.add(ticker);
+      else state.selected.delete(ticker);
+      if (state.activeFundTicker && !state.selected.has(state.activeFundTicker)) {
+        state.activeFundTicker = [...state.selected][0] || null;
+      }
+      if (!state.activeFundTicker) state.activeFundTicker = [...state.selected][0] || null;
+      persistSelection();
+      render();
+      void ensureHoldingsForSelection();
+    }
+
+    function toggleSelectAll(selectAll: boolean): void {
+      const candidates = state.funds.filter(fund => !state.blacklist.has(fund.ticker) && (state.activeTab === 'All' || fund.category === state.activeTab));
+      candidates.forEach(fund => {
+        if (selectAll) state.selected.add(fund.ticker);
+        else state.selected.delete(fund.ticker);
+      });
+      if (!state.selected.has(state.activeFundTicker || '')) {
+        state.activeFundTicker = [...state.selected][0] || null;
+      }
+      persistSelection();
+      render();
+      void ensureHoldingsForSelection();
+    }
+
+    function setActiveFund(tickerRaw: string): void {
+      const ticker = sanitizeTicker(tickerRaw);
+      if (!state.funds.some(fund => fund.ticker === ticker)) return;
+      if (!state.selected.has(ticker)) {
+        state.selected.add(ticker);
+        persistSelection();
+      }
+      state.activeFundTicker = ticker;
+      state.activeTab = detailTabId(ticker, 'overview');
+      localStorage.setItem(ACTIVE_FUND_KEY, ticker);
+      resetSheetPaging();
+      void loadFundMeta(ticker).then(meta => {
+        if (meta) {
+          void ensureSheet(ticker, 'holdings', meta.holdings);
+          void ensureSheet(ticker, 'history', meta.history);
+        }
+      });
+      void ensureHoldingsForSelection();
+      syncSearchInput();
+      render();
+    }
+
+    function clearSelectionAndSearch(): void {
+      state.selected.clear();
+      state.activeFundTicker = null;
+      state.queryByTab = {};
+      state.activeTab = 'All';
+      persistSelection();
+      localStorage.removeItem(ACTIVE_FUND_KEY);
+      el.searchInput.value = '';
+      persistSearches();
+      render();
+    }
+
+    function blacklistTickers(raw: string): void {
+      const tickers = raw.split(/[\s,;]+/).map(sanitizeTicker).filter(Boolean);
+      const known = new Set(state.funds.map(fund => fund.ticker));
+      tickers.filter(ticker => known.has(ticker)).forEach(ticker => state.blacklist.add(ticker));
+      state.selected = new Set([...state.selected].filter(ticker => !state.blacklist.has(ticker)));
+      if (state.activeFundTicker && state.blacklist.has(state.activeFundTicker)) {
+        state.activeFundTicker = [...state.selected][0] || null;
+      }
+      persistBlacklist();
+      persistSelection();
+      render();
+    }
+
+    function unblacklistTicker(tickerRaw: string): void {
+      state.blacklist.delete(sanitizeTicker(tickerRaw));
+      persistBlacklist();
+      render();
+    }
+
+    function clearBlacklist(): void {
+      state.blacklist.clear();
+      persistBlacklist();
+      render();
+    }
+
+    function renderBlacklistPanel(): void {
+      el.blacklistChips.innerHTML = '';
+      const tickers = [...state.blacklist].sort();
+      tickers.forEach(ticker => {
+        const chip = document.createElement('span');
+        chip.className = 'inline-flex items-center gap-1.5 bg-rose-100 dark:bg-rose-900/40 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-700/50 rounded-full pl-3 pr-1.5 py-1 text-xs font-medium';
+        chip.innerHTML = `${escapeHtml(ticker)}<button data-unblacklist="${escapeHtml(ticker)}" class="w-5 h-5 rounded-full hover:bg-rose-200 dark:hover:bg-rose-800 transition" title="Remove ${escapeHtml(ticker)} from blacklist">✕</button>`;
+        el.blacklistChips.appendChild(chip);
+      });
+      el.blacklistEmpty.classList.toggle('hidden', tickers.length > 0);
+      el.blacklistChips.querySelectorAll('button[data-unblacklist]').forEach(button => {
+        button.addEventListener('click', () => unblacklistTicker((button as any).dataset.unblacklist));
+      });
+    }
+
+    function persistSelection(): void {
+      localStorage.setItem(SELECTED_KEY, JSON.stringify([...state.selected]));
+      if (state.activeFundTicker) localStorage.setItem(ACTIVE_FUND_KEY, state.activeFundTicker);
+    }
+
+    function persistBlacklist(): void {
+      localStorage.setItem(BLACKLIST_KEY, JSON.stringify([...state.blacklist]));
+    }
+
+    function persistSearches(): void {
+      localStorage.setItem(SEARCHES_KEY, JSON.stringify(state.queryByTab));
+    }
+
+    function restoreState(): void {
+      try {
+        const saved = JSON.parse(localStorage.getItem(SELECTED_KEY) || 'null');
+        if (Array.isArray(saved) && saved.length) state.selected = new Set(saved.map(sanitizeTicker));
+      } catch { /* ignore */ }
+      try {
+        const saved = JSON.parse(localStorage.getItem(BLACKLIST_KEY) || 'null');
+        if (Array.isArray(saved)) state.blacklist = new Set(saved.map(sanitizeTicker));
+      } catch { /* ignore */ }
+      try {
+        state.queryByTab = JSON.parse(localStorage.getItem(SEARCHES_KEY) || '{}') || {};
+      } catch { /* ignore */ }
+      const savedActive = sanitizeTicker(localStorage.getItem(ACTIVE_FUND_KEY) || '');
+      if (savedActive) state.activeFundTicker = savedActive;
+    }
+
+    // =========================================================================
+    // 10. Actions & exports
+    // =========================================================================
+
+    function currentExportRows(): { headers: string[]; rows: string[][] } {
+      if (state.activeTab === 'Watchlist') {
+        const headers = ['Ticker', 'Name', 'ETFs', '# ETFs', 'Weight Sum (%)', 'Max Weight (%)', 'Identifiers'];
+        const rows = getVisibleWatchlistRows().map(row => [
+          row.symbol, row.name, row.funds.join('|'), String(row.fundCount),
+          row.weightSum.toFixed(6), row.maxWeight.toFixed(6), row.cusips.join('|'),
+        ]);
+        return { headers, rows };
+      }
+      const detail = /^(.+):(overview|holdings|history|distributions)$/.exec(state.activeTab);
+      if (detail && detail[2] === 'overview') {
+        const ticker = detail[1];
+        const fund = state.funds.find(item => item.ticker === ticker);
+        const me = fund?.returns?.monthEnd || {};
+        const qe = fund?.returns?.quarterEnd || {};
+        const headers = ['Ticker', 'Fund Name', 'Category', 'TER', 'NAV', 'Net Assets ($)', 'YTD (ME)', '1Y (ME)', '3Y (ME)', '5Y (ME)', '10Y (ME)', 'SI Ann. (ME)', 'ME As Of', '1Y (QE)', '3Y (QE)', 'Inception', 'Holdings', 'History'];
+        return {
+          headers,
+          rows: [[fund?.ticker ?? '', fund?.name ?? '', fund?.category ?? '', fund?.ter ?? '', fund?.nav ?? '',
+            numberCell(fund?.aumValue), numberCell(me.ytd), numberCell(me.yr1), numberCell(me.yr3), numberCell(me.yr5), numberCell(me.yr10), numberCell(me.sinceInception),
+            me.asOfDate ?? '', numberCell(qe.yr1), numberCell(qe.yr3), fund?.inceptionDate ?? '', String(fund?.holdings ?? ''), String(fund?.history ?? '')]],
+        };
+      }
+      if (detail) {
+        const active = { ticker: detail[1], sheet: detail[2] };
+        if (active.sheet === 'distributions') {
+          const meta = fundMetaCache.get(active.ticker);
+          return { headers: meta?.distributions?.headers || [], rows: meta?.distributions?.rows || [] };
+        }
+        const entry = sheetState.get(sheetKey(active.ticker, active.sheet as 'holdings' | 'history'));
+        if (entry) {
+          const query = normalizeSearchText(currentQuery());
+          const rows = query ? entry.rows.filter(row => row.join(' ').toLowerCase().includes(query)) : entry.rows;
+          return { headers: entry.headers, rows };
+        }
+        return { headers: [], rows: [] };
+      }
+      const headers = ['Selected', 'Ticker', 'Fund Name', 'Category', 'TER', 'NAV', 'Net Assets ($)', 'YTD (ME)', '1Y (ME)', '3Y (ME)', '5Y (ME)', '10Y (ME)', 'SI Ann. (ME)', 'Return As Of', 'Inception', 'Exchange', 'Close', 'Prem/Disc', 'Holdings', 'History', 'As Of'];
+      const rows = filterRows(visibleFundsForTab(state.activeTab).map(fund => ({ ...fund }))).map((fund: any) => [
+        state.selected.has(fund.ticker) ? 'yes' : 'no',
+        fund.ticker, fund.name, fund.category, fund.ter ?? '', fund.nav ?? '', numberCell(fund.aumValue),
+        numberCell(fund.returns?.monthEnd?.ytd), numberCell(fund.returns?.monthEnd?.yr1), numberCell(fund.returns?.monthEnd?.yr3),
+        numberCell(fund.returns?.monthEnd?.yr5), numberCell(fund.returns?.monthEnd?.yr10), numberCell(fund.returns?.monthEnd?.sinceInception),
+        fund.returns?.monthEnd?.asOfDate ?? '', fund.inceptionDate ?? '', fund.exchange ?? '', fund.closePrice ?? '', fund.premiumDiscount ?? '',
+        String(fund.holdings ?? ''), String(fund.history ?? ''), fund.asOfDate ?? '',
+      ]);
+      return { headers, rows };
+    }
+
+    function copyTickers(): void {
+      let values: string[] = [];
+      if (state.activeTab === 'Watchlist') values = getVisibleWatchlistRows().map(row => row.symbol);
+      else if (/^(.+):(overview|holdings|history|distributions)$/.test(state.activeTab)) {
+        const entry = currentExportRows();
+        values = entry.rows.map(row => String(row[0] ?? '')).filter(Boolean);
+      } else values = filterRows(visibleFundsForTab(state.activeTab)).map((fund: any) => fund.ticker);
+      values = values.sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+      if (!values.length) return;
+      void copyText(values.join(', ')).then(() => {
+        const oldText = el.copyBtn.textContent;
+        el.copyBtn.textContent = 'Copied!';
+        setTimeout(() => { el.copyBtn.textContent = oldText || 'Copy Tickers'; }, 1000);
+      });
+    }
+
+    function exportCsv(): void {
+      const { headers, rows } = currentExportRows();
+      if (!rows.length) return;
+      const scope = state.activeTab === 'Watchlist' ? 'watchlist' : state.activeTab.replace(':', '-').toLowerCase();
+      downloadText(toCsv([headers, ...rows.map(row => row.map(cell => String(cell ?? '')))]), exportFileName(scope, 'csv'), 'text/csv;charset=utf-8;');
+    }
+
+    function exportTxt(): void {
+      const { headers, rows } = currentExportRows();
+      if (!rows.length) return;
+      const scope = state.activeTab === 'Watchlist' ? 'watchlist' : state.activeTab.replace(':', '-').toLowerCase();
+      downloadText(rows.map(row => row.join('\t')).join('\n'), exportFileName(scope, 'txt'), 'text/plain;charset=utf-8;');
+    }
+
+    // =========================================================================
+    // 11. Scroll fix: only the table scrolls (same fix as daggerok/iShares)
+    // =========================================================================
+
+    function fitTableHeight(): void {
+      const rect = el.tableScroll.getBoundingClientRect();
+      const bottomPad = window.innerWidth < 640 ? 12 : 24;
+      const max = Math.max(240, window.innerHeight - rect.top - bottomPad);
+      el.tableScroll.style.maxHeight = `${max}px`;
+    }
+
+    // =========================================================================
+    // 12. Bootstrap
+    // =========================================================================
+
+    function bindEvents(): void {
+      el.themeToggle.addEventListener('click', () => {
+        const dark = !document.documentElement.classList.contains('dark');
+        localStorage.setItem(THEME_KEY, dark ? 'dark' : 'light');
+        applyTheme(dark);
+      });
+
+      el.searchInput.addEventListener('input', () => {
+        setCurrentQuery(el.searchInput.value.trim());
+        render();
+      });
+
+      el.copyBtn.addEventListener('click', copyTickers);
+      el.exportCsvBtn.addEventListener('click', exportCsv);
+      el.exportTxtBtn.addEventListener('click', exportTxt);
+      el.resetBtn.addEventListener('click', clearSelectionAndSearch);
+
+      el.blacklistBtn.addEventListener('click', () => {
+        const hidden = el.blacklistPanel.classList.toggle('hidden');
+        el.blacklistBtn.setAttribute('aria-expanded', String(!hidden));
+        renderBlacklistPanel();
+        fitTableHeight();
+      });
+      el.blacklistAddBtn.addEventListener('click', () => {
+        blacklistTickers(el.blacklistInput.value || '');
+        el.blacklistInput.value = '';
+        fitTableHeight();
+      });
+      el.blacklistInput.addEventListener('keydown', (event: any) => {
+        if (event.key === 'Enter') {
+          blacklistTickers(el.blacklistInput.value || '');
+          el.blacklistInput.value = '';
+          fitTableHeight();
+        }
+      });
+      el.blacklistClearBtn.addEventListener('click', clearBlacklist);
+
+      window.addEventListener('resize', fitTableHeight);
+      if (typeof ResizeObserver === 'function') {
+        new ResizeObserver(() => fitTableHeight()).observe(document.body);
+      }
+    }
+
+    async function init(): Promise<void> {
+      restoreState();
+      applyTheme(localStorage.getItem(THEME_KEY) === 'dark');
+      bindEvents();
+      syncSearchInput();
+      el.searchInput.value = currentQuery();
+      fitTableHeight();
+      try {
+        await loadCatalog();
+      } catch (error) {
+        const message = error instanceof Error ? error.message : String(error);
+        el.tickerCount.textContent = 'Error';
+        setStatus(`Unable to load api/spdr/index.json: ${message}. Run bun ./scripts/update-data.ts and serve the folder (for example bunx serve . -p 1234).`, 'error');
+      }
+    }
+
+    void init();
+  </script>
+</body>
+</html>

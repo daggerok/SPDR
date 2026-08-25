@@ -1,0 +1,115 @@
+{
+  "ticker": "NZAC",
+  "name": "State Street SPDR MSCI ACWI Climate Paris Aligned ETF",
+  "category": "Equity",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-msci-acwi-climate-paris-aligned-etf-nzac",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-nzac.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-nzac.xlsx",
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-nzac.pdf"
+  },
+  "expenseRatio": {
+    "display": "0.12%",
+    "value": 0.12
+  },
+  "nav": {
+    "display": "$47.09",
+    "value": 47.09,
+    "asOfDate": "Aug 21 2026"
+  },
+  "aum": {
+    "display": "$197.78 M",
+    "value": 197780000,
+    "asOfDate": "Aug 21 2026"
+  },
+  "pricing": {
+    "exchange": "NASDAQ REGULAR MARKET",
+    "closePrice": "$47.13",
+    "premiumDiscount": "0.02%"
+  },
+  "inceptionDate": "Nov 25 2014",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Jul 31 2026",
+      "mo1": -0.11,
+      "mo1Text": "-0.11%",
+      "qtd": -0.11,
+      "qtdText": "-0.11%",
+      "ytd": 7.42,
+      "ytdText": "7.42%",
+      "yr1": 17.26,
+      "yr1Text": "17.26%",
+      "yr3": 16.23,
+      "yr3Text": "16.23%",
+      "yr5": 9.34,
+      "yr5Text": "9.34%",
+      "yr10": 11.64,
+      "yr10Text": "11.64%",
+      "sinceInception": 10.05,
+      "sinceInceptionText": "10.05%",
+      "inceptionDate": "Nov 25 2014"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": -1.39,
+      "mo1Text": "-1.39%",
+      "qtd": 14.3,
+      "qtdText": "14.30%",
+      "ytd": 7.55,
+      "ytdText": "7.55%",
+      "yr1": 18.81,
+      "yr1Text": "18.81%",
+      "yr3": 17.47,
+      "yr3Text": "17.47%",
+      "yr5": 9.53,
+      "yr5Text": "9.53%",
+      "yr10": 12.14,
+      "yr10Text": "12.14%",
+      "sinceInception": 10.14,
+      "sinceInceptionText": "10.14%"
+    }
+  },
+  "distributions": {
+    "headers": [
+      "Frequency",
+      "Ex-Date",
+      "Record Date",
+      "Payable Date",
+      "Dividend",
+      "ST Cap Gains",
+      "LT Cap Gains"
+    ],
+    "rows": [
+      [
+        "Semi-Annually",
+        "06/01/2026",
+        "06/01/2026",
+        "06/05/2026",
+        "0.295218",
+        "-",
+        "-"
+      ]
+    ]
+  },
+  "holdings": {
+    "totalRows": 668,
+    "pageSize": 250,
+    "pageCount": 3,
+    "pages": [
+      "./holdings/001.json",
+      "./holdings/002.json",
+      "./holdings/003.json"
+    ],
+    "asOfDate": "21-Aug-2026"
+  },
+  "history": {
+    "totalRows": 2951,
+    "pageSize": 1000,
+    "pageCount": 3,
+    "pages": [
+      "./history/001.json",
+      "./history/002.json",
+      "./history/003.json"
+    ]
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "ticker": "RLY",
+  "name": "State Street Multi-Asset Real Return ETF",
+  "category": "Multi-Asset",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-multi-asset-real-return-etf-rly",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-rly.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-rly.xlsx",
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-rly.pdf"
+  },
+  "expenseRatio": {
+    "display": "0.50%",
+    "value": 0.5
+  },
+  "nav": {
+    "display": "$37.79",
+    "value": 37.79,
+    "asOfDate": "Aug 21 2026"
+  },
+  "aum": {
+    "display": "$1,362.79 M",
+    "value": 1362790000,
+    "asOfDate": "Aug 21 2026"
+  },
+  "pricing": {
+    "exchange": "NYSE ARCA",
+    "closePrice": "$37.83",
+    "premiumDiscount": "0.07%"
+  },
+  "inceptionDate": "Apr 25 2012",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Jul 31 2026",
+      "mo1": 4.54,
+      "mo1Text": "4.54%",
+      "qtd": 4.54,
+      "qtdText": "4.54%",
+      "ytd": 15.83,
+      "ytdText": "15.83%",
+      "yr1": 27.34,
+      "yr1Text": "27.34%",
+      "yr3": 12.3,
+      "yr3Text": "12.30%",
+      "yr5": 10.5,
+      "yr5Text": "10.50%",
+      "yr10": 8.13,
+      "yr10Text": "8.13%",
+      "sinceInception": 4.76,
+      "sinceInceptionText": "4.76%",
+      "inceptionDate": "Apr 25 2012"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": -4.57,
+      "mo1Text": "-4.57%",
+      "qtd": -3.91,
+      "qtdText": "-3.91%",
+      "ytd": 10.8,
+      "ytdText": "10.80%",
+      "yr1": 22.39,
+      "yr1Text": "22.39%",
+      "yr3": 12.55,
+      "yr3Text": "12.55%",
+      "yr5": 9.7,
+      "yr5Text": "9.70%",
+      "yr10": 7.74,
+      "yr10Text": "7.74%",
+      "sinceInception": 4.46,
+      "sinceInceptionText": "4.46%"
+    }
+  },
+  "distributions": {
+    "headers": [
+      "Frequency",
+      "Ex-Date",
+      "Record Date",
+      "Payable Date",
+      "Dividend",
+      "ST Cap Gains",
+      "LT Cap Gains"
+    ],
+    "rows": [
+      [
+        "Quarterly",
+        "06/25/2026",
+        "06/25/2026",
+        "06/29/2026",
+        "0.299105",
+        "-",
+        "-"
+      ]
+    ]
+  },
+  "holdings": {
+    "totalRows": 12,
+    "pageSize": 250,
+    "pageCount": 1,
+    "pages": [
+      "./holdings/001.json"
+    ],
+    "asOfDate": "21-Aug-2026"
+  },
+  "history": {
+    "totalRows": 3604,
+    "pageSize": 1000,
+    "pageCount": 4,
+    "pages": [
+      "./history/001.json",
+      "./history/002.json",
+      "./history/003.json",
+      "./history/004.json"
+    ]
+  }
+}

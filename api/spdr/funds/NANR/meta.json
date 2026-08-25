@@ -1,0 +1,113 @@
+{
+  "ticker": "NANR",
+  "name": "State Street SPDR S&P North American Natural Resources ETF",
+  "category": "Alternative Sector",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-north-american-natural-resources-etf-nanr",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-nanr.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-nanr.xlsx",
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-nanr.pdf"
+  },
+  "expenseRatio": {
+    "display": "0.35%",
+    "value": 0.35
+  },
+  "nav": {
+    "display": "$91.12",
+    "value": 91.12,
+    "asOfDate": "Aug 21 2026"
+  },
+  "aum": {
+    "display": "$861.04 M",
+    "value": 861040000,
+    "asOfDate": "Aug 21 2026"
+  },
+  "pricing": {
+    "exchange": "NYSE ARCA",
+    "closePrice": "$91.30",
+    "premiumDiscount": "-0.01%"
+  },
+  "inceptionDate": "Dec 15 2015",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Jul 31 2026",
+      "mo1": 6.28,
+      "mo1Text": "6.28%",
+      "qtd": 6.28,
+      "qtdText": "6.28%",
+      "ytd": 19.17,
+      "ytdText": "19.17%",
+      "yr1": 42.22,
+      "yr1Text": "42.22%",
+      "yr3": 15.51,
+      "yr3Text": "15.51%",
+      "yr5": 17.46,
+      "yr5Text": "17.46%",
+      "yr10": 11.44,
+      "yr10Text": "11.44%",
+      "sinceInception": 14.38,
+      "sinceInceptionText": "14.38%",
+      "inceptionDate": "Dec 15 2015"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": -8.24,
+      "mo1Text": "-8.24%",
+      "qtd": -9.37,
+      "qtdText": "-9.37%",
+      "ytd": 12.13,
+      "ytdText": "12.13%",
+      "yr1": 35.81,
+      "yr1Text": "35.81%",
+      "yr3": 15.95,
+      "yr3Text": "15.95%",
+      "yr5": 15.31,
+      "yr5Text": "15.31%",
+      "yr10": 11.08,
+      "yr10Text": "11.08%",
+      "sinceInception": 13.84,
+      "sinceInceptionText": "13.84%"
+    }
+  },
+  "distributions": {
+    "headers": [
+      "Frequency",
+      "Ex-Date",
+      "Record Date",
+      "Payable Date",
+      "Dividend",
+      "ST Cap Gains",
+      "LT Cap Gains"
+    ],
+    "rows": [
+      [
+        "Semi-Annually",
+        "06/01/2026",
+        "06/01/2026",
+        "06/03/2026",
+        "0.712783",
+        "-",
+        "-"
+      ]
+    ]
+  },
+  "holdings": {
+    "totalRows": 214,
+    "pageSize": 250,
+    "pageCount": 1,
+    "pages": [
+      "./holdings/001.json"
+    ],
+    "asOfDate": "21-Aug-2026"
+  },
+  "history": {
+    "totalRows": 2686,
+    "pageSize": 1000,
+    "pageCount": 3,
+    "pages": [
+      "./history/001.json",
+      "./history/002.json",
+      "./history/003.json"
+    ]
+  }
+}

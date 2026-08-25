@@ -1,0 +1,118 @@
+{
+  "ticker": "SPYV",
+  "name": "State Street SPDR Portfolio S&P 500 Value ETF",
+  "category": "Equity",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-portfolio-sp-500-value-etf-spyv",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-spyv.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-spyv.xlsx",
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-spyv.pdf"
+  },
+  "expenseRatio": {
+    "display": "0.04%",
+    "value": 0.04
+  },
+  "nav": {
+    "display": "$63.52",
+    "value": 63.52,
+    "asOfDate": "Aug 21 2026"
+  },
+  "aum": {
+    "display": "$36,772.21 M",
+    "value": 36772210000,
+    "asOfDate": "Aug 21 2026"
+  },
+  "pricing": {
+    "exchange": "NYSE ARCA",
+    "closePrice": "$63.51",
+    "premiumDiscount": "0.00%"
+  },
+  "inceptionDate": "Sep 25 2000",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Jul 31 2026",
+      "mo1": 2,
+      "mo1Text": "2.00%",
+      "qtd": 2,
+      "qtdText": "2.00%",
+      "ytd": 10.16,
+      "ytdText": "10.16%",
+      "yr1": 19.63,
+      "yr1Text": "19.63%",
+      "yr3": 13.8,
+      "yr3Text": "13.80%",
+      "yr5": 11.51,
+      "yr5Text": "11.51%",
+      "yr10": 11.77,
+      "yr10Text": "11.77%",
+      "sinceInception": 7.93,
+      "sinceInceptionText": "7.93%",
+      "inceptionDate": "Sep 25 2000"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": 0.05,
+      "mo1Text": "0.05%",
+      "qtd": 7.98,
+      "qtdText": "7.98%",
+      "ytd": 8,
+      "ytdText": "8.00%",
+      "yr1": 18.32,
+      "yr1Text": "18.32%",
+      "yr3": 14.32,
+      "yr3Text": "14.32%",
+      "yr5": 11.25,
+      "yr5Text": "11.25%",
+      "yr10": 11.84,
+      "yr10Text": "11.84%",
+      "sinceInception": 7.87,
+      "sinceInceptionText": "7.87%"
+    }
+  },
+  "distributions": {
+    "headers": [
+      "Frequency",
+      "Ex-Date",
+      "Record Date",
+      "Payable Date",
+      "Dividend",
+      "ST Cap Gains",
+      "LT Cap Gains"
+    ],
+    "rows": [
+      [
+        "Quarterly",
+        "06/22/2026",
+        "06/22/2026",
+        "06/24/2026",
+        "0.268074",
+        "-",
+        "-"
+      ]
+    ]
+  },
+  "holdings": {
+    "totalRows": 440,
+    "pageSize": 250,
+    "pageCount": 2,
+    "pages": [
+      "./holdings/001.json",
+      "./holdings/002.json"
+    ],
+    "asOfDate": "21-Aug-2026"
+  },
+  "history": {
+    "totalRows": 6509,
+    "pageSize": 1000,
+    "pageCount": 7,
+    "pages": [
+      "./history/001.json",
+      "./history/002.json",
+      "./history/003.json",
+      "./history/004.json",
+      "./history/005.json",
+      "./history/006.json",
+      "./history/007.json"
+    ]
+  }
+}
