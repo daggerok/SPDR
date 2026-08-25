@@ -1,0 +1,112 @@
+{
+  "ticker": "BILS",
+  "name": "State Street SPDR Bloomberg 3-12 Month T-Bill ETF",
+  "category": "Fixed Income Sector",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-bloomberg-3-12-month-t-bill-etf-bils",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-bils.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-bils.xlsx",
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-bils.pdf"
+  },
+  "expenseRatio": {
+    "display": "0.1354%",
+    "value": 0.1354
+  },
+  "nav": {
+    "display": "$99.36",
+    "value": 99.36,
+    "asOfDate": "Aug 21 2026"
+  },
+  "aum": {
+    "display": "$3,899.99 M",
+    "value": 3899990000,
+    "asOfDate": "Aug 21 2026"
+  },
+  "pricing": {
+    "exchange": "NYSE ARCA",
+    "closePrice": "$99.36",
+    "premiumDiscount": "0.00%"
+  },
+  "inceptionDate": "Sep 23 2020",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Jul 31 2026",
+      "mo1": 0.35,
+      "mo1Text": "0.35%",
+      "qtd": 0.35,
+      "qtdText": "0.35%",
+      "ytd": 2,
+      "ytdText": "2.00%",
+      "yr1": 3.86,
+      "yr1Text": "3.86%",
+      "yr3": 4.6,
+      "yr3Text": "4.60%",
+      "yr5": 3.42,
+      "yr5Text": "3.42%",
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 2.91,
+      "sinceInceptionText": "2.91%",
+      "inceptionDate": "Sep 23 2020"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": 0.26,
+      "mo1Text": "0.26%",
+      "qtd": 0.84,
+      "qtdText": "0.84%",
+      "ytd": 1.65,
+      "ytdText": "1.65%",
+      "yr1": 3.83,
+      "yr1Text": "3.83%",
+      "yr3": 4.61,
+      "yr3Text": "4.61%",
+      "yr5": 3.35,
+      "yr5Text": "3.35%",
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 2.89,
+      "sinceInceptionText": "2.89%"
+    }
+  },
+  "distributions": {
+    "headers": [
+      "Frequency",
+      "Ex-Date",
+      "Record Date",
+      "Payable Date",
+      "Dividend",
+      "ST Cap Gains",
+      "LT Cap Gains"
+    ],
+    "rows": [
+      [
+        "Monthly",
+        "08/03/2026",
+        "08/03/2026",
+        "08/06/2026",
+        "0.305957",
+        "-",
+        "-"
+      ]
+    ]
+  },
+  "holdings": {
+    "totalRows": 25,
+    "pageSize": 250,
+    "pageCount": 1,
+    "pages": [
+      "./holdings/001.json"
+    ],
+    "asOfDate": "21-Aug-2026"
+  },
+  "history": {
+    "totalRows": 1485,
+    "pageSize": 1000,
+    "pageCount": 2,
+    "pages": [
+      "./history/001.json",
+      "./history/002.json"
+    ]
+  }
+}

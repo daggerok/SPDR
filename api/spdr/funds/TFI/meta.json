@@ -1,0 +1,122 @@
+{
+  "ticker": "TFI",
+  "name": "State Street SPDR Nuveen ICE Municipal Bond ETF",
+  "category": "Fixed Income Sector",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-nuveen-ice-municipal-bond-etf-tfi",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-tfi.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-tfi.xlsx",
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-tfi.pdf"
+  },
+  "expenseRatio": {
+    "display": "0.23%",
+    "value": 0.23
+  },
+  "nav": {
+    "display": "$44.83",
+    "value": 44.83,
+    "asOfDate": "Aug 21 2026"
+  },
+  "aum": {
+    "display": "$3,091.12 M",
+    "value": 3091120000,
+    "asOfDate": "Aug 21 2026"
+  },
+  "pricing": {
+    "exchange": "NYSE ARCA",
+    "closePrice": "$44.87",
+    "premiumDiscount": "0.01%"
+  },
+  "inceptionDate": "Sep 11 2007",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Jul 31 2026",
+      "mo1": -1.76,
+      "mo1Text": "-1.76%",
+      "qtd": -1.76,
+      "qtdText": "-1.76%",
+      "ytd": 0.02,
+      "ytdText": "0.02%",
+      "yr1": 4.59,
+      "yr1Text": "4.59%",
+      "yr3": 2.23,
+      "yr3Text": "2.23%",
+      "yr5": -0.46,
+      "yr5Text": "-0.46%",
+      "yr10": 1.23,
+      "yr10Text": "1.23%",
+      "sinceInception": 2.96,
+      "sinceInceptionText": "2.96%",
+      "inceptionDate": "Sep 11 2007"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": 0.72,
+      "mo1Text": "0.72%",
+      "qtd": 2.15,
+      "qtdText": "2.15%",
+      "ytd": 1.81,
+      "ytdText": "1.81%",
+      "yr1": 6.27,
+      "yr1Text": "6.27%",
+      "yr3": 2.9,
+      "yr3Text": "2.90%",
+      "yr5": 0.04,
+      "yr5Text": "0.04%",
+      "yr10": 1.41,
+      "yr10Text": "1.41%",
+      "sinceInception": 3.07,
+      "sinceInceptionText": "3.07%"
+    }
+  },
+  "distributions": {
+    "headers": [
+      "Frequency",
+      "Ex-Date",
+      "Record Date",
+      "Payable Date",
+      "Dividend",
+      "ST Cap Gains",
+      "LT Cap Gains"
+    ],
+    "rows": [
+      [
+        "Monthly",
+        "08/03/2026",
+        "08/03/2026",
+        "08/06/2026",
+        "0.135098",
+        "-",
+        "-"
+      ]
+    ]
+  },
+  "holdings": {
+    "totalRows": 1959,
+    "pageSize": 250,
+    "pageCount": 8,
+    "pages": [
+      "./holdings/001.json",
+      "./holdings/002.json",
+      "./holdings/003.json",
+      "./holdings/004.json",
+      "./holdings/005.json",
+      "./holdings/006.json",
+      "./holdings/007.json",
+      "./holdings/008.json"
+    ],
+    "asOfDate": "21-Aug-2026"
+  },
+  "history": {
+    "totalRows": 4768,
+    "pageSize": 1000,
+    "pageCount": 5,
+    "pages": [
+      "./history/001.json",
+      "./history/002.json",
+      "./history/003.json",
+      "./history/004.json",
+      "./history/005.json"
+    ]
+  }
+}

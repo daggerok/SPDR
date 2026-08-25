@@ -1,0 +1,112 @@
+{
+  "ticker": "MYCH",
+  "name": "State Street My2028 Corporate Bond ETF",
+  "category": "Fixed Income Sector",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-my2028-corporate-bond-etf-mych",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-mych.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-mych.xlsx",
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-mych.pdf"
+  },
+  "expenseRatio": {
+    "display": "0.15%",
+    "value": 0.15
+  },
+  "nav": {
+    "display": "$24.84",
+    "value": 24.84,
+    "asOfDate": "Aug 21 2026"
+  },
+  "aum": {
+    "display": "$818.44 M",
+    "value": 818440000,
+    "asOfDate": "Aug 21 2026"
+  },
+  "pricing": {
+    "exchange": "NASDAQ REGULAR MARKET",
+    "closePrice": "$24.86",
+    "premiumDiscount": "0.07%"
+  },
+  "inceptionDate": "Sep 23 2024",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Jul 31 2026",
+      "mo1": 0.18,
+      "mo1Text": "0.18%",
+      "qtd": 0.18,
+      "qtdText": "0.18%",
+      "ytd": 1.29,
+      "ytdText": "1.29%",
+      "yr1": 4.03,
+      "yr1Text": "4.03%",
+      "yr3": null,
+      "yr3Text": null,
+      "yr5": null,
+      "yr5Text": null,
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 3.92,
+      "sinceInceptionText": "3.92%",
+      "inceptionDate": "Sep 23 2024"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": 0.15,
+      "mo1Text": "0.15%",
+      "qtd": 0.82,
+      "qtdText": "0.82%",
+      "ytd": 1.1,
+      "ytdText": "1.10%",
+      "yr1": 3.89,
+      "yr1Text": "3.89%",
+      "yr3": null,
+      "yr3Text": null,
+      "yr5": null,
+      "yr5Text": null,
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 4.01,
+      "sinceInceptionText": "4.01%"
+    }
+  },
+  "distributions": {
+    "headers": [
+      "Frequency",
+      "Ex-Date",
+      "Record Date",
+      "Payable Date",
+      "Dividend",
+      "ST Cap Gains",
+      "LT Cap Gains"
+    ],
+    "rows": [
+      [
+        "Monthly",
+        "08/03/2026",
+        "08/03/2026",
+        "08/06/2026",
+        "0.089196",
+        "-",
+        "-"
+      ]
+    ]
+  },
+  "holdings": {
+    "totalRows": 404,
+    "pageSize": 250,
+    "pageCount": 2,
+    "pages": [
+      "./holdings/001.json",
+      "./holdings/002.json"
+    ],
+    "asOfDate": "21-Aug-2026"
+  },
+  "history": {
+    "totalRows": 480,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./history/001.json"
+    ]
+  }
+}

@@ -1,0 +1,161 @@
+name: Update SPDR ETF data
+
+on:
+  workflow_dispatch:
+    inputs:
+      max_fetches:
+        description: "Batch size; continue after the saved ticker cursor; empty or 0 means all"
+        required: false
+        default: ""
+        type: string
+      request_sleep:
+        description: "Seconds between outgoing request starts (SSGA rate-limits; keep >= 1)"
+        required: false
+        default: "1"
+        type: string
+      aum:
+        description: "AUM min:max; bounds may be amounts or nano/micro/small/mid/large"
+        required: false
+        default: ":"
+        type: string
+      ter:
+        description: "Gross expense ratio range in %: min:max, min:, :max, or :"
+        required: false
+        default: ":"
+        type: string
+      concurrency:
+        description: "Parallel fund update workers (SSGA rate-limits; keep low)"
+        required: false
+        default: "2"
+        type: string
+      holdings_page_size:
+        description: "Rows in each generated current-holdings JSON page"
+        required: false
+        default: "250"
+        type: string
+      history_page_size:
+        description: "Rows in each generated NAV-history JSON page"
+        required: false
+        default: "1000"
+        type: string
+      store_raw_downloads:
+        description: "Store source XLSX files (true/yes/on/1)"
+        required: false
+        default: ""
+        type: string
+      max_retries:
+        description: "Retries after the initial request (default 2)"
+        required: false
+        default: "2"
+        type: string
+      tickers:
+        description: "Only update these tickers, separated by spaces or commas"
+        required: false
+        default: ""
+        type: string
+      performance_ytd:
+        description: "Month-end NAV YTD return range: min:max, min:, :max, or :; colon required"
+        required: false
+        default: ""
+        type: string
+      performance_1y:
+        description: "Month-end NAV 1Y return range; colon required"
+        required: false
+        default: ""
+        type: string
+      performance_3y:
+        description: "Month-end NAV 3Y CAGR range; colon required"
+        required: false
+        default: ""
+        type: string
+      performance_5y:
+        description: "Month-end NAV 5Y CAGR range; colon required"
+        required: false
+        default: ""
+        type: string
+      performance_10y:
+        description: "Month-end NAV 10Y CAGR range; colon required"
+        required: false
+        default: ""
+        type: string
+      total_return_ytd:
+        description: "Quarter-end NAV YTD return range; colon required"
+        required: false
+        default: ""
+        type: string
+      total_return_1y:
+        description: "Quarter-end NAV 1Y return range; colon required"
+        required: false
+        default: ""
+        type: string
+      total_return_3y:
+        description: "Quarter-end NAV 3Y CAGR range; colon required"
+        required: false
+        default: ""
+        type: string
+      total_return_5y:
+        description: "Quarter-end NAV 5Y CAGR range; colon required"
+        required: false
+        default: ""
+        type: string
+      total_return_10y:
+        description: "Quarter-end NAV 10Y CAGR range; colon required"
+        required: false
+        default: ""
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    env:
+      MAX_FETCHES: ${{ inputs.max_fetches || '0' }}
+      REQUEST_SLEEP: ${{ inputs.request_sleep || '1' }}
+      AUM: ${{ inputs.aum || ':' }}
+      TER: ${{ inputs.ter || ':' }}
+      CONCURRENCY: ${{ inputs.concurrency || '2' }}
+      HOLDINGS_PAGE_SIZE: ${{ inputs.holdings_page_size || '250' }}
+      HISTORY_PAGE_SIZE: ${{ inputs.history_page_size || '1000' }}
+      STORE_RAW_DOWNLOADS: ${{ inputs.store_raw_downloads || '' }}
+      MAX_RETRIES: ${{ inputs.max_retries || '2' }}
+      TICKERS: ${{ inputs.tickers || '' }}
+      PERFORMANCE_YTD: ${{ inputs.performance_ytd || '' }}
+      PERFORMANCE_1Y: ${{ inputs.performance_1y || '' }}
+      PERFORMANCE_3Y: ${{ inputs.performance_3y || '' }}
+      PERFORMANCE_5Y: ${{ inputs.performance_5y || '' }}
+      PERFORMANCE_10Y: ${{ inputs.performance_10y || '' }}
+      TOTAL_RETURN_YTD: ${{ inputs.total_return_ytd || '' }}
+      TOTAL_RETURN_1Y: ${{ inputs.total_return_1y || '' }}
+      TOTAL_RETURN_3Y: ${{ inputs.total_return_3y || '' }}
+      TOTAL_RETURN_5Y: ${{ inputs.total_return_5y || '' }}
+      TOTAL_RETURN_10Y: ${{ inputs.total_return_10y || '' }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Generate api/spdr static data
+        run: bun ./scripts/update-data.ts
+
+      - name: Commit updated data
+        run: |
+          if git diff --quiet -- api/spdr; then
+            echo "api/spdr is already up to date"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add api/spdr
+          git commit -m "Update SPDR ETF data"
+          git push

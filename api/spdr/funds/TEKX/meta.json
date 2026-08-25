@@ -1,0 +1,111 @@
+{
+  "ticker": "TEKX",
+  "name": "State Street Galaxy Transformative Tech Accelerators ETF",
+  "category": "Equity",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-galaxy-transformative-tech-accelerators-etf-tekx",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-tekx.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-tekx.xlsx",
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-tekx.pdf"
+  },
+  "expenseRatio": {
+    "display": "0.65%",
+    "value": 0.65
+  },
+  "nav": {
+    "display": "$62.32",
+    "value": 62.32,
+    "asOfDate": "Aug 21 2026"
+  },
+  "aum": {
+    "display": "$15.58 M",
+    "value": 15580000,
+    "asOfDate": "Aug 21 2026"
+  },
+  "pricing": {
+    "exchange": "NASDAQ REGULAR MARKET",
+    "closePrice": "$62.28",
+    "premiumDiscount": "-0.05%"
+  },
+  "inceptionDate": "Sep 09 2024",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Jul 31 2026",
+      "mo1": -8.97,
+      "mo1Text": "-8.97%",
+      "qtd": -8.97,
+      "qtdText": "-8.97%",
+      "ytd": 62.49,
+      "ytdText": "62.49%",
+      "yr1": 95.31,
+      "yr1Text": "95.31%",
+      "yr3": null,
+      "yr3Text": null,
+      "yr5": null,
+      "yr5Text": null,
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 67.47,
+      "sinceInceptionText": "67.47%",
+      "inceptionDate": "Sep 09 2024"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": 2.35,
+      "mo1Text": "2.35%",
+      "qtd": 75.31,
+      "qtdText": "75.31%",
+      "ytd": 78.51,
+      "ytdText": "78.51%",
+      "yr1": 121.42,
+      "yr1Text": "121.42%",
+      "yr3": null,
+      "yr3Text": null,
+      "yr5": null,
+      "yr5Text": null,
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 80.75,
+      "sinceInceptionText": "80.75%"
+    }
+  },
+  "distributions": {
+    "headers": [
+      "Frequency",
+      "Ex-Date",
+      "Record Date",
+      "Payable Date",
+      "Dividend",
+      "ST Cap Gains",
+      "LT Cap Gains"
+    ],
+    "rows": [
+      [
+        "Annually",
+        "12/29/2025",
+        "12/29/2025",
+        "12/31/2025",
+        "0.141101",
+        "0.000000",
+        "0.000000"
+      ]
+    ]
+  },
+  "holdings": {
+    "totalRows": 35,
+    "pageSize": 250,
+    "pageCount": 1,
+    "pages": [
+      "./holdings/001.json"
+    ],
+    "asOfDate": "21-Aug-2026"
+  },
+  "history": {
+    "totalRows": 490,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./history/001.json"
+    ]
+  }
+}

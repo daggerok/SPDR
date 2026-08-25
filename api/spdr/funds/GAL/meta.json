@@ -1,0 +1,114 @@
+{
+  "ticker": "GAL",
+  "name": "State Street Global Allocation ETF",
+  "category": "Multi-Asset",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-global-allocation-etf-gal",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-gal.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-gal.xlsx",
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-gal.pdf"
+  },
+  "expenseRatio": {
+    "display": "0.35%",
+    "value": 0.35
+  },
+  "nav": {
+    "display": "$53.78",
+    "value": 53.78,
+    "asOfDate": "Aug 21 2026"
+  },
+  "aum": {
+    "display": "$318.92 M",
+    "value": 318920000,
+    "asOfDate": "Aug 21 2026"
+  },
+  "pricing": {
+    "exchange": "NYSE ARCA",
+    "closePrice": "$53.81",
+    "premiumDiscount": "0.02%"
+  },
+  "inceptionDate": "Apr 25 2012",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Jul 31 2026",
+      "mo1": -0.46,
+      "mo1Text": "-0.46%",
+      "qtd": -0.46,
+      "qtdText": "-0.46%",
+      "ytd": 7.56,
+      "ytdText": "7.56%",
+      "yr1": 15.71,
+      "yr1Text": "15.71%",
+      "yr3": 11.94,
+      "yr3Text": "11.94%",
+      "yr5": 6.64,
+      "yr5Text": "6.64%",
+      "yr10": 7.77,
+      "yr10Text": "7.77%",
+      "sinceInception": 7.3,
+      "sinceInceptionText": "7.30%",
+      "inceptionDate": "Apr 25 2012"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": -0.68,
+      "mo1Text": "-0.68%",
+      "qtd": 7.74,
+      "qtdText": "7.74%",
+      "ytd": 8.05,
+      "ytdText": "8.05%",
+      "yr1": 16.32,
+      "yr1Text": "16.32%",
+      "yr3": 13.09,
+      "yr3Text": "13.09%",
+      "yr5": 6.89,
+      "yr5Text": "6.89%",
+      "yr10": 8.09,
+      "yr10Text": "8.09%",
+      "sinceInception": 7.38,
+      "sinceInceptionText": "7.38%"
+    }
+  },
+  "distributions": {
+    "headers": [
+      "Frequency",
+      "Ex-Date",
+      "Record Date",
+      "Payable Date",
+      "Dividend",
+      "ST Cap Gains",
+      "LT Cap Gains"
+    ],
+    "rows": [
+      [
+        "Quarterly",
+        "06/25/2026",
+        "06/25/2026",
+        "06/29/2026",
+        "0.447006",
+        "-",
+        "-"
+      ]
+    ]
+  },
+  "holdings": {
+    "totalRows": 18,
+    "pageSize": 250,
+    "pageCount": 1,
+    "pages": [
+      "./holdings/001.json"
+    ],
+    "asOfDate": "21-Aug-2026"
+  },
+  "history": {
+    "totalRows": 3604,
+    "pageSize": 1000,
+    "pageCount": 4,
+    "pages": [
+      "./history/001.json",
+      "./history/002.json",
+      "./history/003.json",
+      "./history/004.json"
+    ]
+  }
+}

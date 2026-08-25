@@ -1,0 +1,115 @@
+{
+  "ticker": "WIP",
+  "name": "State Street SPDR FTSE International Government Inflation-Protected Bond ETF",
+  "category": "Fixed Income Sector",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-ftse-international-government-inflation-protected-bond-etf-wip",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-wip.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-wip.xlsx",
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-wip.pdf"
+  },
+  "expenseRatio": {
+    "display": "0.50%",
+    "value": 0.5
+  },
+  "nav": {
+    "display": "$39.73",
+    "value": 39.73,
+    "asOfDate": "Aug 21 2026"
+  },
+  "aum": {
+    "display": "$476.77 M",
+    "value": 476770000,
+    "asOfDate": "Aug 21 2026"
+  },
+  "pricing": {
+    "exchange": "NYSE ARCA",
+    "closePrice": "$39.88",
+    "premiumDiscount": "0.32%"
+  },
+  "inceptionDate": "Mar 13 2008",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Jul 31 2026",
+      "mo1": 0.47,
+      "mo1Text": "0.47%",
+      "qtd": 0.47,
+      "qtdText": "0.47%",
+      "ytd": 3.37,
+      "ytdText": "3.37%",
+      "yr1": 9.22,
+      "yr1Text": "9.22%",
+      "yr3": 3.34,
+      "yr3Text": "3.34%",
+      "yr5": -0.73,
+      "yr5Text": "-0.73%",
+      "yr10": 1.19,
+      "yr10Text": "1.19%",
+      "sinceInception": 1.23,
+      "sinceInceptionText": "1.23%",
+      "inceptionDate": "Mar 13 2008"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": -1.77,
+      "mo1Text": "-1.77%",
+      "qtd": 2.73,
+      "qtdText": "2.73%",
+      "ytd": 2.89,
+      "ytdText": "2.89%",
+      "yr1": 5.98,
+      "yr1Text": "5.98%",
+      "yr3": 3.94,
+      "yr3Text": "3.94%",
+      "yr5": -0.39,
+      "yr5Text": "-0.39%",
+      "yr10": 1.27,
+      "yr10Text": "1.27%",
+      "sinceInception": 1.21,
+      "sinceInceptionText": "1.21%"
+    }
+  },
+  "distributions": {
+    "headers": [
+      "Frequency",
+      "Ex-Date",
+      "Record Date",
+      "Payable Date",
+      "Dividend",
+      "ST Cap Gains",
+      "LT Cap Gains"
+    ],
+    "rows": [
+      [
+        "Monthly",
+        "08/03/2026",
+        "08/03/2026",
+        "08/06/2026",
+        "0.191598",
+        "-",
+        "-"
+      ]
+    ]
+  },
+  "holdings": {
+    "totalRows": 194,
+    "pageSize": 250,
+    "pageCount": 1,
+    "pages": [
+      "./holdings/001.json"
+    ],
+    "asOfDate": "21-Aug-2026"
+  },
+  "history": {
+    "totalRows": 4641,
+    "pageSize": 1000,
+    "pageCount": 5,
+    "pages": [
+      "./history/001.json",
+      "./history/002.json",
+      "./history/003.json",
+      "./history/004.json",
+      "./history/005.json"
+    ]
+  }
+}

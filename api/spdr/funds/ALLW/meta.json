@@ -1,0 +1,111 @@
+{
+  "ticker": "ALLW",
+  "name": "State Street Bridgewater All Weather ETF",
+  "category": "Multi-Asset",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-bridgewater-all-weather-etf-allw",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-allw.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-allw.xlsx",
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-allw.pdf"
+  },
+  "expenseRatio": {
+    "display": "0.85%",
+    "value": 0.85
+  },
+  "nav": {
+    "display": "$30.16",
+    "value": 30.16,
+    "asOfDate": "Aug 21 2026"
+  },
+  "aum": {
+    "display": "$1,702.28 M",
+    "value": 1702280000,
+    "asOfDate": "Aug 21 2026"
+  },
+  "pricing": {
+    "exchange": "NASDAQ REGULAR MARKET",
+    "closePrice": "$30.22",
+    "premiumDiscount": "0.20%"
+  },
+  "inceptionDate": "Mar 05 2025",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Jul 31 2026",
+      "mo1": -0.43,
+      "mo1Text": "-0.43%",
+      "qtd": -0.43,
+      "qtdText": "-0.43%",
+      "ytd": 5.8,
+      "ytdText": "5.80%",
+      "yr1": 17.22,
+      "yr1Text": "17.22%",
+      "yr3": null,
+      "yr3Text": null,
+      "yr5": null,
+      "yr5Text": null,
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 15.08,
+      "sinceInceptionText": "15.08%",
+      "inceptionDate": "Mar 05 2025"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": -2.89,
+      "mo1Text": "-2.89%",
+      "qtd": 2.01,
+      "qtdText": "2.01%",
+      "ytd": 6.26,
+      "ytdText": "6.26%",
+      "yr1": 17.81,
+      "yr1Text": "17.81%",
+      "yr3": null,
+      "yr3Text": null,
+      "yr5": null,
+      "yr5Text": null,
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 16.5,
+      "sinceInceptionText": "16.50%"
+    }
+  },
+  "distributions": {
+    "headers": [
+      "Frequency",
+      "Ex-Date",
+      "Record Date",
+      "Payable Date",
+      "Dividend",
+      "ST Cap Gains",
+      "LT Cap Gains"
+    ],
+    "rows": [
+      [
+        "Annually",
+        "12/29/2025",
+        "12/29/2025",
+        "12/31/2025",
+        "0.859222",
+        "0.253072",
+        "0.172577"
+      ]
+    ]
+  },
+  "holdings": {
+    "totalRows": 43,
+    "pageSize": 250,
+    "pageCount": 1,
+    "pages": [
+      "./holdings/001.json"
+    ],
+    "asOfDate": "21-Aug-2026"
+  },
+  "history": {
+    "totalRows": 369,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./history/001.json"
+    ]
+  }
+}

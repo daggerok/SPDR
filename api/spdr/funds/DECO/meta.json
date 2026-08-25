@@ -1,0 +1,111 @@
+{
+  "ticker": "DECO",
+  "name": "State Street Galaxy Digital Asset Ecosystem ETF",
+  "category": "Equity",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-galaxy-digital-asset-ecosystem-etf-deco",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-deco.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-deco.xlsx",
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-deco.pdf"
+  },
+  "expenseRatio": {
+    "display": "0.65%",
+    "value": 0.65
+  },
+  "nav": {
+    "display": "$71.32",
+    "value": 71.32,
+    "asOfDate": "Aug 21 2026"
+  },
+  "aum": {
+    "display": "$19.97 M",
+    "value": 19970000,
+    "asOfDate": "Aug 21 2026"
+  },
+  "pricing": {
+    "exchange": "NASDAQ REGULAR MARKET",
+    "closePrice": "$71.35",
+    "premiumDiscount": "0.10%"
+  },
+  "inceptionDate": "Sep 09 2024",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Jul 31 2026",
+      "mo1": -8.65,
+      "mo1Text": "-8.65%",
+      "qtd": -8.65,
+      "qtdText": "-8.65%",
+      "ytd": 61.24,
+      "ytdText": "61.24%",
+      "yr1": 92.4,
+      "yr1Text": "92.40%",
+      "yr3": null,
+      "yr3Text": null,
+      "yr5": null,
+      "yr5Text": null,
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 79.24,
+      "sinceInceptionText": "79.24%",
+      "inceptionDate": "Sep 09 2024"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": 1.84,
+      "mo1Text": "1.84%",
+      "qtd": 83.8,
+      "qtdText": "83.80%",
+      "ytd": 76.51,
+      "ytdText": "76.51%",
+      "yr1": 116.24,
+      "yr1Text": "116.24%",
+      "yr3": null,
+      "yr3Text": null,
+      "yr5": null,
+      "yr5Text": null,
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 93.69,
+      "sinceInceptionText": "93.69%"
+    }
+  },
+  "distributions": {
+    "headers": [
+      "Frequency",
+      "Ex-Date",
+      "Record Date",
+      "Payable Date",
+      "Dividend",
+      "ST Cap Gains",
+      "LT Cap Gains"
+    ],
+    "rows": [
+      [
+        "Annually",
+        "12/29/2025",
+        "12/29/2025",
+        "12/31/2025",
+        "0.525345",
+        "0.000000",
+        "0.000000"
+      ]
+    ]
+  },
+  "holdings": {
+    "totalRows": 32,
+    "pageSize": 250,
+    "pageCount": 1,
+    "pages": [
+      "./holdings/001.json"
+    ],
+    "asOfDate": "21-Aug-2026"
+  },
+  "history": {
+    "totalRows": 490,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./history/001.json"
+    ]
+  }
+}

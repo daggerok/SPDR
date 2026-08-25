@@ -1,0 +1,93 @@
+{
+  "ticker": "QNDX",
+  "name": "State Street SPDR Portfolio Nasdaq 100 ETF",
+  "category": "Equity",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-portfolio-nasdaq-100-etf-qndx",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-qndx.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-qndx.xlsx",
+    "factsheet": null
+  },
+  "expenseRatio": {
+    "display": "0.10%",
+    "value": 0.1
+  },
+  "nav": {
+    "display": "$24.15",
+    "value": 24.15,
+    "asOfDate": "Aug 21 2026"
+  },
+  "aum": {
+    "display": "$258.45 M",
+    "value": 258450000,
+    "asOfDate": "Aug 21 2026"
+  },
+  "pricing": {
+    "exchange": "NASDAQ REGULAR MARKET",
+    "closePrice": "$24.17",
+    "premiumDiscount": "0.02%"
+  },
+  "inceptionDate": "Jun 23 2026",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": null,
+      "mo1": null,
+      "mo1Text": null,
+      "qtd": null,
+      "qtdText": null,
+      "ytd": null,
+      "ytdText": null,
+      "yr1": null,
+      "yr1Text": null,
+      "yr3": null,
+      "yr3Text": null,
+      "yr5": null,
+      "yr5Text": null,
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": null,
+      "sinceInceptionText": null,
+      "inceptionDate": "Jun 23 2026"
+    },
+    "quarterEnd": {
+      "asOfDate": null,
+      "mo1": null,
+      "mo1Text": null,
+      "qtd": null,
+      "qtdText": null,
+      "ytd": null,
+      "ytdText": null,
+      "yr1": null,
+      "yr1Text": null,
+      "yr3": null,
+      "yr3Text": null,
+      "yr5": null,
+      "yr5Text": null,
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": null,
+      "sinceInceptionText": null
+    }
+  },
+  "distributions": {
+    "headers": [],
+    "rows": []
+  },
+  "holdings": {
+    "totalRows": 105,
+    "pageSize": 250,
+    "pageCount": 1,
+    "pages": [
+      "./holdings/001.json"
+    ],
+    "asOfDate": "21-Aug-2026"
+  },
+  "history": {
+    "totalRows": 43,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./history/001.json"
+    ]
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "ticker": "MMK",
+  "name": "State Street Prime Money Market ETF",
+  "category": "Cash",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-prime-money-market-etf-mmk",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-mmk.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-mmk.xlsx",
+    "factsheet": null
+  },
+  "expenseRatio": {
+    "display": "0.18%",
+    "value": 0.18
+  },
+  "nav": {
+    "display": "$100.24",
+    "value": 100.24,
+    "asOfDate": "Aug 21 2026"
+  },
+  "aum": {
+    "display": "$29.07 M",
+    "value": 29070000,
+    "asOfDate": "Aug 21 2026"
+  },
+  "pricing": {
+    "exchange": "New York Stock Exchange LLC",
+    "closePrice": null,
+    "premiumDiscount": "0.01%"
+  },
+  "inceptionDate": "Feb 10 2026",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Jul 31 2026",
+      "mo1": 0.33,
+      "mo1Text": "0.33%",
+      "qtd": 0.33,
+      "qtdText": "0.33%",
+      "ytd": null,
+      "ytdText": null,
+      "yr1": null,
+      "yr1Text": null,
+      "yr3": null,
+      "yr3Text": null,
+      "yr5": null,
+      "yr5Text": null,
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 1.71,
+      "sinceInceptionText": "1.71%",
+      "inceptionDate": "Feb 10 2026"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": 0.3,
+      "mo1Text": "0.30%",
+      "qtd": 0.91,
+      "qtdText": "0.91%",
+      "ytd": null,
+      "ytdText": null,
+      "yr1": null,
+      "yr1Text": null,
+      "yr3": null,
+      "yr3Text": null,
+      "yr5": null,
+      "yr5Text": null,
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 1.38,
+      "sinceInceptionText": "1.38%"
+    }
+  },
+  "distributions": {
+    "headers": [
+      "Frequency",
+      "Ex-Date",
+      "Record Date",
+      "Payable Date",
+      "Dividend",
+      "ST Cap Gains",
+      "LT Cap Gains"
+    ],
+    "rows": [
+      [
+        "Monthly",
+        "08/03/2026",
+        "08/03/2026",
+        "08/06/2026",
+        "0.307479",
+        "-",
+        "-"
+      ]
+    ]
+  },
+  "holdings": {
+    "totalRows": 72,
+    "pageSize": 250,
+    "pageCount": 1,
+    "pages": [
+      "./holdings/001.json"
+    ],
+    "asOfDate": "21-Aug-2026"
+  },
+  "history": {
+    "totalRows": 134,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./history/001.json"
+    ]
+  }
+}

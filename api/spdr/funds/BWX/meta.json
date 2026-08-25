@@ -1,0 +1,120 @@
+{
+  "ticker": "BWX",
+  "name": "State Street SPDR Bloomberg International Treasury Bond ETF",
+  "category": "Fixed Income Sector",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-bloomberg-international-treasury-bond-etf-bwx",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-bwx.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-bwx.xlsx",
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-bwx.pdf"
+  },
+  "expenseRatio": {
+    "display": "0.35%",
+    "value": 0.35
+  },
+  "nav": {
+    "display": "$21.91",
+    "value": 21.91,
+    "asOfDate": "Aug 21 2026"
+  },
+  "aum": {
+    "display": "$1,321.44 M",
+    "value": 1321440000,
+    "asOfDate": "Aug 21 2026"
+  },
+  "pricing": {
+    "exchange": "NYSE ARCA",
+    "closePrice": "$21.96",
+    "premiumDiscount": "0.14%"
+  },
+  "inceptionDate": "Oct 02 2007",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Jul 31 2026",
+      "mo1": 0.18,
+      "mo1Text": "0.18%",
+      "qtd": 0.18,
+      "qtdText": "0.18%",
+      "ytd": -2.37,
+      "ytdText": "-2.37%",
+      "yr1": -1.83,
+      "yr1Text": "-1.83%",
+      "yr3": 0.61,
+      "yr3Text": "0.61%",
+      "yr5": -4.43,
+      "yr5Text": "-4.43%",
+      "yr10": -1.54,
+      "yr10Text": "-1.54%",
+      "sinceInception": 0.54,
+      "sinceInceptionText": "0.54%",
+      "inceptionDate": "Oct 02 2007"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": -1.83,
+      "mo1Text": "-1.83%",
+      "qtd": 0.23,
+      "qtdText": "0.23%",
+      "ytd": -2.54,
+      "ytdText": "-2.54%",
+      "yr1": -4.81,
+      "yr1Text": "-4.81%",
+      "yr3": 0.93,
+      "yr3Text": "0.93%",
+      "yr5": -4.21,
+      "yr5Text": "-4.21%",
+      "yr10": -1.48,
+      "yr10Text": "-1.48%",
+      "sinceInception": 0.53,
+      "sinceInceptionText": "0.53%"
+    }
+  },
+  "distributions": {
+    "headers": [
+      "Frequency",
+      "Ex-Date",
+      "Record Date",
+      "Payable Date",
+      "Dividend",
+      "ST Cap Gains",
+      "LT Cap Gains"
+    ],
+    "rows": [
+      [
+        "Monthly",
+        "08/03/2026",
+        "08/03/2026",
+        "08/06/2026",
+        "0.045455",
+        "-",
+        "-"
+      ]
+    ]
+  },
+  "holdings": {
+    "totalRows": 1405,
+    "pageSize": 250,
+    "pageCount": 6,
+    "pages": [
+      "./holdings/001.json",
+      "./holdings/002.json",
+      "./holdings/003.json",
+      "./holdings/004.json",
+      "./holdings/005.json",
+      "./holdings/006.json"
+    ],
+    "asOfDate": "21-Aug-2026"
+  },
+  "history": {
+    "totalRows": 4754,
+    "pageSize": 1000,
+    "pageCount": 5,
+    "pages": [
+      "./history/001.json",
+      "./history/002.json",
+      "./history/003.json",
+      "./history/004.json",
+      "./history/005.json"
+    ]
+  }
+}

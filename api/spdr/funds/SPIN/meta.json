@@ -1,0 +1,111 @@
+{
+  "ticker": "SPIN",
+  "name": "State Street US Equity Premium Income ETF",
+  "category": "Equity",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-us-equity-premium-income-etf-spin",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-spin.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-spin.xlsx",
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-spin.pdf"
+  },
+  "expenseRatio": {
+    "display": "0.25%",
+    "value": 0.25
+  },
+  "nav": {
+    "display": "$33.33",
+    "value": 33.33,
+    "asOfDate": "Aug 21 2026"
+  },
+  "aum": {
+    "display": "$47.99 M",
+    "value": 47990000,
+    "asOfDate": "Aug 21 2026"
+  },
+  "pricing": {
+    "exchange": "Cboe BZX Exchange, Inc",
+    "closePrice": "$33.34",
+    "premiumDiscount": "0.00%"
+  },
+  "inceptionDate": "Sep 04 2024",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Jul 31 2026",
+      "mo1": 1.48,
+      "mo1Text": "1.48%",
+      "qtd": 1.48,
+      "qtdText": "1.48%",
+      "ytd": 3.83,
+      "ytdText": "3.83%",
+      "yr1": 12.76,
+      "yr1Text": "12.76%",
+      "yr3": null,
+      "yr3Text": null,
+      "yr5": null,
+      "yr5Text": null,
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 12.67,
+      "sinceInceptionText": "12.67%",
+      "inceptionDate": "Sep 04 2024"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": -0.74,
+      "mo1Text": "-0.74%",
+      "qtd": 7.79,
+      "qtdText": "7.79%",
+      "ytd": 2.31,
+      "ytdText": "2.31%",
+      "yr1": 14.8,
+      "yr1Text": "14.80%",
+      "yr3": null,
+      "yr3Text": null,
+      "yr5": null,
+      "yr5Text": null,
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 12.38,
+      "sinceInceptionText": "12.38%"
+    }
+  },
+  "distributions": {
+    "headers": [
+      "Frequency",
+      "Ex-Date",
+      "Record Date",
+      "Payable Date",
+      "Dividend",
+      "ST Cap Gains",
+      "LT Cap Gains"
+    ],
+    "rows": [
+      [
+        "Monthly",
+        "08/03/2026",
+        "08/03/2026",
+        "08/05/2026",
+        "0.063922",
+        "-",
+        "-"
+      ]
+    ]
+  },
+  "holdings": {
+    "totalRows": 101,
+    "pageSize": 250,
+    "pageCount": 1,
+    "pages": [
+      "./holdings/001.json"
+    ],
+    "asOfDate": "21-Aug-2026"
+  },
+  "history": {
+    "totalRows": 493,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./history/001.json"
+    ]
+  }
+}

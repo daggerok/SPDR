@@ -1,0 +1,115 @@
+{
+  "ticker": "EFAX",
+  "name": "State Street SPDR MSCI EAFE Fossil Fuel Reserves Free ETF",
+  "category": "Equity",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-msci-eafe-fossil-fuel-reserves-free-etf-efax",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-efax.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-efax.xlsx",
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-efax.pdf"
+  },
+  "expenseRatio": {
+    "display": "0.20%",
+    "value": 0.2
+  },
+  "nav": {
+    "display": "$55.92",
+    "value": 55.92,
+    "asOfDate": "Aug 21 2026"
+  },
+  "aum": {
+    "display": "$514.45 M",
+    "value": 514450000.00000006,
+    "asOfDate": "Aug 21 2026"
+  },
+  "pricing": {
+    "exchange": "NYSE ARCA",
+    "closePrice": "$55.92",
+    "premiumDiscount": "0.02%"
+  },
+  "inceptionDate": "Oct 24 2016",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Jul 31 2026",
+      "mo1": 1.27,
+      "mo1Text": "1.27%",
+      "qtd": 1.27,
+      "qtdText": "1.27%",
+      "ytd": 10.16,
+      "ytdText": "10.16%",
+      "yr1": 22.15,
+      "yr1Text": "22.15%",
+      "yr3": 15.69,
+      "yr3Text": "15.69%",
+      "yr5": 8.53,
+      "yr5Text": "8.53%",
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 9.29,
+      "sinceInceptionText": "9.29%",
+      "inceptionDate": "Oct 24 2016"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": 0.83,
+      "mo1Text": "0.83%",
+      "qtd": 12.71,
+      "qtdText": "12.71%",
+      "ytd": 8.78,
+      "ytdText": "8.78%",
+      "yr1": 18.61,
+      "yr1Text": "18.61%",
+      "yr3": 16.37,
+      "yr3Text": "16.37%",
+      "yr5": 8.43,
+      "yr5Text": "8.43%",
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 9.23,
+      "sinceInceptionText": "9.23%"
+    }
+  },
+  "distributions": {
+    "headers": [
+      "Frequency",
+      "Ex-Date",
+      "Record Date",
+      "Payable Date",
+      "Dividend",
+      "ST Cap Gains",
+      "LT Cap Gains"
+    ],
+    "rows": [
+      [
+        "Semi-Annually",
+        "06/01/2026",
+        "06/01/2026",
+        "06/05/2026",
+        "0.803160",
+        "-",
+        "-"
+      ]
+    ]
+  },
+  "holdings": {
+    "totalRows": 656,
+    "pageSize": 250,
+    "pageCount": 3,
+    "pages": [
+      "./holdings/001.json",
+      "./holdings/002.json",
+      "./holdings/003.json"
+    ],
+    "asOfDate": "21-Aug-2026"
+  },
+  "history": {
+    "totalRows": 2470,
+    "pageSize": 1000,
+    "pageCount": 3,
+    "pages": [
+      "./history/001.json",
+      "./history/002.json",
+      "./history/003.json"
+    ]
+  }
+}

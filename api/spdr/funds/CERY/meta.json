@@ -1,0 +1,111 @@
+{
+  "ticker": "CERY",
+  "name": "State Street SPDR Bloomberg Enhanced Roll Yield Commodity Strategy No K-1 ETF",
+  "category": "Alternative Sector",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-bloomberg-enhanced-roll-yield-commodity-strategy-no-k-1-etf-cery",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-cery.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-cery.xlsx",
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-cery.pdf"
+  },
+  "expenseRatio": {
+    "display": "0.28%",
+    "value": 0.28
+  },
+  "nav": {
+    "display": "$38.52",
+    "value": 38.52,
+    "asOfDate": "Aug 21 2026"
+  },
+  "aum": {
+    "display": "$1,091.76 M",
+    "value": 1091760000,
+    "asOfDate": "Aug 21 2026"
+  },
+  "pricing": {
+    "exchange": "NYSE ARCA",
+    "closePrice": "$38.48",
+    "premiumDiscount": "-0.01%"
+  },
+  "inceptionDate": "Sep 04 2024",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Jul 31 2026",
+      "mo1": 7.76,
+      "mo1Text": "7.76%",
+      "qtd": 7.76,
+      "qtdText": "7.76%",
+      "ytd": 25.57,
+      "ytdText": "25.57%",
+      "yr1": 37.17,
+      "yr1Text": "37.17%",
+      "yr3": null,
+      "yr3Text": null,
+      "yr5": null,
+      "yr5Text": null,
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 24.42,
+      "sinceInceptionText": "24.42%",
+      "inceptionDate": "Sep 04 2024"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": -8.41,
+      "mo1Text": "-8.41%",
+      "qtd": -5.12,
+      "qtdText": "-5.12%",
+      "ytd": 16.52,
+      "ytdText": "16.52%",
+      "yr1": 28.75,
+      "yr1Text": "28.75%",
+      "yr3": null,
+      "yr3Text": null,
+      "yr5": null,
+      "yr5Text": null,
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 20.63,
+      "sinceInceptionText": "20.63%"
+    }
+  },
+  "distributions": {
+    "headers": [
+      "Frequency",
+      "Ex-Date",
+      "Record Date",
+      "Payable Date",
+      "Dividend",
+      "ST Cap Gains",
+      "LT Cap Gains"
+    ],
+    "rows": [
+      [
+        "Annually",
+        "12/29/2025",
+        "12/29/2025",
+        "12/31/2025",
+        "1.425922",
+        "0.000000",
+        "0.000000"
+      ]
+    ]
+  },
+  "holdings": {
+    "totalRows": 12,
+    "pageSize": 250,
+    "pageCount": 1,
+    "pages": [
+      "./holdings/001.json"
+    ],
+    "asOfDate": "21-Aug-2026"
+  },
+  "history": {
+    "totalRows": 493,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./history/001.json"
+    ]
+  }
+}

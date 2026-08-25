@@ -1,0 +1,115 @@
+{
+  "ticker": "XCNY",
+  "name": "State Street SPDR S&P Emerging Markets ex-China ETF",
+  "category": "Equity",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-emerging-markets-ex-china-etf-xcny",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-xcny.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-xcny.xlsx",
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-xcny.pdf"
+  },
+  "expenseRatio": {
+    "display": "0.19%",
+    "value": 0.19
+  },
+  "nav": {
+    "display": "$33.25",
+    "value": 33.25,
+    "asOfDate": "Aug 21 2026"
+  },
+  "aum": {
+    "display": "$9.97 M",
+    "value": 9970000,
+    "asOfDate": "Aug 21 2026"
+  },
+  "pricing": {
+    "exchange": "NASDAQ REGULAR MARKET",
+    "closePrice": "$33.32",
+    "premiumDiscount": "0.16%"
+  },
+  "inceptionDate": "Sep 04 2024",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Jul 31 2026",
+      "mo1": -2.2,
+      "mo1Text": "-2.20%",
+      "qtd": -2.2,
+      "qtdText": "-2.20%",
+      "ytd": 16.38,
+      "ytdText": "16.38%",
+      "yr1": 28.22,
+      "yr1Text": "28.22%",
+      "yr3": null,
+      "yr3Text": null,
+      "yr5": null,
+      "yr5Text": null,
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 17.31,
+      "sinceInceptionText": "17.31%",
+      "inceptionDate": "Sep 04 2024"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": -0.21,
+      "mo1Text": "-0.21%",
+      "qtd": 19.91,
+      "qtdText": "19.91%",
+      "ytd": 19,
+      "ytdText": "19.00%",
+      "yr1": 31.01,
+      "yr1Text": "31.01%",
+      "yr3": null,
+      "yr3Text": null,
+      "yr5": null,
+      "yr5Text": null,
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 19.64,
+      "sinceInceptionText": "19.64%"
+    }
+  },
+  "distributions": {
+    "headers": [
+      "Frequency",
+      "Ex-Date",
+      "Record Date",
+      "Payable Date",
+      "Dividend",
+      "ST Cap Gains",
+      "LT Cap Gains"
+    ],
+    "rows": [
+      [
+        "Semi-Annually",
+        "06/22/2026",
+        "06/22/2026",
+        "06/26/2026",
+        "0.276294",
+        "-",
+        "-"
+      ]
+    ]
+  },
+  "holdings": {
+    "totalRows": 1232,
+    "pageSize": 250,
+    "pageCount": 5,
+    "pages": [
+      "./holdings/001.json",
+      "./holdings/002.json",
+      "./holdings/003.json",
+      "./holdings/004.json",
+      "./holdings/005.json"
+    ],
+    "asOfDate": "21-Aug-2026"
+  },
+  "history": {
+    "totalRows": 493,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./history/001.json"
+    ]
+  }
+}
