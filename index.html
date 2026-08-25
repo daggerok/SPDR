@@ -169,6 +169,7 @@
 
   <script type="text/babel" data-presets="typescript">
 
+
     /**
      * @file SPDR Watchlist Application
      * Client-side static feed viewer for api/spdr/** with multi-ETF Watchlist
@@ -367,7 +368,7 @@
 
     const state: AppState = {
       funds: [],
-      selected: new Set(DEFAULT_SELECTED_TICKERS),
+      selected: new Set(),
       blacklist: new Set(),
       activeTab: 'All',
       activeFundTicker: null,
@@ -552,12 +553,7 @@
       // A restored selection/blacklist must reference known funds only.
       state.blacklist = new Set([...state.blacklist].filter(ticker => state.funds.some(fund => fund.ticker === ticker)));
       state.selected = new Set([...state.selected].filter(ticker => state.funds.some(fund => fund.ticker === ticker) && !state.blacklist.has(ticker)));
-      if (!state.selected.size) {
-        DEFAULT_SELECTED_TICKERS.forEach(ticker => {
-          if (state.funds.some(fund => fund.ticker === ticker) && !state.blacklist.has(ticker)) state.selected.add(ticker);
-        });
-      }
-      if (!state.activeFundTicker) state.activeFundTicker = [...state.selected][0] || null;
+      if (!state.activeFundTicker && state.selected.size) state.activeFundTicker = [...state.selected][0] || null;
       if (state.activeFundTicker && !state.selected.has(state.activeFundTicker)) {
         state.activeFundTicker = [...state.selected][0] || null;
       }
@@ -578,6 +574,8 @@
     async function loadFundMeta(ticker: string): Promise<any> {
       const cached = fundMetaCache.get(ticker);
       if (cached) return cached;
+      const known = state.funds.find(fund => fund.ticker === ticker);
+      if (known && !known.holdings && !known.history) return null; // catalog-only fund: no workbook exists
       try {
         const meta = await fetchJson(`./api/spdr/funds/${encodeURIComponent(ticker)}/meta.json`);
         fundMetaCache.set(ticker, meta);
@@ -1676,6 +1674,7 @@
     function persistSelection(): void {
       localStorage.setItem(SELECTED_KEY, JSON.stringify([...state.selected]));
       if (state.activeFundTicker) localStorage.setItem(ACTIVE_FUND_KEY, state.activeFundTicker);
+      else localStorage.removeItem(ACTIVE_FUND_KEY);
     }
 
     function persistBlacklist(): void {
@@ -1688,10 +1687,11 @@
 
     function restoreSelectedEtfs(): void {
       try {
-        const saved = JSON.parse(localStorage.getItem(SELECTED_KEY) || 'null');
-        if (Array.isArray(saved) && saved.length) state.selected = new Set(saved.map(sanitizeTicker));
+        const saved = JSON.parse(localStorage.getItem(SELECTED_KEY) || '[]');
+        state.selected = new Set((Array.isArray(saved) ? saved : []).map(sanitizeTicker).filter(Boolean));
+        if (!state.selected.size && localStorage.getItem(SELECTED_KEY) === null) state.selected = new Set(DEFAULT_SELECTED_TICKERS);
       } catch {
-        // Ignore malformed storage.
+        state.selected = new Set(DEFAULT_SELECTED_TICKERS);
       }
       const savedActive = sanitizeTicker(localStorage.getItem(ACTIVE_FUND_KEY) || '');
       state.activeFundTicker = savedActive && state.selected.has(savedActive) ? savedActive : ([...state.selected][0] || null);
@@ -1791,6 +1791,7 @@
       });
     }
 
+  
   
   </script>
 </body>
