@@ -10,6 +10,9 @@ import {
   parseXlsxSheet,
   loadSharedStrings,
   sheetToTable,
+  annualizedToTotal,
+  indicatedYield,
+  deriveCatalogMetrics,
 } from './update-data';
 
 // ---------------------------------------------------------------------------
@@ -262,5 +265,65 @@ describe('xlsx fixtures', () => {
     const bytes = buildXlsx([['A1', 'B1'], ['A2', 'B2']]);
     expect(loadSharedStrings(bytes)).toEqual([]);
     expect(parseXlsxSheet(bytes, [])[0]).toEqual(['A1', 'B1']);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Catalog metric derivations (Amplify/iShares column parity)
+// ---------------------------------------------------------------------------
+
+describe('catalog metric derivations', () => {
+  test('annualizedToTotal inverts annualization exactly', () => {
+    // (1 + 0.1918)^3 - 1 = 0.6928...
+    expect(annualizedToTotal(19.18, 3)).toBeCloseTo(69.28, 2);
+    expect(annualizedToTotal(12.72, 5)).toBeCloseTo(81.97, 2);
+    expect(annualizedToTotal(14.93, 10)).toBeCloseTo(302.1, 1);
+  });
+
+  test('annualizedToTotal guards bad input', () => {
+    expect(annualizedToTotal(null, 3)).toBeNull();
+    expect(annualizedToTotal(Number.NaN, 3)).toBeNull();
+    expect(annualizedToTotal(10, 0)).toBeNull();
+    expect(annualizedToTotal(-100, 5)).toBe(-100); // total-loss floor
+  });
+
+  test('indicatedYield computes latest distribution x frequency / NAV', () => {
+    // SPY: quarterly $1.903516 on $765.58 NAV -> ~0.9945%
+    expect(indicatedYield({ frequency: 'Quarterly', dividend: '1.903516' }, 765.58)).toBeCloseTo(0.9945, 3);
+    expect(indicatedYield({ frequency: 'Monthly', dividend: '0.10' }, 25)).toBeCloseTo(4.8, 3);
+    expect(indicatedYield({ frequency: 'Semi-Annually', dividend: '1.00' }, 100)).toBeCloseTo(2, 5);
+    expect(indicatedYield({ frequency: 'Annually', dividend: '2.00' }, 100)).toBeCloseTo(2, 5);
+  });
+
+  test('indicatedYield guards missing pieces', () => {
+    expect(indicatedYield(null, 100)).toBeNull();
+    expect(indicatedYield({ frequency: 'Quarterly' }, 100)).toBeNull();
+    expect(indicatedYield({ frequency: 'Quarterly', dividend: 'n/a' }, 100)).toBeNull();
+    expect(indicatedYield({ frequency: 'Quarterly', dividend: '1.00' }, null)).toBeNull();
+    expect(indicatedYield({ frequency: 'Weekly', dividend: '1.00' }, 100)).toBeNull();
+  });
+
+  test('deriveCatalogMetrics maps CAGRs directly and derives TRs', () => {
+    const monthEnd = { ytd: 10.06, yr1: 19.4, yr3: 19.18, yr5: 12.72, yr10: 14.93, sinceInception: 10.8 };
+    const metrics = deriveCatalogMetrics(monthEnd, 765.58, { frequency: 'Quarterly', exDate: '06/18/2026', dividend: '1.903516' });
+    expect(metrics.cagr3y).toBe(19.18);
+    expect(metrics.cagr5y).toBe(12.72);
+    expect(metrics.cagr10y).toBe(14.93);
+    expect(metrics.siAnn).toBe(10.8);
+    expect(metrics.tr3y).toBeCloseTo(69.28, 2);
+    expect(metrics.tr10y).toBeCloseTo(302.1, 1);
+    expect(metrics.dividendYield).toBeCloseTo(0.9945, 3);
+    expect(metrics.tr3yText).toBe('69.28%');
+    expect(metrics.secYield).toBeNull();
+    expect(metrics.secYieldText).toBeNull();
+  });
+
+  test('deriveCatalogMetrics tolerates young funds and commodity trusts', () => {
+    const metrics = deriveCatalogMetrics({ ytd: 5, yr1: 17.22, sinceInception: 15.08 }, 20.5, null);
+    expect(metrics.tr3y).toBeNull();
+    expect(metrics.tr3yText).toBeNull();
+    expect(metrics.cagr10y).toBeNull();
+    expect(metrics.dividendYield).toBeNull();
+    expect(metrics.tr1y).toBe(17.22);
   });
 });

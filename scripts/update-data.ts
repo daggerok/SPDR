@@ -548,6 +548,87 @@ type CatalogFund = {
   factsheetUrl: string | null;
 };
 
+// ---------------------------------------------------------------------------
+// Catalog metric derivations (Amplify/iShares column parity)
+//
+// SSGA's fund finder publishes *annualized* multi-year returns ("Annualized"
+// per its own label metadata) plus cumulative YTD. daggerok/Amplify and
+// daggerok/iShares show both cumulative total returns (TR nY) and annualized
+// CAGRs, so CAGR comes straight from SSGA's yrN figures and TR nY is derived
+// as (1 + cagr)^n - 1 (the exact inverse of annualizing a cumulative return).
+// SSGA publishes no SEC 30-day yield -> rendered as "—" (documented limitation).
+// Dividend Yield is an *indicated* yield: latest distribution x payments per
+// year / NAV (SSGA publishes no trailing-12M distribution history per fund).
+// ---------------------------------------------------------------------------
+
+const DISTRIBUTIONS_PER_YEAR: Record<string, number> = {
+  monthly: 12,
+  quarterly: 4,
+  'semi-annually': 2,
+  semi: 2,
+  annually: 1,
+};
+
+export function annualizedToTotal(annualizedPercent: number | null | undefined, years: number): number | null {
+  if (typeof annualizedPercent !== 'number' || !Number.isFinite(annualizedPercent) || years <= 0) return null;
+  if (annualizedPercent <= -100) return -100; // total loss floor for extreme annualized figures
+  const total = (Math.pow(1 + annualizedPercent / 100, years) - 1) * 100;
+  return Number.isFinite(total) ? Math.round(total * 100) / 100 : null;
+}
+
+export function indicatedYield(
+  distribution: { frequency?: string | null; dividend?: string | null } | null | undefined,
+  navValue: number | null | undefined,
+): number | null {
+  if (!distribution || !distribution.frequency || !distribution.dividend) return null;
+  const perYear = DISTRIBUTIONS_PER_YEAR[String(distribution.frequency).trim().toLowerCase()];
+  if (!perYear) return null;
+  const dividend = Number(String(distribution.dividend).replace(/[^0-9.\-]/g, ''));
+  if (!Number.isFinite(dividend) || dividend <= 0) return null;
+  if (typeof navValue !== 'number' || !Number.isFinite(navValue) || navValue <= 0) return null;
+  return Math.round(((dividend * perYear) / navValue) * 100 * 10000) / 10000;
+}
+
+function percentText(value: number | null): string | null {
+  return value === null ? null : `${value.toFixed(2)}%`;
+}
+
+export function deriveCatalogMetrics(
+  monthEnd: JsonRecord,
+  navValue: number | null,
+  distribution: { frequency?: string | null; exDate?: string | null; dividend?: string | null } | null | undefined,
+): JsonRecord {
+  const numberOrNull = (value: unknown): number | null =>
+    typeof value === 'number' && Number.isFinite(value) ? value : null;
+  const cagr1 = numberOrNull(monthEnd.yr1);
+  const cagr3 = numberOrNull(monthEnd.yr3);
+  const cagr5 = numberOrNull(monthEnd.yr5);
+  const cagr10 = numberOrNull(monthEnd.yr10);
+  const siAnn = numberOrNull(monthEnd.sinceInception);
+  const dividendYield = indicatedYield(distribution, navValue);
+  const metrics: JsonRecord = {
+    // Cumulative total returns (TR nY). SSGA's 1Y annualized equals the 1Y total.
+    tr1y: cagr1,
+    tr3y: annualizedToTotal(cagr3, 3),
+    tr5y: annualizedToTotal(cagr5, 5),
+    tr10y: annualizedToTotal(cagr10, 10),
+    // Annualized returns (CAGR nY) come directly from SSGA's "Annualized" figures.
+    cagr3y: cagr3,
+    cagr5y: cagr5,
+    cagr10y: cagr10,
+    siAnn,
+    // Indicated dividend yield (latest distribution x frequency / NAV); no trailing-12M feed.
+    dividendYield,
+    // SSGA does not publish a 30-day SEC yield for SPDR ETFs.
+    secYield: null,
+  };
+  for (const key of ['tr1y', 'tr3y', 'tr5y', 'tr10y', 'cagr3y', 'cagr5y', 'cagr10y', 'siAnn', 'dividendYield']) {
+    metrics[`${key}Text`] = percentText(metrics[key] as number | null);
+  }
+  metrics.secYieldText = null;
+  return metrics;
+}
+
 function pairValue(pair: unknown): { display: string | null; value: number | null } {
   if (Array.isArray(pair) && pair.length >= 2) {
     const value = typeof pair[1] === 'number' && !isMissingNumber(pair[1]) ? pair[1] : null;
@@ -1039,6 +1120,7 @@ async function main(): Promise<void> {
       distributions: distribution
         ? { frequency: distribution.frequency, exDate: distribution.exDate, dividend: distribution.dividend }
         : null,
+      metrics: deriveCatalogMetrics(fund.monthEnd, fund.navValue, distribution),
       returns: { monthEnd: fund.monthEnd, quarterEnd: fund.quarterEnd },
       holdings: live?.holdings ?? previous.holdings ?? 0,
       history: live?.history ?? previous.history ?? 0,

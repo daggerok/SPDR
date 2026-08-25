@@ -45,7 +45,21 @@ Everything comes from public SSGA feeds, fetched politely (they rate-limit hard)
 | NAV history | `ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-{ticker}.xlsx` |
 | Distributions | `ssga.com/bin/v1/ssmp/fund/dividend-distribution?country=us&language=en&role=intermediary` |
 
-The catalog provides name, asset class, TER, NAV, AUM, exchange, close price, premium/discount, inception, month-end and quarter-end NAV returns (YTD/1Y/3Y/5Y/10Y/since-inception) and document links. Equity and bond holdings workbooks have different column sets (bonds have no `Ticker` column — they are identified by `Identifier`); both formats are stored as-is with per-fund headers, and the Watchlist deduplicates by `Ticker` when present, falling back to `Identifier`. Commodity trusts (`GLD`, `GLDM`) publish no holdings workbook and are catalog-only.
+The catalog provides name, asset class (Type), TER (Expense), NAV, AUM (Net Assets), exchange, close price, premium/discount, inception, month-end and quarter-end NAV returns and document links. Each fund also carries a derived `metrics` object that powers the catalog table columns shared with the sibling sites:
+
+- `ytd` — cumulative YTD (SSGA "Month End") → *YTD Return*
+- `tr1y` — 1-year total return → *TR 1Y*
+- `tr3y`/`tr5y`/`tr10y` — cumulative total returns **derived** from SSGA's published annualized figures: `(1 + CAGR nY)^n − 1` (the exact inverse of annualizing, so no precision is lost) → *TR 3Y/5Y/10Y*
+- `cagr3y`/`cagr5y`/`cagr10y` — SSGA's annualized returns, used directly → *CAGR 3Y/5Y/10Y*
+- `siAnn` — since-inception annualized → *SI Ann.*
+- `dividendYield` — **indicated** yield: latest distribution × payments per year ÷ NAV → *Dividend Yield*
+- `secYield` — always `null` → *SEC Yield* renders as `—`
+
+Known value limitations (SSGA does not publish these for SPDR ETFs):
+
+- **SEC Yield (30-day)** — no source endpoint; shown as `—`.
+- **Dividend Yield** is *indicated*, not trailing-12M: SSGA exposes only the latest distribution per fund, so the yield assumes every distribution in the year equals the latest one.
+- Multi-year **total returns** are derived from annualized figures rather than published cumulative ones (mathematically exact, but tiny rounding differences vs. SSGA's own cumulative display are possible). Equity and bond holdings workbooks have different column sets (bonds have no `Ticker` column — they are identified by `Identifier`); both formats are stored as-is with per-fund headers, and the Watchlist deduplicates by `Ticker` when present, falling back to `Identifier`. Commodity trusts (`GLD`, `GLDM`) publish no holdings workbook and are catalog-only.
 
 ### Update controls
 
