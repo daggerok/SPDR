@@ -2,6 +2,10 @@
 
 SPDR ETF holdings to Watchlist. A single-file client-side tool that reads the generated `api/spdr/**` static feed (SSGA / State Street public data) into a searchable ETF / asset-class catalog with per-fund holdings, NAV-history and distributions tabs, Watchlist aggregation across selected ETFs, ticker copy and CSV/TXT export. Vanilla inline TypeScript + TailwindCSS, light/dark theme, no build step.
 
+## Shared UI contract
+
+The common interaction and data-state rules are documented in [`docs/ui-contract.md`](./docs/ui-contract.md). New provider-specific behavior should preserve this contract.
+
 ## Sibling applications
 
 | Application | Data provider | Repository |
