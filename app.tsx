@@ -84,6 +84,7 @@
       cagr5y?: number | null;
       cagr10y?: number | null;
       dividendYield?: number | null;
+      dividendFrequency: string;
       secYield?: number | null;
       returnAsOf: string;
       returns?: { monthEnd: Record<string, any>; quarterEnd: Record<string, any> };
@@ -141,6 +142,7 @@
       Type: 'Asset Class — SSGA asset-class grouping (Equity, Fixed Income Sector, ...). Same source as the category tabs.',
       Expense: 'Gross Expense Ratio — Total annual fund operating expenses as a % of assets.',
       'Dividend Yield': 'Dividend Yield (indicated) — Latest distribution per share x payments per year divided by NAV. SSGA publishes no trailing-12-month distribution history per fund, so this is an indicated yield, not a trailing yield.',
+      'Dividend Frequency': 'Dividend Frequency — sortable payment cadence from the SSGA dividend distribution feed: 01 - Monthly, 04 - Quarterly, 06 - Semi-annually, 12 - Annually; 00 denotes unavailable/unknown and 99 denotes irregular.',
       'SEC Yield': 'SEC Yield (30-Day) — Not published by SSGA for SPDR ETFs; shown as "—" (data limitation).',
       'YTD Return': 'YTD Return — Cumulative NAV total return since the start of the year, SSGA "Month End" series.',
       'TR 1Y': 'TR 1Y (1-Year Total Return) — NAV total return over the past year, including reinvested distributions.',
@@ -287,6 +289,20 @@
       return parsed === null ? '—' : `${parsed.toFixed(2)}%`;
     }
 
+    function formatDividendFrequency(value: unknown): string {
+      const raw = String(value ?? '').trim();
+      const normalized = raw.toLowerCase().replace(/[‐‑‒–—]/g, '-').replace(/\s+/g, ' ');
+      if (!normalized || normalized === '-') return '00 - —';
+      if (normalized === 'monthly') return '01 - Monthly';
+      if (normalized === 'quarterly') return '04 - Quarterly';
+      if (normalized === 'semi-annual' || normalized === 'semi-annually' || normalized === 'semiannual') return '06 - Semi-annually';
+      if (normalized === 'annual' || normalized === 'annually') return '12 - Annually';
+      if (normalized === 'none') return '00 - None';
+      if (normalized === 'unknown') return '00 - Unknown';
+      if (normalized === 'irregular') return '99 - Irregular';
+      return raw;
+    }
+
     function formatInteger(value: unknown): string {
       const parsed = numberOrNull(value);
       return parsed === null || parsed === 0 ? '—' : parsed.toLocaleString('en-US');
@@ -399,6 +415,7 @@
         cagr5y: metrics.cagr5y ?? monthEnd.yr5 ?? null,
         cagr10y: metrics.cagr10y ?? monthEnd.yr10 ?? null,
         dividendYield: metrics.dividendYield ?? null,
+        dividendFrequency: formatDividendFrequency(fund.distributions && fund.distributions.frequency ? fund.distributions.frequency : '—'),
         secYield: null, // SSGA publishes no 30-day SEC yield for SPDR ETFs.
         returnAsOf: monthEnd.asOfDate ?? null,
         searchIndex: '',
@@ -869,6 +886,7 @@
           ${sortHeader('NAV', 'navValue', true)}
           ${sortHeader('Net Assets', 'aumValue', true)}
           ${sortHeader('Expense', 'terValue', true)}
+          ${sortHeader('Dividend Frequency', 'dividendFrequency')}
           ${sortHeader('Dividend Yield', 'dividendYield', true)}
           ${sortHeader('SEC Yield', 'secYield', true)}
           ${sortHeader('YTD Return', 'ytd', true)}
@@ -891,7 +909,7 @@
       bindSelectAllCheckbox();
 
       if (!rows.length) {
-        el.tableBody.innerHTML = `<tr><td colspan="24" class="py-12 text-center text-slate-400 dark:text-slate-500">No ETFs match your search.</td></tr>`;
+        el.tableBody.innerHTML = `<tr><td colspan="25" class="py-12 text-center text-slate-400 dark:text-slate-500">No ETFs match your search.</td></tr>`;
       } else {
         el.tableBody.innerHTML = rows.map((fund, index) => {
           const selected = state.selected.has(fund.ticker);
@@ -910,6 +928,7 @@
               <td class="py-2.5 px-4 text-right font-mono text-slate-700 dark:text-slate-300">${escapeHtml(fund.nav || '—')}</td>
               <td class="py-2.5 px-4 text-right font-mono text-slate-700 dark:text-slate-300">${formatMoney(fund.aumValue)}</td>
               <td class="py-2.5 px-4 text-right font-mono text-slate-700 dark:text-slate-300">${escapeHtml(fund.ter || '—')}</td>
+              <td class="py-2.5 px-4 text-slate-700 dark:text-slate-300">${escapeHtml(fund.dividendFrequency || '—')}</td>
               <td class="py-2.5 px-4 text-right font-mono text-slate-700 dark:text-slate-300">${formatPercent(fund.dividendYield)}</td>
               <td class="py-2.5 px-4 text-right font-mono text-slate-700 dark:text-slate-300">—</td>
               <td class="py-2.5 px-4 text-right font-mono text-slate-700 dark:text-slate-300">${formatPercent(fund.ytd)}</td>
@@ -1474,7 +1493,7 @@
       }
 
       return {
-        headers: ['Selected', 'Ticker', 'Fund Name', 'Type', 'NAV', 'Net Assets ($)', 'Expense (%)', 'Dividend Yield (%)', 'SEC Yield (%)', 'YTD Return (%)', 'TR 1Y (%)', 'TR 3Y (%)', 'TR 5Y (%)', 'TR 10Y (%)', 'CAGR 3Y (%)', 'CAGR 5Y (%)', 'CAGR 10Y (%)', 'SI Ann. (%)', 'Return As Of', 'Inception', 'Holdings', 'History', 'As Of'],
+        headers: ['Selected', 'Ticker', 'Fund Name', 'Type', 'NAV', 'Net Assets ($)', 'Expense (%)', 'Dividend Frequency', 'Dividend Yield (%)', 'SEC Yield (%)', 'YTD Return (%)', 'TR 1Y (%)', 'TR 3Y (%)', 'TR 5Y (%)', 'TR 10Y (%)', 'CAGR 3Y (%)', 'CAGR 5Y (%)', 'CAGR 10Y (%)', 'SI Ann. (%)', 'Return As Of', 'Inception', 'Holdings', 'History', 'As Of'],
         rows: filterRows(visibleFunds()).map(fund => [
           state.selected.has(fund.ticker) ? 'yes' : 'no',
           fund.ticker,
@@ -1483,6 +1502,7 @@
           fund.nav || '',
           numberCell(fund.aumValue),
           numberCell(fund.terValue),
+          fund.dividendFrequency || '',
           numberCell(fund.dividendYield),
           numberCell(null), // SEC yield: not published by SSGA
           numberCell(fund.ytd),
