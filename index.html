@@ -59,6 +59,41 @@
      */
     #table-scroll{overscroll-behavior:contain}
 
+    /*
+     * Catalog horizontal-scroll affordance: keep the row number, Use checkbox,
+     * and Ticker anchor visible while the remaining columns move horizontally.
+     * The row number is pinned as the left anchor so the two requested action
+     * columns never overlap it at scrollLeft = 0.
+     */
+    #table-scroll table{min-width:max-content}
+    #table-scroll thead th:nth-child(1),
+    #table-scroll thead th:nth-child(2),
+    #table-scroll thead th:nth-child(3){position:sticky;top:0;z-index:31;background:#f8fafc}
+    #table-scroll tbody td:nth-child(1),
+    #table-scroll tbody td:nth-child(2),
+    #table-scroll tbody td:nth-child(3){position:sticky;z-index:10;background:#fff}
+    #table-scroll thead th:nth-child(1),#table-scroll tbody td:nth-child(1){left:0;min-width:3rem}
+    #table-scroll thead th:nth-child(2),#table-scroll tbody td:nth-child(2){left:3rem;min-width:5rem}
+    #table-scroll thead th:nth-child(3),#table-scroll tbody td:nth-child(3){left:8rem;min-width:5rem;box-shadow:4px 0 6px -6px rgba(15,23,42,.7)}
+    #table-scroll tbody tr:hover>td:nth-child(1),
+    #table-scroll tbody tr:hover>td:nth-child(2),
+    #table-scroll tbody tr:hover>td:nth-child(3){background:#f8fafc}
+    #table-scroll tbody tr.selected-row>td:nth-child(1),
+    #table-scroll tbody tr.selected-row>td:nth-child(2),
+    #table-scroll tbody tr.selected-row>td:nth-child(3){background:#eff6ff}
+    .dark #table-scroll thead th:nth-child(1),
+    .dark #table-scroll thead th:nth-child(2),
+    .dark #table-scroll thead th:nth-child(3){background:#0f172a}
+    .dark #table-scroll tbody td:nth-child(1),
+    .dark #table-scroll tbody td:nth-child(2),
+    .dark #table-scroll tbody td:nth-child(3){background:#1e293b}
+    .dark #table-scroll tbody tr:hover>td:nth-child(1),
+    .dark #table-scroll tbody tr:hover>td:nth-child(2),
+    .dark #table-scroll tbody tr:hover>td:nth-child(3){background:rgba(51,65,85,.3)}
+    .dark #table-scroll tbody tr.selected-row>td:nth-child(1),
+    .dark #table-scroll tbody tr.selected-row>td:nth-child(2),
+    .dark #table-scroll tbody tr.selected-row>td:nth-child(3){background:rgba(30,64,175,.22)}
+
     /* Detail navigation expands into place after an ETF is selected. */
     main.space-y-6 > #selected-tabs-panel{max-height:0;margin-top:0;overflow:hidden;opacity:0;transform:translateY(-10px);padding-top:0;padding-bottom:0;border-color:transparent;transition:max-height .32s ease,margin-top .32s ease,padding .32s ease,opacity .22s ease,transform .32s ease,border-color .22s ease}
     main.space-y-6 > #selected-tabs-panel.is-visible{max-height:8rem;margin-top:1.5rem;padding-top:1rem;padding-bottom:1rem;opacity:1;transform:translateY(0);border-color:rgb(226 232 240)}

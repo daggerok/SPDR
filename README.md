@@ -4,7 +4,7 @@ SPDR ETF holdings to Watchlist. A single-file client-side tool that reads the ge
 
 ## Shared UI contract
 
-The common interaction and data-state rules are documented in [`docs/ui-contract.md`](./docs/ui-contract.md). New provider-specific behavior should preserve this contract.
+The common interaction and data-state rules are documented in [`docs/ui-contract.md`](./docs/ui-contract.md). Reusable catalog requirements for coded distribution frequency and pinned horizontal-scroll columns are in [`docs/catalog-ui-requirements.md`](./docs/catalog-ui-requirements.md). New provider-specific behavior should preserve these contracts.
 
 ## Sibling applications
 
