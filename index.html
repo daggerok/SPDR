@@ -75,6 +75,9 @@
     #table-scroll tbody td:nth-child(2),
     #table-scroll tbody td:nth-child(3){position:sticky;z-index:100!important;background:#fff;background-clip:padding-box;transform:translateZ(0)}
     #table-scroll tbody td:nth-child(n+4){position:relative;z-index:0}
+    /* Let the nested wrappers, not the table cells, own horizontal stickiness. */
+    #table-scroll thead th:nth-child(1),#table-scroll thead th:nth-child(2),#table-scroll thead th:nth-child(3),
+    #table-scroll tbody td:nth-child(1),#table-scroll tbody td:nth-child(2),#table-scroll tbody td:nth-child(3){position:static!important;left:auto!important;z-index:auto!important;background:transparent!important;transform:none!important}
     /* Nested sticky wrappers are the final paint layer; this avoids browser-specific table-cell stacking bleed. */
     #table-scroll .catalog-pinned-cell{position:sticky;display:block;box-sizing:border-box;z-index:1000!important;background:#fff!important;background-clip:padding-box;transform:translate3d(0,0,0);isolation:isolate}
     #table-scroll .catalog-pinned-header{top:0;margin:-.875rem -1rem;padding:.875rem 1rem}
