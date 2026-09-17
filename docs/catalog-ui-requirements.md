@@ -27,7 +27,7 @@ Use this checklist when applying the shared catalog behavior to another provider
 - Give sticky header cells a higher z-index than sticky body cells. Give all sticky cells opaque light/dark backgrounds so scrolled content cannot show through them.
 - Use separated table borders (`border-collapse: separate; border-spacing: 0`) and a stacking context for the scroll table. This prevents long Fund Name text or a hovered row from painting over the pinned cells.
 - Keep moving body cells at a lower stacking level than the pinned cells, and avoid transforms on the scrolling `tbody` animation that can create a competing stacking context. Use a separate opacity-only row refresh if an entry animation is needed.
-- For browser-safe table painting, wrap the `#`, **Use**, and **Ticker** contents in nested sticky elements with opaque backgrounds and a higher z-index; do not rely only on z-index on the table-cell itself.
+- For browser-safe table painting, wrap the `#`, **Use**, and **Ticker** contents in nested sticky elements with opaque backgrounds and a higher z-index; do not rely only on z-index on the table-cell itself. The parent cells must remain normal/static so they do not constrain the nested sticky elements to the moving cell.
 - Preserve hover and selected-row backgrounds on the sticky cells in both themes. Add a subtle right edge/shadow on the Ticker cell to make the pinned boundary clear.
 - Checkboxes and the blacklist button in the Use cell must remain clickable after horizontal scrolling. Do not place an overlay above the pinned cells.
 - Keep the sticky header and sticky left columns working together when the table is vertically and horizontally scrolled.
