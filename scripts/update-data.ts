@@ -6,6 +6,7 @@
 // deterministic, paginated static JSON API under ./api/spdr, following the
 // daggerok/iShares repository design (no dependencies, Bun only).
 
+/// <reference types="bun" />
 import { mkdir, readFile, writeFile, readdir, rm, appendFile } from 'node:fs/promises';
 import { inflateRawSync } from 'node:zlib';
 
