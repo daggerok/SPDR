@@ -65,13 +65,13 @@
      * The row number is pinned as the left anchor so the two requested action
      * columns never overlap it at scrollLeft = 0.
      */
-    #table-scroll table{min-width:max-content}
+    #table-scroll table{min-width:max-content;border-collapse:separate;border-spacing:0;isolation:isolate}
     #table-scroll thead th:nth-child(1),
     #table-scroll thead th:nth-child(2),
-    #table-scroll thead th:nth-child(3){position:sticky;top:0;z-index:31;background:#f8fafc}
+    #table-scroll thead th:nth-child(3){position:sticky;top:0;z-index:60;background:#f8fafc;background-clip:padding-box}
     #table-scroll tbody td:nth-child(1),
     #table-scroll tbody td:nth-child(2),
-    #table-scroll tbody td:nth-child(3){position:sticky;z-index:10;background:#fff}
+    #table-scroll tbody td:nth-child(3){position:sticky;z-index:40;background:#fff;background-clip:padding-box}
     #table-scroll thead th:nth-child(1),#table-scroll tbody td:nth-child(1){left:0;min-width:3rem}
     #table-scroll thead th:nth-child(2),#table-scroll tbody td:nth-child(2){left:3rem;min-width:5rem}
     #table-scroll thead th:nth-child(3),#table-scroll tbody td:nth-child(3){left:8rem;min-width:5rem;box-shadow:4px 0 6px -6px rgba(15,23,42,.7)}
