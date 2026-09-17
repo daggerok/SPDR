@@ -142,7 +142,7 @@
       Type: 'Asset Class — SSGA asset-class grouping (Equity, Fixed Income Sector, ...). Same source as the category tabs.',
       Expense: 'Gross Expense Ratio — Total annual fund operating expenses as a % of assets.',
       'Dividend Yield': 'Dividend Yield (indicated) — Latest distribution per share x payments per year divided by NAV. SSGA publishes no trailing-12-month distribution history per fund, so this is an indicated yield, not a trailing yield.',
-      'Dividend Frequency': 'Dividend Frequency — sortable payment cadence from the SSGA dividend distribution feed: 01 - Monthly, 04 - Quarterly, 06 - Semi-annually, 12 - Annually; 00 denotes unavailable/unknown and 99 denotes irregular.',
+      Frequency: 'Frequency — sortable payment cadence from the SSGA dividend distribution feed: 01 - Monthly, 04 - Quarterly, 06 - Semi-annually, 12 - Annually; 00 denotes unavailable/unknown and 99 denotes irregular.',
       'SEC Yield': 'SEC Yield (30-Day) — Not published by SSGA for SPDR ETFs; shown as "—" (data limitation).',
       'YTD Return': 'YTD Return — Cumulative NAV total return since the start of the year, SSGA "Month End" series.',
       'TR 1Y': 'TR 1Y (1-Year Total Return) — NAV total return over the past year, including reinvested distributions.',
@@ -166,7 +166,6 @@
       Holdings: 'Rows in the fund\'s latest daily holdings file.',
       History: 'Rows in the fund\'s NAV history file.',
       'As Of': 'NAV / AUM as-of date.',
-      Frequency: 'Distribution frequency (Monthly, Quarterly, ...).',
       'Ex-Date': 'Ex-dividend date of the latest distribution.',
       Dividend: 'Latest dividend per share.',
       Coupon: 'Bond annual coupon rate (%).',
@@ -886,9 +885,9 @@
           ${sortHeader('NAV', 'navValue', true)}
           ${sortHeader('Net Assets', 'aumValue', true)}
           ${sortHeader('Expense', 'terValue', true)}
-          ${sortHeader('Dividend Frequency', 'dividendFrequency')}
           ${sortHeader('Dividend Yield', 'dividendYield', true)}
           ${sortHeader('SEC Yield', 'secYield', true)}
+          ${sortHeader('Frequency', 'dividendFrequency')}
           ${sortHeader('YTD Return', 'ytd', true)}
           ${sortHeader('TR 1Y', 'yr1', true)}
           ${sortHeader('TR 3Y', 'tr3y', true)}
@@ -928,9 +927,9 @@
               <td class="py-2.5 px-4 text-right font-mono text-slate-700 dark:text-slate-300">${escapeHtml(fund.nav || '—')}</td>
               <td class="py-2.5 px-4 text-right font-mono text-slate-700 dark:text-slate-300">${formatMoney(fund.aumValue)}</td>
               <td class="py-2.5 px-4 text-right font-mono text-slate-700 dark:text-slate-300">${escapeHtml(fund.ter || '—')}</td>
-              <td class="py-2.5 px-4 text-slate-700 dark:text-slate-300">${escapeHtml(fund.dividendFrequency || '—')}</td>
               <td class="py-2.5 px-4 text-right font-mono text-slate-700 dark:text-slate-300">${formatPercent(fund.dividendYield)}</td>
               <td class="py-2.5 px-4 text-right font-mono text-slate-700 dark:text-slate-300">—</td>
+              <td class="py-2.5 px-4 text-slate-700 dark:text-slate-300">${escapeHtml(fund.dividendFrequency || '—')}</td>
               <td class="py-2.5 px-4 text-right font-mono text-slate-700 dark:text-slate-300">${formatPercent(fund.ytd)}</td>
               <td class="py-2.5 px-4 text-right font-mono text-slate-700 dark:text-slate-300">${formatPercent(fund.yr1)}</td>
               <td class="py-2.5 px-4 text-right font-mono text-slate-700 dark:text-slate-300">${formatPercent(fund.tr3y)}</td>
@@ -1493,7 +1492,7 @@
       }
 
       return {
-        headers: ['Selected', 'Ticker', 'Fund Name', 'Type', 'NAV', 'Net Assets ($)', 'Expense (%)', 'Dividend Frequency', 'Dividend Yield (%)', 'SEC Yield (%)', 'YTD Return (%)', 'TR 1Y (%)', 'TR 3Y (%)', 'TR 5Y (%)', 'TR 10Y (%)', 'CAGR 3Y (%)', 'CAGR 5Y (%)', 'CAGR 10Y (%)', 'SI Ann. (%)', 'Return As Of', 'Inception', 'Holdings', 'History', 'As Of'],
+        headers: ['Selected', 'Ticker', 'Fund Name', 'Type', 'NAV', 'Net Assets ($)', 'Expense (%)', 'Dividend Yield (%)', 'SEC Yield (%)', 'Frequency', 'YTD Return (%)', 'TR 1Y (%)', 'TR 3Y (%)', 'TR 5Y (%)', 'TR 10Y (%)', 'CAGR 3Y (%)', 'CAGR 5Y (%)', 'CAGR 10Y (%)', 'SI Ann. (%)', 'Return As Of', 'Inception', 'Holdings', 'History', 'As Of'],
         rows: filterRows(visibleFunds()).map(fund => [
           state.selected.has(fund.ticker) ? 'yes' : 'no',
           fund.ticker,
@@ -1502,9 +1501,9 @@
           fund.nav || '',
           numberCell(fund.aumValue),
           numberCell(fund.terValue),
-          fund.dividendFrequency || '',
           numberCell(fund.dividendYield),
           numberCell(null), // SEC yield: not published by SSGA
+          fund.dividendFrequency || '',
           numberCell(fund.ytd),
           numberCell(fund.yr1),
           numberCell(fund.tr3y),
