@@ -1,0 +1,96 @@
+{
+  "ticker": "UCBG",
+  "name": "State Street SPDR UC Investments 90/10 Endowment Strategy Index ETF",
+  "category": "Multi-Asset",
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-uc-investments-9010-endowment-strategy-index-etf-ucbg",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-ucbg.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-ucbg.xlsx",
+    "factsheet": null
+  },
+  "expenseRatio": {
+    "display": "0.06%",
+    "value": 0.06
+  },
+  "nav": {
+    "display": "$49.75",
+    "value": 49.75,
+    "asOfDate": "Sep 15 2026"
+  },
+  "aum": {
+    "display": "$2,477.40 M",
+    "value": 2477400000,
+    "asOfDate": "Sep 15 2026"
+  },
+  "pricing": {
+    "exchange": "NYSE ARCA",
+    "closePrice": "$49.72",
+    "premiumDiscount": "0.00%"
+  },
+  "inceptionDate": "Sep 01 2026",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": null,
+      "mo1": null,
+      "mo1Text": null,
+      "qtd": null,
+      "qtdText": null,
+      "ytd": null,
+      "ytdText": null,
+      "yr1": null,
+      "yr1Text": null,
+      "yr3": null,
+      "yr3Text": null,
+      "yr5": null,
+      "yr5Text": null,
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": null,
+      "sinceInceptionText": null,
+      "inceptionDate": "Sep 01 2026"
+    },
+    "quarterEnd": {
+      "asOfDate": null,
+      "mo1": null,
+      "mo1Text": null,
+      "qtd": null,
+      "qtdText": null,
+      "ytd": null,
+      "ytdText": null,
+      "yr1": null,
+      "yr1Text": null,
+      "yr3": null,
+      "yr3Text": null,
+      "yr5": null,
+      "yr5Text": null,
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": null,
+      "sinceInceptionText": null
+    }
+  },
+  "distributions": {
+    "headers": [],
+    "rows": []
+  },
+  "holdings": {
+    "totalRows": 855,
+    "pageSize": 250,
+    "pageCount": 4,
+    "pages": [
+      "./holdings/001.json",
+      "./holdings/002.json",
+      "./holdings/003.json",
+      "./holdings/004.json"
+    ],
+    "asOfDate": "15-Sep-2026"
+  },
+  "history": {
+    "totalRows": 11,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./history/001.json"
+    ]
+  }
+}

@@ -2,7 +2,7 @@
   "ticker": "KOMP",
   "page": 3,
   "pageSize": 250,
-  "totalRows": 503,
+  "totalRows": 504,
   "headers": [
     "Name",
     "Ticker",
@@ -15,11 +15,21 @@
   ],
   "rows": [
     {
+      "Name": "US DOLLAR",
+      "Ticker": "-",
+      "Identifier": "999USDZ92",
+      "SEDOL": "-",
+      "Weight": "0.002155",
+      "Sector": "-",
+      "Shares Held": "56337.39",
+      "Local Currency": "USD"
+    },
+    {
       "Name": "EURO CURRENCY",
       "Ticker": "-",
       "Identifier": "999EURZ94",
       "SEDOL": "-",
-      "Weight": "0.000579",
+      "Weight": "0.000599",
       "Sector": "-",
       "Shares Held": "13567.32",
       "Local Currency": "EUR"
