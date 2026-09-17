@@ -885,7 +885,7 @@ type FundResult = { ticker: string; status: FundStatus; reason?: string; changed
 async function fetchJson(url: string, label: string): Promise<JsonRecord> {
   const response = await fetchWithRetry(url, label);
   if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-  return response.json();
+  return (await response.json()) as JsonRecord;
 }
 
 async function fetchXlsx(url: string, label: string): Promise<{ bytes: Uint8Array; rows: string[][] }> {
