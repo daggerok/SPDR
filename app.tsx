@@ -831,21 +831,25 @@
       const arrow = active ? (state.sortDir === 'asc' ? ' ↑' : ' ↓') : '';
       const align = numeric ? ' text-right' : '';
       const tooltip = getHeaderTooltip(label);
-      return `<th class="py-3.5 px-4${align}" title="${escapeHtml(tooltip)}"><button data-sort="${escapeHtml(key)}" title="${escapeHtml(tooltip)}" class="uppercase tracking-wider hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus:text-blue-600 dark:focus:text-blue-400">${escapeHtml(label)}${arrow}</button></th>`;
+      const button = `<button data-sort="${escapeHtml(key)}" title="${escapeHtml(tooltip)}" class="uppercase tracking-wider hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus:text-blue-600 dark:focus:text-blue-400">${escapeHtml(label)}${arrow}</button>`;
+      const content = key === 'ticker' ? `<span class="catalog-pinned-cell catalog-pinned-header catalog-pinned-ticker">${button}</span>` : button;
+      return `<th class="py-3.5 px-4${align}" title="${escapeHtml(tooltip)}">${content}</th>`;
     }
 
     function indexHeader(): string {
-      return `<th class="py-3.5 px-4 w-12 text-center" title="${escapeHtml(getHeaderTooltip('#'))}">#</th>`;
+      return `<th class="py-3.5 px-4 w-12 text-center" title="${escapeHtml(getHeaderTooltip('#'))}"><span class="catalog-pinned-cell catalog-pinned-header catalog-pinned-index">#</span></th>`;
     }
 
     function useHeader(): string {
       const candidates = visibleFunds();
       const allSelected = candidates.length > 0 && state.selected.size === candidates.length;
       return `<th class="py-3.5 px-4 w-20 text-center" title="${escapeHtml(getHeaderTooltip('Use'))}">
-        <div class="inline-flex items-center justify-center gap-1">
-          <input type="checkbox" id="select-all-checkbox" ${allSelected ? 'checked' : ''} class="w-4 h-4 accent-blue-600 cursor-pointer" title="Select / Deselect all ETFs" />
-          <span>Use</span>
-        </div>
+        <span class="catalog-pinned-cell catalog-pinned-header catalog-pinned-use">
+          <span class="inline-flex items-center justify-center gap-1">
+            <input type="checkbox" id="select-all-checkbox" ${allSelected ? 'checked' : ''} class="w-4 h-4 accent-blue-600 cursor-pointer" title="Select / Deselect all ETFs" />
+            <span>Use</span>
+          </span>
+        </span>
       </th>`;
     }
 
@@ -914,14 +918,16 @@
           const selected = state.selected.has(fund.ticker);
           return `
             <tr data-ticker="${escapeHtml(fund.ticker)}" class="cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-700/30 transition border-b border-slate-100 dark:border-slate-700/30 ${selected ? 'selected-row' : ''}">
-              <td class="py-2.5 px-4 text-slate-400 dark:text-slate-500 text-xs text-center font-mono">${index + 1}</td>
+              <td class="py-2.5 px-4 text-slate-400 dark:text-slate-500 text-xs text-center font-mono"><span class="catalog-pinned-cell catalog-pinned-body catalog-pinned-index">${index + 1}</span></td>
               <td class="py-2.5 px-4 text-center">
-                <div class="inline-flex items-center justify-center gap-1.5">
-                  <input data-checkbox="${escapeHtml(fund.ticker)}" type="checkbox" ${selected ? 'checked' : ''} class="w-4 h-4 accent-blue-600" aria-label="Use ${escapeHtml(fund.ticker)}" />
-                  <button data-blacklist="${escapeHtml(fund.ticker)}" class="w-4 h-4 rounded text-slate-300 dark:text-slate-600 hover:text-rose-500 dark:hover:text-rose-400 leading-none transition" title="Blacklist ${escapeHtml(fund.ticker)} — hide it from All ETFs">✕</button>
-                </div>
+                <span class="catalog-pinned-cell catalog-pinned-body catalog-pinned-use">
+                  <span class="inline-flex items-center justify-center gap-1.5">
+                    <input data-checkbox="${escapeHtml(fund.ticker)}" type="checkbox" ${selected ? 'checked' : ''} class="w-4 h-4 accent-blue-600" aria-label="Use ${escapeHtml(fund.ticker)}" />
+                    <button data-blacklist="${escapeHtml(fund.ticker)}" class="w-4 h-4 rounded text-slate-300 dark:text-slate-600 hover:text-rose-500 dark:hover:text-rose-400 leading-none transition" title="Blacklist ${escapeHtml(fund.ticker)} — hide it from All ETFs">✕</button>
+                  </span>
+                </span>
               </td>
-              <td class="py-2.5 px-4 font-mono font-semibold text-blue-600 dark:text-blue-400">${escapeHtml(fund.ticker)}</td>
+              <td class="py-2.5 px-4 font-mono font-semibold text-blue-600 dark:text-blue-400"><span class="catalog-pinned-cell catalog-pinned-body catalog-pinned-ticker">${escapeHtml(fund.ticker)}</span></td>
               <td class="py-2.5 px-4 text-slate-700 dark:text-slate-300 font-medium" title="${escapeHtml(fund.name)}">${escapeHtml(fund.name)}</td>
               <td class="py-2.5 px-4 text-slate-600 dark:text-slate-300">${escapeHtml(categoryLabel(fund.category))}</td>
               <td class="py-2.5 px-4 text-right font-mono text-slate-700 dark:text-slate-300">${escapeHtml(fund.nav || '—')}</td>
