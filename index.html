@@ -66,12 +66,15 @@
      * columns never overlap it at scrollLeft = 0.
      */
     #table-scroll table{min-width:max-content;border-collapse:separate;border-spacing:0;isolation:isolate}
+    #table-scroll tbody{position:relative;z-index:0}
+    #table-scroll tbody tr{position:relative;z-index:0}
     #table-scroll thead th:nth-child(1),
     #table-scroll thead th:nth-child(2),
-    #table-scroll thead th:nth-child(3){position:sticky;top:0;z-index:60;background:#f8fafc;background-clip:padding-box}
+    #table-scroll thead th:nth-child(3){position:sticky;top:0;z-index:200!important;background:#f8fafc;background-clip:padding-box;transform:translateZ(0)}
     #table-scroll tbody td:nth-child(1),
     #table-scroll tbody td:nth-child(2),
-    #table-scroll tbody td:nth-child(3){position:sticky;z-index:40;background:#fff;background-clip:padding-box}
+    #table-scroll tbody td:nth-child(3){position:sticky;z-index:100!important;background:#fff;background-clip:padding-box;transform:translateZ(0)}
+    #table-scroll tbody td:nth-child(n+4){position:relative;z-index:0}
     #table-scroll thead th:nth-child(1),#table-scroll tbody td:nth-child(1){left:0;min-width:3rem}
     #table-scroll thead th:nth-child(2),#table-scroll tbody td:nth-child(2){left:3rem;min-width:5rem}
     #table-scroll thead th:nth-child(3),#table-scroll tbody td:nth-child(3){left:8rem;min-width:5rem;box-shadow:4px 0 6px -6px rgba(15,23,42,.7)}
@@ -99,7 +102,7 @@
     main.space-y-6 > #selected-tabs-panel.is-visible{max-height:8rem;margin-top:1.5rem;padding-top:1rem;padding-bottom:1rem;opacity:1;transform:translateY(0);border-color:rgb(226 232 240)}
     .dark main.space-y-6 > #selected-tabs-panel.is-visible{border-color:rgb(51 65 85)}
 
-    @keyframes tableRefresh{from{opacity:.32;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes tableRefresh{from{opacity:.32}to{opacity:1}}
     #table-body.table-content-enter{animation:tableRefresh .22s ease-out}
     @media (prefers-reduced-motion:reduce){#table-body.table-content-enter{animation:none}main.space-y-6 > #selected-tabs-panel{transition:none}}
   </style>
