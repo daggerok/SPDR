@@ -60,57 +60,36 @@
     #table-scroll{overscroll-behavior:contain}
 
     /*
-     * Catalog horizontal-scroll affordance: keep the row number, Use checkbox,
-     * and Ticker anchor visible while the remaining columns move horizontally.
-     * The row number is pinned as the left anchor so the two requested action
-     * columns never overlap it at scrollLeft = 0.
+     * Catalog horizontal-scroll affordance: keep the Use checkbox and Ticker
+     * columns visible while the remaining columns (including the row number)
+     * move horizontally. `position:sticky` is applied directly to the `th`/`td`
+     * — NOT to a nested wrapper span. A sticky element can never move past the
+     * bounds of its own containing block, so a sticky *child* inside a plain
+     * `position:static` cell stops being visible the moment that cell's own
+     * (unscrolled) position scrolls past the viewport edge — the pin silently
+     * stops working exactly when it matters most. Sticky must live on the
+     * cell itself so the cell's own box is what tracks the viewport.
      */
     #table-scroll table{min-width:max-content;border-collapse:separate;border-spacing:0;isolation:isolate}
     #table-scroll tbody{position:relative;z-index:0}
     #table-scroll tbody tr{position:relative;z-index:0}
-    #table-scroll thead th:nth-child(1),
-    #table-scroll thead th:nth-child(2),
-    #table-scroll thead th:nth-child(3){position:sticky;top:0;z-index:200!important;background:#f8fafc;background-clip:padding-box;transform:translateZ(0)}
-    #table-scroll tbody td:nth-child(1),
-    #table-scroll tbody td:nth-child(2),
-    #table-scroll tbody td:nth-child(3){position:sticky;z-index:100!important;background:#fff;background-clip:padding-box;transform:translateZ(0)}
-    #table-scroll tbody td:nth-child(n+4){position:relative;z-index:0}
-    /* Let the nested wrappers, not the table cells, own horizontal stickiness. */
-    #table-scroll thead th:nth-child(1),#table-scroll thead th:nth-child(2),#table-scroll thead th:nth-child(3),
-    #table-scroll tbody td:nth-child(1),#table-scroll tbody td:nth-child(2),#table-scroll tbody td:nth-child(3){position:static!important;left:auto!important;z-index:auto!important;background:transparent!important;transform:none!important}
-    /* Nested sticky wrappers are the final paint layer; this avoids browser-specific table-cell stacking bleed. */
-    #table-scroll .catalog-pinned-cell{position:sticky;display:block;box-sizing:border-box;z-index:1000!important;background:#fff!important;background-clip:padding-box;transform:translate3d(0,0,0);isolation:isolate}
-    #table-scroll .catalog-pinned-header{top:0;margin:-.875rem -1rem;padding:.875rem 1rem}
-    #table-scroll .catalog-pinned-body{margin:-.625rem -1rem;padding:.625rem 1rem}
-    #table-scroll .catalog-pinned-index{left:0;width:3rem;min-width:3rem}
-    #table-scroll .catalog-pinned-use{left:3rem;width:5rem;min-width:5rem}
-    #table-scroll .catalog-pinned-ticker{left:8rem;width:5rem;min-width:5rem;box-shadow:4px 0 6px -6px rgba(15,23,42,.7)}
-    #table-scroll thead th:nth-child(1),#table-scroll tbody td:nth-child(1){left:0;min-width:3rem}
-    #table-scroll thead th:nth-child(2),#table-scroll tbody td:nth-child(2){left:3rem;min-width:5rem}
-    #table-scroll thead th:nth-child(3),#table-scroll tbody td:nth-child(3){left:8rem;min-width:5rem;box-shadow:4px 0 6px -6px rgba(15,23,42,.7)}
-    #table-scroll tbody tr:hover>td:nth-child(1),
-    #table-scroll tbody tr:hover>td:nth-child(2),
-    #table-scroll tbody tr:hover>td:nth-child(3){background:#f8fafc}
-    #table-scroll tbody tr.selected-row>td:nth-child(1),
-    #table-scroll tbody tr.selected-row>td:nth-child(2),
-    #table-scroll tbody tr.selected-row>td:nth-child(3){background:#eff6ff}
-    .dark #table-scroll thead th:nth-child(1),
-    .dark #table-scroll thead th:nth-child(2),
-    .dark #table-scroll thead th:nth-child(3){background:#0f172a}
-    .dark #table-scroll tbody td:nth-child(1),
-    .dark #table-scroll tbody td:nth-child(2),
-    .dark #table-scroll tbody td:nth-child(3){background:#1e293b}
-    .dark #table-scroll .catalog-pinned-cell{background:#1e293b!important}
-    .dark #table-scroll tbody tr:hover>td:nth-child(1),
-    .dark #table-scroll tbody tr:hover>td:nth-child(2),
-    .dark #table-scroll tbody tr:hover>td:nth-child(3){background:rgba(51,65,85,.3)}
-    .dark #table-scroll tbody tr.selected-row>td:nth-child(1),
-    .dark #table-scroll tbody tr.selected-row>td:nth-child(2),
-    .dark #table-scroll tbody tr.selected-row>td:nth-child(3){background:rgba(30,64,175,.22)}
-    #table-scroll tbody tr:hover .catalog-pinned-body{background:#f8fafc!important}
-    #table-scroll tbody tr.selected-row .catalog-pinned-body{background:#eff6ff!important}
-    .dark #table-scroll tbody tr:hover .catalog-pinned-body{background:rgba(51,65,85,.3)!important}
-    .dark #table-scroll tbody tr.selected-row .catalog-pinned-body{background:rgba(30,64,175,.22)!important}
+    #table-scroll .catalog-sticky-col{position:sticky;background:#fff;background-clip:padding-box}
+    #table-scroll thead .catalog-sticky-col{top:0;z-index:30}
+    #table-scroll tbody .catalog-sticky-col{z-index:20}
+    #table-scroll .catalog-sticky-use{left:0;width:5rem;min-width:5rem}
+    #table-scroll .catalog-sticky-ticker{left:5rem;width:5rem;min-width:5rem;box-shadow:4px 0 6px -6px rgba(15,23,42,.7)}
+    .dark #table-scroll .catalog-sticky-col{background:#1e293b}
+    #table-scroll tbody tr:hover .catalog-sticky-col{background:#f8fafc}
+    #table-scroll tbody tr.selected-row .catalog-sticky-col{background:#eff6ff}
+    /*
+     * The ordinary hover/selected row tints below are translucent rgba() —
+     * fine over the single flat row background they were designed for, but
+     * a sticky cell repaints on top of whatever column has scrolled behind
+     * it, so a translucent fill lets that column's text show through. Pinned
+     * cells get solid, pre-blended hex equivalents instead.
+     */
+    .dark #table-scroll tbody tr:hover .catalog-sticky-col{background:#243043}
+    .dark #table-scroll tbody tr.selected-row .catalog-sticky-col{background:#1e2e55}
 
     /* Detail navigation expands into place after an ETF is selected. */
     main.space-y-6 > #selected-tabs-panel{max-height:0;margin-top:0;overflow:hidden;opacity:0;transform:translateY(-10px);padding-top:0;padding-bottom:0;border-color:transparent;transition:max-height .32s ease,margin-top .32s ease,padding .32s ease,opacity .22s ease,transform .32s ease,border-color .22s ease}
