@@ -110,6 +110,7 @@ const SELECTED_KEY = 'spdr-selected-etfs';
 const BLACKLIST_KEY = 'spdr-blacklisted-etfs';
 const ACTIVE_FUND_KEY = 'spdr-active-fund';
 const SEARCHES_KEY = 'spdr-searches';
+const SORTS_KEY = 'spdr-tab-sorts';
 const DEFAULT_SELECTED_TICKERS: string[] = []; // start clean: users choose the funds to compare
 
 const DETAIL_TABS: Array<{ key: string; label: string }> = [
@@ -224,6 +225,10 @@ type AppState = {
   queryByTab: Record<string, string>;
   sortKey: string;
   sortDir: SortDirection;
+  // Last sort the user explicitly chose (column-header click) per tab. Tab
+  // switches restore it instead of falling back to the tab default, so an
+  // All ETFs sort like "YTD Return" survives Watchlist / detail round trips.
+  sortByTab: Record<string, { key: string; dir: SortDirection }>;
   generatedAt: string | null;
   counts: { funds: number; holdings: number; history: number } | null;
 };
@@ -237,6 +242,7 @@ const state: AppState = {
   queryByTab: {},
   sortKey: 'rank',
   sortDir: 'asc',
+  sortByTab: {},
   generatedAt: null,
   counts: null,
 };
@@ -447,6 +453,7 @@ async function loadCatalog(): Promise<void> {
   el.searchInput.disabled = false;
   [el.copyBtn, el.exportCsvBtn, el.exportTxtBtn, el.resetBtn].forEach(button => { button.disabled = false; });
   applyRestoredTab();
+  applySortForTab(state.activeTab);
   render();
   void ensureHoldingsForSelection();
   const activeTicker = state.activeFundTicker;
@@ -651,7 +658,7 @@ function ensureValidTab(): void {
   const tabIds = getAllTabIds();
   if (!tabIds.includes(state.activeTab)) {
     state.activeTab = 'All';
-    applyDefaultSortForTab(state.activeTab);
+    applySortForTab(state.activeTab);
   }
 }
 
@@ -697,7 +704,9 @@ function renderTabButtons(container: any, tabs: TabInfo[]): void {
   container.querySelectorAll('button[data-tab]').forEach((button: any) => {
     button.addEventListener('click', () => {
       state.activeTab = button.dataset.tab || 'All';
-      applyDefaultSortForTab(state.activeTab);
+      // Coming back to a tab (e.g. All ETFs after visiting Watchlist) must
+      // show the sort the user last chose there, not the tab default.
+      applySortForTab(state.activeTab);
       resetSheetPaging();
       syncSearchInput();
       render();
@@ -728,6 +737,27 @@ function applyDefaultSortForTab(tab: ActiveTab): void {
     state.sortKey = 'rank';
     state.sortDir = 'asc';
   }
+}
+
+/**
+ * Restores the sort the user last chose on this tab (recorded on every
+ * column-header click, persisted in localStorage) or falls back to the tab
+ * default when the tab was never explicitly sorted.
+ */
+function applySortForTab(tab: ActiveTab): void {
+  const remembered = state.sortByTab[tab];
+  if (remembered) {
+    state.sortKey = remembered.key;
+    state.sortDir = remembered.dir;
+    return;
+  }
+  applyDefaultSortForTab(tab);
+}
+
+/** Records the current sort as this tab's remembered sort. */
+function rememberSortForCurrentTab(): void {
+  state.sortByTab[state.activeTab] = { key: state.sortKey, dir: state.sortDir };
+  persistTabSorts();
 }
 
 function tabLabel(tab: ActiveTab): string {
@@ -860,6 +890,7 @@ function bindSortHeaders(): void {
         state.sortKey = key;
         state.sortDir = ['ticker', 'name', 'category', 'symbol', 'section', 'metric', 'identifier', 'label'].includes(key) ? 'asc' : 'desc';
       }
+      rememberSortForCurrentTab();
       render();
     });
   });
@@ -1357,8 +1388,10 @@ function clearSelectionAndSearch(): void {
   state.activeFundTicker = null;
   state.queryByTab = {};
   state.activeTab = 'All';
+  state.sortByTab = {}; // Clear is the full reset: forget remembered sorts too.
   applyDefaultSortForTab('All');
   persistSelection();
+  persistTabSorts();
   localStorage.removeItem(ACTIVE_FUND_KEY);
   el.searchInput.value = '';
   persistSearches();
@@ -1584,6 +1617,28 @@ function persistSearches(): void {
   localStorage.setItem(SEARCHES_KEY, JSON.stringify(state.queryByTab));
 }
 
+function persistTabSorts(): void {
+  localStorage.setItem(SORTS_KEY, JSON.stringify(state.sortByTab));
+}
+
+function restoreTabSorts(): void {
+  try {
+    const saved = JSON.parse(localStorage.getItem(SORTS_KEY) || '{}') || {};
+    const sorts: Record<string, { key: string; dir: SortDirection }> = {};
+    Object.keys(saved).forEach(tab => {
+      const entry = saved[tab];
+      // Keep only well-formed entries; stale keys from older schemas simply
+      // sort a missing column (stable no-op) and never break rendering.
+      if (entry && typeof entry.key === 'string' && entry.key !== '' && (entry.dir === 'asc' || entry.dir === 'desc')) {
+        sorts[tab] = { key: entry.key, dir: entry.dir };
+      }
+    });
+    state.sortByTab = sorts;
+  } catch {
+    state.sortByTab = {};
+  }
+}
+
 function restoreSelectedEtfs(): void {
   try {
     const saved = JSON.parse(localStorage.getItem(SELECTED_KEY) || '[]');
@@ -1678,6 +1733,7 @@ function init(): void {
   restoreSelectedEtfs();
   restoreBlacklist();
   restoreSearches();
+  restoreTabSorts();
   applyTheme(localStorage.getItem(THEME_KEY) === 'dark');
   bindEvents();
   syncSearchInput();
