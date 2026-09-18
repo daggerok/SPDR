@@ -677,7 +677,10 @@ function renderTabs(): void {
 
 function renderTabButtons(container: any, tabs: TabInfo[]): void {
   container.classList.toggle('hidden', tabs.length <= 1);
-  const allSelected = state.funds.length > 0 && state.selected.size === state.funds.filter(fund => !state.blacklist.has(fund.ticker)).length;
+  // The pill box covers the whole catalog (it sits next to the "All ETFs (N)"
+  // count), so its checked state ignores the current tab and search filter.
+  const nonBlacklisted = state.funds.filter(fund => !state.blacklist.has(fund.ticker));
+  const allSelected = nonBlacklisted.length > 0 && nonBlacklisted.every(fund => state.selected.has(fund.ticker));
   container.innerHTML = tabs.map(tab => {
     const isActive = tab.id === state.activeTab;
     const activeClasses = 'bg-blue-600 text-white font-medium border-blue-500 shadow-sm';
@@ -718,7 +721,9 @@ function renderTabButtons(container: any, tabs: TabInfo[]): void {
   if (selectAllToggle) {
     selectAllToggle.addEventListener('change', (event: any) => {
       event.stopPropagation();
-      toggleSelectAll(Boolean(event.target.checked));
+      // 'catalog': the pill box keeps whole-catalog semantics — it selects or
+      // deselects every non-blacklisted ETF, regardless of tab or filter.
+      toggleSelectAll(Boolean(event.target.checked), 'catalog');
     });
     selectAllToggle.addEventListener('click', (event: any) => event.stopPropagation());
   }
@@ -871,11 +876,13 @@ function indexHeader(): string {
 }
 
 function useHeader(): string {
-  const candidates = visibleFunds();
-  const allSelected = candidates.length > 0 && state.selected.size === candidates.length;
+  // The checked state tracks exactly the rows the table currently renders
+  // (current tab + active search filter), the same set select-all toggles.
+  const rows = filterRows(visibleFunds());
+  const allSelected = rows.length > 0 && rows.every(fund => state.selected.has(fund.ticker));
   return `<th class="catalog-sticky-col catalog-sticky-use py-3.5 px-4 w-20 text-center" title="${escapeHtml(getHeaderTooltip('Use'))}">
     <span class="inline-flex items-center justify-center gap-1">
-      <input type="checkbox" id="select-all-checkbox" ${allSelected ? 'checked' : ''} class="w-4 h-4 accent-blue-600 cursor-pointer" title="Select / Deselect all ETFs" />
+      <input type="checkbox" id="select-all-checkbox" ${allSelected ? 'checked' : ''} class="w-4 h-4 accent-blue-600 cursor-pointer" title="Select / Deselect all visible ETFs (current tab + search filter)" />
       <span>Use</span>
     </span>
   </th>`;
@@ -901,7 +908,9 @@ function bindSelectAllCheckbox(): void {
   if (!checkbox) return;
   checkbox.addEventListener('change', (event: any) => {
     event.stopPropagation();
-    toggleSelectAll(Boolean(event.target.checked));
+    // 'visible': the header box manages only the rows currently rendered
+    // (current tab + active search filter), never the hidden ones.
+    toggleSelectAll(Boolean(event.target.checked), 'visible');
   });
   checkbox.addEventListener('click', (event: any) => event.stopPropagation());
 }
@@ -1367,8 +1376,19 @@ function toggleFund(ticker: string): void {
   if (activeTicker && state.activeTab.startsWith('detail:')) void loadFundMeta(activeTicker);
 }
 
-function toggleSelectAll(selectAll: boolean): void {
-  const candidates = visibleFunds();
+/**
+ * Toggles the selection in bulk. `scope`:
+ *  - 'visible' (header "Use" checkbox) — only the rows currently rendered in
+ *    the catalog table: current tab + active search filter (visibleFunds is
+ *    already tab-scoped and blacklist-excluded). Selecting with a filter
+ *    active must not drag the hidden ETFs into the selection, and unchecking
+ *    must not drop selections the user made while a different filter was on.
+ *  - 'catalog' (checkbox in the All ETFs pill) — every non-blacklisted ETF,
+ *    regardless of the current tab or filter; it sits next to the
+ *    "All ETFs (N)" count and represents the whole catalog.
+ */
+function toggleSelectAll(selectAll: boolean, scope: 'visible' | 'catalog'): void {
+  const candidates = scope === 'visible' ? filterRows(visibleFunds()) : visibleFunds();
   candidates.forEach(fund => {
     if (selectAll) state.selected.add(fund.ticker);
     else state.selected.delete(fund.ticker);
