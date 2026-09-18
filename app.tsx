@@ -1388,10 +1388,11 @@ function clearSelectionAndSearch(): void {
   state.activeFundTicker = null;
   state.queryByTab = {};
   state.activeTab = 'All';
-  state.sortByTab = {}; // Clear is the full reset: forget remembered sorts too.
-  applyDefaultSortForTab('All');
+  // Sort preferences survive Clear: a sort configured in the past is always
+  // kept (per tab, in browser localStorage) and reused. Clear only resets
+  // the selection and the searches — never the sort order.
+  applySortForTab('All');
   persistSelection();
-  persistTabSorts();
   localStorage.removeItem(ACTIVE_FUND_KEY);
   el.searchInput.value = '';
   persistSearches();
