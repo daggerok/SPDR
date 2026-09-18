@@ -68,7 +68,8 @@
      * `position:static` cell stops being visible the moment that cell's own
      * (unscrolled) position scrolls past the viewport edge — the pin silently
      * stops working exactly when it matters most. Sticky must live on the
-     * cell itself so the cell's own box is what tracks the viewport.
+     * cell itself so the cell's own box is what tracks the viewport. The same
+     * direct-cell rule pins the Watchlist Ticker column at the left edge.
      */
     #table-scroll table{min-width:max-content;border-collapse:separate;border-spacing:0;isolation:isolate}
     #table-scroll tbody{position:relative;z-index:0}
@@ -78,8 +79,11 @@
     #table-scroll tbody .catalog-sticky-col{z-index:20}
     #table-scroll .catalog-sticky-use{left:0;width:5rem;min-width:5rem}
     #table-scroll .catalog-sticky-ticker{left:5rem;width:5rem;min-width:5rem;box-shadow:4px 0 6px -6px rgba(15,23,42,.7)}
-    .dark #table-scroll .catalog-sticky-col{background:#1e293b}
-    #table-scroll tbody tr:hover .catalog-sticky-col{background:#f8fafc}
+    #table-scroll .watchlist-sticky-ticker{position:sticky;left:0;width:10rem;min-width:10rem;max-width:10rem;overflow:hidden;text-overflow:ellipsis;background:#fff;background-clip:padding-box;box-shadow:4px 0 6px -6px rgba(15,23,42,.7)}
+    #table-scroll thead .watchlist-sticky-ticker{top:0;z-index:30}
+    #table-scroll tbody .watchlist-sticky-ticker{z-index:20}
+    .dark #table-scroll .catalog-sticky-col,.dark #table-scroll .watchlist-sticky-ticker{background:#1e293b}
+    #table-scroll tbody tr:hover .catalog-sticky-col,#table-scroll tbody tr:hover .watchlist-sticky-ticker{background:#f8fafc}
     #table-scroll tbody tr.selected-row .catalog-sticky-col{background:#eff6ff}
     /*
      * The ordinary hover/selected row tints below are translucent rgba() —
@@ -88,7 +92,7 @@
      * it, so a translucent fill lets that column's text show through. Pinned
      * cells get solid, pre-blended hex equivalents instead.
      */
-    .dark #table-scroll tbody tr:hover .catalog-sticky-col{background:#243043}
+    .dark #table-scroll tbody tr:hover .catalog-sticky-col,.dark #table-scroll tbody tr:hover .watchlist-sticky-ticker{background:#243043}
     .dark #table-scroll tbody tr.selected-row .catalog-sticky-col{background:#1e2e55}
 
     /* Detail navigation expands into place after an ETF is selected. */
@@ -114,7 +118,7 @@
           </svg>
           <h1 class="min-w-0 text-xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">SPDR ETF Holdings to Watchlist</h1>
         </div>
-        <span id="app-subtitle" class="basis-full sm:basis-auto text-sm text-slate-500 dark:text-slate-400">
+        <span id="app-subtitle" class="basis-full sm:basis-auto min-w-0 max-w-full text-sm text-slate-500 dark:text-slate-400">
           Search SPDR ETFs, select rows, then use the Watchlist tab. Data comes from
           <a href="./api/spdr/index.json" target="_blank" rel="noopener noreferrer" class="font-semibold text-blue-600 dark:text-blue-400 hover:underline">api/spdr/index.json</a>
           generated from
