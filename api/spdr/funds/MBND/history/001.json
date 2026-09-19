@@ -2,7 +2,7 @@
   "ticker": "MBND",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 1411,
+  "totalRows": 1412,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "17-Sep-2026",
+      "NAV": "26.40844",
+      "Shares Outstanding": "1000000",
+      "Total Net Assets": "26408440.14"
+    },
     {
       "Date": "16-Sep-2026",
       "NAV": "26.360059",
@@ -6003,12 +6009,6 @@
       "NAV": "26.345268",
       "Shares Outstanding": "1400000",
       "Total Net Assets": "36883375.18"
-    },
-    {
-      "Date": "21-Sep-2022",
-      "NAV": "26.417174",
-      "Shares Outstanding": "1400000",
-      "Total Net Assets": "36984044.06"
     }
   ]
 }

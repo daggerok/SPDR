@@ -2,7 +2,7 @@
   "ticker": "TOTL",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 2909,
+  "totalRows": 2910,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "21-Sep-2022",
+      "NAV": "41.185034",
+      "Shares Outstanding": "52900000",
+      "Total Net Assets": "2178688285.12"
+    },
     {
       "Date": "20-Sep-2022",
       "NAV": "41.089279",
@@ -6003,12 +6009,6 @@
       "NAV": "47.172767",
       "Shares Outstanding": "64800000",
       "Total Net Assets": "3056795298.02"
-    },
-    {
-      "Date": "01-Oct-2018",
-      "NAV": "47.133066",
-      "Shares Outstanding": "64900000",
-      "Total Net Assets": "3058935995.91"
     }
   ]
 }

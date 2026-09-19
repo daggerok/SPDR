@@ -2,7 +2,7 @@
   "ticker": "XSD",
   "page": 3,
   "pageSize": 1000,
-  "totalRows": 5189,
+  "totalRows": 5190,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "01-Oct-2018",
+      "NAV": "75.589879",
+      "Shares Outstanding": "4250000",
+      "Total Net Assets": "321256984.7"
+    },
     {
       "Date": "28-Sep-2018",
       "NAV": "75.892069",
@@ -6003,12 +6009,6 @@
       "NAV": "61.531683",
       "Shares Outstanding": "2050000",
       "Total Net Assets": "126139951.03"
-    },
-    {
-      "Date": "10-Oct-2014",
-      "NAV": "62.686133",
-      "Shares Outstanding": "2050000",
-      "Total Net Assets": "128506572.32"
     }
   ]
 }

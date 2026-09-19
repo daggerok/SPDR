@@ -2,7 +2,7 @@
   "ticker": "JNK",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 4729,
+  "totalRows": 4730,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "21-Sep-2022",
+      "NAV": "91.108823",
+      "Shares Outstanding": "64474605",
+      "Total Net Assets": "5874205379.64"
+    },
     {
       "Date": "20-Sep-2022",
       "NAV": "91.02647",
@@ -6003,12 +6009,6 @@
       "NAV": "35.89901",
       "Shares Outstanding": "273023812",
       "Total Net Assets": "9801284495.01"
-    },
-    {
-      "Date": "01-Oct-2018",
-      "NAV": "35.878914",
-      "Shares Outstanding": "269523812",
-      "Total Net Assets": "9670221559.38"
     }
   ]
 }

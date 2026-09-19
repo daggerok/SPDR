@@ -1,0 +1,41 @@
+{
+  "ticker": "SPMB",
+  "page": 12,
+  "pageSize": 250,
+  "totalRows": 2752,
+  "headers": [
+    "Name",
+    "Identifier",
+    "SEDOL",
+    "Weight",
+    "Coupon",
+    "Par Value",
+    "Market Value",
+    "Local Currency",
+    "Maturity"
+  ],
+  "rows": [
+    {
+      "Name": "FED HM LN PC POOL J16937 FG 10/26 FIXED 3.5",
+      "Identifier": "US3128PWV629",
+      "SEDOL": "-",
+      "Weight": "0.000002",
+      "Coupon": "3.5",
+      "Par Value": "130.73",
+      "Market Value": "130.73",
+      "Local Currency": "USD",
+      "Maturity": "10/01/2026"
+    },
+    {
+      "Name": "FED HM LN PC POOL G14535 FG 02/27 FIXED 4",
+      "Identifier": "US3128MDHL08",
+      "SEDOL": "-",
+      "Weight": "0",
+      "Coupon": "4",
+      "Par Value": "1.08",
+      "Market Value": "1.08",
+      "Local Currency": "USD",
+      "Maturity": "02/01/2027"
+    }
+  ]
+}

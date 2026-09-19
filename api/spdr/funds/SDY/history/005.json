@@ -2,7 +2,7 @@
   "ticker": "SDY",
   "page": 5,
   "pageSize": 1000,
-  "totalRows": 5243,
+  "totalRows": 5244,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "25-Oct-2010",
+      "NAV": "51.471854",
+      "Shares Outstanding": "83153658",
+      "Total Net Assets": "4280072976.17"
+    },
     {
       "Date": "22-Oct-2010",
       "NAV": "51.460039",
@@ -6003,12 +6009,6 @@
       "NAV": "60.191874",
       "Shares Outstanding": "2850005",
       "Total Net Assets": "171547142.42"
-    },
-    {
-      "Date": "02-Nov-2006",
-      "NAV": "60.371219",
-      "Shares Outstanding": "2800005",
-      "Total Net Assets": "169039715.62"
     }
   ]
 }

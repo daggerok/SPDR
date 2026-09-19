@@ -2,7 +2,7 @@
   "ticker": "SPDW",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 4886,
+  "totalRows": 4887,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "21-Sep-2022",
+      "NAV": "27.472312",
+      "Shares Outstanding": "394200000",
+      "Total Net Assets": "10829585358.6"
+    },
     {
       "Date": "20-Sep-2022",
       "NAV": "27.720926",
@@ -6003,12 +6009,6 @@
       "NAV": "30.578498",
       "Shares Outstanding": "109600000",
       "Total Net Assets": "3351403344.59"
-    },
-    {
-      "Date": "01-Oct-2018",
-      "NAV": "30.742757",
-      "Shares Outstanding": "109600000",
-      "Total Net Assets": "3369406115.24"
     }
   ]
 }

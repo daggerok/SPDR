@@ -2,7 +2,7 @@
   "ticker": "XLC",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 2073,
+  "totalRows": 2074,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "21-Sep-2022",
+      "NAV": "50.250807",
+      "Shares Outstanding": "164750000",
+      "Total Net Assets": "8278820372.11"
+    },
     {
       "Date": "20-Sep-2022",
       "NAV": "51.526806",
@@ -6003,12 +6009,6 @@
       "NAV": "48.828013",
       "Shares Outstanding": "45300000",
       "Total Net Assets": "2211908967.69"
-    },
-    {
-      "Date": "01-Oct-2018",
-      "NAV": "48.794116",
-      "Shares Outstanding": "41550000",
-      "Total Net Assets": "2027395521.15"
     }
   ]
 }

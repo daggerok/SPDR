@@ -2,7 +2,7 @@
   "ticker": "ONEV",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 2712,
+  "totalRows": 2713,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "21-Sep-2022",
+      "NAV": "96.636402",
+      "Shares Outstanding": "5700000",
+      "Total Net Assets": "550827492.47"
+    },
     {
       "Date": "20-Sep-2022",
       "NAV": "97.877705",
@@ -6003,12 +6009,6 @@
       "NAV": "76.391371",
       "Shares Outstanding": "6200000",
       "Total Net Assets": "473626503.21"
-    },
-    {
-      "Date": "01-Oct-2018",
-      "NAV": "76.414159",
-      "Shares Outstanding": "6200000",
-      "Total Net Assets": "473767783.94"
     }
   ]
 }
