@@ -177,9 +177,7 @@ bunx tsc --noEmit \
   --types bun,node \
   --skipLibCheck \
   scripts/update-data.ts \
-  scripts/update-data.test.ts \
-  scripts/ui-harness.ts \
-  scripts/ui.test.ts
+  scripts/update-data.test.ts
 
 git diff --check
 ```

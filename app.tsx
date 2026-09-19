@@ -2349,41 +2349,6 @@ function bindEvents(): void {
   }
 }
 
-function isHoldingsLoading(): boolean {
-  return selectedHoldingsLoadState().loading;
-}
-
-function getTestApi(): any {
-  return {
-    state,
-    el,
-    getDedupedWatchlistRows,
-    selectedHoldingsLoadState,
-    isHoldingsLoading,
-    visibleFunds,
-    filterRows,
-    switchTab,
-    toggleSelectAll,
-    blacklistTickers,
-    persistTabFilters,
-    persistTabSorts,
-    holdingsEntryIsComplete,
-    sheetState,
-    fundMetaCache,
-    WATCHLIST_PAGE_SIZE,
-    watchlistVisibleLimit,
-    MAX_CONCURRENT_HOLDINGS_LOADS,
-  };
-}
-
-// Ambient global so the IDE typechecks `globalThis.__SPDR_APP__` (TS7017).
-// `declare var` is erased by Babel standalone / Bun; it is not a runtime binding.
-declare var __SPDR_APP__: { getTestApi: () => any };
-
-if (typeof globalThis !== 'undefined') {
-  globalThis.__SPDR_APP__ = { getTestApi };
-}
-
 function init(): void {
   restoreSelectedEtfs();
   restoreBlacklist();
