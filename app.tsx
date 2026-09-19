@@ -1971,6 +1971,20 @@ function renderBlacklistPanel(): void {
   el.blacklistChips.querySelectorAll('button[data-unblacklist]').forEach((button: any) => {
     button.addEventListener('click', () => unblacklistTicker(button.dataset.unblacklist || ''));
   });
+  syncBlacklistPanelHeight();
+}
+
+/**
+ * The blacklist panel's max-height is content-driven (an unbounded number of
+ * chips), unlike the fixed-height detail nav, so it can't use a static
+ * max-height in CSS -- it's measured from scrollHeight instead, and
+ * re-measured on every render so the panel resizes smoothly as chips are
+ * added or removed while it's open.
+ */
+function syncBlacklistPanelHeight(): void {
+  el.blacklistPanel.style.maxHeight = el.blacklistPanel.classList.contains('is-visible')
+    ? `${el.blacklistPanel.scrollHeight}px`
+    : '';
 }
 
 // =========================================================================
@@ -2306,8 +2320,8 @@ function bindEvents(): void {
   el.resetBtn.addEventListener('click', clearSelectionAndSearch);
 
   el.blacklistBtn.addEventListener('click', () => {
-    const hidden = el.blacklistPanel.classList.toggle('hidden');
-    el.blacklistBtn.setAttribute('aria-expanded', String(!hidden));
+    const visible = el.blacklistPanel.classList.toggle('is-visible');
+    el.blacklistBtn.setAttribute('aria-expanded', String(visible));
     renderBlacklistPanel();
     fitTableHeight();
   });

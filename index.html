@@ -101,9 +101,16 @@
     main.space-y-6 > #selected-tabs-panel.is-visible{max-height:8rem;margin-top:1.5rem;padding-top:1rem;padding-bottom:1rem;opacity:1;transform:translateY(0);border-color:rgb(226 232 240)}
     .dark main.space-y-6 > #selected-tabs-panel.is-visible{border-color:rgb(51 65 85)}
 
+    /* Blacklist manager panel: same smooth expand/collapse contract as the
+       detail nav above (max-height is set inline by JS from scrollHeight
+       since the chip list, unlike the detail tabs, has no bounded height). */
+    main.space-y-6 > #blacklist-panel{max-height:0;margin-top:0;overflow:hidden;opacity:0;transform:translateY(-10px);padding-top:0;padding-bottom:0;border-color:transparent;transition:max-height .32s ease,margin-top .32s ease,padding .32s ease,opacity .22s ease,transform .32s ease,border-color .22s ease}
+    main.space-y-6 > #blacklist-panel.is-visible{margin-top:1.5rem;padding-top:1rem;padding-bottom:1rem;opacity:1;transform:translateY(0);border-color:rgb(226 232 240)}
+    .dark main.space-y-6 > #blacklist-panel.is-visible{border-color:rgb(51 65 85)}
+
     @keyframes tableRefresh{from{opacity:.32}to{opacity:1}}
     #table-body.table-content-enter{animation:tableRefresh .22s ease-out}
-    @media (prefers-reduced-motion:reduce){#table-body.table-content-enter{animation:none}main.space-y-6 > #selected-tabs-panel{transition:none}}
+    @media (prefers-reduced-motion:reduce){#table-body.table-content-enter{animation:none}main.space-y-6 > #selected-tabs-panel{transition:none}main.space-y-6 > #blacklist-panel{transition:none}}
   </style>
 </head>
 <body class="min-h-screen font-sans bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300">
@@ -173,7 +180,7 @@
       </div>
 
       <!-- Blacklist manager: blacklisted ETFs are hidden from All ETFs and stored in localStorage. -->
-      <div id="blacklist-panel" class="hidden bg-white dark:bg-slate-800/80 p-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm backdrop-blur">
+      <div id="blacklist-panel" class="bg-white dark:bg-slate-800/80 px-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm backdrop-blur">
         <div class="flex flex-col sm:flex-row sm:items-center gap-2.5">
           <input type="text" id="blacklist-input" placeholder="Add ETF tickers to blacklist (e.g. SPY, XLK)" class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-2 w-full sm:w-80 focus:outline-none focus:border-blue-500 text-sm placeholder-slate-400 dark:placeholder-slate-500 transition" />
           <div class="flex flex-wrap items-center gap-2.5">
