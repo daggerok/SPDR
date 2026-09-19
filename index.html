@@ -138,14 +138,24 @@
       <!-- Search, Tabs & Action Bar -->
       <div class="flex flex-col lg:flex-row justify-between items-center gap-4 bg-white dark:bg-slate-800/80 p-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm backdrop-blur">
 
-        <!-- One full-text search input. It filters ETFs, fund sheets or watchlist rows case-insensitively. -->
-        <input
-          type="text"
-          id="search-input"
-          placeholder="Search ETFs, fund names, holdings, tickers, CUSIPs, ISINs..."
-          disabled
-          class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-2 w-full lg:w-96 focus:outline-none focus:border-blue-500 text-sm placeholder-slate-400 dark:placeholder-slate-500 disabled:opacity-50 disabled:cursor-not-allowed shrink-0 transition"
-        />
+        <!-- Search is view-scoped: each tab keeps its own query. The ✕ button
+             clears only the active tab's filter (same glyph as the Use-column blacklist). -->
+        <div class="relative flex items-center w-full lg:w-80 shrink-0">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search ETFs, fund names, holdings, tickers, CUSIPs, ISINs..."
+            disabled
+            class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border border-slate-200 dark:border-slate-700 rounded-lg pl-4 pr-8 py-2 w-full focus:outline-none focus:border-blue-500 text-sm placeholder-slate-400 dark:placeholder-slate-500 disabled:opacity-50 disabled:cursor-not-allowed transition"
+          />
+          <button
+            type="button"
+            id="search-clear-btn"
+            class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center rounded-full text-slate-400 hover:text-slate-700 dark:text-slate-500 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition text-sm leading-none focus:outline-none"
+            title="Clear search filter"
+            aria-label="Clear search filter"
+          >✕</button>
+        </div>
 
         <!-- ETF catalogue tabs: All ETFs + SPDR asset-class categories. -->
         <div id="tabs-bar" class="hidden flex flex-wrap items-center justify-center gap-1.5 overflow-x-auto py-1 w-full max-w-full flex-1 themed-scroll"></div>

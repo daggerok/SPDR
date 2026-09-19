@@ -159,7 +159,8 @@ MAX_FETCHES=20 PERFORMANCE_3Y="5:" ./scripts/update-data.ts
 - The **Watchlist** tab aggregates every holdings page of every selected ETF. Its **# ETFs** column counts how many selected ETFs hold each deduplicated position; Weight Sum, Max Weight, Market Value, Sector and identifier data update as files arrive. Bond rows fall back from `Ticker` to CUSIP/ISIN/`Identifier`/SEDOL, and valid cash or derivative rows without any identifier fall back to their published name. Per-fund load promises prevent duplicate/skipped pages when selection changes quickly, all-catalog loading is concurrency-bounded, and the tab says `Loading…`/`N+` until its count is exact instead of displaying a misleading `(0)`. Large Watchlists render in 500-row scroll chunks while copy/export still use the complete filtered result.
 - Any ETF can be **blacklisted**: click the small ✕ next to a fund's Use checkbox (a row click toggles selection; clicking its ticker opens Overview) or type tickers into the **Blacklist** panel in the toolbar. Blacklisted ETFs disappear from All ETFs (and from selection); the list is kept per browser in localStorage.
 - The two **select-all** checkboxes have different scopes: the **Use** checkbox in the table header toggles only the rows currently shown (current tab + active search filter) — with a filter active it selects exactly the filtered ETFs, and unchecking it leaves the rest of the selection untouched. The checkbox inside the **All ETFs** pill always toggles the whole catalog (every non-blacklisted ETF), regardless of the active category/detail/Watchlist tab or search filter, matching its place next to the “All ETFs (N)” count. Either path starts holdings loading and keeps Watchlist/tab/subtitle data in sync as ETFs are selected or deselected.
-- The app keeps search and sort preferences in localStorage and reapplies them after reload. Sort order is remembered **per tab** and is **never reset by any button or checkbox**: sort All ETFs by *YTD Return*, round-trip through Watchlist or a fund detail tab, toggle select-all, search, blacklist, export, switch the theme or press **Clear** — the YTD Return order is still there. Like the checkbox selections, the remembered sorts live in browser localStorage (`spdr-tab-sorts`) and are reapplied after reload. A tab that was never sorted keeps its default order (Watchlist: Weight Sum desc, Overview: Section asc, sheets: source order); **Clear** clears only the selection and the searches. To return to the default catalog order, click the *Ticker* header (asc).
+- The app keeps search and sort preferences in localStorage and reapplies them after reload. **Search is view-scoped**: typing on All ETFs does not filter Overview / Holdings / History / Distributions / Watchlist, and switching tabs restores that tab's own query (or an empty box). Filters persist in `spdr-tab-filters` (mirrored under `sheetFilter` in `spdr-site-state` for compatibility) and survive reload. The ✕ button on the right edge of the search input (`#search-clear-btn`) clears only the active tab's filter in one click; **Clear** still wipes every tab's search plus the selection.
+- Sort order is remembered **per tab** and is **never reset by any button or checkbox**: sort All ETFs by *YTD Return*, round-trip through Watchlist or a fund detail tab, toggle select-all, search, blacklist, export, switch the theme or press **Clear** — the YTD Return order is still there. Like the checkbox selections, the remembered sorts live in browser localStorage (`spdr-tab-sorts`) and are reapplied after reload. A tab that was never sorted keeps its default order (Watchlist: Weight Sum desc, Overview: Section asc, sheets: source order); defaults are never written to storage. **Clear** clears only the selection and the searches. To return to the default catalog order, click the *Ticker* header (asc).
 - Only the table area scrolls: the app sizes `#table-scroll` to the remaining viewport height and contains overscroll, so the document itself does not jump up and down when the table is taller than the screen (fix also applied to daggerok/iShares). During horizontal scrolling, catalog **Use** and **Ticker** cells stay pinned (the sticky positioning is on each `th`/`td`, not a nested span); the Watchlist Ticker column is pinned too.
 - GitHub Actions writes updated, unchanged, skipped, and failed counts to the workflow summary.
 - Range validation is centralized in `parseRange`/`parseAumRange`; add or change syntax there and update `scripts/update-data.test.ts` in the same PR.
@@ -168,7 +169,7 @@ Before opening a PR, run:
 
 ```bash
 bun install --frozen-lockfile
-bun test scripts/update-data.test.ts
+bun test
 bunx tsc --noEmit \
   --target es2022 \
   --module esnext \
@@ -176,7 +177,9 @@ bunx tsc --noEmit \
   --types bun,node \
   --skipLibCheck \
   scripts/update-data.ts \
-  scripts/update-data.test.ts
+  scripts/update-data.test.ts \
+  scripts/ui-harness.ts \
+  scripts/ui.test.ts
 
 git diff --check
 ```
