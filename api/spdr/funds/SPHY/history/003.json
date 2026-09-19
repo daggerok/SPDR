@@ -2,7 +2,7 @@
   "ticker": "SPHY",
   "page": 3,
   "pageSize": 1000,
-  "totalRows": 3584,
+  "totalRows": 3585,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "01-Oct-2018",
+      "NAV": "25.411507",
+      "Shares Outstanding": "2700000",
+      "Total Net Assets": "68611070.14"
+    },
     {
       "Date": "28-Sep-2018",
       "NAV": "25.511507",
@@ -6003,12 +6009,6 @@
       "NAV": "26.223232",
       "Shares Outstanding": "1300000",
       "Total Net Assets": "34090201.26"
-    },
-    {
-      "Date": "10-Oct-2014",
-      "NAV": "26.16885",
-      "Shares Outstanding": "1300000",
-      "Total Net Assets": "34019504.35"
     }
   ]
 }

@@ -2,7 +2,7 @@
   "ticker": "NZAC",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 2968,
+  "totalRows": 2969,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "21-Sep-2022",
+      "NAV": "25.602056",
+      "Shares Outstanding": "8500000",
+      "Total Net Assets": "217617478.72"
+    },
     {
       "Date": "20-Sep-2022",
       "NAV": "25.977459",
@@ -6003,12 +6009,6 @@
       "NAV": "92.030883",
       "Shares Outstanding": "1800000",
       "Total Net Assets": "165655588.58"
-    },
-    {
-      "Date": "01-Oct-2018",
-      "NAV": "92.339508",
-      "Shares Outstanding": "1800000",
-      "Total Net Assets": "166211113.55"
     }
   ]
 }

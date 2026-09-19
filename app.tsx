@@ -105,6 +105,7 @@ type WatchlistRow = TableRow & {
   sector: string;
   cusips: string[];
   identifier: string;
+  _key?: string;
 };
 
 const INDEX_URL = './api/spdr/index.json';
@@ -112,11 +113,13 @@ const THEME_KEY = 'spdr-theme';
 const SELECTED_KEY = 'spdr-selected-etfs';
 const BLACKLIST_KEY = 'spdr-blacklisted-etfs';
 const ACTIVE_FUND_KEY = 'spdr-active-fund';
-const SEARCHES_KEY = 'spdr-searches';
+const SEARCHES_KEY = 'spdr-searches'; // legacy; migrated into FILTERS_KEY
+const FILTERS_KEY = 'spdr-tab-filters';
 const SORTS_KEY = 'spdr-tab-sorts';
+const SITE_STATE_KEY = 'spdr-site-state';
 const DEFAULT_SELECTED_TICKERS: string[] = []; // start clean: users choose the funds to compare
-const WATCHLIST_PAGE_SIZE = 500;
-const MAX_CONCURRENT_HOLDINGS_LOADS = 8;
+const WATCHLIST_PAGE_SIZE = 250;
+const MAX_CONCURRENT_HOLDINGS_LOADS = 6;
 
 const DETAIL_TABS: Array<{ key: string; label: string }> = [
   { key: 'overview', label: 'Overview' },
@@ -201,6 +204,7 @@ const el = {
   tickerCount: byId('ticker-count'),
   subtitle: byId('app-subtitle'),
   searchInput: byId('search-input'),
+  searchClearBtn: byId('search-clear-btn'),
   tabsBar: byId('tabs-bar'),
   selectedTabsPanel: byId('selected-tabs-panel'),
   selectedTabsBar: byId('selected-tabs-bar'),
@@ -264,6 +268,7 @@ type SheetEntry = {
 
 const fundMetaCache: Map<string, any> = new Map();
 const fundMetaRequests: Map<string, Promise<any>> = new Map();
+const fundMetaFailures: Map<string, string> = new Map();
 const sheetState: Map<string, SheetEntry> = new Map();
 const sheetPageRequests: Map<string, Promise<void>> = new Map();
 const sheetLoadFailures: Map<string, string> = new Map();
@@ -501,9 +506,12 @@ async function loadFundMeta(ticker: string): Promise<any> {
     try {
       const meta = await fetchJson(`./api/spdr/funds/${encodeURIComponent(ticker)}/meta.json`);
       fundMetaCache.set(ticker, meta);
+      fundMetaFailures.delete(ticker);
       scheduleSelectionDataRefresh(ticker);
       return meta;
     } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      fundMetaFailures.set(ticker, message);
       console.warn(`Failed to load meta.json for ${ticker}:`, error);
       return null;
     }
@@ -827,7 +835,9 @@ function getSelectedTabs(): TabInfo[] {
     });
   }
 
-  if (state.selected.size > 0) {
+  // Keep Watchlist visible while it is the active view even if the selection
+  // just became empty (All ETFs pill uncheck must not navigate away).
+  if (state.selected.size > 0 || state.activeTab === 'watchlist') {
     const progress = selectedHoldingsLoadState();
     tabs.push({
       id: 'watchlist',
@@ -875,7 +885,37 @@ function ensureValidTab(): void {
 function applyRestoredTab(): void {
   const tabIds = getAllTabIds();
   if (!tabIds.includes(state.activeTab)) state.activeTab = 'All';
+  applySortForTab(state.activeTab);
   syncSearchInput();
+}
+
+/**
+ * Switch the active view. Saves the outgoing tab's search query (never when
+ * the destination equals the current tab, e.g. boot before DOM hydration)
+ * and restores the destination tab's remembered query and sort.
+ */
+function switchTab(tab: ActiveTab): void {
+  if (state.activeTab && state.activeTab !== tab) {
+    const curVal = el.searchInput.value;
+    if (curVal && curVal.length > 0) state.queryByTab[state.activeTab] = curVal;
+    else delete state.queryByTab[state.activeTab];
+    persistTabFilters();
+  }
+
+  state.activeTab = tab;
+  applySortForTab(tab);
+  resetSheetPaging();
+  if (tab === 'watchlist') {
+    watchlistVisibleLimit = WATCHLIST_PAGE_SIZE;
+    void ensureHoldingsForSelection();
+  }
+  el.searchInput.value = state.queryByTab[tab] || '';
+  updateSearchClearBtn();
+  persistSiteState();
+  render();
+  // Watchlist already painted its first 250-row chunk; extra pages load on
+  // scroll. Detail sheets still need a kick to fetch the next page.
+  if (tab !== 'watchlist') maybeLoadMoreRows();
 }
 
 function renderTabs(): void {
@@ -902,7 +942,7 @@ function renderTabButtons(container: any, tabs: TabInfo[]): void {
       return `
         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs transition border whitespace-nowrap ${isActive ? activeClasses : inactiveClasses}">
           <input type="checkbox" id="select-all-toggle" ${allSelected ? 'checked' : ''} class="w-3.5 h-3.5 accent-blue-600 cursor-pointer" title="Select / Deselect all ETFs" />
-          <button data-tab="All" class="font-medium hover:underline focus:outline-none">
+          <button id="all-etfs-tab-btn" data-tab="All" class="font-medium hover:underline focus:outline-none">
             ${escapeHtml(tab.label)} (${escapeHtml(countText)})
           </button>
         </div>
@@ -919,18 +959,7 @@ function renderTabButtons(container: any, tabs: TabInfo[]): void {
 
   container.querySelectorAll('button[data-tab]').forEach((button: any) => {
     button.addEventListener('click', () => {
-      state.activeTab = button.dataset.tab || 'All';
-      // Coming back to a tab (e.g. All ETFs after visiting Watchlist) must
-      // show the sort the user last chose there, not the tab default.
-      applySortForTab(state.activeTab);
-      resetSheetPaging();
-      if (state.activeTab === 'watchlist') {
-        watchlistVisibleLimit = WATCHLIST_PAGE_SIZE;
-        void ensureHoldingsForSelection();
-      }
-      syncSearchInput();
-      render();
-      maybeLoadMoreRows();
+      switchTab(button.dataset.tab || 'All');
     });
   });
 
@@ -1033,7 +1062,13 @@ function currentQuery(): string {
 function setCurrentQuery(value: string): void {
   if (value) state.queryByTab[state.activeTab] = value;
   else delete state.queryByTab[state.activeTab];
-  persistSearches();
+  persistTabFilters();
+  persistSiteState();
+}
+
+function updateSearchClearBtn(): void {
+  if (!el.searchClearBtn) return;
+  el.searchClearBtn.classList.toggle('hidden', !el.searchInput.value);
 }
 
 function syncSearchInput(): void {
@@ -1044,6 +1079,18 @@ function syncSearchInput(): void {
   el.searchInput.placeholder = isEtfCatalogTab(state.activeTab)
     ? 'Search ETFs, fund names, holdings, tickers, CUSIPs/ISINs, SEDOLs...'
     : `Search ${tabLabel(state.activeTab)}...`;
+  updateSearchClearBtn();
+}
+
+function clearActiveSearchFilter(): void {
+  el.searchInput.value = '';
+  delete state.queryByTab[state.activeTab];
+  persistTabFilters();
+  persistSiteState();
+  updateSearchClearBtn();
+  el.searchInput.focus?.();
+  if (state.activeTab === 'watchlist') watchlistVisibleLimit = WATCHLIST_PAGE_SIZE;
+  render();
 }
 
 function filterRows(rows: any[]): any[] {
@@ -1248,6 +1295,7 @@ function renderFundsTable(): void {
 type HoldingPosition = {
   fund: string;
   symbol: string;
+  key: string;
   name: string;
   weight: number;
   identifier: string;
@@ -1259,9 +1307,11 @@ function normalizeHoldingHeader(value: string): string {
   return String(value || '').trim().toLowerCase().replace(/[^a-z0-9]/g, '');
 }
 
+const MISSING_HOLDING_VALUES = new Set(['', '-', '--', '—', '–', 'n/a', 'na', 'none', 'null']);
+
 function usableHoldingValue(value: unknown): string {
   const clean = String(value ?? '').trim();
-  return ['', '-', '—', 'n/a', 'na', 'null'].includes(clean.toLowerCase()) ? '' : clean;
+  return !clean || MISSING_HOLDING_VALUES.has(clean.toLowerCase()) ? '' : clean;
 }
 
 /**
@@ -1286,24 +1336,37 @@ function sheetPositions(ticker: string): HoldingPosition[] {
     return '';
   };
 
-  return entry.rows
-    .map(row => {
-      const publishedTicker = value(row, ['Ticker', 'Symbol', 'Security Ticker']);
-      const identifier = value(row, ['CUSIP', 'ISIN', 'Identifier', 'Security ID', 'securityId', 'SEDOL', 'FIGI']);
-      const name = value(row, ['Name', 'Holding Name', 'holdingName', 'Security Long Description', 'securityLongDescription', 'Security Description']);
-      const weight = numberOrNull(value(row, ['Weight', 'Market Value Percentage', 'marketValuePercentage']));
-      const marketValue = numberOrNull(value(row, ['Market Value', 'Market Value Base Currency', 'marketValueBaseCurrency']));
-      return {
-        fund: ticker,
-        symbol: publishedTicker || identifier || name,
-        name,
-        weight: weight === null ? 0 : weight,
-        identifier,
-        sector: value(row, ['Sector', 'GICS Sector', 'gicsSector']),
-        marketValue: marketValue === null ? 0 : marketValue,
-      };
-    })
-    .filter(position => usableHoldingValue(position.symbol) !== '');
+  const positions: HoldingPosition[] = [];
+  entry.rows.forEach(row => {
+    const publishedTicker = value(row, ['Ticker', 'Symbol', 'Security Ticker']);
+    const cusip = value(row, ['CUSIP']);
+    const isin = value(row, ['ISIN']);
+    const identifier = value(row, ['Identifier', 'Security ID', 'securityId']);
+    const sedol = value(row, ['SEDOL', 'FIGI']);
+    const name = value(row, ['Name', 'Holding Name', 'holdingName', 'Security Long Description', 'securityLongDescription', 'Security Description']);
+    let key = '';
+    let shown = '';
+    if (publishedTicker) { key = `T:${publishedTicker.toUpperCase()}`; shown = publishedTicker; }
+    else if (cusip) { key = `C:${cusip.toUpperCase()}`; shown = cusip; }
+    else if (isin) { key = `I:${isin.toUpperCase()}`; shown = isin; }
+    else if (identifier) { key = `D:${identifier.toUpperCase()}`; shown = identifier; }
+    else if (sedol) { key = `S:${sedol.toUpperCase()}`; shown = sedol; }
+    else if (name) { key = `N:${name.toUpperCase()}`; shown = name; }
+    else return;
+    const weight = numberOrNull(value(row, ['Weight', 'Weight (%)', 'Market Value Percentage', 'marketValuePercentage']));
+    const marketValue = numberOrNull(value(row, ['Market Value', 'Market Value Base Currency', 'marketValueBaseCurrency']));
+    positions.push({
+      fund: ticker,
+      symbol: shown,
+      key,
+      name,
+      weight: weight === null ? 0 : weight,
+      identifier: identifier || cusip || isin || sedol,
+      sector: value(row, ['Sector', 'GICS Sector', 'gicsSector']),
+      marketValue: marketValue === null ? 0 : marketValue,
+    });
+  });
+  return positions.filter(position => usableHoldingValue(position.symbol) !== '');
 }
 
 function getSelectedPositions(): HoldingPosition[] {
@@ -1319,7 +1382,7 @@ function getDedupedWatchlistRows(): WatchlistRow[] {
   const map: Map<string, WatchlistRow> = new Map();
   getSelectedPositions().forEach(position => {
     const symbol = position.symbol;
-    const dedupeKey = symbol.toUpperCase();
+    const dedupeKey = position.key || `T:${String(symbol).toUpperCase()}`;
     if (!map.has(dedupeKey)) {
       map.set(dedupeKey, {
         symbol,
@@ -1334,6 +1397,7 @@ function getDedupedWatchlistRows(): WatchlistRow[] {
         cusips: [],
         identifier: '',
         searchIndex: '',
+        _key: dedupeKey,
       });
     }
     const row = map.get(dedupeKey);
@@ -1481,6 +1545,10 @@ function renderSheetTable(fund: FundRow, sheet: 'holdings' | 'history'): void {
     const knownMeta = fundMetaCache.has(fund.ticker);
     const meta = knownMeta ? fundMetaCache.get(fund.ticker) : null;
     const manifest = meta && (sheet === 'holdings' ? meta.holdings : meta.history);
+    if (fundMetaFailures.has(fund.ticker)) {
+      renderMissingSheet(fund, sheet, `Could not load ${fund.ticker} data.`, true);
+      return;
+    }
     if (knownMeta && (!manifest || !Array.isArray(manifest.pages) || !manifest.pages.length)) {
       renderMissingSheet(fund, sheet, `${fund.ticker} has no published ${label} pages. Run the data refresh workflow if the catalog count is stale.`);
       return;
@@ -1493,8 +1561,8 @@ function renderSheetTable(fund: FundRow, sheet: 'holdings' | 'history'): void {
     void loadFundMeta(fund.ticker).then(loadedMeta => {
       if (state.activeFundTicker !== fund.ticker || state.activeTab !== `detail:${sheet}`) return;
       const loadedManifest = loadedMeta && (sheet === 'holdings' ? loadedMeta.holdings : loadedMeta.history);
-      if (!loadedManifest || !Array.isArray(loadedManifest.pages) || !loadedManifest.pages.length) {
-        renderMissingSheet(fund, sheet, `${sheet === 'holdings' ? 'Holdings' : 'History'} data is not available yet for ${fund.ticker}. Run the data refresh workflow.`, true);
+      if (fundMetaFailures.has(fund.ticker) || !loadedManifest || !Array.isArray(loadedManifest.pages) || !loadedManifest.pages.length) {
+        renderMissingSheet(fund, sheet, `Could not load ${fund.ticker} data.`, true);
         return;
       }
       void ensureSheet(sheet, loadedManifest).then(() => {
@@ -1507,7 +1575,7 @@ function renderSheetTable(fund: FundRow, sheet: 'holdings' | 'history'): void {
   const failure = sheetLoadFailures.get(key);
   if (!entry.headers.length) {
     if (failure) {
-      renderMissingSheet(fund, sheet, `Unable to load ${fund.ticker} ${sheet}: ${failure}. Refresh the page or run the data refresh workflow.`, true);
+      renderMissingSheet(fund, sheet, `Could not load ${fund.ticker} data.`, true);
       return;
     }
     el.tableHead.innerHTML = `<tr>${indexHeader()}<th class="py-3.5 px-4">Loading…</th></tr>`;
@@ -1765,13 +1833,8 @@ function openFundDetails(ticker: string): void {
     invalidateWatchlistRows();
   }
   state.activeFundTicker = cleanTicker;
-  state.activeTab = 'detail:overview';
-  applySortForTab(state.activeTab);
-  resetSheetPaging();
-  watchlistVisibleLimit = WATCHLIST_PAGE_SIZE;
   persistSelection();
-  syncSearchInput();
-  render();
+  switchTab('detail:overview');
   void ensureHoldingsForSelection();
   void loadFundMeta(cleanTicker);
 }
@@ -1846,9 +1909,11 @@ function clearSelectionAndSearch(): void {
   // the selection and the searches — never the sort order.
   applySortForTab('All');
   persistSelection();
-  localStorage.removeItem(ACTIVE_FUND_KEY);
+  try { localStorage.removeItem(ACTIVE_FUND_KEY); } catch { /* ignore */ }
   el.searchInput.value = '';
-  persistSearches();
+  updateSearchClearBtn();
+  persistTabFilters();
+  persistSiteState();
   render();
 }
 
@@ -2064,39 +2129,103 @@ function fitTableHeight(): void {
 // =========================================================================
 
 function persistSelection(): void {
-  localStorage.setItem(SELECTED_KEY, JSON.stringify([...state.selected]));
-  if (state.activeFundTicker) localStorage.setItem(ACTIVE_FUND_KEY, state.activeFundTicker);
-  else localStorage.removeItem(ACTIVE_FUND_KEY);
+  try {
+    localStorage.setItem(SELECTED_KEY, JSON.stringify([...state.selected]));
+    if (state.activeFundTicker) localStorage.setItem(ACTIVE_FUND_KEY, state.activeFundTicker);
+    else localStorage.removeItem(ACTIVE_FUND_KEY);
+  } catch {
+    /* quota or private mode */
+  }
+  persistSiteState();
 }
 
 function persistBlacklist(): void {
-  localStorage.setItem(BLACKLIST_KEY, JSON.stringify([...state.blacklist]));
+  try {
+    localStorage.setItem(BLACKLIST_KEY, JSON.stringify([...state.blacklist]));
+  } catch {
+    /* quota or private mode */
+  }
+}
+
+function cleanTabFilters(source: Record<string, unknown> | null | undefined): Record<string, string> {
+  const clean: Record<string, string> = {};
+  if (!source || typeof source !== 'object' || Array.isArray(source)) return clean;
+  Object.keys(source).forEach(tab => {
+    const query = source[tab];
+    if (typeof query === 'string' && query.length > 0) clean[tab] = query;
+  });
+  return clean;
+}
+
+function cleanTabSorts(source: Record<string, unknown> | null | undefined): Record<string, { key: string; dir: SortDirection }> {
+  const clean: Record<string, { key: string; dir: SortDirection }> = {};
+  if (!source || typeof source !== 'object' || Array.isArray(source)) return clean;
+  Object.keys(source).forEach(tab => {
+    const entry: any = source[tab];
+    if (entry && typeof entry.key === 'string' && entry.key !== '' && (entry.dir === 'asc' || entry.dir === 'desc')) {
+      clean[tab] = { key: entry.key, dir: entry.dir };
+    }
+  });
+  return clean;
+}
+
+function persistTabFilters(): void {
+  try {
+    const clean = cleanTabFilters(state.queryByTab);
+    if (Object.keys(clean).length > 0) localStorage.setItem(FILTERS_KEY, JSON.stringify(clean));
+    else localStorage.removeItem(FILTERS_KEY);
+    localStorage.removeItem(SEARCHES_KEY);
+  } catch {
+    /* quota or private mode */
+  }
+  persistSiteState();
 }
 
 function persistSearches(): void {
-  localStorage.setItem(SEARCHES_KEY, JSON.stringify(state.queryByTab));
+  persistTabFilters();
 }
 
 function persistTabSorts(): void {
-  localStorage.setItem(SORTS_KEY, JSON.stringify(state.sortByTab));
+  try {
+    const clean = cleanTabSorts(state.sortByTab);
+    if (Object.keys(clean).length > 0) localStorage.setItem(SORTS_KEY, JSON.stringify(clean));
+    else localStorage.removeItem(SORTS_KEY);
+  } catch {
+    /* quota or private mode */
+  }
+  persistSiteState();
+}
+
+function persistSiteState(): void {
+  try {
+    localStorage.setItem(SITE_STATE_KEY, JSON.stringify({
+      activeTab: state.activeTab,
+      activeFundTicker: state.activeFundTicker,
+      sheetFilter: cleanTabFilters(state.queryByTab),
+      sheetSort: cleanTabSorts(state.sortByTab),
+    }));
+  } catch {
+    /* quota or private mode */
+  }
 }
 
 function restoreTabSorts(): void {
+  let sorts: Record<string, { key: string; dir: SortDirection }> = {};
   try {
-    const saved = JSON.parse(localStorage.getItem(SORTS_KEY) || '{}') || {};
-    const sorts: Record<string, { key: string; dir: SortDirection }> = {};
-    Object.keys(saved).forEach(tab => {
-      const entry = saved[tab];
-      // Keep only well-formed entries; stale keys from older schemas simply
-      // sort a missing column (stable no-op) and never break rendering.
-      if (entry && typeof entry.key === 'string' && entry.key !== '' && (entry.dir === 'asc' || entry.dir === 'desc')) {
-        sorts[tab] = { key: entry.key, dir: entry.dir };
-      }
-    });
-    state.sortByTab = sorts;
+    const fromSite = JSON.parse(localStorage.getItem(SITE_STATE_KEY) || 'null');
+    if (fromSite && typeof fromSite === 'object' && !Array.isArray(fromSite)) {
+      Object.assign(sorts, cleanTabSorts(fromSite.sheetSort));
+    }
   } catch {
-    state.sortByTab = {};
+    /* corrupt site-state */
   }
+  try {
+    const saved = JSON.parse(localStorage.getItem(SORTS_KEY) || 'null');
+    Object.assign(sorts, cleanTabSorts(saved));
+  } catch {
+    /* corrupt sorts key */
+  }
+  state.sortByTab = sorts;
 }
 
 function restoreSelectedEtfs(): void {
@@ -2121,11 +2250,32 @@ function restoreBlacklist(): void {
 }
 
 function restoreSearches(): void {
+  restoreTabFilters();
+}
+
+function restoreTabFilters(): void {
+  let filters: Record<string, string> = {};
   try {
-    state.queryByTab = JSON.parse(localStorage.getItem(SEARCHES_KEY) || '{}') || {};
+    const fromSite = JSON.parse(localStorage.getItem(SITE_STATE_KEY) || 'null');
+    if (fromSite && typeof fromSite === 'object' && !Array.isArray(fromSite)) {
+      Object.assign(filters, cleanTabFilters(fromSite.sheetFilter));
+      // activeTab is persisted for compatibility but boot always lands on
+      // All ETFs so a reload restores catalog filters into the search box.
+    }
   } catch {
-    state.queryByTab = {};
+    /* corrupt site-state */
   }
+  try {
+    Object.assign(filters, cleanTabFilters(JSON.parse(localStorage.getItem(SEARCHES_KEY) || 'null')));
+  } catch {
+    /* corrupt legacy searches */
+  }
+  try {
+    Object.assign(filters, cleanTabFilters(JSON.parse(localStorage.getItem(FILTERS_KEY) || 'null')));
+  } catch {
+    /* corrupt filters key */
+  }
+  state.queryByTab = filters;
 }
 
 // =========================================================================
@@ -2141,8 +2291,13 @@ function bindEvents(): void {
 
   el.searchInput.addEventListener('input', () => {
     setCurrentQuery(el.searchInput.value.trim());
+    updateSearchClearBtn();
     if (state.activeTab === 'watchlist') watchlistVisibleLimit = WATCHLIST_PAGE_SIZE;
     render();
+  });
+
+  el.searchClearBtn.addEventListener('click', () => {
+    clearActiveSearchFilter();
   });
 
   el.copyBtn.addEventListener('click', copyTickers);

@@ -2,7 +2,7 @@
   "ticker": "SPYM",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 5243,
+  "totalRows": 5244,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "17-Sep-2026",
+      "NAV": "89.531551",
+      "Shares Outstanding": "1918350000",
+      "Total Net Assets": "171752851571.27"
+    },
     {
       "Date": "16-Sep-2026",
       "NAV": "88.521886",
@@ -6003,12 +6009,6 @@
       "NAV": "44.001618",
       "Shares Outstanding": "308550000",
       "Total Net Assets": "13576699157.13"
-    },
-    {
-      "Date": "21-Sep-2022",
-      "NAV": "44.373877",
-      "Shares Outstanding": "308200000",
-      "Total Net Assets": "13676029022.83"
     }
   ]
 }

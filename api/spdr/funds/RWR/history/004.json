@@ -2,7 +2,7 @@
   "ticker": "RWR",
   "page": 4,
   "pageSize": 1000,
-  "totalRows": 6382,
+  "totalRows": 6383,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "10-Oct-2014",
+      "NAV": "81.754599",
+      "Shares Outstanding": "33031617",
+      "Total Net Assets": "2700486612.76"
+    },
     {
       "Date": "09-Oct-2014",
       "NAV": "81.641167",
@@ -6003,12 +6009,6 @@
       "NAV": "60.672189",
       "Shares Outstanding": "22281891.7",
       "Total Net Assets": "1351891132.24"
-    },
-    {
-      "Date": "25-Oct-2010",
-      "NAV": "61.176202",
-      "Shares Outstanding": "22281891.7",
-      "Total Net Assets": "1363121512.49"
     }
   ]
 }
