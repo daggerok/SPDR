@@ -2377,7 +2377,10 @@ function getTestApi(): any {
 }
 
 if (typeof globalThis !== 'undefined') {
-  globalThis.__SPDR_APP__ = { getTestApi };
+  // Test-harness hook. `globalThis` has no index signature (TS7017); the
+  // `: any` annotation is stripped by Babel standalone at runtime.
+  const root: any = globalThis;
+  root.__SPDR_APP__ = { getTestApi };
 }
 
 function init(): void {
