@@ -2,21 +2,6 @@
 
 SPDR ETF holdings to Watchlist. A single-file client-side tool that reads the generated `./api/spdr` static feed (SSGA daily holdings XLSX, NAV history XLSX, distributions) into a searchable ETF/asset-class catalog with per-fund tabs, watchlist aggregation, ticker copy and CSV/TXT export — the same look, feel, columns and business logic as the sibling applications.
 
-## Sibling applications
-
-| Application | Data provider | Repository |
-| --- | --- | --- |
-| Amplify ETF Holdings to Watchlist | Amplify ETFs (Firestore data feed) | [daggerok/Amplify](https://github.com/daggerok/Amplify) · [published app](https://daggerok.github.io/Amplify/) |
-| iShares ETF Holdings to Watchlist | iShares (BlackRock) product workbooks | [daggerok/iShares](https://github.com/daggerok/iShares) · [published app](https://daggerok.github.io/iShares/) |
-| SPDR ETF Holdings to Watchlist | SSGA / State Street public feeds | [daggerok/SPDR](https://github.com/daggerok/SPDR) · [published app](https://daggerok.github.io/SPDR/) |
-| Fidelity ETF Holdings to Watchlist | SEC EDGAR N-PORT-P + Yahoo Finance | [daggerok/Fidelity](https://github.com/daggerok/Fidelity) · [published app](https://daggerok.github.io/Fidelity/) |
-| Invesco ETF Holdings to Watchlist | invesco.com CSV downloads + Yahoo Finance | [daggerok/Invesco](https://github.com/daggerok/Invesco) · [published app](https://daggerok.github.io/Invesco/) |
-| WisdomTree ETF Holdings to Watchlist | WisdomTree product table + SEC EDGAR N-PORT-P + Yahoo Finance | [daggerok/WisdomTree](https://github.com/daggerok/WisdomTree) · [published app](https://daggerok.github.io/WisdomTree/) |
-| JPMorgan ETF Holdings to Watchlist | am.jpmorgan.com fund explorer + product-data JSON | [daggerok/JPMorgan](https://github.com/daggerok/JPMorgan) · [published app](https://daggerok.github.io/JPMorgan/) |
-| VanEck ETF Holdings to Watchlist | vaneck.com ETF finder + product pages | [daggerok/VanEck](https://github.com/daggerok/VanEck) · [published app](https://daggerok.github.io/VanEck/) |
-| Schwab ETF Holdings to Watchlist | schwabassetmanagement.com product pages + CSV exports | [daggerok/Schwab](https://github.com/daggerok/Schwab) · [published app](https://daggerok.github.io/Schwab/) |
-| Vanguard ETF Holdings to Watchlist | Vanguard product pages + SEC EDGAR N-PORT-P | [daggerok/Vanguard](https://github.com/daggerok/Vanguard) · [published app](https://daggerok.github.io/Vanguard/) |
-
 ## Using Bun
 
 ```bash
@@ -106,6 +91,21 @@ Verification before every publish: `bun install --frozen-lockfile`, `bun test`, 
 | **Vanguard** (80+) | VTI, VOO, BND, VUG, VTV, VXUS | [investor.vanguard.com](https://investor.vanguard.com/etf/list) — [daggerok/Vanguard](https://github.com/daggerok/Vanguard) |
 | **SPDR** (179) | SPY, SPYM, SPYG, XLK, XLF, XLV | [ssga.com fund finder](https://www.ssga.com/us/en/intermediary/etfs/fund-finder) — [daggerok/SPDR](https://github.com/daggerok/SPDR) |
 | **WisdomTree** (90+) | DGRW, USFR, WCLD, DGRW, EFS | [wisdomtree.com](https://www.wisdomtree.com/investments) — [daggerok/WisdomTree](https://github.com/daggerok/WisdomTree) |
+
+## Sibling applications
+
+| Application | Data provider | Repository |
+| --- | --- | --- |
+| Amplify ETF Holdings to Watchlist | Amplify ETFs (Firestore data feed) | [daggerok/Amplify](https://github.com/daggerok/Amplify) · [published app](https://daggerok.github.io/Amplify/) |
+| iShares ETF Holdings to Watchlist | iShares (BlackRock) product workbooks | [daggerok/iShares](https://github.com/daggerok/iShares) · [published app](https://daggerok.github.io/iShares/) |
+| SPDR ETF Holdings to Watchlist | SSGA / State Street public feeds | [daggerok/SPDR](https://github.com/daggerok/SPDR) · [published app](https://daggerok.github.io/SPDR/) |
+| Fidelity ETF Holdings to Watchlist | SEC EDGAR N-PORT-P + Yahoo Finance | [daggerok/Fidelity](https://github.com/daggerok/Fidelity) · [published app](https://daggerok.github.io/Fidelity/) |
+| Invesco ETF Holdings to Watchlist | invesco.com CSV downloads + Yahoo Finance | [daggerok/Invesco](https://github.com/daggerok/Invesco) · [published app](https://daggerok.github.io/Invesco/) |
+| WisdomTree ETF Holdings to Watchlist | WisdomTree product table + SEC EDGAR N-PORT-P + Yahoo Finance | [daggerok/WisdomTree](https://github.com/daggerok/WisdomTree) · [published app](https://daggerok.github.io/WisdomTree/) |
+| JPMorgan ETF Holdings to Watchlist | am.jpmorgan.com fund explorer + product-data JSON | [daggerok/JPMorgan](https://github.com/daggerok/JPMorgan) · [published app](https://daggerok.github.io/JPMorgan/) |
+| VanEck ETF Holdings to Watchlist | vaneck.com ETF finder + product pages | [daggerok/VanEck](https://github.com/daggerok/VanEck) · [published app](https://daggerok.github.io/VanEck/) |
+| Schwab ETF Holdings to Watchlist | schwabassetmanagement.com product pages + CSV exports | [daggerok/Schwab](https://github.com/daggerok/Schwab) · [published app](https://daggerok.github.io/Schwab/) |
+| Vanguard ETF Holdings to Watchlist | Vanguard product pages + SEC EDGAR N-PORT-P | [daggerok/Vanguard](https://github.com/daggerok/Vanguard) · [published app](https://daggerok.github.io/Vanguard/) |
 
 ## License
 
