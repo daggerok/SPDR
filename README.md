@@ -1,18 +1,21 @@
 # SPDR
 
-SPDR ETF holdings to Watchlist. A single-file client-side tool that reads the generated `api/spdr/**` static feed (SSGA / State Street public data) into a searchable ETF / asset-class catalog with per-fund holdings, NAV-history and distributions tabs, Watchlist aggregation across selected ETFs, ticker copy and CSV/TXT export. Vanilla inline TypeScript + TailwindCSS, light/dark theme, no build step.
-
-## Shared UI contract
-
-The common interaction and data-state rules are documented in [`docs/ui-contract.md`](./docs/ui-contract.md). Reusable catalog requirements for coded distribution frequency and pinned horizontal-scroll columns are in [`docs/catalog-ui-requirements.md`](./docs/catalog-ui-requirements.md). New provider-specific behavior should preserve these contracts.
+SPDR ETF holdings to Watchlist. A single-file client-side tool that reads the generated `./api/spdr` static feed (SSGA daily holdings XLSX, NAV history XLSX, distributions) into a searchable ETF/asset-class catalog with per-fund tabs, watchlist aggregation, ticker copy and CSV/TXT export — the same look, feel, columns and business logic as the sibling applications.
 
 ## Sibling applications
 
 | Application | Data provider | Repository |
-|---|---|---|
+| --- | --- | --- |
 | Amplify ETF Holdings to Watchlist | Amplify ETFs (Firestore data feed) | [daggerok/Amplify](https://github.com/daggerok/Amplify) · [published app](https://daggerok.github.io/Amplify/) |
-| iShares Excel .xls to Watchlist | iShares (BlackRock) product workbooks | [daggerok/iShares](https://github.com/daggerok/iShares) · [published app](https://daggerok.github.io/iShares/) |
+| iShares ETF Holdings to Watchlist | iShares (BlackRock) product workbooks | [daggerok/iShares](https://github.com/daggerok/iShares) · [published app](https://daggerok.github.io/iShares/) |
 | SPDR ETF Holdings to Watchlist | SSGA / State Street public feeds | [daggerok/SPDR](https://github.com/daggerok/SPDR) · [published app](https://daggerok.github.io/SPDR/) |
+| Fidelity ETF Holdings to Watchlist | SEC EDGAR N-PORT-P + Yahoo Finance | [daggerok/Fidelity](https://github.com/daggerok/Fidelity) · [published app](https://daggerok.github.io/Fidelity/) |
+| Invesco ETF Holdings to Watchlist | invesco.com CSV downloads + Yahoo Finance | [daggerok/Invesco](https://github.com/daggerok/Invesco) · [published app](https://daggerok.github.io/Invesco/) |
+| WisdomTree ETF Holdings to Watchlist | WisdomTree product table + SEC EDGAR N-PORT-P + Yahoo Finance | [daggerok/WisdomTree](https://github.com/daggerok/WisdomTree) · [published app](https://daggerok.github.io/WisdomTree/) |
+| JPMorgan ETF Holdings to Watchlist | am.jpmorgan.com fund explorer + product-data JSON | [daggerok/JPMorgan](https://github.com/daggerok/JPMorgan) · [published app](https://daggerok.github.io/JPMorgan/) |
+| VanEck ETF Holdings to Watchlist | vaneck.com ETF finder + product pages | [daggerok/VanEck](https://github.com/daggerok/VanEck) · [published app](https://daggerok.github.io/VanEck/) |
+| Schwab ETF Holdings to Watchlist | schwabassetmanagement.com product pages + CSV exports | [daggerok/Schwab](https://github.com/daggerok/Schwab) · [published app](https://daggerok.github.io/Schwab/) |
+| Vanguard ETF Holdings to Watchlist | Vanguard product pages + SEC EDGAR N-PORT-P | [daggerok/Vanguard](https://github.com/daggerok/Vanguard) · [published app](https://daggerok.github.io/Vanguard/) |
 
 ## Using Bun
 
@@ -29,212 +32,81 @@ The published application is available at <https://daggerok.github.io/SPDR/>.
 Run the updater with Bun:
 
 ```bash
-bun install --frozen-lockfile
 bun test scripts/update-data.test.ts
 ./scripts/update-data.ts
 ```
 
-Run `./scripts/update-data.ts -h` (or `--help`) to print every configuration variable with its default and usage examples. All supplied filters use **AND** logic.
+Run `./scripts/update-data.ts -h` (or `--help`) to print every configuration variable with its default and usage examples.
 
-The **Update SPDR ETF data** GitHub Actions workflow exposes the same settings as manual inputs.
+The **Update SPDR ETF data** GitHub Actions workflow exposes the same settings as manual inputs. All supplied filters use **AND** logic.
 
 ### Data sources
 
-Everything comes from public SSGA feeds, fetched politely (they rate-limit hard):
-
 | Block | Source |
-|---|---|
-| Catalog (179 US ETFs) | `ssga.com/bin/v1/ssmp/fund/fundfinder?country=us&language=en&role=intermediary&product=etfs&ui=fund-finder` |
-| Daily holdings | `ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-{ticker}.xlsx` |
-| NAV history | `ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-{ticker}.xlsx` |
-| Distributions | `ssga.com/bin/v1/ssmp/fund/dividend-distribution?country=us&language=en&role=intermediary` |
+| --- | --- |
+| Catalog (all US SPDR ETFs) | `https://www.ssga.com/us/en/intermediary/etfs/fund-finder` (SSGA fund finder JSON) |
+| Holdings per fund | `https://www.ssga.com/us/en/intermediary/etfs/library-content/products/fund-data/etfs/us/holdings-daily-us-{TICKER}.xlsx` (per-fund holdings XLSX) |
+| Daily history, distributions | `https://www.ssga.com/us/en/intermediary/etfs/library-content/products/fund-data/etfs/us/navhistory-daily-us-{TICKER}.xlsx` (NAV history XLSX) |
+| Fallback | Previously published `api/spdr/index.json` |
 
-The catalog provides name, asset class (Type), TER (Expense), NAV, AUM (Net Assets), exchange, close price, premium/discount, inception, month-end and quarter-end NAV returns and document links. Each fund also carries a derived `metrics` object that powers the catalog table columns shared with the sibling sites:
+Each fund carries a derived `metrics` object that powers the catalog columns shared with the sibling sites:
 
-- `ytd` — cumulative YTD (SSGA "Month End") → *YTD Return*
-- `tr1y` — 1-year total return → *TR 1Y*
-- `tr3y`/`tr5y`/`tr10y` — cumulative total returns **derived** from SSGA's published annualized figures: `(1 + CAGR nY)^n − 1` (the exact inverse of annualizing, so no precision is lost) → *TR 3Y/5Y/10Y*
-- `cagr3y`/`cagr5y`/`cagr10y` — SSGA's annualized returns, used directly → *CAGR 3Y/5Y/10Y*
+- `ytd` / `tr1y` — official YTD and 1-year returns → *YTD Return*, *TR 1Y*
+- `cagr3y` / `cagr5y` / `cagr10y` — published annualized 3Y/5Y/10Y figures → *CAGR 3Y/5Y/10Y*
+- `tr3y` / `tr5y` / `tr10y` — cumulative 3Y/5Y/10Y figures `(1 + CAGR)^n - 1` → *TR 3Y/5Y/10Y*
 - `siAnn` — since-inception annualized → *SI Ann.*
-- `dividendYield` — **indicated** yield: latest distribution × payments per year ÷ NAV → *Dividend Yield*
-- `secYield` — always `null` → *SEC Yield* renders as `—`
-
-Known value limitations (SSGA does not publish these for SPDR ETFs):
-
-- **SEC Yield (30-day)** — no source endpoint; shown as `—`.
-- **Dividend Yield** is *indicated*, not trailing-12M: SSGA exposes only the latest distribution per fund, so the yield assumes every distribution in the year equals the latest one.
-- Multi-year **total returns** are derived from annualized figures rather than published cumulative ones (mathematically exact, but tiny rounding differences vs. SSGA's own cumulative display are possible). Equity and bond holdings workbooks have different column sets (bonds have no `Ticker` column — they are identified by `Identifier`); both formats are stored as-is with per-fund headers, and the Watchlist deduplicates by `Ticker` when present, falling back to `Identifier`. Commodity trusts (`GLD`, `GLDM`) publish no holdings workbook and are catalog-only.
+- `dividendYield` — 12-month trailing yield or indicated yield (latest distribution × frequency ÷ price)
+- `secYield` — 30-day SEC yield when published; `—` otherwise
 
 ### Update controls
 
 | Environment variable | Default | Meaning |
-|---|---:|---|
-| `MAX_FETCHES` | all | Maximum eligible fund update attempts per run. With a positive value, the updater continues after the committed cursor in `api/spdr/update-state.json`; empty or `0` means all. |
-| `REQUEST_SLEEP` | `1` | Minimum delay in seconds between outgoing request starts, including retries. Decimal values are accepted. Keep it at `1` or above: SSGA front doors answer `403` while rate-limited. |
-| `AUM` | `:` | Net Assets range. Each bound may be a USD amount (`K`, `M`, `B`, `T` suffixes allowed) or `nano`, `micro`, `small`, `mid`, or `large`. |
-| `TER` | `:` | Inclusive gross expense-ratio percentage range. |
+| --- | --: | --- |
+| `MAX_FETCHES` | all | Batch size: with a positive value the updater continues after the committed cursor in `api/spdr/update-state.json`; empty or `0` is a full pass — every fund is refreshed in one run. |
+| `REQUEST_SLEEP` | `1` | Minimum delay in seconds between outgoing request starts, including retries. |
 | `CONCURRENCY` | `2` | Number of parallel fund update workers. Request starts are still globally spaced by `REQUEST_SLEEP`. |
+| `AUM` | `:` | Net Assets range. Each bound may be a USD amount or `K`/`M`/`B`/`T`, or one of `nano`, `micro`, `small`, `mid`, `large`. |
+| `TER` | `:` | Expense ratio range in % (strict `min:max`). |
+| `DIVIDEND_YIELD` | `:` | Dividend-yield percentage range. |
+| `TICKERS` | all | Space-, comma- or semicolon-separated ticker allowlist, e.g. `SPY SPYG SPYD SDY XLK`. |
 | `HOLDINGS_PAGE_SIZE` | `250` | Rows in each generated current-holdings JSON page. |
-| `HISTORY_PAGE_SIZE` | `1000` | Rows in each generated NAV-history JSON page. |
-| `STORE_RAW_DOWNLOADS` | off | Store the latest source XLSX under `api/spdr/raw`. Values `1`, `true`, `yes`, `y`, and `on` enable it. |
-| `MAX_RETRIES` | `2` | Retries after the initial request. Rate-limited `403` answers back off 15s/30s/… before retrying. Only network errors, HTTP 408/425/429, 5xx and rate-limit `403` are retried. |
-| `TICKERS` | all | Space-, comma-, or semicolon-separated ticker allowlist, for example `SPY XLK SPAB`. |
+| `HISTORY_PAGE_SIZE` | `1000` | Rows in each generated daily-history JSON page. |
+| `MAX_RETRIES` | `2` | Retries after the initial request. Only network errors and HTTP 408/425/429/5xx are retried with exponential backoff. |
+| `SEC_UA` | declared UA | Override the SEC User-Agent. SEC policy requires automated tools to declare a contact. |
+| `SKIP_YAHOO` | off | Skip Yahoo Finance history updates. |
 
-`TICKERS` combines with AUM, TER and return filters using AND logic; it does not override them. Funds not selected for a successful update keep their previously published metadata and data files.
-
-### Resuming bounded runs
-
-A positive `MAX_FETCHES` is a batch size, not a permanent limit. Eligible funds are kept in deterministic ticker order and the updater starts after `lastProcessedTicker` in `api/spdr/update-state.json`, wrapping to the beginning when it reaches the end. The state file is updated only for a bounded run that had candidates; `MAX_FETCHES=0` processes every eligible fund and does not move the cursor. Delete the file to restart from the first eligible ticker.
-
-### Strict range syntax
-
-Every non-empty range must contain **exactly one colon**. Empty input and `:` both mean no restriction.
-
-| Value | Valid | Meaning |
-|---|:---:|---|
-| empty | yes | no restriction |
-| `:` | yes | no restriction |
-| `:900000` | yes | maximum 900000 |
-| `12345678:123456789` | yes | inclusive minimum and maximum |
-| `1234567:` | yes | minimum 1234567 |
-| `123456789` | **no** | colon is missing |
-
-Percent signs are optional, so `1%:4.5%` and `1:4.5` are equivalent. A configured minimum must not exceed its maximum.
-
-### AUM ranges and presets
-
-Preset boundaries are:
-
-```text
-nano:     $0 <= AUM < $10M
-micro:    $10M <= AUM < $300M
-small:    $300M <= AUM < $2B
-mid:      $2B <= AUM < $10B
-large:    AUM >= $10B
-```
-
-A preset on the left contributes its lower boundary; on the right it contributes its exclusive upper boundary (`micro:small` is `$10M <= AUM < $2B`). Numeric bounds are inclusive amounts (`300M:2B` is `$300M <= AUM <= $2B`).
-
-### Return ranges
-
-SSGA publishes two NAV return series; both use the same strict `min:max` syntax:
-
-```text
-PERFORMANCE_YTD|1Y|3Y|5Y|10Y   month-end series   (3Y+ are CAGR)
-TOTAL_RETURN_YTD|1Y|3Y|5Y|10Y  quarter-end series (3Y+ are CAGR)
-```
-
-`PERFORMANCE_*` filters the month-end NAV series used by the catalog table; `TOTAL_RETURN_*` filters the quarter-end series shown in each fund's Overview tab. YTD values are cumulative. A young fund missing a requested 3Y/5Y/10Y metric passes the filter (missing history never fails a return filter); missing AUM or TER does fail an active catalog filter. Since-inception returns are stored but intentionally not filterable.
+`TICKERS` combines with AUM, TER, yield filters using AND logic; it does not override them. Funds not selected for a successful update keep their prior published metadata and data files.
 
 ### Examples
 
-Update only three ETFs:
-
 ```bash
-TICKERS="SPY XLK SPAB" ./scripts/update-data.ts
-```
-
-Cheap broad-market equity funds of at least $10B with no more than a 0.10% expense ratio:
-
-```bash
-AUM="large:" TER=":0.1" ./scripts/update-data.ts
-```
-
-Next bounded batch of 20 funds with at least a 5% three-year CAGR:
-
-```bash
-MAX_FETCHES=20 PERFORMANCE_3Y="5:" ./scripts/update-data.ts
-```
-
-## Developer notes
-
-- Updater controls belong to `workflow_dispatch` and are visible on the GitHub Actions **Run workflow** form. They are not controls in the published web application.
-- The workflow is manual. Merging updater code changes does not run a data update automatically.
-- A successful data run may commit only `api/spdr/**`. GitHub Pages then deploys that commit, but the catalog UI changes only when the generated data itself changed.
-- Catalog-only filters (`TICKERS`, `AUM`, `TER`) run before `MAX_FETCHES`; return filters run on catalog values before each download.
-- The updater is dependency-free: the daily XLSX workbooks are real OOXML zips, unzipped with `node:zlib` and parsed with a hand-rolled minimal SpreadsheetML reader (`readZipEntries` + `parseXlsxSheet` in `scripts/update-data.ts`).
-- Only useful worksheets are stored, never the raw XLSX (unless `STORE_RAW_DOWNLOADS` is on). Rows are written as paginated JSON only when their content changed, so a rerun with unchanged data produces an empty `git diff`.
-- The UI fetches the first Holdings/History page and appends more rows automatically as the table is scrolled; it does not show page-number controls. Switching funds or sheets cannot leave the previous fund's table behind: loading, unavailable-workbook and fetch-failure states replace stale rows with an explanation.
-- Selection is reactive everywhere. Every row/header/pill selection change immediately updates the selected count and clickable ticker badges in the subtitle, the active fund, the Overview/Holdings/History/Distributions tab counts and the Watchlist count. The active ticker is persisted with the selection and restored after reload; clicking a catalog ticker, selected-ticker badge or Watchlist ETF badge opens that fund's details.
-- The **Watchlist** tab aggregates every holdings page of every selected ETF. Its **# ETFs** column counts how many selected ETFs hold each deduplicated position; Weight Sum, Max Weight, Market Value, Sector and identifier data update as files arrive. Bond rows fall back from `Ticker` to CUSIP/ISIN/`Identifier`/SEDOL, and valid cash or derivative rows without any identifier fall back to their published name. Per-fund load promises prevent duplicate/skipped pages when selection changes quickly, all-catalog loading is concurrency-bounded, and the tab says `Loading…`/`N+` until its count is exact instead of displaying a misleading `(0)`. Large Watchlists render in 500-row scroll chunks while copy/export still use the complete filtered result.
-- Any ETF can be **blacklisted**: click the small ✕ next to a fund's Use checkbox (a row click toggles selection; clicking its ticker opens Overview) or type tickers into the **Blacklist** panel in the toolbar. Blacklisted ETFs disappear from All ETFs (and from selection); the list is kept per browser in localStorage.
-- The two **select-all** checkboxes have different scopes: the **Use** checkbox in the table header toggles only the rows currently shown (current tab + active search filter) — with a filter active it selects exactly the filtered ETFs, and unchecking it leaves the rest of the selection untouched. The checkbox inside the **All ETFs** pill always toggles the whole catalog (every non-blacklisted ETF), regardless of the active category/detail/Watchlist tab or search filter, matching its place next to the “All ETFs (N)” count. Either path starts holdings loading and keeps Watchlist/tab/subtitle data in sync as ETFs are selected or deselected.
-- The app keeps search and sort preferences in localStorage and reapplies them after reload. **Search is view-scoped**: typing on All ETFs does not filter Overview / Holdings / History / Distributions / Watchlist, and switching tabs restores that tab's own query (or an empty box). Filters persist in `spdr-tab-filters` (mirrored under `sheetFilter` in `spdr-site-state` for compatibility) and survive reload. The ✕ button on the right edge of the search input (`#search-clear-btn`) clears only the active tab's filter in one click; **Clear** still wipes every tab's search plus the selection.
-- Sort order is remembered **per tab** and is **never reset by any button or checkbox**: sort All ETFs by *YTD Return*, round-trip through Watchlist or a fund detail tab, toggle select-all, search, blacklist, export, switch the theme or press **Clear** — the YTD Return order is still there. Like the checkbox selections, the remembered sorts live in browser localStorage (`spdr-tab-sorts`) and are reapplied after reload. A tab that was never sorted keeps its default order (Watchlist: Weight Sum desc, Overview: Section asc, sheets: source order); defaults are never written to storage. **Clear** clears only the selection and the searches. To return to the default catalog order, click the *Ticker* header (asc).
-- Only the table area scrolls: the app sizes `#table-scroll` to the remaining viewport height and contains overscroll, so the document itself does not jump up and down when the table is taller than the screen (fix also applied to daggerok/iShares). During horizontal scrolling, catalog **Use** and **Ticker** cells stay pinned (the sticky positioning is on each `th`/`td`, not a nested span); the Watchlist Ticker column is pinned too.
-- GitHub Actions writes updated, unchanged, skipped, and failed counts to the workflow summary.
-- Range validation is centralized in `parseRange`/`parseAumRange`; add or change syntax there and update `scripts/update-data.test.ts` in the same PR.
-
-Before opening a PR, run:
-
-```bash
-bun install --frozen-lockfile
-bun test
-bunx tsc --noEmit \
-  --target es2022 \
-  --module esnext \
-  --moduleResolution bundler \
-  --types bun,node \
-  --skipLibCheck \
-  scripts/update-data.ts \
-  scripts/update-data.test.ts
-
-git diff --check
+MAX_FETCHES=10 ./scripts/update-data.ts
+TICKERS="SPY SPYG SPYD SDY XLK" ./scripts/update-data.ts
+AUM="1B:" TER=":0.5" ./scripts/update-data.ts
+PERFORMANCE_1Y="15:" ./scripts/update-data.ts
 ```
 
 ## TypeScript
 
-The browser app is intentionally single-file: `index.html` contains inline TypeScript compiled in the browser with Babel standalone, following the `daggerok/youtube` no-src-files approach (same as daggerok/Amplify).
+The browser app is intentionally build-free: `index.html` carries the markup, styles and bootstrap, and `app.tsx` is TypeScript compiled in the browser with Babel standalone — no build step, no bundler, no `tsconfig.json` needed. Bun runs TypeScript out of the box.
+
+Verification before every publish: `bun install --frozen-lockfile`, `bun test`, and `git diff --check`.
 
 ## Brands table
 
-| Бренд                        | Фонды | Где брать данные |
-|------------------------------|---|---|
-| **SPDR / State Street** (14) ✅ | SPYM, SPYG, SPYD, SDY, XTL, XLK, XLF, XLV, XLY, XLU, XLC, XLI, XLP, XLE | [us.spdrs.com](https://us.spdrs.com/) · [каталог ssga.com](https://www.ssga.com/us/en/intermediary/etfs/fund-finder) · секторы: [selectsectorspdrs.com](https://www.selectsectorspdrs.com/) — весь каталог SSGA уже интегрирован в наше приложение [daggerok/SPDR](https://github.com/daggerok/SPDR) |
-| **Invesco** (14)             | QQQM, RSP, SPLV, SPHD, SPMO, SPHQ, SPGP, RPV, RPG, RWL, DBA, IDMO, IDHQ, IDLV | [invesco.com `?ticker=`](https://www.invesco.com/us/financial-products/etfs/product-detail?ticker=IDHQ) |
-| **iShares / BlackRock** (14) ✅ | IVV, SGOV, DGRO, SOXX, MTUM, DVY, HDV, IAUM, PICK (Global Metals & Mining), GARP (MSCI USA Quality GARP), SLVP (Global Silver Miners), RING (Global Gold Miners) | [www.ishares.com](https://www.ishares.com/) · XLS-экспорт holdings со страниц фондов (уже интегрирован в наше приложение, весь каталог) |
-| **Vanguard** (10)            | VOO, VUG, VTV, VIG, VYM, VGT, MGK, VOOG, VIGI, VYMI | [investor.vanguard.com](https://investor.vanguard.com/investment-products/etfs) → `…/profile/VOO` |
-| **Fidelity** (5)             | FTEC, FDVV, FDIS, FCOM, FNILX* | [fidelity.com/etfs](https://www.fidelity.com/etfs) · [fundresearch.fidelity.com](https://fundresearch.fidelity.com/) — *FNILX вообще не ETF, а взаимный фонд ZERO |
-| **Schwab** (3)               | SCHD, SCHG, SCHB | [schwabassetmanagement.com/products/schd](https://www.schwabassetmanagement.com/products/schd) |
-| **VanEck** (3)               | SMH, GDX, GDXJ | [vaneck.com/etf/smh/](https://www.vaneck.com/etf/smh/) |
-| **Amplify** (3) ✅              | DIVO, IDVO (CWP Intl Enhanced Dividend), SILJ (Junior Silver Miners, экс-ETFMG) | [amplifyetfs.com](https://amplifyetfs.com/) · Firestore-фид данных (уже интегрирован в наше приложение) |
-| **JPMorgan** (2)             | JEPI, JEPQ | [JEPI](https://am.jpmorgan.com/us/en/asset-management/adv/products/jpmorgan-equity-premium-income-etf-etf-shares-46641q332) · [JEPQ](https://am.jpmorgan.com/us/en/asset-management/adv/products/jpmorgan-nasdaq-equity-premium-income-etf-etf-shares-46654q203) |
-| **Global X** (2)             | URA, SIL | [globalxetfs.com/funds/ura/](https://www.globalxetfs.com/funds/ura/) |
-| **abrdn** (2)                | SGOL, SIVR | [abrdn.com](https://www.abrdn.com) → Investments → ETFs |
-| **NEOS** (2)                 | SPYI, QQQI | [neosfunds.com](https://neosfunds.com/) |
-| **Goldman Sachs** (2)        | GPIX, GPIQ | [GSAM.com/ETFs](https://www.gsam.com/etfs) |
-| **Sprott** (2)               | SGDM, SGDJ | [sprott.com/investments](https://sprott.com/investments/) |
-| **First Trust** (1)          | RDVY | [ftportfolios.com](https://www.ftportfolios.com/Retail/etf/etfsummary.aspx?ticker=RDVY) |
-| **WisdomTree** (1)           | DGRW | [wisdomtree.com/investments/etfs/dgrw](https://www.wisdomtree.com/investments/etfs/dgrw) |
-| **Capital Group** (1)        | CGDV | [capitalgroup.com/etf/cgdv.html](https://www.capitalgroup.com/etf/cgdv.html) |
-| **FlexShares** (1)           | GUNR | [flexshares.com/us/en/individual/funds/gunr](https://www.flexshares.com/us/en/individual/funds/gunr) |
-| **Roundhill** (1)            | DRAM | [roundhillinvestments.com/etf/dram/](https://www.roundhillinvestments.com/etf/dram/) |
-| **ProShares** (1)            | ISPY | [proshares.com](https://www.proshares.com/our-etfs/strategic/ispy) |
-| **Themes ETFs** (1)          | AGMI | [themesetfs.com/etfs/agmi](https://themesetfs.com/etfs/agmi) |
-| **SP Funds** (1)             | SPWO (шариат-фонд) | [sp-funds.com](https://www.sp-funds.com/) |
+| Бренд | Фонды | Где брать данные |
+| --- | --- | --- |
+| **VanEck** (70+) | GDX, SMH, MOAT, ESPO, BJK, OIH, REMX | [vaneck.com ETF finder](https://www.vaneck.com/us/en/etf-mutual-fund-finder/) — [daggerok/VanEck](https://github.com/daggerok/VanEck) |
+| **JPMorgan** (78) | JEPI, JEPQ, JPST, BBJP, JIRE, JGLO | [am.jpmorgan.com ETF explorer](https://am.jpmorgan.com/us/en/asset-management/adv/products/fund-explorer/etf) — [daggerok/JPMorgan](https://github.com/daggerok/JPMorgan) |
+| **Schwab** (30+) | SCHB, SCHX, SCHG, SCHV, SCHD, SCHM | [schwabassetmanagement.com](https://www.schwabassetmanagement.com/products) — [daggerok/Schwab](https://github.com/daggerok/Schwab) |
+| **Invesco** (245) | QQQM, RSP, SPLV, SPHD, SPMO, QQQ | [invesco.com ETFs](https://www.invesco.com/us/en/financial-products/etfs.html) — [daggerok/Invesco](https://github.com/daggerok/Invesco) |
+| **iShares** (400+) | IVV, SGOV, DGRO, SOXX, IWM, EFA | [ishares.com](https://www.ishares.com/) — [daggerok/iShares](https://github.com/daggerok/iShares) |
+| **Fidelity** (70+) | FTEC, FDVV, FDIS, FCOM, FREL | [fidelity.com/etfs](https://www.fidelity.com/etfs) — [daggerok/Fidelity](https://github.com/daggerok/Fidelity) |
+| **Amplify** (20+) | DIVO, IDVO, SILJ, BLOK, IBUY | [amplifyetfs.com](https://amplifyetfs.com/) — [daggerok/Amplify](https://github.com/daggerok/Amplify) |
+| **Vanguard** (80+) | VTI, VOO, BND, VUG, VTV, VXUS | [investor.vanguard.com](https://investor.vanguard.com/etf/list) — [daggerok/Vanguard](https://github.com/daggerok/Vanguard) |
+| **SPDR** (179) | SPY, SPYM, SPYG, XLK, XLF, XLV | [ssga.com fund finder](https://www.ssga.com/us/en/intermediary/etfs/fund-finder) — [daggerok/SPDR](https://github.com/daggerok/SPDR) |
+| **WisdomTree** (90+) | DGRW, USFR, WCLD, DGRW, EFS | [wisdomtree.com](https://www.wisdomtree.com/investments) — [daggerok/WisdomTree](https://github.com/daggerok/WisdomTree) |
 
-## Brands list
+## License
 
-#	Бренд	Фонды из списка (кол-во)	Официальный сайт / страницы фондов
-1	SPDR / State Street — 14 ✅	SPYM (бывш. SPLG), SPYG, SPYD, SDY, XTL + секторы XLK, XLF, XLV, XLY, XLU, XLC, XLI, XLP, XLE	https://us.spdrs.com/ · каталог: https://www.ssga.com/us/en/intermediary/etfs/fund-finder · секторы: https://www.selectsectorspdrs.com/ — весь каталог SSGA (179 фондов) уже интегрирован в наше приложение https://github.com/daggerok/SPDR
-2	Invesco — 14	QQQM, RSP, SPLV, SPHD, SPMO, SPHQ, SPGP, RPV, RPG, RWL, DBA, IDMO, IDHQ, IDLV	https://www.invesco.com/us/financial-products/etfs/product-detail?ticker=IDHQ (паттерн ?ticker={TICKER})
-3	iShares (BlackRock) — 12 ✅	IVV, SGOV, DGRO, SOXX, MTUM, DVY, HDV, IAUM, PICK (Global Metals & Mining), GARP (MSCI USA Quality GARP), SLVP (Global Silver Miners), RING (Global Gold Miners)	https://www.ishares.com/ — XLS-экспорт holdings со страниц фондов (уже интегрирован в наше приложение, весь каталог)
-4	Vanguard — 10	VOO, VUG, VTV, VIG, VYM, VGT, MGK, VOOG, VIGI, VYMI	https://investor.vanguard.com/investment-products/etfs — профиль фонда: …/etfs/profile/VOO
-5	Fidelity — 5	FTEC, FDVV, FDIS, FCOM, FNILX*	https://www.fidelity.com/etfs · исследование: https://fundresearch.fidelity.com/ (*FNILX — взаимный фонд ZERO, не ETF)
-6	Schwab Asset Management — 3	SCHD, SCHG, SCHB	https://www.schwabassetmanagement.com/products/schd (паттерн /products/{ticker})
-7	VanEck — 3	SMH, GDX, GDXJ	https://www.vaneck.com/etf/smh/ (паттерн /etf/{ticker}/)
-8	Amplify — 3 ✅	DIVO, IDVO (CWP Intl Enhanced Dividend), SILJ (Junior Silver Miners, экс-ETFMG)	https://amplifyetfs.com/ — Firestore-фид данных (уже интегрирован в наше приложение)
-9	JPMorgan Asset Management — 2	JEPI, JEPQ	https://am.jpmorgan.com/us/en/asset-management/adv/products/jpmorgan-equity-premium-income-etf-etf-shares-46641q332 · …/jpmorgan-nasdaq-equity-premium-income-etf-etf-shares-46654q203
-10	Global X — 2	URA, SIL	https://www.globalxetfs.com/funds/ura/ (паттерн /funds/{ticker}/)
-11	abrdn — 2	SGOL, SIVR	https://www.abrdn.com (раздел Investments → ETFs; физическое золото/серебро, daily bar list)
-12	NEOS — 2	SPYI, QQQI	https://neosfunds.com/ · https://neosfunds.com/spyi-lp/ · https://neosfunds.com/qqqi-lp/
-13	Goldman Sachs (GSAM) — 2	GPIX, GPIQ	https://www.gsam.com/etfs (GSAM.com/ETFs) · GPIX: https://www.gsam.com/content/gsam/us/en/advisors/fund-center/etf-fund-finder/goldman-sachs-s&p-500-core-premium-income-etf.html
-14	Sprott — 2	SGDM, SGDJ	https://sprott.com/investments/ · https://api.sprott.com/sgdm-sprott-gold-miners-etf/ · …/sgdj-sprott-junior-gold-miners-etf/
-15	First Trust — 1	RDVY (Rising Dividend Achievers)	https://www.ftportfolios.com/Retail/etf/etfsummary.aspx?ticker=RDVY
-16	WisdomTree — 1	DGRW	https://www.wisdomtree.com/investments/etfs/dgrw
-17	Capital Group — 1	CGDV (Dividend Value)	https://www.capitalgroup.com/etf/cgdv.html (паттерн /etf/{ticker}.html)
-18	FlexShares (Northern Trust) — 1	GUNR	https://www.flexshares.com/us/en/individual/funds/gunr
-19	Roundhill — 1	DRAM (Memory ETF, зап. 04/2026)	https://www.roundhillinvestments.com/etf/dram/
-20	ProShares — 1	ISPY (S&P 500 High Income)	https://www.proshares.com/our-etfs/strategic/ispy
-21	Themes ETFs — 1	AGMI (Silver Miners)	https://themesetfs.com/etfs/agmi (паттерн /etfs/{ticker})
-22	SP Funds (ShariaPortfolio) — 1	SPWO (S&P World ex-US, шариат)	https://www.sp-funds.com/
+MIT — same as all sibling ETF repositories.
