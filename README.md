@@ -109,4 +109,4 @@ Verification before every publish: `bun install --frozen-lockfile`, `bun test`, 
 
 ## License
 
-MIT — same as all sibling ETF repositories.
+[MIT — same as all sibling ETF repositories.](./LICENSE)
