@@ -79,7 +79,7 @@ Verification before every publish: `bun install --frozen-lockfile`, `bun test`, 
 
 ## Brands table
 
-| Бренд | Где брать данные |
+| Brand | Where to get the data |
 | --- | --- |
 | **VanEck** (91) | [vaneck.com](https://www.vaneck.com/us/en/etf-mutual-fund-finder/) \| [VanEck](https://daggerok.github.io/VanEck/) |
 | **JPMorgan** (78) | [am.jpmorgan.com](https://am.jpmorgan.com/us/en/asset-management/adv/products/fund-explorer/etf) \| [JPMorgan](https://daggerok.github.io/JPMorgan/) |
