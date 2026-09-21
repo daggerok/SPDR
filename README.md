@@ -81,33 +81,33 @@ Verification before every publish: `bun install --frozen-lockfile`, `bun test`, 
 
 | Бренд | Фонды | Где брать данные |
 | --- | --- | --- |
-| **VanEck** (91) | GDX, SMH, MOAT, ESPO, ANGL, OIH, REMX | [vaneck.com ETF finder](https://www.vaneck.com/us/en/etf-mutual-fund-finder/) — [daggerok/VanEck](https://github.com/daggerok/VanEck) |
-| **JPMorgan** (78) | JEPI, JEPQ, JPST, BBJP, JIRE, JGLO | [am.jpmorgan.com ETF explorer](https://am.jpmorgan.com/us/en/asset-management/adv/products/fund-explorer/etf) — [daggerok/JPMorgan](https://github.com/daggerok/JPMorgan) |
-| **Schwab** (30+) | SCHB, SCHX, SCHG, SCHV, SCHD, SCHM | [schwabassetmanagement.com](https://www.schwabassetmanagement.com/products) — [daggerok/Schwab](https://github.com/daggerok/Schwab) |
-| **Invesco** (245) | QQQM, RSP, SPLV, SPHD, SPMO, QQQ | [invesco.com ETFs](https://www.invesco.com/us/en/financial-products/etfs.html) — [daggerok/Invesco](https://github.com/daggerok/Invesco) |
-| **iShares** (400+) | IVV, SGOV, DGRO, SOXX, IWM, EFA | [ishares.com](https://www.ishares.com/) — [daggerok/iShares](https://github.com/daggerok/iShares) |
-| **Fidelity** (70+) | FTEC, FDVV, FDIS, FCOM, FREL | [fidelity.com/etfs](https://www.fidelity.com/etfs) — [daggerok/Fidelity](https://github.com/daggerok/Fidelity) |
-| **Amplify** (20+) | DIVO, IDVO, SILJ, BLOK, IBUY | [amplifyetfs.com](https://amplifyetfs.com/) — [daggerok/Amplify](https://github.com/daggerok/Amplify) |
-| **Vanguard** (80+) | VTI, VOO, BND, VUG, VTV, VXUS | [investor.vanguard.com](https://investor.vanguard.com/etf/list) — [daggerok/Vanguard](https://github.com/daggerok/Vanguard) |
-| **SPDR** (179) | SPY, SPYM, SPYG, XLK, XLF, XLV | [ssga.com fund finder](https://www.ssga.com/us/en/intermediary/etfs/fund-finder) — [daggerok/SPDR](https://github.com/daggerok/SPDR) |
-| **WisdomTree** (90+) | DGRW, USFR, WCLD, DGRW, EFS | [wisdomtree.com](https://www.wisdomtree.com/investments) — [daggerok/WisdomTree](https://github.com/daggerok/WisdomTree) |
-| **Goldman Sachs** (48) | GSLC, GBIL, AAAU, GPIX, GPIQ, GSST | [am.gs.com fund finder](https://am.gs.com/en-us/individual/funds?locale=en-us&audience=individual&sf=funds&filters=funds%7CETF&limit=100) — [daggerok/Goldman-Sachs](https://github.com/daggerok/Goldman-Sachs) |
+| **VanEck** (91) | GDX, SMH, MOAT, ESPO, ANGL, OIH, REMX | [vaneck.com ETF finder](https://www.vaneck.com/us/en/etf-mutual-fund-finder/) — [VanEck app](https://daggerok.github.io/VanEck/) |
+| **JPMorgan** (78) | JEPI, JEPQ, JPST, BBJP, JIRE, JGLO | [am.jpmorgan.com ETF explorer](https://am.jpmorgan.com/us/en/asset-management/adv/products/fund-explorer/etf) — [JPMorgan app](https://daggerok.github.io/JPMorgan/) |
+| **Schwab** (33) | SCHB, SCHX, SCHG, SCHV, SCHD, SCHM | [schwabassetmanagement.com](https://www.schwabassetmanagement.com/products) — [Schwab app](https://daggerok.github.io/Schwab/) |
+| **Invesco** (261) | QQQM, RSP, SPLV, SPHD, SPMO, QQQ | [invesco.com ETFs](https://www.invesco.com/us/en/financial-products/etfs.html) — [Invesco app](https://daggerok.github.io/Invesco/) |
+| **iShares** (480) | IVV, SGOV, DGRO, SOXX, IWM, EFA | [ishares.com](https://www.ishares.com/) — [iShares app](https://daggerok.github.io/iShares/) |
+| **Fidelity** (74) | FTEC, FDVV, FDIS, FCOM, FBND, FENI | [fidelity.com/etfs](https://www.fidelity.com/etfs) — [Fidelity app](https://daggerok.github.io/Fidelity/) |
+| **Amplify** (49) | DIVO, IDVO, SILJ, BLOK, IBUY | [amplifyetfs.com](https://amplifyetfs.com/) — [Amplify app](https://daggerok.github.io/Amplify/) |
+| **Vanguard** (116) | VTI, VOO, BND, VUG, VTV, VXUS | [investor.vanguard.com](https://investor.vanguard.com/etf/list) — [Vanguard app](https://daggerok.github.io/Vanguard/) |
+| **SPDR** (180) | SPY, SPYM, SPYG, XLK, XLF, XLV | [ssga.com fund finder](https://www.ssga.com/us/en/intermediary/etfs/fund-finder) — [SPDR app](https://daggerok.github.io/SPDR/) |
+| **WisdomTree** (94) | DGRW, USFR, WCLD, DXJ, DLN, DEM | [wisdomtree.com](https://www.wisdomtree.com/investments) — [WisdomTree app](https://daggerok.github.io/WisdomTree/) |
+| **Goldman Sachs** (48) | GSLC, GBIL, AAAU, GPIX, GPIQ, GSST | [am.gs.com fund finder](https://am.gs.com/en-us/individual/funds?locale=en-us&audience=individual&sf=funds&filters=funds%7CETF&limit=100) — [Goldman Sachs app](https://daggerok.github.io/Goldman-Sachs/) |
 
 ## Sibling applications
 
 | Application | Data provider | Repository |
 | --- | --- | --- |
-| Amplify ETF Holdings to Watchlist | Amplify ETFs (Firestore data feed) | [daggerok/Amplify](https://github.com/daggerok/Amplify) · [published app](https://daggerok.github.io/Amplify/) |
-| iShares ETF Holdings to Watchlist | iShares (BlackRock) product workbooks | [daggerok/iShares](https://github.com/daggerok/iShares) · [published app](https://daggerok.github.io/iShares/) |
-| SPDR ETF Holdings to Watchlist | SSGA / State Street public feeds | [daggerok/SPDR](https://github.com/daggerok/SPDR) · [published app](https://daggerok.github.io/SPDR/) |
-| Fidelity ETF Holdings to Watchlist | SEC EDGAR N-PORT-P + Yahoo Finance | [daggerok/Fidelity](https://github.com/daggerok/Fidelity) · [published app](https://daggerok.github.io/Fidelity/) |
-| Invesco ETF Holdings to Watchlist | invesco.com CSV downloads + Yahoo Finance | [daggerok/Invesco](https://github.com/daggerok/Invesco) · [published app](https://daggerok.github.io/Invesco/) |
-| WisdomTree ETF Holdings to Watchlist | WisdomTree product table + SEC EDGAR N-PORT-P + Yahoo Finance | [daggerok/WisdomTree](https://github.com/daggerok/WisdomTree) · [published app](https://daggerok.github.io/WisdomTree/) |
-| JPMorgan ETF Holdings to Watchlist | am.jpmorgan.com fund explorer + product-data JSON | [daggerok/JPMorgan](https://github.com/daggerok/JPMorgan) · [published app](https://daggerok.github.io/JPMorgan/) |
-| VanEck ETF Holdings to Watchlist | vaneck.com ETF finder + product pages | [daggerok/VanEck](https://github.com/daggerok/VanEck) · [published app](https://daggerok.github.io/VanEck/) |
-| Schwab ETF Holdings to Watchlist | schwabassetmanagement.com product pages + CSV exports | [daggerok/Schwab](https://github.com/daggerok/Schwab) · [published app](https://daggerok.github.io/Schwab/) |
-| Vanguard ETF Holdings to Watchlist | Vanguard product pages + SEC EDGAR N-PORT-P | [daggerok/Vanguard](https://github.com/daggerok/Vanguard) · [published app](https://daggerok.github.io/Vanguard/) |
-| Goldman Sachs ETF Holdings to Watchlist | am.gs.com fund finder + detail pages + SEC EDGAR N-PORT-P | [daggerok/Goldman-Sachs](https://github.com/daggerok/Goldman-Sachs) · [published app](https://daggerok.github.io/Goldman-Sachs/) |
+| VanEck ETF Holdings to Watchlist | vaneck.com ETF finder + product pages | [daggerok/VanEck](https://github.com/daggerok/VanEck) |
+| JPMorgan ETF Holdings to Watchlist | am.jpmorgan.com fund explorer + product-data JSON | [daggerok/JPMorgan](https://github.com/daggerok/JPMorgan) |
+| Schwab ETF Holdings to Watchlist | schwabassetmanagement.com product pages + CSV exports | [daggerok/Schwab](https://github.com/daggerok/Schwab) |
+| Invesco ETF Holdings to Watchlist | invesco.com CSV downloads + Yahoo Finance | [daggerok/Invesco](https://github.com/daggerok/Invesco) |
+| iShares ETF Holdings to Watchlist | iShares (BlackRock) product workbooks | [daggerok/iShares](https://github.com/daggerok/iShares) |
+| Fidelity ETF Holdings to Watchlist | SEC EDGAR N-PORT-P + Yahoo Finance | [daggerok/Fidelity](https://github.com/daggerok/Fidelity) |
+| Amplify ETF Holdings to Watchlist | Amplify ETFs (Firestore data feed) | [daggerok/Amplify](https://github.com/daggerok/Amplify) |
+| Vanguard ETF Holdings to Watchlist | Vanguard product pages + SEC EDGAR N-PORT-P | [daggerok/Vanguard](https://github.com/daggerok/Vanguard) |
+| SPDR ETF Holdings to Watchlist | SSGA / State Street public feeds | [daggerok/SPDR](https://github.com/daggerok/SPDR) |
+| WisdomTree ETF Holdings to Watchlist | WisdomTree product table + SEC EDGAR N-PORT-P + Yahoo Finance | [daggerok/WisdomTree](https://github.com/daggerok/WisdomTree) |
+| Goldman Sachs ETF Holdings to Watchlist | am.gs.com fund finder + detail pages + SEC EDGAR N-PORT-P | [daggerok/Goldman-Sachs](https://github.com/daggerok/Goldman-Sachs) |
 
 ## License
 
