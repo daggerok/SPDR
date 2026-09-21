@@ -81,17 +81,17 @@ Verification before every publish: `bun install --frozen-lockfile`, `bun test`, 
 
 | Бренд | Фонды | Где брать данные |
 | --- | --- | --- |
-| **VanEck** (91) | GDX, SMH, MOAT, ESPO, ANGL, OIH, REMX | [vaneck.com ETF finder](https://www.vaneck.com/us/en/etf-mutual-fund-finder/) — [VanEck](https://daggerok.github.io/VanEck/) |
-| **JPMorgan** (78) | JEPI, JEPQ, JPST, BBJP, JIRE, JGLO | [am.jpmorgan.com ETF explorer](https://am.jpmorgan.com/us/en/asset-management/adv/products/fund-explorer/etf) — [JPMorgan](https://daggerok.github.io/JPMorgan/) |
-| **Schwab** (33) | SCHB, SCHX, SCHG, SCHV, SCHD, SCHM | [schwabassetmanagement.com](https://www.schwabassetmanagement.com/products) — [Schwab](https://daggerok.github.io/Schwab/) |
-| **Invesco** (261) | QQQM, RSP, SPLV, SPHD, SPMO, QQQ | [invesco.com ETFs](https://www.invesco.com/us/en/financial-products/etfs.html) — [Invesco](https://daggerok.github.io/Invesco/) |
-| **iShares** (480) | IVV, SGOV, DGRO, SOXX, IWM, EFA | [ishares.com](https://www.ishares.com/) — [iShares](https://daggerok.github.io/iShares/) |
-| **Fidelity** (74) | FTEC, FDVV, FDIS, FCOM, FBND, FENI | [fidelity.com/etfs](https://www.fidelity.com/etfs) — [Fidelity](https://daggerok.github.io/Fidelity/) |
-| **Amplify** (49) | DIVO, IDVO, SILJ, BLOK, IBUY | [amplifyetfs.com](https://amplifyetfs.com/) — [Amplify](https://daggerok.github.io/Amplify/) |
-| **Vanguard** (116) | VTI, VOO, BND, VUG, VTV, VXUS | [investor.vanguard.com](https://investor.vanguard.com/etf/list) — [Vanguard](https://daggerok.github.io/Vanguard/) |
-| **SPDR** (180) | SPY, SPYM, SPYG, XLK, XLF, XLV | [ssga.com fund finder](https://www.ssga.com/us/en/intermediary/etfs/fund-finder) — [SPDR](https://daggerok.github.io/SPDR/) |
-| **WisdomTree** (94) | DGRW, USFR, WCLD, DXJ, DLN, DEM | [wisdomtree.com](https://www.wisdomtree.com/investments) — [WisdomTree](https://daggerok.github.io/WisdomTree/) |
-| **Goldman Sachs** (48) | GSLC, GBIL, AAAU, GPIX, GPIQ, GSST | [am.gs.com fund finder](https://am.gs.com/en-us/individual/funds?locale=en-us&audience=individual&sf=funds&filters=funds%7CETF&limit=100) — [Goldman Sachs](https://daggerok.github.io/Goldman-Sachs/) |
+| **VanEck** (91) | GDX, SMH, MOAT, ESPO, ANGL, OIH, REMX | [vaneck.com ETF finder](https://www.vaneck.com/us/en/etf-mutual-fund-finder/) \| [VanEck](https://daggerok.github.io/VanEck/) |
+| **JPMorgan** (78) | JEPI, JEPQ, JPST, BBJP, JIRE, JGLO | [am.jpmorgan.com ETF explorer](https://am.jpmorgan.com/us/en/asset-management/adv/products/fund-explorer/etf) \| [JPMorgan](https://daggerok.github.io/JPMorgan/) |
+| **Schwab** (33) | SCHB, SCHX, SCHG, SCHV, SCHD, SCHM | [schwabassetmanagement.com](https://www.schwabassetmanagement.com/products) \| [Schwab](https://daggerok.github.io/Schwab/) |
+| **Invesco** (261) | QQQM, RSP, SPLV, SPHD, SPMO, QQQ | [invesco.com ETFs](https://www.invesco.com/us/en/financial-products/etfs.html) \| [Invesco](https://daggerok.github.io/Invesco/) |
+| **iShares** (480) | IVV, SGOV, DGRO, SOXX, IWM, EFA | [ishares.com](https://www.ishares.com/) \| [iShares](https://daggerok.github.io/iShares/) |
+| **Fidelity** (74) | FTEC, FDVV, FDIS, FCOM, FBND, FENI | [fidelity.com/etfs](https://www.fidelity.com/etfs) \| [Fidelity](https://daggerok.github.io/Fidelity/) |
+| **Amplify** (49) | DIVO, IDVO, SILJ, BLOK, IBUY | [amplifyetfs.com](https://amplifyetfs.com/) \| [Amplify](https://daggerok.github.io/Amplify/) |
+| **Vanguard** (116) | VTI, VOO, BND, VUG, VTV, VXUS | [investor.vanguard.com](https://investor.vanguard.com/etf/list) \| [Vanguard](https://daggerok.github.io/Vanguard/) |
+| **SPDR** (180) | SPY, SPYM, SPYG, XLK, XLF, XLV | [ssga.com fund finder](https://www.ssga.com/us/en/intermediary/etfs/fund-finder) \| [SPDR](https://daggerok.github.io/SPDR/) |
+| **WisdomTree** (94) | DGRW, USFR, WCLD, DXJ, DLN, DEM | [wisdomtree.com](https://www.wisdomtree.com/investments) \| [WisdomTree](https://daggerok.github.io/WisdomTree/) |
+| **Goldman Sachs** (48) | GSLC, GBIL, AAAU, GPIX, GPIQ, GSST | [am.gs.com fund finder](https://am.gs.com/en-us/individual/funds?locale=en-us&audience=individual&sf=funds&filters=funds%7CETF&limit=100) \| [Goldman Sachs](https://daggerok.github.io/Goldman-Sachs/) |
 
 ## Sibling applications
 
@@ -112,3 +112,5 @@ Verification before every publish: `bun install --frozen-lockfile`, `bun test`, 
 ## License
 
 [MIT — same as all sibling ETF repositories.](./LICENSE)
+
+SPDR® is a registered trademark of Standard & Poor's Financial Services LLC (S&P), licensed to S&P Dow Jones Indices LLC and sublicensed for certain purposes by State Street Global Advisors; State Street® is a trademark of State Street Corporation. The fund names/tickers referenced here are trademarks of their respective owners. This is an independent, unofficial tool; it is not affiliated with, endorsed by, or sponsored by State Street Global Advisors, State Street Corporation or S&P. All data is reproduced from SSGA's own public downloads for research purposes. All other trademarks, including index names, are the property of their respective owners.
