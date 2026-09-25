@@ -1,4 +1,5 @@
 #!/usr/bin/env bun
+import { hasOutputFilters, printConfig, printFilter, createReporter } from './update-output.ts';
 
 // SPDR (State Street Global Advisors) static data updater.
 // Fetches the public SPDR US ETF catalog, per-fund daily holdings XLSX,
@@ -1077,7 +1078,6 @@ async function processFund(
     const holdingsResponse = await fetchWithRetry(holdingsUrl, `[fetch  ] ${ticker} holdings`);
     if (holdingsResponse.status === 404) {
       // Commodity trusts (GLD, SLV, ...) do not publish a holdings spreadsheet.
-      console.log(`[fund   ] ${ticker.padEnd(8)} ${String(index + 1).padStart(3)}/${total} status=skipped reason=no holdings file`);
       return { ticker, status: 'skipped', reason: 'no holdings file', changed: false };
     }
     if (!holdingsResponse.ok) {
@@ -1151,11 +1151,11 @@ async function processFund(
       premiumDiscountHistory: premiumDiscountResult ? premiumDiscountResult.manifest : null,
     };
     const changed = await writeIfChanged(new URL('meta.json', fundDir), meta);
-    console.log(`[fund   ] ${ticker.padEnd(8)} ${String(index + 1).padStart(3)}/${total} status=${changed ? 'updated' : 'unchanged'}`);
+
     return { ticker, status: changed ? 'updated' : 'unchanged', changed };
   } catch (error) {
     const reason = error instanceof Error ? error.message : String(error);
-    console.error(`[fund   ] ${ticker.padEnd(8)} ${String(index + 1).padStart(3)}/${total} status=failed reason=${reason}`);
+
     return { ticker, status: 'failed', reason, changed: false };
   }
 }
@@ -1170,15 +1170,7 @@ async function main(): Promise<void> {
   requestSleepSeconds = config.requestSleep;
   maxRetriesConfig = config.maxRetries;
 
-  console.log(
-    `[config ] concurrency=%d sleep=%ss maxFetches=%s tickers=%d aum=%s ter=%s`,
-    config.concurrency,
-    config.requestSleep,
-    config.maxFetches || 'all',
-    config.tickers.length,
-    config.aumRange?.source ?? ':',
-    config.terRange ? `${config.terRange.min ?? ''}:${config.terRange.max ?? ''}` : ':',
-  );
+  printConfig('SPDR', config);
 
   const previousIndex: JsonRecord | null = await (async () => {
     try {
@@ -1229,7 +1221,7 @@ async function main(): Promise<void> {
   })();
 
   const eligible = catalog.filter((fund) => catalogFiltersPass(fund, config));
-  console.log(`[catalog] ${catalog.length} funds, ${eligible.length} eligible after catalog filters`);
+  printFilter(eligible.length, catalog.length, hasOutputFilters(config));
 
   // Bounded runs continue after the committed cursor (deterministic ticker order).
   const state = await readUpdateState();
@@ -1240,6 +1232,7 @@ async function main(): Promise<void> {
   }
   const batch = config.maxFetches > 0 ? ordered.slice(0, config.maxFetches) : ordered;
 
+  const output = createReporter(API_ROOT, batch.length);
   const results: FundResult[] = [];
   let cursorIndex = 0;
   async function worker(): Promise<void> {
@@ -1247,14 +1240,15 @@ async function main(): Promise<void> {
       const index = cursorIndex++;
       if (index >= batch.length) return;
       const fund = batch[index];
+      const before = await output.before(fund.ticker);
       if (!returnFiltersPass(fund, config)) {
-        console.log(`[fund   ] ${fund.ticker.padEnd(8)} ${String(index + 1).padStart(3)}/${batch.length} status=skipped reason=return filter`);
+        await output.result(fund.ticker, before, 'skipped', 'return filter');
         results.push({ ticker: fund.ticker, status: 'skipped', reason: 'return filter', changed: false });
         continue;
       }
-      results.push(
-        await processFund(fund, distributions.get(fund.ticker), productData.get(fund.ticker), config, index, batch.length),
-      );
+      const result = await processFund(fund, distributions.get(fund.ticker), productData.get(fund.ticker), config, index, batch.length);
+      results.push(result);
+      await output.result(fund.ticker, before, result.status === 'failed' || result.status === 'skipped' ? result.status : undefined, result.reason);
     }
   }
   await Promise.all(Array.from({ length: Math.max(1, config.concurrency) }, () => worker()));
