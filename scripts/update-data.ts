@@ -2,9 +2,11 @@
 
 // SPDR (State Street Global Advisors) static data updater.
 // Fetches the public SPDR US ETF catalog, per-fund daily holdings XLSX,
-// NAV history XLSX, and the latest dividend distribution, then writes a
-// deterministic, paginated static JSON API under ./api/spdr, following the
-// daggerok/iShares repository design (no dependencies, Bun only).
+// NAV history XLSX, daily Premium/Discount history XLSX, the latest dividend
+// distribution, and the bulk product-data XLSX (ISIN/CUSIP/SEC yield/Fund
+// Dividend Yield for the whole lineup), then writes a deterministic,
+// paginated static JSON API under ./api/spdr, following the daggerok/iShares
+// repository design (no dependencies, Bun only).
 
 /// <reference types="bun" />
 import { mkdir, readFile, writeFile, readdir, rm, appendFile } from 'node:fs/promises';
@@ -21,6 +23,7 @@ const FUND_FINDER_URL =
 const DISTRIBUTIONS_URL =
   'https://www.ssga.com/bin/v1/ssmp/fund/dividend-distribution?country=us&language=en&role=intermediary&product=etfs';
 const FUND_DATA_BASE = 'https://www.ssga.com/library-content/products/fund-data/etfs/us';
+const PRODUCT_DATA_URL = `${FUND_DATA_BASE}/spdr-product-data-us-en.xlsx`;
 const SSGA_SITE = 'https://www.ssga.com';
 
 const API_ROOT = new URL('../api/spdr/', import.meta.url);
@@ -50,6 +53,11 @@ function cleanText(raw: unknown): string {
     .replace(/\u2122/g, '') // ™
     .replace(/\s+/g, ' ')
     .trim();
+}
+
+function textOrNull(raw: unknown): string | null {
+  const text = cleanText(raw);
+  return text === '' || text === '-' ? null : text;
 }
 
 // "2.97057744E8" -> "297057744"; keeps non-numeric text untouched.
@@ -261,6 +269,9 @@ function printHelp(): void {
     '  - ETF catalog:     ssga.com fund finder (SPDR US ETFs)',
     '  - Daily holdings:  holdings-daily-us-en-{ticker}.xlsx',
     '  - NAV history:     navhist-us-en-{ticker}.xlsx',
+    '  - Premium/Discount history: pdhist-us-en-{ticker}.xlsx',
+    '  - Product data:    spdr-product-data-us-en.xlsx (ISIN/CUSIP/SEC yield/',
+    '                      Fund Dividend Yield, whole lineup, fetched once)',
     '  - Distributions:   latest dividend distribution per fund',
     '',
     'Environment variables (all optional; AND logic when combined):',
@@ -489,10 +500,18 @@ export type SheetTable = { headers: string[]; rows: string[][] };
  * followed by the real header row: the first row with 4+ non-empty cells that
  * contains "Name"+"Weight" (holdings) or "Date"+"NAV" (NAV history).
  */
-export function sheetToTable(rawRows: string[][], kind: 'holdings' | 'history'): { meta: JsonRecord; table: SheetTable } {
+export function sheetToTable(
+  rawRows: string[][],
+  kind: 'holdings' | 'history' | 'premium-discount',
+): { meta: JsonRecord; table: SheetTable } {
   const meta: JsonRecord = {};
   let headerIndex = rawRows.findIndex((row) => {
     const filled = row.filter((cell) => cell !== '').length;
+    if (kind === 'premium-discount') {
+      // pdhist workbooks only have a 2-column header (Date, Premium/Discount).
+      const flat = row.map((cell) => cell.toLowerCase());
+      return filled >= 2 && flat.includes('date') && flat.includes('premium/discount');
+    }
     if (filled < 4) return false;
     const flat = row.map((cell) => cell.toLowerCase());
     if (kind === 'holdings') return flat.includes('name') && flat.includes('weight');
@@ -520,6 +539,84 @@ export function sheetToTable(rawRows: string[][], kind: 'holdings' | 'history'):
     rows.push(cells.map((cell) => normalizeNumberText(cell)));
   }
   return { meta, table: { headers, rows } };
+}
+
+// ---------------------------------------------------------------------------
+// Bulk product-data workbook (official ISIN/CUSIP/SEC yield/dividend yield)
+// ---------------------------------------------------------------------------
+
+export type ProductDataRow = {
+  isin: string | null;
+  cusip: string | null;
+  netExpenseRatio: { display: string | null; value: number | null };
+  secYield: { display: string | null; value: number | null };
+  secYieldUnsubsidized: { display: string | null; value: number | null };
+  fundDividendYield: { display: string | null; value: number | null };
+  indexDividendYield: { display: string | null; value: number | null };
+};
+
+const PRODUCT_DATA_PERIOD_LABELS = /^(1 month|qtd|1 year|3 year|5 year|10 year|since inception)$/i;
+
+/**
+ * Parses `spdr-product-data-us-en.xlsx` (one row per SPDR ETF, whole lineup
+ * in a single file) into a per-ticker lookup. This is the official SSGA
+ * source for fields the fund finder/holdings/navhist feeds do not carry:
+ * ISIN, CUSIP, Net Expense Ratio (fee waivers), 30-Day SEC Yield (subsidized
+ * and unsubsidized) and Fund Dividend Yield.
+ *
+ * Its "Total Returns" block was checked against the fund finder feed: the
+ * "(Cumulative)" columns stop at YTD and the "(Annualized)" 1Y/3Y/5Y/10Y/SI
+ * columns are numerically identical to fund finder's yr1/yr3/yr5/yr10/
+ * sinceInception. So this workbook carries no independent *cumulative*
+ * multi-year total return that fund finder doesn't already have, and those
+ * columns are intentionally not consumed here (see deriveCatalogMetrics for
+ * the derived TR nY fallback that remains necessary for those tenors).
+ */
+export function parseProductDataSheet(bytes: Uint8Array): Map<string, ProductDataRow> {
+  const rows = parseXlsxSheet(bytes, loadSharedStrings(bytes));
+  const headerIndex = rows.findIndex((row) => {
+    const flat = row.map((cell) => cell.toLowerCase());
+    return flat.includes('ticker') && flat.includes('isin');
+  });
+  if (headerIndex === -1) throw new Error('product data: header row not found');
+  // Some labels carry a footnote marker, e.g. "* Net Expense Ratio".
+  const headers = rows[headerIndex].map((cell) => cleanText(cell).replace(/^\*+\s*/, ''));
+  const columnIndex = (name: string): number =>
+    headers.findIndex((header) => header.toLowerCase() === name.toLowerCase());
+  const tickerIdx = columnIndex('Ticker');
+  const isinIdx = columnIndex('ISIN');
+  const cusipIdx = columnIndex('CUSIP');
+  const netTerIdx = columnIndex('Net Expense Ratio');
+  const secYieldIdx = columnIndex('30 Day SEC Yield');
+  const secYieldUnsubIdx = columnIndex('30 Day SEC Yield (Unsubsidized)');
+  const fundDivYieldIdx = columnIndex('Fund Dividend Yield');
+  const indexDivYieldIdx = columnIndex('Index Dividend Yield');
+  if (tickerIdx === -1) throw new Error('product data: Ticker column not found');
+
+  // The "Total Returns" header spans a merged block whose period labels
+  // ("1 Month", "QTD", ...) live in the row right below the header row; skip
+  // it so it isn't mistaken for a data row.
+  let dataStart = headerIndex + 1;
+  const next = rows[dataStart] || [];
+  if (next.some((cell) => PRODUCT_DATA_PERIOD_LABELS.test(cleanText(cell)))) dataStart += 1;
+
+  const map = new Map<string, ProductDataRow>();
+  for (let i = dataStart; i < rows.length; i += 1) {
+    const row = rows[i];
+    if (!row || row.filter((cell) => cell !== '').length < 2) continue;
+    const ticker = sanitizeTicker(row[tickerIdx]);
+    if (!ticker) continue;
+    map.set(ticker, {
+      isin: textOrNull(row[isinIdx]),
+      cusip: textOrNull(row[cusipIdx]),
+      netExpenseRatio: pairValue(row[netTerIdx]),
+      secYield: pairValue(row[secYieldIdx]),
+      secYieldUnsubsidized: pairValue(row[secYieldUnsubIdx]),
+      fundDividendYield: pairValue(row[fundDivYieldIdx]),
+      indexDividendYield: pairValue(row[indexDivYieldIdx]),
+    });
+  }
+  return map;
 }
 
 // ---------------------------------------------------------------------------
@@ -555,11 +652,17 @@ type CatalogFund = {
 // SSGA's fund finder publishes *annualized* multi-year returns ("Annualized"
 // per its own label metadata) plus cumulative YTD. daggerok/Amplify and
 // daggerok/iShares show both cumulative total returns (TR nY) and annualized
-// CAGRs, so CAGR comes straight from SSGA's yrN figures and TR nY is derived
-// as (1 + cagr)^n - 1 (the exact inverse of annualizing a cumulative return).
-// SSGA publishes no SEC 30-day yield -> rendered as "—" (documented limitation).
-// Dividend Yield is an *indicated* yield: latest distribution x payments per
-// year / NAV (SSGA publishes no trailing-12M distribution history per fund).
+// CAGRs, so CAGR comes straight from SSGA's yrN figures. SSGA's bulk
+// spdr-product-data-us-en.xlsx was checked and does not add an independent
+// cumulative figure for these tenors either (its "(Annualized)" columns are
+// identical to fund finder's yrN CAGRs), so TR nY remains **derived**:
+// (1 + cagr)^n - 1 (the exact inverse of annualizing a cumulative return).
+//
+// SSGA *does* publish a 30-day SEC yield (subsidized and unsubsidized) and an
+// official "Fund Dividend Yield" for SPDR ETFs, in spdr-product-data-us-en.xlsx
+// (parseProductDataSheet). Both are used directly when present. Dividend
+// Yield only falls back to an *indicated* yield (latest distribution x
+// payments per year / NAV) for the rare fund missing from that bulk file.
 // ---------------------------------------------------------------------------
 
 const DISTRIBUTIONS_PER_YEAR: Record<string, number> = {
@@ -598,6 +701,7 @@ export function deriveCatalogMetrics(
   monthEnd: JsonRecord,
   navValue: number | null,
   distribution: { frequency?: string | null; exDate?: string | null; dividend?: string | null } | null | undefined,
+  productData?: ProductDataRow | null,
 ): JsonRecord {
   const numberOrNull = (value: unknown): number | null =>
     typeof value === 'number' && Number.isFinite(value) ? value : null;
@@ -606,9 +710,16 @@ export function deriveCatalogMetrics(
   const cagr5 = numberOrNull(monthEnd.yr5);
   const cagr10 = numberOrNull(monthEnd.yr10);
   const siAnn = numberOrNull(monthEnd.sinceInception);
-  const dividendYield = indicatedYield(distribution, navValue);
+  const indicatedDividendYield = indicatedYield(distribution, navValue);
+  const officialDividendYield = productData?.fundDividendYield?.value ?? null;
+  const dividendYieldIsOfficial = officialDividendYield !== null;
+  const dividendYield = dividendYieldIsOfficial ? officialDividendYield : indicatedDividendYield;
+  const secYield = productData?.secYield?.value ?? null;
+  const secYieldUnsubsidized = productData?.secYieldUnsubsidized?.value ?? null;
   const metrics: JsonRecord = {
     // Cumulative total returns (TR nY). SSGA's 1Y annualized equals the 1Y total.
+    // TR 3Y/5Y/10Y are **derived** — no official cumulative figure for these
+    // tenors exists in any published SSGA feed (see the comment block above).
     tr1y: cagr1,
     tr3y: annualizedToTotal(cagr3, 3),
     tr5y: annualizedToTotal(cagr5, 5),
@@ -618,15 +729,26 @@ export function deriveCatalogMetrics(
     cagr5y: cagr5,
     cagr10y: cagr10,
     siAnn,
-    // Indicated dividend yield (latest distribution x frequency / NAV); no trailing-12M feed.
+    // Dividend Yield: SSGA's own official "Fund Dividend Yield" (bulk product
+    // data file) when present; falls back to an indicated yield (latest
+    // distribution x payments per year / NAV) only for funds missing from
+    // that file.
     dividendYield,
-    // SSGA does not publish a 30-day SEC yield for SPDR ETFs.
-    secYield: null,
+    dividendYieldSource: dividendYieldIsOfficial ? 'official' : indicatedDividendYield !== null ? 'indicated' : null,
+    indicatedDividendYield,
+    // 30-Day SEC Yield (subsidized + unsubsidized): SSGA does publish this,
+    // in the bulk product-data file.
+    secYield,
+    secYieldUnsubsidized,
   };
-  for (const key of ['tr1y', 'tr3y', 'tr5y', 'tr10y', 'cagr3y', 'cagr5y', 'cagr10y', 'siAnn', 'dividendYield']) {
+  for (const key of ['tr1y', 'tr3y', 'tr5y', 'tr10y', 'cagr3y', 'cagr5y', 'cagr10y', 'siAnn', 'indicatedDividendYield']) {
     metrics[`${key}Text`] = percentText(metrics[key] as number | null);
   }
-  metrics.secYieldText = null;
+  metrics.dividendYieldText = dividendYieldIsOfficial
+    ? productData?.fundDividendYield?.display ?? percentText(dividendYield)
+    : percentText(dividendYield);
+  metrics.secYieldText = productData?.secYield?.display ?? percentText(secYield);
+  metrics.secYieldUnsubsidizedText = productData?.secYieldUnsubsidized?.display ?? percentText(secYieldUnsubsidized);
   return metrics;
 }
 
@@ -805,7 +927,7 @@ type PageManifest = { totalRows: number; pageSize: number; pageCount: number; pa
 
 async function writePages(
   fundDir: URL,
-  kind: 'holdings' | 'history',
+  kind: 'holdings' | 'history' | 'premium-discount',
   table: SheetTable,
   ticker: string,
   asOfDate: string | undefined,
@@ -834,7 +956,11 @@ async function writePages(
   };
 }
 
-async function removeStalePages(fundDir: URL, kind: 'holdings' | 'history', kept: Set<string>): Promise<void> {
+async function removeStalePages(
+  fundDir: URL,
+  kind: 'holdings' | 'history' | 'premium-discount',
+  kept: Set<string>,
+): Promise<void> {
   const dirPath = decodeURIComponent(new URL(`${kind}/`, fundDir).pathname);
   let entries: string[] = [];
   try {
@@ -936,6 +1062,7 @@ function distributionsWorksheet(distribution: JsonRecord | undefined): { headers
 async function processFund(
   fund: CatalogFund,
   distribution: JsonRecord | undefined,
+  productData: ProductDataRow | undefined,
   config: UpdaterConfig,
   index: number,
   total: number,
@@ -945,6 +1072,7 @@ async function processFund(
   try {
     const holdingsUrl = `${FUND_DATA_BASE}/holdings-daily-us-en-${ticker.toLowerCase()}.xlsx`;
     const historyUrl = `${FUND_DATA_BASE}/navhist-us-en-${ticker.toLowerCase()}.xlsx`;
+    const pdHistUrl = `${FUND_DATA_BASE}/pdhist-us-en-${ticker.toLowerCase()}.xlsx`;
 
     const holdingsResponse = await fetchWithRetry(holdingsUrl, `[fetch  ] ${ticker} holdings`);
     if (holdingsResponse.status === 404) {
@@ -961,11 +1089,34 @@ async function processFund(
     const history = await fetchXlsx(historyUrl, `[fetch  ] ${ticker} navhist`);
     const historyTable = sheetToTable(history.rows, 'history');
 
+    // Not every fund publishes a daily Premium/Discount history workbook.
+    const pdHistResponse = await fetchWithRetry(pdHistUrl, `[fetch  ] ${ticker} pdhist`);
+    let pdHistBytes: Uint8Array | null = null;
+    let premiumDiscountResult: { manifest: PageManifest; kept: Set<string> } | null = null;
+    if (pdHistResponse.status === 404) {
+      // no-op: leave premiumDiscountResult null.
+    } else if (!pdHistResponse.ok) {
+      throw new Error(`pdhist: ${pdHistResponse.status} ${pdHistResponse.statusText}`);
+    } else {
+      pdHistBytes = new Uint8Array(await pdHistResponse.arrayBuffer());
+      const pdTable = sheetToTable(parseXlsxSheet(pdHistBytes, loadSharedStrings(pdHistBytes)), 'premium-discount');
+      premiumDiscountResult = await writePages(
+        fundDir,
+        'premium-discount',
+        pdTable.table,
+        ticker,
+        pdTable.table.rows[0]?.[0],
+        config.historyPageSize,
+      );
+      await removeStalePages(fundDir, 'premium-discount', premiumDiscountResult.kept);
+    }
+
     if (config.storeRawDownloads) {
       const rawDir = new URL('raw/', API_ROOT).pathname;
       await mkdir(rawDir, { recursive: true });
       await writeFile(`${rawDir}${ticker}-holdings.xlsx`, holdingsBytes);
       await writeFile(`${rawDir}${ticker}-navhist.xlsx`, history.bytes);
+      if (pdHistBytes) await writeFile(`${rawDir}${ticker}-pdhist.xlsx`, pdHistBytes);
     }
 
     const holdingsResult = await writePages(fundDir, 'holdings', holdings.table, ticker, holdings.meta.asOfDate, config.holdingsPageSize);
@@ -977,21 +1128,27 @@ async function processFund(
       ticker,
       name: fund.name,
       category: fund.category,
+      identifiers: { isin: productData?.isin ?? null, cusip: productData?.cusip ?? null },
       source: {
         fundPage: fund.fundPage,
         holdingsDownload: holdingsUrl,
         navDownload: historyUrl,
+        premiumDiscountDownload: pdHistUrl,
+        productDataDownload: PRODUCT_DATA_URL,
         factsheet: fund.factsheetUrl,
       },
       expenseRatio: { display: fund.ter, value: fund.terValue },
+      netExpenseRatio: productData?.netExpenseRatio ?? { display: null, value: null },
       nav: { display: fund.nav, value: fund.navValue, asOfDate: fund.asOfDate },
       aum: { display: fund.aum, value: fund.aumValue, asOfDate: fund.asOfDate },
       pricing: { exchange: fund.exchange, closePrice: fund.closePrice, premiumDiscount: fund.premiumDiscount },
       inceptionDate: fund.inceptionDate,
       returns: { monthEnd: fund.monthEnd, quarterEnd: fund.quarterEnd },
+      metrics: deriveCatalogMetrics(fund.monthEnd, fund.navValue, distribution, productData),
       distributions: distributionsWorksheet(distribution),
       holdings: holdingsResult.manifest,
       history: historyResult.manifest,
+      premiumDiscountHistory: premiumDiscountResult ? premiumDiscountResult.manifest : null,
     };
     const changed = await writeIfChanged(new URL('meta.json', fundDir), meta);
     console.log(`[fund   ] ${ticker.padEnd(8)} ${String(index + 1).padStart(3)}/${total} status=${changed ? 'updated' : 'unchanged'}`);
@@ -1052,6 +1209,25 @@ async function main(): Promise<void> {
     }
   })();
 
+  // Bulk product-data workbook: official ISIN/CUSIP/SEC yield/dividend yield
+  // for the whole lineup in one file (see parseProductDataSheet).
+  const productData = await (async () => {
+    try {
+      const response = await fetchWithRetry(PRODUCT_DATA_URL, '[catalog] product-data');
+      if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+      const bytes = new Uint8Array(await response.arrayBuffer());
+      if (config.storeRawDownloads) {
+        const rawDir = new URL('raw/', API_ROOT).pathname;
+        await mkdir(rawDir, { recursive: true });
+        await writeFile(`${rawDir}product-data.xlsx`, bytes);
+      }
+      return parseProductDataSheet(bytes);
+    } catch (error) {
+      console.warn(`[catalog] product-data failed (${(error as Error).message}); continuing without it`);
+      return new Map<string, ProductDataRow>();
+    }
+  })();
+
   const eligible = catalog.filter((fund) => catalogFiltersPass(fund, config));
   console.log(`[catalog] ${catalog.length} funds, ${eligible.length} eligible after catalog filters`);
 
@@ -1076,20 +1252,26 @@ async function main(): Promise<void> {
         results.push({ ticker: fund.ticker, status: 'skipped', reason: 'return filter', changed: false });
         continue;
       }
-      results.push(await processFund(fund, distributions.get(fund.ticker), config, index, batch.length));
+      results.push(
+        await processFund(fund, distributions.get(fund.ticker), productData.get(fund.ticker), config, index, batch.length),
+      );
     }
   }
   await Promise.all(Array.from({ length: Math.max(1, config.concurrency) }, () => worker()));
 
   // Live counts from disk for processed funds; previous counts otherwise.
-  const counts = new Map<string, { holdings: number; history: number }>();
+  const counts = new Map<string, { holdings: number; history: number; premiumDiscount: number }>();
   for (const result of results) {
     if (result.status === 'failed' || result.status === 'skipped') continue;
     try {
       const meta = JSON.parse(
         await readFile(decodeURIComponent(new URL(`funds/${result.ticker}/meta.json`, API_ROOT).pathname), 'utf8'),
       );
-      counts.set(result.ticker, { holdings: meta.holdings?.totalRows ?? 0, history: meta.history?.totalRows ?? 0 });
+      counts.set(result.ticker, {
+        holdings: meta.holdings?.totalRows ?? 0,
+        history: meta.history?.totalRows ?? 0,
+        premiumDiscount: meta.premiumDiscountHistory?.totalRows ?? 0,
+      });
     } catch {
       // Keep previous counts.
     }
@@ -1099,14 +1281,18 @@ async function main(): Promise<void> {
     const previous = previousIndex?.funds?.find((entry: JsonRecord) => entry.ticker === fund.ticker) || {};
     const live = counts.get(fund.ticker);
     const distribution = distributions.get(fund.ticker);
+    const productRow = productData.get(fund.ticker);
     return {
       ticker: fund.ticker,
       name: fund.name,
       category: fund.category,
       fundPage: fund.fundPage,
       dataFile: `./funds/${fund.ticker}/meta.json`,
+      isin: productRow?.isin ?? previous.isin ?? null,
+      cusip: productRow?.cusip ?? previous.cusip ?? null,
       ter: fund.ter,
       terValue: fund.terValue,
+      netExpenseRatio: productRow?.netExpenseRatio ?? previous.netExpenseRatio ?? null,
       nav: fund.nav,
       navValue: fund.navValue,
       aum: fund.aum,
@@ -1121,21 +1307,29 @@ async function main(): Promise<void> {
       distributions: distribution
         ? { frequency: distribution.frequency, exDate: distribution.exDate, dividend: distribution.dividend }
         : null,
-      metrics: deriveCatalogMetrics(fund.monthEnd, fund.navValue, distribution),
+      metrics: deriveCatalogMetrics(fund.monthEnd, fund.navValue, distribution, productRow),
       returns: { monthEnd: fund.monthEnd, quarterEnd: fund.quarterEnd },
       holdings: live?.holdings ?? previous.holdings ?? 0,
       history: live?.history ?? previous.history ?? 0,
+      premiumDiscountHistory: live?.premiumDiscount ?? previous.premiumDiscountHistory ?? 0,
     };
   });
 
   const anyChanged = results.some((result) => result.changed);
   const indexPayload = {
     generatedAt: anyChanged ? new Date().toISOString() : previousIndex?.generatedAt || new Date().toISOString(),
-    source: { provider: 'SSGA / State Street (SPDR)', market: 'us', site: SSGA_SITE, catalog: FUND_FINDER_URL },
+    source: {
+      provider: 'SSGA / State Street (SPDR)',
+      market: 'us',
+      site: SSGA_SITE,
+      catalog: FUND_FINDER_URL,
+      productData: PRODUCT_DATA_URL,
+    },
     counts: {
       funds: indexFunds.length,
       holdings: indexFunds.reduce((sum, fund) => sum + (fund.holdings || 0), 0),
       history: indexFunds.reduce((sum, fund) => sum + (fund.history || 0), 0),
+      premiumDiscountHistory: indexFunds.reduce((sum, fund) => sum + (fund.premiumDiscountHistory || 0), 0),
     },
     funds: indexFunds,
   };

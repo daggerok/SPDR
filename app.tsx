@@ -25,6 +25,8 @@ type IndexFund = {
   category: string;
   fundPage: string;
   dataFile: string;
+  isin: string | null;
+  cusip: string | null;
   ter: string;
   terValue: number;
   nav: string;
@@ -49,7 +51,9 @@ type IndexFund = {
     siAnn?: number | null;
     dividendYield?: number | null;
     dividendYieldText?: string | null;
+    dividendYieldSource?: 'official' | 'indicated' | null;
     secYield?: number | null;
+    secYieldUnsubsidized?: number | null;
   };
   holdings: number;
   history: number;
@@ -60,6 +64,8 @@ type FundRow = TableRow & {
   name: string;
   category: string;
   fundPage: string;
+  isin?: string | null;
+  cusip?: string | null;
   ter: string;
   terValue: number;
   nav: string;
@@ -150,9 +156,9 @@ const COLUMN_TOOLTIPS: Record<string, string> = {
   ETFs: 'Selected ETFs holding this security.',
   Type: 'Asset Class — SSGA asset-class grouping (Equity, Fixed Income Sector, ...). Same source as the category tabs.',
   Expense: 'Gross Expense Ratio — Total annual fund operating expenses as a % of assets.',
-  'Dividend Yield': 'Dividend Yield (indicated) — Latest distribution per share x payments per year divided by NAV. SSGA publishes no trailing-12-month distribution history per fund, so this is an indicated yield, not a trailing yield.',
+  'Dividend Yield': 'Dividend Yield — SSGA\'s own official Fund Dividend Yield from its bulk product-data file when available; falls back to an indicated yield (latest distribution per share x payments per year divided by NAV) only for a fund missing from that file.',
   Frequency: 'Frequency — sortable payment cadence from the SSGA dividend distribution feed: 01 - Monthly, 04 - Quarterly, 06 - Semi-annually, 12 - Annually; 00 denotes unavailable/unknown and 99 denotes irregular.',
-  'SEC Yield': 'SEC Yield (30-Day) — Not published by SSGA for SPDR ETFs; shown as "—" (data limitation).',
+  'SEC Yield': 'SEC Yield (30-Day) — SSGA\'s official subsidized 30-day SEC yield, from its bulk product-data file. Shown as "—" only for a fund missing from that file.',
   'YTD Return': 'YTD Return — Cumulative NAV total return since the start of the year, SSGA "Month End" series.',
   'TR 1Y': 'TR 1Y (1-Year Total Return) — NAV total return over the past year, including reinvested distributions.',
   'TR 3Y': 'TR 3Y (3-Year Total Return) — Cumulative NAV total return over 3 years. Derived exactly from SSGA\'s annualized figure: (1 + CAGR 3Y)^3 - 1.',
@@ -446,7 +452,8 @@ function normalizeFundRow(fund: IndexFund): FundRow {
     cagr10y: metrics.cagr10y ?? monthEnd.yr10 ?? null,
     dividendYield: metrics.dividendYield ?? null,
     dividendFrequency: formatDividendFrequency(fund.distributions && fund.distributions.frequency ? fund.distributions.frequency : '—'),
-    secYield: null, // SSGA publishes no 30-day SEC yield for SPDR ETFs.
+    // Official SSGA 30-day SEC yield, from the bulk product-data workbook (spdr-product-data-us-en.xlsx).
+    secYield: metrics.secYield ?? null,
     returnAsOf: monthEnd.asOfDate ?? null,
     searchIndex: '',
   };
@@ -1237,7 +1244,7 @@ function renderFundsTable(): void {
           <td class="py-2.5 px-4 text-right font-mono text-slate-700 dark:text-slate-300">${formatMoney(fund.aumValue)}</td>
           <td class="py-2.5 px-4 text-right font-mono text-slate-700 dark:text-slate-300">${escapeHtml(fund.ter || '—')}</td>
           <td class="py-2.5 px-4 text-right font-mono text-slate-700 dark:text-slate-300">${formatPercent(fund.dividendYield)}</td>
-          <td class="py-2.5 px-4 text-right font-mono text-slate-700 dark:text-slate-300">—</td>
+          <td class="py-2.5 px-4 text-right font-mono text-slate-700 dark:text-slate-300">${formatPercent(fund.secYield)}</td>
           <td class="py-2.5 px-4 text-slate-700 dark:text-slate-300">${escapeHtml(fund.dividendFrequency || '—')}</td>
           <td class="py-2.5 px-4 text-right font-mono text-slate-700 dark:text-slate-300">${formatPercent(fund.ytd)}</td>
           <td class="py-2.5 px-4 text-right font-mono text-slate-700 dark:text-slate-300">${formatPercent(fund.yr1)}</td>
@@ -1634,7 +1641,10 @@ function renderOverviewTable(fund: FundRow): void {
     { section: 'Fund', metric: 'Exchange', value: fund.exchange },
     { section: 'Fund', metric: 'Fund Page', value: fund.fundPage },
     { section: 'Fund', metric: 'Factsheet', value: meta && meta.source ? meta.source.factsheet : null },
+    { section: 'Fund', metric: 'ISIN', value: fund.isin ?? (meta && meta.identifiers ? meta.identifiers.isin : null) },
+    { section: 'Fund', metric: 'CUSIP', value: fund.cusip ?? (meta && meta.identifiers ? meta.identifiers.cusip : null) },
     { section: 'Cost', metric: 'TER (Gross Expense Ratio)', value: fund.ter },
+    { section: 'Cost', metric: 'Net Expense Ratio', value: meta && meta.netExpenseRatio ? meta.netExpenseRatio.display : null },
     { section: 'Price', metric: 'NAV', value: fund.nav },
     { section: 'Price', metric: 'Close Price', value: fund.closePrice },
     { section: 'Price', metric: 'Premium / Discount', value: fund.premiumDiscount },
@@ -1658,8 +1668,8 @@ function renderOverviewTable(fund: FundRow): void {
     { section: 'Distributions', metric: 'Frequency', value: fund.distributions ? fund.distributions.frequency : null },
     { section: 'Distributions', metric: 'Ex-Date', value: fund.distributions ? fund.distributions.exDate : null },
     { section: 'Distributions', metric: 'Latest Dividend', value: fund.distributions ? fund.distributions.dividend : null },
-    { section: 'Distributions', metric: 'Dividend Yield (indicated)', value: fund.dividendYield === null || fund.dividendYield === undefined ? null : `${fund.dividendYield.toFixed(2)}% (latest distribution x frequency / NAV)` },
-    { section: 'Distributions', metric: 'SEC Yield (30-day)', value: 'not published by SSGA for SPDR ETFs' },
+    { section: 'Distributions', metric: 'Dividend Yield', value: fund.dividendYield === null || fund.dividendYield === undefined ? null : `${fund.dividendYield.toFixed(2)}%${meta && meta.metrics && meta.metrics.dividendYieldSource === 'indicated' ? ' (indicated: latest distribution x frequency / NAV)' : ' (official, SSGA Fund Dividend Yield)'}` },
+    { section: 'Distributions', metric: 'SEC Yield (30-day)', value: fund.secYield === null || fund.secYield === undefined ? null : `${fund.secYield.toFixed(2)}%` },
     { section: 'Holdings', metric: 'Holdings Rows', value: fund.holdings },
     { section: 'Holdings', metric: 'Holdings As Of', value: meta && meta.holdings ? meta.holdings.asOfDate : null },
     { section: 'Holdings', metric: 'History Rows', value: fund.history },
@@ -2076,7 +2086,7 @@ function currentExportRows(): { headers: string[]; rows: string[][]; scope: stri
       numberCell(fund.aumValue),
       numberCell(fund.terValue),
       numberCell(fund.dividendYield),
-      numberCell(null), // SEC yield: not published by SSGA
+      numberCell(fund.secYield),
       fund.dividendFrequency || '',
       numberCell(fund.ytd),
       numberCell(fund.yr1),

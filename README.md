@@ -1,6 +1,6 @@
 # SPDR
 
-SPDR ETF holdings to Watchlist. A single-file client-side tool that reads the generated `./api/spdr` static feed (SSGA daily holdings XLSX, NAV history XLSX, distributions) into a searchable ETF/asset-class catalog with per-fund tabs, watchlist aggregation, ticker copy and CSV/TXT export — the same look, feel, columns and business logic as the sibling applications.
+SPDR ETF holdings to Watchlist. A single-file client-side tool that reads the generated `./api/spdr` static feed (SSGA daily holdings XLSX, NAV history XLSX, daily premium/discount history XLSX, the bulk product-data XLSX for ISIN/CUSIP/official SEC and dividend yield, distributions) into a searchable ETF/asset-class catalog with per-fund tabs, watchlist aggregation, ticker copy and CSV/TXT export — the same look, feel, columns and business logic as the sibling applications.
 
 ## Using Bun
 
@@ -32,6 +32,8 @@ The **Update SPDR ETF data** GitHub Actions workflow exposes the same settings a
 | Catalog (all US SPDR ETFs) | `https://www.ssga.com/us/en/intermediary/etfs/fund-finder` (SSGA fund finder JSON) |
 | Holdings per fund | `https://www.ssga.com/us/en/intermediary/etfs/library-content/products/fund-data/etfs/us/holdings-daily-us-{TICKER}.xlsx` (per-fund holdings XLSX) |
 | Daily history, distributions | `https://www.ssga.com/us/en/intermediary/etfs/library-content/products/fund-data/etfs/us/navhistory-daily-us-{TICKER}.xlsx` (NAV history XLSX) |
+| Daily Premium/Discount history | `ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-{TICKER}.xlsx` |
+| ISIN, CUSIP, official 30-Day SEC Yield (subsidized/unsubsidized), official Fund Dividend Yield (whole lineup, one fetch per run) | `ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx` |
 | Fallback | Previously published `api/spdr/index.json` |
 
 Each fund carries a derived `metrics` object that powers the catalog columns shared with the sibling sites:
