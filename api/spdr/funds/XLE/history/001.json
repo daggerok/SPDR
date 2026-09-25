@@ -2,7 +2,7 @@
   "ticker": "XLE",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 5742,
+  "totalRows": 5743,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "24-Sep-2026",
+      "NAV": "62.618944",
+      "Shares Outstanding": "646548400",
+      "Total Net Assets": "40486178216.1"
+    },
     {
       "Date": "23-Sep-2026",
       "NAV": "62.367902",
@@ -6003,12 +6009,6 @@
       "NAV": "72.58107",
       "Shares Outstanding": "468924200",
       "Total Net Assets": "34035020323.98"
-    },
-    {
-      "Date": "28-Sep-2022",
-      "NAV": "72.709608",
-      "Shares Outstanding": "465324200",
-      "Total Net Assets": "33833540159.96"
     }
   ]
 }

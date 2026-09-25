@@ -2,7 +2,7 @@
   "ticker": "SPBO",
   "page": 3,
   "pageSize": 1000,
-  "totalRows": 3892,
+  "totalRows": 3893,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "08-Oct-2018",
+      "NAV": "30.503145",
+      "Shares Outstanding": "1400000",
+      "Total Net Assets": "42704402.73"
+    },
     {
       "Date": "05-Oct-2018",
       "NAV": "30.499988",
@@ -6003,12 +6009,6 @@
       "NAV": "32.455198",
       "Shares Outstanding": "500000",
       "Total Net Assets": "16227599.15"
-    },
-    {
-      "Date": "17-Oct-2014",
-      "NAV": "32.427138",
-      "Shares Outstanding": "500000",
-      "Total Net Assets": "16213569.24"
     }
   ]
 }

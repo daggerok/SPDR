@@ -2,7 +2,7 @@
   "ticker": "STOT",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 2627,
+  "totalRows": 2628,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "24-Sep-2026",
+      "NAV": "46.332861",
+      "Shares Outstanding": "11450000",
+      "Total Net Assets": "530511258.41"
+    },
     {
       "Date": "23-Sep-2026",
       "NAV": "46.367168",
@@ -6003,12 +6009,6 @@
       "NAV": "46.105667",
       "Shares Outstanding": "2800000",
       "Total Net Assets": "129095868.41"
-    },
-    {
-      "Date": "28-Sep-2022",
-      "NAV": "46.187326",
-      "Shares Outstanding": "2800000",
-      "Total Net Assets": "129324511.79"
     }
   ]
 }

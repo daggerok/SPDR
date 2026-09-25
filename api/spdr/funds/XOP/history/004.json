@@ -2,7 +2,7 @@
   "ticker": "XOP",
   "page": 4,
   "pageSize": 1000,
-  "totalRows": 5101,
+  "totalRows": 5102,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "17-Oct-2014",
+      "NAV": "57.833551",
+      "Shares Outstanding": "26600000",
+      "Total Net Assets": "1538372464.24"
+    },
     {
       "Date": "16-Oct-2014",
       "NAV": "59.303803",
@@ -6003,12 +6009,6 @@
       "NAV": "45.080979",
       "Shares Outstanding": "10750000",
       "Total Net Assets": "484620519.03"
-    },
-    {
-      "Date": "01-Nov-2010",
-      "NAV": "44.484278",
-      "Shares Outstanding": "11050000",
-      "Total Net Assets": "491551268.82"
     }
   ]
 }

@@ -2,7 +2,7 @@
   "ticker": "SPTM",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 6523,
+  "totalRows": 6524,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "24-Sep-2026",
+      "NAV": "92.716641",
+      "Shares Outstanding": "152400216",
+      "Total Net Assets": "14130036100.67"
+    },
     {
       "Date": "23-Sep-2026",
       "NAV": "92.763539",
@@ -6003,12 +6009,6 @@
       "NAV": "44.699883",
       "Shares Outstanding": "115600216",
       "Total Net Assets": "5167316115.78"
-    },
-    {
-      "Date": "28-Sep-2022",
-      "NAV": "45.654084",
-      "Shares Outstanding": "115400216",
-      "Total Net Assets": "5268491143.75"
     }
   ]
 }

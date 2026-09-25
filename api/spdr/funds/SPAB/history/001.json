@@ -2,7 +2,7 @@
   "ticker": "SPAB",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 4864,
+  "totalRows": 4865,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "24-Sep-2026",
+      "NAV": "24.464219",
+      "Shares Outstanding": "402600264",
+      "Total Net Assets": "9849301178.29"
+    },
     {
       "Date": "23-Sep-2026",
       "NAV": "24.585722",
@@ -6003,12 +6009,6 @@
       "NAV": "25.021751",
       "Shares Outstanding": "238500264",
       "Total Net Assets": "5967694313.75"
-    },
-    {
-      "Date": "28-Sep-2022",
-      "NAV": "25.145972",
-      "Shares Outstanding": "238400264",
-      "Total Net Assets": "5994806469.06"
     }
   ]
 }

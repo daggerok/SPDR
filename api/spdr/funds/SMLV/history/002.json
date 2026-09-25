@@ -2,7 +2,7 @@
   "ticker": "SMLV",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 3420,
+  "totalRows": 3421,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "28-Sep-2022",
+      "NAV": "101.081023",
+      "Shares Outstanding": "1810000",
+      "Total Net Assets": "182956652.19"
+    },
     {
       "Date": "27-Sep-2022",
       "NAV": "99.191723",
@@ -6003,12 +6009,6 @@
       "NAV": "94.616976",
       "Shares Outstanding": "2050000",
       "Total Net Assets": "193964800.14"
-    },
-    {
-      "Date": "08-Oct-2018",
-      "NAV": "94.703766",
-      "Shares Outstanding": "2050000",
-      "Total Net Assets": "194142721.17"
     }
   ]
 }

@@ -2,7 +2,7 @@
   "ticker": "MYML",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 2,
+  "totalRows": 3,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "24-Sep-2026",
+      "NAV": "24.803826",
+      "Shares Outstanding": "200000",
+      "Total Net Assets": "4960765.22"
+    },
     {
       "Date": "23-Sep-2026",
       "NAV": "24.921629",

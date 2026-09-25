@@ -2,7 +2,7 @@
   "ticker": "XME",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 5101,
+  "totalRows": 5102,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "24-Sep-2026",
+      "NAV": "107.959764",
+      "Shares Outstanding": "39850230",
+      "Total Net Assets": "4302221415.21"
+    },
     {
       "Date": "23-Sep-2026",
       "NAV": "109.568503",
@@ -6003,12 +6009,6 @@
       "NAV": "43.230913",
       "Shares Outstanding": "36850230",
       "Total Net Assets": "1593069077.93"
-    },
-    {
-      "Date": "28-Sep-2022",
-      "NAV": "44.033094",
-      "Shares Outstanding": "35950230",
-      "Total Net Assets": "1582999863.86"
     }
   ]
 }

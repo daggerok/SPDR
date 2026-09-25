@@ -2,7 +2,7 @@
   "ticker": "MDYV",
   "page": 5,
   "pageSize": 1000,
-  "totalRows": 5248,
+  "totalRows": 5249,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "01-Nov-2010",
+      "NAV": "50.629741",
+      "Shares Outstanding": "750000",
+      "Total Net Assets": "37972305.63"
+    },
     {
       "Date": "29-Oct-2010",
       "NAV": "50.71146",
@@ -6003,12 +6009,6 @@
       "NAV": "57.836116",
       "Shares Outstanding": "150000",
       "Total Net Assets": "8675417.42"
-    },
-    {
-      "Date": "09-Nov-2006",
-      "NAV": "57.564293",
-      "Shares Outstanding": "150000",
-      "Total Net Assets": "8634643.92"
     }
   ]
 }

@@ -2,7 +2,7 @@
   "ticker": "XBI",
   "page": 4,
   "pageSize": 1000,
-  "totalRows": 5194,
+  "totalRows": 5195,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "17-Oct-2014",
+      "NAV": "156.263746",
+      "Shares Outstanding": "8350000",
+      "Total Net Assets": "1304802280.44"
+    },
     {
       "Date": "16-Oct-2014",
       "NAV": "156.861129",
@@ -6003,12 +6009,6 @@
       "NAV": "59.272589",
       "Shares Outstanding": "8650000",
       "Total Net Assets": "512707893.61"
-    },
-    {
-      "Date": "01-Nov-2010",
-      "NAV": "59.137296",
-      "Shares Outstanding": "8700000",
-      "Total Net Assets": "514494475.89"
     }
   ]
 }

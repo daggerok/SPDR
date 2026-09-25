@@ -2,7 +2,7 @@
   "ticker": "BIL",
   "page": 4,
   "pageSize": 1000,
-  "totalRows": 4864,
+  "totalRows": 4865,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "17-Oct-2014",
+      "NAV": "45.744983",
+      "Shares Outstanding": "26200461",
+      "Total Net Assets": "1198539640.23"
+    },
     {
       "Date": "16-Oct-2014",
       "NAV": "45.745411",
@@ -6003,12 +6009,6 @@
       "NAV": "45.850966",
       "Shares Outstanding": "20800461",
       "Total Net Assets": "953721228.79"
-    },
-    {
-      "Date": "01-Nov-2010",
-      "NAV": "45.850882",
-      "Shares Outstanding": "20800461",
-      "Total Net Assets": "953719486.8"
     }
   ]
 }

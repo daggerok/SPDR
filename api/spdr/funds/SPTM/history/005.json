@@ -2,7 +2,7 @@
   "ticker": "SPTM",
   "page": 5,
   "pageSize": 1000,
-  "totalRows": 6523,
+  "totalRows": 6524,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "01-Nov-2010",
+      "NAV": "88.432622",
+      "Shares Outstanding": "2150138.2",
+      "Total Net Assets": "190142358.04"
+    },
     {
       "Date": "29-Oct-2010",
       "NAV": "88.369116",
@@ -6003,12 +6009,6 @@
       "NAV": "99.387321",
       "Shares Outstanding": "1100115.2",
       "Total Net Assets": "109337502.03"
-    },
-    {
-      "Date": "09-Nov-2006",
-      "NAV": "99.139791",
-      "Shares Outstanding": "1100115.2",
-      "Total Net Assets": "109065190.65"
     }
   ]
 }
