@@ -2,30 +2,40 @@
   "ticker": "TEKX",
   "name": "State Street Galaxy Transformative Tech Accelerators ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78470P6631",
+    "cusip": "78470P663"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-galaxy-transformative-tech-accelerators-etf-tekx",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-tekx.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-tekx.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-tekx.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-tekx.pdf"
   },
   "expenseRatio": {
     "display": "0.65%",
     "value": 0.65
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$64.24",
-    "value": 64.24,
-    "asOfDate": "Sep 17 2026"
+    "display": "$68.39",
+    "value": 68.39,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$16.06 M",
-    "value": 16059999.999999998,
-    "asOfDate": "Sep 17 2026"
+    "display": "$17.10 M",
+    "value": 17100000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NASDAQ REGULAR MARKET",
-    "closePrice": "$64.16",
-    "premiumDiscount": "-0.09%"
+    "closePrice": "$69.00",
+    "premiumDiscount": "0.21%"
   },
   "inceptionDate": "Sep 09 2024",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "80.75%"
     }
   },
+  "metrics": {
+    "tr1y": 80.29,
+    "tr3y": null,
+    "tr5y": null,
+    "tr10y": null,
+    "cagr3y": null,
+    "cagr5y": null,
+    "cagr10y": null,
+    "siAnn": 59.71,
+    "dividendYield": 0.21,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 0.2063,
+    "secYield": -0.3,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "80.29%",
+    "tr3yText": null,
+    "tr5yText": null,
+    "tr10yText": null,
+    "cagr3yText": null,
+    "cagr5yText": null,
+    "cagr10yText": null,
+    "siAnnText": "59.71%",
+    "indicatedDividendYieldText": "0.21%",
+    "dividendYieldText": "0.21%",
+    "secYieldText": "-0.30%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -92,20 +129,29 @@
     ]
   },
   "holdings": {
-    "totalRows": 35,
+    "totalRows": 36,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 508,
+    "totalRows": 512,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./history/001.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

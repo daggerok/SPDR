@@ -2,30 +2,40 @@
   "ticker": "CWB",
   "name": "State Street SPDR Bloomberg Convertible Securities ETF",
   "category": "Fixed Income Sector",
+  "identifiers": {
+    "isin": "US78464A3591",
+    "cusip": "78464A359"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-bloomberg-convertible-securities-etf-cwb",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-cwb.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-cwb.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-cwb.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-cwb.pdf"
   },
   "expenseRatio": {
     "display": "0.40%",
     "value": 0.4
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$101.54",
-    "value": 101.54,
-    "asOfDate": "Sep 17 2026"
+    "display": "$102.44",
+    "value": 102.44,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$5,584.65 M",
-    "value": 5584650000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$5,613.81 M",
+    "value": 5613810000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$101.56",
-    "premiumDiscount": "0.02%"
+    "closePrice": "$102.40",
+    "premiumDiscount": "-0.06%"
   },
   "inceptionDate": "Apr 14 2009",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "12.00%"
     }
   },
+  "metrics": {
+    "tr1y": 20.39,
+    "tr3y": 55.12,
+    "tr5y": 29.58,
+    "tr10y": 199.13,
+    "cagr3y": 15.76,
+    "cagr5y": 5.32,
+    "cagr10y": 11.58,
+    "siAnn": 11.56,
+    "dividendYield": 1.54,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 1.8134,
+    "secYield": 1.55,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "20.39%",
+    "tr3yText": "55.12%",
+    "tr5yText": "29.58%",
+    "tr10yText": "199.13%",
+    "cagr3yText": "15.76%",
+    "cagr5yText": "5.32%",
+    "cagr10yText": "11.58%",
+    "siAnnText": "11.56%",
+    "indicatedDividendYieldText": "1.81%",
+    "dividendYieldText": "1.54%",
+    "secYieldText": "1.55%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -99,10 +136,10 @@
       "./holdings/001.json",
       "./holdings/002.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 4388,
+    "totalRows": 4392,
     "pageSize": 1000,
     "pageCount": 5,
     "pages": [
@@ -112,5 +149,14 @@
       "./history/004.json",
       "./history/005.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

@@ -2,30 +2,40 @@
   "ticker": "FISR",
   "name": "State Street Fixed Income Sector Rotation ETF",
   "category": "Fixed Income Sector",
+  "identifiers": {
+    "isin": "US78470P5070",
+    "cusip": "78470P507"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-fixed-income-sector-rotation-etf-fisr",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-fisr.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-fisr.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-fisr.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-fisr.pdf"
   },
   "expenseRatio": {
     "display": "0.50%",
     "value": 0.5
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$24.93",
-    "value": 24.93,
-    "asOfDate": "Sep 17 2026"
+    "display": "$24.70",
+    "value": 24.7,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$609.84 M",
-    "value": 609840000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$605.40 M",
+    "value": 605400000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$24.94",
-    "premiumDiscount": "0.05%"
+    "closePrice": "$24.71",
+    "premiumDiscount": "0.00%"
   },
   "inceptionDate": "Apr 02 2019",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "0.85%"
     }
   },
+  "metrics": {
+    "tr1y": 1.47,
+    "tr3y": 11.16,
+    "tr5y": -5.86,
+    "tr10y": null,
+    "cagr3y": 3.59,
+    "cagr5y": -1.2,
+    "cagr10y": null,
+    "siAnn": 0.7,
+    "dividendYield": 4.35,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 4.4213,
+    "secYield": 4.45,
+    "secYieldUnsubsidized": 4.25,
+    "tr1yText": "1.47%",
+    "tr3yText": "11.16%",
+    "tr5yText": "-5.86%",
+    "tr10yText": null,
+    "cagr3yText": "3.59%",
+    "cagr5yText": "-1.20%",
+    "cagr10yText": null,
+    "siAnnText": "0.70%",
+    "indicatedDividendYieldText": "4.42%",
+    "dividendYieldText": "4.35%",
+    "secYieldText": "4.45%",
+    "secYieldUnsubsidizedText": "4.25%"
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -98,15 +135,24 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 1876,
+    "totalRows": 1880,
     "pageSize": 1000,
     "pageCount": 2,
     "pages": [
       "./history/001.json",
       "./history/002.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

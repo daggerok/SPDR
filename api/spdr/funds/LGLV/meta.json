@@ -2,30 +2,40 @@
   "ticker": "LGLV",
   "name": "State Street SPDR US Large Cap Low Volatility Index ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78468R8043",
+    "cusip": "78468R804"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-us-large-cap-low-volatility-index-etf-lglv",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-lglv.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-lglv.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-lglv.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-lglv.pdf"
   },
   "expenseRatio": {
     "display": "0.12%",
     "value": 0.12
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$180.49",
-    "value": 180.49,
-    "asOfDate": "Sep 17 2026"
+    "display": "$177.23",
+    "value": 177.23,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$1,196.66 M",
-    "value": 1196660000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$1,175.03 M",
+    "value": 1175030000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$180.44",
-    "premiumDiscount": "0.00%"
+    "closePrice": "$177.32",
+    "premiumDiscount": "0.02%"
   },
   "inceptionDate": "Feb 20 2013",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "11.72%"
     }
   },
+  "metrics": {
+    "tr1y": 7.15,
+    "tr3y": 41.66,
+    "tr5y": 45.78,
+    "tr10y": 190.66,
+    "cagr3y": 12.31,
+    "cagr5y": 7.83,
+    "cagr10y": 11.26,
+    "siAnn": 11.79,
+    "dividendYield": 2.19,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 2.2362,
+    "secYield": 2.24,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "7.15%",
+    "tr3yText": "41.66%",
+    "tr5yText": "45.78%",
+    "tr10yText": "190.66%",
+    "cagr3yText": "12.31%",
+    "cagr5yText": "7.83%",
+    "cagr10yText": "11.26%",
+    "siAnnText": "11.79%",
+    "indicatedDividendYieldText": "2.24%",
+    "dividendYieldText": "2.19%",
+    "secYieldText": "2.24%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -82,10 +119,10 @@
     "rows": [
       [
         "Quarterly",
-        "06/22/2026",
-        "06/22/2026",
-        "06/24/2026",
-        "0.966162",
+        "09/21/2026",
+        "09/21/2026",
+        "09/23/2026",
+        "0.990821",
         "-",
         "-"
       ]
@@ -98,10 +135,10 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 3416,
+    "totalRows": 3420,
     "pageSize": 1000,
     "pageCount": 4,
     "pages": [
@@ -110,5 +147,14 @@
       "./history/003.json",
       "./history/004.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

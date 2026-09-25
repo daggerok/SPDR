@@ -2,30 +2,40 @@
   "ticker": "SHE",
   "name": "State Street SPDR MSCI USA Gender Diversity ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78468R7474",
+    "cusip": "78468R747"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-msci-usa-gender-diversity-etf-she",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-she.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-she.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-she.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-she.pdf"
   },
   "expenseRatio": {
     "display": "0.20%",
     "value": 0.2
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$156.95",
-    "value": 156.95,
-    "asOfDate": "Sep 17 2026"
+    "display": "$158.82",
+    "value": 158.82,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$329.59 M",
-    "value": 329590000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$333.51 M",
+    "value": 333510000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$157.07",
-    "premiumDiscount": "0.01%"
+    "closePrice": "$158.74",
+    "premiumDiscount": "0.02%"
   },
   "inceptionDate": "Mar 07 2016",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "12.75%"
     }
   },
+  "metrics": {
+    "tr1y": 27.38,
+    "tr3y": 84.55,
+    "tr5y": 59.88,
+    "tr10y": 224.44,
+    "cagr3y": 22.66,
+    "cagr5y": 9.84,
+    "cagr10y": 12.49,
+    "siAnn": 12.81,
+    "dividendYield": 1.1,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 1.2366,
+    "secYield": 1.05,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "27.38%",
+    "tr3yText": "84.55%",
+    "tr5yText": "59.88%",
+    "tr10yText": "224.44%",
+    "cagr3yText": "22.66%",
+    "cagr5yText": "9.84%",
+    "cagr10yText": "12.49%",
+    "siAnnText": "12.81%",
+    "indicatedDividendYieldText": "1.24%",
+    "dividendYieldText": "1.10%",
+    "secYieldText": "1.05%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -98,10 +135,10 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 2649,
+    "totalRows": 2653,
     "pageSize": 1000,
     "pageCount": 3,
     "pages": [
@@ -109,5 +146,14 @@
       "./history/002.json",
       "./history/003.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

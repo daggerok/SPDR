@@ -2,30 +2,40 @@
   "ticker": "XES",
   "name": "State Street SPDR S&P Oil & Gas Equipment & Services ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78468R5494",
+    "cusip": "78468R549"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-oil-gas-equipment-services-etf-xes",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-xes.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-xes.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-xes.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-xes.pdf"
   },
   "expenseRatio": {
     "display": "0.35%",
     "value": 0.35
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$116.43",
-    "value": 116.43,
-    "asOfDate": "Sep 17 2026"
+    "display": "$113.05",
+    "value": 113.05,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$385.97 M",
-    "value": 385970000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$374.77 M",
+    "value": 374770000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$116.48",
-    "premiumDiscount": "0.01%"
+    "closePrice": "$113.02",
+    "premiumDiscount": "-0.03%"
   },
   "inceptionDate": "Jun 19 2006",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "-3.46%"
     }
   },
+  "metrics": {
+    "tr1y": 75.16,
+    "tr3y": 36.69,
+    "tr5y": 149.04,
+    "tr10y": -21.08,
+    "cagr3y": 10.98,
+    "cagr5y": 20.02,
+    "cagr10y": -2.34,
+    "siAnn": -3.03,
+    "dividendYield": 1.06,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 0.9118,
+    "secYield": 0.87,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "75.16%",
+    "tr3yText": "36.69%",
+    "tr5yText": "149.04%",
+    "tr10yText": "-21.08%",
+    "cagr3yText": "10.98%",
+    "cagr5yText": "20.02%",
+    "cagr10yText": "-2.34%",
+    "siAnnText": "-3.03%",
+    "indicatedDividendYieldText": "0.91%",
+    "dividendYieldText": "1.06%",
+    "secYieldText": "0.87%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -82,26 +119,26 @@
     "rows": [
       [
         "Quarterly",
-        "06/22/2026",
-        "06/22/2026",
-        "06/24/2026",
-        "0.308650",
+        "09/21/2026",
+        "09/21/2026",
+        "09/23/2026",
+        "0.257710",
         "-",
         "-"
       ]
     ]
   },
   "holdings": {
-    "totalRows": 36,
+    "totalRows": 37,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 5097,
+    "totalRows": 5101,
     "pageSize": 1000,
     "pageCount": 6,
     "pages": [
@@ -112,5 +149,14 @@
       "./history/005.json",
       "./history/006.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

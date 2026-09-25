@@ -2,30 +2,40 @@
   "ticker": "MMTM",
   "name": "State Street SPDR S&P 1500 Momentum Tilt ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78468R7052",
+    "cusip": "78468R705"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-1500-momentum-tilt-etf-mmtm",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-mmtm.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-mmtm.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-mmtm.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-mmtm.pdf"
   },
   "expenseRatio": {
     "display": "0.12%",
     "value": 0.12
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$304.24",
-    "value": 304.24,
-    "asOfDate": "Sep 17 2026"
+    "display": "$308.08",
+    "value": 308.08,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$161.24 M",
-    "value": 161240000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$163.28 M",
+    "value": 163280000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$304.52",
-    "premiumDiscount": "0.00%"
+    "closePrice": "$307.96",
+    "premiumDiscount": "0.02%"
   },
   "inceptionDate": "Oct 24 2012",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "14.51%"
     }
   },
+  "metrics": {
+    "tr1y": 11.27,
+    "tr3y": 64.51,
+    "tr5y": 67.75,
+    "tr10y": 274.64,
+    "cagr3y": 18.05,
+    "cagr5y": 10.9,
+    "cagr10y": 14.12,
+    "siAnn": 14.05,
+    "dividendYield": 0.89,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 0.862,
+    "secYield": 0.83,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "11.27%",
+    "tr3yText": "64.51%",
+    "tr5yText": "67.75%",
+    "tr10yText": "274.64%",
+    "cagr3yText": "18.05%",
+    "cagr5yText": "10.90%",
+    "cagr10yText": "14.12%",
+    "siAnnText": "14.05%",
+    "indicatedDividendYieldText": "0.86%",
+    "dividendYieldText": "0.89%",
+    "secYieldText": "0.83%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -82,17 +119,17 @@
     "rows": [
       [
         "Quarterly",
-        "06/22/2026",
-        "06/22/2026",
-        "06/24/2026",
-        "0.872265",
+        "09/21/2026",
+        "09/21/2026",
+        "09/23/2026",
+        "0.663948",
         "-",
         "-"
       ]
     ]
   },
   "holdings": {
-    "totalRows": 1483,
+    "totalRows": 1475,
     "pageSize": 250,
     "pageCount": 6,
     "pages": [
@@ -103,10 +140,10 @@
       "./holdings/005.json",
       "./holdings/006.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 3532,
+    "totalRows": 3536,
     "pageSize": 1000,
     "pageCount": 4,
     "pages": [
@@ -115,5 +152,14 @@
       "./history/003.json",
       "./history/004.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

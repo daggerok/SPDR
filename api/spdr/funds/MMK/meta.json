@@ -2,29 +2,39 @@
   "ticker": "MMK",
   "name": "State Street Prime Money Market ETF",
   "category": "Cash",
+  "identifiers": {
+    "isin": "US85749T2859",
+    "cusip": "85749T285"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-prime-money-market-etf-mmk",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-mmk.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-mmk.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-mmk.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-mmk.pdf"
   },
   "expenseRatio": {
     "display": "0.18%",
     "value": 0.18
   },
+  "netExpenseRatio": {
+    "display": "0.18%",
+    "value": 0.18
+  },
   "nav": {
-    "display": "$100.16",
-    "value": 100.16,
-    "asOfDate": "Sep 17 2026"
+    "display": "$100.23",
+    "value": 100.23,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$29.05 M",
-    "value": 29050000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$29.07 M",
+    "value": 29070000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "New York Stock Exchange LLC",
-    "closePrice": "$100.16",
+    "closePrice": "$100.22",
     "premiumDiscount": "0.00%"
   },
   "inceptionDate": "Feb 10 2026",
@@ -69,6 +79,33 @@
       "sinceInceptionText": "1.38%"
     }
   },
+  "metrics": {
+    "tr1y": null,
+    "tr3y": null,
+    "tr5y": null,
+    "tr10y": null,
+    "cagr3y": null,
+    "cagr5y": null,
+    "cagr10y": null,
+    "siAnn": 2.02,
+    "dividendYield": 3.7064,
+    "dividendYieldSource": "indicated",
+    "indicatedDividendYield": 3.7064,
+    "secYield": null,
+    "secYieldUnsubsidized": null,
+    "tr1yText": null,
+    "tr3yText": null,
+    "tr5yText": null,
+    "tr10yText": null,
+    "cagr3yText": null,
+    "cagr5yText": null,
+    "cagr10yText": null,
+    "siAnnText": "2.02%",
+    "indicatedDividendYieldText": "3.71%",
+    "dividendYieldText": "3.71%",
+    "secYieldText": null,
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -92,20 +129,29 @@
     ]
   },
   "holdings": {
-    "totalRows": 67,
+    "totalRows": 66,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 152,
+    "totalRows": 156,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./history/001.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 154,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

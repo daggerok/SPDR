@@ -2,30 +2,40 @@
   "ticker": "RLY",
   "name": "State Street Multi-Asset Real Return ETF",
   "category": "Multi-Asset",
+  "identifiers": {
+    "isin": "US78467V1035",
+    "cusip": "78467V103"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-multi-asset-real-return-etf-rly",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-rly.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-rly.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-rly.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-rly.pdf"
   },
   "expenseRatio": {
     "display": "0.50%",
     "value": 0.5
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$37.52",
-    "value": 37.52,
-    "asOfDate": "Sep 17 2026"
+    "display": "$36.99",
+    "value": 36.99,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$1,418.40 M",
-    "value": 1418400000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$1,406.50 M",
+    "value": 1406500000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$37.59",
-    "premiumDiscount": "0.12%"
+    "closePrice": "$37.07",
+    "premiumDiscount": "0.19%"
   },
   "inceptionDate": "Apr 25 2012",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "4.46%"
     }
   },
+  "metrics": {
+    "tr1y": 28.09,
+    "tr3y": 51.37,
+    "tr5y": 72.57,
+    "tr10y": 129.88,
+    "cagr3y": 14.82,
+    "cagr5y": 11.53,
+    "cagr10y": 8.68,
+    "siAnn": 5.04,
+    "dividendYield": 2.98,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 3.2344,
+    "secYield": 3.08,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "28.09%",
+    "tr3yText": "51.37%",
+    "tr5yText": "72.57%",
+    "tr10yText": "129.88%",
+    "cagr3yText": "14.82%",
+    "cagr5yText": "11.53%",
+    "cagr10yText": "8.68%",
+    "siAnnText": "5.04%",
+    "indicatedDividendYieldText": "3.23%",
+    "dividendYieldText": "2.98%",
+    "secYieldText": "3.08%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -98,10 +135,10 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 3622,
+    "totalRows": 3626,
     "pageSize": 1000,
     "pageCount": 4,
     "pages": [
@@ -110,5 +147,14 @@
       "./history/003.json",
       "./history/004.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

@@ -2,30 +2,40 @@
   "ticker": "HYMB",
   "name": "State Street SPDR Nuveen ICE High Yield Municipal Bond ETF",
   "category": "Fixed Income Sector",
+  "identifiers": {
+    "isin": "US78464A2841",
+    "cusip": "78464A284"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-nuveen-ice-high-yield-municipal-bond-etf-hymb",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-hymb.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-hymb.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-hymb.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-hymb.pdf"
   },
   "expenseRatio": {
     "display": "0.35%",
     "value": 0.35
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$24.07",
-    "value": 24.07,
-    "asOfDate": "Sep 17 2026"
+    "display": "$23.81",
+    "value": 23.81,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$3,523.43 M",
-    "value": 3523430000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$3,600.34 M",
+    "value": 3600340000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$24.20",
-    "premiumDiscount": "0.53%"
+    "closePrice": "$23.90",
+    "premiumDiscount": "0.35%"
   },
   "inceptionDate": "Apr 13 2011",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "4.42%"
     }
   },
+  "metrics": {
+    "tr1y": 6.45,
+    "tr3y": 14.18,
+    "tr5y": -0.4,
+    "tr10y": 22.26,
+    "cagr3y": 4.52,
+    "cagr5y": -0.08,
+    "cagr10y": 2.03,
+    "siAnn": 4.23,
+    "dividendYield": 4.83,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 4.8682,
+    "secYield": 5.11,
+    "secYieldUnsubsidized": 5.11,
+    "tr1yText": "6.45%",
+    "tr3yText": "14.18%",
+    "tr5yText": "-0.40%",
+    "tr10yText": "22.26%",
+    "cagr3yText": "4.52%",
+    "cagr5yText": "-0.08%",
+    "cagr10yText": "2.03%",
+    "siAnnText": "4.23%",
+    "indicatedDividendYieldText": "4.87%",
+    "dividendYieldText": "4.83%",
+    "secYieldText": "5.11%",
+    "secYieldUnsubsidizedText": "5.11%"
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -92,7 +129,7 @@
     ]
   },
   "holdings": {
-    "totalRows": 2019,
+    "totalRows": 2039,
     "pageSize": 250,
     "pageCount": 9,
     "pages": [
@@ -106,10 +143,10 @@
       "./holdings/008.json",
       "./holdings/009.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 3883,
+    "totalRows": 3887,
     "pageSize": 1000,
     "pageCount": 4,
     "pages": [
@@ -118,5 +155,14 @@
       "./history/003.json",
       "./history/004.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

@@ -2,30 +2,40 @@
   "ticker": "XCNY",
   "name": "State Street SPDR S&P Emerging Markets ex-China ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78470E7004",
+    "cusip": "78470E700"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-emerging-markets-ex-china-etf-xcny",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-xcny.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-xcny.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-xcny.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-xcny.pdf"
   },
   "expenseRatio": {
     "display": "0.19%",
     "value": 0.19
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$33.45",
-    "value": 33.45,
-    "asOfDate": "Sep 17 2026"
+    "display": "$34.15",
+    "value": 34.15,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$10.03 M",
-    "value": 10030000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$10.25 M",
+    "value": 10250000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NASDAQ REGULAR MARKET",
-    "closePrice": "$33.81",
-    "premiumDiscount": "1.05%"
+    "closePrice": "$33.98",
+    "premiumDiscount": "-0.48%"
   },
   "inceptionDate": "Sep 04 2024",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "19.64%"
     }
   },
+  "metrics": {
+    "tr1y": 32.44,
+    "tr3y": null,
+    "tr5y": null,
+    "tr10y": null,
+    "cagr3y": null,
+    "cagr5y": null,
+    "cagr10y": null,
+    "siAnn": 18.78,
+    "dividendYield": 2.18,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 1.6181,
+    "secYield": 1.82,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "32.44%",
+    "tr3yText": null,
+    "tr5yText": null,
+    "tr10yText": null,
+    "cagr3yText": null,
+    "cagr5yText": null,
+    "cagr10yText": null,
+    "siAnnText": "18.78%",
+    "indicatedDividendYieldText": "1.62%",
+    "dividendYieldText": "2.18%",
+    "secYieldText": "1.82%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -92,7 +129,7 @@
     ]
   },
   "holdings": {
-    "totalRows": 1223,
+    "totalRows": 1198,
     "pageSize": 250,
     "pageCount": 5,
     "pages": [
@@ -102,14 +139,23 @@
       "./holdings/004.json",
       "./holdings/005.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 511,
+    "totalRows": 515,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./history/001.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

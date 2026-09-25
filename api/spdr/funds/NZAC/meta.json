@@ -2,30 +2,40 @@
   "ticker": "NZAC",
   "name": "State Street SPDR MSCI ACWI Climate Paris Aligned ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78463X1946",
+    "cusip": "78463X194"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-msci-acwi-climate-paris-aligned-etf-nzac",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-nzac.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-nzac.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-nzac.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-nzac.pdf"
   },
   "expenseRatio": {
     "display": "0.12%",
     "value": 0.12
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$46.54",
-    "value": 46.54,
-    "asOfDate": "Sep 17 2026"
+    "display": "$46.90",
+    "value": 46.9,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$195.45 M",
-    "value": 195450000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$196.98 M",
+    "value": 196980000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NASDAQ REGULAR MARKET",
-    "closePrice": "$46.52",
-    "premiumDiscount": "-0.02%"
+    "closePrice": "$46.84",
+    "premiumDiscount": "-0.08%"
   },
   "inceptionDate": "Nov 25 2014",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "10.14%"
     }
   },
+  "metrics": {
+    "tr1y": 17.68,
+    "tr3y": 66.02,
+    "tr5y": 56.63,
+    "tr10y": 207.27,
+    "cagr3y": 18.41,
+    "cagr5y": 9.39,
+    "cagr10y": 11.88,
+    "siAnn": 10.23,
+    "dividendYield": 2.01,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 1.2589,
+    "secYield": 1.23,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "17.68%",
+    "tr3yText": "66.02%",
+    "tr5yText": "56.63%",
+    "tr10yText": "207.27%",
+    "cagr3yText": "18.41%",
+    "cagr5yText": "9.39%",
+    "cagr10yText": "11.88%",
+    "siAnnText": "10.23%",
+    "indicatedDividendYieldText": "1.26%",
+    "dividendYieldText": "2.01%",
+    "secYieldText": "1.23%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -100,10 +137,10 @@
       "./holdings/002.json",
       "./holdings/003.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 2969,
+    "totalRows": 2973,
     "pageSize": 1000,
     "pageCount": 3,
     "pages": [
@@ -111,5 +148,14 @@
       "./history/002.json",
       "./history/003.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

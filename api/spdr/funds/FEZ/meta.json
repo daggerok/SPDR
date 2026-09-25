@@ -2,30 +2,40 @@
   "ticker": "FEZ",
   "name": "State Street SPDR EURO STOXX 50 ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78463X2027",
+    "cusip": "78463X202"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-euro-stoxx-50-etf-fez",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-fez.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-fez.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-fez.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-fez.pdf"
   },
   "expenseRatio": {
     "display": "0.29%",
     "value": 0.29
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$69.04",
-    "value": 69.04,
-    "asOfDate": "Sep 17 2026"
+    "display": "$68.17",
+    "value": 68.17,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$4,370.31 M",
-    "value": 4370310000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$4,315.32 M",
+    "value": 4315320000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$68.88",
-    "premiumDiscount": "-0.23%"
+    "closePrice": "$67.96",
+    "premiumDiscount": "-0.26%"
   },
   "inceptionDate": "Oct 15 2002",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "7.80%"
     }
   },
+  "metrics": {
+    "tr1y": 21.85,
+    "tr3y": 72.33,
+    "tr5y": 72.03,
+    "tr10y": 185.48,
+    "cagr3y": 19.89,
+    "cagr5y": 11.46,
+    "cagr10y": 11.06,
+    "siAnn": 7.89,
+    "dividendYield": 2.68,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 0.6514,
+    "secYield": 1.98,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "21.85%",
+    "tr3yText": "72.33%",
+    "tr5yText": "72.03%",
+    "tr10yText": "185.48%",
+    "cagr3yText": "19.89%",
+    "cagr5yText": "11.46%",
+    "cagr10yText": "11.06%",
+    "siAnnText": "7.89%",
+    "indicatedDividendYieldText": "0.65%",
+    "dividendYieldText": "2.68%",
+    "secYieldText": "1.98%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -82,10 +119,10 @@
     "rows": [
       [
         "Quarterly",
-        "06/22/2026",
-        "06/22/2026",
-        "06/24/2026",
-        "1.111625",
+        "09/21/2026",
+        "09/21/2026",
+        "09/23/2026",
+        "0.111007",
         "-",
         "-"
       ]
@@ -98,10 +135,10 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 6019,
+    "totalRows": 6023,
     "pageSize": 1000,
     "pageCount": 7,
     "pages": [
@@ -113,5 +150,14 @@
       "./history/006.json",
       "./history/007.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

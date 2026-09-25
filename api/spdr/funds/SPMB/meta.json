@@ -2,30 +2,40 @@
   "ticker": "SPMB",
   "name": "State Street SPDR Portfolio Mortgage Backed Bond ETF",
   "category": "Fixed Income Sector",
+  "identifiers": {
+    "isin": "US78464A3831",
+    "cusip": "78464A383"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-portfolio-mortgage-backed-bond-etf-spmb",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-spmb.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-spmb.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-spmb.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-spmb.pdf"
   },
   "expenseRatio": {
     "display": "0.04%",
     "value": 0.04
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$21.66",
-    "value": 21.66,
-    "asOfDate": "Sep 17 2026"
+    "display": "$21.39",
+    "value": 21.39,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$7,071.16 M",
-    "value": 7071160000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$6,972.89 M",
+    "value": 6972890000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$21.66",
-    "premiumDiscount": "0.00%"
+    "closePrice": "$21.38",
+    "premiumDiscount": "-0.07%"
   },
   "inceptionDate": "Jan 15 2009",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "2.28%"
     }
   },
+  "metrics": {
+    "tr1y": 2.94,
+    "tr3y": 14.25,
+    "tr5y": 0.75,
+    "tr10y": 12,
+    "cagr3y": 4.54,
+    "cagr5y": 0.15,
+    "cagr10y": 1.14,
+    "siAnn": 2.2,
+    "dividendYield": 4.28,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 3.9971,
+    "secYield": 4.34,
+    "secYieldUnsubsidized": 4.33,
+    "tr1yText": "2.94%",
+    "tr3yText": "14.25%",
+    "tr5yText": "0.75%",
+    "tr10yText": "12.00%",
+    "cagr3yText": "4.54%",
+    "cagr5yText": "0.15%",
+    "cagr10yText": "1.14%",
+    "siAnnText": "2.20%",
+    "indicatedDividendYieldText": "4.00%",
+    "dividendYieldText": "4.28%",
+    "secYieldText": "4.34%",
+    "secYieldUnsubsidizedText": "4.33%"
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -109,10 +146,10 @@
       "./holdings/011.json",
       "./holdings/012.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 4447,
+    "totalRows": 4451,
     "pageSize": 1000,
     "pageCount": 5,
     "pages": [
@@ -122,5 +159,14 @@
       "./history/004.json",
       "./history/005.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

@@ -2,30 +2,40 @@
   "ticker": "XITK",
   "name": "State Street SPDR FactSet Innovative Technology ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78464A1108",
+    "cusip": "78464A110"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-factset-innovative-technology-etf-xitk",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-xitk.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-xitk.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-xitk.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-xitk.pdf"
   },
   "expenseRatio": {
     "display": "0.45%",
     "value": 0.45
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$196.38",
-    "value": 196.38,
-    "asOfDate": "Sep 17 2026"
+    "display": "$200.34",
+    "value": 200.34,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$68.73 M",
-    "value": 68730000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$70.12 M",
+    "value": 70120000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$196.48",
-    "premiumDiscount": "-0.01%"
+    "closePrice": "$200.31",
+    "premiumDiscount": "0.02%"
   },
   "inceptionDate": "Jan 13 2016",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "14.52%"
     }
   },
+  "metrics": {
+    "tr1y": 7.03,
+    "tr3y": 49.33,
+    "tr5y": -11.44,
+    "tr10y": 241.26,
+    "cagr3y": 14.3,
+    "cagr5y": -2.4,
+    "cagr10y": 13.06,
+    "siAnn": 14.52,
+    "dividendYield": 0,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": null,
+    "secYield": -0.31,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "7.03%",
+    "tr3yText": "49.33%",
+    "tr5yText": "-11.44%",
+    "tr10yText": "241.26%",
+    "cagr3yText": "14.30%",
+    "cagr5yText": "-2.40%",
+    "cagr10yText": "13.06%",
+    "siAnnText": "14.52%",
+    "indicatedDividendYieldText": null,
+    "dividendYieldText": "0.00%",
+    "secYieldText": "-0.31%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -82,9 +119,9 @@
     "rows": [
       [
         "Quarterly",
-        "06/22/2026",
-        "06/22/2026",
-        "06/24/2026",
+        "09/21/2026",
+        "09/21/2026",
+        "09/23/2026",
         "0.000000",
         "-",
         "-"
@@ -92,16 +129,16 @@
     ]
   },
   "holdings": {
-    "totalRows": 97,
+    "totalRows": 98,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 2685,
+    "totalRows": 2689,
     "pageSize": 1000,
     "pageCount": 3,
     "pages": [
@@ -109,5 +146,14 @@
       "./history/002.json",
       "./history/003.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

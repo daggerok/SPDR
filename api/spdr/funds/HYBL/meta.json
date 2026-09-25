@@ -2,29 +2,39 @@
   "ticker": "HYBL",
   "name": "State Street Blackstone High Income ETF",
   "category": "Fixed Income Sector",
+  "identifiers": {
+    "isin": "US78470P8462",
+    "cusip": "78470P846"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-blackstone-high-income-etf-hybl",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-hybl.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-hybl.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-hybl.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-hybl.pdf"
   },
   "expenseRatio": {
     "display": "0.70%",
     "value": 0.7
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$27.92",
-    "value": 27.92,
-    "asOfDate": "Sep 17 2026"
+    "display": "$27.84",
+    "value": 27.84,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$579.29 M",
-    "value": 579290000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$577.62 M",
+    "value": 577620000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "Cboe BZX Exchange, Inc",
-    "closePrice": "$27.84",
+    "closePrice": "$27.75",
     "premiumDiscount": "-0.30%"
   },
   "inceptionDate": "Feb 16 2022",
@@ -69,6 +79,33 @@
       "sinceInceptionText": "5.64%"
     }
   },
+  "metrics": {
+    "tr1y": 5.28,
+    "tr3y": 27.02,
+    "tr5y": null,
+    "tr10y": null,
+    "cagr3y": 8.3,
+    "cagr5y": null,
+    "cagr10y": null,
+    "siAnn": 5.8,
+    "dividendYield": 7.04,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 7.2193,
+    "secYield": 7.01,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "5.28%",
+    "tr3yText": "27.02%",
+    "tr5yText": null,
+    "tr10yText": null,
+    "cagr3yText": "8.30%",
+    "cagr5yText": null,
+    "cagr10yText": null,
+    "siAnnText": "5.80%",
+    "indicatedDividendYieldText": "7.22%",
+    "dividendYieldText": "7.04%",
+    "secYieldText": "7.01%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -92,7 +129,7 @@
     ]
   },
   "holdings": {
-    "totalRows": 621,
+    "totalRows": 620,
     "pageSize": 250,
     "pageCount": 3,
     "pages": [
@@ -100,15 +137,24 @@
       "./holdings/002.json",
       "./holdings/003.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 1150,
+    "totalRows": 1154,
     "pageSize": 1000,
     "pageCount": 2,
     "pages": [
       "./history/001.json",
       "./history/002.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

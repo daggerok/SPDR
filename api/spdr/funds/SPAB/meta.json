@@ -2,30 +2,40 @@
   "ticker": "SPAB",
   "name": "State Street SPDR Portfolio Aggregate Bond ETF",
   "category": "Fixed Income Sector",
+  "identifiers": {
+    "isin": "US78464A6495",
+    "cusip": "78464A649"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-portfolio-aggregate-bond-etf-spab",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-spab.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-spab.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-spab.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-spab.pdf"
   },
   "expenseRatio": {
     "display": "0.03%",
     "value": 0.03
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$24.82",
-    "value": 24.82,
-    "asOfDate": "Sep 17 2026"
+    "display": "$24.59",
+    "value": 24.59,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$9,971.34 M",
-    "value": 9971340000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$9,898.22 M",
+    "value": 9898220000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$24.83",
-    "premiumDiscount": "0.03%"
+    "closePrice": "$24.60",
+    "premiumDiscount": "0.04%"
   },
   "inceptionDate": "May 23 2007",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "3.11%"
     }
   },
+  "metrics": {
+    "tr1y": 1.87,
+    "tr3y": 12.71,
+    "tr5y": -1.54,
+    "tr10y": 14.35,
+    "cagr3y": 4.07,
+    "cagr5y": -0.31,
+    "cagr10y": 1.35,
+    "siAnn": 3.03,
+    "dividendYield": 4.23,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 4.3582,
+    "secYield": 4.94,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "1.87%",
+    "tr3yText": "12.71%",
+    "tr5yText": "-1.54%",
+    "tr10yText": "14.35%",
+    "cagr3yText": "4.07%",
+    "cagr5yText": "-0.31%",
+    "cagr10yText": "1.35%",
+    "siAnnText": "3.03%",
+    "indicatedDividendYieldText": "4.36%",
+    "dividendYieldText": "4.23%",
+    "secYieldText": "4.94%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -92,7 +129,7 @@
     ]
   },
   "holdings": {
-    "totalRows": 8519,
+    "totalRows": 8564,
     "pageSize": 250,
     "pageCount": 35,
     "pages": [
@@ -132,10 +169,10 @@
       "./holdings/034.json",
       "./holdings/035.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 4860,
+    "totalRows": 4864,
     "pageSize": 1000,
     "pageCount": 5,
     "pages": [
@@ -145,5 +182,14 @@
       "./history/004.json",
       "./history/005.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

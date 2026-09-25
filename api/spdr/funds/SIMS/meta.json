@@ -2,29 +2,39 @@
   "ticker": "SIMS",
   "name": "State Street SPDR S&P Kensho Intelligent Structures ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78468R6971",
+    "cusip": "78468R697"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-kensho-intelligent-structures-etf-sims",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-sims.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-sims.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-sims.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-sims.pdf"
   },
   "expenseRatio": {
     "display": "0.45%",
     "value": 0.45
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$43.21",
-    "value": 43.21,
-    "asOfDate": "Sep 17 2026"
+    "display": "$42.85",
+    "value": 42.85,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$8.21 M",
-    "value": 8210000.000000001,
-    "asOfDate": "Sep 17 2026"
+    "display": "$8.14 M",
+    "value": 8140000.000000001,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$43.23",
+    "closePrice": "$42.83",
     "premiumDiscount": "0.00%"
   },
   "inceptionDate": "Dec 26 2017",
@@ -69,6 +79,33 @@
       "sinceInceptionText": "6.51%"
     }
   },
+  "metrics": {
+    "tr1y": 10,
+    "tr3y": 27.66,
+    "tr5y": -3.16,
+    "tr10y": null,
+    "cagr3y": 8.48,
+    "cagr5y": -0.64,
+    "cagr10y": null,
+    "siAnn": 5.33,
+    "dividendYield": 0.59,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 0.4579,
+    "secYield": 0.42,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "10.00%",
+    "tr3yText": "27.66%",
+    "tr5yText": "-3.16%",
+    "tr10yText": null,
+    "cagr3yText": "8.48%",
+    "cagr5yText": "-0.64%",
+    "cagr10yText": null,
+    "siAnnText": "5.33%",
+    "indicatedDividendYieldText": "0.46%",
+    "dividendYieldText": "0.59%",
+    "secYieldText": "0.42%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -82,10 +119,10 @@
     "rows": [
       [
         "Quarterly",
-        "06/22/2026",
-        "06/22/2026",
-        "06/24/2026",
-        "0.055242",
+        "09/21/2026",
+        "09/21/2026",
+        "09/23/2026",
+        "0.049053",
         "-",
         "-"
       ]
@@ -98,10 +135,10 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 2193,
+    "totalRows": 2197,
     "pageSize": 1000,
     "pageCount": 3,
     "pages": [
@@ -109,5 +146,14 @@
       "./history/002.json",
       "./history/003.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

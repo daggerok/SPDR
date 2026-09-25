@@ -2,30 +2,40 @@
   "ticker": "OBND",
   "name": "State Street Loomis Sayles Opportunistic Bond ETF",
   "category": "Fixed Income Sector",
+  "identifiers": {
+    "isin": "US78470P8041",
+    "cusip": "78470P804"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-loomis-sayles-opportunistic-bond-etf-obnd",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-obnd.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-obnd.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-obnd.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-obnd.pdf"
   },
   "expenseRatio": {
     "display": "0.55%",
     "value": 0.55
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$25.22",
-    "value": 25.22,
-    "asOfDate": "Sep 17 2026"
+    "display": "$25.05",
+    "value": 25.05,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$31.52 M",
-    "value": 31520000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$31.32 M",
+    "value": 31320000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "Cboe BZX Exchange, Inc",
-    "closePrice": "$25.24",
-    "premiumDiscount": "0.10%"
+    "closePrice": "$25.08",
+    "premiumDiscount": "0.09%"
   },
   "inceptionDate": "Sep 27 2021",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "2.38%"
     }
   },
+  "metrics": {
+    "tr1y": 3.48,
+    "tr3y": 20.93,
+    "tr5y": null,
+    "tr10y": null,
+    "cagr3y": 6.54,
+    "cagr5y": null,
+    "cagr10y": null,
+    "siAnn": 2.3,
+    "dividendYield": 6.53,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 6.7574,
+    "secYield": 6.61,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "3.48%",
+    "tr3yText": "20.93%",
+    "tr5yText": null,
+    "tr10yText": null,
+    "cagr3yText": "6.54%",
+    "cagr5yText": null,
+    "cagr10yText": null,
+    "siAnnText": "2.30%",
+    "indicatedDividendYieldText": "6.76%",
+    "dividendYieldText": "6.53%",
+    "secYieldText": "6.61%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -99,15 +136,24 @@
       "./holdings/001.json",
       "./holdings/002.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 1249,
+    "totalRows": 1253,
     "pageSize": 1000,
     "pageCount": 2,
     "pages": [
       "./history/001.json",
       "./history/002.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

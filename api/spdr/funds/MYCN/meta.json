@@ -2,30 +2,40 @@
   "ticker": "MYCN",
   "name": "State Street My2034 Corporate Bond ETF",
   "category": "Fixed Income Sector",
+  "identifiers": {
+    "isin": "US78470P7399",
+    "cusip": "78470P739"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-my2034-corporate-bond-etf-mycn",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-mycn.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-mycn.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-mycn.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-mycn.pdf"
   },
   "expenseRatio": {
     "display": "0.15%",
     "value": 0.15
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$23.70",
-    "value": 23.7,
-    "asOfDate": "Sep 17 2026"
+    "display": "$23.46",
+    "value": 23.46,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$9.48 M",
-    "value": 9480000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$9.38 M",
+    "value": 9380000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NASDAQ REGULAR MARKET",
-    "closePrice": "$23.71",
-    "premiumDiscount": "0.08%"
+    "closePrice": "$23.46",
+    "premiumDiscount": "0.01%"
   },
   "inceptionDate": "Sep 23 2024",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "3.63%"
     }
   },
+  "metrics": {
+    "tr1y": 2.31,
+    "tr3y": null,
+    "tr5y": null,
+    "tr10y": null,
+    "cagr3y": null,
+    "cagr5y": null,
+    "cagr10y": null,
+    "siAnn": 2.73,
+    "dividendYield": 5.2,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 5.2973,
+    "secYield": 5.65,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "2.31%",
+    "tr3yText": null,
+    "tr5yText": null,
+    "tr10yText": null,
+    "cagr3yText": null,
+    "cagr5yText": null,
+    "cagr10yText": null,
+    "siAnnText": "2.73%",
+    "indicatedDividendYieldText": "5.30%",
+    "dividendYieldText": "5.20%",
+    "secYieldText": "5.65%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -92,20 +129,29 @@
     ]
   },
   "holdings": {
-    "totalRows": 121,
+    "totalRows": 120,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 498,
+    "totalRows": 502,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./history/001.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

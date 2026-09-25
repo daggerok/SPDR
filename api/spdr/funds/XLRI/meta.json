@@ -2,30 +2,40 @@
   "ticker": "XLRI",
   "name": "State Street Real Estate Select Sector SPDR Premium Income ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US81369Y7610",
+    "cusip": "81369Y761"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-real-estate-select-sector-spdr-premium-income-etf-xlri",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-xlri.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-xlri.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-xlri.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-xlri.pdf"
   },
   "expenseRatio": {
     "display": "0.35%",
     "value": 0.35
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$22.67",
-    "value": 22.67,
-    "asOfDate": "Sep 17 2026"
+    "display": "$22.32",
+    "value": 22.32,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$2.95 M",
-    "value": 2950000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$2.90 M",
+    "value": 2900000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$22.70",
-    "premiumDiscount": "0.24%"
+    "closePrice": "$22.39",
+    "premiumDiscount": "0.20%"
   },
   "inceptionDate": "Jul 29 2025",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "4.92%"
     }
   },
+  "metrics": {
+    "tr1y": 6.89,
+    "tr3y": null,
+    "tr5y": null,
+    "tr10y": null,
+    "cagr3y": null,
+    "cagr5y": null,
+    "cagr10y": null,
+    "siAnn": 5.49,
+    "dividendYield": 13.66,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 6.5004,
+    "secYield": 3.09,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "6.89%",
+    "tr3yText": null,
+    "tr5yText": null,
+    "tr10yText": null,
+    "cagr3yText": null,
+    "cagr5yText": null,
+    "cagr10yText": null,
+    "siAnnText": "5.49%",
+    "indicatedDividendYieldText": "6.50%",
+    "dividendYieldText": "13.66%",
+    "secYieldText": "3.09%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -98,14 +135,23 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 287,
+    "totalRows": 291,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./history/001.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 291,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

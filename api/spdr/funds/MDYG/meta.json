@@ -2,30 +2,40 @@
   "ticker": "MDYG",
   "name": "State Street SPDR S&P 400 Mid Cap Growth ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78464A8210",
+    "cusip": "78464A821"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-400-mid-cap-growth-etf-mdyg",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-mdyg.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-mdyg.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-mdyg.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-mdyg.pdf"
   },
   "expenseRatio": {
     "display": "0.15%",
     "value": 0.15
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$105.07",
-    "value": 105.07,
-    "asOfDate": "Sep 17 2026"
+    "display": "$105.56",
+    "value": 105.56,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$2,784.29 M",
-    "value": 2784290000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$2,797.39 M",
+    "value": 2797390000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$105.01",
-    "premiumDiscount": "0.00%"
+    "closePrice": "$105.58",
+    "premiumDiscount": "0.04%"
   },
   "inceptionDate": "Nov 08 2005",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "10.63%"
     }
   },
+  "metrics": {
+    "tr1y": 19.68,
+    "tr3y": 52.13,
+    "tr5y": 42.76,
+    "tr10y": 180.13,
+    "cagr3y": 15.01,
+    "cagr5y": 7.38,
+    "cagr10y": 10.85,
+    "siAnn": 10.34,
+    "dividendYield": 0.67,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 0.8664,
+    "secYield": 0.58,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "19.68%",
+    "tr3yText": "52.13%",
+    "tr5yText": "42.76%",
+    "tr10yText": "180.13%",
+    "cagr3yText": "15.01%",
+    "cagr5yText": "7.38%",
+    "cagr10yText": "10.85%",
+    "siAnnText": "10.34%",
+    "indicatedDividendYieldText": "0.87%",
+    "dividendYieldText": "0.67%",
+    "secYieldText": "0.58%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -82,26 +119,26 @@
     "rows": [
       [
         "Quarterly",
-        "06/22/2026",
-        "06/22/2026",
-        "06/24/2026",
-        "0.150341",
+        "09/21/2026",
+        "09/21/2026",
+        "09/23/2026",
+        "0.228650",
         "-",
         "-"
       ]
     ]
   },
   "holdings": {
-    "totalRows": 248,
+    "totalRows": 249,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 5244,
+    "totalRows": 5248,
     "pageSize": 1000,
     "pageCount": 6,
     "pages": [
@@ -112,5 +149,14 @@
       "./history/005.json",
       "./history/006.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

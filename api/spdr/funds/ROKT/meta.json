@@ -2,29 +2,39 @@
   "ticker": "ROKT",
   "name": "State Street SPDR S&P Kensho Final Frontiers ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78468R6302",
+    "cusip": "78468R630"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-kensho-final-frontiers-etf-rokt",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-rokt.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-rokt.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-rokt.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-rokt.pdf"
   },
   "expenseRatio": {
     "display": "0.45%",
     "value": 0.45
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$106.62",
-    "value": 106.62,
-    "asOfDate": "Sep 17 2026"
+    "display": "$106.66",
+    "value": 106.66,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$181.26 M",
-    "value": 181260000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$178.11 M",
+    "value": 178110000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$106.72",
+    "closePrice": "$106.62",
     "premiumDiscount": "-0.01%"
   },
   "inceptionDate": "Oct 22 2018",
@@ -69,6 +79,33 @@
       "sinceInceptionText": "20.53%"
     }
   },
+  "metrics": {
+    "tr1y": 54.24,
+    "tr3y": 164.35,
+    "tr5y": 175.63,
+    "tr10y": null,
+    "cagr3y": 38.27,
+    "cagr5y": 22.48,
+    "cagr10y": null,
+    "siAnn": 18.81,
+    "dividendYield": 0.2,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 0.1902,
+    "secYield": 0.19,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "54.24%",
+    "tr3yText": "164.35%",
+    "tr5yText": "175.63%",
+    "tr10yText": null,
+    "cagr3yText": "38.27%",
+    "cagr5yText": "22.48%",
+    "cagr10yText": null,
+    "siAnnText": "18.81%",
+    "indicatedDividendYieldText": "0.19%",
+    "dividendYieldText": "0.20%",
+    "secYieldText": "0.19%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -82,31 +119,40 @@
     "rows": [
       [
         "Quarterly",
-        "06/22/2026",
-        "06/22/2026",
-        "06/24/2026",
-        "0.048088",
+        "09/21/2026",
+        "09/21/2026",
+        "09/23/2026",
+        "0.050722",
         "-",
         "-"
       ]
     ]
   },
   "holdings": {
-    "totalRows": 39,
+    "totalRows": 38,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 1986,
+    "totalRows": 1990,
     "pageSize": 1000,
     "pageCount": 2,
     "pages": [
       "./history/001.json",
       "./history/002.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

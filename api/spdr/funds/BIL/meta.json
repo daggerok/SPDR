@@ -2,30 +2,40 @@
   "ticker": "BIL",
   "name": "State Street SPDR Bloomberg 1-3 Month T-Bill ETF",
   "category": "Fixed Income Sector",
+  "identifiers": {
+    "isin": "US78468R6633",
+    "cusip": "78468R663"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-bloomberg-1-3-month-t-bill-etf-bil",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-bil.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-bil.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-bil.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-bil.pdf"
   },
   "expenseRatio": {
     "display": "0.1353%",
     "value": 0.1353
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$91.52",
-    "value": 91.52,
-    "asOfDate": "Sep 17 2026"
+    "display": "$91.58",
+    "value": 91.58,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$47,893.14 M",
-    "value": 47893140000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$47,969.19 M",
+    "value": 47969190000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$91.53",
-    "premiumDiscount": "0.00%"
+    "closePrice": "$91.59",
+    "premiumDiscount": "0.01%"
   },
   "inceptionDate": "May 25 2007",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "1.37%"
     }
   },
+  "metrics": {
+    "tr1y": 3.7,
+    "tr3y": 14.15,
+    "tr5y": 19.29,
+    "tr10y": 25.04,
+    "cagr3y": 4.51,
+    "cagr5y": 3.59,
+    "cagr10y": 2.26,
+    "siAnn": 1.39,
+    "dividendYield": 3.71,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 3.6659,
+    "secYield": 3.59,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "3.70%",
+    "tr3yText": "14.15%",
+    "tr5yText": "19.29%",
+    "tr10yText": "25.04%",
+    "cagr3yText": "4.51%",
+    "cagr5yText": "3.59%",
+    "cagr10yText": "2.26%",
+    "siAnnText": "1.39%",
+    "indicatedDividendYieldText": "3.67%",
+    "dividendYieldText": "3.71%",
+    "secYieldText": "3.59%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -98,10 +135,10 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 4860,
+    "totalRows": 4864,
     "pageSize": 1000,
     "pageCount": 5,
     "pages": [
@@ -111,5 +148,14 @@
       "./history/004.json",
       "./history/005.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

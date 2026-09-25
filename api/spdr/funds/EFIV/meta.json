@@ -2,30 +2,40 @@
   "ticker": "EFIV",
   "name": "State Street SPDR S&P 500 ESG ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78468R5312",
+    "cusip": "78468R531"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-500-esg-etf-efiv",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-efiv.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-efiv.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-efiv.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-efiv.pdf"
   },
   "expenseRatio": {
     "display": "0.10%",
     "value": 0.1
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$73.81",
-    "value": 73.81,
-    "asOfDate": "Sep 17 2026"
+    "display": "$74.12",
+    "value": 74.12,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$1,011.21 M",
-    "value": 1011210000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$1,011.78 M",
+    "value": 1011780000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$73.78",
-    "premiumDiscount": "-0.01%"
+    "closePrice": "$74.10",
+    "premiumDiscount": "0.02%"
   },
   "inceptionDate": "Jul 27 2020",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "17.60%"
     }
   },
+  "metrics": {
+    "tr1y": 23.14,
+    "tr3y": 77.33,
+    "tr5y": 89.1,
+    "tr10y": null,
+    "cagr3y": 21.04,
+    "cagr5y": 13.59,
+    "cagr10y": null,
+    "siAnn": 17.6,
+    "dividendYield": 0.99,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 1.0862,
+    "secYield": 1.03,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "23.14%",
+    "tr3yText": "77.33%",
+    "tr5yText": "89.10%",
+    "tr10yText": null,
+    "cagr3yText": "21.04%",
+    "cagr5yText": "13.59%",
+    "cagr10yText": null,
+    "siAnnText": "17.60%",
+    "indicatedDividendYieldText": "1.09%",
+    "dividendYieldText": "0.99%",
+    "secYieldText": "1.03%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -82,32 +119,41 @@
     "rows": [
       [
         "Quarterly",
-        "06/22/2026",
-        "06/22/2026",
-        "06/24/2026",
-        "0.194814",
+        "09/21/2026",
+        "09/21/2026",
+        "09/23/2026",
+        "0.201278",
         "-",
         "-"
       ]
     ]
   },
   "holdings": {
-    "totalRows": 329,
+    "totalRows": 328,
     "pageSize": 250,
     "pageCount": 2,
     "pages": [
       "./holdings/001.json",
       "./holdings/002.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 1544,
+    "totalRows": 1548,
     "pageSize": 1000,
     "pageCount": 2,
     "pages": [
       "./history/001.json",
       "./history/002.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

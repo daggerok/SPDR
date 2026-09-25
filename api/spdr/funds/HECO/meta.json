@@ -2,30 +2,40 @@
   "ticker": "HECO",
   "name": "State Street Galaxy Hedged Digital Asset Ecosystem ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78470P6482",
+    "cusip": "78470P648"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-galaxy-hedged-digital-asset-ecosystem-etf-heco",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-heco.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-heco.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-heco.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-heco.pdf"
   },
   "expenseRatio": {
     "display": "0.90%",
     "value": 0.9
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$64.86",
-    "value": 64.86,
-    "asOfDate": "Sep 17 2026"
+    "display": "$68.89",
+    "value": 68.89,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$83.03 M",
-    "value": 83030000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$88.18 M",
+    "value": 88180000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NASDAQ REGULAR MARKET",
-    "closePrice": "$64.84",
-    "premiumDiscount": "-0.02%"
+    "closePrice": "$68.90",
+    "premiumDiscount": "0.04%"
   },
   "inceptionDate": "Sep 09 2024",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "75.89%"
     }
   },
+  "metrics": {
+    "tr1y": 76.57,
+    "tr3y": null,
+    "tr5y": null,
+    "tr10y": null,
+    "cagr3y": null,
+    "cagr5y": null,
+    "cagr10y": null,
+    "siAnn": 59.53,
+    "dividendYield": 0,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": null,
+    "secYield": -0.55,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "76.57%",
+    "tr3yText": null,
+    "tr5yText": null,
+    "tr10yText": null,
+    "cagr3yText": null,
+    "cagr5yText": null,
+    "cagr10yText": null,
+    "siAnnText": "59.53%",
+    "indicatedDividendYieldText": null,
+    "dividendYieldText": "0.00%",
+    "secYieldText": "-0.55%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -98,14 +135,23 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 508,
+    "totalRows": 512,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./history/001.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

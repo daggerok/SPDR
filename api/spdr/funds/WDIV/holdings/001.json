@@ -2,7 +2,7 @@
   "ticker": "WDIV",
   "page": 1,
   "pageSize": 250,
-  "totalRows": 117,
+  "totalRows": 118,
   "headers": [
     "Name",
     "Ticker",
@@ -19,9 +19,9 @@
       "Ticker": "992",
       "Identifier": "621808906",
       "SEDOL": "6218089",
-      "Weight": "3.302572",
+      "Weight": "3.59595",
       "Sector": "-",
-      "Shares Held": "2160000",
+      "Shares Held": "2140000",
       "Local Currency": "HKD"
     },
     {
@@ -29,9 +29,9 @@
       "Ticker": "A078930",
       "Identifier": "B01RJV901",
       "SEDOL": "B01RJV3",
-      "Weight": "1.901904",
+      "Weight": "1.899914",
       "Sector": "-",
-      "Shares Held": "65948",
+      "Shares Held": "65291",
       "Local Currency": "KRW"
     },
     {
@@ -39,19 +39,29 @@
       "Ticker": "LGEN",
       "Identifier": "56039902",
       "SEDOL": "560399",
-      "Weight": "1.875324",
+      "Weight": "1.840505",
       "Sector": "-",
-      "Shares Held": "1332300",
+      "Shares Held": "1318917",
       "Local Currency": "GBP"
+    },
+    {
+      "Name": "TELEPERFORMANCE",
+      "Ticker": "TEP",
+      "Identifier": "599933900",
+      "SEDOL": "5999330",
+      "Weight": "1.671645",
+      "Sector": "-",
+      "Shares Held": "55725",
+      "Local Currency": "EUR"
     },
     {
       "Name": "APA GROUP",
       "Ticker": "APA",
       "Identifier": "624730909",
       "SEDOL": "6247306",
-      "Weight": "1.663199",
+      "Weight": "1.621011",
       "Sector": "-",
-      "Shares Held": "620616",
+      "Shares Held": "597167",
       "Local Currency": "AUD"
     },
     {
@@ -59,29 +69,19 @@
       "Ticker": "HIW",
       "Identifier": "431284108",
       "SEDOL": "2420640",
-      "Weight": "1.611705",
+      "Weight": "1.570384",
       "Sector": "-",
-      "Shares Held": "149760",
+      "Shares Held": "148160",
       "Local Currency": "USD"
-    },
-    {
-      "Name": "TELEPERFORMANCE",
-      "Ticker": "TEP",
-      "Identifier": "599933900",
-      "SEDOL": "5999330",
-      "Weight": "1.581867",
-      "Sector": "-",
-      "Shares Held": "56305",
-      "Local Currency": "EUR"
     },
     {
       "Name": "ALTRIA GROUP INC",
       "Ticker": "MO",
       "Identifier": "02209S103",
       "SEDOL": "2692632",
-      "Weight": "1.534855",
+      "Weight": "1.533561",
       "Sector": "-",
-      "Shares Held": "63002",
+      "Shares Held": "62302",
       "Local Currency": "USD"
     },
     {
@@ -89,9 +89,9 @@
       "Ticker": "VZ",
       "Identifier": "92343V104",
       "SEDOL": "2090571",
-      "Weight": "1.526231",
+      "Weight": "1.485525",
       "Sector": "-",
-      "Shares Held": "90349",
+      "Shares Held": "89449",
       "Local Currency": "USD"
     },
     {
@@ -99,9 +99,9 @@
       "Ticker": "NWBI",
       "Identifier": "667340103",
       "SEDOL": "B523Z73",
-      "Weight": "1.45124",
+      "Weight": "1.434456",
       "Sector": "-",
-      "Shares Held": "269962",
+      "Shares Held": "267162",
       "Local Currency": "USD"
     },
     {
@@ -109,29 +109,29 @@
       "Ticker": "DNB",
       "Identifier": "ACI1YWP65",
       "SEDOL": "BNG7113",
-      "Weight": "1.428201",
+      "Weight": "1.415054",
       "Sector": "-",
-      "Shares Held": "120810",
+      "Shares Held": "119539",
       "Local Currency": "NOK"
     },
     {
-      "Name": "CANADIAN NATURAL RESOURCES",
-      "Ticker": "CNQ",
-      "Identifier": "136385952",
-      "SEDOL": "2171573",
-      "Weight": "1.41173",
+      "Name": "PFIZER INC",
+      "Ticker": "PFE",
+      "Identifier": "717081103",
+      "SEDOL": "2684703",
+      "Weight": "1.38925",
       "Sector": "-",
-      "Shares Held": "79756",
-      "Local Currency": "CAD"
+      "Shares Held": "138094",
+      "Local Currency": "USD"
     },
     {
       "Name": "LTC PROPERTIES INC",
       "Ticker": "LTC",
       "Identifier": "502175102",
       "SEDOL": "2498788",
-      "Weight": "1.394746",
+      "Weight": "1.377931",
       "Sector": "-",
-      "Shares Held": "91733",
+      "Shares Held": "90733",
       "Local Currency": "USD"
     },
     {
@@ -139,29 +139,39 @@
       "Ticker": "SDR",
       "Identifier": "BP9LHF908",
       "SEDOL": "BP9LHF2",
-      "Weight": "1.355108",
+      "Weight": "1.361478",
       "Sector": "-",
-      "Shares Held": "494223",
+      "Shares Held": "488983",
       "Local Currency": "GBP"
     },
     {
-      "Name": "PFIZER INC",
-      "Ticker": "PFE",
-      "Identifier": "717081103",
-      "SEDOL": "2684703",
-      "Weight": "1.348606",
+      "Name": "CANADIAN NATURAL RESOURCES",
+      "Ticker": "CNQ",
+      "Identifier": "136385952",
+      "SEDOL": "2171573",
+      "Weight": "1.342213",
       "Sector": "-",
-      "Shares Held": "139594",
-      "Local Currency": "USD"
+      "Shares Held": "78956",
+      "Local Currency": "CAD"
+    },
+    {
+      "Name": "RUSSEL METALS INC",
+      "Ticker": "RUS",
+      "Identifier": "781903950",
+      "SEDOL": "2248808",
+      "Weight": "1.339932",
+      "Sector": "-",
+      "Shares Held": "63588",
+      "Local Currency": "CAD"
     },
     {
       "Name": "PEMBINA PIPELINE CORP",
       "Ticker": "PPL",
       "Identifier": "706327954",
       "SEDOL": "B4PT2P8",
-      "Weight": "1.313357",
+      "Weight": "1.276161",
       "Sector": "-",
-      "Shares Held": "78911",
+      "Shares Held": "78011",
       "Local Currency": "CAD"
     },
     {
@@ -169,29 +179,19 @@
       "Ticker": "GTY",
       "Identifier": "374297109",
       "SEDOL": "2698146",
-      "Weight": "1.31044",
+      "Weight": "1.258379",
       "Sector": "-",
-      "Shares Held": "125307",
+      "Shares Held": "124007",
       "Local Currency": "USD"
-    },
-    {
-      "Name": "RUSSEL METALS INC",
-      "Ticker": "RUS",
-      "Identifier": "781903950",
-      "SEDOL": "2248808",
-      "Weight": "1.279958",
-      "Sector": "-",
-      "Shares Held": "64288",
-      "Local Currency": "CAD"
     },
     {
       "Name": "ELISA OYJ",
       "Ticker": "ELISA",
       "Identifier": "570151902",
       "SEDOL": "5701513",
-      "Weight": "1.278109",
+      "Weight": "1.251228",
       "Sector": "-",
-      "Shares Held": "82691",
+      "Shares Held": "81800",
       "Local Currency": "EUR"
     },
     {
@@ -199,29 +199,9 @@
       "Ticker": "OKE",
       "Identifier": "30609A109",
       "SEDOL": "BWJJFW8",
-      "Weight": "1.259914",
+      "Weight": "1.236918",
       "Sector": "-",
-      "Shares Held": "38668",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "FAR EAST HORIZON LTD",
-      "Ticker": "3360",
-      "Identifier": "B63DLB908",
-      "SEDOL": "B63DLB5",
-      "Weight": "1.209892",
-      "Sector": "-",
-      "Shares Held": "4204000",
-      "Local Currency": "HKD"
-    },
-    {
-      "Name": "PEOPLES BANCORP INC",
-      "Ticker": "PEBO",
-      "Identifier": "709789101",
-      "SEDOL": "2679419",
-      "Weight": "1.198097",
-      "Sector": "-",
-      "Shares Held": "86823",
+      "Shares Held": "38268",
       "Local Currency": "USD"
     },
     {
@@ -229,9 +209,39 @@
       "Ticker": "ENR",
       "Identifier": "29272W109",
       "SEDOL": "BYZFPN5",
-      "Weight": "1.194564",
+      "Weight": "1.220769",
       "Sector": "-",
-      "Shares Held": "157134",
+      "Shares Held": "155434",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "FAR EAST HORIZON LTD",
+      "Ticker": "3360",
+      "Identifier": "B63DLB908",
+      "SEDOL": "B63DLB5",
+      "Weight": "1.211454",
+      "Sector": "-",
+      "Shares Held": "4159000",
+      "Local Currency": "HKD"
+    },
+    {
+      "Name": "JIANGSU EXPRESS CO LTD H",
+      "Ticker": "177",
+      "Identifier": "600550909",
+      "SEDOL": "6005504",
+      "Weight": "1.201034",
+      "Sector": "-",
+      "Shares Held": "2518000",
+      "Local Currency": "HKD"
+    },
+    {
+      "Name": "PEOPLES BANCORP INC",
+      "Ticker": "PEBO",
+      "Identifier": "709789101",
+      "SEDOL": "2679419",
+      "Weight": "1.178812",
+      "Sector": "-",
+      "Shares Held": "85923",
       "Local Currency": "USD"
     },
     {
@@ -239,59 +249,59 @@
       "Ticker": "KEY",
       "Identifier": "493271951",
       "SEDOL": "B3SGMV5",
-      "Weight": "1.185079",
+      "Weight": "1.177712",
       "Sector": "-",
-      "Shares Held": "88177",
+      "Shares Held": "87177",
       "Local Currency": "CAD"
-    },
-    {
-      "Name": "JIANGSU EXPRESS CO LTD H",
-      "Ticker": "177",
-      "Identifier": "600550909",
-      "SEDOL": "6005504",
-      "Weight": "1.180756",
-      "Sector": "-",
-      "Shares Held": "2546000",
-      "Local Currency": "HKD"
-    },
-    {
-      "Name": "EDP SA",
-      "Ticker": "EDP",
-      "Identifier": "410359905",
-      "SEDOL": "4103596",
-      "Weight": "1.174581",
-      "Sector": "-",
-      "Shares Held": "602994",
-      "Local Currency": "EUR"
-    },
-    {
-      "Name": "LONDONMETRIC PROPERTY PLC",
-      "Ticker": "LMP",
-      "Identifier": "B4WFW7903",
-      "SEDOL": "B4WFW71",
-      "Weight": "1.173382",
-      "Sector": "-",
-      "Shares Held": "1392126",
-      "Local Currency": "GBP"
     },
     {
       "Name": "AMCOR PLC",
       "Ticker": "AMCR",
       "Identifier": "G0250X149",
       "SEDOL": "BV7DQ55",
-      "Weight": "1.139692",
+      "Weight": "1.163364",
       "Sector": "-",
-      "Shares Held": "76939",
+      "Shares Held": "76139",
       "Local Currency": "USD"
+    },
+    {
+      "Name": "LONDONMETRIC PROPERTY PLC",
+      "Ticker": "LMP",
+      "Identifier": "B4WFW7903",
+      "SEDOL": "B4WFW71",
+      "Weight": "1.163117",
+      "Sector": "-",
+      "Shares Held": "1376858",
+      "Local Currency": "GBP"
+    },
+    {
+      "Name": "VANGUARD INTERNATIONAL SEMI",
+      "Ticker": "5347",
+      "Identifier": "610967903",
+      "SEDOL": "6109677",
+      "Weight": "1.157269",
+      "Sector": "-",
+      "Shares Held": "593761",
+      "Local Currency": "TWD"
+    },
+    {
+      "Name": "EDP SA",
+      "Ticker": "EDP",
+      "Identifier": "410359905",
+      "SEDOL": "4103596",
+      "Weight": "1.156342",
+      "Sector": "-",
+      "Shares Held": "596332",
+      "Local Currency": "EUR"
     },
     {
       "Name": "BOSIDENG INTL HLDGS LTD",
       "Ticker": "3998",
       "Identifier": "B24FZ3904",
       "SEDOL": "B24FZ32",
-      "Weight": "1.12847",
+      "Weight": "1.12346",
       "Sector": "-",
-      "Shares Held": "6216000",
+      "Shares Held": "6148000",
       "Local Currency": "HKD"
     },
     {
@@ -299,9 +309,9 @@
       "Ticker": "SLF",
       "Identifier": "866796956",
       "SEDOL": "2566124",
-      "Weight": "1.103799",
+      "Weight": "1.102707",
       "Sector": "-",
-      "Shares Held": "39029",
+      "Shares Held": "38629",
       "Local Currency": "CAD"
     },
     {
@@ -309,99 +319,119 @@
       "Ticker": "BNS",
       "Identifier": "64149958",
       "SEDOL": "2076281",
-      "Weight": "1.101533",
+      "Weight": "1.089801",
       "Sector": "-",
-      "Shares Held": "33479",
+      "Shares Held": "33079",
       "Local Currency": "CAD"
-    },
-    {
-      "Name": "VANGUARD INTERNATIONAL SEMI",
-      "Ticker": "5347",
-      "Identifier": "610967903",
-      "SEDOL": "6109677",
-      "Weight": "1.090003",
-      "Sector": "-",
-      "Shares Held": "600761",
-      "Local Currency": "TWD"
     },
     {
       "Name": "SEGRO PLC",
       "Ticker": "SGRO",
       "Identifier": "B5ZN1N909",
       "SEDOL": "B5ZN1N8",
-      "Weight": "1.071559",
+      "Weight": "1.083713",
       "Sector": "-",
-      "Shares Held": "243634",
+      "Shares Held": "240908",
       "Local Currency": "GBP"
-    },
-    {
-      "Name": "ENEL SPA",
-      "Ticker": "ENEL",
-      "Identifier": "714456902",
-      "SEDOL": "7144569",
-      "Weight": "1.058491",
-      "Sector": "-",
-      "Shares Held": "291333",
-      "Local Currency": "EUR"
-    },
-    {
-      "Name": "HA SUSTAINABLE INFRASTRUCTUR",
-      "Ticker": "HASI",
-      "Identifier": "41068X100",
-      "SEDOL": "B9HHD96",
-      "Weight": "1.057929",
-      "Sector": "-",
-      "Shares Held": "81408",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "POWER ASSETS HOLDINGS LTD",
-      "Ticker": "6",
-      "Identifier": "643532005",
-      "SEDOL": "6435327",
-      "Weight": "1.03908",
-      "Sector": "-",
-      "Shares Held": "389053",
-      "Local Currency": "HKD"
-    },
-    {
-      "Name": "EMIRATES TELECOM GROUP CO",
-      "Ticker": "EAND",
-      "Identifier": "632217907",
-      "SEDOL": "6322173",
-      "Weight": "1.035294",
-      "Sector": "-",
-      "Shares Held": "495398",
-      "Local Currency": "AED"
     },
     {
       "Name": "LG CORP",
       "Ticker": "A003550",
       "Identifier": "653703009",
       "SEDOL": "6537030",
-      "Weight": "1.035098",
+      "Weight": "1.064485",
       "Sector": "-",
-      "Shares Held": "36598",
+      "Shares Held": "36189",
       "Local Currency": "KRW"
+    },
+    {
+      "Name": "EMIRATES TELECOM GROUP CO",
+      "Ticker": "EAND",
+      "Identifier": "632217907",
+      "SEDOL": "6322173",
+      "Weight": "1.047367",
+      "Sector": "-",
+      "Shares Held": "489802",
+      "Local Currency": "AED"
+    },
+    {
+      "Name": "POWER ASSETS HOLDINGS LTD",
+      "Ticker": "6",
+      "Identifier": "643532005",
+      "SEDOL": "6435327",
+      "Weight": "1.046636",
+      "Sector": "-",
+      "Shares Held": "384553",
+      "Local Currency": "HKD"
+    },
+    {
+      "Name": "HA SUSTAINABLE INFRASTRUCTUR",
+      "Ticker": "HASI",
+      "Identifier": "41068X100",
+      "SEDOL": "B9HHD96",
+      "Weight": "1.040716",
+      "Sector": "-",
+      "Shares Held": "80508",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "KT+G CORP",
+      "Ticker": "A033780",
+      "Identifier": "617507900",
+      "SEDOL": "6175076",
+      "Weight": "1.03813",
+      "Sector": "-",
+      "Shares Held": "22658",
+      "Local Currency": "KRW"
+    },
+    {
+      "Name": "ENEL SPA",
+      "Ticker": "ENEL",
+      "Identifier": "714456902",
+      "SEDOL": "7144569",
+      "Weight": "1.034761",
+      "Sector": "-",
+      "Shares Held": "288038",
+      "Local Currency": "EUR"
+    },
+    {
+      "Name": "BANQUE CANTONALE VAUDOIS REG",
+      "Ticker": "BCVN",
+      "Identifier": "ACI1MH6Q8",
+      "SEDOL": "BMFY8R3",
+      "Weight": "1.029543",
+      "Sector": "-",
+      "Shares Held": "18384",
+      "Local Currency": "CHF"
+    },
+    {
+      "Name": "SAUDI TELECOM CO",
+      "Ticker": "7010",
+      "Identifier": "B12M7Q903",
+      "SEDOL": "B12M7Q5",
+      "Weight": "1.021081",
+      "Sector": "-",
+      "Shares Held": "245999",
+      "Local Currency": "SAR"
+    },
+    {
+      "Name": "SINO LAND CO",
+      "Ticker": "83",
+      "Identifier": "681042008",
+      "SEDOL": "6810429",
+      "Weight": "1.020188",
+      "Sector": "-",
+      "Shares Held": "2193264",
+      "Local Currency": "HKD"
     },
     {
       "Name": "ZEON CORP",
       "Ticker": "4205",
       "Identifier": "664401007",
       "SEDOL": "6644015",
-      "Weight": "1.025254",
+      "Weight": "1.012844",
       "Sector": "-",
-      "Shares Held": "189600",
-      "Local Currency": "JPY"
-    },
-    {
-      "Name": "KANSAI PAINT CO LTD",
-      "Ticker": "4613",
-      "Identifier": "648374007",
-      "SEDOL": "6483746",
-      "Weight": "1.024285",
-      "Sector": "-",
-      "Shares Held": "157600",
+      "Shares Held": "187500",
       "Local Currency": "JPY"
     },
     {
@@ -409,79 +439,109 @@
       "Ticker": "TRP",
       "Identifier": "87807B909",
       "SEDOL": "BJMY6G0",
-      "Weight": "1.01935",
+      "Weight": "1.004129",
       "Sector": "-",
-      "Shares Held": "47353",
+      "Shares Held": "46753",
       "Local Currency": "CAD"
     },
     {
-      "Name": "WAREHOUSES DE PAUW SCA",
-      "Ticker": "WDP",
-      "Identifier": "ACI1HPHT8",
-      "SEDOL": "BK8VQD9",
-      "Weight": "1.00844",
+      "Name": "KANSAI PAINT CO LTD",
+      "Ticker": "4613",
+      "Identifier": "648374007",
+      "SEDOL": "6483746",
+      "Weight": "0.997166",
       "Sector": "-",
-      "Shares Held": "119160",
-      "Local Currency": "EUR"
-    },
-    {
-      "Name": "KT+G CORP",
-      "Ticker": "A033780",
-      "Identifier": "617507900",
-      "SEDOL": "6175076",
-      "Weight": "1.007691",
-      "Sector": "-",
-      "Shares Held": "22919",
-      "Local Currency": "KRW"
-    },
-    {
-      "Name": "TAKEDA PHARMACEUTICAL CO LTD",
-      "Ticker": "4502",
-      "Identifier": "687044008",
-      "SEDOL": "6870445",
-      "Weight": "0.999557",
-      "Sector": "-",
-      "Shares Held": "74906",
+      "Shares Held": "155800",
       "Local Currency": "JPY"
-    },
-    {
-      "Name": "SAUDI TELECOM CO",
-      "Ticker": "7010",
-      "Identifier": "B12M7Q903",
-      "SEDOL": "B12M7Q5",
-      "Weight": "0.998884",
-      "Sector": "-",
-      "Shares Held": "245999",
-      "Local Currency": "SAR"
     },
     {
       "Name": "UNITED UTILITIES GROUP PLC",
       "Ticker": "UU.",
       "Identifier": "B39J2M903",
       "SEDOL": "B39J2M4",
-      "Weight": "0.998752",
+      "Weight": "0.996654",
       "Sector": "-",
-      "Shares Held": "153736",
+      "Shares Held": "151969",
       "Local Currency": "GBP"
+    },
+    {
+      "Name": "TAKEDA PHARMACEUTICAL CO LTD",
+      "Ticker": "4502",
+      "Identifier": "687044008",
+      "SEDOL": "6870445",
+      "Weight": "0.996581",
+      "Sector": "-",
+      "Shares Held": "74006",
+      "Local Currency": "JPY"
     },
     {
       "Name": "KILROY REALTY CORP",
       "Ticker": "KRC",
       "Identifier": "49427F108",
       "SEDOL": "2495529",
-      "Weight": "0.995168",
+      "Weight": "0.994279",
       "Sector": "-",
-      "Shares Held": "82719",
+      "Shares Held": "81819",
       "Local Currency": "USD"
     },
     {
-      "Name": "BANQUE CANTONALE VAUDOIS REG",
-      "Ticker": "BCVN",
-      "Identifier": "ACI1MH6Q8",
-      "SEDOL": "BMFY8R3",
-      "Weight": "0.991782",
+      "Name": "WAREHOUSES DE PAUW SCA",
+      "Ticker": "WDP",
+      "Identifier": "ACI1HPHT8",
+      "SEDOL": "BK8VQD9",
+      "Weight": "0.989675",
       "Sector": "-",
-      "Shares Held": "18595",
+      "Shares Held": "117803",
+      "Local Currency": "EUR"
+    },
+    {
+      "Name": "CANADIAN UTILITIES LTD A",
+      "Ticker": "CU",
+      "Identifier": "136717956",
+      "SEDOL": "2172639",
+      "Weight": "0.98",
+      "Sector": "-",
+      "Shares Held": "76244",
+      "Local Currency": "CAD"
+    },
+    {
+      "Name": "DELUXE CORP",
+      "Ticker": "DLX",
+      "Identifier": "248019101",
+      "SEDOL": "2260363",
+      "Weight": "0.967172",
+      "Sector": "-",
+      "Shares Held": "113450",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "VOPAK",
+      "Ticker": "VPK",
+      "Identifier": "580942902",
+      "SEDOL": "5809428",
+      "Weight": "0.965691",
+      "Sector": "-",
+      "Shares Held": "50138",
+      "Local Currency": "EUR"
+    },
+    {
+      "Name": "DHL AG",
+      "Ticker": "DHL",
+      "Identifier": "461785909",
+      "SEDOL": "4617859",
+      "Weight": "0.964842",
+      "Sector": "-",
+      "Shares Held": "41369",
+      "Local Currency": "EUR"
+    },
+    {
+      "Name": "DKSH HOLDING AG",
+      "Ticker": "DKSH",
+      "Identifier": "B71QPM901",
+      "SEDOL": "B71QPM2",
+      "Weight": "0.959016",
+      "Sector": "-",
+      "Shares Held": "32419",
       "Local Currency": "CHF"
     },
     {
@@ -489,129 +549,79 @@
       "Ticker": "EIX",
       "Identifier": "281020107",
       "SEDOL": "2829515",
-      "Weight": "0.982487",
+      "Weight": "0.956044",
       "Sector": "-",
-      "Shares Held": "50647",
+      "Shares Held": "50047",
       "Local Currency": "USD"
-    },
-    {
-      "Name": "CANADIAN UTILITIES LTD A",
-      "Ticker": "CU",
-      "Identifier": "136717956",
-      "SEDOL": "2172639",
-      "Weight": "0.982047",
-      "Sector": "-",
-      "Shares Held": "77144",
-      "Local Currency": "CAD"
-    },
-    {
-      "Name": "VOPAK",
-      "Ticker": "VPK",
-      "Identifier": "580942902",
-      "SEDOL": "5809428",
-      "Weight": "0.977782",
-      "Sector": "-",
-      "Shares Held": "50719",
-      "Local Currency": "EUR"
-    },
-    {
-      "Name": "ZURICH INSURANCE GROUP AG",
-      "Ticker": "ZURN",
-      "Identifier": "598381903",
-      "SEDOL": "5983816",
-      "Weight": "0.97659",
-      "Sector": "-",
-      "Shares Held": "3788",
-      "Local Currency": "CHF"
-    },
-    {
-      "Name": "COLUMBIA BANKING SYSTEM INC",
-      "Ticker": "COLB",
-      "Identifier": "197236102",
-      "SEDOL": "2176608",
-      "Weight": "0.975976",
-      "Sector": "-",
-      "Shares Held": "93247",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "SINO LAND CO",
-      "Ticker": "83",
-      "Identifier": "681042008",
-      "SEDOL": "6810429",
-      "Weight": "0.975343",
-      "Sector": "-",
-      "Shares Held": "2219264",
-      "Local Currency": "HKD"
-    },
-    {
-      "Name": "FIRST INTERSTATE BANCSYS A",
-      "Ticker": "FIBK",
-      "Identifier": "32055Y201",
-      "SEDOL": "B4RGHN0",
-      "Weight": "0.970429",
-      "Sector": "-",
-      "Shares Held": "74715",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "DELUXE CORP",
-      "Ticker": "DLX",
-      "Identifier": "248019101",
-      "SEDOL": "2260363",
-      "Weight": "0.959387",
-      "Sector": "-",
-      "Shares Held": "114750",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "DHL AG",
-      "Ticker": "DHL",
-      "Identifier": "461785909",
-      "SEDOL": "4617859",
-      "Weight": "0.949345",
-      "Sector": "-",
-      "Shares Held": "41853",
-      "Local Currency": "EUR"
-    },
-    {
-      "Name": "ALLIANZ SE REG",
-      "Ticker": "ALV",
-      "Identifier": "523148906",
-      "SEDOL": "5231485",
-      "Weight": "0.943538",
-      "Sector": "-",
-      "Shares Held": "5210",
-      "Local Currency": "EUR"
-    },
-    {
-      "Name": "COCA COLA FEMSA SAB DE CV",
-      "Ticker": "KOF UBL",
-      "Identifier": "ACI1B9209",
-      "SEDOL": "BHHP0S4",
-      "Weight": "0.943365",
-      "Sector": "-",
-      "Shares Held": "240461",
-      "Local Currency": "MXN"
     },
     {
       "Name": "CLP HOLDINGS LTD",
       "Ticker": "2",
       "Identifier": "609701909",
       "SEDOL": "6097017",
-      "Weight": "0.941755",
+      "Weight": "0.953426",
       "Sector": "-",
-      "Shares Held": "274000",
+      "Shares Held": "271000",
       "Local Currency": "HKD"
+    },
+    {
+      "Name": "COLUMBIA BANKING SYSTEM INC",
+      "Ticker": "COLB",
+      "Identifier": "197236102",
+      "SEDOL": "2176608",
+      "Weight": "0.950086",
+      "Sector": "-",
+      "Shares Held": "92247",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "FIRST INTERSTATE BANCSYS A",
+      "Ticker": "FIBK",
+      "Identifier": "32055Y201",
+      "SEDOL": "B4RGHN0",
+      "Weight": "0.94919",
+      "Sector": "-",
+      "Shares Held": "73815",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "ZURICH INSURANCE GROUP AG",
+      "Ticker": "ZURN",
+      "Identifier": "598381903",
+      "SEDOL": "5983816",
+      "Weight": "0.946938",
+      "Sector": "-",
+      "Shares Held": "3745",
+      "Local Currency": "CHF"
     },
     {
       "Name": "CK INFRASTRUCTURE HOLDINGS L",
       "Ticker": "1038",
       "Identifier": "BYVS6J903",
       "SEDOL": "BYVS6J1",
-      "Weight": "0.923971",
+      "Weight": "0.940823",
       "Sector": "-",
-      "Shares Held": "320803",
+      "Shares Held": "316803",
+      "Local Currency": "HKD"
+    },
+    {
+      "Name": "COCA COLA FEMSA SAB DE CV",
+      "Ticker": "KOF UBL",
+      "Identifier": "ACI1B9209",
+      "SEDOL": "BHHP0S4",
+      "Weight": "0.937497",
+      "Sector": "-",
+      "Shares Held": "237661",
+      "Local Currency": "MXN"
+    },
+    {
+      "Name": "CHINA MERCHANTS BANK H",
+      "Ticker": "3968",
+      "Identifier": "B1DYPZ905",
+      "SEDOL": "B1DYPZ5",
+      "Weight": "0.931856",
+      "Sector": "-",
+      "Shares Held": "399500",
       "Local Currency": "HKD"
     },
     {
@@ -619,89 +629,19 @@
       "Ticker": "ERG",
       "Identifier": "533709903",
       "SEDOL": "5337093",
-      "Weight": "0.91837",
+      "Weight": "0.931572",
       "Sector": "-",
-      "Shares Held": "101398",
+      "Shares Held": "100206",
       "Local Currency": "EUR"
-    },
-    {
-      "Name": "UNIVERSAL CORP/VA",
-      "Ticker": "UVV",
-      "Identifier": "913456109",
-      "SEDOL": "2923804",
-      "Weight": "0.916211",
-      "Sector": "-",
-      "Shares Held": "59078",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "DKSH HOLDING AG",
-      "Ticker": "DKSH",
-      "Identifier": "B71QPM901",
-      "SEDOL": "B71QPM2",
-      "Weight": "0.91443",
-      "Sector": "-",
-      "Shares Held": "32802",
-      "Local Currency": "CHF"
-    },
-    {
-      "Name": "CHINA MERCHANTS BANK H",
-      "Ticker": "3968",
-      "Identifier": "B1DYPZ905",
-      "SEDOL": "B1DYPZ5",
-      "Weight": "0.913031",
-      "Sector": "-",
-      "Shares Held": "399500",
-      "Local Currency": "HKD"
     },
     {
       "Name": "VALMET OYJ",
       "Ticker": "VALMT",
       "Identifier": "BH6XZT903",
       "SEDOL": "BH6XZT5",
-      "Weight": "0.912694",
+      "Weight": "0.915791",
       "Sector": "-",
-      "Shares Held": "79993",
-      "Local Currency": "EUR"
-    },
-    {
-      "Name": "DERWENT LONDON PLC",
-      "Ticker": "DLN",
-      "Identifier": "26527903",
-      "SEDOL": "265274",
-      "Weight": "0.90666",
-      "Sector": "-",
-      "Shares Held": "104614",
-      "Local Currency": "GBP"
-    },
-    {
-      "Name": "TERNA RETE ELETTRICA NAZIONA",
-      "Ticker": "TRN",
-      "Identifier": "B01BN5908",
-      "SEDOL": "B01BN57",
-      "Weight": "0.899818",
-      "Sector": "-",
-      "Shares Held": "237933",
-      "Local Currency": "EUR"
-    },
-    {
-      "Name": "CANADIAN TIRE CORP CLASS A",
-      "Ticker": "CTC.A",
-      "Identifier": "136681954",
-      "SEDOL": "2172286",
-      "Weight": "0.894329",
-      "Sector": "-",
-      "Shares Held": "18948",
-      "Local Currency": "CAD"
-    },
-    {
-      "Name": "BOUYGUES SA",
-      "Ticker": "EN",
-      "Identifier": "400212908",
-      "SEDOL": "4002121",
-      "Weight": "0.893176",
-      "Sector": "-",
-      "Shares Held": "49605",
+      "Shares Held": "79056",
       "Local Currency": "EUR"
     },
     {
@@ -709,59 +649,109 @@
       "Ticker": "A032640",
       "Identifier": "629090903",
       "SEDOL": "6290902",
-      "Weight": "0.890619",
+      "Weight": "0.912146",
       "Sector": "-",
-      "Shares Held": "239819",
+      "Shares Held": "237023",
       "Local Currency": "KRW"
     },
     {
-      "Name": "SANOFI",
-      "Ticker": "SAN",
-      "Identifier": "567173901",
-      "SEDOL": "5671735",
-      "Weight": "0.888151",
+      "Name": "UNIVERSAL CORP/VA",
+      "Ticker": "UVV",
+      "Identifier": "913456109",
+      "SEDOL": "2923804",
+      "Weight": "0.902892",
       "Sector": "-",
-      "Shares Held": "29395",
+      "Shares Held": "59078",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "CANADIAN TIRE CORP CLASS A",
+      "Ticker": "CTC.A",
+      "Identifier": "136681954",
+      "SEDOL": "2172286",
+      "Weight": "0.891828",
+      "Sector": "-",
+      "Shares Held": "18748",
+      "Local Currency": "CAD"
+    },
+    {
+      "Name": "TERNA RETE ELETTRICA NAZIONA",
+      "Ticker": "TRN",
+      "Identifier": "B01BN5908",
+      "SEDOL": "B01BN57",
+      "Weight": "0.881266",
+      "Sector": "-",
+      "Shares Held": "235134",
       "Local Currency": "EUR"
+    },
+    {
+      "Name": "DERWENT LONDON PLC",
+      "Ticker": "DLN",
+      "Identifier": "26527903",
+      "SEDOL": "265274",
+      "Weight": "0.878253",
+      "Sector": "-",
+      "Shares Held": "103385",
+      "Local Currency": "GBP"
     },
     {
       "Name": "JULIUS BAER GROUP LTD",
       "Ticker": "BAER",
       "Identifier": "B4R2R5908",
       "SEDOL": "B4R2R50",
-      "Weight": "0.887548",
+      "Weight": "0.877371",
       "Sector": "-",
       "Shares Held": "28459",
       "Local Currency": "CHF"
     },
     {
-      "Name": "JAPAN METROPOLITAN FUND INVE",
-      "Ticker": "8953",
-      "Identifier": "651334906",
-      "SEDOL": "6513342",
-      "Weight": "0.860272",
+      "Name": "SANOFI",
+      "Ticker": "SAN",
+      "Identifier": "567173901",
+      "SEDOL": "5671735",
+      "Weight": "0.874735",
       "Sector": "-",
-      "Shares Held": "3441",
-      "Local Currency": "JPY"
+      "Shares Held": "29395",
+      "Local Currency": "EUR"
+    },
+    {
+      "Name": "BOUYGUES SA",
+      "Ticker": "EN",
+      "Identifier": "400212908",
+      "SEDOL": "4002121",
+      "Weight": "0.873249",
+      "Sector": "-",
+      "Shares Held": "49605",
+      "Local Currency": "EUR"
+    },
+    {
+      "Name": "ALLIANZ SE REG",
+      "Ticker": "ALV",
+      "Identifier": "523148906",
+      "SEDOL": "5231485",
+      "Weight": "0.865942",
+      "Sector": "-",
+      "Shares Held": "5150",
+      "Local Currency": "EUR"
     },
     {
       "Name": "EMERA INC",
       "Ticker": "EMA",
       "Identifier": "290876952",
       "SEDOL": "2650050",
-      "Weight": "0.852232",
+      "Weight": "0.851449",
       "Sector": "-",
       "Shares Held": "49424",
       "Local Currency": "CAD"
     },
     {
-      "Name": "AGC INC",
-      "Ticker": "5201",
-      "Identifier": "605520006",
-      "SEDOL": "6055208",
-      "Weight": "0.847929",
+      "Name": "JAPAN METROPOLITAN FUND INVE",
+      "Ticker": "8953",
+      "Identifier": "651334906",
+      "SEDOL": "6513342",
+      "Weight": "0.850966",
       "Sector": "-",
-      "Shares Held": "66100",
+      "Shares Held": "3441",
       "Local Currency": "JPY"
     },
     {
@@ -769,39 +759,19 @@
       "Ticker": "HIK",
       "Identifier": "B0LCW0905",
       "SEDOL": "B0LCW08",
-      "Weight": "0.836793",
+      "Weight": "0.848481",
       "Sector": "-",
       "Shares Held": "112342",
       "Local Currency": "GBP"
     },
     {
-      "Name": "A2A SPA",
-      "Ticker": "A2A",
-      "Identifier": "549913903",
-      "SEDOL": "5499131",
-      "Weight": "0.828485",
+      "Name": "AGC INC",
+      "Ticker": "5201",
+      "Identifier": "605520006",
+      "SEDOL": "6055208",
+      "Weight": "0.842092",
       "Sector": "-",
-      "Shares Held": "866351",
-      "Local Currency": "EUR"
-    },
-    {
-      "Name": "THE CAMPBELL S COMPANY",
-      "Ticker": "CPB",
-      "Identifier": "134429109",
-      "SEDOL": "2162845",
-      "Weight": "0.827541",
-      "Sector": "-",
-      "Shares Held": "111785",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "OJI HOLDINGS CORP",
-      "Ticker": "3861",
-      "Identifier": "665770004",
-      "SEDOL": "6657701",
-      "Weight": "0.825685",
-      "Sector": "-",
-      "Shares Held": "413900",
+      "Shares Held": "66100",
       "Local Currency": "JPY"
     },
     {
@@ -809,17 +779,27 @@
       "Ticker": "VRTS",
       "Identifier": "92828Q109",
       "SEDOL": "B3KKGQ8",
-      "Weight": "0.824297",
+      "Weight": "0.829696",
       "Sector": "-",
-      "Shares Held": "18357",
+      "Shares Held": "18157",
       "Local Currency": "USD"
+    },
+    {
+      "Name": "INTERNATIONAL GAMES SYSTEM C",
+      "Ticker": "3293",
+      "Identifier": "674480900",
+      "SEDOL": "6744807",
+      "Weight": "0.829518",
+      "Sector": "-",
+      "Shares Held": "101000",
+      "Local Currency": "TWD"
     },
     {
       "Name": "SWISSCOM AG REG",
       "Ticker": "SCMN",
       "Identifier": "553397902",
       "SEDOL": "5533976",
-      "Weight": "0.824288",
+      "Weight": "0.819468",
       "Sector": "-",
       "Shares Held": "2893",
       "Local Currency": "CHF"
@@ -829,39 +809,59 @@
       "Ticker": "1719",
       "Identifier": "668799901",
       "SEDOL": "6687991",
-      "Weight": "0.823555",
+      "Weight": "0.819046",
       "Sector": "-",
       "Shares Held": "189500",
       "Local Currency": "JPY"
     },
     {
-      "Name": "SWISS LIFE HOLDING AG REG",
-      "Ticker": "SLW",
-      "Identifier": "743780900",
-      "SEDOL": "7437805",
-      "Weight": "0.807469",
+      "Name": "OJI HOLDINGS CORP",
+      "Ticker": "3861",
+      "Identifier": "665770004",
+      "SEDOL": "6657701",
+      "Weight": "0.817839",
       "Sector": "-",
-      "Shares Held": "2034",
-      "Local Currency": "CHF"
+      "Shares Held": "413900",
+      "Local Currency": "JPY"
     },
     {
-      "Name": "INTERNATIONAL GAMES SYSTEM C",
-      "Ticker": "3293",
-      "Identifier": "674480900",
-      "SEDOL": "6744807",
-      "Weight": "0.802763",
+      "Name": "THE CAMPBELL S COMPANY",
+      "Ticker": "CPB",
+      "Identifier": "134429109",
+      "SEDOL": "2162845",
+      "Weight": "0.811707",
       "Sector": "-",
-      "Shares Held": "101000",
-      "Local Currency": "TWD"
+      "Shares Held": "111785",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "A2A SPA",
+      "Ticker": "A2A",
+      "Identifier": "549913903",
+      "SEDOL": "5499131",
+      "Weight": "0.809288",
+      "Sector": "-",
+      "Shares Held": "866351",
+      "Local Currency": "EUR"
     },
     {
       "Name": "NESTLE SA REG",
       "Ticker": "NESN",
       "Identifier": "712387901",
       "SEDOL": "7123870",
-      "Weight": "0.79714",
+      "Weight": "0.800906",
       "Sector": "-",
       "Shares Held": "23984",
+      "Local Currency": "CHF"
+    },
+    {
+      "Name": "SWISS LIFE HOLDING AG REG",
+      "Ticker": "SLW",
+      "Identifier": "743780900",
+      "SEDOL": "7437805",
+      "Weight": "0.797446",
+      "Sector": "-",
+      "Shares Held": "2034",
       "Local Currency": "CHF"
     },
     {
@@ -869,67 +869,67 @@
       "Ticker": "1928",
       "Identifier": "679390005",
       "SEDOL": "6793906",
-      "Weight": "0.795021",
+      "Weight": "0.786887",
       "Sector": "-",
       "Shares Held": "104100",
       "Local Currency": "JPY"
-    },
-    {
-      "Name": "ROGERS COMMUNICATIONS INC B",
-      "Ticker": "RCI.B",
-      "Identifier": "775109960",
-      "SEDOL": "2169051",
-      "Weight": "0.733135",
-      "Sector": "-",
-      "Shares Held": "59664",
-      "Local Currency": "CAD"
     },
     {
       "Name": "CEMBRA MONEY BANK AG",
       "Ticker": "CMBN",
       "Identifier": "BFSSBH906",
       "SEDOL": "BFSSBH4",
-      "Weight": "0.717392",
+      "Weight": "0.725143",
       "Sector": "-",
       "Shares Held": "19389",
       "Local Currency": "CHF"
+    },
+    {
+      "Name": "ROGERS COMMUNICATIONS INC B",
+      "Ticker": "RCI.B",
+      "Identifier": "775109960",
+      "SEDOL": "2169051",
+      "Weight": "0.70992",
+      "Sector": "-",
+      "Shares Held": "59664",
+      "Local Currency": "CAD"
     },
     {
       "Name": "JAPAN REAL ESTATE INVESTMENT",
       "Ticker": "8952",
       "Identifier": "639758903",
       "SEDOL": "6397580",
-      "Weight": "0.702895",
+      "Weight": "0.699927",
       "Sector": "-",
       "Shares Held": "2733",
       "Local Currency": "JPY"
-    },
-    {
-      "Name": "HOLCIM LTD",
-      "Ticker": "HOLN",
-      "Identifier": "711075903",
-      "SEDOL": "7110753",
-      "Weight": "0.672191",
-      "Sector": "-",
-      "Shares Held": "23215",
-      "Local Currency": "CHF"
     },
     {
       "Name": "PING AN INSURANCE GROUP CO H",
       "Ticker": "2318",
       "Identifier": "B01FLR903",
       "SEDOL": "B01FLR7",
-      "Weight": "0.669851",
+      "Weight": "0.691452",
       "Sector": "-",
       "Shares Held": "284500",
       "Local Currency": "HKD"
+    },
+    {
+      "Name": "HOLCIM LTD",
+      "Ticker": "HOLN",
+      "Identifier": "711075903",
+      "SEDOL": "7110753",
+      "Weight": "0.680712",
+      "Sector": "-",
+      "Shares Held": "23215",
+      "Local Currency": "CHF"
     },
     {
       "Name": "PARTNERS GROUP HOLDING AG",
       "Ticker": "PGHN",
       "Identifier": "B119QG904",
       "SEDOL": "B119QG0",
-      "Weight": "0.47614",
+      "Weight": "0.488683",
       "Sector": "-",
       "Shares Held": "1807",
       "Local Currency": "CHF"
@@ -939,119 +939,79 @@
       "Ticker": "-",
       "Identifier": "924QSGII3",
       "SEDOL": "-",
-      "Weight": "0.089736",
+      "Weight": "0.131088",
       "Sector": "-",
-      "Shares Held": "256736.04",
+      "Shares Held": "367195.09",
       "Local Currency": "USD"
-    },
-    {
-      "Name": "HONG KONG DOLLAR",
-      "Ticker": "-",
-      "Identifier": "999HKDZ99",
-      "SEDOL": "-",
-      "Weight": "0.077924",
-      "Sector": "-",
-      "Shares Held": "1749117.36",
-      "Local Currency": "HKD"
-    },
-    {
-      "Name": "NEW TAIWAN DOLLAR",
-      "Ticker": "-",
-      "Identifier": "999TWDZ90",
-      "SEDOL": "-",
-      "Weight": "0.05533",
-      "Sector": "-",
-      "Shares Held": "5047002",
-      "Local Currency": "TWD"
-    },
-    {
-      "Name": "JAPANESE YEN",
-      "Ticker": "-",
-      "Identifier": "999JPYZ94",
-      "SEDOL": "-",
-      "Weight": "0.035897",
-      "Sector": "-",
-      "Shares Held": "15995490",
-      "Local Currency": "JPY"
-    },
-    {
-      "Name": "SOUTH KOREAN WON",
-      "Ticker": "-",
-      "Identifier": "999KRWZ93",
-      "SEDOL": "-",
-      "Weight": "0.031718",
-      "Sector": "-",
-      "Shares Held": "125377828",
-      "Local Currency": "KRW"
     },
     {
       "Name": "US DOLLAR",
       "Ticker": "-",
       "Identifier": "999USDZ92",
       "SEDOL": "-",
-      "Weight": "0.031425",
+      "Weight": "0.111941",
       "Sector": "-",
-      "Shares Held": "89907.21",
+      "Shares Held": "313562.56",
       "Local Currency": "USD"
     },
     {
-      "Name": "POUND STERLING",
+      "Name": "NEW TAIWAN DOLLAR",
       "Ticker": "-",
-      "Identifier": "999GBPZ94",
+      "Identifier": "999TWDZ90",
       "SEDOL": "-",
-      "Weight": "0.030821",
+      "Weight": "0.05686",
       "Sector": "-",
-      "Shares Held": "66040",
-      "Local Currency": "GBP"
+      "Shares Held": "5047002",
+      "Local Currency": "TWD"
+    },
+    {
+      "Name": "SOUTH KOREAN WON",
+      "Ticker": "-",
+      "Identifier": "999KRWZ93",
+      "SEDOL": "-",
+      "Weight": "0.040461",
+      "Sector": "-",
+      "Shares Held": "153924268",
+      "Local Currency": "KRW"
+    },
+    {
+      "Name": "JAPANESE YEN",
+      "Ticker": "-",
+      "Identifier": "999JPYZ94",
+      "SEDOL": "-",
+      "Weight": "0.036825",
+      "Sector": "-",
+      "Shares Held": "16320290",
+      "Local Currency": "JPY"
+    },
+    {
+      "Name": "HONG KONG DOLLAR",
+      "Ticker": "-",
+      "Identifier": "999HKDZ99",
+      "SEDOL": "-",
+      "Weight": "0.036384",
+      "Sector": "-",
+      "Shares Held": "799422.46",
+      "Local Currency": "HKD"
     },
     {
       "Name": "CANADIAN DOLLAR",
       "Ticker": "-",
       "Identifier": "999CADZ91",
       "SEDOL": "-",
-      "Weight": "0.027018",
+      "Weight": "0.0249",
       "Sector": "-",
-      "Shares Held": "108115.46",
+      "Shares Held": "98314.07",
       "Local Currency": "CAD"
-    },
-    {
-      "Name": "EURO CURRENCY",
-      "Ticker": "-",
-      "Identifier": "999EURZ94",
-      "SEDOL": "-",
-      "Weight": "0.025597",
-      "Sector": "-",
-      "Shares Held": "63759.18",
-      "Local Currency": "EUR"
-    },
-    {
-      "Name": "SAUDI RIYAL",
-      "Ticker": "-",
-      "Identifier": "999SARZ95",
-      "SEDOL": "-",
-      "Weight": "0.016397",
-      "Sector": "-",
-      "Shares Held": "176229.63",
-      "Local Currency": "SAR"
-    },
-    {
-      "Name": "NORWEGIAN KRONE",
-      "Ticker": "-",
-      "Identifier": "999NOKZ96",
-      "SEDOL": "-",
-      "Weight": "0.01113",
-      "Sector": "-",
-      "Shares Held": "299957",
-      "Local Currency": "NOK"
     },
     {
       "Name": "UAE DIRHAM",
       "Ticker": "-",
       "Identifier": "999AEDZ91",
       "SEDOL": "-",
-      "Weight": "0.009504",
+      "Weight": "0.021432",
       "Sector": "-",
-      "Shares Held": "99872.22",
+      "Shares Held": "220504.07",
       "Local Currency": "AED"
     },
     {
@@ -1059,57 +1019,87 @@
       "Ticker": "-",
       "Identifier": "999MXNZ92",
       "SEDOL": "-",
-      "Weight": "0.007829",
+      "Weight": "0.018667",
       "Sector": "-",
-      "Shares Held": "384941.53",
+      "Shares Held": "913653.04",
       "Local Currency": "MXN"
     },
     {
-      "Name": "SWISS FRANC",
+      "Name": "SAUDI RIYAL",
       "Ticker": "-",
-      "Identifier": "999CHFZ99",
+      "Identifier": "999SARZ95",
       "SEDOL": "-",
-      "Weight": "0.006943",
+      "Weight": "0.016754",
       "Sector": "-",
-      "Shares Held": "16363.38",
-      "Local Currency": "CHF"
+      "Shares Held": "176229.63",
+      "Local Currency": "SAR"
+    },
+    {
+      "Name": "POUND STERLING",
+      "Ticker": "-",
+      "Identifier": "999GBPZ94",
+      "SEDOL": "-",
+      "Weight": "0.014024",
+      "Sector": "-",
+      "Shares Held": "29616.28",
+      "Local Currency": "GBP"
+    },
+    {
+      "Name": "NORWEGIAN KRONE",
+      "Ticker": "-",
+      "Identifier": "999NOKZ96",
+      "SEDOL": "-",
+      "Weight": "0.0086",
+      "Sector": "-",
+      "Shares Held": "228412.48",
+      "Local Currency": "NOK"
+    },
+    {
+      "Name": "EURO CURRENCY",
+      "Ticker": "-",
+      "Identifier": "999EURZ94",
+      "SEDOL": "-",
+      "Weight": "0.00665",
+      "Sector": "-",
+      "Shares Held": "16337.39",
+      "Local Currency": "EUR"
     },
     {
       "Name": "SWEDISH KRONA",
       "Ticker": "-",
       "Identifier": "999SEKZ96",
       "SEDOL": "-",
-      "Weight": "0.005082",
+      "Weight": "0.005146",
       "Sector": "-",
       "Shares Held": "142719.15",
       "Local Currency": "SEK"
+    },
+    {
+      "Name": "SWISS FRANC",
+      "Ticker": "-",
+      "Identifier": "999CHFZ99",
+      "SEDOL": "-",
+      "Weight": "0.005043",
+      "Sector": "-",
+      "Shares Held": "11642.74",
+      "Local Currency": "CHF"
     },
     {
       "Name": "THAILAND BAHT",
       "Ticker": "-",
       "Identifier": "999THBZ91",
       "SEDOL": "-",
-      "Weight": "0.004873",
+      "Weight": "0.004995",
       "Sector": "-",
       "Shares Held": "465273.98",
       "Local Currency": "THB"
-    },
-    {
-      "Name": "AUSTRALIAN DOLLAR",
-      "Ticker": "-",
-      "Identifier": "999AUDZ93",
-      "SEDOL": "-",
-      "Weight": "0.004836",
-      "Sector": "-",
-      "Shares Held": "19454.54",
-      "Local Currency": "AUD"
     },
     {
       "Name": "SOUTH AFRICAN RAND",
       "Ticker": "-",
       "Identifier": "999ZARZ99",
       "SEDOL": "-",
-      "Weight": "0.004164",
+      "Weight": "0.004224",
       "Sector": "-",
       "Shares Held": "193779.34",
       "Local Currency": "ZAR"
@@ -1119,7 +1109,7 @@
       "Ticker": "-",
       "Identifier": "999IDRZ94",
       "SEDOL": "-",
-      "Weight": "0.003958",
+      "Weight": "0.004029",
       "Sector": "-",
       "Shares Held": "200895354.13",
       "Local Currency": "IDR"
@@ -1129,7 +1119,7 @@
       "Ticker": "-",
       "Identifier": "999SGDZ90",
       "SEDOL": "-",
-      "Weight": "0.002457",
+      "Weight": "0.002501",
       "Sector": "-",
       "Shares Held": "8964.88",
       "Local Currency": "SGD"
@@ -1139,7 +1129,7 @@
       "Ticker": "-",
       "Identifier": "999BRLZ97",
       "SEDOL": "-",
-      "Weight": "0.001061",
+      "Weight": "0.001086",
       "Sector": "-",
       "Shares Held": "15654.71",
       "Local Currency": "BRL"
@@ -1149,7 +1139,7 @@
       "Ticker": "-",
       "Identifier": "999MYRZ92",
       "SEDOL": "-",
-      "Weight": "0.000921",
+      "Weight": "0.000945",
       "Sector": "-",
       "Shares Held": "10797.3",
       "Local Currency": "MYR"
@@ -1159,17 +1149,27 @@
       "Ticker": "-",
       "Identifier": "999DKKZ92",
       "SEDOL": "-",
-      "Weight": "0.000713",
+      "Weight": "0.000723",
       "Sector": "-",
       "Shares Held": "13279.4",
       "Local Currency": "DKK"
+    },
+    {
+      "Name": "JAPANESE YEN",
+      "Ticker": "-",
+      "Identifier": "JPY999999",
+      "SEDOL": "-",
+      "Weight": "0.000352",
+      "Sector": "-",
+      "Shares Held": "-31486890",
+      "Local Currency": "-"
     },
     {
       "Name": "S+P/TSX 60 IX FUT DEC26",
       "Ticker": "PTZ6",
       "Identifier": "ADI2TZ5Y1",
       "SEDOL": "-",
-      "Weight": "0.000597",
+      "Weight": "-0.00013",
       "Sector": "-",
       "Shares Held": "200",
       "Local Currency": "CAD"
@@ -1179,10 +1179,20 @@
       "Ticker": "MFSZ6",
       "Identifier": "ADI2VD121",
       "SEDOL": "-",
-      "Weight": "-0.001838",
+      "Weight": "-0.01116",
       "Sector": "-",
       "Shares Held": "650",
       "Local Currency": "USD"
+    },
+    {
+      "Name": "AUSTRALIAN DOLLAR",
+      "Ticker": "-",
+      "Identifier": "999AUDZ93",
+      "SEDOL": "-",
+      "Weight": "-0.036805",
+      "Sector": "-",
+      "Shares Held": "-146298.82",
+      "Local Currency": "AUD"
     }
   ]
 }

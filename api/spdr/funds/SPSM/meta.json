@@ -2,30 +2,40 @@
   "ticker": "SPSM",
   "name": "State Street SPDR Portfolio S&P 600 Small Cap ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78468R8530",
+    "cusip": "78468R853"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-portfolio-sp-600-small-cap-etf-spsm",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-spsm.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-spsm.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-spsm.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-spsm.pdf"
   },
   "expenseRatio": {
     "display": "0.03%",
     "value": 0.03
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$54.46",
-    "value": 54.46,
-    "asOfDate": "Sep 17 2026"
+    "display": "$53.69",
+    "value": 53.69,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$16,075.76 M",
-    "value": 16075760000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$15,882.73 M",
+    "value": 15882730000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$54.45",
-    "premiumDiscount": "-0.02%"
+    "closePrice": "$53.70",
+    "premiumDiscount": "0.03%"
   },
   "inceptionDate": "Jul 08 2013",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "10.31%"
     }
   },
+  "metrics": {
+    "tr1y": 24.06,
+    "tr3y": 50.58,
+    "tr5y": 39.54,
+    "tr10y": 171.16,
+    "cagr3y": 14.62,
+    "cagr5y": 6.89,
+    "cagr10y": 10.49,
+    "siAnn": 9.96,
+    "dividendYield": 1.53,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 1.6405,
+    "secYield": 1.57,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "24.06%",
+    "tr3yText": "50.58%",
+    "tr5yText": "39.54%",
+    "tr10yText": "171.16%",
+    "cagr3yText": "14.62%",
+    "cagr5yText": "6.89%",
+    "cagr10yText": "10.49%",
+    "siAnnText": "9.96%",
+    "indicatedDividendYieldText": "1.64%",
+    "dividendYieldText": "1.53%",
+    "secYieldText": "1.57%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -82,17 +119,17 @@
     "rows": [
       [
         "Quarterly",
-        "06/22/2026",
-        "06/22/2026",
-        "06/24/2026",
-        "0.200549",
+        "09/21/2026",
+        "09/21/2026",
+        "09/23/2026",
+        "0.220197",
         "-",
         "-"
       ]
     ]
   },
   "holdings": {
-    "totalRows": 610,
+    "totalRows": 611,
     "pageSize": 250,
     "pageCount": 3,
     "pages": [
@@ -100,10 +137,10 @@
       "./holdings/002.json",
       "./holdings/003.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 3321,
+    "totalRows": 3325,
     "pageSize": 1000,
     "pageCount": 4,
     "pages": [
@@ -112,5 +149,14 @@
       "./history/003.json",
       "./history/004.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

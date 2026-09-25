@@ -2,30 +2,40 @@
   "ticker": "WIP",
   "name": "State Street SPDR FTSE International Government Inflation-Protected Bond ETF",
   "category": "Fixed Income Sector",
+  "identifiers": {
+    "isin": "US78464A4904",
+    "cusip": "78464A490"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-ftse-international-government-inflation-protected-bond-etf-wip",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-wip.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-wip.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-wip.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-wip.pdf"
   },
   "expenseRatio": {
     "display": "0.50%",
     "value": 0.5
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$38.97",
-    "value": 38.97,
-    "asOfDate": "Sep 17 2026"
+    "display": "$38.57",
+    "value": 38.57,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$467.60 M",
-    "value": 467600000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$462.87 M",
+    "value": 462870000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$39.13",
-    "premiumDiscount": "0.41%"
+    "closePrice": "$38.52",
+    "premiumDiscount": "0.05%"
   },
   "inceptionDate": "Mar 13 2008",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "1.21%"
     }
   },
+  "metrics": {
+    "tr1y": 8.13,
+    "tr3y": 14.77,
+    "tr5y": -2.77,
+    "tr10y": 12.11,
+    "cagr3y": 4.7,
+    "cagr5y": -0.56,
+    "cagr10y": 1.15,
+    "siAnn": 1.26,
+    "dividendYield": 6.08,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 3.7703,
+    "secYield": 2.3,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "8.13%",
+    "tr3yText": "14.77%",
+    "tr5yText": "-2.77%",
+    "tr10yText": "12.11%",
+    "cagr3yText": "4.70%",
+    "cagr5yText": "-0.56%",
+    "cagr10yText": "1.15%",
+    "siAnnText": "1.26%",
+    "indicatedDividendYieldText": "3.77%",
+    "dividendYieldText": "6.08%",
+    "secYieldText": "2.30%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -92,16 +129,16 @@
     ]
   },
   "holdings": {
-    "totalRows": 195,
+    "totalRows": 198,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 4659,
+    "totalRows": 4663,
     "pageSize": 1000,
     "pageCount": 5,
     "pages": [
@@ -111,5 +148,14 @@
       "./history/004.json",
       "./history/005.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

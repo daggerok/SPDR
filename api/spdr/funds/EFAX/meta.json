@@ -2,30 +2,40 @@
   "ticker": "EFAX",
   "name": "State Street SPDR MSCI EAFE Fossil Fuel Reserves Free ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78470E1064",
+    "cusip": "78470E106"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-msci-eafe-fossil-fuel-reserves-free-etf-efax",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-efax.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-efax.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-efax.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-efax.pdf"
   },
   "expenseRatio": {
     "display": "0.20%",
     "value": 0.2
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$54.66",
-    "value": 54.66,
-    "asOfDate": "Sep 17 2026"
+    "display": "$54.08",
+    "value": 54.08,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$502.88 M",
-    "value": 502880000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$497.55 M",
+    "value": 497550000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$54.67",
-    "premiumDiscount": "0.01%"
+    "closePrice": "$54.00",
+    "premiumDiscount": "-0.11%"
   },
   "inceptionDate": "Oct 24 2016",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "9.23%"
     }
   },
+  "metrics": {
+    "tr1y": 19.6,
+    "tr3y": 64.34,
+    "tr5y": 50.5,
+    "tr10y": null,
+    "cagr3y": 18.01,
+    "cagr5y": 8.52,
+    "cagr10y": null,
+    "siAnn": 9.41,
+    "dividendYield": 3.15,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 2.9703,
+    "secYield": 2.07,
+    "secYieldUnsubsidized": 2.07,
+    "tr1yText": "19.60%",
+    "tr3yText": "64.34%",
+    "tr5yText": "50.50%",
+    "tr10yText": null,
+    "cagr3yText": "18.01%",
+    "cagr5yText": "8.52%",
+    "cagr10yText": null,
+    "siAnnText": "9.41%",
+    "indicatedDividendYieldText": "2.97%",
+    "dividendYieldText": "3.15%",
+    "secYieldText": "2.07%",
+    "secYieldUnsubsidizedText": "2.07%"
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -92,7 +129,7 @@
     ]
   },
   "holdings": {
-    "totalRows": 644,
+    "totalRows": 643,
     "pageSize": 250,
     "pageCount": 3,
     "pages": [
@@ -100,10 +137,10 @@
       "./holdings/002.json",
       "./holdings/003.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 2488,
+    "totalRows": 2492,
     "pageSize": 1000,
     "pageCount": 3,
     "pages": [
@@ -111,5 +148,14 @@
       "./history/002.json",
       "./history/003.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

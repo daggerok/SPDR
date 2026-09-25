@@ -2,30 +2,40 @@
   "ticker": "ONEV",
   "name": "State Street SPDR Russell 1000 Low Volatility Focus ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78468R7540",
+    "cusip": "78468R754"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-russell-1000-low-volatility-focus-etf-onev",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-onev.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-onev.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-onev.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-onev.pdf"
   },
   "expenseRatio": {
     "display": "0.20%",
     "value": 0.2
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$144.99",
-    "value": 144.99,
-    "asOfDate": "Sep 17 2026"
+    "display": "$141.32",
+    "value": 141.32,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$278.38 M",
-    "value": 278380000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$271.34 M",
+    "value": 271340000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$144.99",
-    "premiumDiscount": "-0.03%"
+    "closePrice": "$141.30",
+    "premiumDiscount": "-0.01%"
   },
   "inceptionDate": "Dec 02 2015",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "11.38%"
     }
   },
+  "metrics": {
+    "tr1y": 13.72,
+    "tr3y": 44.83,
+    "tr5y": 50.37,
+    "tr10y": 193.81,
+    "cagr3y": 13.14,
+    "cagr5y": 8.5,
+    "cagr10y": 11.38,
+    "siAnn": 11.62,
+    "dividendYield": 1.98,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 2.0891,
+    "secYield": 1.84,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "13.72%",
+    "tr3yText": "44.83%",
+    "tr5yText": "50.37%",
+    "tr10yText": "193.81%",
+    "cagr3yText": "13.14%",
+    "cagr5yText": "8.50%",
+    "cagr10yText": "11.38%",
+    "siAnnText": "11.62%",
+    "indicatedDividendYieldText": "2.09%",
+    "dividendYieldText": "1.98%",
+    "secYieldText": "1.84%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -82,10 +119,10 @@
     "rows": [
       [
         "Quarterly",
-        "06/22/2026",
-        "06/22/2026",
-        "06/24/2026",
-        "0.761642",
+        "09/21/2026",
+        "09/21/2026",
+        "09/23/2026",
+        "0.738075",
         "-",
         "-"
       ]
@@ -99,10 +136,10 @@
       "./holdings/001.json",
       "./holdings/002.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 2713,
+    "totalRows": 2717,
     "pageSize": 1000,
     "pageCount": 3,
     "pages": [
@@ -110,5 +147,14 @@
       "./history/002.json",
       "./history/003.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

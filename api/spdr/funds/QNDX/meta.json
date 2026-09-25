@@ -2,30 +2,40 @@
   "ticker": "QNDX",
   "name": "State Street SPDR Portfolio Nasdaq 100 ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78468R3903",
+    "cusip": "78468R390"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-portfolio-nasdaq-100-etf-qndx",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-qndx.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-qndx.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-qndx.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": null
   },
   "expenseRatio": {
     "display": "0.10%",
     "value": 0.1
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$24.28",
-    "value": 24.28,
-    "asOfDate": "Sep 17 2026"
+    "display": "$25.10",
+    "value": 25.1,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$393.34 M",
-    "value": 393340000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$421.64 M",
+    "value": 421640000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NASDAQ REGULAR MARKET",
-    "closePrice": "$24.29",
-    "premiumDiscount": "0.00%"
+    "closePrice": "$25.11",
+    "premiumDiscount": "0.03%"
   },
   "inceptionDate": "Jun 23 2026",
   "returns": {
@@ -69,9 +79,54 @@
       "sinceInceptionText": null
     }
   },
+  "metrics": {
+    "tr1y": null,
+    "tr3y": null,
+    "tr5y": null,
+    "tr10y": null,
+    "cagr3y": null,
+    "cagr5y": null,
+    "cagr10y": null,
+    "siAnn": null,
+    "dividendYield": 0.4339,
+    "dividendYieldSource": "indicated",
+    "indicatedDividendYield": 0.4339,
+    "secYield": 0.43,
+    "secYieldUnsubsidized": null,
+    "tr1yText": null,
+    "tr3yText": null,
+    "tr5yText": null,
+    "tr10yText": null,
+    "cagr3yText": null,
+    "cagr5yText": null,
+    "cagr10yText": null,
+    "siAnnText": null,
+    "indicatedDividendYieldText": "0.43%",
+    "dividendYieldText": "0.43%",
+    "secYieldText": "0.43%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
-    "headers": [],
-    "rows": []
+    "headers": [
+      "Frequency",
+      "Ex-Date",
+      "Record Date",
+      "Payable Date",
+      "Dividend",
+      "ST Cap Gains",
+      "LT Cap Gains"
+    ],
+    "rows": [
+      [
+        "Quarterly",
+        "09/21/2026",
+        "09/21/2026",
+        "09/23/2026",
+        "0.027225",
+        "-",
+        "-"
+      ]
+    ]
   },
   "holdings": {
     "totalRows": 104,
@@ -80,14 +135,23 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 61,
+    "totalRows": 65,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./history/001.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 65,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

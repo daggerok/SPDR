@@ -2,30 +2,40 @@
   "ticker": "BWX",
   "name": "State Street SPDR Bloomberg International Treasury Bond ETF",
   "category": "Fixed Income Sector",
+  "identifiers": {
+    "isin": "US78464A5166",
+    "cusip": "78464A516"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-bloomberg-international-treasury-bond-etf-bwx",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-bwx.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-bwx.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-bwx.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-bwx.pdf"
   },
   "expenseRatio": {
     "display": "0.35%",
     "value": 0.35
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$21.56",
-    "value": 21.56,
-    "asOfDate": "Sep 17 2026"
+    "display": "$21.39",
+    "value": 21.39,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$1,319.76 M",
-    "value": 1319760000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$1,308.91 M",
+    "value": 1308910000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$21.58",
-    "premiumDiscount": "-0.09%"
+    "closePrice": "$21.30",
+    "premiumDiscount": "-0.34%"
   },
   "inceptionDate": "Oct 02 2007",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "0.53%"
     }
   },
+  "metrics": {
+    "tr1y": -3.13,
+    "tr3y": 4.69,
+    "tr5y": -19.48,
+    "tr10y": -13.33,
+    "cagr3y": 1.54,
+    "cagr5y": -4.24,
+    "cagr10y": -1.42,
+    "siAnn": 0.56,
+    "dividendYield": 2.45,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 2.4806,
+    "secYield": 3.36,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "-3.13%",
+    "tr3yText": "4.69%",
+    "tr5yText": "-19.48%",
+    "tr10yText": "-13.33%",
+    "cagr3yText": "1.54%",
+    "cagr5yText": "-4.24%",
+    "cagr10yText": "-1.42%",
+    "siAnnText": "0.56%",
+    "indicatedDividendYieldText": "2.48%",
+    "dividendYieldText": "2.45%",
+    "secYieldText": "3.36%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -103,10 +140,10 @@
       "./holdings/005.json",
       "./holdings/006.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 4772,
+    "totalRows": 4776,
     "pageSize": 1000,
     "pageCount": 5,
     "pages": [
@@ -116,5 +153,14 @@
       "./history/004.json",
       "./history/005.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

@@ -2,30 +2,40 @@
   "ticker": "RWX",
   "name": "State Street SPDR Dow Jones International Real Estate ETF",
   "category": "Alternative Sector",
+  "identifiers": {
+    "isin": "US78463X8636",
+    "cusip": "78463X863"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-dow-jones-international-real-estate-etf-rwx",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-rwx.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-rwx.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-rwx.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-rwx.pdf"
   },
   "expenseRatio": {
     "display": "0.59%",
     "value": 0.59
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$26.75",
-    "value": 26.75,
-    "asOfDate": "Sep 17 2026"
+    "display": "$26.03",
+    "value": 26.03,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$256.38 M",
-    "value": 256380000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$249.48 M",
+    "value": 249480000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$26.63",
-    "premiumDiscount": "-0.31%"
+    "closePrice": "$25.85",
+    "premiumDiscount": "-0.53%"
   },
   "inceptionDate": "Dec 15 2006",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "0.64%"
     }
   },
+  "metrics": {
+    "tr1y": 2.03,
+    "tr3y": 20.66,
+    "tr5y": -11.03,
+    "tr10y": 6.69,
+    "cagr3y": 6.46,
+    "cagr5y": -2.31,
+    "cagr10y": 0.65,
+    "siAnn": 0.72,
+    "dividendYield": 4.15,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 4.5133,
+    "secYield": 3.67,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "2.03%",
+    "tr3yText": "20.66%",
+    "tr5yText": "-11.03%",
+    "tr10yText": "6.69%",
+    "cagr3yText": "6.46%",
+    "cagr5yText": "-2.31%",
+    "cagr10yText": "0.65%",
+    "siAnnText": "0.72%",
+    "indicatedDividendYieldText": "4.51%",
+    "dividendYieldText": "4.15%",
+    "secYieldText": "3.67%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -82,26 +119,26 @@
     "rows": [
       [
         "Quarterly",
-        "06/22/2026",
-        "06/22/2026",
-        "06/24/2026",
-        "0.327672",
+        "09/21/2026",
+        "09/21/2026",
+        "09/23/2026",
+        "0.293704",
         "-",
         "-"
       ]
     ]
   },
   "holdings": {
-    "totalRows": 144,
+    "totalRows": 146,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 4971,
+    "totalRows": 4975,
     "pageSize": 1000,
     "pageCount": 5,
     "pages": [
@@ -111,5 +148,14 @@
       "./history/004.json",
       "./history/005.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

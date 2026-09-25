@@ -2,30 +2,40 @@
   "ticker": "QEFA",
   "name": "State Street SPDR MSCI EAFE StrategicFactors℠ ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78463X4346",
+    "cusip": "78463X434"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-msci-eafe-strategicfactors-etf-qefa",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-qefa.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-qefa.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-qefa.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-qefa.pdf"
   },
   "expenseRatio": {
     "display": "0.30%",
     "value": 0.3
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$100.15",
-    "value": 100.15,
-    "asOfDate": "Sep 17 2026"
+    "display": "$98.76",
+    "value": 98.76,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$1,031.57 M",
-    "value": 1031569999.9999999,
-    "asOfDate": "Sep 17 2026"
+    "display": "$1,017.25 M",
+    "value": 1017250000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$99.98",
-    "premiumDiscount": "-0.11%"
+    "closePrice": "$98.52",
+    "premiumDiscount": "-0.21%"
   },
   "inceptionDate": "Jun 04 2014",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "6.80%"
     }
   },
+  "metrics": {
+    "tr1y": 20.53,
+    "tr3y": 60,
+    "tr5y": 50.99,
+    "tr10y": 142.22,
+    "cagr3y": 16.96,
+    "cagr5y": 8.59,
+    "cagr10y": 9.25,
+    "siAnn": 7.2,
+    "dividendYield": 2.77,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 3.0333,
+    "secYield": 2.31,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "20.53%",
+    "tr3yText": "60.00%",
+    "tr5yText": "50.99%",
+    "tr10yText": "142.22%",
+    "cagr3yText": "16.96%",
+    "cagr5yText": "8.59%",
+    "cagr10yText": "9.25%",
+    "siAnnText": "7.20%",
+    "indicatedDividendYieldText": "3.03%",
+    "dividendYieldText": "2.77%",
+    "secYieldText": "2.31%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -92,7 +129,7 @@
     ]
   },
   "holdings": {
-    "totalRows": 641,
+    "totalRows": 640,
     "pageSize": 250,
     "pageCount": 3,
     "pages": [
@@ -100,10 +137,10 @@
       "./holdings/002.json",
       "./holdings/003.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 3091,
+    "totalRows": 3095,
     "pageSize": 1000,
     "pageCount": 4,
     "pages": [
@@ -112,5 +149,14 @@
       "./history/003.json",
       "./history/004.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

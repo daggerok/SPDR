@@ -2,30 +2,40 @@
   "ticker": "HAIL",
   "name": "State Street SPDR S&P Kensho Smart Mobility ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78468R6898",
+    "cusip": "78468R689"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-kensho-smart-mobility-etf-hail",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-hail.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-hail.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-hail.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-hail.pdf"
   },
   "expenseRatio": {
     "display": "0.45%",
     "value": 0.45
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$34.87",
-    "value": 34.87,
-    "asOfDate": "Sep 17 2026"
+    "display": "$34.77",
+    "value": 34.77,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$18.13 M",
-    "value": 18130000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$18.08 M",
+    "value": 18080000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$34.90",
-    "premiumDiscount": "0.02%"
+    "closePrice": "$34.76",
+    "premiumDiscount": "0.01%"
   },
   "inceptionDate": "Dec 26 2017",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "5.36%"
     }
   },
+  "metrics": {
+    "tr1y": 9.15,
+    "tr3y": 17.89,
+    "tr5y": -29.83,
+    "tr10y": null,
+    "cagr3y": 5.64,
+    "cagr5y": -6.84,
+    "cagr10y": null,
+    "siAnn": 3.92,
+    "dividendYield": 1.95,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 1.0313,
+    "secYield": 0.6,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "9.15%",
+    "tr3yText": "17.89%",
+    "tr5yText": "-29.83%",
+    "tr10yText": null,
+    "cagr3yText": "5.64%",
+    "cagr5yText": "-6.84%",
+    "cagr10yText": null,
+    "siAnnText": "3.92%",
+    "indicatedDividendYieldText": "1.03%",
+    "dividendYieldText": "1.95%",
+    "secYieldText": "0.60%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -82,26 +119,26 @@
     "rows": [
       [
         "Quarterly",
-        "06/22/2026",
-        "06/22/2026",
-        "06/24/2026",
-        "0.100919",
+        "09/21/2026",
+        "09/21/2026",
+        "09/23/2026",
+        "0.089646",
         "-",
         "-"
       ]
     ]
   },
   "holdings": {
-    "totalRows": 88,
+    "totalRows": 89,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 2193,
+    "totalRows": 2197,
     "pageSize": 1000,
     "pageCount": 3,
     "pages": [
@@ -109,5 +146,14 @@
       "./history/002.json",
       "./history/003.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

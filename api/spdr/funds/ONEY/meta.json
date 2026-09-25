@@ -2,30 +2,40 @@
   "ticker": "ONEY",
   "name": "State Street SPDR Russell 1000 Yield Focus ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78468R7706",
+    "cusip": "78468R770"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-russell-1000-yield-focus-etf-oney",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-oney.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-oney.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-oney.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-oney.pdf"
   },
   "expenseRatio": {
     "display": "0.20%",
     "value": 0.2
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$130.47",
-    "value": 130.47,
-    "asOfDate": "Sep 17 2026"
+    "display": "$125.77",
+    "value": 125.77,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$648.44 M",
-    "value": 648440000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$625.05 M",
+    "value": 625050000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$130.52",
-    "premiumDiscount": "-0.01%"
+    "closePrice": "$125.77",
+    "premiumDiscount": "0.00%"
   },
   "inceptionDate": "Dec 02 2015",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "12.02%"
     }
   },
+  "metrics": {
+    "tr1y": 20.15,
+    "tr3y": 53,
+    "tr5y": 61.12,
+    "tr10y": 208.37,
+    "cagr3y": 15.23,
+    "cagr5y": 10.01,
+    "cagr10y": 11.92,
+    "siAnn": 12.3,
+    "dividendYield": 3.03,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 3.3448,
+    "secYield": 3.14,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "20.15%",
+    "tr3yText": "53.00%",
+    "tr5yText": "61.12%",
+    "tr10yText": "208.37%",
+    "cagr3yText": "15.23%",
+    "cagr5yText": "10.01%",
+    "cagr10yText": "11.92%",
+    "siAnnText": "12.30%",
+    "indicatedDividendYieldText": "3.34%",
+    "dividendYieldText": "3.03%",
+    "secYieldText": "3.14%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -82,10 +119,10 @@
     "rows": [
       [
         "Quarterly",
-        "06/22/2026",
-        "06/22/2026",
-        "06/24/2026",
-        "0.973037",
+        "09/21/2026",
+        "09/21/2026",
+        "09/23/2026",
+        "1.051687",
         "-",
         "-"
       ]
@@ -99,10 +136,10 @@
       "./holdings/001.json",
       "./holdings/002.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 2713,
+    "totalRows": 2717,
     "pageSize": 1000,
     "pageCount": 3,
     "pages": [
@@ -110,5 +147,14 @@
       "./history/002.json",
       "./history/003.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

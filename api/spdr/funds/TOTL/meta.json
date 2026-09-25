@@ -2,30 +2,40 @@
   "ticker": "TOTL",
   "name": "State Street DoubleLine Total Return Tactical ETF",
   "category": "Fixed Income Sector",
+  "identifiers": {
+    "isin": "US78467V8485",
+    "cusip": "78467V848"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-doubleline-total-return-tactical-etf-totl",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-totl.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-totl.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-totl.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-totl.pdf"
   },
   "expenseRatio": {
     "display": "0.55%",
     "value": 0.55
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$38.13",
-    "value": 38.13,
-    "asOfDate": "Sep 17 2026"
+    "display": "$37.76",
+    "value": 37.76,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$3,868.14 M",
-    "value": 3868140000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$3,800.83 M",
+    "value": 3800830000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$38.10",
-    "premiumDiscount": "-0.06%"
+    "closePrice": "$37.78",
+    "premiumDiscount": "0.06%"
   },
   "inceptionDate": "Feb 23 2015",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "1.74%"
     }
   },
+  "metrics": {
+    "tr1y": 1.08,
+    "tr3y": 13.99,
+    "tr5y": 1.46,
+    "tr10y": 15.14,
+    "cagr3y": 4.46,
+    "cagr5y": 0.29,
+    "cagr10y": 1.42,
+    "siAnn": 1.63,
+    "dividendYield": 5.5,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 5.4,
+    "secYield": 5.86,
+    "secYieldUnsubsidized": 5.86,
+    "tr1yText": "1.08%",
+    "tr3yText": "13.99%",
+    "tr5yText": "1.46%",
+    "tr10yText": "15.14%",
+    "cagr3yText": "4.46%",
+    "cagr5yText": "0.29%",
+    "cagr10yText": "1.42%",
+    "siAnnText": "1.63%",
+    "indicatedDividendYieldText": "5.40%",
+    "dividendYieldText": "5.50%",
+    "secYieldText": "5.86%",
+    "secYieldUnsubsidizedText": "5.86%"
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -92,7 +129,7 @@
     ]
   },
   "holdings": {
-    "totalRows": 1707,
+    "totalRows": 1710,
     "pageSize": 250,
     "pageCount": 7,
     "pages": [
@@ -104,10 +141,10 @@
       "./holdings/006.json",
       "./holdings/007.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 2910,
+    "totalRows": 2914,
     "pageSize": 1000,
     "pageCount": 3,
     "pages": [
@@ -115,5 +152,14 @@
       "./history/002.json",
       "./history/003.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

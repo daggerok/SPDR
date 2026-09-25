@@ -2,30 +2,40 @@
   "ticker": "IBND",
   "name": "State Street SPDR Bloomberg International Corporate Bond ETF",
   "category": "Fixed Income Sector",
+  "identifiers": {
+    "isin": "US78464A1512",
+    "cusip": "78464A151"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-bloomberg-international-corporate-bond-etf-ibnd",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-ibnd.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-ibnd.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-ibnd.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-ibnd.pdf"
   },
   "expenseRatio": {
     "display": "0.50%",
     "value": 0.5
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$30.44",
-    "value": 30.44,
-    "asOfDate": "Sep 17 2026"
+    "display": "$30.12",
+    "value": 30.12,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$450.55 M",
-    "value": 450550000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$445.70 M",
+    "value": 445700000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$30.40",
-    "premiumDiscount": "-0.04%"
+    "closePrice": "$30.05",
+    "premiumDiscount": "-0.30%"
   },
   "inceptionDate": "May 19 2010",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "1.50%"
     }
   },
+  "metrics": {
+    "tr1y": -0.35,
+    "tr3y": 18.66,
+    "tr5y": -5.57,
+    "tr10y": 5.43,
+    "cagr3y": 5.87,
+    "cagr5y": -1.14,
+    "cagr10y": 0.53,
+    "siAnn": 1.5,
+    "dividendYield": 2.91,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 3.0121,
+    "secYield": 3.57,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "-0.35%",
+    "tr3yText": "18.66%",
+    "tr5yText": "-5.57%",
+    "tr10yText": "5.43%",
+    "cagr3yText": "5.87%",
+    "cagr5yText": "-1.14%",
+    "cagr10yText": "0.53%",
+    "siAnnText": "1.50%",
+    "indicatedDividendYieldText": "3.01%",
+    "dividendYieldText": "2.91%",
+    "secYieldText": "3.57%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -101,10 +138,10 @@
       "./holdings/003.json",
       "./holdings/004.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 4111,
+    "totalRows": 4115,
     "pageSize": 1000,
     "pageCount": 5,
     "pages": [
@@ -114,5 +151,14 @@
       "./history/004.json",
       "./history/005.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }
