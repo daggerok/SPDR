@@ -1268,7 +1268,7 @@ function renderFundsTable(): void {
   el.tableBody.querySelectorAll('input[data-checkbox]').forEach((checkbox: any) => {
     checkbox.addEventListener('change', (event: any) => {
       event.stopPropagation();
-      const ticker = (checkbox as any).dataset.checkbox || '';
+      const ticker = checkbox.dataset.checkbox || '';
       toggleFund(ticker);
     });
     checkbox.addEventListener('click', (event: any) => event.stopPropagation());
@@ -1785,7 +1785,7 @@ function renderSubtitle(text?: string): void {
   const countsText = state.counts
     ? `${state.counts.funds} ETFs · ${(state.counts.holdings || 0).toLocaleString('en-US')} holdings rows · ${(state.counts.history || 0).toLocaleString('en-US')} history rows`
     : '';
-  const base = text ? String(text) : 'Search SPDR ETFs, select rows, then use the Watchlist tab.';
+  const base = text ? String(text) : 'Search SPDR ETFs, select ETFs via the “Use” checkbox, then use the Watchlist tab.';
   const selectedTickers = [...state.selected].sort();
   const selectedSummary = selectedTickers.length ? `
     <span id="selected-etf-summary" class="flex items-center gap-1.5 min-w-0 mt-1" aria-live="polite">
