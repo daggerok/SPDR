@@ -2,30 +2,40 @@
   "ticker": "SJNK",
   "name": "State Street SPDR Bloomberg Short Term High Yield Bond ETF",
   "category": "Fixed Income Sector",
+  "identifiers": {
+    "isin": "US78468R4083",
+    "cusip": "78468R408"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-bloomberg-short-term-high-yield-bond-etf-sjnk",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-sjnk.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-sjnk.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-sjnk.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-sjnk.pdf"
   },
   "expenseRatio": {
     "display": "0.40%",
     "value": 0.4
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$24.61",
-    "value": 24.61,
-    "asOfDate": "Sep 17 2026"
+    "display": "$24.49",
+    "value": 24.49,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$4,705.70 M",
-    "value": 4705700000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$4,660.98 M",
+    "value": 4660980000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$24.63",
-    "premiumDiscount": "0.10%"
+    "closePrice": "$24.49",
+    "premiumDiscount": "-0.03%"
   },
   "inceptionDate": "Mar 14 2012",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "4.70%"
     }
   },
+  "metrics": {
+    "tr1y": 4.31,
+    "tr3y": 24.85,
+    "tr5y": 26.66,
+    "tr10y": 66.02,
+    "cagr3y": 7.68,
+    "cagr5y": 4.84,
+    "cagr10y": 5.2,
+    "siAnn": 4.68,
+    "dividendYield": 7.06,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 6.9554,
+    "secYield": 7.09,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "4.31%",
+    "tr3yText": "24.85%",
+    "tr5yText": "26.66%",
+    "tr10yText": "66.02%",
+    "cagr3yText": "7.68%",
+    "cagr5yText": "4.84%",
+    "cagr10yText": "5.20%",
+    "siAnnText": "4.68%",
+    "indicatedDividendYieldText": "6.96%",
+    "dividendYieldText": "7.06%",
+    "secYieldText": "7.09%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -92,7 +129,7 @@
     ]
   },
   "holdings": {
-    "totalRows": 1125,
+    "totalRows": 1130,
     "pageSize": 250,
     "pageCount": 5,
     "pages": [
@@ -102,10 +139,10 @@
       "./holdings/004.json",
       "./holdings/005.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 3651,
+    "totalRows": 3655,
     "pageSize": 1000,
     "pageCount": 4,
     "pages": [
@@ -114,5 +151,14 @@
       "./history/003.json",
       "./history/004.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

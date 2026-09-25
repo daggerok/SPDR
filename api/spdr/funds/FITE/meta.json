@@ -2,29 +2,39 @@
   "ticker": "FITE",
   "name": "State Street SPDR S&P Kensho Future Security ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78468R6716",
+    "cusip": "78468R671"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-kensho-future-security-etf-fite",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-fite.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-fite.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-fite.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-fite.pdf"
   },
   "expenseRatio": {
     "display": "0.45%",
     "value": 0.45
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$111.26",
-    "value": 111.26,
-    "asOfDate": "Sep 17 2026"
+    "display": "$112.76",
+    "value": 112.76,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$151.32 M",
-    "value": 151320000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$153.36 M",
+    "value": 153360000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$111.36",
+    "closePrice": "$112.74",
     "premiumDiscount": "0.01%"
   },
   "inceptionDate": "Dec 26 2017",
@@ -69,6 +79,33 @@
       "sinceInceptionText": "17.49%"
     }
   },
+  "metrics": {
+    "tr1y": 38.98,
+    "tr3y": 126.2,
+    "tr5y": 111.3,
+    "tr10y": null,
+    "cagr3y": 31.27,
+    "cagr5y": 16.14,
+    "cagr10y": null,
+    "siAnn": 17,
+    "dividendYield": 0.11,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 0.1588,
+    "secYield": 0.13,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "38.98%",
+    "tr3yText": "126.20%",
+    "tr5yText": "111.30%",
+    "tr10yText": null,
+    "cagr3yText": "31.27%",
+    "cagr5yText": "16.14%",
+    "cagr10yText": null,
+    "siAnnText": "17.00%",
+    "indicatedDividendYieldText": "0.16%",
+    "dividendYieldText": "0.11%",
+    "secYieldText": "0.13%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -82,10 +119,10 @@
     "rows": [
       [
         "Quarterly",
-        "06/22/2026",
-        "06/22/2026",
-        "06/24/2026",
-        "0.010686",
+        "09/21/2026",
+        "09/21/2026",
+        "09/23/2026",
+        "0.044762",
         "-",
         "-"
       ]
@@ -98,10 +135,10 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 2193,
+    "totalRows": 2197,
     "pageSize": 1000,
     "pageCount": 3,
     "pages": [
@@ -109,5 +146,14 @@
       "./history/002.json",
       "./history/003.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

@@ -2,30 +2,40 @@
   "ticker": "KOMP",
   "name": "State Street SPDR S&P Kensho New Economies Composite ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78468R6484",
+    "cusip": "78468R648"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-kensho-new-economies-composite-etf-komp",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-komp.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-komp.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-komp.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-komp.pdf"
   },
   "expenseRatio": {
     "display": "0.20%",
     "value": 0.2
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$67.15",
-    "value": 67.15,
-    "asOfDate": "Sep 17 2026"
+    "display": "$67.66",
+    "value": 67.66,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$2,664.28 M",
-    "value": 2664280000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$2,684.29 M",
+    "value": 2684290000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$67.11",
-    "premiumDiscount": "-0.03%"
+    "closePrice": "$67.59",
+    "premiumDiscount": "-0.01%"
   },
   "inceptionDate": "Oct 22 2018",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "13.24%"
     }
   },
+  "metrics": {
+    "tr1y": 17.53,
+    "tr3y": 63.01,
+    "tr5y": 11.39,
+    "tr10y": null,
+    "cagr3y": 17.69,
+    "cagr5y": 2.18,
+    "cagr10y": null,
+    "siAnn": 12.1,
+    "dividendYield": 1.51,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 0.746,
+    "secYield": 0.59,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "17.53%",
+    "tr3yText": "63.01%",
+    "tr5yText": "11.39%",
+    "tr10yText": null,
+    "cagr3yText": "17.69%",
+    "cagr5yText": "2.18%",
+    "cagr10yText": null,
+    "siAnnText": "12.10%",
+    "indicatedDividendYieldText": "0.75%",
+    "dividendYieldText": "1.51%",
+    "secYieldText": "0.59%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -82,17 +119,17 @@
     "rows": [
       [
         "Quarterly",
-        "06/22/2026",
-        "06/22/2026",
-        "06/24/2026",
-        "0.102689",
+        "09/21/2026",
+        "09/21/2026",
+        "09/23/2026",
+        "0.126185",
         "-",
         "-"
       ]
     ]
   },
   "holdings": {
-    "totalRows": 504,
+    "totalRows": 503,
     "pageSize": 250,
     "pageCount": 3,
     "pages": [
@@ -100,15 +137,24 @@
       "./holdings/002.json",
       "./holdings/003.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 1986,
+    "totalRows": 1990,
     "pageSize": 1000,
     "pageCount": 2,
     "pages": [
       "./history/001.json",
       "./history/002.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

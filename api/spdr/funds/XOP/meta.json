@@ -2,30 +2,40 @@
   "ticker": "XOP",
   "name": "State Street SPDR S&P Oil & Gas Exploration & Production ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78468R5569",
+    "cusip": "78468R556"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-oil-gas-exploration-production-etf-xop",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-xop.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-xop.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-xop.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-xop.pdf"
   },
   "expenseRatio": {
     "display": "0.35%",
     "value": 0.35
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$192.58",
-    "value": 192.58,
-    "asOfDate": "Sep 17 2026"
+    "display": "$182.63",
+    "value": 182.63,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$4,169.36 M",
-    "value": 4169359999.9999995,
-    "asOfDate": "Sep 17 2026"
+    "display": "$3,981.41 M",
+    "value": 3981410000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$192.59",
-    "premiumDiscount": "-0.01%"
+    "closePrice": "$182.65",
+    "premiumDiscount": "0.02%"
   },
   "inceptionDate": "Jun 19 2006",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "2.06%"
     }
   },
+  "metrics": {
+    "tr1y": 45.29,
+    "tr3y": 36.32,
+    "tr5y": 157.56,
+    "tr10y": 55.59,
+    "cagr3y": 10.88,
+    "cagr5y": 20.83,
+    "cagr10y": 4.52,
+    "siAnn": 3.08,
+    "dividendYield": 1.71,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 1.659,
+    "secYield": 1.67,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "45.29%",
+    "tr3yText": "36.32%",
+    "tr5yText": "157.56%",
+    "tr10yText": "55.59%",
+    "cagr3yText": "10.88%",
+    "cagr5yText": "20.83%",
+    "cagr10yText": "4.52%",
+    "siAnnText": "3.08%",
+    "indicatedDividendYieldText": "1.66%",
+    "dividendYieldText": "1.71%",
+    "secYieldText": "1.67%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -82,10 +119,10 @@
     "rows": [
       [
         "Quarterly",
-        "06/22/2026",
-        "06/22/2026",
-        "06/24/2026",
-        "0.748259",
+        "09/21/2026",
+        "09/21/2026",
+        "09/23/2026",
+        "0.757469",
         "-",
         "-"
       ]
@@ -98,10 +135,10 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 5097,
+    "totalRows": 5101,
     "pageSize": 1000,
     "pageCount": 6,
     "pages": [
@@ -112,5 +149,14 @@
       "./history/005.json",
       "./history/006.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

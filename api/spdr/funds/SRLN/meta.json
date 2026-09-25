@@ -2,30 +2,40 @@
   "ticker": "SRLN",
   "name": "State Street Blackstone Senior Loan ETF",
   "category": "Fixed Income Sector",
+  "identifiers": {
+    "isin": "US78467V6083",
+    "cusip": "78467V608"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-blackstone-senior-loan-etf-srln",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-srln.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-srln.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-srln.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-srln.pdf"
   },
   "expenseRatio": {
     "display": "0.70%",
     "value": 0.7
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
     "display": "$40.65",
     "value": 40.65,
-    "asOfDate": "Sep 17 2026"
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$5,597.85 M",
-    "value": 5597850000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$5,626.58 M",
+    "value": 5626580000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$40.67",
-    "premiumDiscount": "0.06%"
+    "closePrice": "$40.62",
+    "premiumDiscount": "-0.07%"
   },
   "inceptionDate": "Apr 03 2013",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "3.75%"
     }
   },
+  "metrics": {
+    "tr1y": 5.14,
+    "tr3y": 23.3,
+    "tr5y": 27.26,
+    "tr10y": 56.79,
+    "cagr3y": 7.23,
+    "cagr5y": 4.94,
+    "cagr10y": 4.6,
+    "siAnn": 3.89,
+    "dividendYield": 7.25,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 7.5187,
+    "secYield": 6.58,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "5.14%",
+    "tr3yText": "23.30%",
+    "tr5yText": "27.26%",
+    "tr10yText": "56.79%",
+    "cagr3yText": "7.23%",
+    "cagr5yText": "4.94%",
+    "cagr10yText": "4.60%",
+    "siAnnText": "3.89%",
+    "indicatedDividendYieldText": "7.52%",
+    "dividendYieldText": "7.25%",
+    "secYieldText": "6.58%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -92,7 +129,7 @@
     ]
   },
   "holdings": {
-    "totalRows": 724,
+    "totalRows": 730,
     "pageSize": 250,
     "pageCount": 3,
     "pages": [
@@ -100,10 +137,10 @@
       "./holdings/002.json",
       "./holdings/003.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 3386,
+    "totalRows": 3390,
     "pageSize": 1000,
     "pageCount": 4,
     "pages": [
@@ -112,5 +149,14 @@
       "./history/003.json",
       "./history/004.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

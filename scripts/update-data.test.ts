@@ -13,6 +13,7 @@ import {
   annualizedToTotal,
   indicatedYield,
   deriveCatalogMetrics,
+  parseProductDataSheet,
 } from './update-data';
 
 // ---------------------------------------------------------------------------
@@ -266,6 +267,83 @@ describe('xlsx fixtures', () => {
     expect(loadSharedStrings(bytes)).toEqual([]);
     expect(parseXlsxSheet(bytes, [])[0]).toEqual(['A1', 'B1']);
   });
+
+  test('parses daily Premium/Discount history workbooks (pdhist-us-en-{ticker}.xlsx)', () => {
+    const rows = [
+      ['Fund Name:', 'State Street SPDR S&P 500 ETF Trust'],
+      ['Ticker Symbol:', 'SPY'],
+      ['Date', 'Premium/Discount'],
+      ['23-Sep-2026', '0.021463'],
+      ['22-Sep-2026', '-0.004259'],
+      ['', ''],
+    ];
+    const bytes = buildXlsx(rows);
+    const { meta, table } = sheetToTable(parseXlsxSheet(bytes, loadSharedStrings(bytes)), 'premium-discount');
+    expect(meta.fundName).toBe('State Street SPDR S&P 500 ETF Trust');
+    expect(meta.ticker).toBe('SPY');
+    expect(table.headers).toEqual(['Date', 'Premium/Discount']);
+    expect(table.rows).toHaveLength(2);
+    expect(table.rows[0]).toEqual(['23-Sep-2026', '0.021463']);
+    expect(table.rows[1]).toEqual(['22-Sep-2026', '-0.004259']);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// parseProductDataSheet (bulk spdr-product-data-us-en.xlsx)
+// ---------------------------------------------------------------------------
+
+describe('parseProductDataSheet', () => {
+  test('parses ISIN/CUSIP/SEC yield/dividend yield, skipping the disclaimer and merged period-label rows', () => {
+    const rows = [
+      ['Past performance is not a reliable indicator of future performance.'],
+      [
+        'Ticker', 'ISIN', 'CUSIP', 'Gross Expense Ratio', '* Net Expense Ratio',
+        '30 Day SEC Yield', '30 Day SEC Yield (Unsubsidized)', 'Fund Dividend Yield', 'Index Dividend Yield',
+        'Total Returns (Cumulative)', '', 'Total Returns (Annualized)', '',
+      ],
+      ['', '', '', '', '', '', '', '', '', '1 Month', 'QTD', '1 Year', '3 Year'],
+      ['SPY', 'US78462F1030', '78462F103', '0.0945%', '-', '0.95%', '-', '0.99%', '1.09%', '2.71%', '2.64%', '20.21%', '20.89%'],
+      ['XLK', 'US81369Y8030', '81369Y803', '0.08%', '-', '-', '-', '0.55%', '0.60%', '5.00%', '6.00%', '30.00%', '25.00%'],
+      ['', '', '', '', '', '', '', '', '', '', '', '', ''],
+    ];
+    const bytes = buildXlsx(rows);
+    const map = parseProductDataSheet(bytes);
+    expect(map.size).toBe(2);
+
+    const spy = map.get('SPY')!;
+    expect(spy.isin).toBe('US78462F1030');
+    expect(spy.cusip).toBe('78462F103');
+    expect(spy.netExpenseRatio).toEqual({ display: null, value: null }); // "-" -> not waived
+    expect(spy.secYield).toEqual({ display: '0.95%', value: 0.95 });
+    expect(spy.secYieldUnsubsidized).toEqual({ display: null, value: null });
+    expect(spy.fundDividendYield).toEqual({ display: '0.99%', value: 0.99 });
+    expect(spy.indexDividendYield).toEqual({ display: '1.09%', value: 1.09 });
+
+    const xlk = map.get('XLK')!;
+    expect(xlk.secYield).toEqual({ display: null, value: null }); // blank/"-" SEC yield for this fund
+    expect(xlk.fundDividendYield).toEqual({ display: '0.55%', value: 0.55 });
+  });
+
+  test('ignores blank trailing rows and rows missing a ticker; tolerates a missing column', () => {
+    const rows = [
+      ['disclaimer'],
+      ['Ticker', 'ISIN', 'CUSIP'],
+      ['GLDM', 'US98149E3036', '98149E303'],
+      ['', '', ''],
+    ];
+    const bytes = buildXlsx(rows);
+    const map = parseProductDataSheet(bytes);
+    expect(map.size).toBe(1);
+    const gldm = map.get('GLDM')!;
+    expect(gldm.isin).toBe('US98149E3036');
+    expect(gldm.cusip).toBe('98149E303');
+    expect(gldm.secYield).toEqual({ display: null, value: null }); // column absent from this fixture
+  });
+
+  test('throws when the header row cannot be found', () => {
+    const bytes = buildXlsx([['not', 'a', 'header', 'row']]);
+    expect(() => parseProductDataSheet(bytes)).toThrow();
+  });
 });
 
 // ---------------------------------------------------------------------------
@@ -324,6 +402,44 @@ describe('catalog metric derivations', () => {
     expect(metrics.tr3yText).toBeNull();
     expect(metrics.cagr10y).toBeNull();
     expect(metrics.dividendYield).toBeNull();
+    expect(metrics.dividendYieldSource).toBeNull();
     expect(metrics.tr1y).toBe(17.22);
+  });
+
+  test('deriveCatalogMetrics prefers the official SEC yield and Fund Dividend Yield from the bulk product-data file', () => {
+    const monthEnd = { ytd: 10.06, yr1: 19.4, yr3: 19.18, yr5: 12.72, yr10: 14.93, sinceInception: 10.8 };
+    const productData = {
+      isin: 'US78462F1030',
+      cusip: '78462F103',
+      netExpenseRatio: { display: null, value: null },
+      secYield: { display: '0.95%', value: 0.95 },
+      secYieldUnsubsidized: { display: null, value: null },
+      fundDividendYield: { display: '0.99%', value: 0.99 },
+      indexDividendYield: { display: '1.09%', value: 1.09 },
+    };
+    const metrics = deriveCatalogMetrics(monthEnd, 765.58, { frequency: 'Quarterly', dividend: '1.903516' }, productData);
+    expect(metrics.secYield).toBe(0.95);
+    expect(metrics.secYieldText).toBe('0.95%');
+    expect(metrics.secYieldUnsubsidized).toBeNull();
+    expect(metrics.secYieldUnsubsidizedText).toBeNull();
+    // Official Fund Dividend Yield (0.99%) wins over the indicated ~0.9945% figure.
+    expect(metrics.dividendYield).toBe(0.99);
+    expect(metrics.dividendYieldText).toBe('0.99%');
+    expect(metrics.dividendYieldSource).toBe('official');
+    expect(metrics.indicatedDividendYield).toBeCloseTo(0.9945, 3);
+  });
+
+  test('deriveCatalogMetrics falls back to the indicated yield when a fund is missing from the bulk file', () => {
+    const metrics = deriveCatalogMetrics(
+      { ytd: 5, yr1: 17.22, sinceInception: 15.08 },
+      25,
+      { frequency: 'Monthly', dividend: '0.10' },
+      undefined,
+    );
+    expect(metrics.secYield).toBeNull();
+    expect(metrics.secYieldText).toBeNull();
+    expect(metrics.dividendYieldSource).toBe('indicated');
+    expect(metrics.dividendYield).toBeCloseTo(4.8, 3);
+    expect(metrics.dividendYieldText).toBe('4.80%');
   });
 });

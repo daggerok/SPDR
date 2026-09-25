@@ -2,30 +2,40 @@
   "ticker": "SPY",
   "name": "State Street SPDR S&P 500 ETF Trust",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78462F1030",
+    "cusip": "78462F103"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-500-etf-trust-spy",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-spy.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-spy.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-spy.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-spy.pdf"
   },
   "expenseRatio": {
     "display": "0.0945%",
     "value": 0.0945
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$762.63",
-    "value": 762.63,
-    "asOfDate": "Sep 17 2026"
+    "display": "$767.61",
+    "value": 767.61,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$786,947.48 M",
-    "value": 786947480000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$803,942.86 M",
+    "value": 803942860000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$762.60",
-    "premiumDiscount": "0.00%"
+    "closePrice": "$767.81",
+    "premiumDiscount": "0.02%"
   },
   "inceptionDate": "Jan 22 1993",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "10.83%"
     }
   },
+  "metrics": {
+    "tr1y": 20.21,
+    "tr3y": 76.67,
+    "tr5y": 81.41,
+    "tr10y": 312.36,
+    "cagr3y": 20.89,
+    "cagr5y": 12.65,
+    "cagr10y": 15.22,
+    "siAnn": 10.86,
+    "dividendYield": 0.99,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 0.9843,
+    "secYield": 0.95,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "20.21%",
+    "tr3yText": "76.67%",
+    "tr5yText": "81.41%",
+    "tr10yText": "312.36%",
+    "cagr3yText": "20.89%",
+    "cagr5yText": "12.65%",
+    "cagr10yText": "15.22%",
+    "siAnnText": "10.86%",
+    "indicatedDividendYieldText": "0.98%",
+    "dividendYieldText": "0.99%",
+    "secYieldText": "0.95%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -100,10 +137,10 @@
       "./holdings/002.json",
       "./holdings/003.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 5738,
+    "totalRows": 5742,
     "pageSize": 1000,
     "pageCount": 6,
     "pages": [
@@ -114,5 +151,14 @@
       "./history/005.json",
       "./history/006.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

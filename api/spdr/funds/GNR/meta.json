@@ -2,30 +2,40 @@
   "ticker": "GNR",
   "name": "State Street SPDR S&P Global Natural Resources ETF",
   "category": "Alternative Sector",
+  "identifiers": {
+    "isin": "US78463X5418",
+    "cusip": "78463X541"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-global-natural-resources-etf-gnr",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-gnr.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-gnr.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-gnr.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-gnr.pdf"
   },
   "expenseRatio": {
     "display": "0.40%",
     "value": 0.4
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$78.24",
-    "value": 78.24,
-    "asOfDate": "Sep 17 2026"
+    "display": "$76.64",
+    "value": 76.64,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$5,345.68 M",
-    "value": 5345680000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$5,243.80 M",
+    "value": 5243800000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$78.29",
-    "premiumDiscount": "0.08%"
+    "closePrice": "$76.51",
+    "premiumDiscount": "-0.18%"
   },
   "inceptionDate": "Sep 13 2010",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "4.98%"
     }
   },
+  "metrics": {
+    "tr1y": 37.93,
+    "tr3y": 54.28,
+    "tr5y": 80.04,
+    "tr10y": 183.69,
+    "cagr3y": 15.55,
+    "cagr5y": 12.48,
+    "cagr10y": 10.99,
+    "siAnn": 5.9,
+    "dividendYield": 2.38,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 2.2473,
+    "secYield": 2.17,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "37.93%",
+    "tr3yText": "54.28%",
+    "tr5yText": "80.04%",
+    "tr10yText": "183.69%",
+    "cagr3yText": "15.55%",
+    "cagr5yText": "12.48%",
+    "cagr10yText": "10.99%",
+    "siAnnText": "5.90%",
+    "indicatedDividendYieldText": "2.25%",
+    "dividendYieldText": "2.38%",
+    "secYieldText": "2.17%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -92,16 +129,16 @@
     ]
   },
   "holdings": {
-    "totalRows": 118,
+    "totalRows": 114,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 4031,
+    "totalRows": 4035,
     "pageSize": 1000,
     "pageCount": 5,
     "pages": [
@@ -111,5 +148,14 @@
       "./history/004.json",
       "./history/005.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

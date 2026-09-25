@@ -2,30 +2,40 @@
   "ticker": "SPIN",
   "name": "State Street US Equity Premium Income ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78470P8389",
+    "cusip": "78470P838"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-us-equity-premium-income-etf-spin",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-spin.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-spin.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-spin.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-spin.pdf"
   },
   "expenseRatio": {
     "display": "0.25%",
     "value": 0.25
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$32.97",
-    "value": 32.97,
-    "asOfDate": "Sep 17 2026"
+    "display": "$33.52",
+    "value": 33.52,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$47.47 M",
-    "value": 47470000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$48.26 M",
+    "value": 48260000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "Cboe BZX Exchange, Inc",
-    "closePrice": "$32.95",
-    "premiumDiscount": "0.07%"
+    "closePrice": "$33.51",
+    "premiumDiscount": "0.10%"
   },
   "inceptionDate": "Sep 04 2024",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "12.38%"
     }
   },
+  "metrics": {
+    "tr1y": 13.7,
+    "tr3y": null,
+    "tr5y": null,
+    "tr10y": null,
+    "cagr3y": null,
+    "cagr5y": null,
+    "cagr10y": null,
+    "siAnn": 13.55,
+    "dividendYield": 4.86,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 2.6619,
+    "secYield": 0.53,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "13.70%",
+    "tr3yText": null,
+    "tr5yText": null,
+    "tr10yText": null,
+    "cagr3yText": null,
+    "cagr5yText": null,
+    "cagr10yText": null,
+    "siAnnText": "13.55%",
+    "indicatedDividendYieldText": "2.66%",
+    "dividendYieldText": "4.86%",
+    "secYieldText": "0.53%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -98,14 +135,23 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 511,
+    "totalRows": 515,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./history/001.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

@@ -2,30 +2,40 @@
   "ticker": "CERY",
   "name": "State Street SPDR Bloomberg Enhanced Roll Yield Commodity Strategy No K-1 ETF",
   "category": "Alternative Sector",
+  "identifiers": {
+    "isin": "US78468R4406",
+    "cusip": "78468R440"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-bloomberg-enhanced-roll-yield-commodity-strategy-no-k-1-etf-cery",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-cery.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-cery.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-cery.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-cery.pdf"
   },
   "expenseRatio": {
     "display": "0.28%",
     "value": 0.28
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$39.87",
-    "value": 39.87,
-    "asOfDate": "Sep 17 2026"
+    "display": "$39.82",
+    "value": 39.82,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$1,156.66 M",
-    "value": 1156660000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$1,153.89 M",
+    "value": 1153890000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$39.72",
-    "premiumDiscount": "-0.19%"
+    "closePrice": "$39.77",
+    "premiumDiscount": "0.25%"
   },
   "inceptionDate": "Sep 04 2024",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "20.63%"
     }
   },
+  "metrics": {
+    "tr1y": 44.41,
+    "tr3y": null,
+    "tr5y": null,
+    "tr10y": null,
+    "cagr3y": null,
+    "cagr5y": null,
+    "cagr10y": null,
+    "siAnn": 27.78,
+    "dividendYield": 3.58,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 3.5809,
+    "secYield": 2.63,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "44.41%",
+    "tr3yText": null,
+    "tr5yText": null,
+    "tr10yText": null,
+    "cagr3yText": null,
+    "cagr5yText": null,
+    "cagr10yText": null,
+    "siAnnText": "27.78%",
+    "indicatedDividendYieldText": "3.58%",
+    "dividendYieldText": "3.58%",
+    "secYieldText": "2.63%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -92,20 +129,29 @@
     ]
   },
   "holdings": {
-    "totalRows": 10,
+    "totalRows": 8,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 511,
+    "totalRows": 515,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./history/001.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

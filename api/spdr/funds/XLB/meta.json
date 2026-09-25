@@ -2,30 +2,40 @@
   "ticker": "XLB",
   "name": "State Street Materials Select Sector SPDR ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US81369Y1001",
+    "cusip": "81369Y100"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-materials-select-sector-spdr-etf-xlb",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-xlb.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-xlb.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-xlb.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-xlb.pdf"
   },
   "expenseRatio": {
     "display": "0.08%",
     "value": 0.08
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$50.72",
-    "value": 50.72,
-    "asOfDate": "Sep 17 2026"
+    "display": "$50.25",
+    "value": 50.25,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$8,315.85 M",
-    "value": 8315850000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$8,155.74 M",
+    "value": 8155740000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$50.71",
-    "premiumDiscount": "0.00%"
+    "closePrice": "$50.28",
+    "premiumDiscount": "0.03%"
   },
   "inceptionDate": "Dec 16 1998",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "8.32%"
     }
   },
+  "metrics": {
+    "tr1y": 16.29,
+    "tr3y": 34.63,
+    "tr5y": 35.85,
+    "tr10y": 164.37,
+    "cagr3y": 10.42,
+    "cagr5y": 6.32,
+    "cagr10y": 10.21,
+    "siAnn": 8.4,
+    "dividendYield": 1.72,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 1.8196,
+    "secYield": 1.81,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "16.29%",
+    "tr3yText": "34.63%",
+    "tr5yText": "35.85%",
+    "tr10yText": "164.37%",
+    "cagr3yText": "10.42%",
+    "cagr5yText": "6.32%",
+    "cagr10yText": "10.21%",
+    "siAnnText": "8.40%",
+    "indicatedDividendYieldText": "1.82%",
+    "dividendYieldText": "1.72%",
+    "secYieldText": "1.81%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -82,10 +119,10 @@
     "rows": [
       [
         "Quarterly",
-        "06/22/2026",
-        "06/22/2026",
-        "06/24/2026",
-        "0.193243",
+        "09/21/2026",
+        "09/21/2026",
+        "09/23/2026",
+        "0.228593",
         "-",
         "-"
       ]
@@ -98,10 +135,10 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 5738,
+    "totalRows": 5742,
     "pageSize": 1000,
     "pageCount": 6,
     "pages": [
@@ -112,5 +149,14 @@
       "./history/005.json",
       "./history/006.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

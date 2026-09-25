@@ -1,0 +1,139 @@
+{
+  "ticker": "MYHF",
+  "name": "State Street My2032 High Yield Corporate Bond ETF",
+  "category": "Fixed Income Sector",
+  "identifiers": {
+    "isin": "US78470P4818",
+    "cusip": "78470P481"
+  },
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-my2032-high-yield-corporate-bond-etf-myhf",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-myhf.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-myhf.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-myhf.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
+    "factsheet": null
+  },
+  "expenseRatio": {
+    "display": "0.39%",
+    "value": 0.39
+  },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
+  "nav": {
+    "display": "$24.85",
+    "value": 24.85,
+    "asOfDate": "Sep 23 2026"
+  },
+  "aum": {
+    "display": "$4.97 M",
+    "value": 4970000,
+    "asOfDate": "Sep 23 2026"
+  },
+  "pricing": {
+    "exchange": "NASDAQ REGULAR MARKET",
+    "closePrice": "$24.85",
+    "premiumDiscount": "-0.02%"
+  },
+  "inceptionDate": "Sep 23 2026",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": null,
+      "mo1": null,
+      "mo1Text": null,
+      "qtd": null,
+      "qtdText": null,
+      "ytd": null,
+      "ytdText": null,
+      "yr1": null,
+      "yr1Text": null,
+      "yr3": null,
+      "yr3Text": null,
+      "yr5": null,
+      "yr5Text": null,
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": null,
+      "sinceInceptionText": null,
+      "inceptionDate": "Sep 23 2026"
+    },
+    "quarterEnd": {
+      "asOfDate": null,
+      "mo1": null,
+      "mo1Text": null,
+      "qtd": null,
+      "qtdText": null,
+      "ytd": null,
+      "ytdText": null,
+      "yr1": null,
+      "yr1Text": null,
+      "yr3": null,
+      "yr3Text": null,
+      "yr5": null,
+      "yr5Text": null,
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": null,
+      "sinceInceptionText": null
+    }
+  },
+  "metrics": {
+    "tr1y": null,
+    "tr3y": null,
+    "tr5y": null,
+    "tr10y": null,
+    "cagr3y": null,
+    "cagr5y": null,
+    "cagr10y": null,
+    "siAnn": null,
+    "dividendYield": null,
+    "dividendYieldSource": null,
+    "indicatedDividendYield": null,
+    "secYield": null,
+    "secYieldUnsubsidized": null,
+    "tr1yText": null,
+    "tr3yText": null,
+    "tr5yText": null,
+    "tr10yText": null,
+    "cagr3yText": null,
+    "cagr5yText": null,
+    "cagr10yText": null,
+    "siAnnText": null,
+    "indicatedDividendYieldText": null,
+    "dividendYieldText": null,
+    "secYieldText": null,
+    "secYieldUnsubsidizedText": null
+  },
+  "distributions": {
+    "headers": [],
+    "rows": []
+  },
+  "holdings": {
+    "totalRows": 118,
+    "pageSize": 250,
+    "pageCount": 1,
+    "pages": [
+      "./holdings/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
+  },
+  "history": {
+    "totalRows": 2,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./history/001.json"
+    ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 1,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
+  }
+}

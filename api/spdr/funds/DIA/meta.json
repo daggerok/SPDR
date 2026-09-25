@@ -2,30 +2,40 @@
   "ticker": "DIA",
   "name": "State Street SPDR Dow Jones Industrial Average ETF Trust",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78467X1090",
+    "cusip": "78467X109"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-dow-jones-industrial-average-etf-trust-dia",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-dia.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-dia.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-dia.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-dia.pdf"
   },
   "expenseRatio": {
     "display": "0.16%",
     "value": 0.16
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$518.20",
-    "value": 518.2,
-    "asOfDate": "Sep 17 2026"
+    "display": "$514.33",
+    "value": 514.33,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$45,287.01 M",
-    "value": 45287010000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$45,206.30 M",
+    "value": 45206300000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$518.35",
-    "premiumDiscount": "0.02%"
+    "closePrice": "$514.30",
+    "premiumDiscount": "0.00%"
   },
   "inceptionDate": "Jan 14 1998",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "9.19%"
     }
   },
+  "metrics": {
+    "tr1y": 18.26,
+    "tr3y": 60.28,
+    "tr5y": 63.63,
+    "tr10y": 249.81,
+    "cagr3y": 17.03,
+    "cagr5y": 10.35,
+    "cagr10y": 13.34,
+    "siAnn": 9.21,
+    "dividendYield": 1.4,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 2.7821,
+    "secYield": 1.37,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "18.26%",
+    "tr3yText": "60.28%",
+    "tr5yText": "63.63%",
+    "tr10yText": "249.81%",
+    "cagr3yText": "17.03%",
+    "cagr5yText": "10.35%",
+    "cagr10yText": "13.34%",
+    "siAnnText": "9.21%",
+    "indicatedDividendYieldText": "2.78%",
+    "dividendYieldText": "1.40%",
+    "secYieldText": "1.37%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -98,10 +135,10 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 5738,
+    "totalRows": 5742,
     "pageSize": 1000,
     "pageCount": 6,
     "pages": [
@@ -112,5 +149,14 @@
       "./history/005.json",
       "./history/006.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

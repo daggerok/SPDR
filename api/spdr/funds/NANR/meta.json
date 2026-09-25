@@ -2,30 +2,40 @@
   "ticker": "NANR",
   "name": "State Street SPDR S&P North American Natural Resources ETF",
   "category": "Alternative Sector",
+  "identifiers": {
+    "isin": "US78463X1524",
+    "cusip": "78463X152"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-north-american-natural-resources-etf-nanr",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-nanr.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-nanr.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-nanr.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-nanr.pdf"
   },
   "expenseRatio": {
     "display": "0.35%",
     "value": 0.35
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$89.21",
-    "value": 89.21,
-    "asOfDate": "Sep 17 2026"
+    "display": "$86.88",
+    "value": 86.88,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$843.02 M",
-    "value": 843020000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$825.35 M",
+    "value": 825350000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$89.40",
-    "premiumDiscount": "0.13%"
+    "closePrice": "$86.83",
+    "premiumDiscount": "-0.03%"
   },
   "inceptionDate": "Dec 15 2015",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "13.84%"
     }
   },
+  "metrics": {
+    "tr1y": 46.9,
+    "tr3y": 77.95,
+    "tr5y": 159.27,
+    "tr10y": 245.82,
+    "cagr3y": 21.18,
+    "cagr5y": 20.99,
+    "cagr10y": 13.21,
+    "siAnn": 15.45,
+    "dividendYield": 1.63,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 1.6408,
+    "secYield": 1.52,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "46.90%",
+    "tr3yText": "77.95%",
+    "tr5yText": "159.27%",
+    "tr10yText": "245.82%",
+    "cagr3yText": "21.18%",
+    "cagr5yText": "20.99%",
+    "cagr10yText": "13.21%",
+    "siAnnText": "15.45%",
+    "indicatedDividendYieldText": "1.64%",
+    "dividendYieldText": "1.63%",
+    "secYieldText": "1.52%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -98,10 +135,10 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 2704,
+    "totalRows": 2708,
     "pageSize": 1000,
     "pageCount": 3,
     "pages": [
@@ -109,5 +146,14 @@
       "./history/002.json",
       "./history/003.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

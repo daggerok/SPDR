@@ -2,30 +2,40 @@
   "ticker": "EWX",
   "name": "State Street SPDR S&P Emerging Markets Small Cap ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78463X7562",
+    "cusip": "78463X756"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-emerging-markets-small-cap-etf-ewx",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-ewx.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-ewx.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-ewx.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-ewx.pdf"
   },
   "expenseRatio": {
     "display": "0.65%",
     "value": 0.65
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$71.86",
-    "value": 71.86,
-    "asOfDate": "Sep 17 2026"
+    "display": "$72.82",
+    "value": 72.82,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$697.04 M",
-    "value": 697040000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$677.19 M",
+    "value": 677190000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$72.01",
-    "premiumDiscount": "0.24%"
+    "closePrice": "$71.94",
+    "premiumDiscount": "-0.96%"
   },
   "inceptionDate": "May 12 2008",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "4.72%"
     }
   },
+  "metrics": {
+    "tr1y": 13.63,
+    "tr3y": 47.41,
+    "tr5y": 39.34,
+    "tr10y": 129.24,
+    "cagr3y": 13.81,
+    "cagr5y": 6.86,
+    "cagr10y": 8.65,
+    "siAnn": 4.66,
+    "dividendYield": 2.53,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 1.5693,
+    "secYield": 1.99,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "13.63%",
+    "tr3yText": "47.41%",
+    "tr5yText": "39.34%",
+    "tr10yText": "129.24%",
+    "cagr3yText": "13.81%",
+    "cagr5yText": "6.86%",
+    "cagr10yText": "8.65%",
+    "siAnnText": "4.66%",
+    "indicatedDividendYieldText": "1.57%",
+    "dividendYieldText": "2.53%",
+    "secYieldText": "1.99%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -92,9 +129,9 @@
     ]
   },
   "holdings": {
-    "totalRows": 3445,
+    "totalRows": 3586,
     "pageSize": 250,
-    "pageCount": 14,
+    "pageCount": 15,
     "pages": [
       "./holdings/001.json",
       "./holdings/002.json",
@@ -109,12 +146,13 @@
       "./holdings/011.json",
       "./holdings/012.json",
       "./holdings/013.json",
-      "./holdings/014.json"
+      "./holdings/014.json",
+      "./holdings/015.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 4617,
+    "totalRows": 4621,
     "pageSize": 1000,
     "pageCount": 5,
     "pages": [
@@ -124,5 +162,14 @@
       "./history/004.json",
       "./history/005.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

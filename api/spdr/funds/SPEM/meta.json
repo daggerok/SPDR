@@ -2,30 +2,40 @@
   "ticker": "SPEM",
   "name": "State Street SPDR Portfolio Emerging Markets ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78463X5095",
+    "cusip": "78463X509"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-portfolio-emerging-markets-etf-spem",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-spem.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-spem.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-spem.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-spem.pdf"
   },
   "expenseRatio": {
     "display": "0.07%",
     "value": 0.07
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$52.03",
-    "value": 52.03,
-    "asOfDate": "Sep 17 2026"
+    "display": "$53.03",
+    "value": 53.03,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$17,565.08 M",
-    "value": 17565080000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$17,901.39 M",
+    "value": 17901390000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$52.26",
-    "premiumDiscount": "0.41%"
+    "closePrice": "$52.50",
+    "premiumDiscount": "-0.98%"
   },
   "inceptionDate": "Mar 20 2007",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "5.74%"
     }
   },
+  "metrics": {
+    "tr1y": 22.9,
+    "tr3y": 67.16,
+    "tr5y": 39.14,
+    "tr10y": 128.4,
+    "cagr3y": 18.68,
+    "cagr5y": 6.83,
+    "cagr10y": 8.61,
+    "siAnn": 5.85,
+    "dividendYield": 2.45,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 1.9901,
+    "secYield": 2.03,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "22.90%",
+    "tr3yText": "67.16%",
+    "tr5yText": "39.14%",
+    "tr10yText": "128.40%",
+    "cagr3yText": "18.68%",
+    "cagr5yText": "6.83%",
+    "cagr10yText": "8.61%",
+    "siAnnText": "5.85%",
+    "indicatedDividendYieldText": "1.99%",
+    "dividendYieldText": "2.45%",
+    "secYieldText": "2.03%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -92,9 +129,9 @@
     ]
   },
   "holdings": {
-    "totalRows": 3019,
+    "totalRows": 2779,
     "pageSize": 250,
-    "pageCount": 13,
+    "pageCount": 12,
     "pages": [
       "./holdings/001.json",
       "./holdings/002.json",
@@ -107,13 +144,12 @@
       "./holdings/009.json",
       "./holdings/010.json",
       "./holdings/011.json",
-      "./holdings/012.json",
-      "./holdings/013.json"
+      "./holdings/012.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 4910,
+    "totalRows": 4914,
     "pageSize": 1000,
     "pageCount": 5,
     "pages": [
@@ -123,5 +159,14 @@
       "./history/004.json",
       "./history/005.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

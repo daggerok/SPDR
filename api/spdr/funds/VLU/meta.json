@@ -2,30 +2,40 @@
   "ticker": "VLU",
   "name": "State Street SPDR S&P 1500 Value Tilt ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78464A1280",
+    "cusip": "78464A128"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-1500-value-tilt-etf-vlu",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-vlu.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-vlu.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-vlu.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-vlu.pdf"
   },
   "expenseRatio": {
     "display": "0.12%",
     "value": 0.12
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$245.16",
-    "value": 245.16,
-    "asOfDate": "Sep 17 2026"
+    "display": "$241.98",
+    "value": 241.98,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$759.98 M",
-    "value": 759980000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$752.57 M",
+    "value": 752570000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$245.35",
-    "premiumDiscount": "0.04%"
+    "closePrice": "$242.03",
+    "premiumDiscount": "0.05%"
   },
   "inceptionDate": "Oct 24 2012",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "13.74%"
     }
   },
+  "metrics": {
+    "tr1y": 24.91,
+    "tr3y": 74.01,
+    "tr5y": 82.21,
+    "tr10y": 271.37,
+    "cagr3y": 20.28,
+    "cagr5y": 12.75,
+    "cagr10y": 14.02,
+    "siAnn": 13.87,
+    "dividendYield": 1.64,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 1.7412,
+    "secYield": 1.7,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "24.91%",
+    "tr3yText": "74.01%",
+    "tr5yText": "82.21%",
+    "tr10yText": "271.37%",
+    "cagr3yText": "20.28%",
+    "cagr5yText": "12.75%",
+    "cagr10yText": "14.02%",
+    "siAnnText": "13.87%",
+    "indicatedDividendYieldText": "1.74%",
+    "dividendYieldText": "1.64%",
+    "secYieldText": "1.70%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -82,17 +119,17 @@
     "rows": [
       [
         "Quarterly",
-        "06/22/2026",
-        "06/22/2026",
-        "06/24/2026",
-        "1.017101",
+        "09/21/2026",
+        "09/21/2026",
+        "09/23/2026",
+        "1.053333",
         "-",
         "-"
       ]
     ]
   },
   "holdings": {
-    "totalRows": 1465,
+    "totalRows": 1456,
     "pageSize": 250,
     "pageCount": 6,
     "pages": [
@@ -103,10 +140,10 @@
       "./holdings/005.json",
       "./holdings/006.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 3532,
+    "totalRows": 3536,
     "pageSize": 1000,
     "pageCount": 4,
     "pages": [
@@ -115,5 +152,14 @@
       "./history/003.json",
       "./history/004.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

@@ -2,30 +2,40 @@
   "ticker": "PSK",
   "name": "State Street SPDR ICE Preferred Securities ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78464A2924",
+    "cusip": "78464A292"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-ice-preferred-securities-etf-psk",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-psk.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-psk.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-psk.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-psk.pdf"
   },
   "expenseRatio": {
     "display": "0.45%",
     "value": 0.45
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$29.23",
-    "value": 29.23,
-    "asOfDate": "Sep 17 2026"
+    "display": "$28.93",
+    "value": 28.93,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$666.36 M",
-    "value": 666360000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$653.76 M",
+    "value": 653760000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$29.26",
-    "premiumDiscount": "0.06%"
+    "closePrice": "$28.88",
+    "premiumDiscount": "-0.09%"
   },
   "inceptionDate": "Sep 16 2009",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "4.46%"
     }
   },
+  "metrics": {
+    "tr1y": -2.34,
+    "tr3y": 9.37,
+    "tr5y": -6.66,
+    "tr10y": 16.28,
+    "cagr3y": 3.03,
+    "cagr5y": -1.37,
+    "cagr10y": 1.52,
+    "siAnn": 4.31,
+    "dividendYield": 7.4,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 6.6367,
+    "secYield": 6.66,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "-2.34%",
+    "tr3yText": "9.37%",
+    "tr5yText": "-6.66%",
+    "tr10yText": "16.28%",
+    "cagr3yText": "3.03%",
+    "cagr5yText": "-1.37%",
+    "cagr10yText": "1.52%",
+    "siAnnText": "4.31%",
+    "indicatedDividendYieldText": "6.64%",
+    "dividendYieldText": "7.40%",
+    "secYieldText": "6.66%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -98,10 +135,10 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 4280,
+    "totalRows": 4284,
     "pageSize": 1000,
     "pageCount": 5,
     "pages": [
@@ -111,5 +148,14 @@
       "./history/004.json",
       "./history/005.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

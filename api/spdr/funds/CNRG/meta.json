@@ -2,30 +2,40 @@
   "ticker": "CNRG",
   "name": "State Street SPDR S&P Kensho Clean Power ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78468R6559",
+    "cusip": "78468R655"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-kensho-clean-power-etf-cnrg",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-cnrg.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-cnrg.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-cnrg.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-cnrg.pdf"
   },
   "expenseRatio": {
     "display": "0.45%",
     "value": 0.45
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$88.11",
-    "value": 88.11,
-    "asOfDate": "Sep 17 2026"
+    "display": "$86.04",
+    "value": 86.04,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$189.00 M",
-    "value": 189000000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$183.69 M",
+    "value": 183690000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$88.13",
-    "premiumDiscount": "-0.05%"
+    "closePrice": "$86.04",
+    "premiumDiscount": "0.03%"
   },
   "inceptionDate": "Oct 22 2018",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "20.45%"
     }
   },
+  "metrics": {
+    "tr1y": 19.22,
+    "tr3y": 18.63,
+    "tr5y": -6.48,
+    "tr10y": null,
+    "cagr3y": 5.86,
+    "cagr5y": -1.33,
+    "cagr10y": null,
+    "siAnn": 15.92,
+    "dividendYield": 1.48,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 1.6741,
+    "secYield": 1.01,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "19.22%",
+    "tr3yText": "18.63%",
+    "tr5yText": "-6.48%",
+    "tr10yText": null,
+    "cagr3yText": "5.86%",
+    "cagr5yText": "-1.33%",
+    "cagr10yText": null,
+    "siAnnText": "15.92%",
+    "indicatedDividendYieldText": "1.67%",
+    "dividendYieldText": "1.48%",
+    "secYieldText": "1.01%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -82,10 +119,10 @@
     "rows": [
       [
         "Quarterly",
-        "06/22/2026",
-        "06/22/2026",
-        "06/24/2026",
-        "0.161235",
+        "09/21/2026",
+        "09/21/2026",
+        "09/23/2026",
+        "0.360091",
         "-",
         "-"
       ]
@@ -98,15 +135,24 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 1986,
+    "totalRows": 1990,
     "pageSize": 1000,
     "pageCount": 2,
     "pages": [
       "./history/001.json",
       "./history/002.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

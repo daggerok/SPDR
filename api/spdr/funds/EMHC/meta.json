@@ -2,30 +2,40 @@
   "ticker": "EMHC",
   "name": "State Street SPDR Bloomberg Emerging Markets USD Bond ETF",
   "category": "Fixed Income Sector",
+  "identifiers": {
+    "isin": "US78468R5155",
+    "cusip": "78468R515"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-bloomberg-emerging-markets-usd-bond-etf-emhc",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-emhc.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-emhc.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-emhc.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-emhc.pdf"
   },
   "expenseRatio": {
     "display": "0.23%",
     "value": 0.23
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$24.53",
-    "value": 24.53,
-    "asOfDate": "Sep 17 2026"
+    "display": "$24.40",
+    "value": 24.4,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$311.56 M",
-    "value": 311560000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$309.88 M",
+    "value": 309880000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$24.60",
-    "premiumDiscount": "0.22%"
+    "closePrice": "$24.34",
+    "premiumDiscount": "-0.27%"
   },
   "inceptionDate": "Apr 06 2021",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "2.15%"
     }
   },
+  "metrics": {
+    "tr1y": 6.25,
+    "tr3y": 27.2,
+    "tr5y": 5.99,
+    "tr10y": null,
+    "cagr3y": 8.35,
+    "cagr5y": 1.17,
+    "cagr10y": null,
+    "siAnn": 1.88,
+    "dividendYield": 6.27,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 5.5563,
+    "secYield": 6.26,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "6.25%",
+    "tr3yText": "27.20%",
+    "tr5yText": "5.99%",
+    "tr10yText": null,
+    "cagr3yText": "8.35%",
+    "cagr5yText": "1.17%",
+    "cagr10yText": null,
+    "siAnnText": "1.88%",
+    "indicatedDividendYieldText": "5.56%",
+    "dividendYieldText": "6.27%",
+    "secYieldText": "6.26%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -92,7 +129,7 @@
     ]
   },
   "holdings": {
-    "totalRows": 576,
+    "totalRows": 578,
     "pageSize": 250,
     "pageCount": 3,
     "pages": [
@@ -100,15 +137,24 @@
       "./holdings/002.json",
       "./holdings/003.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 1370,
+    "totalRows": 1374,
     "pageSize": 1000,
     "pageCount": 2,
     "pages": [
       "./history/001.json",
       "./history/002.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

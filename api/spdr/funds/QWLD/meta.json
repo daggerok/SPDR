@@ -2,30 +2,40 @@
   "ticker": "QWLD",
   "name": "State Street SPDR MSCI World StrategicFactors℠ ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78463X4189",
+    "cusip": "78463X418"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-msci-world-strategicfactors-etf-qwld",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-qwld.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-qwld.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-qwld.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-qwld.pdf"
   },
   "expenseRatio": {
     "display": "0.30%",
     "value": 0.3
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$156.24",
-    "value": 156.24,
-    "asOfDate": "Sep 17 2026"
+    "display": "$155.62",
+    "value": 155.62,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$175.77 M",
-    "value": 175770000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$175.07 M",
+    "value": 175070000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$156.16",
-    "premiumDiscount": "0.01%"
+    "closePrice": "$155.81",
+    "premiumDiscount": "0.13%"
   },
   "inceptionDate": "Jun 04 2014",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "10.32%"
     }
   },
+  "metrics": {
+    "tr1y": 16.9,
+    "tr3y": 59.38,
+    "tr5y": 60.47,
+    "tr10y": 205.63,
+    "cagr3y": 16.81,
+    "cagr5y": 9.92,
+    "cagr10y": 11.82,
+    "siAnn": 10.56,
+    "dividendYield": 1.78,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 1.7245,
+    "secYield": 1.42,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "16.90%",
+    "tr3yText": "59.38%",
+    "tr5yText": "60.47%",
+    "tr10yText": "205.63%",
+    "cagr3yText": "16.81%",
+    "cagr5yText": "9.92%",
+    "cagr10yText": "11.82%",
+    "siAnnText": "10.56%",
+    "indicatedDividendYieldText": "1.72%",
+    "dividendYieldText": "1.78%",
+    "secYieldText": "1.42%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -92,7 +129,7 @@
     ]
   },
   "holdings": {
-    "totalRows": 1241,
+    "totalRows": 1239,
     "pageSize": 250,
     "pageCount": 5,
     "pages": [
@@ -102,10 +139,10 @@
       "./holdings/004.json",
       "./holdings/005.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 3091,
+    "totalRows": 3095,
     "pageSize": 1000,
     "pageCount": 4,
     "pages": [
@@ -114,5 +151,14 @@
       "./history/003.json",
       "./history/004.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

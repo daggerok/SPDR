@@ -2,30 +2,40 @@
   "ticker": "CWI",
   "name": "State Street SPDR MSCI ACWI ex-US ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78463X8487",
+    "cusip": "78463X848"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-msci-acwi-ex-us-etf-cwi",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-cwi.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-cwi.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-cwi.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-cwi.pdf"
   },
   "expenseRatio": {
     "display": "0.30%",
     "value": 0.3
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$40.83",
-    "value": 40.83,
-    "asOfDate": "Sep 17 2026"
+    "display": "$40.88",
+    "value": 40.88,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$2,846.00 M",
-    "value": 2846000000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$2,849.52 M",
+    "value": 2849520000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$41.04",
-    "premiumDiscount": "0.39%"
+    "closePrice": "$40.83",
+    "premiumDiscount": "-0.15%"
   },
   "inceptionDate": "Jan 10 2007",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "5.58%"
     }
   },
+  "metrics": {
+    "tr1y": 26.97,
+    "tr3y": 74.66,
+    "tr5y": 59.16,
+    "tr10y": 154.7,
+    "cagr3y": 20.43,
+    "cagr5y": 9.74,
+    "cagr10y": 9.8,
+    "siAnn": 5.65,
+    "dividendYield": 2.67,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 2.3184,
+    "secYield": 1.79,
+    "secYieldUnsubsidized": 1.79,
+    "tr1yText": "26.97%",
+    "tr3yText": "74.66%",
+    "tr5yText": "59.16%",
+    "tr10yText": "154.70%",
+    "cagr3yText": "20.43%",
+    "cagr5yText": "9.74%",
+    "cagr10yText": "9.80%",
+    "siAnnText": "5.65%",
+    "indicatedDividendYieldText": "2.32%",
+    "dividendYieldText": "2.67%",
+    "secYieldText": "1.79%",
+    "secYieldUnsubsidizedText": "1.79%"
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -92,7 +129,7 @@
     ]
   },
   "holdings": {
-    "totalRows": 1140,
+    "totalRows": 1139,
     "pageSize": 250,
     "pageCount": 5,
     "pages": [
@@ -102,10 +139,10 @@
       "./holdings/004.json",
       "./holdings/005.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 4956,
+    "totalRows": 4960,
     "pageSize": 1000,
     "pageCount": 5,
     "pages": [
@@ -115,5 +152,14 @@
       "./history/004.json",
       "./history/005.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

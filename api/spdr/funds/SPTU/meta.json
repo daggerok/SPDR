@@ -2,30 +2,40 @@
   "ticker": "SPTU",
   "name": "State Street SPDR Portfolio Ultra Short T-Bill ETF",
   "category": "Fixed Income Sector",
+  "identifiers": {
+    "isin": "US78468R4323",
+    "cusip": "78468R432"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-portfolio-ultra-short-t-bill-etf-sptu",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-sptu.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-sptu.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-sptu.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-sptu.pdf"
   },
   "expenseRatio": {
     "display": "0.05%",
     "value": 0.05
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$25.04",
-    "value": 25.04,
-    "asOfDate": "Sep 17 2026"
+    "display": "$25.05",
+    "value": 25.05,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$14.27 M",
-    "value": 14270000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$14.28 M",
+    "value": 14280000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$25.04",
-    "premiumDiscount": "0.02%"
+    "closePrice": "$25.06",
+    "premiumDiscount": "0.01%"
   },
   "inceptionDate": "Oct 07 2025",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "2.69%"
     }
   },
+  "metrics": {
+    "tr1y": null,
+    "tr3y": null,
+    "tr5y": null,
+    "tr10y": null,
+    "cagr3y": null,
+    "cagr5y": null,
+    "cagr10y": null,
+    "siAnn": 3.32,
+    "dividendYield": 3.5311,
+    "dividendYieldSource": "indicated",
+    "indicatedDividendYield": 3.5311,
+    "secYield": 3.71,
+    "secYieldUnsubsidized": null,
+    "tr1yText": null,
+    "tr3yText": null,
+    "tr5yText": null,
+    "tr10yText": null,
+    "cagr3yText": null,
+    "cagr5yText": null,
+    "cagr10yText": null,
+    "siAnnText": "3.32%",
+    "indicatedDividendYieldText": "3.53%",
+    "dividendYieldText": "3.53%",
+    "secYieldText": "3.71%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -98,14 +135,23 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 238,
+    "totalRows": 242,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./history/001.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 242,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

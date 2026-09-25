@@ -2,30 +2,40 @@
   "ticker": "GXC",
   "name": "State Street SPDR S&P China ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78463X4007",
+    "cusip": "78463X400"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-china-etf-gxc",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-gxc.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-gxc.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-gxc.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-gxc.pdf"
   },
   "expenseRatio": {
     "display": "0.59%",
     "value": 0.59
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$87.38",
-    "value": 87.38,
-    "asOfDate": "Sep 17 2026"
+    "display": "$88.77",
+    "value": 88.77,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$458.75 M",
-    "value": 458750000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$466.03 M",
+    "value": 466030000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$87.26",
-    "premiumDiscount": "-0.17%"
+    "closePrice": "$88.21",
+    "premiumDiscount": "-0.73%"
   },
   "inceptionDate": "Mar 20 2007",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "4.70%"
     }
   },
+  "metrics": {
+    "tr1y": -4.48,
+    "tr3y": 34.37,
+    "tr5y": -10.3,
+    "tr10y": 46.61,
+    "cagr3y": 10.35,
+    "cagr5y": -2.15,
+    "cagr10y": 3.9,
+    "siAnn": 4.96,
+    "dividendYield": 2.24,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 1.4994,
+    "secYield": 1.8,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "-4.48%",
+    "tr3yText": "34.37%",
+    "tr5yText": "-10.30%",
+    "tr10yText": "46.61%",
+    "cagr3yText": "10.35%",
+    "cagr5yText": "-2.15%",
+    "cagr10yText": "3.90%",
+    "siAnnText": "4.96%",
+    "indicatedDividendYieldText": "1.50%",
+    "dividendYieldText": "2.24%",
+    "secYieldText": "1.80%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -92,21 +129,22 @@
     ]
   },
   "holdings": {
-    "totalRows": 1376,
+    "totalRows": 1561,
     "pageSize": 250,
-    "pageCount": 6,
+    "pageCount": 7,
     "pages": [
       "./holdings/001.json",
       "./holdings/002.json",
       "./holdings/003.json",
       "./holdings/004.json",
       "./holdings/005.json",
-      "./holdings/006.json"
+      "./holdings/006.json",
+      "./holdings/007.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 4910,
+    "totalRows": 4914,
     "pageSize": 1000,
     "pageCount": 5,
     "pages": [
@@ -116,5 +154,14 @@
       "./history/004.json",
       "./history/005.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

@@ -2,30 +2,40 @@
   "ticker": "KRE",
   "name": "State Street SPDR S&P Regional Banking ETF",
   "category": "Equity",
+  "identifiers": {
+    "isin": "US78464A6982",
+    "cusip": "78464A698"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-regional-banking-etf-kre",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-kre.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-kre.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-kre.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-kre.pdf"
   },
   "expenseRatio": {
     "display": "0.35%",
     "value": 0.35
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$72.80",
-    "value": 72.8,
-    "asOfDate": "Sep 17 2026"
+    "display": "$70.37",
+    "value": 70.37,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$3,880.35 M",
-    "value": 3880350000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$3,659.45 M",
+    "value": 3659450000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$72.74",
-    "premiumDiscount": "-0.05%"
+    "closePrice": "$70.38",
+    "premiumDiscount": "0.05%"
   },
   "inceptionDate": "Jun 19 2006",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "4.76%"
     }
   },
+  "metrics": {
+    "tr1y": 15.05,
+    "tr3y": 79.58,
+    "tr5y": 28.05,
+    "tr10y": 119.72,
+    "cagr3y": 21.55,
+    "cagr5y": 5.07,
+    "cagr10y": 8.19,
+    "siAnn": 4.63,
+    "dividendYield": 2.29,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 2.3445,
+    "secYield": 2.26,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "15.05%",
+    "tr3yText": "79.58%",
+    "tr5yText": "28.05%",
+    "tr10yText": "119.72%",
+    "cagr3yText": "21.55%",
+    "cagr5yText": "5.07%",
+    "cagr10yText": "8.19%",
+    "siAnnText": "4.63%",
+    "indicatedDividendYieldText": "2.34%",
+    "dividendYieldText": "2.29%",
+    "secYieldText": "2.26%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -82,26 +119,26 @@
     "rows": [
       [
         "Quarterly",
-        "06/22/2026",
-        "06/22/2026",
-        "06/24/2026",
-        "0.416731",
+        "09/21/2026",
+        "09/21/2026",
+        "09/23/2026",
+        "0.412463",
         "-",
         "-"
       ]
     ]
   },
   "holdings": {
-    "totalRows": 160,
+    "totalRows": 169,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 5097,
+    "totalRows": 5101,
     "pageSize": 1000,
     "pageCount": 6,
     "pages": [
@@ -112,5 +149,14 @@
       "./history/005.json",
       "./history/006.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }

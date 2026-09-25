@@ -2,30 +2,40 @@
   "ticker": "EBND",
   "name": "State Street SPDR Bloomberg Emerging Markets Local Bond ETF",
   "category": "Fixed Income Sector",
+  "identifiers": {
+    "isin": "US78464A3914",
+    "cusip": "78464A391"
+  },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-bloomberg-emerging-markets-local-bond-etf-ebnd",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-ebnd.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-ebnd.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-ebnd.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-ebnd.pdf"
   },
   "expenseRatio": {
     "display": "0.30%",
     "value": 0.3
   },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
   "nav": {
-    "display": "$20.79",
-    "value": 20.79,
-    "asOfDate": "Sep 17 2026"
+    "display": "$20.80",
+    "value": 20.8,
+    "asOfDate": "Sep 23 2026"
   },
   "aum": {
-    "display": "$2,264.45 M",
-    "value": 2264450000,
-    "asOfDate": "Sep 17 2026"
+    "display": "$2,264.88 M",
+    "value": 2264880000,
+    "asOfDate": "Sep 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$20.84",
-    "premiumDiscount": "0.25%"
+    "closePrice": "$20.71",
+    "premiumDiscount": "-0.40%"
   },
   "inceptionDate": "Feb 23 2011",
   "returns": {
@@ -69,6 +79,33 @@
       "sinceInceptionText": "1.06%"
     }
   },
+  "metrics": {
+    "tr1y": 5.16,
+    "tr3y": 20.52,
+    "tr5y": 4.53,
+    "tr10y": 16.4,
+    "cagr3y": 6.42,
+    "cagr5y": 0.89,
+    "cagr10y": 1.53,
+    "siAnn": 1.17,
+    "dividendYield": 5.94,
+    "dividendYieldSource": "official",
+    "indicatedDividendYield": 6.1431,
+    "secYield": 6.09,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "5.16%",
+    "tr3yText": "20.52%",
+    "tr5yText": "4.53%",
+    "tr10yText": "16.40%",
+    "cagr3yText": "6.42%",
+    "cagr5yText": "0.89%",
+    "cagr10yText": "1.53%",
+    "siAnnText": "1.17%",
+    "indicatedDividendYieldText": "6.14%",
+    "dividendYieldText": "5.94%",
+    "secYieldText": "6.09%",
+    "secYieldUnsubsidizedText": null
+  },
   "distributions": {
     "headers": [
       "Frequency",
@@ -92,7 +129,7 @@
     ]
   },
   "holdings": {
-    "totalRows": 652,
+    "totalRows": 657,
     "pageSize": 250,
     "pageCount": 3,
     "pages": [
@@ -100,10 +137,10 @@
       "./holdings/002.json",
       "./holdings/003.json"
     ],
-    "asOfDate": "17-Sep-2026"
+    "asOfDate": "23-Sep-2026"
   },
   "history": {
-    "totalRows": 3918,
+    "totalRows": 3922,
     "pageSize": 1000,
     "pageCount": 4,
     "pages": [
@@ -112,5 +149,14 @@
       "./history/003.json",
       "./history/004.json"
     ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 432,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "23-Sep-2026"
   }
 }
