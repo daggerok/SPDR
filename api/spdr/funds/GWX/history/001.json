@@ -2,7 +2,7 @@
   "ticker": "GWX",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 4891,
+  "totalRows": 4892,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "24-Sep-2026",
+      "NAV": "45.515585",
+      "Shares Outstanding": "20200000",
+      "Total Net Assets": "919414823.37"
+    },
     {
       "Date": "23-Sep-2026",
       "NAV": "45.891729",
@@ -6003,12 +6009,6 @@
       "NAV": "26.043222",
       "Shares Outstanding": "22800000",
       "Total Net Assets": "593785451.87"
-    },
-    {
-      "Date": "28-Sep-2022",
-      "NAV": "25.946686",
-      "Shares Outstanding": "22800000",
-      "Total Net Assets": "591584446.59"
     }
   ]
 }

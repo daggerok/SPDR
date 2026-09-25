@@ -2,7 +2,7 @@
   "ticker": "XBI",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 5194,
+  "totalRows": 5195,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "28-Sep-2022",
+      "NAV": "81.191627",
+      "Shares Outstanding": "86175000",
+      "Total Net Assets": "6996688419.71"
+    },
     {
       "Date": "27-Sep-2022",
       "NAV": "77.217796",
@@ -6003,12 +6009,6 @@
       "NAV": "88.494368",
       "Shares Outstanding": "59050000",
       "Total Net Assets": "5225592434.2"
-    },
-    {
-      "Date": "08-Oct-2018",
-      "NAV": "89.358634",
-      "Shares Outstanding": "58250000",
-      "Total Net Assets": "5205140445.43"
     }
   ]
 }

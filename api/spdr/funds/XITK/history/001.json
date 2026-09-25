@@ -2,7 +2,7 @@
   "ticker": "XITK",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 2689,
+  "totalRows": 2690,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "24-Sep-2026",
+      "NAV": "200.444354",
+      "Shares Outstanding": "350000",
+      "Total Net Assets": "70155523.93"
+    },
     {
       "Date": "23-Sep-2026",
       "NAV": "200.336472",
@@ -6003,12 +6009,6 @@
       "NAV": "100.751764",
       "Shares Outstanding": "1040000",
       "Total Net Assets": "104781834.62"
-    },
-    {
-      "Date": "28-Sep-2022",
-      "NAV": "103.446997",
-      "Shares Outstanding": "1040000",
-      "Total Net Assets": "107584876.62"
     }
   ]
 }

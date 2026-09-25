@@ -2,7 +2,7 @@
   "ticker": "SPEM",
   "page": 4,
   "pageSize": 1000,
-  "totalRows": 4914,
+  "totalRows": 4915,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "17-Oct-2014",
+      "NAV": "65.029981",
+      "Shares Outstanding": "4100000",
+      "Total Net Assets": "266622920.68"
+    },
     {
       "Date": "16-Oct-2014",
       "NAV": "64.374785",
@@ -6003,12 +6009,6 @@
       "NAV": "73.322082",
       "Shares Outstanding": "3100000",
       "Total Net Assets": "227298453.52"
-    },
-    {
-      "Date": "01-Nov-2010",
-      "NAV": "72.933017",
-      "Shares Outstanding": "3100000",
-      "Total Net Assets": "226092352.86"
     }
   ]
 }

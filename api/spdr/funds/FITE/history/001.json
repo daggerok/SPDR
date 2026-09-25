@@ -2,7 +2,7 @@
   "ticker": "FITE",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 2197,
+  "totalRows": 2198,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "24-Sep-2026",
+      "NAV": "112.58549",
+      "Shares Outstanding": "1370000",
+      "Total Net Assets": "154242121.49"
+    },
     {
       "Date": "23-Sep-2026",
       "NAV": "112.764157",
@@ -6003,12 +6009,6 @@
       "NAV": "41.909497",
       "Shares Outstanding": "700000",
       "Total Net Assets": "29336647.89"
-    },
-    {
-      "Date": "28-Sep-2022",
-      "NAV": "42.898158",
-      "Shares Outstanding": "700000",
-      "Total Net Assets": "30028710.25"
     }
   ]
 }

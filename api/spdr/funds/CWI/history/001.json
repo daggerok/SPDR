@@ -2,7 +2,7 @@
   "ticker": "CWI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 4960,
+  "totalRows": 4961,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "24-Sep-2026",
+      "NAV": "40.573972",
+      "Shares Outstanding": "69699982",
+      "Total Net Assets": "2828005148.36"
+    },
     {
       "Date": "23-Sep-2026",
       "NAV": "40.882689",
@@ -6003,12 +6009,6 @@
       "NAV": "21.273306",
       "Shares Outstanding": "61899982",
       "Total Net Assets": "1316817243.7"
-    },
-    {
-      "Date": "28-Sep-2022",
-      "NAV": "21.295091",
-      "Shares Outstanding": "61899982",
-      "Total Net Assets": "1318165754.17"
     }
   ]
 }

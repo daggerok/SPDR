@@ -2,7 +2,7 @@
   "ticker": "SPSB",
   "page": 3,
   "pageSize": 1000,
-  "totalRows": 4220,
+  "totalRows": 4221,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "08-Oct-2018",
+      "NAV": "30.088036",
+      "Shares Outstanding": "151700000",
+      "Total Net Assets": "4564355064.87"
+    },
     {
       "Date": "05-Oct-2018",
       "NAV": "30.085513",
@@ -6003,12 +6009,6 @@
       "NAV": "30.766225",
       "Shares Outstanding": "121500000",
       "Total Net Assets": "3738096327.36"
-    },
-    {
-      "Date": "17-Oct-2014",
-      "NAV": "30.756196",
-      "Shares Outstanding": "121500000",
-      "Total Net Assets": "3736877786.94"
     }
   ]
 }

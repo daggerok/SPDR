@@ -2,7 +2,7 @@
   "ticker": "SPIP",
   "page": 3,
   "pageSize": 1000,
-  "totalRows": 4864,
+  "totalRows": 4865,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "08-Oct-2018",
+      "NAV": "53.80921",
+      "Shares Outstanding": "25600225",
+      "Total Net Assets": "1377527884.98"
+    },
     {
       "Date": "05-Oct-2018",
       "NAV": "53.807261",
@@ -6003,12 +6009,6 @@
       "NAV": "56.790333",
       "Shares Outstanding": "10700225",
       "Total Net Assets": "607669339.43"
-    },
-    {
-      "Date": "17-Oct-2014",
-      "NAV": "56.808132",
-      "Shares Outstanding": "10700225",
-      "Total Net Assets": "607859793.83"
     }
   ]
 }

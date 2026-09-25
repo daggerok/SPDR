@@ -2,7 +2,7 @@
   "ticker": "XRT",
   "page": 3,
   "pageSize": 1000,
-  "totalRows": 5101,
+  "totalRows": 5102,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "08-Oct-2018",
+      "NAV": "48.434739",
+      "Shares Outstanding": "12900226",
+      "Total Net Assets": "624819079.05"
+    },
     {
       "Date": "05-Oct-2018",
       "NAV": "48.308155",
@@ -6003,12 +6009,6 @@
       "NAV": "84.301813",
       "Shares Outstanding": "8050113",
       "Total Net Assets": "678639120.47"
-    },
-    {
-      "Date": "17-Oct-2014",
-      "NAV": "82.693571",
-      "Shares Outstanding": "8200113",
-      "Total Net Assets": "678096623"
     }
   ]
 }

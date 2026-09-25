@@ -2,7 +2,7 @@
   "ticker": "XLK",
   "page": 5,
   "pageSize": 1000,
-  "totalRows": 5742,
+  "totalRows": 5743,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "01-Nov-2010",
+      "NAV": "24.395314",
+      "Shares Outstanding": "231605897",
+      "Total Net Assets": "5650098627.87"
+    },
     {
       "Date": "29-Oct-2010",
       "NAV": "24.319296",
@@ -6003,12 +6009,6 @@
       "NAV": "23.080329",
       "Shares Outstanding": "88503621",
       "Total Net Assets": "2042692732.33"
-    },
-    {
-      "Date": "09-Nov-2006",
-      "NAV": "23.041732",
-      "Shares Outstanding": "88503621",
-      "Total Net Assets": "2039276724.57"
     }
   ]
 }

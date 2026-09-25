@@ -2,7 +2,7 @@
   "ticker": "KCE",
   "page": 5,
   "pageSize": 1000,
-  "totalRows": 5248,
+  "totalRows": 5249,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "01-Nov-2010",
+      "NAV": "35.073925",
+      "Shares Outstanding": "1300000",
+      "Total Net Assets": "45596101.97"
+    },
     {
       "Date": "29-Oct-2010",
       "NAV": "35.114541",
@@ -6003,12 +6009,6 @@
       "NAV": "64.515689",
       "Shares Outstanding": "1650000",
       "Total Net Assets": "106450887.01"
-    },
-    {
-      "Date": "09-Nov-2006",
-      "NAV": "63.556981",
-      "Shares Outstanding": "1650000",
-      "Total Net Assets": "104869018.67"
     }
   ]
 }

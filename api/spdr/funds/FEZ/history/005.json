@@ -2,7 +2,7 @@
   "ticker": "FEZ",
   "page": 5,
   "pageSize": 1000,
-  "totalRows": 6023,
+  "totalRows": 6024,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "01-Nov-2010",
+      "NAV": "38.766659",
+      "Shares Outstanding": "4400967",
+      "Total Net Assets": "170610787.2"
+    },
     {
       "Date": "29-Oct-2010",
       "NAV": "38.910894",
@@ -6003,12 +6009,6 @@
       "NAV": "52.168647",
       "Shares Outstanding": "6150133",
       "Total Net Assets": "320844115.88"
-    },
-    {
-      "Date": "09-Nov-2006",
-      "NAV": "51.991549",
-      "Shares Outstanding": "6150133",
-      "Total Net Assets": "319754942.06"
     }
   ]
 }

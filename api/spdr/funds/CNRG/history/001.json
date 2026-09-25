@@ -2,7 +2,7 @@
   "ticker": "CNRG",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 1990,
+  "totalRows": 1991,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "24-Sep-2026",
+      "NAV": "83.88168",
+      "Shares Outstanding": "2135000",
+      "Total Net Assets": "179087386.32"
+    },
     {
       "Date": "23-Sep-2026",
       "NAV": "86.035208",
@@ -6003,12 +6009,6 @@
       "NAV": "84.875772",
       "Shares Outstanding": "3735000",
       "Total Net Assets": "317011006.81"
-    },
-    {
-      "Date": "28-Sep-2022",
-      "NAV": "89.192507",
-      "Shares Outstanding": "3725000",
-      "Total Net Assets": "332242089.09"
     }
   ]
 }

@@ -2,7 +2,7 @@
   "ticker": "IBND",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 4115,
+  "totalRows": 4116,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "24-Sep-2026",
+      "NAV": "29.955085",
+      "Shares Outstanding": "14800000",
+      "Total Net Assets": "443335257.41"
+    },
     {
       "Date": "23-Sep-2026",
       "NAV": "30.115076",
@@ -6003,12 +6009,6 @@
       "NAV": "24.759967",
       "Shares Outstanding": "4000000",
       "Total Net Assets": "99039867.17"
-    },
-    {
-      "Date": "28-Sep-2022",
-      "NAV": "24.463869",
-      "Shares Outstanding": "4000000",
-      "Total Net Assets": "97855476.82"
     }
   ]
 }

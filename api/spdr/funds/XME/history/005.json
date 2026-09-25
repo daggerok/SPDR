@@ -2,7 +2,7 @@
   "ticker": "XME",
   "page": 5,
   "pageSize": 1000,
-  "totalRows": 5101,
+  "totalRows": 5102,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "01-Nov-2010",
+      "NAV": "56.393847",
+      "Shares Outstanding": "16350230",
+      "Total Net Assets": "922052365.17"
+    },
     {
       "Date": "29-Oct-2010",
       "NAV": "55.908098",
@@ -6003,12 +6009,6 @@
       "NAV": "47.405173",
       "Shares Outstanding": "600000",
       "Total Net Assets": "28443103.96"
-    },
-    {
-      "Date": "09-Nov-2006",
-      "NAV": "48.435684",
-      "Shares Outstanding": "600000",
-      "Total Net Assets": "29061410.53"
     }
   ]
 }
