@@ -1,4 +1,5 @@
 #!/usr/bin/env bun
+/// <reference types="bun" />
 import { readFile as outputReadFile, readdir as outputReadDir } from 'node:fs/promises';
 import { createHash as outputCreateHash } from 'node:crypto';
 import { join as outputJoin } from 'node:path';
@@ -8,6 +9,9 @@ import { fileURLToPath as outputFileURLToPath } from 'node:url';
 /** Presentation only: no requests, writes, filtering, or changes to updater state. */
 
 const outputClean = (value: unknown): string => String(value ?? 'null').replace(/[\r\n\t]+/g, ' ');
+/** Presentation only: per-fund retry and fallback notices are printed when VERBOSE is enabled. */
+const outputVerbose = (): boolean => /^(1|true|yes|on)$/i.test((globalThis as any).process?.env?.VERBOSE ?? '');
+function outputNote(message: string): void { if (outputVerbose()) console.warn(message); }
 /** Names are the canonical environment knobs, not internal parser properties. */
 function outputConfigEntries(config: Record<string, any>): [string, string][] {
   const values = new Map<string, string>();
@@ -36,7 +40,8 @@ function outputConfigEntries(config: Record<string, any>): [string, string][] {
   });
 }
 function outputPrintConfig(brand: string, config: Record<string, any>): void {
-  console.log(`[ config ] ${brand} updater:\n${outputConfigEntries(config).map(([key, value]) => `            ${key}=${/TOKEN|PASSWORD|SECRET|COOKIE/i.test(key) ? '<redacted>' : outputClean(value)}`).join('\n')}`);
+  const entries: [string, string][] = [...outputConfigEntries(config), ['VERBOSE', String(outputVerbose())]];
+  console.log(`[ config   ] ${brand} updater:\n${entries.map(([key, value]) => `              ${key}=${/TOKEN|PASSWORD|SECRET|COOKIE/i.test(key) ? '<redacted>' : outputClean(value)}`).join('\n')}`);
 }
 function outputHasOutputFilters(config: Record<string, any>): boolean {
   return outputConfigEntries(config).some(([name, value]) =>
@@ -44,7 +49,7 @@ function outputHasOutputFilters(config: Record<string, any>): boolean {
     !['', ':', 'null', 'all'].includes(value));
 }
 function outputPrintFilter(selected: number, total: number, deferred = false): void {
-  console.log(`[ filter ] ${selected} of ${total} funds ${deferred ? 'selected for evaluation (data-dependent filters applied per fund)' : 'pass filters'}`);
+  console.log(`[ filter   ] ${selected} of ${total} funds ${deferred ? 'selected for evaluation (data-dependent filters applied per fund)' : 'pass filters'}`);
 }
 function outputStable(value: any): any {
   if (Array.isArray(value)) return value.map(outputStable);
@@ -88,19 +93,27 @@ function outputMoney(value: any): string {
 function outputFundLine(index: number, total: number, ticker: string, status: string, data: any = {}, reason?: unknown): string {
   const width = Math.max(2, String(total).length);
   const metrics = data.metrics ?? {};
+  // Presentation only. Keep valid zero/false values; omit unavailable fields.
+  // outputMoney returns the string 'null' for an unavailable monetary value.
+  const field = (key: string, value: unknown): string =>
+    value === null || value === undefined || value === 'null' ? '' : `${key}=${outputClean(value)}`;
+  const sources = [
+    field('official', data.officialHistoryCount),
+    field('yahoo', data.yahooHistoryCount),
+  ].filter(part => part !== '').join(' ');
   const detail = [
-    `port=${outputClean(data.portId ?? data.portfolioId)}`,
-    `history=${outputClean(outputCount(data.history ?? data.historyCount))}`,
-    `(official=${outputClean(data.officialHistoryCount)} yahoo=${outputClean(data.yahooHistoryCount)})`,
-    `holdings=${outputClean(outputCount(data.holdings ?? data.holdingsCount))}`,
-    `divs=${outputClean(outputCount(data.worksheets?.Distributions ?? data.distributions))}`,
-    `netAssets=${outputMoney(data.netAssets ?? data.aum)}`,
-    `total=${outputMoney(data.totalFundNetAssets ?? data.totalNetAssets)}`,
-    `div=${outputClean(outputScalar(data.trailingYield ?? data.yields?.effectiveYield ?? data.yields?.dividendYield ?? data.dividendYield ?? metrics.dividendYield))}`,
-    `sec=${outputClean(outputScalar(data.secYield ?? data.yields?.secYield ?? metrics.secYield))}`,
-    `wp=${outputClean(data.workplaceRaw)}`,
-  ].join(' ');
-  return `[ ${String(index).padStart(width)}/${String(total).padEnd(width)}  ] ${outputClean(ticker).padEnd(5)} ${status.padEnd(9)} ${detail}${reason ? ` reason=${outputClean(reason)}` : ''}`;
+    field('port', data.portId ?? data.portfolioId),
+    field('history', outputCount(data.history ?? data.historyCount)),
+    sources ? `(${sources})` : '',
+    field('holdings', outputCount(data.holdings ?? data.holdingsCount)),
+    field('divs', outputCount(data.worksheets?.Distributions ?? data.distributions)),
+    field('netAssets', outputMoney(data.netAssets ?? data.aum)),
+    field('total', outputMoney(data.totalFundNetAssets ?? data.totalNetAssets)),
+    field('div', outputScalar(data.trailingYield ?? data.yields?.effectiveYield ?? data.yields?.dividendYield ?? data.dividendYield ?? metrics.dividendYield)),
+    field('sec', outputScalar(data.secYield ?? data.yields?.secYield ?? metrics.secYield)),
+    field('wp', data.workplaceRaw),
+  ].filter(part => part !== '').join(' ');
+  return `[ ${String(index).padStart(width)}/${String(total).padEnd(width)}  ] ${outputClean(ticker).padEnd(5)} ${status.padEnd(9)}${detail ? ` ${detail}` : ''}${reason ? ` reason=${outputClean(reason)}` : ''}`;
 }
 function outputCreateReporter(root: URL | string, total: number) {
   let completed = 0;
@@ -122,7 +135,6 @@ function outputCreateReporter(root: URL | string, total: number) {
 // paginated static JSON API under ./api/spdr, following the daggerok/iShares
 // repository design (no dependencies, Bun only).
 
-/// <reference types="bun" />
 import { mkdir, readFile, writeFile, readdir, rm, appendFile } from 'node:fs/promises';
 import { inflateRawSync } from 'node:zlib';
 
@@ -450,8 +462,8 @@ async function fetchWithRetry(url: string, label: string): Promise<Response> {
         await response.arrayBuffer().catch(() => undefined);
         if (attempt >= maxRetriesConfig) throw new Error(`403 rate limited after ${attempt + 1} attempts: ${label}`);
         const waitSeconds = 15 * (attempt + 1);
-        console.warn(
-          `[retry  ] ${label} status=403 attempt=${attempt + 1}/${maxRetriesConfig + 1} waiting=${waitSeconds}s`,
+        outputNote(
+          `[ ${'retry'.padEnd(9)}] ${label} status=403 attempt=${attempt + 1}/${maxRetriesConfig + 1} waiting=${waitSeconds}s`,
         );
         await sleep(waitSeconds * 1000);
         attempt += 1;
@@ -460,8 +472,8 @@ async function fetchWithRetry(url: string, label: string): Promise<Response> {
       if (response.ok) return response;
       if (RETRYABLE_STATUS.has(response.status) && attempt < maxRetriesConfig) {
         const waitSeconds = Math.min(30, 2 ** attempt * 3);
-        console.warn(
-          `[retry  ] ${label} status=${response.status} attempt=${attempt + 1}/${maxRetriesConfig + 1} waiting=${waitSeconds}s`,
+        outputNote(
+          `[ ${'retry'.padEnd(9)}] ${label} status=${response.status} attempt=${attempt + 1}/${maxRetriesConfig + 1} waiting=${waitSeconds}s`,
         );
         await sleep(waitSeconds * 1000);
         attempt += 1;
@@ -472,8 +484,8 @@ async function fetchWithRetry(url: string, label: string): Promise<Response> {
       if (error instanceof Error && error.message.startsWith('403 rate limited')) throw error;
       if (attempt >= maxRetriesConfig) throw error;
       const waitSeconds = Math.min(30, 2 ** attempt * 3);
-      console.warn(
-        `[retry  ] ${label} error=${(error as Error).message} attempt=${attempt + 1}/${maxRetriesConfig + 1} waiting=${waitSeconds}s`,
+      outputNote(
+        `[ ${'retry'.padEnd(9)}] ${label} error=${(error as Error).message} attempt=${attempt + 1}/${maxRetriesConfig + 1} waiting=${waitSeconds}s`,
       );
       await sleep(waitSeconds * 1000);
       attempt += 1;
@@ -1297,10 +1309,10 @@ async function main(): Promise<void> {
   try {
     catalog = normalizeCatalog(await fetchJson(FUND_FINDER_URL, '[catalog] fundfinder'));
   } catch (error) {
-    console.warn(`[catalog] fundfinder failed (${(error as Error).message})`);
+    console.warn(`[ ${'catalog'.padEnd(9)}] fundfinder failed (${(error as Error).message})`);
   }
   if (!catalog.length && previousIndex?.funds?.length) {
-    console.warn(`[catalog] falling back to ${previousIndex.funds.length} published funds`);
+    console.warn(`[ ${'catalog'.padEnd(9)}] falling back to ${previousIndex.funds.length} published funds`);
     catalog = catalogFromIndex(previousIndex);
   }
   if (!catalog.length) throw new Error('No SPDR funds discovered and no previous catalog to fall back to');
@@ -1309,7 +1321,7 @@ async function main(): Promise<void> {
     try {
       return normalizeDistributions(await fetchJson(DISTRIBUTIONS_URL, '[distr  ] dividend-distribution'));
     } catch (error) {
-      console.warn(`[distr  ] dividend feed failed (${(error as Error).message}); continuing without it`);
+      console.warn(`[ ${'distr'.padEnd(9)}] dividend feed failed (${(error as Error).message}); continuing without it`);
       return new Map<string, JsonRecord>();
     }
   })();
@@ -1328,7 +1340,7 @@ async function main(): Promise<void> {
       }
       return parseProductDataSheet(bytes);
     } catch (error) {
-      console.warn(`[catalog] product-data failed (${(error as Error).message}); continuing without it`);
+      console.warn(`[ ${'catalog'.padEnd(9)}] product-data failed (${(error as Error).message}); continuing without it`);
       return new Map<string, ProductDataRow>();
     }
   })();
@@ -1451,7 +1463,7 @@ async function main(): Promise<void> {
   const updated = results.filter((result) => result.status === 'updated').length;
   const unchanged = results.filter((result) => result.status === 'unchanged').length;
   console.log(
-    `\n[summary] processed=${results.length} updated=${updated} unchanged=${unchanged} skipped=${skipped} failed=${failed} indexChanged=${indexChanged} elapsed=${((Date.now() - startedAt) / 1000).toFixed(1)}s`,
+    `\n[ ${'summary'.padEnd(9)}] processed=${results.length} updated=${updated} unchanged=${unchanged} skipped=${skipped} failed=${failed} indexChanged=${indexChanged} elapsed=${((Date.now() - startedAt) / 1000).toFixed(1)}s`,
   );
 
   if (process.env.GITHUB_STEP_SUMMARY) {
