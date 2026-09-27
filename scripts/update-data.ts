@@ -1,4 +1,131 @@
 #!/usr/bin/env bun
+/// <reference types="bun" />
+import { readFile as outputReadFile, readdir as outputReadDir } from 'node:fs/promises';
+import { createHash as outputCreateHash } from 'node:crypto';
+import { join as outputJoin } from 'node:path';
+import { fileURLToPath as outputFileURLToPath } from 'node:url';
+
+// Console presentation; no changes to provider requests or persisted data.
+/** Presentation only: no requests, writes, filtering, or changes to updater state. */
+
+const outputClean = (value: unknown): string => String(value ?? 'null').replace(/[\r\n\t]+/g, ' ');
+/** Presentation only: per-fund retry and fallback notices are printed when VERBOSE is enabled. */
+const outputVerbose = (): boolean => /^(1|true|yes|on)$/i.test((globalThis as any).process?.env?.VERBOSE ?? '');
+function outputNote(message: string): void { if (outputVerbose()) console.warn(message); }
+/** Names are the canonical environment knobs, not internal parser properties. */
+function outputConfigEntries(config: Record<string, any>): [string, string][] {
+  const values = new Map<string, string>();
+  const aliases: Record<string, string> = {
+    requestSleepSeconds: 'REQUEST_SLEEP', categories: 'CATEGORY',
+    aumRange: 'AUM', terRange: 'TER', dividendYieldRange: 'DIVIDEND_YIELD', secYieldRange: 'SEC_YIELD',
+    performanceRanges: 'PERFORMANCE', totalReturnRanges: 'TOTAL_RETURN',
+    skipVanEck: 'SKIP_VANECK', skipProShares: 'SKIP_PROSHARES',
+    skipWisdomTree: 'SKIP_WISDOMTREE', skipGoldmanSachs: 'SKIP_GOLDMANSACHS',
+  };
+  const range = (v: any): string => v?.source ?? `${Number.isFinite(v?.min) ? v.min : ''}:${Number.isFinite(v?.max) ? v.max : ''}`;
+  for (const [key, value] of Object.entries(config)) {
+    const name = aliases[key] ?? key.replace(/([a-z0-9])([A-Z])/g, '$1_$2').toUpperCase();
+    if (name === 'PERFORMANCE' || name === 'TOTAL_RETURN') {
+      for (const period of ['YTD', '1Y', '3Y', '5Y', '10Y']) values.set(`${name}_${period}`, range(value?.[period]));
+    } else if (['AUM', 'TER', 'DIVIDEND_YIELD', 'SEC_YIELD'].includes(name)) {
+      values.set(name, range(value));
+    } else {
+      values.set(name, value instanceof Set ? [...value].join(',') || 'all' : Array.isArray(value) ? value.join(',') || 'all' : outputClean(value));
+    }
+  }
+  const first = ['MAX_FETCHES', 'REQUEST_SLEEP', 'CONCURRENCY'];
+  return [...values].sort(([a], [b]) => {
+    const ai = first.indexOf(a), bi = first.indexOf(b);
+    return (ai < 0 ? first.length : ai) - (bi < 0 ? first.length : bi) || a.localeCompare(b);
+  });
+}
+function outputPrintConfig(brand: string, config: Record<string, any>): void {
+  const entries: [string, string][] = [...outputConfigEntries(config), ['VERBOSE', String(outputVerbose())]];
+  console.log(`[ config   ] ${brand} updater:\n${entries.map(([key, value]) => `              ${key}=${/TOKEN|PASSWORD|SECRET|COOKIE/i.test(key) ? '<redacted>' : outputClean(value)}`).join('\n')}`);
+}
+function outputHasOutputFilters(config: Record<string, any>): boolean {
+  return outputConfigEntries(config).some(([name, value]) =>
+    /^(TICKERS|CATEGORY|AUM|TER|DIVIDEND_YIELD|SEC_YIELD|PERFORMANCE_|TOTAL_RETURN_)/.test(name) &&
+    !['', ':', 'null', 'all'].includes(value));
+}
+function outputPrintFilter(selected: number, total: number, deferred = false): void {
+  console.log(`[ filter   ] ${selected} of ${total} funds ${deferred ? 'selected for evaluation (data-dependent filters applied per fund)' : 'pass filters'}`);
+}
+function outputStable(value: any): any {
+  if (Array.isArray(value)) return value.map(outputStable);
+  if (value && typeof value === 'object') return Object.fromEntries(Object.keys(value).sort().filter(key => !['generatedAt', 'catalogReadAt'].includes(key)).map(key => [key, outputStable(value[key])]));
+  return value;
+}
+function outputContentKey(value: unknown): string { return JSON.stringify(outputStable(value)) ?? 'null'; }
+async function outputInspectFund(root: URL | string, ticker: string): Promise<{ digest: string; meta: any }> {
+  const dir = outputJoin(root instanceof URL ? outputFileURLToPath(root) : root, 'funds', ticker);
+  const hash = outputCreateHash('sha256');
+  async function visit(path: string): Promise<void> {
+    const entries = await outputReadDir(path, { withFileTypes: true }).catch(() => []);
+    for (const entry of entries.sort((a, b) => a.name.localeCompare(b.name))) {
+      if (entry.isDirectory()) await visit(outputJoin(path, entry.name));
+      else if (entry.name.endsWith('.json')) {
+        const text = await outputReadFile(outputJoin(path, entry.name), 'utf8').catch(() => '');
+        hash.update(outputJoin(path.slice(dir.length), entry.name));
+        try { hash.update(outputContentKey(JSON.parse(text))); } catch { hash.update(text); }
+      }
+    }
+  }
+  await visit(dir);
+  const meta = await outputReadFile(outputJoin(dir, 'meta.json'), 'utf8').then(JSON.parse).catch(() => ({}));
+  return { digest: hash.digest('hex'), meta };
+}
+const outputCount = (value: any): unknown => typeof value === 'number' ? value : Array.isArray(value) ? value.length : value?.totalRows ?? value?.rows?.length ?? null;
+const outputScalar = (value: any): any => value && typeof value === 'object' ? value.display ?? value.value ?? null : value;
+function outputMoney(value: any): string {
+  const raw = outputScalar(value);
+  if (raw === null || raw === undefined || raw === '—' || raw === '--') return 'null';
+  const text = String(raw).replace(/[$,\s]/g, '');
+  const match = text.match(/^([+-]?[\d.]+)([KMBT])?$/i);
+  if (!match) return outputClean(raw);
+  const number = Number(match[1]) * ({ K: 1e3, M: 1e6, B: 1e9, T: 1e12 }[match[2]?.toUpperCase() as 'K' | 'M' | 'B' | 'T'] ?? 1);
+  if (!Number.isFinite(number)) return 'null';
+  for (const [unit, scale] of [['T', 1e12], ['B', 1e9], ['M', 1e6], ['K', 1e3]] as const) {
+    if (Math.abs(number) >= scale) return `$${(number / scale).toFixed(1)}${unit}`;
+  }
+  return `$${number.toFixed(2)}`;
+}
+function outputFundLine(index: number, total: number, ticker: string, status: string, data: any = {}, reason?: unknown): string {
+  const width = Math.max(2, String(total).length);
+  const metrics = data.metrics ?? {};
+  // Presentation only. Keep valid zero/false values; omit unavailable fields.
+  // outputMoney returns the string 'null' for an unavailable monetary value.
+  const field = (key: string, value: unknown): string =>
+    value === null || value === undefined || value === 'null' ? '' : `${key}=${outputClean(value)}`;
+  const sources = [
+    field('official', data.officialHistoryCount),
+    field('yahoo', data.yahooHistoryCount),
+  ].filter(part => part !== '').join(' ');
+  const detail = [
+    field('port', data.portId ?? data.portfolioId),
+    field('history', outputCount(data.history ?? data.historyCount)),
+    sources ? `(${sources})` : '',
+    field('holdings', outputCount(data.holdings ?? data.holdingsCount)),
+    field('divs', outputCount(data.worksheets?.Distributions ?? data.distributions)),
+    field('netAssets', outputMoney(data.netAssets ?? data.aum)),
+    field('total', outputMoney(data.totalFundNetAssets ?? data.totalNetAssets)),
+    field('div', outputScalar(data.trailingYield ?? data.yields?.effectiveYield ?? data.yields?.dividendYield ?? data.dividendYield ?? metrics.dividendYield)),
+    field('sec', outputScalar(data.secYield ?? data.yields?.secYield ?? metrics.secYield)),
+    field('wp', data.workplaceRaw),
+  ].filter(part => part !== '').join(' ');
+  return `[ ${String(index).padStart(width)}/${String(total).padEnd(width)}  ] ${outputClean(ticker).padEnd(5)} ${status.padEnd(9)}${detail ? ` ${detail}` : ''}${reason ? ` reason=${outputClean(reason)}` : ''}`;
+}
+function outputCreateReporter(root: URL | string, total: number) {
+  let completed = 0;
+  return {
+    before: (ticker: string) => outputInspectFund(root, ticker),
+    async result(ticker: string, before: { digest: string }, status?: string, reason?: unknown, extra: any = {}) {
+      const after = await outputInspectFund(root, ticker);
+      console.log(outputFundLine(++completed, total, ticker, status ?? (before.digest === after.digest ? 'unchanged' : 'updated'), { ...after.meta, ...extra }, reason));
+    },
+  };
+}
+
 
 // SPDR (State Street Global Advisors) static data updater.
 // Fetches the public SPDR US ETF catalog, per-fund daily holdings XLSX,
@@ -8,7 +135,6 @@
 // paginated static JSON API under ./api/spdr, following the daggerok/iShares
 // repository design (no dependencies, Bun only).
 
-/// <reference types="bun" />
 import { mkdir, readFile, writeFile, readdir, rm, appendFile } from 'node:fs/promises';
 import { inflateRawSync } from 'node:zlib';
 
@@ -336,8 +462,8 @@ async function fetchWithRetry(url: string, label: string): Promise<Response> {
         await response.arrayBuffer().catch(() => undefined);
         if (attempt >= maxRetriesConfig) throw new Error(`403 rate limited after ${attempt + 1} attempts: ${label}`);
         const waitSeconds = 15 * (attempt + 1);
-        console.warn(
-          `[retry  ] ${label} status=403 attempt=${attempt + 1}/${maxRetriesConfig + 1} waiting=${waitSeconds}s`,
+        outputNote(
+          `[ ${'retry'.padEnd(9)}] ${label} status=403 attempt=${attempt + 1}/${maxRetriesConfig + 1} waiting=${waitSeconds}s`,
         );
         await sleep(waitSeconds * 1000);
         attempt += 1;
@@ -346,8 +472,8 @@ async function fetchWithRetry(url: string, label: string): Promise<Response> {
       if (response.ok) return response;
       if (RETRYABLE_STATUS.has(response.status) && attempt < maxRetriesConfig) {
         const waitSeconds = Math.min(30, 2 ** attempt * 3);
-        console.warn(
-          `[retry  ] ${label} status=${response.status} attempt=${attempt + 1}/${maxRetriesConfig + 1} waiting=${waitSeconds}s`,
+        outputNote(
+          `[ ${'retry'.padEnd(9)}] ${label} status=${response.status} attempt=${attempt + 1}/${maxRetriesConfig + 1} waiting=${waitSeconds}s`,
         );
         await sleep(waitSeconds * 1000);
         attempt += 1;
@@ -358,8 +484,8 @@ async function fetchWithRetry(url: string, label: string): Promise<Response> {
       if (error instanceof Error && error.message.startsWith('403 rate limited')) throw error;
       if (attempt >= maxRetriesConfig) throw error;
       const waitSeconds = Math.min(30, 2 ** attempt * 3);
-      console.warn(
-        `[retry  ] ${label} error=${(error as Error).message} attempt=${attempt + 1}/${maxRetriesConfig + 1} waiting=${waitSeconds}s`,
+      outputNote(
+        `[ ${'retry'.padEnd(9)}] ${label} error=${(error as Error).message} attempt=${attempt + 1}/${maxRetriesConfig + 1} waiting=${waitSeconds}s`,
       );
       await sleep(waitSeconds * 1000);
       attempt += 1;
@@ -1077,7 +1203,6 @@ async function processFund(
     const holdingsResponse = await fetchWithRetry(holdingsUrl, `[fetch  ] ${ticker} holdings`);
     if (holdingsResponse.status === 404) {
       // Commodity trusts (GLD, SLV, ...) do not publish a holdings spreadsheet.
-      console.log(`[fund   ] ${ticker.padEnd(8)} ${String(index + 1).padStart(3)}/${total} status=skipped reason=no holdings file`);
       return { ticker, status: 'skipped', reason: 'no holdings file', changed: false };
     }
     if (!holdingsResponse.ok) {
@@ -1151,11 +1276,11 @@ async function processFund(
       premiumDiscountHistory: premiumDiscountResult ? premiumDiscountResult.manifest : null,
     };
     const changed = await writeIfChanged(new URL('meta.json', fundDir), meta);
-    console.log(`[fund   ] ${ticker.padEnd(8)} ${String(index + 1).padStart(3)}/${total} status=${changed ? 'updated' : 'unchanged'}`);
+
     return { ticker, status: changed ? 'updated' : 'unchanged', changed };
   } catch (error) {
     const reason = error instanceof Error ? error.message : String(error);
-    console.error(`[fund   ] ${ticker.padEnd(8)} ${String(index + 1).padStart(3)}/${total} status=failed reason=${reason}`);
+
     return { ticker, status: 'failed', reason, changed: false };
   }
 }
@@ -1170,15 +1295,7 @@ async function main(): Promise<void> {
   requestSleepSeconds = config.requestSleep;
   maxRetriesConfig = config.maxRetries;
 
-  console.log(
-    `[config ] concurrency=%d sleep=%ss maxFetches=%s tickers=%d aum=%s ter=%s`,
-    config.concurrency,
-    config.requestSleep,
-    config.maxFetches || 'all',
-    config.tickers.length,
-    config.aumRange?.source ?? ':',
-    config.terRange ? `${config.terRange.min ?? ''}:${config.terRange.max ?? ''}` : ':',
-  );
+  outputPrintConfig('SPDR', config);
 
   const previousIndex: JsonRecord | null = await (async () => {
     try {
@@ -1192,10 +1309,10 @@ async function main(): Promise<void> {
   try {
     catalog = normalizeCatalog(await fetchJson(FUND_FINDER_URL, '[catalog] fundfinder'));
   } catch (error) {
-    console.warn(`[catalog] fundfinder failed (${(error as Error).message})`);
+    console.warn(`[ ${'catalog'.padEnd(9)}] fundfinder failed (${(error as Error).message})`);
   }
   if (!catalog.length && previousIndex?.funds?.length) {
-    console.warn(`[catalog] falling back to ${previousIndex.funds.length} published funds`);
+    console.warn(`[ ${'catalog'.padEnd(9)}] falling back to ${previousIndex.funds.length} published funds`);
     catalog = catalogFromIndex(previousIndex);
   }
   if (!catalog.length) throw new Error('No SPDR funds discovered and no previous catalog to fall back to');
@@ -1204,7 +1321,7 @@ async function main(): Promise<void> {
     try {
       return normalizeDistributions(await fetchJson(DISTRIBUTIONS_URL, '[distr  ] dividend-distribution'));
     } catch (error) {
-      console.warn(`[distr  ] dividend feed failed (${(error as Error).message}); continuing without it`);
+      console.warn(`[ ${'distr'.padEnd(9)}] dividend feed failed (${(error as Error).message}); continuing without it`);
       return new Map<string, JsonRecord>();
     }
   })();
@@ -1223,13 +1340,13 @@ async function main(): Promise<void> {
       }
       return parseProductDataSheet(bytes);
     } catch (error) {
-      console.warn(`[catalog] product-data failed (${(error as Error).message}); continuing without it`);
+      console.warn(`[ ${'catalog'.padEnd(9)}] product-data failed (${(error as Error).message}); continuing without it`);
       return new Map<string, ProductDataRow>();
     }
   })();
 
   const eligible = catalog.filter((fund) => catalogFiltersPass(fund, config));
-  console.log(`[catalog] ${catalog.length} funds, ${eligible.length} eligible after catalog filters`);
+  outputPrintFilter(eligible.length, catalog.length, outputHasOutputFilters(config));
 
   // Bounded runs continue after the committed cursor (deterministic ticker order).
   const state = await readUpdateState();
@@ -1240,6 +1357,7 @@ async function main(): Promise<void> {
   }
   const batch = config.maxFetches > 0 ? ordered.slice(0, config.maxFetches) : ordered;
 
+  const output = outputCreateReporter(API_ROOT, batch.length);
   const results: FundResult[] = [];
   let cursorIndex = 0;
   async function worker(): Promise<void> {
@@ -1247,14 +1365,15 @@ async function main(): Promise<void> {
       const index = cursorIndex++;
       if (index >= batch.length) return;
       const fund = batch[index];
+      const before = await output.before(fund.ticker);
       if (!returnFiltersPass(fund, config)) {
-        console.log(`[fund   ] ${fund.ticker.padEnd(8)} ${String(index + 1).padStart(3)}/${batch.length} status=skipped reason=return filter`);
+        await output.result(fund.ticker, before, 'skipped', 'return filter');
         results.push({ ticker: fund.ticker, status: 'skipped', reason: 'return filter', changed: false });
         continue;
       }
-      results.push(
-        await processFund(fund, distributions.get(fund.ticker), productData.get(fund.ticker), config, index, batch.length),
-      );
+      const result = await processFund(fund, distributions.get(fund.ticker), productData.get(fund.ticker), config, index, batch.length);
+      results.push(result);
+      await output.result(fund.ticker, before, result.status === 'failed' || result.status === 'skipped' ? result.status : undefined, result.reason);
     }
   }
   await Promise.all(Array.from({ length: Math.max(1, config.concurrency) }, () => worker()));
@@ -1344,7 +1463,7 @@ async function main(): Promise<void> {
   const updated = results.filter((result) => result.status === 'updated').length;
   const unchanged = results.filter((result) => result.status === 'unchanged').length;
   console.log(
-    `\n[summary] processed=${results.length} updated=${updated} unchanged=${unchanged} skipped=${skipped} failed=${failed} indexChanged=${indexChanged} elapsed=${((Date.now() - startedAt) / 1000).toFixed(1)}s`,
+    `\n[ ${'summary'.padEnd(9)}] processed=${results.length} updated=${updated} unchanged=${unchanged} skipped=${skipped} failed=${failed} indexChanged=${indexChanged} elapsed=${((Date.now() - startedAt) / 1000).toFixed(1)}s`,
   );
 
   if (process.env.GITHUB_STEP_SUMMARY) {

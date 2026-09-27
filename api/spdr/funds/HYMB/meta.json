@@ -23,19 +23,19 @@
     "value": null
   },
   "nav": {
-    "display": "$23.81",
-    "value": 23.81,
-    "asOfDate": "Sep 23 2026"
+    "display": "$23.68",
+    "value": 23.68,
+    "asOfDate": "Sep 24 2026"
   },
   "aum": {
-    "display": "$3,600.34 M",
-    "value": 3600340000,
-    "asOfDate": "Sep 23 2026"
+    "display": "$3,580.05 M",
+    "value": 3580050000,
+    "asOfDate": "Sep 24 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$23.90",
-    "premiumDiscount": "0.35%"
+    "closePrice": "$23.81",
+    "premiumDiscount": "0.62%"
   },
   "inceptionDate": "Apr 13 2011",
   "returns": {
@@ -88,11 +88,11 @@
     "cagr5y": -0.08,
     "cagr10y": 2.03,
     "siAnn": 4.23,
-    "dividendYield": 4.83,
+    "dividendYield": 4.86,
     "dividendYieldSource": "official",
-    "indicatedDividendYield": 4.8682,
-    "secYield": 5.11,
-    "secYieldUnsubsidized": 5.11,
+    "indicatedDividendYield": 4.8949,
+    "secYield": 5.15,
+    "secYieldUnsubsidized": 5.15,
     "tr1yText": "6.45%",
     "tr3yText": "14.18%",
     "tr5yText": "-0.40%",
@@ -101,10 +101,10 @@
     "cagr5yText": "-0.08%",
     "cagr10yText": "2.03%",
     "siAnnText": "4.23%",
-    "indicatedDividendYieldText": "4.87%",
-    "dividendYieldText": "4.83%",
-    "secYieldText": "5.11%",
-    "secYieldUnsubsidizedText": "5.11%"
+    "indicatedDividendYieldText": "4.89%",
+    "dividendYieldText": "4.86%",
+    "secYieldText": "5.15%",
+    "secYieldUnsubsidizedText": "5.15%"
   },
   "distributions": {
     "headers": [
@@ -129,7 +129,7 @@
     ]
   },
   "holdings": {
-    "totalRows": 2039,
+    "totalRows": 2048,
     "pageSize": 250,
     "pageCount": 9,
     "pages": [
@@ -143,7 +143,7 @@
       "./holdings/008.json",
       "./holdings/009.json"
     ],
-    "asOfDate": "23-Sep-2026"
+    "asOfDate": "25-Sep-2026"
   },
   "history": {
     "totalRows": 3888,
@@ -157,12 +157,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 432,
+    "totalRows": 434,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "23-Sep-2026"
+    "asOfDate": "25-Sep-2026"
   }
 }

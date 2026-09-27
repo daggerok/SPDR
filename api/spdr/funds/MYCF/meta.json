@@ -23,19 +23,19 @@
     "value": null
   },
   "nav": {
-    "display": "$25.04",
-    "value": 25.04,
-    "asOfDate": "Sep 23 2026"
+    "display": "$25.03",
+    "value": 25.03,
+    "asOfDate": "Sep 24 2026"
   },
   "aum": {
     "display": "$51.32 M",
     "value": 51320000,
-    "asOfDate": "Sep 23 2026"
+    "asOfDate": "Sep 24 2026"
   },
   "pricing": {
     "exchange": "NASDAQ REGULAR MARKET",
-    "closePrice": "$25.04",
-    "premiumDiscount": "0.00%"
+    "closePrice": "$25.03",
+    "premiumDiscount": "0.01%"
   },
   "inceptionDate": "Sep 23 2024",
   "returns": {
@@ -90,8 +90,8 @@
     "siAnn": 4.46,
     "dividendYield": 4.32,
     "dividendYieldSource": "official",
-    "indicatedDividendYield": 4.1903,
-    "secYield": 4.5,
+    "indicatedDividendYield": 4.1919,
+    "secYield": 4.52,
     "secYieldUnsubsidized": null,
     "tr1yText": "4.30%",
     "tr3yText": null,
@@ -103,7 +103,7 @@
     "siAnnText": "4.46%",
     "indicatedDividendYieldText": "4.19%",
     "dividendYieldText": "4.32%",
-    "secYieldText": "4.50%",
+    "secYieldText": "4.52%",
     "secYieldUnsubsidizedText": null
   },
   "distributions": {
@@ -129,13 +129,13 @@
     ]
   },
   "holdings": {
-    "totalRows": 77,
+    "totalRows": 76,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "23-Sep-2026"
+    "asOfDate": "24-Sep-2026"
   },
   "history": {
     "totalRows": 503,
@@ -146,12 +146,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 432,
+    "totalRows": 434,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "23-Sep-2026"
+    "asOfDate": "25-Sep-2026"
   }
 }

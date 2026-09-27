@@ -2,7 +2,7 @@
   "ticker": "HYMB",
   "page": 1,
   "pageSize": 250,
-  "totalRows": 2039,
+  "totalRows": 2048,
   "headers": [
     "Name",
     "Identifier",
@@ -19,23 +19,12 @@
       "Name": "PRCGEN 5.000 07/01/58",
       "Identifier": "US74529JPX71",
       "SEDOL": "BJHMV19",
-      "Weight": "2.04",
+      "Weight": "2.03",
       "Coupon": "5",
       "Par Value": "77406000",
-      "Market Value": "73289400",
+      "Market Value": "72312937",
       "Local Currency": "USD",
       "Maturity": "7/1/2058"
-    },
-    {
-      "Name": "US DOLLAR",
-      "Identifier": "-",
-      "SEDOL": "-",
-      "Weight": "1.27",
-      "Coupon": "0",
-      "Par Value": "45466787.17",
-      "Market Value": "45466787",
-      "Local Currency": "USD",
-      "Maturity": "-"
     },
     {
       "Name": "PRCGEN 4.784 07/01/58",
@@ -44,7 +33,7 @@
       "Weight": "1.23",
       "Coupon": "4.78",
       "Par Value": "47911000",
-      "Market Value": "44381458",
+      "Market Value": "43786900",
       "Local Currency": "USD",
       "Maturity": "7/1/2058"
     },
@@ -55,9 +44,20 @@
       "Weight": "1.22",
       "Coupon": "5",
       "Par Value": "58225000",
-      "Market Value": "43812638",
+      "Market Value": "43470897",
       "Local Currency": "USD",
       "Maturity": "6/1/2055"
+    },
+    {
+      "Name": "US DOLLAR",
+      "Identifier": "-",
+      "SEDOL": "-",
+      "Weight": "0.76",
+      "Coupon": "0",
+      "Par Value": "26914592.45",
+      "Market Value": "26914592",
+      "Local Currency": "USD",
+      "Maturity": "-"
     },
     {
       "Name": "PRC 4.000 07/01/46",
@@ -66,7 +66,7 @@
       "Weight": "0.68",
       "Coupon": "4",
       "Par Value": "28452612",
-      "Market Value": "24436452",
+      "Market Value": "24066882",
       "Local Currency": "USD",
       "Maturity": "7/1/2046"
     },
@@ -77,7 +77,7 @@
       "Weight": "0.58",
       "Coupon": "4.33",
       "Par Value": "22036000",
-      "Market Value": "20978000",
+      "Market Value": "20719165",
       "Local Currency": "USD",
       "Maturity": "7/1/2040"
     },
@@ -85,10 +85,10 @@
       "Name": "NYCDEV 5.000 11/15/44",
       "Identifier": "US649519DA03",
       "SEDOL": "-",
-      "Weight": "0.53",
+      "Weight": "0.54",
       "Coupon": "5",
       "Par Value": "19300000",
-      "Market Value": "19220964",
+      "Market Value": "19158213",
       "Local Currency": "USD",
       "Maturity": "11/15/2044"
     },
@@ -99,7 +99,7 @@
       "Weight": "0.5",
       "Coupon": "4",
       "Par Value": "20107000",
-      "Market Value": "17851892",
+      "Market Value": "17617790",
       "Local Currency": "USD",
       "Maturity": "7/1/2041"
     },
@@ -110,7 +110,7 @@
       "Weight": "0.5",
       "Coupon": "4.75",
       "Par Value": "19250000",
-      "Market Value": "17899085",
+      "Market Value": "17637648",
       "Local Currency": "USD",
       "Maturity": "7/1/2053"
     },
@@ -118,10 +118,10 @@
       "Name": "MGAUTL 5.000 09/01/35",
       "Identifier": "US60406XAJ00",
       "SEDOL": "-",
-      "Weight": "0.43",
+      "Weight": "0.44",
       "Coupon": "5",
       "Par Value": "15665000",
-      "Market Value": "15605674",
+      "Market Value": "15498682",
       "Local Currency": "USD",
       "Maturity": "9/1/2035"
     },
@@ -132,7 +132,7 @@
       "Weight": "0.39",
       "Coupon": "5",
       "Par Value": "13705000",
-      "Market Value": "13970707",
+      "Market Value": "13807507",
       "Local Currency": "USD",
       "Maturity": "10/1/2039"
     },
@@ -143,7 +143,7 @@
       "Weight": "0.33",
       "Coupon": "4",
       "Par Value": "13500000",
-      "Market Value": "11965636",
+      "Market Value": "11733963",
       "Local Currency": "USD",
       "Maturity": "12/15/2042"
     },
@@ -154,7 +154,7 @@
       "Weight": "0.31",
       "Coupon": "5.5",
       "Par Value": "10750000",
-      "Market Value": "11112419",
+      "Market Value": "11072669",
       "Local Currency": "USD",
       "Maturity": "11/1/2056"
     },
@@ -165,7 +165,7 @@
       "Weight": "0.3",
       "Coupon": "6",
       "Par Value": "10495000",
-      "Market Value": "10662246",
+      "Market Value": "10738527",
       "Local Currency": "USD",
       "Maturity": "1/1/2050"
     },
@@ -176,7 +176,7 @@
       "Weight": "0.3",
       "Coupon": "5",
       "Par Value": "11500000",
-      "Market Value": "10958012",
+      "Market Value": "10828989",
       "Local Currency": "USD",
       "Maturity": "6/15/2050"
     },
@@ -187,7 +187,7 @@
       "Weight": "0.28",
       "Coupon": "5.88",
       "Par Value": "10225000",
-      "Market Value": "10008069",
+      "Market Value": "9891430",
       "Local Currency": "USD",
       "Maturity": "12/1/2047"
     },
@@ -198,7 +198,7 @@
       "Weight": "0.28",
       "Coupon": "6",
       "Par Value": "10000000",
-      "Market Value": "10107310",
+      "Market Value": "9987890",
       "Local Currency": "USD",
       "Maturity": "12/1/2041"
     },
@@ -206,10 +206,10 @@
       "Name": "NJSDEV 6.625 01/01/45",
       "Identifier": "US64578TAB08",
       "SEDOL": "-",
-      "Weight": "0.27",
+      "Weight": "0.28",
       "Coupon": "6.62",
       "Par Value": "9500000",
-      "Market Value": "9859827",
+      "Market Value": "9821076",
       "Local Currency": "USD",
       "Maturity": "1/1/2045"
     },
@@ -220,9 +220,20 @@
       "Weight": "0.27",
       "Coupon": "5",
       "Par Value": "9410000",
-      "Market Value": "9668901",
+      "Market Value": "9573375",
       "Local Currency": "USD",
       "Maturity": "12/15/2032"
+    },
+    {
+      "Name": "BERFAC 5.000 06/30/39",
+      "Identifier": "US084538JH15",
+      "SEDOL": "-",
+      "Weight": "0.26",
+      "Coupon": "5",
+      "Par Value": "9828000",
+      "Market Value": "9074944",
+      "Local Currency": "USD",
+      "Maturity": "6/30/2039"
     },
     {
       "Name": "CASDEV 12.000 01/01/65",
@@ -231,7 +242,7 @@
       "Weight": "0.26",
       "Coupon": "12",
       "Par Value": "11840000",
-      "Market Value": "9256907",
+      "Market Value": "9264800",
       "Local Currency": "USD",
       "Maturity": "1/1/2065"
     },
@@ -242,7 +253,7 @@
       "Weight": "0.26",
       "Coupon": "5.25",
       "Par Value": "8950000",
-      "Market Value": "9257080",
+      "Market Value": "9184301",
       "Local Currency": "USD",
       "Maturity": "10/1/2043"
     },
@@ -253,20 +264,9 @@
       "Weight": "0.26",
       "Coupon": "5",
       "Par Value": "9535000",
-      "Market Value": "9452286",
+      "Market Value": "9268210",
       "Local Currency": "USD",
       "Maturity": "1/1/2058"
-    },
-    {
-      "Name": "BERFAC 5.000 06/30/39",
-      "Identifier": "US084538JH15",
-      "SEDOL": "-",
-      "Weight": "0.25",
-      "Coupon": "5",
-      "Par Value": "9828000",
-      "Market Value": "9140998",
-      "Local Currency": "USD",
-      "Maturity": "6/30/2039"
     },
     {
       "Name": "CASGEN 5.250 12/01/56",
@@ -275,7 +275,7 @@
       "Weight": "0.25",
       "Coupon": "5.25",
       "Par Value": "8800000",
-      "Market Value": "8938377",
+      "Market Value": "8826748",
       "Local Currency": "USD",
       "Maturity": "12/1/2056"
     },
@@ -286,7 +286,7 @@
       "Weight": "0.25",
       "Coupon": "5.25",
       "Par Value": "9000000",
-      "Market Value": "9009426",
+      "Market Value": "8911154",
       "Local Currency": "USD",
       "Maturity": "10/1/2049"
     },
@@ -297,7 +297,7 @@
       "Weight": "0.25",
       "Coupon": "0",
       "Par Value": "10555000",
-      "Market Value": "8929094",
+      "Market Value": "8765589",
       "Local Currency": "USD",
       "Maturity": "12/15/2030"
     },
@@ -308,7 +308,7 @@
       "Weight": "0.25",
       "Coupon": "5",
       "Par Value": "9280000",
-      "Market Value": "8986087",
+      "Market Value": "8940357",
       "Local Currency": "USD",
       "Maturity": "6/1/2046"
     },
@@ -319,7 +319,7 @@
       "Weight": "0.24",
       "Coupon": "0",
       "Par Value": "101200000",
-      "Market Value": "8667001",
+      "Market Value": "8507773",
       "Local Currency": "USD",
       "Maturity": "6/1/2066"
     },
@@ -330,7 +330,7 @@
       "Weight": "0.24",
       "Coupon": "5",
       "Par Value": "9130000",
-      "Market Value": "8595329",
+      "Market Value": "8483115",
       "Local Currency": "USD",
       "Maturity": "6/15/2057"
     },
@@ -341,7 +341,7 @@
       "Weight": "0.24",
       "Coupon": "4",
       "Par Value": "9287000",
-      "Market Value": "8771225",
+      "Market Value": "8659347",
       "Local Currency": "USD",
       "Maturity": "7/1/2037"
     },
@@ -352,7 +352,7 @@
       "Weight": "0.24",
       "Coupon": "5.75",
       "Par Value": "8000000",
-      "Market Value": "8571768",
+      "Market Value": "8499662",
       "Local Currency": "USD",
       "Maturity": "7/1/2031"
     },
@@ -363,7 +363,7 @@
       "Weight": "0.23",
       "Coupon": "5.25",
       "Par Value": "8045000",
-      "Market Value": "8136962",
+      "Market Value": "8028099",
       "Local Currency": "USD",
       "Maturity": "12/1/2044"
     },
@@ -374,7 +374,7 @@
       "Weight": "0.23",
       "Coupon": "5",
       "Par Value": "8250000",
-      "Market Value": "8236291",
+      "Market Value": "8164637",
       "Local Currency": "USD",
       "Maturity": "12/1/2031"
     },
@@ -385,7 +385,7 @@
       "Weight": "0.23",
       "Coupon": "4.55",
       "Par Value": "8365000",
-      "Market Value": "8227884",
+      "Market Value": "8174372",
       "Local Currency": "USD",
       "Maturity": "6/1/2046"
     },
@@ -396,7 +396,7 @@
       "Weight": "0.23",
       "Coupon": "5",
       "Par Value": "8465000",
-      "Market Value": "8419946",
+      "Market Value": "8306582",
       "Local Currency": "USD",
       "Maturity": "7/1/2047"
     },
@@ -407,7 +407,7 @@
       "Weight": "0.23",
       "Coupon": "5",
       "Par Value": "8375000",
-      "Market Value": "8223715",
+      "Market Value": "8117935",
       "Local Currency": "USD",
       "Maturity": "6/1/2041"
     },
@@ -418,7 +418,7 @@
       "Weight": "0.23",
       "Coupon": "5",
       "Par Value": "8130000",
-      "Market Value": "8251105",
+      "Market Value": "8149626",
       "Local Currency": "USD",
       "Maturity": "12/1/2037"
     },
@@ -429,7 +429,7 @@
       "Weight": "0.22",
       "Coupon": "3",
       "Par Value": "12175000",
-      "Market Value": "7923615",
+      "Market Value": "7817740",
       "Local Currency": "USD",
       "Maturity": "3/1/2057"
     },
@@ -440,7 +440,7 @@
       "Weight": "0.22",
       "Coupon": "5.5",
       "Par Value": "8000000",
-      "Market Value": "7851012",
+      "Market Value": "7756640",
       "Local Currency": "USD",
       "Maturity": "2/15/2052"
     },
@@ -451,7 +451,7 @@
       "Weight": "0.22",
       "Coupon": "0",
       "Par Value": "13475000",
-      "Market Value": "7836106",
+      "Market Value": "7740436",
       "Local Currency": "USD",
       "Maturity": "12/1/2033"
     },
@@ -462,7 +462,7 @@
       "Weight": "0.22",
       "Coupon": "4",
       "Par Value": "7750000",
-      "Market Value": "7859743",
+      "Market Value": "7828455",
       "Local Currency": "USD",
       "Maturity": "8/1/2052"
     },
@@ -473,7 +473,7 @@
       "Weight": "0.22",
       "Coupon": "4",
       "Par Value": "9710000",
-      "Market Value": "7984393",
+      "Market Value": "7872778",
       "Local Currency": "USD",
       "Maturity": "10/1/2052"
     },
@@ -484,7 +484,7 @@
       "Weight": "0.22",
       "Coupon": "4",
       "Par Value": "8384000",
-      "Market Value": "8072268",
+      "Market Value": "7974730",
       "Local Currency": "USD",
       "Maturity": "7/1/2035"
     },
@@ -495,7 +495,7 @@
       "Weight": "0.22",
       "Coupon": "5",
       "Par Value": "7460000",
-      "Market Value": "7746670",
+      "Market Value": "7704716",
       "Local Currency": "USD",
       "Maturity": "7/1/2029"
     },
@@ -506,7 +506,7 @@
       "Weight": "0.22",
       "Coupon": "5",
       "Par Value": "7615000",
-      "Market Value": "7983993",
+      "Market Value": "7922276",
       "Local Currency": "USD",
       "Maturity": "7/1/2033"
     },
@@ -517,7 +517,7 @@
       "Weight": "0.21",
       "Coupon": "5.25",
       "Par Value": "7000000",
-      "Market Value": "7375101",
+      "Market Value": "7347298",
       "Local Currency": "USD",
       "Maturity": "1/1/2054"
     },
@@ -528,20 +528,9 @@
       "Weight": "0.21",
       "Coupon": "0",
       "Par Value": "21470000",
-      "Market Value": "7396413",
+      "Market Value": "7402167",
       "Local Currency": "USD",
       "Maturity": "12/15/2041"
-    },
-    {
-      "Name": "PRCGEN 4.329 07/01/40",
-      "Identifier": "US74529JRJ69",
-      "SEDOL": "-",
-      "Weight": "0.21",
-      "Coupon": "4.33",
-      "Par Value": "7741000",
-      "Market Value": "7369336",
-      "Local Currency": "USD",
-      "Maturity": "7/1/2040"
     },
     {
       "Name": "ALTDEV 5.000 05/01/42",
@@ -550,7 +539,7 @@
       "Weight": "0.2",
       "Coupon": "5",
       "Par Value": "7390000",
-      "Market Value": "7261385",
+      "Market Value": "7171684",
       "Local Currency": "USD",
       "Maturity": "5/1/2042"
     },
@@ -561,7 +550,7 @@
       "Weight": "0.2",
       "Coupon": "5",
       "Par Value": "7300000",
-      "Market Value": "7240846",
+      "Market Value": "7157747",
       "Local Currency": "USD",
       "Maturity": "1/1/2050"
     },
@@ -572,7 +561,7 @@
       "Weight": "0.2",
       "Coupon": "5",
       "Par Value": "8215000",
-      "Market Value": "7072979",
+      "Market Value": "6992581",
       "Local Currency": "USD",
       "Maturity": "7/1/2061"
     },
@@ -583,9 +572,20 @@
       "Weight": "0.2",
       "Coupon": "5.5",
       "Par Value": "7500000",
-      "Market Value": "7344731",
+      "Market Value": "7254420",
       "Local Currency": "USD",
       "Maturity": "8/15/2057"
+    },
+    {
+      "Name": "PRCGEN 4.329 07/01/40",
+      "Identifier": "US74529JRJ69",
+      "SEDOL": "-",
+      "Weight": "0.2",
+      "Coupon": "4.33",
+      "Par Value": "7741000",
+      "Market Value": "7278411",
+      "Local Currency": "USD",
+      "Maturity": "7/1/2040"
     },
     {
       "Name": "TGYPWR 5.500 10/01/53",
@@ -594,7 +594,7 @@
       "Weight": "0.2",
       "Coupon": "5.5",
       "Par Value": "6715000",
-      "Market Value": "7064651",
+      "Market Value": "7042985",
       "Local Currency": "USD",
       "Maturity": "10/1/2053"
     },
@@ -605,7 +605,7 @@
       "Weight": "0.2",
       "Coupon": "5",
       "Par Value": "9040000",
-      "Market Value": "7176864",
+      "Market Value": "7079497",
       "Local Currency": "USD",
       "Maturity": "6/1/2047"
     },
@@ -616,7 +616,7 @@
       "Weight": "0.19",
       "Coupon": "5.25",
       "Par Value": "7000000",
-      "Market Value": "6754972",
+      "Market Value": "6672126",
       "Local Currency": "USD",
       "Maturity": "7/1/2054"
     },
@@ -627,7 +627,7 @@
       "Weight": "0.19",
       "Coupon": "6.25",
       "Par Value": "6680000",
-      "Market Value": "6754157",
+      "Market Value": "6681747",
       "Local Currency": "USD",
       "Maturity": "12/1/2050"
     },
@@ -638,7 +638,7 @@
       "Weight": "0.19",
       "Coupon": "5.25",
       "Par Value": "7500000",
-      "Market Value": "6904793",
+      "Market Value": "6827357",
       "Local Currency": "USD",
       "Maturity": "12/1/2058"
     },
@@ -649,7 +649,7 @@
       "Weight": "0.19",
       "Coupon": "5.5",
       "Par Value": "6700000",
-      "Market Value": "6867677",
+      "Market Value": "6816607",
       "Local Currency": "USD",
       "Maturity": "7/15/2037"
     },
@@ -660,7 +660,7 @@
       "Weight": "0.19",
       "Coupon": "5.25",
       "Par Value": "6510000",
-      "Market Value": "6833752",
+      "Market Value": "6799226",
       "Local Currency": "USD",
       "Maturity": "6/1/2055"
     },
@@ -671,7 +671,7 @@
       "Weight": "0.19",
       "Coupon": "5.25",
       "Par Value": "6750000",
-      "Market Value": "6866082",
+      "Market Value": "6627333",
       "Local Currency": "USD",
       "Maturity": "10/1/2056"
     },
@@ -682,20 +682,9 @@
       "Weight": "0.19",
       "Coupon": "0",
       "Par Value": "19655000",
-      "Market Value": "6725501",
+      "Market Value": "6586286",
       "Local Currency": "USD",
       "Maturity": "7/1/2046"
-    },
-    {
-      "Name": "PRCUTL 4.000 07/01/42",
-      "Identifier": "US745160TH48",
-      "SEDOL": "-",
-      "Weight": "0.19",
-      "Coupon": "4",
-      "Par Value": "7305000",
-      "Market Value": "6668281",
-      "Local Currency": "USD",
-      "Maturity": "7/1/2042"
     },
     {
       "Name": "PUBFIN 7.000 12/01/50",
@@ -715,7 +704,7 @@
       "Weight": "0.18",
       "Coupon": "6.5",
       "Par Value": "6930000",
-      "Market Value": "6501408",
+      "Market Value": "6409991",
       "Local Currency": "USD",
       "Maturity": "6/1/2054"
     },
@@ -726,9 +715,20 @@
       "Weight": "0.18",
       "Coupon": "5.5",
       "Par Value": "6200000",
-      "Market Value": "6386713",
+      "Market Value": "6344011",
       "Local Currency": "USD",
       "Maturity": "7/15/2036"
+    },
+    {
+      "Name": "PRCUTL 4.000 07/01/42",
+      "Identifier": "US745160TH48",
+      "SEDOL": "-",
+      "Weight": "0.18",
+      "Coupon": "4",
+      "Par Value": "7305000",
+      "Market Value": "6576947",
+      "Local Currency": "USD",
+      "Maturity": "7/1/2042"
     },
     {
       "Name": "TUSDEV 5.250 05/01/44",
@@ -737,7 +737,7 @@
       "Weight": "0.18",
       "Coupon": "5.25",
       "Par Value": "7045474.51",
-      "Market Value": "6485706",
+      "Market Value": "6391994",
       "Local Currency": "USD",
       "Maturity": "5/1/2044"
     },
@@ -748,7 +748,7 @@
       "Weight": "0.18",
       "Coupon": "3.5",
       "Par Value": "7692235.23",
-      "Market Value": "6394604",
+      "Market Value": "6326646",
       "Local Currency": "USD",
       "Maturity": "12/20/2035"
     },
@@ -759,7 +759,7 @@
       "Weight": "0.17",
       "Coupon": "5.45",
       "Par Value": "6270000",
-      "Market Value": "6127514",
+      "Market Value": "6037788",
       "Local Currency": "USD",
       "Maturity": "9/1/2052"
     },
@@ -770,7 +770,7 @@
       "Weight": "0.17",
       "Coupon": "7",
       "Par Value": "5500000",
-      "Market Value": "5956520",
+      "Market Value": "5879163",
       "Local Currency": "USD",
       "Maturity": "7/1/2048"
     },
@@ -781,7 +781,7 @@
       "Weight": "0.17",
       "Coupon": "5",
       "Par Value": "6015000",
-      "Market Value": "6039566",
+      "Market Value": "5954341",
       "Local Currency": "USD",
       "Maturity": "3/1/2036"
     },
@@ -792,7 +792,7 @@
       "Weight": "0.17",
       "Coupon": "3.8",
       "Par Value": "6000000",
-      "Market Value": "6037871",
+      "Market Value": "6016370",
       "Local Currency": "USD",
       "Maturity": "12/1/2035"
     },
@@ -803,7 +803,7 @@
       "Weight": "0.17",
       "Coupon": "0",
       "Par Value": "175000000",
-      "Market Value": "6270897",
+      "Market Value": "6188070",
       "Local Currency": "USD",
       "Maturity": "5/15/2057"
     },
@@ -814,7 +814,7 @@
       "Weight": "0.17",
       "Coupon": "4",
       "Par Value": "6965000",
-      "Market Value": "5981995",
+      "Market Value": "5985569",
       "Local Currency": "USD",
       "Maturity": "7/15/2041"
     },
@@ -825,7 +825,7 @@
       "Weight": "0.17",
       "Coupon": "4.62",
       "Par Value": "5890000",
-      "Market Value": "6021984",
+      "Market Value": "6022768",
       "Local Currency": "USD",
       "Maturity": "10/1/2031"
     },
@@ -836,7 +836,7 @@
       "Weight": "0.17",
       "Coupon": "4.1",
       "Par Value": "5925000",
-      "Market Value": "6074670",
+      "Market Value": "6042190",
       "Local Currency": "USD",
       "Maturity": "6/1/2029"
     },
@@ -847,7 +847,7 @@
       "Weight": "0.17",
       "Coupon": "3.62",
       "Par Value": "6856929.93",
-      "Market Value": "5967314",
+      "Market Value": "5892908",
       "Local Currency": "USD",
       "Maturity": "8/20/2039"
     },
@@ -858,7 +858,7 @@
       "Weight": "0.17",
       "Coupon": "6.12",
       "Par Value": "6350000",
-      "Market Value": "5967933",
+      "Market Value": "5897691",
       "Local Currency": "USD",
       "Maturity": "9/1/2060"
     },
@@ -869,7 +869,7 @@
       "Weight": "0.17",
       "Coupon": "5.5",
       "Par Value": "6000000",
-      "Market Value": "6105601",
+      "Market Value": "6088270",
       "Local Currency": "USD",
       "Maturity": "8/1/2052"
     },
@@ -880,7 +880,7 @@
       "Weight": "0.17",
       "Coupon": "5",
       "Par Value": "6270000",
-      "Market Value": "6017543",
+      "Market Value": "5987060",
       "Local Currency": "USD",
       "Maturity": "6/1/2046"
     },
@@ -891,9 +891,20 @@
       "Weight": "0.16",
       "Coupon": "5",
       "Par Value": "6000000",
-      "Market Value": "5782872",
+      "Market Value": "5719536",
       "Local Currency": "USD",
       "Maturity": "4/1/2047"
+    },
+    {
+      "Name": "CDAHSG 3.000 06/01/47",
+      "Identifier": "US126292CA71",
+      "SEDOL": "-",
+      "Weight": "0.16",
+      "Coupon": "3",
+      "Par Value": "8000000",
+      "Market Value": "5519495",
+      "Local Currency": "USD",
+      "Maturity": "6/1/2047"
     },
     {
       "Name": "MSRPWR 6.500 11/01/39",
@@ -902,7 +913,7 @@
       "Weight": "0.16",
       "Coupon": "6.5",
       "Par Value": "5000000",
-      "Market Value": "5810063",
+      "Market Value": "5743724",
       "Local Currency": "USD",
       "Maturity": "11/1/2039"
     },
@@ -913,7 +924,7 @@
       "Weight": "0.16",
       "Coupon": "5",
       "Par Value": "6000000",
-      "Market Value": "5778486",
+      "Market Value": "5707165",
       "Local Currency": "USD",
       "Maturity": "9/1/2042"
     },
@@ -924,7 +935,7 @@
       "Weight": "0.16",
       "Coupon": "5.25",
       "Par Value": "5500000",
-      "Market Value": "5585495",
+      "Market Value": "5536899",
       "Local Currency": "USD",
       "Maturity": "3/1/2055"
     },
@@ -935,7 +946,7 @@
       "Weight": "0.16",
       "Coupon": "5",
       "Par Value": "6750000",
-      "Market Value": "5653767",
+      "Market Value": "5588741",
       "Local Currency": "USD",
       "Maturity": "6/1/2053"
     },
@@ -946,7 +957,7 @@
       "Weight": "0.16",
       "Coupon": "5",
       "Par Value": "6000000",
-      "Market Value": "5795671",
+      "Market Value": "5717830",
       "Local Currency": "USD",
       "Maturity": "7/1/2043"
     },
@@ -957,7 +968,7 @@
       "Weight": "0.15",
       "Coupon": "5.5",
       "Par Value": "5575000",
-      "Market Value": "5461930",
+      "Market Value": "5390498",
       "Local Currency": "USD",
       "Maturity": "1/1/2061"
     },
@@ -968,7 +979,7 @@
       "Weight": "0.15",
       "Coupon": "6",
       "Par Value": "5280000",
-      "Market Value": "5486128",
+      "Market Value": "5450421",
       "Local Currency": "USD",
       "Maturity": "1/1/2066"
     },
@@ -979,7 +990,7 @@
       "Weight": "0.15",
       "Coupon": "5.62",
       "Par Value": "5485392.33",
-      "Market Value": "5380060",
+      "Market Value": "5317099",
       "Local Currency": "USD",
       "Maturity": "12/1/2053"
     },
@@ -990,7 +1001,7 @@
       "Weight": "0.15",
       "Coupon": "5",
       "Par Value": "5445000",
-      "Market Value": "5364852",
+      "Market Value": "5291974",
       "Local Currency": "USD",
       "Maturity": "12/31/2043"
     },
@@ -1001,7 +1012,7 @@
       "Weight": "0.15",
       "Coupon": "5",
       "Par Value": "5000000",
-      "Market Value": "5245874",
+      "Market Value": "5224112",
       "Local Currency": "USD",
       "Maturity": "5/1/2054"
     },
@@ -1012,20 +1023,9 @@
       "Weight": "0.15",
       "Coupon": "5.5",
       "Par Value": "5000000",
-      "Market Value": "5252723",
+      "Market Value": "5245067",
       "Local Currency": "USD",
       "Maturity": "5/1/2054"
-    },
-    {
-      "Name": "CDAHSG 3.000 06/01/47",
-      "Identifier": "US126292CA71",
-      "SEDOL": "-",
-      "Weight": "0.15",
-      "Coupon": "3",
-      "Par Value": "8000000",
-      "Market Value": "5532328",
-      "Local Currency": "USD",
-      "Maturity": "6/1/2047"
     },
     {
       "Name": "CHI 6.000 01/01/46",
@@ -1034,7 +1034,7 @@
       "Weight": "0.15",
       "Coupon": "6",
       "Par Value": "5000000",
-      "Market Value": "5241512",
+      "Market Value": "5206103",
       "Local Currency": "USD",
       "Maturity": "1/1/2046"
     },
@@ -1045,20 +1045,9 @@
       "Weight": "0.15",
       "Coupon": "8.5",
       "Par Value": "5000000",
-      "Market Value": "5370292",
+      "Market Value": "5334014",
       "Local Currency": "USD",
       "Maturity": "2/1/2059"
-    },
-    {
-      "Name": "DISGEN 0.000 06/15/46",
-      "Identifier": "US254842BB27",
-      "SEDOL": "-",
-      "Weight": "0.15",
-      "Coupon": "0",
-      "Par Value": "25000000",
-      "Market Value": "5256928",
-      "Local Currency": "USD",
-      "Maturity": "6/15/2046"
     },
     {
       "Name": "GPVDEV 5.250 12/01/44",
@@ -1067,7 +1056,7 @@
       "Weight": "0.15",
       "Coupon": "5.25",
       "Par Value": "5565000",
-      "Market Value": "5267389",
+      "Market Value": "5199237",
       "Local Currency": "USD",
       "Maturity": "12/1/2044"
     },
@@ -1078,7 +1067,7 @@
       "Weight": "0.15",
       "Coupon": "4.7",
       "Par Value": "5940000",
-      "Market Value": "5375978",
+      "Market Value": "5292122",
       "Local Currency": "USD",
       "Maturity": "1/1/2052"
     },
@@ -1089,7 +1078,7 @@
       "Weight": "0.15",
       "Coupon": "5.5",
       "Par Value": "5230000",
-      "Market Value": "5328520",
+      "Market Value": "5297067",
       "Local Currency": "USD",
       "Maturity": "8/15/2050"
     },
@@ -1100,9 +1089,20 @@
       "Weight": "0.15",
       "Coupon": "4",
       "Par Value": "6120000",
-      "Market Value": "5354195",
+      "Market Value": "5254971",
       "Local Currency": "USD",
       "Maturity": "11/15/2042"
+    },
+    {
+      "Name": "SEEPWR 5.250 01/01/54",
+      "Identifier": "US84136FBT30",
+      "SEDOL": "-",
+      "Weight": "0.15",
+      "Coupon": "5.25",
+      "Par Value": "5000000",
+      "Market Value": "5176652",
+      "Local Currency": "USD",
+      "Maturity": "1/1/2054"
     },
     {
       "Name": "TSA 5.000 06/01/48",
@@ -1111,7 +1111,7 @@
       "Weight": "0.15",
       "Coupon": "5",
       "Par Value": "5950000",
-      "Market Value": "5449954",
+      "Market Value": "5421443",
       "Local Currency": "USD",
       "Maturity": "6/1/2048"
     },
@@ -1122,9 +1122,20 @@
       "Weight": "0.15",
       "Coupon": "6.62",
       "Par Value": "5110000",
-      "Market Value": "5274641",
+      "Market Value": "5246749",
       "Local Currency": "USD",
       "Maturity": "9/1/2047"
+    },
+    {
+      "Name": "ARSDEV 5.000 09/01/44",
+      "Identifier": "US04084RBZ38",
+      "SEDOL": "-",
+      "Weight": "0.14",
+      "Coupon": "5",
+      "Par Value": "5190000",
+      "Market Value": "4861816",
+      "Local Currency": "USD",
+      "Maturity": "9/1/2044"
     },
     {
       "Name": "ARSDEV 5.700 05/01/53",
@@ -1133,20 +1144,9 @@
       "Weight": "0.14",
       "Coupon": "5.7",
       "Par Value": "4910000",
-      "Market Value": "5028063",
+      "Market Value": "4972455",
       "Local Currency": "USD",
       "Maturity": "5/1/2053"
-    },
-    {
-      "Name": "ATLDEV 5.500 04/01/39",
-      "Identifier": "US04780NMX20",
-      "SEDOL": "-",
-      "Weight": "0.14",
-      "Coupon": "5.5",
-      "Par Value": "4850000",
-      "Market Value": "4914107",
-      "Local Currency": "USD",
-      "Maturity": "4/1/2039"
     },
     {
       "Name": "BBEUTL 4.000 12/01/52",
@@ -1155,7 +1155,7 @@
       "Weight": "0.14",
       "Coupon": "4",
       "Par Value": "5000000",
-      "Market Value": "5012617",
+      "Market Value": "4999835",
       "Local Currency": "USD",
       "Maturity": "12/1/2052"
     },
@@ -1166,7 +1166,7 @@
       "Weight": "0.14",
       "Coupon": "5",
       "Par Value": "5000000",
-      "Market Value": "5025649",
+      "Market Value": "4967919",
       "Local Currency": "USD",
       "Maturity": "10/1/2035"
     },
@@ -1177,9 +1177,20 @@
       "Weight": "0.14",
       "Coupon": "5.25",
       "Par Value": "5000000",
-      "Market Value": "5075539",
+      "Market Value": "5060142",
       "Local Currency": "USD",
       "Maturity": "5/1/2056"
+    },
+    {
+      "Name": "BLWPOL 4.300 03/01/56",
+      "Identifier": "US05786PAC77",
+      "SEDOL": "-",
+      "Weight": "0.14",
+      "Coupon": "4.3",
+      "Par Value": "5000000",
+      "Market Value": "4826080",
+      "Local Currency": "USD",
+      "Maturity": "3/1/2056"
     },
     {
       "Name": "BLWPOL 5.000 06/01/55",
@@ -1188,7 +1199,7 @@
       "Weight": "0.14",
       "Coupon": "5",
       "Par Value": "5000000",
-      "Market Value": "5091786",
+      "Market Value": "5071758",
       "Local Currency": "USD",
       "Maturity": "6/1/2055"
     },
@@ -1199,7 +1210,7 @@
       "Weight": "0.14",
       "Coupon": "4",
       "Par Value": "4955000",
-      "Market Value": "4924935",
+      "Market Value": "4885546",
       "Local Currency": "USD",
       "Maturity": "7/15/2029"
     },
@@ -1210,7 +1221,7 @@
       "Weight": "0.14",
       "Coupon": "5",
       "Par Value": "5000000",
-      "Market Value": "5078498",
+      "Market Value": "5076021",
       "Local Currency": "USD",
       "Maturity": "12/1/2041"
     },
@@ -1221,7 +1232,7 @@
       "Weight": "0.14",
       "Coupon": "4",
       "Par Value": "6262348.82",
-      "Market Value": "4997810",
+      "Market Value": "4915742",
       "Local Currency": "USD",
       "Maturity": "3/20/2033"
     },
@@ -1232,7 +1243,7 @@
       "Weight": "0.14",
       "Coupon": "3",
       "Par Value": "7330000",
-      "Market Value": "4915268",
+      "Market Value": "4850044",
       "Local Currency": "USD",
       "Maturity": "12/1/2056"
     },
@@ -1243,7 +1254,7 @@
       "Weight": "0.14",
       "Coupon": "4",
       "Par Value": "7000000",
-      "Market Value": "5181606",
+      "Market Value": "5121848",
       "Local Currency": "USD",
       "Maturity": "9/1/2056"
     },
@@ -1254,7 +1265,7 @@
       "Weight": "0.14",
       "Coupon": "5",
       "Par Value": "5000000",
-      "Market Value": "4941526",
+      "Market Value": "4917561",
       "Local Currency": "USD",
       "Maturity": "1/1/2034"
     },
@@ -1265,7 +1276,7 @@
       "Weight": "0.14",
       "Coupon": "4",
       "Par Value": "6750000",
-      "Market Value": "5192794",
+      "Market Value": "5125469",
       "Local Currency": "USD",
       "Maturity": "12/1/2047"
     },
@@ -1276,7 +1287,7 @@
       "Weight": "0.14",
       "Coupon": "5",
       "Par Value": "5000000",
-      "Market Value": "4936777",
+      "Market Value": "4848415",
       "Local Currency": "USD",
       "Maturity": "12/1/2033"
     },
@@ -1287,7 +1298,7 @@
       "Weight": "0.14",
       "Coupon": "5",
       "Par Value": "5080000",
-      "Market Value": "4986899",
+      "Market Value": "4931143",
       "Local Currency": "USD",
       "Maturity": "12/1/2034"
     },
@@ -1298,9 +1309,20 @@
       "Weight": "0.14",
       "Coupon": "5",
       "Par Value": "5675000",
-      "Market Value": "5084448",
+      "Market Value": "5020881",
       "Local Currency": "USD",
       "Maturity": "12/1/2042"
+    },
+    {
+      "Name": "CHITRN 5.000 01/01/42",
+      "Identifier": "US167591EC61",
+      "SEDOL": "-",
+      "Weight": "0.14",
+      "Coupon": "5",
+      "Par Value": "5000000",
+      "Market Value": "4997948",
+      "Local Currency": "USD",
+      "Maturity": "1/1/2042"
     },
     {
       "Name": "COSEDU 6.875 02/01/59",
@@ -1309,9 +1331,20 @@
       "Weight": "0.14",
       "Coupon": "6.88",
       "Par Value": "4775000",
-      "Market Value": "4905756",
+      "Market Value": "4880292",
       "Local Currency": "USD",
       "Maturity": "2/1/2059"
+    },
+    {
+      "Name": "DISGEN 0.000 06/15/46",
+      "Identifier": "US254842BB27",
+      "SEDOL": "-",
+      "Weight": "0.14",
+      "Coupon": "0",
+      "Par Value": "25000000",
+      "Market Value": "5127392",
+      "Local Currency": "USD",
+      "Maturity": "6/15/2046"
     },
     {
       "Name": "ESDPWR 5.000 09/01/33",
@@ -1320,7 +1353,7 @@
       "Weight": "0.14",
       "Coupon": "5",
       "Par Value": "5000000",
-      "Market Value": "4964883",
+      "Market Value": "4926242",
       "Local Currency": "USD",
       "Maturity": "9/1/2033"
     },
@@ -1342,7 +1375,7 @@
       "Weight": "0.14",
       "Coupon": "6",
       "Par Value": "5000000",
-      "Market Value": "5019151",
+      "Market Value": "4959513",
       "Local Currency": "USD",
       "Maturity": "7/1/2045"
     },
@@ -1353,7 +1386,7 @@
       "Weight": "0.14",
       "Coupon": "4",
       "Par Value": "6350000",
-      "Market Value": "5039986",
+      "Market Value": "4964339",
       "Local Currency": "USD",
       "Maturity": "4/1/2051"
     },
@@ -1364,7 +1397,7 @@
       "Weight": "0.14",
       "Coupon": "5.25",
       "Par Value": "5000000",
-      "Market Value": "5126575",
+      "Market Value": "5078725",
       "Local Currency": "USD",
       "Maturity": "7/15/2034"
     },
@@ -1375,7 +1408,7 @@
       "Weight": "0.14",
       "Coupon": "5.5",
       "Par Value": "4825000",
-      "Market Value": "5000603",
+      "Market Value": "4963701",
       "Local Currency": "USD",
       "Maturity": "7/15/2035"
     },
@@ -1386,7 +1419,7 @@
       "Weight": "0.14",
       "Coupon": "4.25",
       "Par Value": "5750000",
-      "Market Value": "5067639",
+      "Market Value": "4990760",
       "Local Currency": "USD",
       "Maturity": "5/1/2046"
     },
@@ -1397,7 +1430,7 @@
       "Weight": "0.14",
       "Coupon": "4",
       "Par Value": "6000000",
-      "Market Value": "4972958",
+      "Market Value": "4944207",
       "Local Currency": "USD",
       "Maturity": "6/1/2049"
     },
@@ -1408,7 +1441,7 @@
       "Weight": "0.14",
       "Coupon": "5.25",
       "Par Value": "5000000",
-      "Market Value": "4897622",
+      "Market Value": "4854115",
       "Local Currency": "USD",
       "Maturity": "11/1/2050"
     },
@@ -1419,7 +1452,7 @@
       "Weight": "0.14",
       "Coupon": "4",
       "Par Value": "5675000",
-      "Market Value": "5137944",
+      "Market Value": "5076296",
       "Local Currency": "USD",
       "Maturity": "12/1/2040"
     },
@@ -1430,7 +1463,7 @@
       "Weight": "0.14",
       "Coupon": "5",
       "Par Value": "5755000",
-      "Market Value": "5033910",
+      "Market Value": "4964504",
       "Local Currency": "USD",
       "Maturity": "7/1/2049"
     },
@@ -1441,7 +1474,7 @@
       "Weight": "0.14",
       "Coupon": "5.25",
       "Par Value": "5000000",
-      "Market Value": "5003525",
+      "Market Value": "4936757",
       "Local Currency": "USD",
       "Maturity": "8/15/2043"
     },
@@ -1452,7 +1485,7 @@
       "Weight": "0.14",
       "Coupon": "7",
       "Par Value": "5000000",
-      "Market Value": "4903190",
+      "Market Value": "4840353",
       "Local Currency": "USD",
       "Maturity": "11/15/2056"
     },
@@ -1463,7 +1496,7 @@
       "Weight": "0.14",
       "Coupon": "7",
       "Par Value": "5000000",
-      "Market Value": "4873616",
+      "Market Value": "4808922",
       "Local Currency": "USD",
       "Maturity": "11/15/2061"
     },
@@ -1474,7 +1507,7 @@
       "Weight": "0.14",
       "Coupon": "5",
       "Par Value": "5685000",
-      "Market Value": "5208422",
+      "Market Value": "5146402",
       "Local Currency": "USD",
       "Maturity": "7/1/2041"
     },
@@ -1485,7 +1518,7 @@
       "Weight": "0.14",
       "Coupon": "4",
       "Par Value": "5000000",
-      "Market Value": "4872009",
+      "Market Value": "4819715",
       "Local Currency": "USD",
       "Maturity": "7/1/2033"
     },
@@ -1496,20 +1529,9 @@
       "Weight": "0.14",
       "Coupon": "5",
       "Par Value": "5000000",
-      "Market Value": "5043620",
+      "Market Value": "4967601",
       "Local Currency": "USD",
       "Maturity": "11/1/2035"
-    },
-    {
-      "Name": "SEEPWR 5.250 01/01/54",
-      "Identifier": "US84136FBT30",
-      "SEDOL": "-",
-      "Weight": "0.14",
-      "Coupon": "5.25",
-      "Par Value": "5000000",
-      "Market Value": "5186874",
-      "Local Currency": "USD",
-      "Maturity": "1/1/2054"
     },
     {
       "Name": "SJPTRN 5.000 11/01/45",
@@ -1518,7 +1540,7 @@
       "Weight": "0.14",
       "Coupon": "5",
       "Par Value": "5115000",
-      "Market Value": "5062473",
+      "Market Value": "4975019",
       "Local Currency": "USD",
       "Maturity": "11/1/2045"
     },
@@ -1529,9 +1551,20 @@
       "Weight": "0.14",
       "Coupon": "5.25",
       "Par Value": "5105000",
-      "Market Value": "5106786",
+      "Market Value": "5081042",
       "Local Currency": "USD",
       "Maturity": "6/1/2046"
+    },
+    {
+      "Name": "ATLDEV 5.500 04/01/39",
+      "Identifier": "US04780NMX20",
+      "SEDOL": "-",
+      "Weight": "0.13",
+      "Coupon": "5.5",
+      "Par Value": "4850000",
+      "Market Value": "4768344",
+      "Local Currency": "USD",
+      "Maturity": "4/1/2039"
     },
     {
       "Name": "BBEUTL 5.000 11/01/36",
@@ -1540,20 +1573,9 @@
       "Weight": "0.13",
       "Coupon": "5",
       "Par Value": "4570000",
-      "Market Value": "4629914",
+      "Market Value": "4580558",
       "Local Currency": "USD",
       "Maturity": "11/1/2036"
-    },
-    {
-      "Name": "BLWPOL 4.300 03/01/56",
-      "Identifier": "US05786PAC77",
-      "SEDOL": "-",
-      "Weight": "0.13",
-      "Coupon": "4.3",
-      "Par Value": "5000000",
-      "Market Value": "4848376",
-      "Local Currency": "USD",
-      "Maturity": "3/1/2056"
     },
     {
       "Name": "BREMED 5.000 04/01/47",
@@ -1562,7 +1584,7 @@
       "Weight": "0.13",
       "Coupon": "5",
       "Par Value": "5000000",
-      "Market Value": "4848461",
+      "Market Value": "4789211",
       "Local Currency": "USD",
       "Maturity": "4/1/2047"
     },
@@ -1573,7 +1595,7 @@
       "Weight": "0.13",
       "Coupon": "5",
       "Par Value": "5000000",
-      "Market Value": "4659988",
+      "Market Value": "4602165",
       "Local Currency": "USD",
       "Maturity": "7/1/2054"
     },
@@ -1584,7 +1606,7 @@
       "Weight": "0.13",
       "Coupon": "7",
       "Par Value": "4750000",
-      "Market Value": "4748759",
+      "Market Value": "4687848",
       "Local Currency": "USD",
       "Maturity": "12/15/2055"
     },
@@ -1595,7 +1617,7 @@
       "Weight": "0.13",
       "Coupon": "5",
       "Par Value": "5450000",
-      "Market Value": "4687750",
+      "Market Value": "4626186",
       "Local Currency": "USD",
       "Maturity": "12/1/2046"
     },
@@ -1606,7 +1628,7 @@
       "Weight": "0.13",
       "Coupon": "5",
       "Par Value": "5000000",
-      "Market Value": "4542820",
+      "Market Value": "4490430",
       "Local Currency": "USD",
       "Maturity": "9/15/2050"
     },
@@ -1616,8 +1638,8 @@
       "SEDOL": "-",
       "Weight": "0.13",
       "Coupon": "4",
-      "Par Value": "5000000",
-      "Market Value": "4604100",
+      "Par Value": "5270000",
+      "Market Value": "4793072",
       "Local Currency": "USD",
       "Maturity": "3/1/2037"
     },
@@ -1628,7 +1650,7 @@
       "Weight": "0.13",
       "Coupon": "4.5",
       "Par Value": "5100000",
-      "Market Value": "4771179",
+      "Market Value": "4703477",
       "Local Currency": "USD",
       "Maturity": "5/1/2039"
     },
@@ -1639,7 +1661,7 @@
       "Weight": "0.13",
       "Coupon": "5",
       "Par Value": "4500000",
-      "Market Value": "4557032",
+      "Market Value": "4556159",
       "Local Currency": "USD",
       "Maturity": "7/15/2027"
     },
@@ -1650,7 +1672,7 @@
       "Weight": "0.13",
       "Coupon": "5",
       "Par Value": "4500000",
-      "Market Value": "4654861",
+      "Market Value": "4635036",
       "Local Currency": "USD",
       "Maturity": "5/1/2055"
     },
@@ -1661,7 +1683,7 @@
       "Weight": "0.13",
       "Coupon": "5",
       "Par Value": "5150000",
-      "Market Value": "4845929",
+      "Market Value": "4782055",
       "Local Currency": "USD",
       "Maturity": "7/1/2044"
     },
@@ -1672,7 +1694,7 @@
       "Weight": "0.13",
       "Coupon": "5.12",
       "Par Value": "4565000",
-      "Market Value": "4526186",
+      "Market Value": "4463839",
       "Local Currency": "USD",
       "Maturity": "11/15/2046"
     },
@@ -1683,7 +1705,7 @@
       "Weight": "0.13",
       "Coupon": "5",
       "Par Value": "5110000",
-      "Market Value": "4831875",
+      "Market Value": "4774543",
       "Local Currency": "USD",
       "Maturity": "6/30/2048"
     },
@@ -1694,7 +1716,7 @@
       "Weight": "0.13",
       "Coupon": "6",
       "Par Value": "4750000",
-      "Market Value": "4820353",
+      "Market Value": "4765039",
       "Local Currency": "USD",
       "Maturity": "6/15/2054"
     },
@@ -1705,7 +1727,7 @@
       "Weight": "0.13",
       "Coupon": "5.25",
       "Par Value": "4705000",
-      "Market Value": "4726072",
+      "Market Value": "4672788",
       "Local Currency": "USD",
       "Maturity": "11/1/2046"
     },
@@ -1716,7 +1738,7 @@
       "Weight": "0.13",
       "Coupon": "3.75",
       "Par Value": "5950000",
-      "Market Value": "4617883",
+      "Market Value": "4559260",
       "Local Currency": "USD",
       "Maturity": "7/1/2045"
     },
@@ -1727,7 +1749,7 @@
       "Weight": "0.13",
       "Coupon": "5",
       "Par Value": "5000000",
-      "Market Value": "4699297",
+      "Market Value": "4644124",
       "Local Currency": "USD",
       "Maturity": "12/15/2050"
     },
@@ -1738,7 +1760,7 @@
       "Weight": "0.13",
       "Coupon": "4",
       "Par Value": "5000000",
-      "Market Value": "4642569",
+      "Market Value": "4549907",
       "Local Currency": "USD",
       "Maturity": "6/15/2039"
     },
@@ -1749,7 +1771,7 @@
       "Weight": "0.13",
       "Coupon": "7",
       "Par Value": "5000000",
-      "Market Value": "4823434",
+      "Market Value": "4776139",
       "Local Currency": "USD",
       "Maturity": "12/1/2055"
     },
@@ -1760,7 +1782,7 @@
       "Weight": "0.13",
       "Coupon": "5.75",
       "Par Value": "5000000",
-      "Market Value": "4851685",
+      "Market Value": "4790851",
       "Local Currency": "USD",
       "Maturity": "7/1/2060"
     },
@@ -1771,7 +1793,7 @@
       "Weight": "0.13",
       "Coupon": "5",
       "Par Value": "4580000",
-      "Market Value": "4615329",
+      "Market Value": "4615457",
       "Local Currency": "USD",
       "Maturity": "2/15/2042"
     },
@@ -1782,7 +1804,7 @@
       "Weight": "0.12",
       "Coupon": "5.12",
       "Par Value": "4555000",
-      "Market Value": "4155970",
+      "Market Value": "4121021",
       "Local Currency": "USD",
       "Maturity": "1/1/2059"
     },
@@ -1793,7 +1815,7 @@
       "Weight": "0.12",
       "Coupon": "5",
       "Par Value": "4250000",
-      "Market Value": "4164624",
+      "Market Value": "4107497",
       "Local Currency": "USD",
       "Maturity": "7/15/2042"
     },
@@ -1804,7 +1826,7 @@
       "Weight": "0.12",
       "Coupon": "4",
       "Par Value": "5500000",
-      "Market Value": "4330378",
+      "Market Value": "4277823",
       "Local Currency": "USD",
       "Maturity": "2/1/2056"
     },
@@ -1815,7 +1837,7 @@
       "Weight": "0.12",
       "Coupon": "4",
       "Par Value": "5725000",
-      "Market Value": "4144709",
+      "Market Value": "4096526",
       "Local Currency": "USD",
       "Maturity": "7/1/2056"
     },
@@ -1826,7 +1848,7 @@
       "Weight": "0.12",
       "Coupon": "5",
       "Par Value": "4000000",
-      "Market Value": "4299206",
+      "Market Value": "4272926",
       "Local Currency": "USD",
       "Maturity": "1/1/2034"
     },
@@ -1837,7 +1859,7 @@
       "Weight": "0.12",
       "Coupon": "4",
       "Par Value": "5000000",
-      "Market Value": "4356899",
+      "Market Value": "4280231",
       "Local Currency": "USD",
       "Maturity": "10/1/2043"
     },
@@ -1848,7 +1870,7 @@
       "Weight": "0.12",
       "Coupon": "5.25",
       "Par Value": "4585000",
-      "Market Value": "4458195",
+      "Market Value": "4407357",
       "Local Currency": "USD",
       "Maturity": "11/15/2048"
     },
@@ -1859,7 +1881,7 @@
       "Weight": "0.12",
       "Coupon": "5",
       "Par Value": "5065000",
-      "Market Value": "4458871",
+      "Market Value": "4400438",
       "Local Currency": "USD",
       "Maturity": "7/1/2046"
     },
@@ -1870,7 +1892,7 @@
       "Weight": "0.12",
       "Coupon": "4.75",
       "Par Value": "4300000",
-      "Market Value": "4219791",
+      "Market Value": "4131073",
       "Local Currency": "USD",
       "Maturity": "8/1/2046"
     },
@@ -1881,7 +1903,7 @@
       "Weight": "0.12",
       "Coupon": "5.75",
       "Par Value": "4100000",
-      "Market Value": "4295292",
+      "Market Value": "4269223",
       "Local Currency": "USD",
       "Maturity": "12/1/2055"
     },
@@ -1892,7 +1914,7 @@
       "Weight": "0.12",
       "Coupon": "5.15",
       "Par Value": "4145000",
-      "Market Value": "4223102",
+      "Market Value": "4224005",
       "Local Currency": "USD",
       "Maturity": "11/15/2034"
     },
@@ -1903,7 +1925,7 @@
       "Weight": "0.12",
       "Coupon": "4.5",
       "Par Value": "4700000",
-      "Market Value": "4203144",
+      "Market Value": "4137686",
       "Local Currency": "USD",
       "Maturity": "1/15/2048"
     },
@@ -1914,7 +1936,7 @@
       "Weight": "0.12",
       "Coupon": "4",
       "Par Value": "4920000",
-      "Market Value": "4252303",
+      "Market Value": "4194128",
       "Local Currency": "USD",
       "Maturity": "6/1/2041"
     },
@@ -1925,7 +1947,7 @@
       "Weight": "0.12",
       "Coupon": "5.45",
       "Par Value": "4100000",
-      "Market Value": "4370125",
+      "Market Value": "4345181",
       "Local Currency": "USD",
       "Maturity": "1/1/2051"
     },
@@ -1936,7 +1958,7 @@
       "Weight": "0.12",
       "Coupon": "6.88",
       "Par Value": "4000000",
-      "Market Value": "4371920",
+      "Market Value": "4335781",
       "Local Currency": "USD",
       "Maturity": "9/1/2047"
     },
@@ -1947,7 +1969,7 @@
       "Weight": "0.12",
       "Coupon": "7",
       "Par Value": "4570000",
-      "Market Value": "4373462",
+      "Market Value": "4316362",
       "Local Currency": "USD",
       "Maturity": "6/1/2061"
     },
@@ -1958,7 +1980,7 @@
       "Weight": "0.12",
       "Coupon": "4.75",
       "Par Value": "4400000",
-      "Market Value": "4400534",
+      "Market Value": "4405748",
       "Local Currency": "USD",
       "Maturity": "8/1/2059"
     },
@@ -1969,7 +1991,7 @@
       "Weight": "0.12",
       "Coupon": "5",
       "Par Value": "4000000",
-      "Market Value": "4158471",
+      "Market Value": "4122184",
       "Local Currency": "USD",
       "Maturity": "9/1/2032"
     },
@@ -1980,7 +2002,7 @@
       "Weight": "0.12",
       "Coupon": "5",
       "Par Value": "5550000",
-      "Market Value": "4449350",
+      "Market Value": "4405083",
       "Local Currency": "USD",
       "Maturity": "6/15/2054"
     },
@@ -1991,7 +2013,7 @@
       "Weight": "0.12",
       "Coupon": "6.25",
       "Par Value": "4070000",
-      "Market Value": "4176216",
+      "Market Value": "4157787",
       "Local Currency": "USD",
       "Maturity": "12/1/2054"
     },
@@ -2002,7 +2024,7 @@
       "Weight": "0.12",
       "Coupon": "5.5",
       "Par Value": "4000000",
-      "Market Value": "4178673",
+      "Market Value": "4163272",
       "Local Currency": "USD",
       "Maturity": "1/1/2054"
     },
@@ -2013,7 +2035,7 @@
       "Weight": "0.12",
       "Coupon": "6.25",
       "Par Value": "4100000",
-      "Market Value": "4464667",
+      "Market Value": "4414508",
       "Local Currency": "USD",
       "Maturity": "12/1/2035"
     },
@@ -2024,7 +2046,7 @@
       "Weight": "0.12",
       "Coupon": "5.75",
       "Par Value": "4600000",
-      "Market Value": "4341461",
+      "Market Value": "4287415",
       "Local Currency": "USD",
       "Maturity": "2/1/2045"
     },
@@ -2035,7 +2057,7 @@
       "Weight": "0.11",
       "Coupon": "5.75",
       "Par Value": "4000000",
-      "Market Value": "3884700",
+      "Market Value": "3840666",
       "Local Currency": "USD",
       "Maturity": "12/1/2054"
     },
@@ -2046,7 +2068,7 @@
       "Weight": "0.11",
       "Coupon": "0",
       "Par Value": "5000000",
-      "Market Value": "3890954",
+      "Market Value": "3845639",
       "Local Currency": "USD",
       "Maturity": "4/1/2051"
     },
@@ -2057,7 +2079,7 @@
       "Weight": "0.11",
       "Coupon": "6.35",
       "Par Value": "4140000",
-      "Market Value": "4065971",
+      "Market Value": "4021256",
       "Local Currency": "USD",
       "Maturity": "9/15/2055"
     },
@@ -2068,7 +2090,7 @@
       "Weight": "0.11",
       "Coupon": "5",
       "Par Value": "4000000",
-      "Market Value": "3925624",
+      "Market Value": "3876064",
       "Local Currency": "USD",
       "Maturity": "3/1/2042"
     },
@@ -2079,7 +2101,7 @@
       "Weight": "0.11",
       "Coupon": "5",
       "Par Value": "4265000",
-      "Market Value": "3971569",
+      "Market Value": "3921746",
       "Local Currency": "USD",
       "Maturity": "8/15/2047"
     },
@@ -2090,7 +2112,7 @@
       "Weight": "0.11",
       "Coupon": "6.38",
       "Par Value": "4250000",
-      "Market Value": "3871124",
+      "Market Value": "3820356",
       "Local Currency": "USD",
       "Maturity": "6/1/2059"
     },
@@ -2101,7 +2123,7 @@
       "Weight": "0.11",
       "Coupon": "3",
       "Par Value": "6390000",
-      "Market Value": "4117645",
+      "Market Value": "4063594",
       "Local Currency": "USD",
       "Maturity": "8/1/2056"
     },
@@ -2112,7 +2134,7 @@
       "Weight": "0.11",
       "Coupon": "3.1",
       "Par Value": "4993462",
-      "Market Value": "4095422",
+      "Market Value": "4040086",
       "Local Currency": "USD",
       "Maturity": "7/1/2045"
     },
@@ -2123,7 +2145,7 @@
       "Weight": "0.11",
       "Coupon": "4.3",
       "Par Value": "5000000",
-      "Market Value": "3791489",
+      "Market Value": "3746966",
       "Local Currency": "USD",
       "Maturity": "7/1/2059"
     },
@@ -2134,7 +2156,7 @@
       "Weight": "0.11",
       "Coupon": "5",
       "Par Value": "3780000",
-      "Market Value": "3810292",
+      "Market Value": "3781272",
       "Local Currency": "USD",
       "Maturity": "12/1/2030"
     },
@@ -2145,7 +2167,7 @@
       "Weight": "0.11",
       "Coupon": "5.62",
       "Par Value": "3790000",
-      "Market Value": "3924265",
+      "Market Value": "3921427",
       "Local Currency": "USD",
       "Maturity": "5/15/2043"
     },
@@ -2156,7 +2178,7 @@
       "Weight": "0.11",
       "Coupon": "4",
       "Par Value": "5130000",
-      "Market Value": "3821785",
+      "Market Value": "3777518",
       "Local Currency": "USD",
       "Maturity": "4/1/2056"
     },
@@ -2167,7 +2189,7 @@
       "Weight": "0.11",
       "Coupon": "4.05",
       "Par Value": "4100000",
-      "Market Value": "4077345",
+      "Market Value": "4058207",
       "Local Currency": "USD",
       "Maturity": "11/1/2050"
     },
@@ -2178,7 +2200,7 @@
       "Weight": "0.11",
       "Coupon": "5.25",
       "Par Value": "3620000",
-      "Market Value": "3789238",
+      "Market Value": "3762153",
       "Local Currency": "USD",
       "Maturity": "10/1/2040"
     },
@@ -2189,7 +2211,7 @@
       "Weight": "0.11",
       "Coupon": "3.5",
       "Par Value": "4275000",
-      "Market Value": "4061303",
+      "Market Value": "4020765",
       "Local Currency": "USD",
       "Maturity": "11/1/2032"
     },
@@ -2200,7 +2222,7 @@
       "Weight": "0.11",
       "Coupon": "5",
       "Par Value": "4165000",
-      "Market Value": "4045494",
+      "Market Value": "3992049",
       "Local Currency": "USD",
       "Maturity": "6/1/2056"
     },
@@ -2211,7 +2233,7 @@
       "Weight": "0.11",
       "Coupon": "5.25",
       "Par Value": "3750000",
-      "Market Value": "3778183",
+      "Market Value": "3745411",
       "Local Currency": "USD",
       "Maturity": "6/1/2056"
     },
@@ -2222,7 +2244,7 @@
       "Weight": "0.11",
       "Coupon": "5",
       "Par Value": "4000000",
-      "Market Value": "4105462",
+      "Market Value": "4028416",
       "Local Currency": "USD",
       "Maturity": "5/15/2043"
     },
@@ -2233,7 +2255,7 @@
       "Weight": "0.11",
       "Coupon": "6.5",
       "Par Value": "4000000",
-      "Market Value": "3952754",
+      "Market Value": "3897295",
       "Local Currency": "USD",
       "Maturity": "7/15/2060"
     },
@@ -2244,7 +2266,7 @@
       "Weight": "0.11",
       "Coupon": "5",
       "Par Value": "4000000",
-      "Market Value": "4020214",
+      "Market Value": "3960241",
       "Local Currency": "USD",
       "Maturity": "7/1/2045"
     },
@@ -2255,20 +2277,9 @@
       "Weight": "0.11",
       "Coupon": "5.5",
       "Par Value": "3915000",
-      "Market Value": "3983085",
+      "Market Value": "3951742",
       "Local Currency": "USD",
       "Maturity": "11/15/2056"
-    },
-    {
-      "Name": "MPNFAC 5.000 06/15/53",
-      "Identifier": "US592250BK99",
-      "SEDOL": "-",
-      "Weight": "0.11",
-      "Coupon": "5",
-      "Par Value": "4000000",
-      "Market Value": "3781241",
-      "Local Currency": "USD",
-      "Maturity": "6/15/2053"
     },
     {
       "Name": "MUSMED 5.000 02/15/48",
@@ -2277,7 +2288,7 @@
       "Weight": "0.11",
       "Coupon": "5",
       "Par Value": "4390000",
-      "Market Value": "3976869",
+      "Market Value": "3931738",
       "Local Currency": "USD",
       "Maturity": "2/15/2048"
     },
@@ -2288,7 +2299,7 @@
       "Weight": "0.11",
       "Coupon": "5.25",
       "Par Value": "4000000",
-      "Market Value": "3972512",
+      "Market Value": "3930319",
       "Local Currency": "USD",
       "Maturity": "12/1/2035"
     },
@@ -2299,7 +2310,7 @@
       "Weight": "0.11",
       "Coupon": "5.5",
       "Par Value": "4375000",
-      "Market Value": "3916239",
+      "Market Value": "3907036",
       "Local Currency": "USD",
       "Maturity": "1/1/2057"
     },
@@ -2310,7 +2321,7 @@
       "Weight": "0.11",
       "Coupon": "5",
       "Par Value": "3930000",
-      "Market Value": "3853011",
+      "Market Value": "3820581",
       "Local Currency": "USD",
       "Maturity": "8/1/2031"
     },
@@ -2321,7 +2332,7 @@
       "Weight": "0.11",
       "Coupon": "5",
       "Par Value": "4285000",
-      "Market Value": "3930951",
+      "Market Value": "3882634",
       "Local Currency": "USD",
       "Maturity": "7/1/2045"
     },
@@ -2332,7 +2343,7 @@
       "Weight": "0.11",
       "Coupon": "5.88",
       "Par Value": "4000000",
-      "Market Value": "3918097",
+      "Market Value": "3874135",
       "Local Currency": "USD",
       "Maturity": "3/1/2057"
     },
@@ -2343,7 +2354,7 @@
       "Weight": "0.11",
       "Coupon": "4",
       "Par Value": "4925000",
-      "Market Value": "3982949",
+      "Market Value": "3960204",
       "Local Currency": "USD",
       "Maturity": "6/1/2049"
     },
@@ -2354,7 +2365,7 @@
       "Weight": "0.11",
       "Coupon": "6",
       "Par Value": "4375000",
-      "Market Value": "4076650",
+      "Market Value": "4031358",
       "Local Currency": "USD",
       "Maturity": "12/1/2055"
     },
@@ -2365,7 +2376,7 @@
       "Weight": "0.11",
       "Coupon": "5",
       "Par Value": "4000000",
-      "Market Value": "3822094",
+      "Market Value": "3794366",
       "Local Currency": "USD",
       "Maturity": "6/1/2052"
     },
@@ -2376,7 +2387,7 @@
       "Weight": "0.1",
       "Coupon": "6.12",
       "Par Value": "3725000",
-      "Market Value": "3728230",
+      "Market Value": "3686450",
       "Local Currency": "USD",
       "Maturity": "12/1/2055"
     },
@@ -2387,7 +2398,7 @@
       "Weight": "0.1",
       "Coupon": "4",
       "Par Value": "4500000",
-      "Market Value": "3487967",
+      "Market Value": "3445748",
       "Local Currency": "USD",
       "Maturity": "3/1/2051"
     },
@@ -2398,7 +2409,7 @@
       "Weight": "0.1",
       "Coupon": "4",
       "Par Value": "3750000",
-      "Market Value": "3583488",
+      "Market Value": "3568990",
       "Local Currency": "USD",
       "Maturity": "6/1/2039"
     },
@@ -2409,7 +2420,7 @@
       "Weight": "0.1",
       "Coupon": "4",
       "Par Value": "4209000",
-      "Market Value": "3680546",
+      "Market Value": "3634233",
       "Local Currency": "USD",
       "Maturity": "1/1/2038"
     },
@@ -2420,7 +2431,7 @@
       "Weight": "0.1",
       "Coupon": "0",
       "Par Value": "18000000",
-      "Market Value": "3474628",
+      "Market Value": "3437865",
       "Local Currency": "USD",
       "Maturity": "5/15/2050"
     },
@@ -2431,7 +2442,7 @@
       "Weight": "0.1",
       "Coupon": "5",
       "Par Value": "3695000",
-      "Market Value": "3562619",
+      "Market Value": "3521242",
       "Local Currency": "USD",
       "Maturity": "12/1/2040"
     },
@@ -2442,7 +2453,7 @@
       "Weight": "0.1",
       "Coupon": "0",
       "Par Value": "45000000",
-      "Market Value": "3549825",
+      "Market Value": "3485646",
       "Local Currency": "USD",
       "Maturity": "6/15/2055"
     },
@@ -2453,7 +2464,7 @@
       "Weight": "0.1",
       "Coupon": "4.38",
       "Par Value": "3500000",
-      "Market Value": "3501021",
+      "Market Value": "3487751",
       "Local Currency": "USD",
       "Maturity": "10/1/2054"
     },
@@ -2464,7 +2475,7 @@
       "Weight": "0.1",
       "Coupon": "5",
       "Par Value": "3780000",
-      "Market Value": "3695075",
+      "Market Value": "3644435",
       "Local Currency": "USD",
       "Maturity": "1/1/2046"
     },
@@ -2475,7 +2486,7 @@
       "Weight": "0.1",
       "Coupon": "4",
       "Par Value": "4045000",
-      "Market Value": "3493834",
+      "Market Value": "3449363",
       "Local Currency": "USD",
       "Maturity": "10/1/2049"
     },
@@ -2486,7 +2497,7 @@
       "Weight": "0.1",
       "Coupon": "3.5",
       "Par Value": "5000000",
-      "Market Value": "3521501",
+      "Market Value": "3473923",
       "Local Currency": "USD",
       "Maturity": "8/1/2055"
     },
@@ -2497,7 +2508,7 @@
       "Weight": "0.1",
       "Coupon": "5",
       "Par Value": "3500000",
-      "Market Value": "3551403",
+      "Market Value": "3525067",
       "Local Currency": "USD",
       "Maturity": "6/1/2034"
     },
@@ -2508,7 +2519,7 @@
       "Weight": "0.1",
       "Coupon": "5",
       "Par Value": "3815000",
-      "Market Value": "3597139",
+      "Market Value": "3552758",
       "Local Currency": "USD",
       "Maturity": "7/1/2047"
     },
@@ -2519,7 +2530,7 @@
       "Weight": "0.1",
       "Coupon": "5.25",
       "Par Value": "3530000",
-      "Market Value": "3458718",
+      "Market Value": "3400904",
       "Local Currency": "USD",
       "Maturity": "11/15/2054"
     },
@@ -2530,7 +2541,7 @@
       "Weight": "0.1",
       "Coupon": "5",
       "Par Value": "3740000",
-      "Market Value": "3678979",
+      "Market Value": "3641953",
       "Local Currency": "USD",
       "Maturity": "5/15/2054"
     },
@@ -2541,7 +2552,7 @@
       "Weight": "0.1",
       "Coupon": "5",
       "Par Value": "3500000",
-      "Market Value": "3457142",
+      "Market Value": "3414816",
       "Local Currency": "USD",
       "Maturity": "7/1/2041"
     },
@@ -2552,7 +2563,7 @@
       "Weight": "0.1",
       "Coupon": "5.2",
       "Par Value": "4000000",
-      "Market Value": "3709976",
+      "Market Value": "3665704",
       "Local Currency": "USD",
       "Maturity": "6/1/2054"
     },
@@ -2563,7 +2574,7 @@
       "Weight": "0.1",
       "Coupon": "5.5",
       "Par Value": "3500000",
-      "Market Value": "3563937",
+      "Market Value": "3562090",
       "Local Currency": "USD",
       "Maturity": "1/1/2036"
     },
@@ -2574,7 +2585,7 @@
       "Weight": "0.1",
       "Coupon": "4.12",
       "Par Value": "4190000",
-      "Market Value": "3670911",
+      "Market Value": "3621703",
       "Local Currency": "USD",
       "Maturity": "6/1/2043"
     },
@@ -2585,9 +2596,20 @@
       "Weight": "0.1",
       "Coupon": "5",
       "Par Value": "3460000",
-      "Market Value": "3550938",
+      "Market Value": "3534173",
       "Local Currency": "USD",
       "Maturity": "11/15/2034"
+    },
+    {
+      "Name": "MPNFAC 5.000 06/15/53",
+      "Identifier": "US592250BK99",
+      "SEDOL": "-",
+      "Weight": "0.1",
+      "Coupon": "5",
+      "Par Value": "4000000",
+      "Market Value": "3732587",
+      "Local Currency": "USD",
+      "Maturity": "6/15/2053"
     },
     {
       "Name": "NFAGEN 5.875 12/15/33",
@@ -2596,7 +2618,7 @@
       "Weight": "0.1",
       "Coupon": "5.88",
       "Par Value": "3424000",
-      "Market Value": "3578532",
+      "Market Value": "3560556",
       "Local Currency": "USD",
       "Maturity": "12/15/2033"
     },
@@ -2607,7 +2629,7 @@
       "Weight": "0.1",
       "Coupon": "4",
       "Par Value": "4140000",
-      "Market Value": "3645864",
+      "Market Value": "3590220",
       "Local Currency": "USD",
       "Maturity": "6/15/2044"
     },
@@ -2618,7 +2640,7 @@
       "Weight": "0.1",
       "Coupon": "5.25",
       "Par Value": "3530000",
-      "Market Value": "3471410",
+      "Market Value": "3428969",
       "Local Currency": "USD",
       "Maturity": "10/1/2049"
     },
@@ -2629,7 +2651,7 @@
       "Weight": "0.1",
       "Coupon": "5.75",
       "Par Value": "3500000",
-      "Market Value": "3623415",
+      "Market Value": "3599446",
       "Local Currency": "USD",
       "Maturity": "11/1/2056"
     },
@@ -2640,7 +2662,7 @@
       "Weight": "0.1",
       "Coupon": "5.75",
       "Par Value": "3500000",
-      "Market Value": "3602770",
+      "Market Value": "3570111",
       "Local Currency": "USD",
       "Maturity": "10/1/2055"
     },
@@ -2651,7 +2673,7 @@
       "Weight": "0.1",
       "Coupon": "5",
       "Par Value": "3350000",
-      "Market Value": "3531818",
+      "Market Value": "3493051",
       "Local Currency": "USD",
       "Maturity": "5/15/2034"
     },
@@ -2662,7 +2684,7 @@
       "Weight": "0.1",
       "Coupon": "4",
       "Par Value": "4000000",
-      "Market Value": "3651917",
+      "Market Value": "3607236",
       "Local Currency": "USD",
       "Maturity": "12/1/2040"
     },
@@ -2673,7 +2695,7 @@
       "Weight": "0.1",
       "Coupon": "0",
       "Par Value": "6180000",
-      "Market Value": "3505530",
+      "Market Value": "3481547",
       "Local Currency": "USD",
       "Maturity": "6/1/2036"
     },
@@ -2684,7 +2706,7 @@
       "Weight": "0.1",
       "Coupon": "6",
       "Par Value": "3500000",
-      "Market Value": "3598407",
+      "Market Value": "3591392",
       "Local Currency": "USD",
       "Maturity": "12/1/2053"
     },
@@ -2695,7 +2717,7 @@
       "Weight": "0.1",
       "Coupon": "5",
       "Par Value": "3475000",
-      "Market Value": "3452445",
+      "Market Value": "3411634",
       "Local Currency": "USD",
       "Maturity": "7/1/2040"
     },
@@ -2706,7 +2728,7 @@
       "Weight": "0.1",
       "Coupon": "5",
       "Par Value": "3380000",
-      "Market Value": "3461604",
+      "Market Value": "3415139",
       "Local Currency": "USD",
       "Maturity": "1/1/2036"
     },
@@ -2717,7 +2739,7 @@
       "Weight": "0.1",
       "Coupon": "0",
       "Par Value": "29210000",
-      "Market Value": "3728969",
+      "Market Value": "3686547",
       "Local Currency": "USD",
       "Maturity": "6/1/2052"
     },
@@ -2728,7 +2750,7 @@
       "Weight": "0.1",
       "Coupon": "6.25",
       "Par Value": "3450000",
-      "Market Value": "3508748",
+      "Market Value": "3468036",
       "Local Currency": "USD",
       "Maturity": "1/1/2056"
     },
@@ -2739,31 +2761,9 @@
       "Weight": "0.1",
       "Coupon": "4.25",
       "Par Value": "4000000",
-      "Market Value": "3646041",
+      "Market Value": "3603185",
       "Local Currency": "USD",
       "Maturity": "5/1/2040"
-    },
-    {
-      "Name": "BBEUTL 5.000 12/01/34",
-      "Identifier": "US09182THS96",
-      "SEDOL": "-",
-      "Weight": "0.09",
-      "Coupon": "5",
-      "Par Value": "3000000",
-      "Market Value": "3071478",
-      "Local Currency": "USD",
-      "Maturity": "12/1/2034"
-    },
-    {
-      "Name": "BURPOL 4.125 11/01/45",
-      "Identifier": "US121342PL74",
-      "SEDOL": "-",
-      "Weight": "0.09",
-      "Coupon": "4.12",
-      "Par Value": "3495000",
-      "Market Value": "3082401",
-      "Local Currency": "USD",
-      "Maturity": "11/1/2045"
     }
   ]
 }
