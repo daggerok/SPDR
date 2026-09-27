@@ -435,15 +435,22 @@ function printHelp(): void {
 // HTTP with polite pacing, retries and 403 back-off
 // ---------------------------------------------------------------------------
 
-let lastRequestAt = 0;
+// One pacing lane per concurrent worker (sized from config.concurrency in
+// main()). A single shared gate capped total throughput at one request per
+// REQUEST_SLEEP no matter how high CONCURRENCY was set; CONCURRENCY workers
+// now each get their own paced lane, so concurrency actually multiplies
+// throughput as documented instead of only overlapping wait time.
+let lastRequestAtLanes: number[] = [0];
 let requestSleepSeconds = REQUEST_SLEEP_FALLBACK;
 let maxRetriesConfig = MAX_RETRIES_FALLBACK;
 
 async function paceRequests(): Promise<void> {
   const gap = requestSleepSeconds * 1000;
-  const elapsed = Date.now() - lastRequestAt;
+  let lane = 0;
+  for (let i = 1; i < lastRequestAtLanes.length; i++) if (lastRequestAtLanes[i] < lastRequestAtLanes[lane]) lane = i;
+  const elapsed = Date.now() - lastRequestAtLanes[lane];
   if (elapsed < gap) await sleep(gap - elapsed);
-  lastRequestAt = Date.now();
+  lastRequestAtLanes[lane] = Date.now();
 }
 
 const RETRYABLE_STATUS = new Set([408, 425, 429, 500, 502, 503, 504]);
@@ -1293,6 +1300,7 @@ async function main(): Promise<void> {
   const startedAt = Date.now();
   const config = loadConfig(process.env);
   requestSleepSeconds = config.requestSleep;
+  lastRequestAtLanes = new Array(Math.max(1, config.concurrency)).fill(0);
   maxRetriesConfig = config.maxRetries;
 
   outputPrintConfig('SPDR', config);
