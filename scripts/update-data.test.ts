@@ -443,3 +443,24 @@ describe('catalog metric derivations', () => {
     expect(metrics.dividendYieldText).toBe('4.80%');
   });
 });
+
+
+import { test as frequencyLabelTest, expect as frequencyLabelExpect } from 'bun:test';
+frequencyLabelTest('Frequency placeholders display None and existing cadence labels stay unchanged', async () => {
+  const text = await Bun.file(new URL('../app.tsx', import.meta.url)).text();
+  const start = /^([ \t]*)function (formatDividendFrequency|formatDistributionFrequency)\(/m.exec(text);
+  frequencyLabelExpect(start).not.toBeNull();
+  const tail = text.slice(start!.index);
+  const end = new RegExp('^' + start![1] + '\u007d', 'm').exec(tail);
+  frequencyLabelExpect(end).not.toBeNull();
+  const js = new Bun.Transpiler({ loader: 'ts' }).transformSync(tail.slice(0, end!.index + end![0].length));
+  const format = new Function(js + '; return ' + start![2] + ';')();
+  for (const value of [null, undefined, '', '  ', '-', '‐', '‑', '‒', '–', '—', ' — ']) {
+    frequencyLabelExpect(format(value)).toBe('00 - None');
+  }
+  for (const [input, expected] of [
+    ['None', '00 - None'], ['Unknown', '00 - Unknown'], ['Monthly', '01 - Monthly'],
+    ['Quarterly', '04 - Quarterly'], ['Semi-annually', '06 - Semi-annually'],
+    ['Annually', '12 - Annually'], ['Irregular', '99 - Irregular'],
+  ]) frequencyLabelExpect(format(input)).toBe(expected);
+});
