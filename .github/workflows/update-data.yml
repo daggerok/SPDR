@@ -1,6 +1,9 @@
 name: Update SPDR ETF data
 
 on:
+  # Weekly refresh (Saturday/Sunday midnight UTC) plus manual runs.
+  schedule:
+    - cron: '0 0 * * 0'
   workflow_dispatch:
     inputs:
       max_fetches:
