@@ -2,7 +2,7 @@
   "ticker": "MDY",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 3940,
+  "totalRows": 3941,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "29-Sep-2022",
+      "NAV": "404.470545",
+      "Shares Outstanding": "40241160",
+      "Total Net Assets": "16276363902.65"
+    },
     {
       "Date": "28-Sep-2022",
       "NAV": "412.81335",
@@ -6003,12 +6009,6 @@
       "NAV": "346.629927",
       "Shares Outstanding": "57763792",
       "Total Net Assets": "20022659012.58"
-    },
-    {
-      "Date": "09-Oct-2018",
-      "NAV": "355.982983",
-      "Shares Outstanding": "58013792",
-      "Total Net Assets": "20651922742.03"
     }
   ]
 }

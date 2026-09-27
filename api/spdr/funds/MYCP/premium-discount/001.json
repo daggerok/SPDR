@@ -2,12 +2,20 @@
   "ticker": "MYCP",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 1,
+  "totalRows": 3,
   "headers": [
     "Date",
     "Premium/Discount"
   ],
   "rows": [
+    {
+      "Date": "25-Sep-2026",
+      "Premium/Discount": "0.049643"
+    },
+    {
+      "Date": "24-Sep-2026",
+      "Premium/Discount": "-0.04401"
+    },
     {
       "Date": "23-Sep-2026",
       "Premium/Discount": "-0.125454"
