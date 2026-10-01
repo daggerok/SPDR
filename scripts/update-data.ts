@@ -1,15 +1,5 @@
 #!/usr/bin/env bun
-// Checked-in JSON is the runtime default; any nonblank environment value wins.
-import { readFileSync as readUpdaterConfig } from 'node:fs';
-try {
-  const updaterDefaults = JSON.parse(readUpdaterConfig(new URL('./update-data.config.json', import.meta.url), 'utf8')) as Record<string, unknown>;
-  for (const [key, value] of Object.entries(updaterDefaults)) {
-    const current = process.env[key];
-    if ((current === undefined || current.trim() === '') && value !== null && value !== undefined) process.env[key] = String(value);
-  }
-} catch (error) {
-  if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
-}
+// Checked-in JSON (scripts/update-data.config.json) holds the defaults; see resolveControls() for precedence.
 /// <reference types="bun" />
 import { readFile as outputReadFile, readdir as outputReadDir } from 'node:fs/promises';
 import { createHash as outputCreateHash } from 'node:crypto';
@@ -250,12 +240,8 @@ type AumPreset = keyof typeof AUM_PRESET_BOUNDS;
 
 const AMOUNT_SUFFIXES: Record<string, number> = { K: 1e3, M: 1e6, B: 1e9, T: 1e12 };
 
-function envValue(env: Record<string, string | undefined>, name: string, aliases: string[] = []): string {
-  for (const key of [name, `SPDR_${name}`, ...aliases]) {
-    const value = env[key];
-    if (value !== undefined && value.trim() !== '') return value.trim();
-  }
-  return '';
+function envValue(env: Record<string, string | undefined>, name: string): string {
+  return (env[name] ?? '').trim();
 }
 
 function parsePositiveInt(raw: string, fallback: number): number {
@@ -365,7 +351,7 @@ function matchesRange(value: number | null | undefined, range?: Range, maxExclus
   return true;
 }
 
-function loadConfig(env: Record<string, string | undefined>): UpdaterConfig {
+export function loadConfig(env: Record<string, string | undefined>): UpdaterConfig {
   const performanceRanges: RangeMap = {};
   const totalReturnRanges: RangeMap = {};
   for (const period of RETURN_PERIODS) {
@@ -378,8 +364,8 @@ function loadConfig(env: Record<string, string | undefined>): UpdaterConfig {
     concurrency: parsePositiveInt(envValue(env, 'CONCURRENCY'), CONCURRENCY_FALLBACK),
     requestSleep: Math.max(
       0,
-      Number.isFinite(parseDecimal(envValue(env, 'REQUEST_SLEEP', ['SPDR_REQUEST_SLEEP'])))
-        ? parseDecimal(envValue(env, 'REQUEST_SLEEP', ['SPDR_REQUEST_SLEEP']))
+      Number.isFinite(parseDecimal(envValue(env, 'REQUEST_SLEEP')))
+        ? parseDecimal(envValue(env, 'REQUEST_SLEEP'))
         : REQUEST_SLEEP_FALLBACK,
     ),
     maxFetches: Math.max(0, Number.parseInt(envValue(env, 'MAX_FETCHES'), 10) || 0),
@@ -411,6 +397,8 @@ function printHelp(): void {
     '                      Fund Dividend Yield, whole lineup, fetched once)',
     '  - Distributions:   latest dividend distribution per fund',
     '',
+    'Defaults live in scripts/update-data.config.json; the environment overrides them',
+    '(the Update SPDR ETF data workflow adds `advanced` JSON and dispatch inputs in between).',
     'Environment variables (all optional; AND logic when combined):',
     '  TICKERS             Space/comma/semicolon ticker allowlist, e.g. "SPY XLK".',
     '  AUM                 min:max range; bounds are USD amounts (K/M/B/T suffixes',
@@ -433,6 +421,7 @@ function printHelp(): void {
     '  HISTORY_PAGE_SIZE   Rows per generated NAV history page (default 1000).',
     '  STORE_RAW_DOWNLOADS Keep the latest source XLSX under api/spdr/raw (off).',
     '  MAX_RETRIES         Retries after the first attempt (default 2).',
+    '  VERBOSE             Print per-fund retry and fallback notices (off).',
     '',
     'Examples:',
     '  TICKERS="SPY XLK" ./scripts/update-data.ts',
@@ -1307,9 +1296,11 @@ async function processFund(
 // Main pipeline
 // ---------------------------------------------------------------------------
 
-async function main(): Promise<void> {
+export async function main(env: Record<string, string | undefined> = process.env): Promise<void> {
   const startedAt = Date.now();
-  const config = loadConfig(process.env);
+  const controls = await runtimeControls(env);
+  if (controls.VERBOSE !== undefined && env === process.env) process.env.VERBOSE = controls.VERBOSE;
+  const config = loadConfig(controls);
   requestSleepSeconds = config.requestSleep;
   lastRequestAtLanes = new Array(Math.max(1, config.concurrency)).fill(0);
   maxRetriesConfig = config.maxRetries;
@@ -1495,6 +1486,72 @@ async function main(): Promise<void> {
 }
 
 // ---------------------------------------------------------------------------
+// Controls: config file < advanced JSON < nonblank inputs < environment
+// ---------------------------------------------------------------------------
+
+// Allowlisted scalar controls only, so GitHub Actions can resolve them without
+// interpolating user input into bash. The CLI and the workflow share
+// resolveControls(). Precedence: scripts/update-data.config.json < advanced
+// JSON < nonblank dispatch inputs < environment (`<KEY>`, then the legacy
+// `SPDR_<KEY>` alias; any defined value, even empty, overrides).
+export const CONTROL_NAMES = [
+  'MAX_FETCHES', 'REQUEST_SLEEP', 'CONCURRENCY', 'AUM', 'TER', 'TICKERS',
+  'HOLDINGS_PAGE_SIZE', 'HISTORY_PAGE_SIZE', 'STORE_RAW_DOWNLOADS', 'MAX_RETRIES', 'VERBOSE',
+  ...['PERFORMANCE', 'TOTAL_RETURN'].flatMap((prefix) => ['YTD', '1Y', '3Y', '5Y', '10Y'].map((period) => `${prefix}_${period}`)),
+] as const;
+export type ControlName = (typeof CONTROL_NAMES)[number];
+export const CONFIG_FILE_URL = new URL('./update-data.config.json', import.meta.url);
+
+export function resolveControls(
+  file: unknown = {},
+  advanced: unknown = {},
+  inputs: unknown = {},
+  env: Record<string, string | undefined> = {},
+): Record<string, string> {
+  const result: Record<string, string> = {};
+  const known = new Set<string>(CONTROL_NAMES);
+  const apply = (value: unknown, skipEmpty = false): void => {
+    if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('Configuration must be a JSON object');
+    for (const [key, raw] of Object.entries(value)) {
+      if (!known.has(key)) throw new Error(`Unknown updater control: ${key}`);
+      if (skipEmpty && (raw === '' || raw === undefined || raw === null)) continue;
+      if (!['string', 'number', 'boolean'].includes(typeof raw)) throw new Error(`${key}: expected string, number or boolean`);
+      const text = String(raw);
+      if (/[\r\n\0]/.test(text)) throw new Error(`${key}: multiline/control characters are not allowed`);
+      result[key] = text;
+    }
+  };
+  apply(file);
+  apply(advanced);
+  apply(inputs, true);
+  for (const key of CONTROL_NAMES) {
+    const value = env[key] ?? env[`SPDR_${key}`];
+    if (value !== undefined) apply({ [key]: value });
+  }
+  for (const key of ['MAX_FETCHES', 'CONCURRENCY', 'HOLDINGS_PAGE_SIZE', 'HISTORY_PAGE_SIZE', 'MAX_RETRIES']) {
+    const v = result[key]?.trim();
+    if (v === undefined || v === '') continue;
+    const min = ['MAX_FETCHES', 'MAX_RETRIES'].includes(key) ? 0 : 1;
+    if (!/^\d+$/.test(v) || !Number.isSafeInteger(Number(v)) || Number(v) < min) throw new Error(`${key}: expected integer >= ${min}`);
+  }
+  if (result.REQUEST_SLEEP?.trim() && (!Number.isFinite(parseDecimal(result.REQUEST_SLEEP.trim())) || parseDecimal(result.REQUEST_SLEEP.trim()) < 0)) {
+    throw new Error('REQUEST_SLEEP: expected nonnegative seconds');
+  }
+  for (const key of ['STORE_RAW_DOWNLOADS', 'VERBOSE']) {
+    if (result[key]?.trim() && !/^(0|1|true|false|yes|no|y|n|on|off)$/i.test(result[key].trim())) throw new Error(`${key}: expected boolean`);
+  }
+  loadConfig(result); // validate every min:max filter before any request or write
+  return result;
+}
+
+export async function runtimeControls(env: Record<string, string | undefined> = process.env): Promise<Record<string, string>> {
+  let file: unknown = {};
+  try { file = JSON.parse(await outputReadFile(CONFIG_FILE_URL, 'utf8')); }
+  catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; }
+  return resolveControls(file, {}, {}, env);
+}
+
+// ---------------------------------------------------------------------------
 // Entry point (kept at the end: main() relies on the let bindings above)
 // ---------------------------------------------------------------------------
 
@@ -1502,6 +1559,9 @@ if (import.meta.main) {
   if (process.argv.includes('-h') || process.argv.includes('--help')) {
     printHelp();
   } else {
-    await main();
+    await main().catch((error: unknown) => {
+      console.error(`[ ${'error'.padEnd(9)}] ${error instanceof Error ? error.message : String(error)}`);
+      process.exitCode = 1;
+    });
   }
 }
