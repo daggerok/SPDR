@@ -225,6 +225,9 @@ type UpdaterConfig = {
   tickers: string[];
   aumRange?: Range & { source?: string };
   terRange?: Range;
+  dividendYieldRange?: Range;
+  secYieldRange?: Range;
+  historyRange: string;
   performanceRanges: RangeMap;
   totalReturnRanges: RangeMap;
 };
@@ -351,6 +354,35 @@ function matchesRange(value: number | null | undefined, range?: Range, maxExclus
   return true;
 }
 
+/** HISTORY_RANGE: "max" (default) or a window like "5y" / "18mo" counted back from the newest row. */
+export function normalizeHistoryRange(raw: string): string {
+  const text = String(raw ?? '').trim().toLowerCase();
+  if (text === '' || text === 'max') return 'max';
+  if (/^[1-9]\d*(y|mo)$/.test(text)) return text;
+  throw new Error(`HISTORY_RANGE: "${raw}" must be max, Ny or Nmo (for example 5y or 18mo)`);
+}
+
+const MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+function historyDate(text: string): number | null {
+  const match = /^(\d{1,2})-([A-Za-z]{3})-(\d{4})$/.exec(text.trim());
+  const month = match ? MONTHS.indexOf(match[2].toLowerCase()) : -1;
+  return match && month >= 0 ? Date.UTC(Number(match[3]), month, Number(match[1])) : null;
+}
+
+/** Keeps only rows inside the HISTORY_RANGE window ending at the newest dated row; undated rows are kept. */
+export function applyHistoryRange(table: SheetTable, range: string): SheetTable {
+  const match = /^(\d+)(y|mo)$/.exec(range);
+  if (!match) return table;
+  const dateIndex = table.headers.findIndex((header) => header.toLowerCase() === 'date');
+  if (dateIndex < 0) return table;
+  const dates = table.rows.map((row) => historyDate(row[dateIndex] ?? ''));
+  const newest = Math.max(...dates.filter((date): date is number => date !== null));
+  if (!Number.isFinite(newest)) return table;
+  const start = new Date(newest);
+  start.setUTCMonth(start.getUTCMonth() - Number(match[1]) * (match[2] === 'y' ? 12 : 1));
+  return { headers: table.headers, rows: table.rows.filter((_, index) => dates[index] === null || dates[index]! >= start.getTime()) };
+}
+
 export function loadConfig(env: Record<string, string | undefined>): UpdaterConfig {
   const performanceRanges: RangeMap = {};
   const totalReturnRanges: RangeMap = {};
@@ -372,13 +404,16 @@ export function loadConfig(env: Record<string, string | undefined>): UpdaterConf
     holdingsPageSize: parsePositiveInt(envValue(env, 'HOLDINGS_PAGE_SIZE'), HOLDINGS_PAGE_SIZE_FALLBACK),
     historyPageSize: parsePositiveInt(envValue(env, 'HISTORY_PAGE_SIZE'), HISTORY_PAGE_SIZE_FALLBACK),
     storeRawDownloads: parseBoolean(envValue(env, 'STORE_RAW_DOWNLOADS')),
-    maxRetries: Math.min(5, Math.max(0, Number.parseInt(envValue(env, 'MAX_RETRIES'), 10) || 0) || MAX_RETRIES_FALLBACK),
+    maxRetries: parsePositiveInt(envValue(env, 'MAX_RETRIES'), MAX_RETRIES_FALLBACK),
     tickers: envValue(env, 'TICKERS')
       .split(/[\s,;]+/)
       .map(sanitizeTicker)
       .filter(Boolean),
     aumRange: parseAumRange(envValue(env, 'AUM')),
     terRange: parseRange(envValue(env, 'TER'), 'TER'),
+    dividendYieldRange: parseRange(envValue(env, 'DIVIDEND_YIELD'), 'DIVIDEND_YIELD'),
+    secYieldRange: parseRange(envValue(env, 'SEC_YIELD'), 'SEC_YIELD'),
+    historyRange: normalizeHistoryRange(envValue(env, 'HISTORY_RANGE')),
     performanceRanges,
     totalReturnRanges,
   };
@@ -404,6 +439,9 @@ function printHelp(): void {
     '  AUM                 min:max range; bounds are USD amounts (K/M/B/T suffixes',
     '                      allowed) or nano/micro/small/mid/large presets.',
     '  TER                 min:max inclusive expense-ratio range in %.',
+    '  DIVIDEND_YIELD      min:max dividend yield range in % (official Fund Dividend',
+    '                      Yield, else indicated from the latest distribution).',
+    '  SEC_YIELD           min:max official 30-day SEC yield range in %.',
     '  PERFORMANCE_YTD     Month-end NAV return ranges in %; 3Y/5Y/10Y are CAGR.',
     '  PERFORMANCE_1Y      Colon required: "5:", ":20", "5:20"; ":" = no limit.',
     '  PERFORMANCE_3Y',
@@ -420,7 +458,9 @@ function printHelp(): void {
     '  HOLDINGS_PAGE_SIZE  Rows per generated holdings page (default 250).',
     '  HISTORY_PAGE_SIZE   Rows per generated NAV history page (default 1000).',
     '  STORE_RAW_DOWNLOADS Keep the latest source XLSX under api/spdr/raw (off).',
-    '  MAX_RETRIES         Retries after the first attempt (default 2).',
+    '  HISTORY_RANGE       NAV and premium/discount history window: max (default),',
+    '                      Ny or Nmo counted back from the newest row, e.g. 5y.',
+    '  MAX_RETRIES         Retries after the first attempt, integer >= 1 (default 2).',
     '  VERBOSE             Print per-fund retry and fallback notices (off).',
     '',
     'Examples:',
@@ -1164,6 +1204,10 @@ function catalogFiltersPass(fund: CatalogFund, config: UpdaterConfig): boolean {
 
 const PERIOD_FIELD: Record<ReturnPeriod, string> = { YTD: 'ytd', '1Y': 'yr1', '3Y': 'yr3', '5Y': 'yr5', '10Y': 'yr10' };
 
+function yieldFiltersPass(metrics: JsonRecord, config: UpdaterConfig): boolean {
+  return matchesRange(metrics.dividendYield as number | null, config.dividendYieldRange) && matchesRange(metrics.secYield as number | null, config.secYieldRange);
+}
+
 function returnFiltersPass(fund: CatalogFund, config: UpdaterConfig): boolean {
   for (const period of RETURN_PERIODS) {
     const performance = config.performanceRanges[period];
@@ -1220,6 +1264,7 @@ async function processFund(
 
     const history = await fetchXlsx(historyUrl, `[fetch  ] ${ticker} navhist`);
     const historyTable = sheetToTable(history.rows, 'history');
+    historyTable.table = applyHistoryRange(historyTable.table, config.historyRange);
 
     // Not every fund publishes a daily Premium/Discount history workbook.
     const pdHistResponse = await fetchWithRetry(pdHistUrl, `[fetch  ] ${ticker} pdhist`);
@@ -1232,6 +1277,7 @@ async function processFund(
     } else {
       pdHistBytes = new Uint8Array(await pdHistResponse.arrayBuffer());
       const pdTable = sheetToTable(parseXlsxSheet(pdHistBytes, loadSharedStrings(pdHistBytes)), 'premium-discount');
+      pdTable.table = applyHistoryRange(pdTable.table, config.historyRange);
       premiumDiscountResult = await writePages(
         fundDir,
         'premium-discount',
@@ -1381,6 +1427,11 @@ export async function main(env: Record<string, string | undefined> = process.env
         results.push({ ticker: fund.ticker, status: 'skipped', reason: 'return filter', changed: false });
         continue;
       }
+      if (!yieldFiltersPass(deriveCatalogMetrics(fund.monthEnd, fund.navValue, distributions.get(fund.ticker), productData.get(fund.ticker)), config)) {
+        await output.result(fund.ticker, before, 'skipped', 'yield filter');
+        results.push({ ticker: fund.ticker, status: 'skipped', reason: 'yield filter', changed: false });
+        continue;
+      }
       const result = await processFund(fund, distributions.get(fund.ticker), productData.get(fund.ticker), config, index, batch.length);
       results.push(result);
       await output.result(fund.ticker, before, result.status === 'failed' || result.status === 'skipped' ? result.status : undefined, result.reason);
@@ -1495,8 +1546,8 @@ export async function main(env: Record<string, string | undefined> = process.env
 // JSON < nonblank dispatch inputs < environment (`<KEY>`, then the legacy
 // `SPDR_<KEY>` alias; any defined value, even empty, overrides).
 export const CONTROL_NAMES = [
-  'MAX_FETCHES', 'REQUEST_SLEEP', 'CONCURRENCY', 'AUM', 'TER', 'TICKERS',
-  'HOLDINGS_PAGE_SIZE', 'HISTORY_PAGE_SIZE', 'STORE_RAW_DOWNLOADS', 'MAX_RETRIES', 'VERBOSE',
+  'MAX_FETCHES', 'REQUEST_SLEEP', 'CONCURRENCY', 'AUM', 'TER', 'DIVIDEND_YIELD', 'SEC_YIELD', 'TICKERS',
+  'HOLDINGS_PAGE_SIZE', 'HISTORY_PAGE_SIZE', 'HISTORY_RANGE', 'STORE_RAW_DOWNLOADS', 'MAX_RETRIES', 'VERBOSE',
   ...['PERFORMANCE', 'TOTAL_RETURN'].flatMap((prefix) => ['YTD', '1Y', '3Y', '5Y', '10Y'].map((period) => `${prefix}_${period}`)),
 ] as const;
 export type ControlName = (typeof CONTROL_NAMES)[number];
@@ -1531,7 +1582,7 @@ export function resolveControls(
   for (const key of ['MAX_FETCHES', 'CONCURRENCY', 'HOLDINGS_PAGE_SIZE', 'HISTORY_PAGE_SIZE', 'MAX_RETRIES']) {
     const v = result[key]?.trim();
     if (v === undefined || v === '') continue;
-    const min = ['MAX_FETCHES', 'MAX_RETRIES'].includes(key) ? 0 : 1;
+    const min = key === 'MAX_FETCHES' ? 0 : 1;
     if (!/^\d+$/.test(v) || !Number.isSafeInteger(Number(v)) || Number(v) < min) throw new Error(`${key}: expected integer >= ${min}`);
   }
   if (result.REQUEST_SLEEP?.trim() && (!Number.isFinite(parseDecimal(result.REQUEST_SLEEP.trim())) || parseDecimal(result.REQUEST_SLEEP.trim()) < 0)) {

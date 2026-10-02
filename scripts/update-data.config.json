@@ -1,14 +1,18 @@
 {
   "MAX_FETCHES": "0",
   "REQUEST_SLEEP": "1",
+  "CONCURRENCY": "2",
   "AUM": ":",
   "TER": ":",
-  "CONCURRENCY": "2",
+  "DIVIDEND_YIELD": ":",
+  "SEC_YIELD": ":",
+  "TICKERS": "",
   "HOLDINGS_PAGE_SIZE": "250",
   "HISTORY_PAGE_SIZE": "1000",
+  "HISTORY_RANGE": "max",
   "STORE_RAW_DOWNLOADS": "false",
   "MAX_RETRIES": "2",
-  "TICKERS": "",
+  "VERBOSE": "false",
   "PERFORMANCE_YTD": ":",
   "PERFORMANCE_1Y": ":",
   "PERFORMANCE_3Y": ":",
@@ -18,6 +22,5 @@
   "TOTAL_RETURN_1Y": ":",
   "TOTAL_RETURN_3Y": ":",
   "TOTAL_RETURN_5Y": ":",
-  "TOTAL_RETURN_10Y": ":",
-  "VERBOSE": "false"
+  "TOTAL_RETURN_10Y": ":"
 }
