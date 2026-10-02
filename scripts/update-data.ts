@@ -1,15 +1,5 @@
 #!/usr/bin/env bun
-// Checked-in JSON is the runtime default; any nonblank environment value wins.
-import { readFileSync as readUpdaterConfig } from 'node:fs';
-try {
-  const updaterDefaults = JSON.parse(readUpdaterConfig(new URL('./update-data.config.json', import.meta.url), 'utf8')) as Record<string, unknown>;
-  for (const [key, value] of Object.entries(updaterDefaults)) {
-    const current = process.env[key];
-    if ((current === undefined || current.trim() === '') && value !== null && value !== undefined) process.env[key] = String(value);
-  }
-} catch (error) {
-  if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
-}
+// Checked-in JSON (scripts/update-data.config.json) holds the defaults; see resolveControls() for precedence.
 /// <reference types="bun" />
 import { readFile as outputReadFile, readdir as outputReadDir } from 'node:fs/promises';
 import { createHash as outputCreateHash } from 'node:crypto';
@@ -235,6 +225,9 @@ type UpdaterConfig = {
   tickers: string[];
   aumRange?: Range & { source?: string };
   terRange?: Range;
+  dividendYieldRange?: Range;
+  secYieldRange?: Range;
+  historyRange: string;
   performanceRanges: RangeMap;
   totalReturnRanges: RangeMap;
 };
@@ -250,12 +243,8 @@ type AumPreset = keyof typeof AUM_PRESET_BOUNDS;
 
 const AMOUNT_SUFFIXES: Record<string, number> = { K: 1e3, M: 1e6, B: 1e9, T: 1e12 };
 
-function envValue(env: Record<string, string | undefined>, name: string, aliases: string[] = []): string {
-  for (const key of [name, `SPDR_${name}`, ...aliases]) {
-    const value = env[key];
-    if (value !== undefined && value.trim() !== '') return value.trim();
-  }
-  return '';
+function envValue(env: Record<string, string | undefined>, name: string): string {
+  return (env[name] ?? '').trim();
 }
 
 function parsePositiveInt(raw: string, fallback: number): number {
@@ -365,7 +354,36 @@ function matchesRange(value: number | null | undefined, range?: Range, maxExclus
   return true;
 }
 
-function loadConfig(env: Record<string, string | undefined>): UpdaterConfig {
+/** HISTORY_RANGE: "max" (default) or a window like "5y" / "18mo" counted back from the newest row. */
+export function normalizeHistoryRange(raw: string): string {
+  const text = String(raw ?? '').trim().toLowerCase();
+  if (text === '' || text === 'max') return 'max';
+  if (/^[1-9]\d*(y|mo)$/.test(text)) return text;
+  throw new Error(`HISTORY_RANGE: "${raw}" must be max, Ny or Nmo (for example 5y or 18mo)`);
+}
+
+const MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+function historyDate(text: string): number | null {
+  const match = /^(\d{1,2})-([A-Za-z]{3})-(\d{4})$/.exec(text.trim());
+  const month = match ? MONTHS.indexOf(match[2].toLowerCase()) : -1;
+  return match && month >= 0 ? Date.UTC(Number(match[3]), month, Number(match[1])) : null;
+}
+
+/** Keeps only rows inside the HISTORY_RANGE window ending at the newest dated row; undated rows are kept. */
+export function applyHistoryRange(table: SheetTable, range: string): SheetTable {
+  const match = /^(\d+)(y|mo)$/.exec(range);
+  if (!match) return table;
+  const dateIndex = table.headers.findIndex((header) => header.toLowerCase() === 'date');
+  if (dateIndex < 0) return table;
+  const dates = table.rows.map((row) => historyDate(row[dateIndex] ?? ''));
+  const newest = Math.max(...dates.filter((date): date is number => date !== null));
+  if (!Number.isFinite(newest)) return table;
+  const start = new Date(newest);
+  start.setUTCMonth(start.getUTCMonth() - Number(match[1]) * (match[2] === 'y' ? 12 : 1));
+  return { headers: table.headers, rows: table.rows.filter((_, index) => dates[index] === null || dates[index]! >= start.getTime()) };
+}
+
+export function loadConfig(env: Record<string, string | undefined>): UpdaterConfig {
   const performanceRanges: RangeMap = {};
   const totalReturnRanges: RangeMap = {};
   for (const period of RETURN_PERIODS) {
@@ -378,21 +396,24 @@ function loadConfig(env: Record<string, string | undefined>): UpdaterConfig {
     concurrency: parsePositiveInt(envValue(env, 'CONCURRENCY'), CONCURRENCY_FALLBACK),
     requestSleep: Math.max(
       0,
-      Number.isFinite(parseDecimal(envValue(env, 'REQUEST_SLEEP', ['SPDR_REQUEST_SLEEP'])))
-        ? parseDecimal(envValue(env, 'REQUEST_SLEEP', ['SPDR_REQUEST_SLEEP']))
+      Number.isFinite(parseDecimal(envValue(env, 'REQUEST_SLEEP')))
+        ? parseDecimal(envValue(env, 'REQUEST_SLEEP'))
         : REQUEST_SLEEP_FALLBACK,
     ),
     maxFetches: Math.max(0, Number.parseInt(envValue(env, 'MAX_FETCHES'), 10) || 0),
     holdingsPageSize: parsePositiveInt(envValue(env, 'HOLDINGS_PAGE_SIZE'), HOLDINGS_PAGE_SIZE_FALLBACK),
     historyPageSize: parsePositiveInt(envValue(env, 'HISTORY_PAGE_SIZE'), HISTORY_PAGE_SIZE_FALLBACK),
     storeRawDownloads: parseBoolean(envValue(env, 'STORE_RAW_DOWNLOADS')),
-    maxRetries: Math.min(5, Math.max(0, Number.parseInt(envValue(env, 'MAX_RETRIES'), 10) || 0) || MAX_RETRIES_FALLBACK),
+    maxRetries: parsePositiveInt(envValue(env, 'MAX_RETRIES'), MAX_RETRIES_FALLBACK),
     tickers: envValue(env, 'TICKERS')
       .split(/[\s,;]+/)
       .map(sanitizeTicker)
       .filter(Boolean),
     aumRange: parseAumRange(envValue(env, 'AUM')),
     terRange: parseRange(envValue(env, 'TER'), 'TER'),
+    dividendYieldRange: parseRange(envValue(env, 'DIVIDEND_YIELD'), 'DIVIDEND_YIELD'),
+    secYieldRange: parseRange(envValue(env, 'SEC_YIELD'), 'SEC_YIELD'),
+    historyRange: normalizeHistoryRange(envValue(env, 'HISTORY_RANGE')),
     performanceRanges,
     totalReturnRanges,
   };
@@ -411,11 +432,16 @@ function printHelp(): void {
     '                      Fund Dividend Yield, whole lineup, fetched once)',
     '  - Distributions:   latest dividend distribution per fund',
     '',
+    'Defaults live in scripts/update-data.config.json; the environment overrides them',
+    '(the Update SPDR ETF data workflow adds `advanced` JSON and dispatch inputs in between).',
     'Environment variables (all optional; AND logic when combined):',
     '  TICKERS             Space/comma/semicolon ticker allowlist, e.g. "SPY XLK".',
     '  AUM                 min:max range; bounds are USD amounts (K/M/B/T suffixes',
     '                      allowed) or nano/micro/small/mid/large presets.',
     '  TER                 min:max inclusive expense-ratio range in %.',
+    '  DIVIDEND_YIELD      min:max dividend yield range in % (official Fund Dividend',
+    '                      Yield, else indicated from the latest distribution).',
+    '  SEC_YIELD           min:max official 30-day SEC yield range in %.',
     '  PERFORMANCE_YTD     Month-end NAV return ranges in %; 3Y/5Y/10Y are CAGR.',
     '  PERFORMANCE_1Y      Colon required: "5:", ":20", "5:20"; ":" = no limit.',
     '  PERFORMANCE_3Y',
@@ -432,7 +458,10 @@ function printHelp(): void {
     '  HOLDINGS_PAGE_SIZE  Rows per generated holdings page (default 250).',
     '  HISTORY_PAGE_SIZE   Rows per generated NAV history page (default 1000).',
     '  STORE_RAW_DOWNLOADS Keep the latest source XLSX under api/spdr/raw (off).',
-    '  MAX_RETRIES         Retries after the first attempt (default 2).',
+    '  HISTORY_RANGE       NAV and premium/discount history window: max (default),',
+    '                      Ny or Nmo counted back from the newest row, e.g. 5y.',
+    '  MAX_RETRIES         Retries after the first attempt, integer >= 1 (default 2).',
+    '  VERBOSE             Print per-fund retry and fallback notices (off).',
     '',
     'Examples:',
     '  TICKERS="SPY XLK" ./scripts/update-data.ts',
@@ -1175,6 +1204,10 @@ function catalogFiltersPass(fund: CatalogFund, config: UpdaterConfig): boolean {
 
 const PERIOD_FIELD: Record<ReturnPeriod, string> = { YTD: 'ytd', '1Y': 'yr1', '3Y': 'yr3', '5Y': 'yr5', '10Y': 'yr10' };
 
+function yieldFiltersPass(metrics: JsonRecord, config: UpdaterConfig): boolean {
+  return matchesRange(metrics.dividendYield as number | null, config.dividendYieldRange) && matchesRange(metrics.secYield as number | null, config.secYieldRange);
+}
+
 function returnFiltersPass(fund: CatalogFund, config: UpdaterConfig): boolean {
   for (const period of RETURN_PERIODS) {
     const performance = config.performanceRanges[period];
@@ -1231,6 +1264,7 @@ async function processFund(
 
     const history = await fetchXlsx(historyUrl, `[fetch  ] ${ticker} navhist`);
     const historyTable = sheetToTable(history.rows, 'history');
+    historyTable.table = applyHistoryRange(historyTable.table, config.historyRange);
 
     // Not every fund publishes a daily Premium/Discount history workbook.
     const pdHistResponse = await fetchWithRetry(pdHistUrl, `[fetch  ] ${ticker} pdhist`);
@@ -1243,6 +1277,7 @@ async function processFund(
     } else {
       pdHistBytes = new Uint8Array(await pdHistResponse.arrayBuffer());
       const pdTable = sheetToTable(parseXlsxSheet(pdHistBytes, loadSharedStrings(pdHistBytes)), 'premium-discount');
+      pdTable.table = applyHistoryRange(pdTable.table, config.historyRange);
       premiumDiscountResult = await writePages(
         fundDir,
         'premium-discount',
@@ -1307,9 +1342,11 @@ async function processFund(
 // Main pipeline
 // ---------------------------------------------------------------------------
 
-async function main(): Promise<void> {
+export async function main(env: Record<string, string | undefined> = process.env): Promise<void> {
   const startedAt = Date.now();
-  const config = loadConfig(process.env);
+  const controls = await runtimeControls(env);
+  if (controls.VERBOSE !== undefined && env === process.env) process.env.VERBOSE = controls.VERBOSE;
+  const config = loadConfig(controls);
   requestSleepSeconds = config.requestSleep;
   lastRequestAtLanes = new Array(Math.max(1, config.concurrency)).fill(0);
   maxRetriesConfig = config.maxRetries;
@@ -1388,6 +1425,11 @@ async function main(): Promise<void> {
       if (!returnFiltersPass(fund, config)) {
         await output.result(fund.ticker, before, 'skipped', 'return filter');
         results.push({ ticker: fund.ticker, status: 'skipped', reason: 'return filter', changed: false });
+        continue;
+      }
+      if (!yieldFiltersPass(deriveCatalogMetrics(fund.monthEnd, fund.navValue, distributions.get(fund.ticker), productData.get(fund.ticker)), config)) {
+        await output.result(fund.ticker, before, 'skipped', 'yield filter');
+        results.push({ ticker: fund.ticker, status: 'skipped', reason: 'yield filter', changed: false });
         continue;
       }
       const result = await processFund(fund, distributions.get(fund.ticker), productData.get(fund.ticker), config, index, batch.length);
@@ -1495,6 +1537,72 @@ async function main(): Promise<void> {
 }
 
 // ---------------------------------------------------------------------------
+// Controls: config file < advanced JSON < nonblank inputs < environment
+// ---------------------------------------------------------------------------
+
+// Allowlisted scalar controls only, so GitHub Actions can resolve them without
+// interpolating user input into bash. The CLI and the workflow share
+// resolveControls(). Precedence: scripts/update-data.config.json < advanced
+// JSON < nonblank dispatch inputs < environment (`<KEY>`, then the legacy
+// `SPDR_<KEY>` alias; any defined value, even empty, overrides).
+export const CONTROL_NAMES = [
+  'MAX_FETCHES', 'REQUEST_SLEEP', 'CONCURRENCY', 'AUM', 'TER', 'DIVIDEND_YIELD', 'SEC_YIELD', 'TICKERS',
+  'HOLDINGS_PAGE_SIZE', 'HISTORY_PAGE_SIZE', 'HISTORY_RANGE', 'STORE_RAW_DOWNLOADS', 'MAX_RETRIES', 'VERBOSE',
+  ...['PERFORMANCE', 'TOTAL_RETURN'].flatMap((prefix) => ['YTD', '1Y', '3Y', '5Y', '10Y'].map((period) => `${prefix}_${period}`)),
+] as const;
+export type ControlName = (typeof CONTROL_NAMES)[number];
+export const CONFIG_FILE_URL = new URL('./update-data.config.json', import.meta.url);
+
+export function resolveControls(
+  file: unknown = {},
+  advanced: unknown = {},
+  inputs: unknown = {},
+  env: Record<string, string | undefined> = {},
+): Record<string, string> {
+  const result: Record<string, string> = {};
+  const known = new Set<string>(CONTROL_NAMES);
+  const apply = (value: unknown, skipEmpty = false): void => {
+    if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('Configuration must be a JSON object');
+    for (const [key, raw] of Object.entries(value)) {
+      if (!known.has(key)) throw new Error(`Unknown updater control: ${key}`);
+      if (skipEmpty && (raw === '' || raw === undefined || raw === null)) continue;
+      if (!['string', 'number', 'boolean'].includes(typeof raw)) throw new Error(`${key}: expected string, number or boolean`);
+      const text = String(raw);
+      if (/[\r\n\0]/.test(text)) throw new Error(`${key}: multiline/control characters are not allowed`);
+      result[key] = text;
+    }
+  };
+  apply(file);
+  apply(advanced);
+  apply(inputs, true);
+  for (const key of CONTROL_NAMES) {
+    const value = env[key] ?? env[`SPDR_${key}`];
+    if (value !== undefined) apply({ [key]: value });
+  }
+  for (const key of ['MAX_FETCHES', 'CONCURRENCY', 'HOLDINGS_PAGE_SIZE', 'HISTORY_PAGE_SIZE', 'MAX_RETRIES']) {
+    const v = result[key]?.trim();
+    if (v === undefined || v === '') continue;
+    const min = key === 'MAX_FETCHES' ? 0 : 1;
+    if (!/^\d+$/.test(v) || !Number.isSafeInteger(Number(v)) || Number(v) < min) throw new Error(`${key}: expected integer >= ${min}`);
+  }
+  if (result.REQUEST_SLEEP?.trim() && (!Number.isFinite(parseDecimal(result.REQUEST_SLEEP.trim())) || parseDecimal(result.REQUEST_SLEEP.trim()) < 0)) {
+    throw new Error('REQUEST_SLEEP: expected nonnegative seconds');
+  }
+  for (const key of ['STORE_RAW_DOWNLOADS', 'VERBOSE']) {
+    if (result[key]?.trim() && !/^(0|1|true|false|yes|no|y|n|on|off)$/i.test(result[key].trim())) throw new Error(`${key}: expected boolean`);
+  }
+  loadConfig(result); // validate every min:max filter before any request or write
+  return result;
+}
+
+export async function runtimeControls(env: Record<string, string | undefined> = process.env): Promise<Record<string, string>> {
+  let file: unknown = {};
+  try { file = JSON.parse(await outputReadFile(CONFIG_FILE_URL, 'utf8')); }
+  catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; }
+  return resolveControls(file, {}, {}, env);
+}
+
+// ---------------------------------------------------------------------------
 // Entry point (kept at the end: main() relies on the let bindings above)
 // ---------------------------------------------------------------------------
 
@@ -1502,6 +1610,9 @@ if (import.meta.main) {
   if (process.argv.includes('-h') || process.argv.includes('--help')) {
     printHelp();
   } else {
-    await main();
+    await main().catch((error: unknown) => {
+      console.error(`[ ${'error'.padEnd(9)}] ${error instanceof Error ? error.message : String(error)}`);
+      process.exitCode = 1;
+    });
   }
 }
