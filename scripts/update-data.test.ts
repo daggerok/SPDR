@@ -3,7 +3,14 @@
 // so the test suite stays dependency-free like the updater itself.
 /// <reference types="bun" />
 import { describe, expect, test } from 'bun:test';
+import { readFileSync } from 'node:fs';
 import {
+  CONTROL_NAMES,
+  loadConfig,
+  resolveControls,
+  runtimeControls,
+  normalizeHistoryRange,
+  applyHistoryRange,
   parseRange,
   parseAumRange,
   normalizeNumberText,
@@ -520,4 +527,130 @@ headerTest('header markup supplies a focusable counter and hidden rich panel wit
   headerExpect(html).toContain("event.key !== 'Escape'");
   headerExpect(html).toContain("trigger.addEventListener('focus', show)");
   headerExpect(html).toContain("trigger.addEventListener('pointerenter'");
+});
+
+// ---------------------------------------------------------------------------
+// Controls, config file, README and workflow
+// ---------------------------------------------------------------------------
+
+const read = (path: string) => readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
+const configFile = () => JSON.parse(read('scripts/update-data.config.json'));
+
+test('configuration precedence: file < advanced < nonblank input < environment', () => {
+  const c = resolveControls({ CONCURRENCY: 2, TICKERS: 'SPY' }, { CONCURRENCY: 3, TICKERS: 'XLK' }, { CONCURRENCY: '4', TICKERS: '' }, { CONCURRENCY: '6' });
+  expect(c.CONCURRENCY).toBe('6'); expect(c.TICKERS).toBe('XLK');
+  expect(resolveControls({ CONCURRENCY: 2 }, { CONCURRENCY: 3 }, { CONCURRENCY: '4' }).CONCURRENCY).toBe('4');
+  expect(resolveControls({ TICKERS: 'SPY' }, { TICKERS: '' }, { TICKERS: '' }).TICKERS).toBe('');
+  expect(resolveControls({ CONCURRENCY: 2 }, {}, { CONCURRENCY: '' }).CONCURRENCY).toBe('2');
+  expect(resolveControls({ VERBOSE: true }, {}, {}, { VERBOSE: 'false' }).VERBOSE).toBe('false');
+  expect(resolveControls({ MAX_RETRIES: 2 }, { MAX_RETRIES: 3 }, {}, { MAX_RETRIES: '' }).MAX_RETRIES).toBe('');
+  expect(resolveControls({ REQUEST_SLEEP: 1 }, {}, {}, { SPDR_REQUEST_SLEEP: '3' }).REQUEST_SLEEP).toBe('3');
+  expect(resolveControls({ REQUEST_SLEEP: 1 }, {}, {}, { REQUEST_SLEEP: '2', SPDR_REQUEST_SLEEP: '3' }).REQUEST_SLEEP).toBe('2');
+});
+
+test('scheduled path (no inputs, no advanced, no env) equals the config defaults', () => {
+  const file = configFile();
+  const controls = resolveControls(file, JSON.parse('{}'), {}, {});
+  expect(controls).toEqual(file);
+  const config = loadConfig(controls);
+  expect(config.tickers).toEqual([]); expect(config.maxFetches).toBe(0); expect(config.requestSleep).toBe(1);
+  expect(config.concurrency).toBe(2); expect(config.holdingsPageSize).toBe(250); expect(config.historyPageSize).toBe(1000);
+  expect(config.maxRetries).toBe(2); expect(config.storeRawDownloads).toBe(false);
+  expect(config.historyRange).toBe('max'); expect(config.dividendYieldRange).toBeUndefined(); expect(config.secYieldRange).toBeUndefined();
+  expect(config.aumRange).toBeUndefined(); expect(config.terRange).toBeUndefined();
+  expect(config.performanceRanges).toEqual({}); expect(config.totalReturnRanges).toEqual({});
+});
+
+test('runtimeControls reads the checked-in file and lets env override', async () => {
+  expect(await runtimeControls({})).toEqual(configFile());
+  expect((await runtimeControls({ TICKERS: 'SPY XLK', MAX_FETCHES: '5' })).MAX_FETCHES).toBe('5');
+});
+
+test('resolver rejects unknown, non-scalar, invalid and newline values', () => {
+  for (const value of [{ UNKNOWN: 1 }, { OUTPUT_DIR: 'x' }, { TICKERS: 'SPY\nEVIL=yes' }, { CONCURRENCY: 0 }, { MAX_RETRIES: 0 }, { MAX_RETRIES: -1 }, { HISTORY_RANGE: '0y' }, { HISTORY_RANGE: 'forever' }, { DIVIDEND_YIELD: '3' }, { SEC_YIELD: '5:1' }, { MAX_FETCHES: 1.5 }, { REQUEST_SLEEP: '-1' },
+    { VERBOSE: 'maybe' }, { STORE_RAW_DOWNLOADS: 'maybe' }, { AUM: '1:2:3' }, { TER: '5' }, { PERFORMANCE_1Y: '9:1' }, { TICKERS: ['SPY'] }, { TICKERS: { a: 1 } }, null, []]) {
+    expect(() => resolveControls(value)).toThrow();
+  }
+  expect(() => resolveControls({}, { TICKERS: 'x\rfoo' })).toThrow();
+  expect(() => resolveControls({}, {}, {}, { TICKERS: 'x\0bad' })).toThrow();
+  expect(() => JSON.parse('{bad')).toThrow();
+});
+
+test('config keys, CONTROL_NAMES, README rows and --help are in sync', () => {
+  const file = configFile();
+  expect(Object.keys(file).sort()).toEqual([...CONTROL_NAMES].sort());
+  for (const value of Object.values(file)) expect(typeof value).toBe('string');
+  const doc = read('README.md');
+  // README lists the five tenors of PERFORMANCE_* / TOTAL_RETURN_* on one row: `PREFIX_YTD` / `_1Y` / ...
+  for (const name of CONTROL_NAMES) {
+    const tenor = name.match(/^(PERFORMANCE|TOTAL_RETURN)_(1Y|3Y|5Y|10Y)$/);
+    expect(doc).toContain(tenor ? '`_' + tenor[2] + '`' : '`' + name + '`');
+    if (tenor) expect(doc).toContain('`' + tenor[1] + '_YTD`');
+  }
+  const rows = [...doc.slice(doc.indexOf('### Update controls'), doc.indexOf('### Examples')).matchAll(/^\| `([A-Z_0-9]+)`/gm)].map((m) => m[1]);
+  expect(rows.filter((r) => !/^(PERFORMANCE|TOTAL_RETURN)_YTD$/.test(r))).toEqual(expect.arrayContaining(CONTROL_NAMES.filter((n) => !/^(PERFORMANCE|TOTAL_RETURN)_/.test(n))));
+  expect(rows.every((r) => (CONTROL_NAMES as readonly string[]).includes(r))).toBe(true);
+  expect(doc).toContain('scripts/update-data.config.json');
+  const source = read('scripts/update-data.ts');
+  const help = source.slice(source.indexOf('function printHelp'), source.indexOf('// HTTP with polite pacing'));
+  for (const name of CONTROL_NAMES) expect(help).toContain(name);
+});
+
+test('update workflow: <= 25 inputs, advanced JSON, fixed api/spdr output, no direct input interpolation', () => {
+  const yml = read('.github/workflows/update-data.yml');
+  const names = [...yml.slice(yml.indexOf('    inputs:'), yml.indexOf('\npermissions:')).matchAll(/^      (\w+):$/gm)].map((m) => m[1]);
+  expect(names.length).toBeLessThanOrEqual(25); expect(names).toContain('advanced');
+  expect(yml).toMatch(/advanced:[\s\S]*?default: '\{\}'/);
+  for (const name of names.filter((n) => n !== 'advanced')) expect(CONTROL_NAMES).toContain(name.toUpperCase() as never);
+  // nothing the old workflow exposed may be dropped from the individual inputs
+  for (const old of ['max_fetches', 'request_sleep', 'aum', 'ter', 'concurrency', 'holdings_page_size', 'history_page_size', 'store_raw_downloads', 'max_retries', 'tickers',
+    'performance_ytd', 'performance_1y', 'performance_3y', 'performance_5y', 'performance_10y', 'total_return_ytd', 'total_return_1y', 'total_return_3y', 'total_return_5y', 'total_return_10y']) {
+    expect(names).toContain(old);
+  }
+  expect(yml).toContain("cron: '0 0 * * 0'"); expect(yml).not.toMatch(/^  push:/m);
+  expect(yml).toContain('toJSON(inputs)'); expect(yml).not.toMatch(/\$\{\{\s*inputs\./);
+  expect(yml).toContain('resolveControls');
+  expect(yml).toContain('git add api/spdr'); expect(yml).not.toMatch(/git add (?!api\/spdr)/);
+  expect(yml).not.toContain('OUTPUT_DIR'); expect(CONTROL_NAMES as readonly string[]).not.toContain('OUTPUT_DIR');
+  expect(yml).not.toContain('bunx tsc');
+});
+
+test('README keeps the standard section order and no internal artifacts', () => {
+  const doc = `\n${read('README.md')}`;
+  const order = ['# SPDR', '## Using Bun', '## Updating the static SPDR data', '### Data sources', '### Metrics and caveats', '### Update controls', '### Examples',
+    '## TypeScript and verification', '## Brands table', '## Sibling applications', '## License'];
+  let at = -1;
+  for (const heading of order) { const next = doc.indexOf(`\n${heading}\n`); expect(next).toBeGreaterThan(at); at = next; }
+  expect(doc).not.toMatch(/worklog|\.prompt|evidence|fixtures|config-docs/i);
+});
+
+test('workflow never writes outside api/spdr and exposes the common controls', () => {
+  const yml = read('.github/workflows/update-data.yml');
+  expect(yml).toContain('timeout-minutes: 30'); expect(yml).toContain('persist-credentials: false');
+  for (const input of ['dividend_yield', 'sec_yield', 'history_range', 'max_retries']) expect(yml).toContain(`      ${input}:`);
+});
+
+describe('HISTORY_RANGE and yield controls', () => {
+  const table = {
+    headers: ['Date', 'NAV'],
+    rows: [['24-Sep-2026', '3'], ['24-Mar-2026', '2'], ['23-Sep-2025', '1'], ['bad-date', '0']],
+  };
+  test('normalizeHistoryRange accepts max, Ny and Nmo only', () => {
+    expect(normalizeHistoryRange('')).toBe('max'); expect(normalizeHistoryRange(' MAX ')).toBe('max');
+    expect(normalizeHistoryRange('5Y')).toBe('5y'); expect(normalizeHistoryRange('18mo')).toBe('18mo');
+    for (const bad of ['0y', '5', 'y', '-1y', '5 years']) expect(() => normalizeHistoryRange(bad)).toThrow();
+  });
+  test('applyHistoryRange trims rows older than the window and keeps undated rows', () => {
+    expect(applyHistoryRange(table, 'max')).toBe(table);
+    expect(applyHistoryRange(table, '1y').rows.map((r) => r[1])).toEqual(['3', '2', '0']);
+    expect(applyHistoryRange(table, '6mo').rows.map((r) => r[1])).toEqual(['3', '2', '0']);
+    expect(applyHistoryRange(table, '5mo').rows.map((r) => r[1])).toEqual(['3', '0']);
+    expect(applyHistoryRange(table, '2y').rows).toHaveLength(4);
+  });
+  test('yield ranges parse into the config', () => {
+    const config = loadConfig({ DIVIDEND_YIELD: '3:', SEC_YIELD: ':5', HISTORY_RANGE: '5y' });
+    expect(config.dividendYieldRange).toEqual({ min: 3, max: undefined });
+    expect(config.secYieldRange).toEqual({ min: undefined, max: 5 });
+    expect(config.historyRange).toBe('5y');
+  });
 });
