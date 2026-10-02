@@ -22,7 +22,7 @@ bun scripts/update-data.ts
 
 Run `bun scripts/update-data.ts --help` to print every control with its default and usage examples.
 
-Defaults live in `scripts/update-data.config.json`, one string value per control. Precedence, lowest to highest: file defaults < `advanced` JSON < nonblank workflow inputs < environment variables (locally) or the protected Actions variable (CI). Blank workflow inputs inherit the file value, and `advanced` can set a control to an empty string on purpose. The legacy `SPDR_<NAME>` environment aliases still work. The **Update SPDR ETF data** workflow runs weekly (Sunday 00:00 UTC) with the file defaults, and manual runs can override them through individual inputs or one `advanced` JSON object such as `{"CONCURRENCY":"1","VERBOSE":"true"}`. CLI and workflow share the same `resolveControls` validation, and the workflow only writes to `api/spdr`. All supplied filters use **AND** logic.
+Defaults live in `scripts/update-data.config.json`, one string value per control. Precedence, lowest to highest: file defaults < `advanced` JSON < nonblank workflow inputs < environment variables (locally) or the protected Actions variable (CI). Blank workflow inputs inherit the file value, and `advanced` can set a control to an empty string on purpose. An explicitly set environment variable wins even when empty, and the legacy `SPDR_<NAME>` aliases still work. The **Update SPDR ETF data** workflow runs weekly (Sunday 00:00 UTC) with the file defaults, and manual runs can override them through individual inputs or one `advanced` JSON object such as `{"CONCURRENCY":"1","VERBOSE":"true"}`. CLI and workflow share the same `resolveControls` validation, and the workflow only writes to `api/spdr`. All supplied filters use **AND** logic.
 
 ### Data sources
 
@@ -46,7 +46,7 @@ Each fund carries a derived `metrics` object that powers the catalog columns sha
 - `dividendYield` - 12-month trailing yield or indicated yield (latest distribution x frequency / price), an estimate derived from SSGA data
 - `secYield` - official 30-day SEC yield when published; unavailable otherwise, never `0`
 
-Returns come from SSGA's own NAV series: `PERFORMANCE_*` filters use month-end NAV returns and `TOTAL_RETURN_*` filters use the separate quarter-end series (3Y/5Y/10Y are annualized CAGR). There are no market-price or Yahoo estimates in this feed, and no ticker exclusions. Funds not selected for a successful update keep their prior published metadata and data files. `TICKERS` combines with the other filters using AND logic; it does not override them.
+Returns come from SSGA's own NAV series: `PERFORMANCE_*` filters use month-end NAV returns and `TOTAL_RETURN_*` filters use the separate quarter-end series (3Y/5Y/10Y are annualized CAGR). `DIVIDEND_YIELD` and `SEC_YIELD` filters use the same `metrics` values. There are no market-price or Yahoo estimates in this feed, and no ticker exclusions. Funds not selected for a successful update keep their prior published metadata and data files. `TICKERS` combines with the other filters using AND logic; it does not override them.
 
 ### Update controls
 
@@ -59,11 +59,14 @@ Every control is in `scripts/update-data.config.json`; the table shows the shipp
 | `CONCURRENCY` | `2` | Number of parallel fund update workers; request starts are still spaced by `REQUEST_SLEEP` |
 | `AUM` | `:` | Net Assets range; each bound may be a USD amount, a `K`/`M`/`B`/`T` amount, or one of `nano`, `micro`, `small`, `mid`, `large` |
 | `TER` | `:` | Gross expense ratio range in % (strict `min:max`) |
+| `DIVIDEND_YIELD` | `:` | Dividend yield range in % (strict `min:max`); official Fund Dividend Yield, else the indicated yield from the latest distribution; funds without a value fail a bounded range |
+| `SEC_YIELD` | `:` | Official 30-day SEC yield range in % (strict `min:max`); funds without a published value fail a bounded range |
 | `TICKERS` | empty (all) | Space-, comma- or semicolon-separated ticker allowlist, e.g. `SPY SPYG SPYD SDY XLK` |
 | `HOLDINGS_PAGE_SIZE` | `250` | Rows in each generated current-holdings JSON page |
 | `HISTORY_PAGE_SIZE` | `1000` | Rows in each generated daily-history JSON page |
+| `HISTORY_RANGE` | `max` | Window for the generated NAV and premium/discount history: `max`, `Ny` or `Nmo` counted back from the newest row (for example `5y`, `18mo`); SSGA serves the full workbook, so the window trims the generated pages, not the download |
 | `STORE_RAW_DOWNLOADS` | `false` | Keep the latest source XLSX files under `api/spdr/raw` |
-| `MAX_RETRIES` | `2` | Retries after the initial request (at most 5); network errors and HTTP 408/425/429/5xx are retried with exponential backoff |
+| `MAX_RETRIES` | `2` | Retries after the initial request, integer >= 1; network errors and HTTP 408/425/429/5xx are retried with exponential backoff |
 | `VERBOSE` | `false` | Print per-fund retry and fallback notices |
 | `PERFORMANCE_YTD` / `_1Y` / `_3Y` / `_5Y` / `_10Y` | `:` | Month-end NAV return range in %; 3Y/5Y/10Y are CAGR; the colon is required (`5:`, `:20`, `5:20`) |
 | `TOTAL_RETURN_YTD` / `_1Y` / `_3Y` / `_5Y` / `_10Y` | `:` | Quarter-end NAV return range in %, same syntax |
@@ -74,6 +77,8 @@ Every control is in `scripts/update-data.config.json`; the table shows the shipp
 MAX_FETCHES=10 bun scripts/update-data.ts
 TICKERS="SPY SPYG SPYD SDY XLK" bun scripts/update-data.ts
 AUM="1B:" TER=":0.5" bun scripts/update-data.ts
+DIVIDEND_YIELD="3:" SEC_YIELD="2:" bun scripts/update-data.ts
+HISTORY_RANGE=5y bun scripts/update-data.ts
 PERFORMANCE_1Y="15:" bun scripts/update-data.ts
 ```
 
@@ -90,7 +95,7 @@ bun build --target=bun scripts/update-data.ts --outfile=/dev/null
 git diff --check
 ```
 
-`bun test` also checks that the config file, `CONTROL_NAMES`, `--help`, this controls table and the workflow inputs stay in sync.
+`bun test` also checks that the config file, `CONTROL_NAMES`, `--help`, this controls table, the README structure and the workflow inputs stay in sync.
 
 ## Brands table
 
@@ -115,7 +120,7 @@ git diff --check
 | **ProShares** | [proshares.com](https://www.proshares.com/our-etfs/find-proshares-etfs) \| [ProShares](https://daggerok.github.io/ProShares/) |
 | **Schwab** | [schwabassetmanagement.com](https://www.schwabassetmanagement.com/products) \| [Schwab](https://daggerok.github.io/Schwab/) |
 | **SPDR** | [ssga.com](https://www.ssga.com/us/en/intermediary/etfs/fund-finder) \| [SPDR](https://daggerok.github.io/SPDR/) |
-| **Sprott ETFs** | [sprottetfs.com](https://sprottetfs.com/) \| [Sprott](https://daggerok.github.io/Sprott/) (deployment pending) |
+| **Sprott ETFs** | [sprottetfs.com](https://sprottetfs.com/) \| [Sprott](https://daggerok.github.io/Sprott/) |
 | **Tema ETFs** | [temaetfs.com](https://temaetfs.com/funds) \| [Tema](https://daggerok.github.io/Tema/) |
 | **Themes ETFs** | [themesetfs.com/etfs](https://themesetfs.com/etfs) \| [Themes](https://daggerok.github.io/Themes/) |
 | **VanEck** | [vaneck.com](https://www.vaneck.com/us/en/etf-mutual-fund-finder/) \| [VanEck](https://daggerok.github.io/VanEck/) |
