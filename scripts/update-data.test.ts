@@ -6,6 +6,8 @@ import { describe, expect, test } from 'bun:test';
 import { readFileSync } from 'node:fs';
 import {
   CONTROL_NAMES,
+  installSystemCa,
+  isCertError,
   loadConfig,
   resolveControls,
   runtimeControls,
@@ -653,4 +655,49 @@ describe('HISTORY_RANGE and yield controls', () => {
     expect(config.secYieldRange).toEqual({ min: undefined, max: 5 });
     expect(config.historyRange).toBe('5y');
   });
+});
+
+test('USE_SYSTEM_CA: auto/true/false accepted case-insensitively, others rejected, default auto', () => {
+  for (const v of ['auto', 'TRUE', 'False']) expect(resolveControls({}, {}, {}, { USE_SYSTEM_CA: v }).USE_SYSTEM_CA).toBe(v);
+  expect(() => resolveControls({}, {}, {}, { USE_SYSTEM_CA: 'maybe' })).toThrow('USE_SYSTEM_CA');
+  expect(configFile().USE_SYSTEM_CA).toBe('auto');
+});
+
+test('isCertError matches certificate failures, also through cause', () => {
+  expect(isCertError({ code: 'UNABLE_TO_GET_ISSUER_CERT_LOCALLY' })).toBe(true);
+  expect(isCertError(new Error('unable to get local issuer certificate'))).toBe(true);
+  expect(isCertError(new Error('fetch failed', { cause: new Error('self-signed certificate in certificate chain') }))).toBe(true);
+  expect(isCertError({ code: 'ECONNRESET', message: 'socket hang up' })).toBe(false);
+  expect(isCertError(new Error('HTTP 403 rate limited'))).toBe(false);
+});
+
+test('installSystemCa: false/active leave fetch alone, true restarts, auto wraps fetch', async () => {
+  const original = globalThis.fetch;
+  let calls = 0;
+  const reexec = (() => { calls++; throw new Error('reexec'); }) as () => never;
+  try {
+    installSystemCa('false', reexec, false);
+    expect(globalThis.fetch).toBe(original);
+    installSystemCa('auto', reexec, true);
+    expect(globalThis.fetch).toBe(original);
+    expect(() => installSystemCa('true', reexec, false)).toThrow('reexec');
+    expect(calls).toBe(1);
+    expect(globalThis.fetch).toBe(original);
+
+    calls = 0;
+    let mode: 'ok' | 'cert' | 'net' = 'ok';
+    globalThis.fetch = (async () => {
+      if (mode === 'cert') throw new Error('fetch failed', { cause: { code: 'UNABLE_TO_GET_ISSUER_CERT_LOCALLY' } });
+      if (mode === 'net') throw Object.assign(new Error('socket hang up'), { code: 'ECONNRESET' });
+      return new Response('ok');
+    }) as unknown as typeof fetch;
+    installSystemCa('auto', reexec, false);
+    expect(await (await fetch('http://x.test')).text()).toBe('ok');
+    mode = 'net';
+    await expect(fetch('http://x.test')).rejects.toThrow('socket hang up');
+    expect(calls).toBe(0);
+    mode = 'cert';
+    await expect(fetch('http://x.test')).rejects.toThrow('reexec');
+    expect(calls).toBe(1);
+  } finally { globalThis.fetch = original; }
 });
