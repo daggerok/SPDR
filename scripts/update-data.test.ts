@@ -22,6 +22,8 @@ import {
   annualizedToTotal,
   indicatedYield,
   deriveCatalogMetrics,
+  RETURNS_BASIS,
+  toIsoDate,
   parseProductDataSheet,
 } from './update-data';
 
@@ -403,6 +405,31 @@ describe('catalog metric derivations', () => {
     expect(metrics.tr3yText).toBe('69.28%');
     expect(metrics.secYield).toBeNull();
     expect(metrics.secYieldText).toBeNull();
+  });
+
+  test('toIsoDate normalizes SSGA dates and rejects garbage', () => {
+    expect(toIsoDate('Aug 31 2026')).toBe('2026-08-31');
+    expect(toIsoDate('08/31/2026')).toBe('2026-08-31');
+    expect(toIsoDate('2026-08-31')).toBe('2026-08-31');
+    expect(toIsoDate('Feb 30 2026')).toBeNull();
+    expect(toIsoDate('')).toBeNull();
+    expect(toIsoDate(null)).toBeNull();
+    expect(toIsoDate('-')).toBeNull();
+  });
+
+  test('deriveCatalogMetrics ends with returnsBasis and performanceAsOf (month-end date, not NAV date)', () => {
+    const metrics = deriveCatalogMetrics({ asOfDate: 'Aug 31 2026', ytd: 9.29, yr1: 17.71 }, 29.06, null);
+    const keys = Object.keys(metrics);
+    expect(keys.slice(-2)).toEqual(['returnsBasis', 'performanceAsOf']);
+    expect(metrics.ytd).toBe(9.29);
+    expect(metrics.returnsBasis).toBe(RETURNS_BASIS);
+    expect(String(metrics.returnsBasis).trim()).not.toBe('');
+    expect(metrics.returnsBasis).not.toBe('-');
+    expect(metrics.performanceAsOf).toBe('2026-08-31');
+    const young = deriveCatalogMetrics({ asOfDate: null, ytd: null }, 20, null);
+    expect(young.performanceAsOf).toBeNull();
+    expect(young.ytd).toBeNull();
+    expect(young.returnsBasis).toBe(RETURNS_BASIS);
   });
 
   test('deriveCatalogMetrics tolerates young funds and commodity trusts', () => {

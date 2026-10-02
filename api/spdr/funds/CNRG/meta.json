@@ -80,6 +80,7 @@
     }
   },
   "metrics": {
+    "ytd": -3.2,
     "tr1y": 19.22,
     "tr3y": 18.63,
     "tr5y": -6.48,
@@ -104,7 +105,10 @@
     "indicatedDividendYieldText": "1.72%",
     "dividendYieldText": "1.52%",
     "secYieldText": "1.03%",
-    "secYieldUnsubsidizedText": null
+    "secYieldUnsubsidizedText": null,
+    "ytdText": "-3.20%",
+    "returnsBasis": "official SSGA month-end NAV total returns (YTD, 1Y, annualized 3Y/5Y/10Y and since inception); tr3y/tr5y/tr10y are derived from the official annualized figures as (1 + CAGR)^n - 1; no Yahoo or market-price estimates",
+    "performanceAsOf": "2026-08-31"
   },
   "distributions": {
     "headers": [
