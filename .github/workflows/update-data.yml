@@ -30,6 +30,16 @@ on:
         required: false
         default: ""
         type: string
+      dividend_yield:
+        description: "Dividend yield range in %: min:max, min:, :max, or :; blank inherits scripts/update-data.config.json"
+        required: false
+        default: ""
+        type: string
+      sec_yield:
+        description: "Official 30-day SEC yield range in %: min:max, min:, :max, or :; blank inherits scripts/update-data.config.json"
+        required: false
+        default: ""
+        type: string
       tickers:
         description: "Only update these tickers, separated by spaces or commas; blank inherits scripts/update-data.config.json"
         required: false
@@ -45,13 +55,18 @@ on:
         required: false
         default: ""
         type: string
+      history_range:
+        description: "History window: max, Ny or Nmo counted back from the newest row; blank inherits scripts/update-data.config.json"
+        required: false
+        default: ""
+        type: string
       store_raw_downloads:
         description: "Store source XLSX files (true/yes/on/1); blank inherits scripts/update-data.config.json"
         required: false
         default: ""
         type: string
       max_retries:
-        description: "Retries after the initial request (default 2); blank inherits scripts/update-data.config.json"
+        description: "Retries after the initial request, integer >= 1; blank inherits scripts/update-data.config.json"
         required: false
         default: ""
         type: string
@@ -61,52 +76,52 @@ on:
         default: ""
         type: string
       performance_ytd:
-        description: "Month-end NAV YTD return range: min:max, min:, :max, or :; blank inherits scripts/update-data.config.json"
+        description: "Month-end NAV YTD return range in %: min:max, min:, :max, or :; blank inherits scripts/update-data.config.json"
         required: false
         default: ""
         type: string
       performance_1y:
-        description: "Month-end NAV 1Y return range: min:max, min:, :max, or :; blank inherits scripts/update-data.config.json"
+        description: "Month-end NAV 1Y return range in %: min:max, min:, :max, or :; blank inherits scripts/update-data.config.json"
         required: false
         default: ""
         type: string
       performance_3y:
-        description: "Month-end NAV 3Y CAGR range: min:max, min:, :max, or :; blank inherits scripts/update-data.config.json"
+        description: "Month-end NAV 3Y return range in %: min:max, min:, :max, or :; blank inherits scripts/update-data.config.json"
         required: false
         default: ""
         type: string
       performance_5y:
-        description: "Month-end NAV 5Y CAGR range: min:max, min:, :max, or :; blank inherits scripts/update-data.config.json"
+        description: "Month-end NAV 5Y return range in %: min:max, min:, :max, or :; blank inherits scripts/update-data.config.json"
         required: false
         default: ""
         type: string
       performance_10y:
-        description: "Month-end NAV 10Y CAGR range: min:max, min:, :max, or :; blank inherits scripts/update-data.config.json"
+        description: "Month-end NAV 10Y return range in %: min:max, min:, :max, or :; blank inherits scripts/update-data.config.json"
         required: false
         default: ""
         type: string
       total_return_ytd:
-        description: "Quarter-end NAV YTD return range: min:max, min:, :max, or :; blank inherits scripts/update-data.config.json"
+        description: "Quarter-end NAV YTD return range in %: min:max, min:, :max, or :; blank inherits scripts/update-data.config.json"
         required: false
         default: ""
         type: string
       total_return_1y:
-        description: "Quarter-end NAV 1Y return range: min:max, min:, :max, or :; blank inherits scripts/update-data.config.json"
+        description: "Quarter-end NAV 1Y return range in %: min:max, min:, :max, or :; blank inherits scripts/update-data.config.json"
         required: false
         default: ""
         type: string
       total_return_3y:
-        description: "Quarter-end NAV 3Y CAGR range: min:max, min:, :max, or :; blank inherits scripts/update-data.config.json"
+        description: "Quarter-end NAV 3Y return range in %: min:max, min:, :max, or :; blank inherits scripts/update-data.config.json"
         required: false
         default: ""
         type: string
       total_return_5y:
-        description: "Quarter-end NAV 5Y CAGR range: min:max, min:, :max, or :; blank inherits scripts/update-data.config.json"
+        description: "Quarter-end NAV 5Y return range in %: min:max, min:, :max, or :; blank inherits scripts/update-data.config.json"
         required: false
         default: ""
         type: string
       total_return_10y:
-        description: "Quarter-end NAV 10Y CAGR range: min:max, min:, :max, or :; blank inherits scripts/update-data.config.json"
+        description: "Quarter-end NAV 10Y return range in %: min:max, min:, :max, or :; blank inherits scripts/update-data.config.json"
         required: false
         default: ""
         type: string
@@ -126,9 +141,12 @@ concurrency:
 jobs:
   update-data:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
       - name: Setup bun
         uses: oven-sh/setup-bun@v2
         with:
@@ -151,6 +169,7 @@ jobs:
               .filter(([key]) => key !== "advanced")
               .map(([key, value]) => [key.toUpperCase(), value]));
             const file = await Bun.file("scripts/update-data.config.json").json();
+            // Protected repository Actions variables: highest precedence, applied only when nonblank (never printed).
             const protectedVars = {};
             const controls = resolveControls(file, advanced, individual, protectedVars);
             await appendFile(process.env.GITHUB_ENV,
@@ -160,6 +179,8 @@ jobs:
         run: bun ./scripts/update-data.ts
       - name: Commit updated data
         if: ${{ !cancelled() }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           git add api/spdr
           if git diff --cached --quiet -- api/spdr; then
@@ -169,4 +190,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "chore(data): Update SPDR ETF data"
-          git push
+          # Runtime-only auth; no token/header stored in URL, file or Git config.
+          git -c credential.helper= -c credential.helper='!f() { if test "$1" = get; then printf "username=x-access-token\npassword=%s\n" "$GITHUB_TOKEN"; fi; }; f' push
