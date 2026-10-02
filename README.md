@@ -45,6 +45,10 @@ Each fund carries a derived `metrics` object that powers the catalog columns sha
 - `siAnn` - since-inception annualized -> *SI Ann.*
 - `dividendYield` - 12-month trailing yield or indicated yield (latest distribution x frequency / price), an estimate derived from SSGA data
 - `secYield` - official 30-day SEC yield when published; unavailable otherwise, never `0`
+- `returnsBasis` - always a non-empty label of how the returns are computed: official SSGA month-end NAV total returns, with `tr3y`/`tr5y`/`tr10y` derived from the official annualized figures; no Yahoo or market-price estimates
+- `performanceAsOf` - ISO `YYYY-MM-DD` date of SSGA's month-end performance table the returns are as of (not the NAV date); `null` when SSGA publishes no performance yet (very young funds)
+
+`returnsBasis` and `performanceAsOf` are always the last two keys of `metrics`.
 
 Returns come from SSGA's own NAV series: `PERFORMANCE_*` filters use month-end NAV returns and `TOTAL_RETURN_*` filters use the separate quarter-end series (3Y/5Y/10Y are annualized CAGR). `DIVIDEND_YIELD` and `SEC_YIELD` filters use the same `metrics` values. There are no market-price or Yahoo estimates in this feed, and no ticker exclusions. Funds not selected for a successful update keep their prior published metadata and data files. `TICKERS` combines with the other filters using AND logic; it does not override them.
 

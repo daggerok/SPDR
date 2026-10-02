@@ -872,6 +872,24 @@ function percentText(value: number | null): string | null {
   return value === null ? null : `${value.toFixed(2)}%`;
 }
 
+export const RETURNS_BASIS =
+  'official SSGA month-end NAV total returns (YTD, 1Y, annualized 3Y/5Y/10Y and since inception); ' +
+  'tr3y/tr5y/tr10y are derived from the official annualized figures as (1 + CAGR)^n - 1; no Yahoo or market-price estimates';
+
+/** Converts SSGA dates ("Aug 31 2026", "08/31/2026", "2026-08-31") to ISO YYYY-MM-DD; null when unknown or invalid. */
+export function toIsoDate(value: unknown): string | null {
+  const text = typeof value === 'string' ? value.trim() : '';
+  let year: number, month: number, day: number;
+  let match: RegExpMatchArray | null;
+  if ((match = text.match(/^(\d{4})-(\d{2})-(\d{2})$/))) [year, month, day] = [Number(match[1]), Number(match[2]), Number(match[3])];
+  else if ((match = text.match(/^([A-Za-z]{3})[a-z]*\.?\s+(\d{1,2}),?\s+(\d{4})$/))) [year, month, day] = [Number(match[3]), MONTHS.indexOf(match[1].toLowerCase()) + 1, Number(match[2])];
+  else if ((match = text.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/))) [year, month, day] = [Number(match[3]), Number(match[1]), Number(match[2])];
+  else return null;
+  const date = new Date(Date.UTC(year, month - 1, day));
+  if (month < 1 || date.getUTCFullYear() !== year || date.getUTCMonth() !== month - 1 || date.getUTCDate() !== day) return null;
+  return date.toISOString().slice(0, 10);
+}
+
 export function deriveCatalogMetrics(
   monthEnd: JsonRecord,
   navValue: number | null,
@@ -892,6 +910,7 @@ export function deriveCatalogMetrics(
   const secYield = productData?.secYield?.value ?? null;
   const secYieldUnsubsidized = productData?.secYieldUnsubsidized?.value ?? null;
   const metrics: JsonRecord = {
+    ytd: numberOrNull(monthEnd.ytd),
     // Cumulative total returns (TR nY). SSGA's 1Y annualized equals the 1Y total.
     // TR 3Y/5Y/10Y are **derived** — no official cumulative figure for these
     // tenors exists in any published SSGA feed (see the comment block above).
@@ -924,6 +943,11 @@ export function deriveCatalogMetrics(
     : percentText(dividendYield);
   metrics.secYieldText = productData?.secYield?.display ?? percentText(secYield);
   metrics.secYieldUnsubsidizedText = productData?.secYieldUnsubsidized?.display ?? percentText(secYieldUnsubsidized);
+  metrics.ytdText = percentText(metrics.ytd as number | null);
+  // Contract fields (STANDARD.md 9a), always last. performanceAsOf is the month-end
+  // performance table date (the date the returns are as of), not the NAV date.
+  metrics.returnsBasis = RETURNS_BASIS;
+  metrics.performanceAsOf = toIsoDate(monthEnd.asOfDate);
   return metrics;
 }
 
