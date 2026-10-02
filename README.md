@@ -68,6 +68,7 @@ Every control is in `scripts/update-data.config.json`; the table shows the shipp
 | `STORE_RAW_DOWNLOADS` | `false` | Keep the latest source XLSX files under `api/spdr/raw` |
 | `MAX_RETRIES` | `2` | Retries after the initial request, integer >= 1; network errors and HTTP 408/425/429/5xx are retried with exponential backoff |
 | `VERBOSE` | `false` | Print per-fund retry and fallback notices |
+| `USE_SYSTEM_CA` | `auto` | TLS trust store: `auto` restarts the updater once with Bun's `--use-system-ca` when a request fails with an untrusted-certificate error; `true` always uses the system CA store; `false` never restarts. Not an individual workflow input: use `advanced`, the config file or the CLI environment. |
 | `PERFORMANCE_YTD` / `_1Y` / `_3Y` / `_5Y` / `_10Y` | `:` | Month-end NAV return range in %; 3Y/5Y/10Y are CAGR; the colon is required (`5:`, `:20`, `5:20`) |
 | `TOTAL_RETURN_YTD` / `_1Y` / `_3Y` / `_5Y` / `_10Y` | `:` | Quarter-end NAV return range in %, same syntax |
 
