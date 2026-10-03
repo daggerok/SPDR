@@ -136,7 +136,7 @@ function outputCreateReporter(root: URL | string, total: number) {
 // paginated static JSON API under ./api/spdr, following the daggerok/iShares
 // repository design (no dependencies, Bun only).
 
-import { mkdir, readFile, writeFile, readdir, rm, appendFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile, readdir, rm, appendFile, rename, access } from 'node:fs/promises';
 import { inflateRawSync } from 'node:zlib';
 
 // ---------------------------------------------------------------------------
@@ -153,15 +153,28 @@ const FUND_DATA_BASE = 'https://www.ssga.com/library-content/products/fund-data/
 const PRODUCT_DATA_URL = `${FUND_DATA_BASE}/spdr-product-data-us-en.xlsx`;
 const SSGA_SITE = 'https://www.ssga.com';
 
-const API_ROOT = new URL('../api/spdr/', import.meta.url);
-const INDEX_FILE = new URL('index.json', API_ROOT);
-const STATE_FILE = new URL('update-state.json', API_ROOT);
+let API_ROOT = new URL('../api/spdr/', import.meta.url);
+let INDEX_FILE = new URL('index.json', API_ROOT);
+let STATE_FILE = new URL('update-state.json', API_ROOT);
+
+/** Points the output tree somewhere else (tests only); `root` must end with a slash. */
+export function setApiRoot(root: URL): void {
+  API_ROOT = root;
+  INDEX_FILE = new URL('index.json', root);
+  STATE_FILE = new URL('update-state.json', root);
+}
 
 const HOLDINGS_PAGE_SIZE_FALLBACK = 250;
 const HISTORY_PAGE_SIZE_FALLBACK = 1000;
 const CONCURRENCY_FALLBACK = 2;
 const REQUEST_SLEEP_FALLBACK = 1;
 const MAX_RETRIES_FALLBACK = 2;
+/** Per request (headers and body). A stalled connection is aborted and retried per MAX_RETRIES. */
+let requestTimeoutMs = 45_000;
+/** The run stops taking new funds after this and still writes the index (workflow timeout is 30 min). */
+let softDeadlineMs = 25 * 60_000;
+export function setRequestTimeoutMs(ms: number): void { requestTimeoutMs = ms; }
+export function setSoftDeadlineMs(ms: number): void { softDeadlineMs = ms; }
 const USER_AGENT =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36';
 
@@ -247,13 +260,18 @@ function envValue(env: Record<string, string | undefined>, name: string): string
   return (env[name] ?? '').trim();
 }
 
-function parsePositiveInt(raw: string, fallback: number): number {
-  const value = Number.parseInt(raw, 10);
-  return Number.isFinite(value) && value > 0 ? value : fallback;
+/** Strict integer control: blank -> fallback, anything that is not an integer >= min is an error (never a silent fallback). */
+function parseIntControl(raw: string, name: string, fallback: number, min = 1): number {
+  if (raw === '') return fallback;
+  if (!/^\d+$/.test(raw) || !Number.isSafeInteger(Number(raw)) || Number(raw) < min) throw new Error(`${name}: expected integer >= ${min}, got "${raw}"`);
+  return Number(raw);
 }
 
-function parseBoolean(raw: string): boolean {
-  return ['1', 'true', 'yes', 'y', 'on'].includes(raw.toLowerCase());
+function parseBoolean(raw: string, name = 'boolean control'): boolean {
+  if (raw === '') return false;
+  if (/^(1|true|yes|y|on)$/i.test(raw)) return true;
+  if (/^(0|false|no|n|off)$/i.test(raw)) return false;
+  throw new Error(`${name}: expected boolean, got "${raw}"`);
 }
 
 function parseDecimal(raw: string): number {
@@ -327,8 +345,6 @@ export function parseAumRange(raw: string): AumRange | undefined {
   if (left.maxExclusive) {
     range.max = left.max;
     range.maxExclusive = true;
-  } else if (left.max !== undefined && parts[0].trim() !== '') {
-    range.max = left.max;
   }
   if (right.maxExclusive) {
     range.max = right.max;
@@ -393,18 +409,19 @@ export function loadConfig(env: Record<string, string | undefined>): UpdaterConf
     if (totalReturn) totalReturnRanges[period] = totalReturn;
   }
   return {
-    concurrency: parsePositiveInt(envValue(env, 'CONCURRENCY'), CONCURRENCY_FALLBACK),
-    requestSleep: Math.max(
-      0,
-      Number.isFinite(parseDecimal(envValue(env, 'REQUEST_SLEEP')))
-        ? parseDecimal(envValue(env, 'REQUEST_SLEEP'))
-        : REQUEST_SLEEP_FALLBACK,
-    ),
-    maxFetches: Math.max(0, Number.parseInt(envValue(env, 'MAX_FETCHES'), 10) || 0),
-    holdingsPageSize: parsePositiveInt(envValue(env, 'HOLDINGS_PAGE_SIZE'), HOLDINGS_PAGE_SIZE_FALLBACK),
-    historyPageSize: parsePositiveInt(envValue(env, 'HISTORY_PAGE_SIZE'), HISTORY_PAGE_SIZE_FALLBACK),
-    storeRawDownloads: parseBoolean(envValue(env, 'STORE_RAW_DOWNLOADS')),
-    maxRetries: parsePositiveInt(envValue(env, 'MAX_RETRIES'), MAX_RETRIES_FALLBACK),
+    concurrency: parseIntControl(envValue(env, 'CONCURRENCY'), 'CONCURRENCY', CONCURRENCY_FALLBACK),
+    requestSleep: (() => {
+      const raw = envValue(env, 'REQUEST_SLEEP');
+      if (raw === '') return REQUEST_SLEEP_FALLBACK;
+      const value = parseDecimal(raw);
+      if (!Number.isFinite(value) || value < 0) throw new Error(`REQUEST_SLEEP: expected nonnegative seconds, got "${raw}"`);
+      return value;
+    })(),
+    maxFetches: parseIntControl(envValue(env, 'MAX_FETCHES'), 'MAX_FETCHES', 0, 0),
+    holdingsPageSize: parseIntControl(envValue(env, 'HOLDINGS_PAGE_SIZE'), 'HOLDINGS_PAGE_SIZE', HOLDINGS_PAGE_SIZE_FALLBACK),
+    historyPageSize: parseIntControl(envValue(env, 'HISTORY_PAGE_SIZE'), 'HISTORY_PAGE_SIZE', HISTORY_PAGE_SIZE_FALLBACK),
+    storeRawDownloads: parseBoolean(envValue(env, 'STORE_RAW_DOWNLOADS'), 'STORE_RAW_DOWNLOADS'),
+    maxRetries: parseIntControl(envValue(env, 'MAX_RETRIES'), 'MAX_RETRIES', MAX_RETRIES_FALLBACK),
     tickers: envValue(env, 'TICKERS')
       .split(/[\s,;]+/)
       .map(sanitizeTicker)
@@ -438,7 +455,7 @@ function printHelp(): void {
     '  TICKERS             Space/comma/semicolon ticker allowlist, e.g. "SPY XLK".',
     '  AUM                 min:max range; bounds are USD amounts (K/M/B/T suffixes',
     '                      allowed) or nano/micro/small/mid/large presets.',
-    '  TER                 min:max inclusive expense-ratio range in %.',
+    '  TER                 min:max inclusive NET expense-ratio range in %.',
     '  DIVIDEND_YIELD      min:max dividend yield range in % (official Fund Dividend',
     '                      Yield, else indicated from the latest distribution).',
     '  SEC_YIELD           min:max official 30-day SEC yield range in %.',
@@ -486,26 +503,42 @@ let lastRequestAtLanes: number[] = [0];
 let requestSleepSeconds = REQUEST_SLEEP_FALLBACK;
 let maxRetriesConfig = MAX_RETRIES_FALLBACK;
 
-async function paceRequests(): Promise<void> {
+/** Test hook: sets the per-lane gap (seconds) and the number of lanes. */
+export function configurePacing(sleepSeconds: number, lanes: number, retries = maxRetriesConfig): void {
+  requestSleepSeconds = sleepSeconds;
+  lastRequestAtLanes = new Array(Math.max(1, lanes)).fill(0);
+  maxRetriesConfig = retries;
+}
+
+/**
+ * Picks the lane that frees up first and RESERVES its next slot synchronously,
+ * before awaiting anything: callers entering together get distinct, spaced
+ * slots instead of all choosing the same stale lane and bursting.
+ */
+export async function paceRequests(): Promise<void> {
   const gap = requestSleepSeconds * 1000;
   let lane = 0;
   for (let i = 1; i < lastRequestAtLanes.length; i++) if (lastRequestAtLanes[i] < lastRequestAtLanes[lane]) lane = i;
-  const elapsed = Date.now() - lastRequestAtLanes[lane];
-  if (elapsed < gap) await sleep(gap - elapsed);
-  lastRequestAtLanes[lane] = Date.now();
+  const now = Date.now();
+  const start = Math.max(now, lastRequestAtLanes[lane] + gap);
+  lastRequestAtLanes[lane] = start;
+  if (start > now) await sleep(start - now);
 }
 
 const RETRYABLE_STATUS = new Set([408, 425, 429, 500, 502, 503, 504]);
 
-async function fetchWithRetry(url: string, label: string): Promise<Response> {
+export async function fetchWithRetry(url: string, label: string): Promise<Response> {
   let attempt = 0;
   for (;;) {
     await paceRequests();
     try {
-      const response = await fetch(url, {
+      const raw = await fetch(url, {
         headers: { 'User-Agent': USER_AGENT, Accept: '*/*' },
         redirect: 'follow',
+        signal: AbortSignal.timeout(requestTimeoutMs),
       });
+      // Buffer the body inside the retry loop so the timeout and retries cover the body too.
+      const response = new Response([204, 205, 304].includes(raw.status) ? null : await raw.arrayBuffer(), { status: raw.status, statusText: raw.statusText });
       // SSGA front doors (Akamai) answer 403 while rate-limited; patience recovers.
       if (response.status === 403) {
         await response.arrayBuffer().catch(() => undefined);
@@ -723,6 +756,7 @@ export function sheetToTable(
 export type ProductDataRow = {
   isin: string | null;
   cusip: string | null;
+  grossExpenseRatio: { display: string | null; value: number | null };
   netExpenseRatio: { display: string | null; value: number | null };
   secYield: { display: string | null; value: number | null };
   secYieldUnsubsidized: { display: string | null; value: number | null };
@@ -762,6 +796,7 @@ export function parseProductDataSheet(bytes: Uint8Array): Map<string, ProductDat
   const isinIdx = columnIndex('ISIN');
   const cusipIdx = columnIndex('CUSIP');
   const netTerIdx = columnIndex('Net Expense Ratio');
+  const grossTerIdx = columnIndex('Gross Expense Ratio');
   const secYieldIdx = columnIndex('30 Day SEC Yield');
   const secYieldUnsubIdx = columnIndex('30 Day SEC Yield (Unsubsidized)');
   const fundDivYieldIdx = columnIndex('Fund Dividend Yield');
@@ -784,6 +819,7 @@ export function parseProductDataSheet(bytes: Uint8Array): Map<string, ProductDat
     map.set(ticker, {
       isin: textOrNull(row[isinIdx]),
       cusip: textOrNull(row[cusipIdx]),
+      grossExpenseRatio: pairValue(row[grossTerIdx]),
       netExpenseRatio: pairValue(row[netTerIdx]),
       secYield: pairValue(row[secYieldIdx]),
       secYieldUnsubsidized: pairValue(row[secYieldUnsubIdx]),
@@ -902,7 +938,16 @@ export function deriveCatalogMetrics(
   const cagr3 = numberOrNull(monthEnd.yr3);
   const cagr5 = numberOrNull(monthEnd.yr5);
   const cagr10 = numberOrNull(monthEnd.yr10);
-  const siAnn = numberOrNull(monthEnd.sinceInception);
+  // Since-inception annualized only for funds with >= 1 year of history at the performance date.
+  const inception = toIsoDate(monthEnd.inceptionDate);
+  const performanceDate = toIsoDate(monthEnd.asOfDate);
+  const underOneYear = (() => {
+    if (!inception || !performanceDate) return false; // unknown dates: keep the published figure
+    const limit = new Date(`${inception}T00:00:00Z`);
+    limit.setUTCFullYear(limit.getUTCFullYear() + 1);
+    return limit.toISOString().slice(0, 10) > performanceDate;
+  })();
+  const siAnn = underOneYear ? null : numberOrNull(monthEnd.sinceInception);
   const indicatedDividendYield = indicatedYield(distribution, navValue);
   const officialDividendYield = productData?.fundDividendYield?.value ?? null;
   const dividendYieldIsOfficial = officialDividendYield !== null;
@@ -1052,14 +1097,32 @@ function normalizeCatalog(payload: JsonRecord): CatalogFund[] {
   return funds;
 }
 
+/**
+ * TER standard: `terValue` is the NET expense ratio (after waivers; the single published figure when there is
+ * no waiver), `terGrossValue` the GROSS one. SSGA's fund finder and the product-data workbook publish the gross
+ * ratio, the workbook also carries the net one.
+ */
+export function expenseRatios(
+  fund: { ter: string | null; terValue: number | null },
+  productData?: ProductDataRow | null,
+): { ter: string | null; terValue: number | null; terGross: string | null; terGrossValue: number | null } {
+  const gross = productData?.grossExpenseRatio?.value != null
+    ? productData.grossExpenseRatio
+    : { display: fund.ter, value: fund.terValue };
+  const net = productData?.netExpenseRatio?.value != null ? productData.netExpenseRatio : null;
+  const chosen = net ?? gross;
+  return { ter: chosen.display, terValue: chosen.value, terGross: gross.display, terGrossValue: gross.value };
+}
+
 function catalogFromIndex(previous: JsonRecord): CatalogFund[] {
   return (previous.funds || []).map((fund: JsonRecord) => ({
     ticker: sanitizeTicker(fund.ticker),
     name: String(fund.name ?? ''),
     fundPage: String(fund.fundPage ?? ''),
     category: String(fund.category ?? 'ETF'),
-    ter: fund.ter ?? null,
-    terValue: fund.terValue ?? null,
+    // The index carries the net ratio in ter/terValue; the catalog stores the gross one.
+    ter: fund.terGross ?? fund.ter ?? null,
+    terValue: fund.terGrossValue ?? fund.terValue ?? null,
     nav: fund.nav ?? null,
     navValue: fund.navValue ?? null,
     aum: fund.aum ?? null,
@@ -1117,12 +1180,16 @@ async function writeIfChanged(file: URL, value: unknown): Promise<boolean> {
   } catch {
     // New file.
   }
-  await mkdir(new URL('.', file).pathname, { recursive: true });
-  await writeFile(path, text, 'utf8');
+  await mkdir(decodeURIComponent(new URL('.', file).pathname), { recursive: true });
+  // Atomic: a crash mid-write never leaves a truncated JSON file behind.
+  const temp = `${path}.${process.pid}.tmp`;
+  await writeFile(temp, text, 'utf8');
+  await rename(temp, path);
   return true;
 }
 
-type PageManifest = { totalRows: number; pageSize: number; pageCount: number; pages: string[]; asOfDate?: string };
+type PageManifest = { totalRows: number; pageSize: number; pageCount: number; pages: string[]; asOfDate?: string; status?: 'ok' | 'empty' };
+type PagesResult = { manifest: PageManifest; kept: Set<string>; changed: boolean };
 
 async function writePages(
   fundDir: URL,
@@ -1131,45 +1198,82 @@ async function writePages(
   ticker: string,
   asOfDate: string | undefined,
   pageSize: number,
-): Promise<{ manifest: PageManifest; kept: Set<string> }> {
+): Promise<PagesResult> {
   const rows = table.rows.map((row) => Object.fromEntries(table.headers.map((header, index) => [header, row[index] ?? ''])));
   const pageCount = Math.max(1, Math.ceil(rows.length / pageSize));
   const pages: string[] = [];
   const kept = new Set<string>();
+  let changed = false;
   for (let page = 1; page <= pageCount; page += 1) {
     const fileName = `${pad3(page)}.json`;
-    await writeIfChanged(new URL(`${kind}/${fileName}`, fundDir), {
+    changed = (await writeIfChanged(new URL(`${kind}/${fileName}`, fundDir), {
       ticker,
       page,
       pageSize,
       totalRows: rows.length,
       headers: table.headers,
       rows: rows.slice((page - 1) * pageSize, page * pageSize),
-    });
+    })) || changed;
     pages.push(`./${kind}/${fileName}`);
     kept.add(fileName);
   }
   return {
     manifest: { totalRows: rows.length, pageSize, pageCount, pages, asOfDate: asOfDate || undefined },
     kept,
+    changed,
   };
 }
 
+/** Removes pages the new manifest no longer lists; call only AFTER the new meta.json is written. */
 async function removeStalePages(
   fundDir: URL,
   kind: 'holdings' | 'history' | 'premium-discount',
   kept: Set<string>,
-): Promise<void> {
+): Promise<boolean> {
   const dirPath = decodeURIComponent(new URL(`${kind}/`, fundDir).pathname);
   let entries: string[] = [];
   try {
     entries = await readdir(dirPath);
   } catch {
-    return;
+    return false;
   }
+  let removed = false;
   for (const entry of entries) {
-    if (!kept.has(entry)) await rm(`${dirPath}${entry}`, { force: true });
+    if (!kept.has(entry)) {
+      await rm(`${dirPath}${entry}`, { force: true });
+      removed = true;
+    }
   }
+  return removed;
+}
+
+/**
+ * A shorter HISTORY_RANGE window must not delete older published history: rows older than the new window are
+ * carried over from the pages already on disk, so the written history is the union (new window wins on overlap).
+ */
+export async function mergeOlderRows(fundDir: URL, kind: 'history' | 'premium-discount', table: SheetTable): Promise<SheetTable> {
+  const dateIndex = table.headers.findIndex((header) => header.toLowerCase() === 'date');
+  if (dateIndex < 0) return table;
+  const dates = table.rows.map((row) => historyDate(row[dateIndex] ?? '')).filter((date): date is number => date !== null);
+  if (!dates.length) return table;
+  const oldest = Math.min(...dates);
+  const descending = (historyDate(table.rows[0]?.[dateIndex] ?? '') ?? 0) >= (historyDate(table.rows[table.rows.length - 1]?.[dateIndex] ?? '') ?? 0);
+  const dirPath = decodeURIComponent(new URL(`${kind}/`, fundDir).pathname);
+  let names: string[] = [];
+  try { names = (await readdir(dirPath)).filter((name) => /^\d+\.json$/.test(name)).sort(); } catch { return table; }
+  const older: string[][] = [];
+  for (const name of names) {
+    let page: JsonRecord;
+    try { page = JSON.parse(await readFile(`${dirPath}${name}`, 'utf8')); } catch { continue; }
+    if (JSON.stringify(page.headers) !== JSON.stringify(table.headers)) return table;
+    for (const row of page.rows || []) {
+      const cells = table.headers.map((header) => String(row?.[header] ?? ''));
+      const date = historyDate(cells[dateIndex]);
+      if (date !== null && date < oldest) older.push(cells);
+    }
+  }
+  if (!older.length) return table;
+  return { headers: table.headers, rows: descending ? [...table.rows, ...older] : [...older, ...table.rows] };
 }
 
 // ---------------------------------------------------------------------------
@@ -1186,19 +1290,32 @@ async function readUpdateState(): Promise<UpdateState | null> {
   }
 }
 
-async function writeUpdateState(config: UpdaterConfig, lastProcessedTicker: string | null): Promise<void> {
-  const state: UpdateState = {
-    version: 1,
-    scope: {
-      tickers: config.tickers,
-      aumRange: config.aumRange?.source ?? null,
-      terRange: config.terRange ? `${config.terRange.min ?? ''}:${config.terRange.max ?? ''}` : null,
-      performanceRanges: config.performanceRanges,
-      totalReturnRanges: config.totalReturnRanges,
-    },
-    lastProcessedTicker,
+/** The filter set a cursor belongs to; a cursor saved under another filter set is ignored. */
+function cursorScope(config: UpdaterConfig): JsonRecord {
+  const range = (value?: Range): string | null => (value ? `${value.min ?? ''}:${value.max ?? ''}` : null);
+  return {
+    aumRange: config.aumRange?.source ?? null,
+    terRange: range(config.terRange),
+    dividendYieldRange: range(config.dividendYieldRange),
+    secYieldRange: range(config.secYieldRange),
+    performanceRanges: config.performanceRanges,
+    totalReturnRanges: config.totalReturnRanges,
   };
+}
+
+async function writeUpdateState(config: UpdaterConfig, lastProcessedTicker: string | null): Promise<void> {
+  const state: UpdateState = { version: 1, scope: cursorScope(config), lastProcessedTicker };
   await writeIfChanged(STATE_FILE, state);
+}
+
+/**
+ * Bounded-run order: the selected funds (already filtered, sorted by ticker) rotated to start right after the
+ * cursor ticker, wrapping around. The cursor ticker need not be selected any more.
+ */
+export function rotateAfterCursor<T extends { ticker: string }>(selected: T[], lastProcessedTicker: string | null): T[] {
+  if (!lastProcessedTicker) return selected;
+  const start = selected.findIndex((fund) => fund.ticker.localeCompare(lastProcessedTicker) > 0);
+  return start <= 0 ? selected : [...selected.slice(start), ...selected.slice(0, start)];
 }
 
 // ---------------------------------------------------------------------------
@@ -1221,10 +1338,10 @@ async function fetchXlsx(url: string, label: string): Promise<{ bytes: Uint8Arra
   return { bytes, rows: parseXlsxSheet(bytes, loadSharedStrings(bytes)) };
 }
 
-function catalogFiltersPass(fund: CatalogFund, config: UpdaterConfig): boolean {
+function catalogFiltersPass(fund: CatalogFund, config: UpdaterConfig, productData?: ProductDataRow | null): boolean {
   if (config.tickers.length && !config.tickers.includes(fund.ticker)) return false;
   if (!matchesRange(fund.aumValue, config.aumRange, Boolean((config.aumRange as any)?.maxExclusive))) return false;
-  if (!matchesRange(fund.terValue, config.terRange)) return false;
+  if (!matchesRange(expenseRatios(fund, productData).terValue, config.terRange)) return false;
   return true;
 }
 
@@ -1267,8 +1384,6 @@ async function processFund(
   distribution: JsonRecord | undefined,
   productData: ProductDataRow | undefined,
   config: UpdaterConfig,
-  index: number,
-  total: number,
 ): Promise<FundResult> {
   const { ticker } = fund;
   const fundDir = new URL(`funds/${ticker}/`, API_ROOT);
@@ -1277,57 +1392,59 @@ async function processFund(
     const historyUrl = `${FUND_DATA_BASE}/navhist-us-en-${ticker.toLowerCase()}.xlsx`;
     const pdHistUrl = `${FUND_DATA_BASE}/pdhist-us-en-${ticker.toLowerCase()}.xlsx`;
 
+    // Phase 1: fetch and compute everything in memory. Any failure here leaves the fund exactly as published before.
     const holdingsResponse = await fetchWithRetry(holdingsUrl, `[fetch  ] ${ticker} holdings`);
+    let holdingsBytes: Uint8Array | null = null;
+    let holdings: { meta: JsonRecord; table: SheetTable } = { meta: {}, table: { headers: [], rows: [] } };
     if (holdingsResponse.status === 404) {
-      // Commodity trusts (GLD, SLV, ...) do not publish a holdings spreadsheet.
-      return { ticker, status: 'skipped', reason: 'no holdings file', changed: false };
-    }
-    if (!holdingsResponse.ok) {
+      // Commodity trusts (GLD, GLDM, ...) hold metal, not securities, and publish no holdings workbook: valid, status "empty".
+      // But a 404 for a fund that published holdings before is treated as a failure so published rows are kept.
+      const previousMeta = await readFile(decodeURIComponent(new URL('meta.json', fundDir).pathname), 'utf8').then(JSON.parse).catch(() => null);
+      if ((previousMeta?.holdings?.totalRows ?? 0) > 0) throw new Error('holdings: 404 for a fund with published holdings, keeping the previous data');
+    } else if (!holdingsResponse.ok) {
       throw new Error(`holdings: ${holdingsResponse.status} ${holdingsResponse.statusText}`);
+    } else {
+      holdingsBytes = new Uint8Array(await holdingsResponse.arrayBuffer());
+      holdings = sheetToTable(parseXlsxSheet(holdingsBytes, loadSharedStrings(holdingsBytes)), 'holdings');
     }
-    const holdingsBytes = new Uint8Array(await holdingsResponse.arrayBuffer());
-    const holdings = sheetToTable(parseXlsxSheet(holdingsBytes, loadSharedStrings(holdingsBytes)), 'holdings');
 
     const history = await fetchXlsx(historyUrl, `[fetch  ] ${ticker} navhist`);
     const historyTable = sheetToTable(history.rows, 'history');
     historyTable.table = applyHistoryRange(historyTable.table, config.historyRange);
+    if (config.historyRange !== 'max') historyTable.table = await mergeOlderRows(fundDir, 'history', historyTable.table);
 
     // Not every fund publishes a daily Premium/Discount history workbook.
     const pdHistResponse = await fetchWithRetry(pdHistUrl, `[fetch  ] ${ticker} pdhist`);
     let pdHistBytes: Uint8Array | null = null;
-    let premiumDiscountResult: { manifest: PageManifest; kept: Set<string> } | null = null;
+    let pdTable: SheetTable | null = null;
     if (pdHistResponse.status === 404) {
-      // no-op: leave premiumDiscountResult null.
+      // no-op: no premium/discount workbook for this fund.
     } else if (!pdHistResponse.ok) {
       throw new Error(`pdhist: ${pdHistResponse.status} ${pdHistResponse.statusText}`);
     } else {
       pdHistBytes = new Uint8Array(await pdHistResponse.arrayBuffer());
-      const pdTable = sheetToTable(parseXlsxSheet(pdHistBytes, loadSharedStrings(pdHistBytes)), 'premium-discount');
-      pdTable.table = applyHistoryRange(pdTable.table, config.historyRange);
-      premiumDiscountResult = await writePages(
-        fundDir,
-        'premium-discount',
-        pdTable.table,
-        ticker,
-        pdTable.table.rows[0]?.[0],
-        config.historyPageSize,
-      );
-      await removeStalePages(fundDir, 'premium-discount', premiumDiscountResult.kept);
+      pdTable = sheetToTable(parseXlsxSheet(pdHistBytes, loadSharedStrings(pdHistBytes)), 'premium-discount').table;
+      pdTable = applyHistoryRange(pdTable, config.historyRange);
+      if (config.historyRange !== 'max') pdTable = await mergeOlderRows(fundDir, 'premium-discount', pdTable);
     }
 
+    // Phase 2: write once. Pages first, then meta.json, then stale pages are removed.
     if (config.storeRawDownloads) {
-      const rawDir = new URL('raw/', API_ROOT).pathname;
+      const rawDir = decodeURIComponent(new URL('raw/', API_ROOT).pathname);
       await mkdir(rawDir, { recursive: true });
-      await writeFile(`${rawDir}${ticker}-holdings.xlsx`, holdingsBytes);
+      if (holdingsBytes) await writeFile(`${rawDir}${ticker}-holdings.xlsx`, holdingsBytes);
       await writeFile(`${rawDir}${ticker}-navhist.xlsx`, history.bytes);
       if (pdHistBytes) await writeFile(`${rawDir}${ticker}-pdhist.xlsx`, pdHistBytes);
     }
 
+    const premiumDiscountResult = pdTable
+      ? await writePages(fundDir, 'premium-discount', pdTable, ticker, pdTable.rows[0]?.[0], config.historyPageSize)
+      : null;
     const holdingsResult = await writePages(fundDir, 'holdings', holdings.table, ticker, holdings.meta.asOfDate, config.holdingsPageSize);
+    holdingsResult.manifest.status = holdings.table.rows.length ? 'ok' : 'empty';
     const historyResult = await writePages(fundDir, 'history', historyTable.table, ticker, historyTable.meta.asOfDate, config.historyPageSize);
-    await removeStalePages(fundDir, 'holdings', holdingsResult.kept);
-    await removeStalePages(fundDir, 'history', historyResult.kept);
 
+    const ratios = expenseRatios(fund, productData);
     const meta = {
       ticker,
       name: fund.name,
@@ -1341,7 +1458,8 @@ async function processFund(
         productDataDownload: PRODUCT_DATA_URL,
         factsheet: fund.factsheetUrl,
       },
-      expenseRatio: { display: fund.ter, value: fund.terValue },
+      // value = net expense ratio (gross when no waiver is published); gross is always listed alongside
+      expenseRatio: { display: ratios.ter, value: ratios.terValue, gross: { display: ratios.terGross, value: ratios.terGrossValue } },
       netExpenseRatio: productData?.netExpenseRatio ?? { display: null, value: null },
       nav: { display: fund.nav, value: fund.navValue, asOfDate: fund.asOfDate },
       aum: { display: fund.aum, value: fund.aumValue, asOfDate: fund.asOfDate },
@@ -1354,7 +1472,11 @@ async function processFund(
       history: historyResult.manifest,
       premiumDiscountHistory: premiumDiscountResult ? premiumDiscountResult.manifest : null,
     };
-    const changed = await writeIfChanged(new URL('meta.json', fundDir), meta);
+    const metaChanged = await writeIfChanged(new URL('meta.json', fundDir), meta);
+    let changed = metaChanged || holdingsResult.changed || historyResult.changed || Boolean(premiumDiscountResult?.changed);
+    for (const [kind, result] of [['holdings', holdingsResult], ['history', historyResult], ['premium-discount', premiumDiscountResult]] as const) {
+      if (result && (await removeStalePages(fundDir, kind, result.kept))) changed = true;
+    }
 
     return { ticker, status: changed ? 'updated' : 'unchanged', changed };
   } catch (error) {
@@ -1464,77 +1586,96 @@ export async function main(env: Record<string, string | undefined> = process.env
     }
   })();
 
-  const eligible = catalog.filter((fund) => catalogFiltersPass(fund, config));
-  outputPrintFilter(eligible.length, catalog.length, outputHasOutputFilters(config));
+  const unknownTickers = config.tickers.filter((ticker) => !catalog.some((fund) => fund.ticker === ticker));
+  if (unknownTickers.length) throw new Error(`TICKERS: unknown ticker(s) ${unknownTickers.join(', ')} (not in the SPDR catalog)`);
 
-  // Bounded runs continue after the committed cursor (deterministic ticker order).
-  const state = await readUpdateState();
-  let ordered = eligible;
-  if (config.maxFetches > 0 && state?.lastProcessedTicker) {
-    const cursor = ordered.findIndex((fund) => fund.ticker === state.lastProcessedTicker);
-    if (cursor >= 0) ordered = [...ordered.slice(cursor + 1), ...ordered.slice(0, cursor + 1)];
+  const previousRows = new Map<string, JsonRecord>((previousIndex?.funds || []).map((row: JsonRecord) => [row.ticker, row]));
+  if (previousRows.size) {
+    const newFunds = catalog.map((fund) => fund.ticker).filter((ticker) => !previousRows.has(ticker));
+    if (newFunds.length) {
+      console.log(`NEW FUNDS: ${newFunds.join(', ')}`);
+      if (process.env.GITHUB_STEP_SUMMARY) await appendFile(process.env.GITHUB_STEP_SUMMARY, `### NEW FUNDS\n\n${newFunds.join(', ')}\n`, 'utf8');
+    }
   }
+
+  // Every filter is applied before the cursor, so a bounded run counts only funds that pass the filters.
+  // Return filters exclude funds with null for a bounded range (matchesRange treats null as no match).
+  const selected = catalog.filter(
+    (fund) =>
+      catalogFiltersPass(fund, config, productData.get(fund.ticker)) &&
+      returnFiltersPass(fund, config) &&
+      yieldFiltersPass(deriveCatalogMetrics(fund.monthEnd, fund.navValue, distributions.get(fund.ticker), productData.get(fund.ticker)), config),
+  );
+  outputPrintFilter(selected.length, catalog.length);
+
+  // Bounded runs continue after the committed cursor (deterministic ticker order), only for the same filter set.
+  const state = await readUpdateState();
+  const cursorUsable = state !== null && outputContentKey(state.scope) === outputContentKey(cursorScope(config));
+  const ordered = config.maxFetches > 0 && cursorUsable ? rotateAfterCursor(selected, state!.lastProcessedTicker) : selected;
   const batch = config.maxFetches > 0 ? ordered.slice(0, config.maxFetches) : ordered;
 
   const output = outputCreateReporter(API_ROOT, batch.length);
   const results: FundResult[] = [];
   let cursorIndex = 0;
+  let deadlineHit = false;
   async function worker(): Promise<void> {
     for (;;) {
+      if (Date.now() - startedAt > softDeadlineMs) {
+        deadlineHit = true;
+        return;
+      }
       const index = cursorIndex++;
       if (index >= batch.length) return;
       const fund = batch[index];
       const before = await output.before(fund.ticker);
-      if (!returnFiltersPass(fund, config)) {
-        await output.result(fund.ticker, before, 'skipped', 'return filter');
-        results.push({ ticker: fund.ticker, status: 'skipped', reason: 'return filter', changed: false });
-        continue;
-      }
-      if (!yieldFiltersPass(deriveCatalogMetrics(fund.monthEnd, fund.navValue, distributions.get(fund.ticker), productData.get(fund.ticker)), config)) {
-        await output.result(fund.ticker, before, 'skipped', 'yield filter');
-        results.push({ ticker: fund.ticker, status: 'skipped', reason: 'yield filter', changed: false });
-        continue;
-      }
-      const result = await processFund(fund, distributions.get(fund.ticker), productData.get(fund.ticker), config, index, batch.length);
+      const result = await processFund(fund, distributions.get(fund.ticker), productData.get(fund.ticker), config);
       results.push(result);
       await output.result(fund.ticker, before, result.status === 'failed' || result.status === 'skipped' ? result.status : undefined, result.reason);
     }
   }
   await Promise.all(Array.from({ length: Math.max(1, config.concurrency) }, () => worker()));
+  const taken = Math.min(cursorIndex, batch.length);
+  if (deadlineHit) console.warn(`[ ${'deadline'.padEnd(9)}] soft deadline reached; ${batch.length - results.length} selected funds not started, index still written`);
 
-  // Live counts from disk for processed funds; previous counts otherwise.
-  const counts = new Map<string, { holdings: number; history: number; premiumDiscount: number }>();
-  for (const result of results) {
-    if (result.status === 'failed' || result.status === 'skipped') continue;
+  // Live details from disk for refreshed funds.
+  const refreshed = new Set(results.filter((result) => result.status === 'updated' || result.status === 'unchanged').map((result) => result.ticker));
+  const fileExists = (path: string): Promise<boolean> => access(path).then(() => true, () => false);
+  const metaPath = (ticker: string): string => decodeURIComponent(new URL(`funds/${ticker}/meta.json`, API_ROOT).pathname);
+  const counts = new Map<string, { holdings: number; history: number; premiumDiscount: number; holdingsStatus: string | null }>();
+  for (const ticker of refreshed) {
     try {
-      const meta = JSON.parse(
-        await readFile(decodeURIComponent(new URL(`funds/${result.ticker}/meta.json`, API_ROOT).pathname), 'utf8'),
-      );
-      counts.set(result.ticker, {
+      const meta = JSON.parse(await readFile(metaPath(ticker), 'utf8'));
+      counts.set(ticker, {
         holdings: meta.holdings?.totalRows ?? 0,
         history: meta.history?.totalRows ?? 0,
         premiumDiscount: meta.premiumDiscountHistory?.totalRows ?? 0,
+        holdingsStatus: meta.holdings?.status ?? null,
       });
     } catch {
       // Keep previous counts.
     }
   }
 
-  const indexFunds = catalog.map((fund) => {
-    const previous = previousIndex?.funds?.find((entry: JsonRecord) => entry.ticker === fund.ticker) || {};
+  const freshRow = async (fund: CatalogFund): Promise<JsonRecord> => {
+    const previous = previousRows.get(fund.ticker) || {};
     const live = counts.get(fund.ticker);
     const distribution = distributions.get(fund.ticker);
     const productRow = productData.get(fund.ticker);
+    const ratios = expenseRatios(fund, productRow);
     return {
       ticker: fund.ticker,
       name: fund.name,
       category: fund.category,
       fundPage: fund.fundPage,
-      dataFile: `./funds/${fund.ticker}/meta.json`,
+      // null (never a dangling path) when the fund has no funds/<T>/meta.json
+      dataFile: (await fileExists(metaPath(fund.ticker))) ? `./funds/${fund.ticker}/meta.json` : null,
       isin: productRow?.isin ?? previous.isin ?? null,
       cusip: productRow?.cusip ?? previous.cusip ?? null,
-      ter: fund.ter,
-      terValue: fund.terValue,
+      // terValue = net expense ratio (the single figure when no waiver), terGrossValue = gross
+      ter: ratios.ter,
+      terValue: ratios.terValue,
+      terGross: ratios.terGross,
+      terGrossValue: ratios.terGrossValue,
       netExpenseRatio: productRow?.netExpenseRatio ?? previous.netExpenseRatio ?? null,
       nav: fund.nav,
       navValue: fund.navValue,
@@ -1553,14 +1694,28 @@ export async function main(env: Record<string, string | undefined> = process.env
       metrics: deriveCatalogMetrics(fund.monthEnd, fund.navValue, distribution, productRow),
       returns: { monthEnd: fund.monthEnd, quarterEnd: fund.quarterEnd },
       holdings: live?.holdings ?? previous.holdings ?? 0,
+      holdingsStatus: live?.holdingsStatus ?? previous.holdingsStatus ?? null,
       history: live?.history ?? previous.history ?? 0,
       premiumDiscountHistory: live?.premiumDiscount ?? previous.premiumDiscountHistory ?? 0,
     };
-  });
+  };
 
-  const anyChanged = results.some((result) => result.changed);
+  // Fund-level consistency: a refreshed fund gets a fresh row; any other fund keeps its previous row untouched
+  // (never a new return next to stale files). Funds with a meta.json that left the catalog stay listed.
+  const indexFunds: JsonRecord[] = [];
+  const catalogTickers = new Set(catalog.map((fund) => fund.ticker));
+  for (const fund of catalog) {
+    const previous = previousRows.get(fund.ticker);
+    if (refreshed.has(fund.ticker) || !previous) indexFunds.push(await freshRow(fund));
+    else indexFunds.push({ ...previous, dataFile: (await fileExists(metaPath(fund.ticker))) ? `./funds/${fund.ticker}/meta.json` : null });
+  }
+  for (const [ticker, previous] of previousRows) {
+    if (!catalogTickers.has(ticker) && (await fileExists(metaPath(ticker)))) indexFunds.push(previous);
+  }
+  indexFunds.sort((a, b) => String(a.ticker).localeCompare(String(b.ticker)));
+
   const indexPayload = {
-    generatedAt: anyChanged ? new Date().toISOString() : previousIndex?.generatedAt || new Date().toISOString(),
+    generatedAt: previousIndex?.generatedAt || '',
     source: {
       provider: 'SSGA / State Street (SPDR)',
       market: 'us',
@@ -1576,10 +1731,15 @@ export async function main(env: Record<string, string | undefined> = process.env
     },
     funds: indexFunds,
   };
+  // The stamp moves only when some content moved, so an identical rerun leaves a zero git diff.
+  if (!previousIndex || outputContentKey(indexPayload) !== outputContentKey(previousIndex) || !indexPayload.generatedAt) {
+    indexPayload.generatedAt = new Date().toISOString().replace(/\.\d{3}Z$/, 'Z');
+  }
   const indexChanged = await writeIfChanged(INDEX_FILE, indexPayload);
 
-  if (config.maxFetches > 0 && batch.length) {
-    await writeUpdateState(config, batch[batch.length - 1]?.ticker ?? null);
+  // A TICKERS run must never overwrite the cursor of the real bounded rotation.
+  if (config.maxFetches > 0 && taken > 0 && !config.tickers.length) {
+    await writeUpdateState(config, batch[taken - 1]?.ticker ?? null);
   }
 
   const failed = results.filter((result) => result.status === 'failed').length;
@@ -1597,6 +1757,7 @@ export async function main(env: Record<string, string | undefined> = process.env
       'utf8',
     );
   }
+  if (results.length > 0 && failed === results.length) throw new Error(`all ${failed} selected funds failed`);
 }
 
 // ---------------------------------------------------------------------------

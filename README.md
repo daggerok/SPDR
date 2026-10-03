@@ -42,13 +42,21 @@ Each fund carries a derived `metrics` object that powers the catalog columns sha
 - `ytd` / `tr1y` - official YTD and 1-year returns -> *YTD Return*, *TR 1Y*
 - `cagr3y` / `cagr5y` / `cagr10y` - published annualized 3Y/5Y/10Y figures -> *CAGR 3Y/5Y/10Y*
 - `tr3y` / `tr5y` / `tr10y` - cumulative 3Y/5Y/10Y figures `(1 + CAGR)^n - 1` -> *TR 3Y/5Y/10Y*
-- `siAnn` - since-inception annualized -> *SI Ann.*
-- `dividendYield` - 12-month trailing yield or indicated yield (latest distribution x frequency / price), an estimate derived from SSGA data
+- `siAnn` - since-inception annualized -> *SI Ann.*; `null` for funds with less than one year of history at the performance date
+- `dividendYield` - official SSGA Fund Dividend Yield, else an indicated yield (latest distribution x payments per year / price; semi-annual = 2), an estimate derived from SSGA data. HECO, XITK and XSW publish an official `0.00%`, which is kept as `0` (a real zero, not a missing value)
 - `secYield` - official 30-day SEC yield when published; unavailable otherwise, never `0`
 - `returnsBasis` - always a non-empty label of how the returns are computed: official SSGA month-end NAV total returns, with `tr3y`/`tr5y`/`tr10y` derived from the official annualized figures; no Yahoo or market-price estimates
 - `performanceAsOf` - ISO `YYYY-MM-DD` date of SSGA's month-end performance table the returns are as of (not the NAV date); `null` when SSGA publishes no performance yet (very young funds)
 
-`returnsBasis` and `performanceAsOf` are always the last two keys of `metrics`.
+`returnsBasis` and `performanceAsOf` are always the last two keys of `metrics`. Funds launched within the last few months (for example MYCP, MYHF, MYML, QNDX, UCBG) have `performanceAsOf: null` because SSGA has not published a performance table for them yet.
+
+Expense ratio: `terValue` / `ter` are the NET expense ratio (after waivers; the single published figure when there is no waiver), `terGrossValue` / `terGross` the gross ratio. Both come from the product-data workbook ("Gross Expense Ratio", "Net Expense Ratio"), with the fund finder expense ratio as the gross fallback. The `TER` filter uses the net value.
+
+Sources and scope: SPDR has no Yahoo Finance and no SEC EDGAR source. Everything comes from SSGA's own files, so there is no `SKIP_YAHOO`, `EDGAR_FALLBACK` or `SEC_UA` control. Yields are the official 30-day SEC yield and Fund Dividend Yield from SSGA's product-data workbook.
+
+Commodity trusts such as GLD and GLDM hold metal and publish no holdings workbook. That is valid: they get `meta.json`, NAV, returns and history, with holdings `status: "empty"` (`holdingsStatus` in `index.json`). A fund that published holdings before is never emptied by a transient 404.
+
+Consistency: each fund is fetched and computed completely in memory, then written once (pages, then `meta.json`, then stale pages are removed; every JSON file is written through a temp file and renamed). If any required file of a fund fails to download, that fund keeps its previous `meta.json`, pages and `index.json` row together, so the workflow never publishes a new return next to stale files. A fund without `funds/<T>/meta.json` has `dataFile: null` in `index.json`. A rerun with identical upstream data changes nothing, and `generatedAt` moves only when content moved. Newly discovered funds are announced as `NEW FUNDS: A, B` in the run output and in the job summary. Every request times out after 45 s (headers and body) and is retried per `MAX_RETRIES`; the run stops starting new funds after 25 minutes and still writes the index; it exits non-zero when every selected fund failed.
 
 Returns come from SSGA's own NAV series: `PERFORMANCE_*` filters use month-end NAV returns and `TOTAL_RETURN_*` filters use the separate quarter-end series (3Y/5Y/10Y are annualized CAGR). `DIVIDEND_YIELD` and `SEC_YIELD` filters use the same `metrics` values. There are no market-price or Yahoo estimates in this feed, and no ticker exclusions. Funds not selected for a successful update keep their prior published metadata and data files. `TICKERS` combines with the other filters using AND logic; it does not override them.
 
@@ -58,19 +66,19 @@ Every control is in `scripts/update-data.config.json`; the table shows the shipp
 
 | Control | Default | Meaning |
 | --- | --: | --- |
-| `MAX_FETCHES` | `0` | Batch size: with a positive value the updater continues after the committed cursor in `api/spdr/update-state.json`; `0` is a full pass, every fund is refreshed in one run |
+| `MAX_FETCHES` | `0` | Batch size: with a positive value the updater continues after the committed cursor in `api/spdr/update-state.json` (funds passing every filter only, wrapping around; a cursor saved under other filters is ignored and a `TICKERS` run never writes it); `0` is a full pass, every fund is refreshed in one run |
 | `REQUEST_SLEEP` | `1` | Minimum delay in seconds between outgoing request starts, including retries |
 | `CONCURRENCY` | `2` | Number of parallel fund update workers; request starts are still spaced by `REQUEST_SLEEP` |
 | `AUM` | `:` | Net Assets range; each bound may be a USD amount, a `K`/`M`/`B`/`T` amount, or one of `nano`, `micro`, `small`, `mid`, `large` |
-| `TER` | `:` | Gross expense ratio range in % (strict `min:max`) |
+| `TER` | `:` | Net expense ratio range in % (strict `min:max`; gross when no waiver is published) |
 | `DIVIDEND_YIELD` | `:` | Dividend yield range in % (strict `min:max`); official Fund Dividend Yield, else the indicated yield from the latest distribution; funds without a value fail a bounded range |
 | `SEC_YIELD` | `:` | Official 30-day SEC yield range in % (strict `min:max`); funds without a published value fail a bounded range |
-| `TICKERS` | empty (all) | Space-, comma- or semicolon-separated ticker allowlist, e.g. `SPY SPYG SPYD SDY XLK` |
+| `TICKERS` | empty (all) | Space-, comma- or semicolon-separated ticker allowlist, e.g. `SPY SPYG SPYD SDY XLK`; a ticker that is not in the SPDR catalog is an error |
 | `HOLDINGS_PAGE_SIZE` | `250` | Rows in each generated current-holdings JSON page |
 | `HISTORY_PAGE_SIZE` | `1000` | Rows in each generated daily-history JSON page |
-| `HISTORY_RANGE` | `max` | Window for the generated NAV and premium/discount history: `max`, `Ny` or `Nmo` counted back from the newest row (for example `5y`, `18mo`); SSGA serves the full workbook, so the window trims the generated pages, not the download |
+| `HISTORY_RANGE` | `max` | Window for the generated NAV and premium/discount history: `max`, `Ny` or `Nmo` counted back from the newest row (for example `5y`, `18mo`); SSGA serves the full workbook, so the window trims the generated pages, not the download; older rows already published are kept, a shorter window never deletes history |
 | `STORE_RAW_DOWNLOADS` | `false` | Keep the latest source XLSX files under `api/spdr/raw` |
-| `MAX_RETRIES` | `2` | Retries after the initial request, integer >= 1; network errors and HTTP 408/425/429/5xx are retried with exponential backoff |
+| `MAX_RETRIES` | `2` | Retries after the initial request, integer >= 1; network errors, 45 s timeouts and HTTP 408/425/429/5xx are retried with exponential backoff |
 | `VERBOSE` | `false` | Print per-fund retry and fallback notices |
 | `USE_SYSTEM_CA` | `auto` | TLS trust store: `auto` restarts the updater once with Bun's `--use-system-ca` when a request fails with an untrusted-certificate error; `true` always uses the system CA store; `false` never restarts. Not an individual workflow input: use `advanced`, the config file or the CLI environment. |
 | `PERFORMANCE_YTD` / `_1Y` / `_3Y` / `_5Y` / `_10Y` | `:` | Month-end NAV return range in %; 3Y/5Y/10Y are CAGR; the colon is required (`5:`, `:20`, `5:20`) |
