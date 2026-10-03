@@ -3,7 +3,10 @@
 // so the test suite stays dependency-free like the updater itself.
 /// <reference types="bun" />
 import { describe, expect, test } from 'bun:test';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync, statSync, mkdtempSync, existsSync, writeFileSync, mkdirSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import {
   CONTROL_NAMES,
   installSystemCa,
@@ -25,6 +28,16 @@ import {
   RETURNS_BASIS,
   toIsoDate,
   parseProductDataSheet,
+  main,
+  setApiRoot,
+  setRequestTimeoutMs,
+  setSoftDeadlineMs,
+  configurePacing,
+  paceRequests,
+  fetchWithRetry,
+  mergeOlderRows,
+  rotateAfterCursor,
+  expenseRatios,
 } from './update-data';
 
 // ---------------------------------------------------------------------------
@@ -176,6 +189,9 @@ describe('parseAumRange', () => {
   test('numeric bounds with K/M/B/T suffixes', () => {
     expect(parseAumRange('300M:2B')).toEqual({ source: '300M:2B', min: 300_000_000, max: 2_000_000_000, maxExclusive: false });
     expect(parseAumRange('1T:')).toBeDefined();
+    // a lone lower amount must not become the upper bound as well
+    expect(parseAumRange('1M:')).toEqual({ source: '1M:', min: 1_000_000 });
+    expect(parseAumRange(':2B')!.min).toBeUndefined();
   });
 
   test('preset bounds', () => {
@@ -727,4 +743,303 @@ test('installSystemCa: false/active leave fetch alone, true restarts, auto wraps
     await expect(fetch('http://x.test')).rejects.toThrow('reexec');
     expect(calls).toBe(1);
   } finally { globalThis.fetch = original; }
+});
+
+// ---------------------------------------------------------------------------
+// Pipeline with a mocked SSGA (offline): pacing, timeouts, GLD, history, writes, cursor
+// ---------------------------------------------------------------------------
+
+const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const dmy = (time: number) => { const d = new Date(time); return `${String(d.getUTCDate()).padStart(2, '0')}-${MON[d.getUTCMonth()]}-${d.getUTCFullYear()}`; };
+const DAY = 86400000;
+const NEWEST = Date.UTC(2026, 8, 30);
+const historySheet = (ticker: string, rows: number) => [['Fund Name:', `${ticker} fund`], ['Ticker Symbol:', ticker], [''], ['Date', 'NAV', 'Shares Outstanding', 'Total Net Assets'],
+  ...Array.from({ length: rows }, (_, i) => [dmy(NEWEST - i * 2 * DAY), String(100 + i / 10), '1', '1'])];
+const pdSheet = (rows: number) => [['Date', 'Premium/Discount'], ...Array.from({ length: rows }, (_, i) => [dmy(NEWEST - i * 2 * DAY), '0.01'])];
+const holdingsSheet = (ticker: string) => [['Fund Name:', `${ticker} fund`], ['Ticker Symbol:', ticker], ['As of', '30-Sep-2026'], ['Name', 'Identifier', 'Weight', 'Sector', 'Shares Held'], ['ACME', 'AC1', '50', 'Tech', '10']];
+const productSheet = [['Ticker', 'ISIN', 'CUSIP', 'Gross Expense Ratio', '* Net Expense Ratio', '30 Day SEC Yield', '30 Day SEC Yield (Unsubsidized)', 'Fund Dividend Yield', 'Index Dividend Yield'],
+  ['SPY', 'US1', 'C1', '0.0945%', '0.0800%', '0.95%', '-', '1.00%', '1.10%'], ['XLK', 'US2', 'C2', '0.08%', '-', '-', '-', '0.55%', '0.60%'], ['GLD', 'US3', 'C3', '0.40%', '-', '-', '-', '0.00%', '-']];
+
+type Mock = { tickers: string[]; nav: Record<string, number>; hist: number; failNavhist: Set<string>; latency: number; inflight: number; peak: number; starts: number[] };
+function fundRecord(ticker: string, nav: number, inception = 'Jan 22 1993') {
+  const record: Record<string, unknown> = { fundTicker: ticker, fundName: `${ticker} ETF`, fundUri: `/etfs/${ticker.toLowerCase()}`, ter: ['0.10%', 0.1], nav: [`$${nav}`, nav], aum: ['$1,000 M', 1000], asOfDate: ['Sep 30 2026', 0], closePrice: ['$1', 1], premiumDiscount: ['0.01%', 0.01], inceptionDate: [inception, 0] };
+  for (const [suffix, date] of [['', 'Aug 31 2026'], ['_1', 'Jun 30 2026']]) {
+    record[`PerfAsOf${suffix}`] = [date, 0];
+    for (const key of ['mo1', 'qtd', 'ytd', 'yr1', 'yr3', 'yr5', 'yr10', 'sinceInception']) record[`${key}${suffix}`] = ['5.00%', 5];
+  }
+  return record;
+}
+function installMock(overrides: Partial<Mock> = {}): { mock: Mock; restore: () => void } {
+  const mock: Mock = { tickers: ['SPY', 'XLK', 'GLD'], nav: { SPY: 500, XLK: 200, GLD: 300 }, hist: 300, failNavhist: new Set(), latency: 0, inflight: 0, peak: 0, starts: [], ...overrides };
+  const original = globalThis.fetch;
+  globalThis.fetch = (async (input: unknown) => {
+    const url = String(input);
+    mock.starts.push(Date.now()); mock.inflight++; mock.peak = Math.max(mock.peak, mock.inflight);
+    try {
+      if (mock.latency) await new Promise((resolve) => setTimeout(resolve, mock.latency));
+      const xlsx = (rows: string[][]) => new Response(buildXlsx(rows));
+      if (url.includes('fundfinder')) return Response.json({ data: { funds: { etfs: { categories: [], datas: mock.tickers.map((t) => fundRecord(t, mock.nav[t])) } } } });
+      if (url.includes('dividend-distribution')) return Response.json({ data: [] });
+      if (url.includes('product-data')) return xlsx(productSheet);
+      const match = /(holdings-daily|navhist|pdhist)-us-en-([a-z]+)\.xlsx/.exec(url);
+      if (!match) return new Response('no', { status: 404 });
+      const ticker = match[2].toUpperCase();
+      if (match[1] === 'holdings-daily') return ticker === 'GLD' ? new Response('nf', { status: 404 }) : xlsx(holdingsSheet(ticker));
+      if (match[1] === 'navhist') return mock.failNavhist.has(ticker) ? new Response('err', { status: 500 }) : xlsx(historySheet(ticker, mock.hist));
+      return xlsx(pdSheet(mock.hist));
+    } finally { mock.inflight--; }
+  }) as unknown as typeof fetch;
+  return { mock, restore: () => { globalThis.fetch = original; } };
+}
+const tempRoot = () => { const dir = mkdtempSync(join(tmpdir(), 'spdr-test-')); setApiRoot(pathToFileURL(`${dir}/`)); return dir; };
+const readJson = (dir: string, path: string) => JSON.parse(readFileSync(join(dir, path), 'utf8'));
+const listFiles = (dir: string, prefix = ''): string[] =>
+  readdirSync(join(dir, prefix), { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? listFiles(dir, `${prefix}${e.name}/`) : [`${prefix}${e.name}`]));
+const runMain = async (env: Record<string, string> = {}) => {
+  const logs: string[] = [];
+  const log = console.log; console.log = (...args: unknown[]) => { logs.push(args.join(' ')); };
+  try { await main({ REQUEST_SLEEP: '0', MAX_RETRIES: '1', USE_SYSTEM_CA: 'false', CONCURRENCY: '1', ...env }); } finally { console.log = log; }
+  return logs.join('\n');
+};
+const origRetries = 2;
+
+describe('pacing and timeouts', () => {
+  test('paceRequests reserves the lane slot before sleeping: simultaneous callers get spaced slots (no burst)', async () => {
+    configurePacing(0.15, 1);
+    const t0 = Date.now();
+    const starts: number[] = [];
+    await Promise.all([0, 1, 2].map(async () => { await paceRequests(); starts.push(Date.now() - t0); }));
+    starts.sort((a, b) => a - b);
+    expect(starts[1] - starts[0]).toBeGreaterThanOrEqual(120);
+    expect(starts[2] - starts[1]).toBeGreaterThanOrEqual(120);
+    configurePacing(1, 1, origRetries);
+  });
+
+  test('each lane paces independently: two lanes -> two immediate starts, the third waits', async () => {
+    configurePacing(0.2, 2);
+    const t0 = Date.now();
+    const starts: number[] = [];
+    await Promise.all([0, 1, 2].map(async () => { await paceRequests(); starts.push(Date.now() - t0); }));
+    starts.sort((a, b) => a - b);
+    expect(starts[1]).toBeLessThan(80);
+    expect(starts[2]).toBeGreaterThanOrEqual(170);
+    configurePacing(1, 1, origRetries);
+  });
+
+  test('in-flight counter: peak 1 at CONCURRENCY=1, peak N at CONCURRENCY=N', async () => {
+    for (const [concurrency, expected] of [['1', 1], ['3', 3]] as const) {
+      tempRoot();
+      const { mock, restore } = installMock({ latency: 25 });
+      try { await runMain({ CONCURRENCY: concurrency }); } finally { restore(); }
+      expect(mock.peak).toBe(expected);
+    }
+  });
+
+  test('a stalled connection (headers never arrive) is aborted by the timeout', async () => {
+    const original = globalThis.fetch;
+    setRequestTimeoutMs(100);
+    configurePacing(0, 1, 0);
+    globalThis.fetch = ((_: unknown, init?: RequestInit) => new Promise((_, reject) => init?.signal?.addEventListener('abort', () => reject(new Error('aborted'))))) as unknown as typeof fetch;
+    try { await expect(fetchWithRetry('http://x.test/a', 'stall')).rejects.toThrow(); }
+    finally { globalThis.fetch = original; setRequestTimeoutMs(45_000); configurePacing(1, 1, origRetries); }
+  });
+
+  test('a stalled body (headers fine, body never ends) is aborted and retried', async () => {
+    const original = globalThis.fetch;
+    setRequestTimeoutMs(100);
+    configurePacing(0, 1, 1);
+    let calls = 0;
+    globalThis.fetch = ((_: unknown, init?: RequestInit) => {
+      calls++;
+      if (calls > 1) return Promise.resolve(new Response('ok'));
+      const body = new ReadableStream({ start(controller) { init?.signal?.addEventListener('abort', () => controller.error(new Error('aborted'))); } });
+      return Promise.resolve(new Response(body));
+    }) as unknown as typeof fetch;
+    try {
+      const response = await fetchWithRetry('http://x.test/b', 'stall-body');
+      expect(await response.text()).toBe('ok');
+      expect(calls).toBe(2);
+    } finally { globalThis.fetch = original; setRequestTimeoutMs(45_000); configurePacing(1, 1, origRetries); }
+  }, 10_000);
+});
+
+describe('pipeline (mocked SSGA)', () => {
+  test('commodity trust without a holdings file (GLD) gets meta.json, empty holdings and a full metrics key set', async () => {
+    const dir = tempRoot();
+    const { restore } = installMock();
+    try { await runMain(); } finally { restore(); }
+    const index = readJson(dir, 'index.json');
+    const gld = index.funds.find((f: any) => f.ticker === 'GLD');
+    expect(gld.dataFile).toBe('./funds/GLD/meta.json');
+    expect(existsSync(join(dir, 'funds/GLD/meta.json'))).toBe(true);
+    expect(readJson(dir, 'funds/GLD/meta.json').holdings.status).toBe('empty');
+    expect(gld.holdingsStatus).toBe('empty');
+    expect(gld.history).toBeGreaterThan(0);
+    const spy = index.funds.find((f: any) => f.ticker === 'SPY');
+    expect(Object.keys(gld.metrics)).toEqual(Object.keys(spy.metrics));
+    for (const row of index.funds) if (row.dataFile) expect(existsSync(join(dir, row.dataFile))).toBe(true);
+  });
+
+  test('a fund that never got a meta.json is listed with dataFile null and a full metrics object', async () => {
+    const dir = tempRoot();
+    const { restore } = installMock({ failNavhist: new Set(['XLK']) });
+    try { await runMain(); } finally { restore(); }
+    const index = readJson(dir, 'index.json');
+    const xlk = index.funds.find((f: any) => f.ticker === 'XLK');
+    expect(xlk.dataFile).toBeNull();
+    expect(Object.keys(xlk.metrics)).toEqual(Object.keys(index.funds[0].metrics));
+    expect(xlk.metrics.returnsBasis).toBe(RETURNS_BASIS);
+  });
+
+  test('HISTORY_RANGE shorter than the published history keeps the older pages and rows', async () => {
+    const dir = tempRoot();
+    const { restore } = installMock({ hist: 400 });
+    try {
+      await runMain({ HISTORY_PAGE_SIZE: '100', TICKERS: 'SPY' });
+      const before = listFiles(dir, 'funds/SPY/history/');
+      expect(before.length).toBe(4);
+      await runMain({ HISTORY_PAGE_SIZE: '100', TICKERS: 'SPY', HISTORY_RANGE: '1y' });
+    } finally { restore(); }
+    expect(listFiles(dir, 'funds/SPY/history/').length).toBe(4);
+    const meta = readJson(dir, 'funds/SPY/meta.json');
+    expect(meta.history.totalRows).toBe(400);
+    expect(meta.premiumDiscountHistory.totalRows).toBe(400);
+    expect(readJson(dir, 'index.json').funds.find((f: any) => f.ticker === 'SPY').history).toBe(400);
+  });
+
+  test('mergeOlderRows carries over only rows older than the new window and keeps the order', async () => {
+    const dir = tempRoot();
+    const fundDir = new URL(`${pathToFileURL(dir).href}/funds/X/`);
+    mkdirSync(join(dir, 'funds/X/history'), { recursive: true });
+    const headers = ['Date', 'NAV'];
+    writeFileSync(join(dir, 'funds/X/history/001.json'), JSON.stringify({ headers, rows: [{ Date: '05-Jan-2026', NAV: '3' }, { Date: '04-Jan-2025', NAV: '2' }, { Date: '03-Jan-2024', NAV: '1' }] }));
+    const merged = await mergeOlderRows(fundDir, 'history', { headers, rows: [['05-Jan-2026', '3'], ['06-Jun-2025', '2.5']] });
+    expect(merged.rows.map((r) => r[0])).toEqual(['05-Jan-2026', '06-Jun-2025', '04-Jan-2025', '03-Jan-2024']);
+  });
+
+  test('a rerun with identical upstream data writes nothing (zero diff, no temp files)', async () => {
+    const dir = tempRoot();
+    const { restore } = installMock();
+    try {
+      await runMain();
+      const snapshot = Object.fromEntries(listFiles(dir).map((f) => [f, `${statSync(join(dir, f)).mtimeMs}:${readFileSync(join(dir, f), 'utf8').length}`]));
+      await new Promise((resolve) => setTimeout(resolve, 25));
+      await runMain();
+      const after = Object.fromEntries(listFiles(dir).map((f) => [f, `${statSync(join(dir, f)).mtimeMs}:${readFileSync(join(dir, f), 'utf8').length}`]));
+      expect(after).toEqual(snapshot);
+      expect(listFiles(dir).filter((f) => f.endsWith('.tmp'))).toEqual([]);
+    } finally { restore(); }
+  });
+
+  test('generatedAt moves only with content and is ISO without milliseconds', async () => {
+    const dir = tempRoot();
+    const first = installMock();
+    try { await runMain(); } finally { first.restore(); }
+    const stamp = readJson(dir, 'index.json').generatedAt;
+    expect(stamp).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/);
+    await new Promise((resolve) => setTimeout(resolve, 1100));
+    const changed = installMock({ nav: { SPY: 501, XLK: 200, GLD: 300 } });
+    try { await runMain(); } finally { changed.restore(); }
+    expect(readJson(dir, 'index.json').generatedAt).not.toBe(stamp);
+  });
+
+  test('fund-level consistency: a fund whose refresh failed keeps its previous index row and meta together', async () => {
+    const dir = tempRoot();
+    const first = installMock();
+    try { await runMain(); } finally { first.restore(); }
+    const second = installMock({ nav: { SPY: 777, XLK: 200, GLD: 300 }, failNavhist: new Set(['SPY']) });
+    try { await runMain(); } finally { second.restore(); }
+    const row = readJson(dir, 'index.json').funds.find((f: any) => f.ticker === 'SPY');
+    expect(row.navValue).toBe(500);
+    expect(readJson(dir, 'funds/SPY/meta.json').nav.value).toBe(500);
+  });
+
+  test('unknown TICKERS is an error and writes nothing; every selected fund failing is an error', async () => {
+    const dir = tempRoot();
+    const { restore } = installMock();
+    try {
+      await expect(runMain({ TICKERS: 'XXXX' })).rejects.toThrow(/unknown ticker/);
+      expect(existsSync(join(dir, 'index.json'))).toBe(false);
+    } finally { restore(); }
+    const failing = installMock({ tickers: ['SPY', 'XLK', 'GLD'], failNavhist: new Set(['SPY', 'XLK', 'GLD']) });
+    try { await expect(runMain({ CONCURRENCY: '3' })).rejects.toThrow(/all 3 selected funds failed/); } finally { failing.restore(); }
+  }, 20_000);
+
+  test('NEW FUNDS: tickers missing from the previous index are announced', async () => {
+    tempRoot();
+    const first = installMock({ tickers: ['SPY', 'XLK'] });
+    try { await runMain(); } finally { first.restore(); }
+    const second = installMock({ tickers: ['SPY', 'XLK', 'GLD'] });
+    try { expect(await runMain()).toContain('NEW FUNDS: GLD'); } finally { second.restore(); }
+  });
+
+  test('soft deadline: no new funds are started, the index is still written', async () => {
+    const dir = tempRoot();
+    setSoftDeadlineMs(-1);
+    const { restore } = installMock();
+    try { await runMain(); } finally { restore(); setSoftDeadlineMs(25 * 60_000); }
+    expect(readJson(dir, 'index.json').funds.length).toBe(3);
+    expect(existsSync(join(dir, 'funds/SPY/meta.json'))).toBe(false);
+  });
+
+  test('bounded cursor: a TICKERS run does not touch update-state.json; a cursor from another filter set is ignored', async () => {
+    const dir = tempRoot();
+    const { restore } = installMock();
+    try {
+      await runMain({ MAX_FETCHES: '2' });
+      expect(readJson(dir, 'update-state.json').lastProcessedTicker).toBe('SPY');
+      const saved = readFileSync(join(dir, 'update-state.json'), 'utf8');
+      await runMain({ MAX_FETCHES: '1', TICKERS: 'XLK' });
+      expect(readFileSync(join(dir, 'update-state.json'), 'utf8')).toBe(saved);
+      await runMain({ MAX_FETCHES: '1', AUM: '1M:' });
+      expect(readJson(dir, 'update-state.json').lastProcessedTicker).toBe('GLD');
+    } finally { restore(); }
+  });
+
+  test('rotateAfterCursor wraps around and tolerates a cursor ticker that is no longer selected', () => {
+    const funds = ['A', 'C', 'E'].map((ticker) => ({ ticker }));
+    expect(rotateAfterCursor(funds, 'C').map((f) => f.ticker)).toEqual(['E', 'A', 'C']);
+    expect(rotateAfterCursor(funds, 'D').map((f) => f.ticker)).toEqual(['E', 'A', 'C']);
+    expect(rotateAfterCursor(funds, 'E').map((f) => f.ticker)).toEqual(['A', 'C', 'E']);
+    expect(rotateAfterCursor(funds, null).map((f) => f.ticker)).toEqual(['A', 'C', 'E']);
+  });
+});
+
+describe('metrics, TER and strict config', () => {
+  test('TER standard: terValue is the net ratio, terGrossValue the gross one', () => {
+    const fund = { ter: '0.10%', terValue: 0.1 };
+    const net = { grossExpenseRatio: { display: '0.18%', value: 0.18 }, netExpenseRatio: { display: '0.08%', value: 0.08 } } as any;
+    expect(expenseRatios(fund, net)).toEqual({ ter: '0.08%', terValue: 0.08, terGross: '0.18%', terGrossValue: 0.18 });
+    expect(expenseRatios(fund, { grossExpenseRatio: { display: '0.18%', value: 0.18 }, netExpenseRatio: { display: null, value: null } } as any)).toEqual({ ter: '0.18%', terValue: 0.18, terGross: '0.18%', terGrossValue: 0.18 });
+    expect(expenseRatios(fund, null)).toEqual({ ter: '0.10%', terValue: 0.1, terGross: '0.10%', terGrossValue: 0.1 });
+  });
+
+  test('siAnn is null for funds with less than one year of history, kept otherwise', () => {
+    const base = { asOfDate: 'Aug 31 2026', ytd: 1, sinceInception: 4.2 };
+    expect(deriveCatalogMetrics({ ...base, inceptionDate: 'Feb 10 2026' }, 10, null).siAnn).toBeNull();
+    expect(deriveCatalogMetrics({ ...base, inceptionDate: 'Aug 31 2025' }, 10, null).siAnn).toBe(4.2);
+    expect(deriveCatalogMetrics({ ...base, inceptionDate: 'Sep 01 2025' }, 10, null).siAnn).toBeNull();
+  });
+
+  test('semi-annual distributions count as 2 payments per year', () => {
+    expect(indicatedYield({ frequency: 'Semi-Annually', dividend: '1' }, 100)).toBe(2);
+  });
+
+  test('loadConfig has no silent fallbacks for invalid values', () => {
+    for (const bad of [{ CONCURRENCY: 'abc' }, { MAX_FETCHES: 'x' }, { MAX_RETRIES: '0' }, { HOLDINGS_PAGE_SIZE: '-5' }, { HISTORY_PAGE_SIZE: '1.5' }, { REQUEST_SLEEP: 'fast' }, { STORE_RAW_DOWNLOADS: 'maybe' }]) {
+      expect(() => loadConfig(bad)).toThrow();
+    }
+    expect(loadConfig({}).concurrency).toBe(2);
+    expect(loadConfig({ STORE_RAW_DOWNLOADS: 'off' }).storeRawDownloads).toBe(false);
+  });
+
+  test('dates parse as UTC: the same output east of UTC', () => {
+    const saved = process.env.TZ;
+    process.env.TZ = 'Pacific/Kiritimati';
+    try {
+      expect(toIsoDate('Jun 04 2026')).toBe('2026-06-04');
+      const table = { headers: ['Date', 'NAV'], rows: [['02-Jan-2026', '1'], ['03-Jan-2025', '2'], ['01-Jan-2024', '3']] };
+      expect(applyHistoryRange(table, '1y').rows.length).toBe(2);
+    } finally { if (saved === undefined) delete process.env.TZ; else process.env.TZ = saved; }
+  });
 });
