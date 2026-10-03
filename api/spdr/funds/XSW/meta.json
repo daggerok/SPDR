@@ -16,26 +16,30 @@
   },
   "expenseRatio": {
     "display": "0.35%",
-    "value": 0.35
+    "value": 0.35,
+    "gross": {
+      "display": "0.35%",
+      "value": 0.35
+    }
   },
   "netExpenseRatio": {
     "display": null,
     "value": null
   },
   "nav": {
-    "display": "$199.09",
-    "value": 199.09,
-    "asOfDate": "Sep 24 2026"
+    "display": "$199.24",
+    "value": 199.24,
+    "asOfDate": "Oct 01 2026"
   },
   "aum": {
-    "display": "$499.71 M",
-    "value": 499710000,
-    "asOfDate": "Sep 24 2026"
+    "display": "$482.16 M",
+    "value": 482160000,
+    "asOfDate": "Oct 01 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$199.04",
-    "premiumDiscount": "0.00%"
+    "closePrice": "$199.58",
+    "premiumDiscount": "0.03%"
   },
   "inceptionDate": "Sep 28 2011",
   "returns": {
@@ -133,16 +137,17 @@
     ]
   },
   "holdings": {
-    "totalRows": 133,
+    "totalRows": 132,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "24-Sep-2026"
+    "asOfDate": "01-Oct-2026",
+    "status": "ok"
   },
   "history": {
-    "totalRows": 3772,
+    "totalRows": 3777,
     "pageSize": 1000,
     "pageCount": 4,
     "pages": [
@@ -153,12 +158,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 434,
+    "totalRows": 438,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "25-Sep-2026"
+    "asOfDate": "01-Oct-2026"
   }
 }

@@ -1,0 +1,149 @@
+{
+  "ticker": "GLDM",
+  "name": "SPDR Gold MiniShares",
+  "category": "Alternative Sector",
+  "identifiers": {
+    "isin": "US98149E3036",
+    "cusip": "98149E303"
+  },
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/spdr-gold-minishares-gldm",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-gldm.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-gldm.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-gldm.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-gldm.pdf"
+  },
+  "expenseRatio": {
+    "display": "0.10%",
+    "value": 0.1,
+    "gross": {
+      "display": "0.10%",
+      "value": 0.1
+    }
+  },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
+  "nav": {
+    "display": "$82.12",
+    "value": 82.12,
+    "asOfDate": "Oct 01 2026"
+  },
+  "aum": {
+    "display": "$30,625.62 M",
+    "value": 30625620000,
+    "asOfDate": "Oct 01 2026"
+  },
+  "pricing": {
+    "exchange": "NYSE ARCA",
+    "closePrice": "$82.61",
+    "premiumDiscount": "-0.07%"
+  },
+  "inceptionDate": "Jun 25 2018",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Aug 31 2026",
+      "mo1": 13.31,
+      "mo1Text": "13.31%",
+      "qtd": -12.66,
+      "qtdText": "-12.66%",
+      "ytd": 5.85,
+      "ytdText": "5.85%",
+      "yr1": 32.93,
+      "yr1Text": "32.93%",
+      "yr3": 32.77,
+      "yr3Text": "32.77%",
+      "yr5": 20.11,
+      "yr5Text": "20.11%",
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 16.86,
+      "sinceInceptionText": "16.86%",
+      "inceptionDate": "Jun 25 2018"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": -11.44,
+      "mo1Text": "-11.44%",
+      "qtd": -12.66,
+      "qtdText": "-12.66%",
+      "ytd": -6.59,
+      "ytdText": "-6.59%",
+      "yr1": 22.35,
+      "yr1Text": "22.35%",
+      "yr3": 28.01,
+      "yr3Text": "28.01%",
+      "yr5": 17.82,
+      "yr5Text": "17.82%",
+      "yr10": null,
+      "yr10Text": null,
+      "sinceInception": 15.43,
+      "sinceInceptionText": "15.43%"
+    }
+  },
+  "metrics": {
+    "ytd": 5.85,
+    "tr1y": 32.93,
+    "tr3y": 134.05,
+    "tr5y": 149.97,
+    "tr10y": null,
+    "cagr3y": 32.77,
+    "cagr5y": 20.11,
+    "cagr10y": null,
+    "siAnn": 16.86,
+    "dividendYield": null,
+    "dividendYieldSource": null,
+    "indicatedDividendYield": null,
+    "secYield": null,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "32.93%",
+    "tr3yText": "134.05%",
+    "tr5yText": "149.97%",
+    "tr10yText": null,
+    "cagr3yText": "32.77%",
+    "cagr5yText": "20.11%",
+    "cagr10yText": null,
+    "siAnnText": "16.86%",
+    "indicatedDividendYieldText": null,
+    "dividendYieldText": null,
+    "secYieldText": null,
+    "secYieldUnsubsidizedText": null,
+    "ytdText": "5.85%",
+    "returnsBasis": "official SSGA month-end NAV total returns (YTD, 1Y, annualized 3Y/5Y/10Y and since inception); tr3y/tr5y/tr10y are derived from the official annualized figures as (1 + CAGR)^n - 1; no Yahoo or market-price estimates",
+    "performanceAsOf": "2026-08-31"
+  },
+  "distributions": {
+    "headers": [],
+    "rows": []
+  },
+  "holdings": {
+    "totalRows": 0,
+    "pageSize": 250,
+    "pageCount": 1,
+    "pages": [
+      "./holdings/001.json"
+    ],
+    "status": "empty"
+  },
+  "history": {
+    "totalRows": 2120,
+    "pageSize": 1000,
+    "pageCount": 3,
+    "pages": [
+      "./history/001.json",
+      "./history/002.json",
+      "./history/003.json"
+    ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 448,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "02-Oct-2026"
+  }
+}

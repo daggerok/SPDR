@@ -16,26 +16,30 @@
   },
   "expenseRatio": {
     "display": "0.25%",
-    "value": 0.25
+    "value": 0.25,
+    "gross": {
+      "display": "0.25%",
+      "value": 0.25
+    }
   },
   "netExpenseRatio": {
     "display": null,
     "value": null
   },
   "nav": {
-    "display": "$106.29",
-    "value": 106.29,
-    "asOfDate": "Sep 24 2026"
+    "display": "$104.21",
+    "value": 104.21,
+    "asOfDate": "Oct 01 2026"
   },
   "aum": {
-    "display": "$1,797.01 M",
-    "value": 1797010000,
-    "asOfDate": "Sep 24 2026"
+    "display": "$1,756.57 M",
+    "value": 1756570000,
+    "asOfDate": "Oct 01 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$106.31",
-    "premiumDiscount": "0.03%"
+    "closePrice": "$104.24",
+    "premiumDiscount": "0.05%"
   },
   "inceptionDate": "Apr 23 2001",
   "returns": {
@@ -89,10 +93,10 @@
     "cagr5y": 3.67,
     "cagr10y": 4.91,
     "siAnn": 8.82,
-    "dividendYield": 3.54,
+    "dividendYield": 3.62,
     "dividendYieldSource": "official",
-    "indicatedDividendYield": 3.6917,
-    "secYield": 3.59,
+    "indicatedDividendYield": 3.7654,
+    "secYield": 3.66,
     "secYieldUnsubsidized": null,
     "tr1yText": "15.86%",
     "tr3yText": "39.22%",
@@ -102,9 +106,9 @@
     "cagr5yText": "3.67%",
     "cagr10yText": "4.91%",
     "siAnnText": "8.82%",
-    "indicatedDividendYieldText": "3.69%",
-    "dividendYieldText": "3.54%",
-    "secYieldText": "3.59%",
+    "indicatedDividendYieldText": "3.77%",
+    "dividendYieldText": "3.62%",
+    "secYieldText": "3.66%",
     "secYieldUnsubsidizedText": null,
     "ytdText": "15.74%",
     "returnsBasis": "official SSGA month-end NAV total returns (YTD, 1Y, annualized 3Y/5Y/10Y and since inception); tr3y/tr5y/tr10y are derived from the official annualized figures as (1 + CAGR)^n - 1; no Yahoo or market-price estimates",
@@ -139,10 +143,11 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "24-Sep-2026"
+    "asOfDate": "01-Oct-2026",
+    "status": "ok"
   },
   "history": {
-    "totalRows": 6388,
+    "totalRows": 6393,
     "pageSize": 1000,
     "pageCount": 7,
     "pages": [
@@ -156,12 +161,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 434,
+    "totalRows": 438,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "25-Sep-2026"
+    "asOfDate": "01-Oct-2026"
   }
 }

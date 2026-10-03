@@ -1,0 +1,152 @@
+{
+  "ticker": "GLD",
+  "name": "SPDR Gold Shares",
+  "category": "Alternative Sector",
+  "identifiers": {
+    "isin": "US78463V1070",
+    "cusip": "78463V107"
+  },
+  "source": {
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/spdr-gold-shares-gld",
+    "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-gld.xlsx",
+    "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-gld.xlsx",
+    "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-gld.xlsx",
+    "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-gld.pdf"
+  },
+  "expenseRatio": {
+    "display": "0.40%",
+    "value": 0.4,
+    "gross": {
+      "display": "0.40%",
+      "value": 0.4
+    }
+  },
+  "netExpenseRatio": {
+    "display": null,
+    "value": null
+  },
+  "nav": {
+    "display": "$380.61",
+    "value": 380.61,
+    "asOfDate": "Oct 01 2026"
+  },
+  "aum": {
+    "display": "$140,978.39 M",
+    "value": 140978390000,
+    "asOfDate": "Oct 01 2026"
+  },
+  "pricing": {
+    "exchange": "NYSE ARCA",
+    "closePrice": "$382.76",
+    "premiumDiscount": "-0.08%"
+  },
+  "inceptionDate": "Nov 18 2004",
+  "returns": {
+    "monthEnd": {
+      "asOfDate": "Aug 31 2026",
+      "mo1": 13.28,
+      "mo1Text": "13.28%",
+      "qtd": -12.72,
+      "qtdText": "-12.72%",
+      "ytd": 5.64,
+      "ytdText": "5.64%",
+      "yr1": 32.54,
+      "yr1Text": "32.54%",
+      "yr3": 32.38,
+      "yr3Text": "32.38%",
+      "yr5": 19.76,
+      "yr5Text": "19.76%",
+      "yr10": 12.84,
+      "yr10Text": "12.84%",
+      "sinceInception": 10.86,
+      "sinceInceptionText": "10.86%",
+      "inceptionDate": "Nov 18 2004"
+    },
+    "quarterEnd": {
+      "asOfDate": "Jun 30 2026",
+      "mo1": -11.47,
+      "mo1Text": "-11.47%",
+      "qtd": -12.72,
+      "qtdText": "-12.72%",
+      "ytd": -6.73,
+      "ytdText": "-6.73%",
+      "yr1": 21.99,
+      "yr1Text": "21.99%",
+      "yr3": 27.64,
+      "yr3Text": "27.64%",
+      "yr5": 17.48,
+      "yr5Text": "17.48%",
+      "yr10": 11.34,
+      "yr10Text": "11.34%",
+      "sinceInception": 10.32,
+      "sinceInceptionText": "10.32%"
+    }
+  },
+  "metrics": {
+    "ytd": 5.64,
+    "tr1y": 32.54,
+    "tr3y": 131.99,
+    "tr5y": 146.35,
+    "tr10y": 234.68,
+    "cagr3y": 32.38,
+    "cagr5y": 19.76,
+    "cagr10y": 12.84,
+    "siAnn": 10.86,
+    "dividendYield": null,
+    "dividendYieldSource": null,
+    "indicatedDividendYield": null,
+    "secYield": null,
+    "secYieldUnsubsidized": null,
+    "tr1yText": "32.54%",
+    "tr3yText": "131.99%",
+    "tr5yText": "146.35%",
+    "tr10yText": "234.68%",
+    "cagr3yText": "32.38%",
+    "cagr5yText": "19.76%",
+    "cagr10yText": "12.84%",
+    "siAnnText": "10.86%",
+    "indicatedDividendYieldText": null,
+    "dividendYieldText": null,
+    "secYieldText": null,
+    "secYieldUnsubsidizedText": null,
+    "ytdText": "5.64%",
+    "returnsBasis": "official SSGA month-end NAV total returns (YTD, 1Y, annualized 3Y/5Y/10Y and since inception); tr3y/tr5y/tr10y are derived from the official annualized figures as (1 + CAGR)^n - 1; no Yahoo or market-price estimates",
+    "performanceAsOf": "2026-08-31"
+  },
+  "distributions": {
+    "headers": [],
+    "rows": []
+  },
+  "holdings": {
+    "totalRows": 0,
+    "pageSize": 250,
+    "pageCount": 1,
+    "pages": [
+      "./holdings/001.json"
+    ],
+    "status": "empty"
+  },
+  "history": {
+    "totalRows": 5542,
+    "pageSize": 1000,
+    "pageCount": 6,
+    "pages": [
+      "./history/001.json",
+      "./history/002.json",
+      "./history/003.json",
+      "./history/004.json",
+      "./history/005.json",
+      "./history/006.json"
+    ]
+  },
+  "premiumDiscountHistory": {
+    "totalRows": 448,
+    "pageSize": 1000,
+    "pageCount": 1,
+    "pages": [
+      "./premium-discount/001.json"
+    ],
+    "asOfDate": "02-Oct-2026"
+  }
+}

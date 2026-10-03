@@ -16,26 +16,30 @@
   },
   "expenseRatio": {
     "display": "0.20%",
-    "value": 0.2
+    "value": 0.2,
+    "gross": {
+      "display": "0.20%",
+      "value": 0.2
+    }
   },
   "netExpenseRatio": {
     "display": null,
     "value": null
   },
   "nav": {
-    "display": "$67.57",
-    "value": 67.57,
-    "asOfDate": "Sep 24 2026"
+    "display": "$66.68",
+    "value": 66.68,
+    "asOfDate": "Oct 01 2026"
   },
   "aum": {
-    "display": "$2,674.18 M",
-    "value": 2674180000,
-    "asOfDate": "Sep 24 2026"
+    "display": "$2,641.40 M",
+    "value": 2641400000,
+    "asOfDate": "Oct 01 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$67.51",
-    "premiumDiscount": "-0.02%"
+    "closePrice": "$66.68",
+    "premiumDiscount": "-0.03%"
   },
   "inceptionDate": "Oct 22 2018",
   "returns": {
@@ -89,9 +93,9 @@
     "cagr5y": 2.18,
     "cagr10y": null,
     "siAnn": 12.1,
-    "dividendYield": 1.51,
+    "dividendYield": 1.53,
     "dividendYieldSource": "official",
-    "indicatedDividendYield": 0.747,
+    "indicatedDividendYield": 0.757,
     "secYield": 0.59,
     "secYieldUnsubsidized": null,
     "tr1yText": "17.53%",
@@ -102,8 +106,8 @@
     "cagr5yText": "2.18%",
     "cagr10yText": null,
     "siAnnText": "12.10%",
-    "indicatedDividendYieldText": "0.75%",
-    "dividendYieldText": "1.51%",
+    "indicatedDividendYieldText": "0.76%",
+    "dividendYieldText": "1.53%",
     "secYieldText": "0.59%",
     "secYieldUnsubsidizedText": null,
     "ytdText": "13.41%",
@@ -133,7 +137,7 @@
     ]
   },
   "holdings": {
-    "totalRows": 504,
+    "totalRows": 505,
     "pageSize": 250,
     "pageCount": 3,
     "pages": [
@@ -141,10 +145,11 @@
       "./holdings/002.json",
       "./holdings/003.json"
     ],
-    "asOfDate": "24-Sep-2026"
+    "asOfDate": "01-Oct-2026",
+    "status": "ok"
   },
   "history": {
-    "totalRows": 1991,
+    "totalRows": 1996,
     "pageSize": 1000,
     "pageCount": 2,
     "pages": [
@@ -153,12 +158,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 434,
+    "totalRows": 438,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "25-Sep-2026"
+    "asOfDate": "01-Oct-2026"
   }
 }

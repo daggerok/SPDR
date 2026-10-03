@@ -16,26 +16,30 @@
   },
   "expenseRatio": {
     "display": "0.45%",
-    "value": 0.45
+    "value": 0.45,
+    "gross": {
+      "display": "0.45%",
+      "value": 0.45
+    }
   },
   "netExpenseRatio": {
     "display": null,
     "value": null
   },
   "nav": {
-    "display": "$34.47",
-    "value": 34.47,
-    "asOfDate": "Sep 24 2026"
+    "display": "$33.98",
+    "value": 33.98,
+    "asOfDate": "Oct 01 2026"
   },
   "aum": {
-    "display": "$17.93 M",
-    "value": 17930000,
-    "asOfDate": "Sep 24 2026"
+    "display": "$17.67 M",
+    "value": 17670000,
+    "asOfDate": "Oct 01 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$34.50",
-    "premiumDiscount": "0.06%"
+    "closePrice": "$33.95",
+    "premiumDiscount": "0.02%"
   },
   "inceptionDate": "Dec 26 2017",
   "returns": {
@@ -89,9 +93,9 @@
     "cagr5y": -6.84,
     "cagr10y": null,
     "siAnn": 3.92,
-    "dividendYield": 1.96,
+    "dividendYield": 1.99,
     "dividendYieldSource": "official",
-    "indicatedDividendYield": 1.0403,
+    "indicatedDividendYield": 1.0553,
     "secYield": 0.6,
     "secYieldUnsubsidized": null,
     "tr1yText": "9.15%",
@@ -102,8 +106,8 @@
     "cagr5yText": "-6.84%",
     "cagr10yText": null,
     "siAnnText": "3.92%",
-    "indicatedDividendYieldText": "1.04%",
-    "dividendYieldText": "1.96%",
+    "indicatedDividendYieldText": "1.06%",
+    "dividendYieldText": "1.99%",
     "secYieldText": "0.60%",
     "secYieldUnsubsidizedText": null,
     "ytdText": "7.85%",
@@ -139,10 +143,11 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "24-Sep-2026"
+    "asOfDate": "01-Oct-2026",
+    "status": "ok"
   },
   "history": {
-    "totalRows": 2198,
+    "totalRows": 2203,
     "pageSize": 1000,
     "pageCount": 3,
     "pages": [
@@ -152,12 +157,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 434,
+    "totalRows": 438,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "25-Sep-2026"
+    "asOfDate": "01-Oct-2026"
   }
 }

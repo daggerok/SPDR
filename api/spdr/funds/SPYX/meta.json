@@ -16,26 +16,30 @@
   },
   "expenseRatio": {
     "display": "0.20%",
-    "value": 0.2
+    "value": 0.2,
+    "gross": {
+      "display": "0.20%",
+      "value": 0.2
+    }
   },
   "netExpenseRatio": {
     "display": null,
     "value": null
   },
   "nav": {
-    "display": "$62.88",
-    "value": 62.88,
-    "asOfDate": "Sep 24 2026"
+    "display": "$62.55",
+    "value": 62.55,
+    "asOfDate": "Oct 01 2026"
   },
   "aum": {
-    "display": "$2,850.24 M",
-    "value": 2850240000,
-    "asOfDate": "Sep 24 2026"
+    "display": "$2,837.08 M",
+    "value": 2837080000,
+    "asOfDate": "Oct 01 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$62.88",
-    "premiumDiscount": "0.00%"
+    "closePrice": "$62.58",
+    "premiumDiscount": "0.02%"
   },
   "inceptionDate": "Nov 30 2015",
   "returns": {
@@ -91,7 +95,7 @@
     "siAnn": 14.78,
     "dividendYield": 0.85,
     "dividendYieldSource": "official",
-    "indicatedDividendYield": 0.8543,
+    "indicatedDividendYield": 0.8588,
     "secYield": 0.82,
     "secYieldUnsubsidized": 0.82,
     "tr1yText": "19.72%",
@@ -102,7 +106,7 @@
     "cagr5yText": "12.26%",
     "cagr10yText": "15.33%",
     "siAnnText": "14.78%",
-    "indicatedDividendYieldText": "0.85%",
+    "indicatedDividendYieldText": "0.86%",
     "dividendYieldText": "0.85%",
     "secYieldText": "0.82%",
     "secYieldUnsubsidizedText": "0.82%",
@@ -133,17 +137,18 @@
     ]
   },
   "holdings": {
-    "totalRows": 491,
+    "totalRows": 492,
     "pageSize": 250,
     "pageCount": 2,
     "pages": [
       "./holdings/001.json",
       "./holdings/002.json"
     ],
-    "asOfDate": "24-Sep-2026"
+    "asOfDate": "01-Oct-2026",
+    "status": "ok"
   },
   "history": {
-    "totalRows": 2720,
+    "totalRows": 2725,
     "pageSize": 1000,
     "pageCount": 3,
     "pages": [
@@ -153,12 +158,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 434,
+    "totalRows": 438,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "25-Sep-2026"
+    "asOfDate": "01-Oct-2026"
   }
 }
