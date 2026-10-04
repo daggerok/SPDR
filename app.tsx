@@ -19,7 +19,7 @@
 type ActiveTab = string;
 type SortDirection = 'asc' | 'desc';
 type TableRow = Record<string, unknown> & { searchIndex?: string };
-type TabInfo = { id: ActiveTab; label: string; count: number; loading?: boolean; failed?: boolean };
+type TabInfo = { id: ActiveTab; label: string; count: number | string };
 
 type IndexFund = {
   ticker: string;
@@ -27,8 +27,6 @@ type IndexFund = {
   category: string;
   fundPage: string;
   dataFile: string;
-  isin: string | null;
-  cusip: string | null;
   ter: string;
   terValue: number;
   nav: string;
@@ -40,6 +38,8 @@ type IndexFund = {
   exchange: string;
   closePrice: string;
   premiumDiscount: string;
+  cusip?: string | null;
+  isin?: string | null;
   distributions: { frequency: string; exDate: string; dividend: string };
   returns: { monthEnd: Record<string, any>; quarterEnd: Record<string, any> };
   metrics?: {
@@ -53,9 +53,8 @@ type IndexFund = {
     siAnn?: number | null;
     dividendYield?: number | null;
     dividendYieldText?: string | null;
-    dividendYieldSource?: 'official' | 'indicated' | null;
     secYield?: number | null;
-    secYieldUnsubsidized?: number | null;
+    secYieldText?: string | null;
   };
   holdings: number;
   history: number;
@@ -66,8 +65,6 @@ type FundRow = TableRow & {
   name: string;
   category: string;
   fundPage: string;
-  isin?: string | null;
-  cusip?: string | null;
   ter: string;
   terValue: number;
   nav: string;
@@ -102,6 +99,7 @@ type FundRow = TableRow & {
 };
 
 type WatchlistRow = TableRow & {
+  key: string;
   symbol: string;
   name: string;
   funds: string[];
@@ -109,11 +107,10 @@ type WatchlistRow = TableRow & {
   weightSum: number;
   maxWeight: number;
   marketValue: number;
-  sectors: string[];
   sector: string;
+  sectors: string[];
   cusips: string[];
   identifier: string;
-  _key?: string;
 };
 
 const INDEX_URL = './api/spdr/index.json';
@@ -121,13 +118,13 @@ const THEME_KEY = 'spdr-theme';
 const SELECTED_KEY = 'spdr-selected-etfs';
 const BLACKLIST_KEY = 'spdr-blacklisted-etfs';
 const ACTIVE_FUND_KEY = 'spdr-active-fund';
-const SEARCHES_KEY = 'spdr-searches'; // legacy; migrated into FILTERS_KEY
 const FILTERS_KEY = 'spdr-tab-filters';
+const LEGACY_FILTERS_KEY = 'spdr-searches'; // pre-rename key, migrated at boot
 const SORTS_KEY = 'spdr-tab-sorts';
 const SITE_STATE_KEY = 'spdr-site-state';
-const DEFAULT_SELECTED_TICKERS: string[] = []; // start clean: users choose the funds to compare
-const WATCHLIST_PAGE_SIZE = 250;
-const MAX_CONCURRENT_HOLDINGS_LOADS = 6;
+const HOLDINGS_CONCURRENCY = 6; // bounded whole-catalog aggregation workers
+const WATCHLIST_CHUNK = 250; // rows per rendered Watchlist DOM chunk
+const DEFAULT_SELECTED_TICKERS: string[] = []; // start clean: no pre-selected funds
 
 const DETAIL_TABS: Array<{ key: string; label: string }> = [
   { key: 'overview', label: 'Overview' },
@@ -159,7 +156,6 @@ const COLUMN_TOOLTIPS: Record<string, string> = {
   Type: 'Asset Class — SSGA asset-class grouping (Equity, Fixed Income Sector, ...). Same source as the category tabs.',
   Expense: 'Gross Expense Ratio — Total annual fund operating expenses as a % of assets.',
   'Dividend Yield': 'Dividend Yield — SSGA\'s own official Fund Dividend Yield from its bulk product-data file when available; falls back to an indicated yield (latest distribution per share x payments per year divided by NAV) only for a fund missing from that file.',
-  Frequency: 'Frequency — sortable payment cadence from the SSGA dividend distribution feed: 01 - Monthly, 04 - Quarterly, 06 - Semi-annually, 12 - Annually; 00 denotes unavailable/unknown and 99 denotes irregular.',
   'SEC Yield': 'SEC Yield (30-Day) — SSGA\'s official subsidized 30-day SEC yield, from its bulk product-data file. Shown as "—" only for a fund missing from that file.',
   'YTD Return': 'YTD Return — Cumulative NAV total return since the start of the year, SSGA "Month End" series.',
   'TR 1Y': 'TR 1Y (1-Year Total Return) — NAV total return over the past year, including reinvested distributions.',
@@ -183,6 +179,7 @@ const COLUMN_TOOLTIPS: Record<string, string> = {
   Holdings: 'Rows in the fund\'s latest daily holdings file.',
   History: 'Rows in the fund\'s NAV history file.',
   'As Of': 'NAV / AUM as-of date.',
+  Frequency: 'Frequency — sortable payment cadence from the SSGA dividend distribution feed: 01 - Monthly, 04 - Quarterly, 06 - Semi-annually, 12 - Annually; 00 denotes unavailable/unknown and 99 denotes irregular.',
   'Ex-Date': 'Ex-dividend date of the latest distribution.',
   Dividend: 'Latest dividend per share.',
   Coupon: 'Bond annual coupon rate (%).',
@@ -193,6 +190,8 @@ const COLUMN_TOOLTIPS: Record<string, string> = {
   Metric: 'Metric — Overview metric name.',
   Value: 'Overview metric value.',
   Date: 'NAV history date.',
+  'Market Price': 'Closing market price on that date. SSGA publishes it in the separate premium/discount history file, not in the NAV history sheet.',
+  'Premium/Discount': 'Premium / Discount — closing market price versus NAV on that date (%). SSGA publishes it in the separate premium/discount history file, not in the NAV history sheet.',
   'Shares Outstanding': 'Fund shares outstanding on that date.',
   'Total Net Assets': 'Fund total net assets on that date (USD).',
 };
@@ -206,6 +205,10 @@ function byId(id: string): any {
   if (!element) throw new Error(`Missing element #${id}`);
   return element;
 }
+
+const dropzone = document.getElementById('dropzone');
+const dropzoneText = document.getElementById('dropzone-text');
+const fileInput = document.getElementById('file-input');
 
 const el = {
   themeToggle: byId('theme-toggle'),
@@ -265,6 +268,19 @@ const state: AppState = {
   counts: null,
 };
 
+// Holdings pipeline bookkeeping (see docs/ui-contract.md §4–§6):
+// per-ticker in-flight meta.json dedupe, one serialized page-load chain per
+// ticker (the detail-view pager and the background Watchlist loader share it,
+// so pages can never be fetched twice or skipped), per-ticker completion
+// flags powering the Watchlist "Loading… / N+" label, and the chunked
+// Watchlist rendering cursor.
+const metaInFlight: Map<string, Promise<any>> = new Map();
+const holdingsChains: Map<string, Promise<void>> = new Map();
+const holdingsComplete = new Set<string>();
+let watchlistChunkSig = '';
+let watchlistRenderedCount = 0;
+let watchlistRefreshTimer: any = null;
+
 // Lazy per-fund data: meta.json plus accumulated sheet pages (iShares-style).
 type SheetEntry = {
   headers: string[];
@@ -275,23 +291,8 @@ type SheetEntry = {
 };
 
 const fundMetaCache: Map<string, any> = new Map();
-const fundMetaRequests: Map<string, Promise<any>> = new Map();
-const fundMetaFailures: Map<string, string> = new Map();
 const sheetState: Map<string, SheetEntry> = new Map();
-const sheetPageRequests: Map<string, Promise<void>> = new Map();
-const sheetLoadFailures: Map<string, string> = new Map();
-const holdingsLoadPromises: Map<string, Promise<void>> = new Map();
-const holdingsLoadFailures: Set<string> = new Set();
-const holdingsLoadWaiters: Array<() => void> = [];
-let activeHoldingsLoads = 0;
 let sheetGeneration = 0;
-let watchlistRevision = 0;
-let cachedWatchlistRevision = -1;
-let cachedWatchlistRows: WatchlistRow[] = [];
-let watchlistVisibleLimit = WATCHLIST_PAGE_SIZE;
-let renderedWatchlistTotal = 0;
-let selectionDataRefreshTimer: any = null;
-const selectionDataChangedTickers: Set<string> = new Set();
 
 // =========================================================================
 // 3b. Column types, auto-detection and the column filter engine (pure, no DOM)
@@ -1597,7 +1598,7 @@ function formatDividendFrequency(value: unknown): string {
   if (!normalized || normalized === '-') return '00 - None';
   if (normalized === 'monthly') return '01 - Monthly';
   if (normalized === 'quarterly') return '04 - Quarterly';
-  if (normalized === 'semi-annual' || normalized === 'semi-annually' || normalized === 'semiannual') return '06 - Semi-annually';
+  if (normalized === 'semi-annual' || normalized === 'semi-annually' || normalized === 'semiannual' || normalized === 'semiannually') return '06 - Semi-annually';
   if (normalized === 'annual' || normalized === 'annually') return '12 - Annually';
   if (normalized === 'none') return '00 - None';
   if (normalized === 'unknown') return '00 - Unknown';
@@ -1726,7 +1727,8 @@ function normalizeFundRow(fund: IndexFund): FundRow {
   row.searchIndex = [
     fund.ticker, fund.name, fund.category, fund.ter, fund.nav, fund.aum,
     fund.exchange, fund.inceptionDate, fund.asOfDate, monthEnd.asOfDate,
-    fund.distributions && fund.distributions.frequency, metrics.dividendYieldText,
+    fund.distributions && fund.distributions.frequency, metrics.dividendYieldText, metrics.secYieldText,
+    fund.cusip, fund.isin,
   ].map(value => String(value ?? '').toLowerCase()).join(' ');
   return row;
 }
@@ -1757,44 +1759,39 @@ async function loadCatalog(): Promise<void> {
   const activeTicker = state.activeFundTicker;
   if (activeTicker) {
     void loadFundMeta(activeTicker).then(meta => {
-      if (meta && state.activeFundTicker === activeTicker && state.activeTab === 'detail:holdings') void ensureSheet('holdings', meta.holdings);
+      if (meta && state.activeTab === 'detail:holdings') void ensureSheet('holdings', meta.holdings);
     });
   }
 }
 
+/**
+ * meta.json requests are deduplicated per ticker while in flight: the
+ * detail view and the background Watchlist loader share one request.
+ * Catalog-only funds (no holdings, no history) short-circuit to null and
+ * are cached as such; failed fetches are not cached so they can retry.
+ */
 async function loadFundMeta(ticker: string): Promise<any> {
-  if (fundMetaCache.has(ticker)) return fundMetaCache.get(ticker);
-  const pending = fundMetaRequests.get(ticker);
-  if (pending) return pending;
-
+  const cached = fundMetaCache.get(ticker);
+  if (cached !== undefined) return cached;
+  const inflight = metaInFlight.get(ticker);
+  if (inflight) return inflight;
   const known = state.funds.find(fund => fund.ticker === ticker);
   if (known && !known.holdings && !known.history) {
-    // Catalog-only funds (for example commodity trusts) have no workbook and
-    // therefore no funds/<ticker>/meta.json in the generated static feed.
-    fundMetaCache.set(ticker, null);
+    fundMetaCache.set(ticker, null); // catalog-only fund: no workbook exists
     return null;
   }
-
   const request = (async () => {
     try {
       const meta = await fetchJson(`./api/spdr/funds/${encodeURIComponent(ticker)}/meta.json`);
       fundMetaCache.set(ticker, meta);
-      fundMetaFailures.delete(ticker);
-      scheduleSelectionDataRefresh(ticker);
       return meta;
     } catch (error) {
-      const message = error instanceof Error ? error.message : String(error);
-      fundMetaFailures.set(ticker, message);
       console.warn(`Failed to load meta.json for ${ticker}:`, error);
       return null;
     }
   })();
-  fundMetaRequests.set(ticker, request);
-  try {
-    return await request;
-  } finally {
-    if (fundMetaRequests.get(ticker) === request) fundMetaRequests.delete(ticker);
-  }
+  metaInFlight.set(ticker, request.finally(() => metaInFlight.delete(ticker)));
+  return metaInFlight.get(ticker);
 }
 
 function sheetKey(sheet: string): string {
@@ -1810,184 +1807,142 @@ async function fetchPage(ticker: string, pagePath: string): Promise<{ headers: s
   const page = await fetchJson(`./api/spdr/funds/${encodeURIComponent(ticker)}/${path}`);
   const headers: string[] = Array.isArray(page.headers) ? page.headers : [];
   const rows: any[] = Array.isArray(page.rows) ? page.rows : [];
-  return { headers, rows: rowsForStaticHeaders(headers, rows) };
+  return { headers, rows: rows.map(row => headers.map(header => String(row[header] ?? ''))) };
 }
 
 /** Loads the first page of a paginated sheet and prepares lazy appending. */
 async function ensureSheet(sheet: 'holdings' | 'history', manifest: any): Promise<void> {
-  const ticker = state.activeFundTicker;
-  if (!ticker || !manifest || !Array.isArray(manifest.pages) || !manifest.pages.length) return;
-  const key = `${ticker}:${sheet}`;
-  let entry = sheetState.get(key);
-  if (!entry) {
-    entry = { headers: [], rows: [], nextPage: 0, manifest, loading: false };
-    sheetState.set(key, entry);
-  } else {
-    entry.manifest = manifest;
-  }
-  if (entry.nextPage < entry.manifest.pages.length) await loadNextSheetPage(sheet);
+  const key = sheetKey(sheet);
+  if (sheetState.has(key) || !manifest || !Array.isArray(manifest.pages) || !manifest.pages.length) return;
+  sheetState.set(key, { headers: [], rows: [], nextPage: 0, manifest, loading: false });
+  await loadNextSheetPage(sheet);
 }
 
 /**
- * Loads one detail-sheet page. A per-sheet promise prevents scroll, sentinel
- * and background-Watchlist requests from fetching the same page concurrently.
+ * Serializes page-load work per ticker: the detail-view pager and the
+ * background Watchlist loader enqueue onto the same chain, and each unit of
+ * work re-checks `nextPage` while holding the chain — so two rapid selection
+ * updates can never fetch the same holdings page twice or skip one.
  */
-async function loadNextSheetPage(sheet: 'holdings' | 'history'): Promise<void> {
-  const ticker = state.activeFundTicker;
-  if (!ticker) return;
-  const key = `${ticker}:${sheet}`;
-
-  // Selection preloading owns the holdings entry while it is filling every
-  // page for Watchlist aggregation. Reuse that work instead of racing it.
-  const fullHoldingsLoad = sheet === 'holdings' ? holdingsLoadPromises.get(ticker) : null;
-  if (fullHoldingsLoad) {
-    await fullHoldingsLoad;
-    return;
+function withTickerChain<T>(ticker: string, fn: () => Promise<T>): Promise<T> {
+  const previous = holdingsChains.get(ticker) ?? Promise.resolve();
+  const work = previous.then(fn, fn);
+  holdingsChains.set(ticker, work.then(() => undefined, () => undefined));
+  return work;
 }
 
-  const pending = sheetPageRequests.get(key);
-  if (pending) return pending;
-  const entry = sheetState.get(key);
-  if (!entry || entry.nextPage >= entry.manifest.pages.length) return;
+/** Fetches the next page of `entry`. The caller must already hold the
+ *  per-ticker chain (loadAllHoldingsForTicker) or use appendSheetPage. */
+async function fetchNextSheetPage(ticker: string, entry: SheetEntry): Promise<void> {
+  if (entry.nextPage >= entry.manifest.pages.length) return;
+  const page = await fetchPage(ticker, entry.manifest.pages[entry.nextPage]);
+  if (!entry.headers.length && page.headers.length) entry.headers = page.headers;
+  entry.rows = entry.rows.concat(page.rows);
+  entry.nextPage += 1;
+}
 
-  const request = (async () => {
+/** Enqueues the next page fetch of `entry` under the per-ticker chain (no-op when the manifest is exhausted). */
+function appendSheetPage(ticker: string, entry: SheetEntry): Promise<void> {
+  return withTickerChain(ticker, () => fetchNextSheetPage(ticker, entry));
+}
+
+async function loadNextSheetPage(sheet: 'holdings' | 'history'): Promise<void> {
+  const key = sheetKey(sheet);
+  const entry = sheetState.get(key);
+  const ticker = state.activeFundTicker;
+  if (!entry || !ticker || entry.loading || entry.nextPage >= entry.manifest.pages.length) return;
   entry.loading = true;
   renderStaticLoadSentinel();
   try {
     const generation = sheetGeneration;
-      const pageIndex = entry.nextPage;
-      const page = await fetchPage(ticker, entry.manifest.pages[pageIndex]);
+    await appendSheetPage(ticker, entry);
     if (generation !== sheetGeneration) return;
-      if (!entry.headers.length && page.headers.length) entry.headers = page.headers;
-      entry.rows = entry.rows.concat(page.rows);
-      entry.nextPage = pageIndex + 1;
-      sheetLoadFailures.delete(key);
-      if (sheet === 'holdings') {
-        invalidateWatchlistRows();
-        scheduleSelectionDataRefresh(ticker);
-      }
-      if (state.activeFundTicker === ticker && state.activeTab === `detail:${sheet}`) render();
+    if (state.activeTab === `detail:${sheet}`) render();
   } catch (error) {
-      const message = error instanceof Error ? error.message : String(error);
-      sheetLoadFailures.set(key, message);
     console.error(`Failed to load ${ticker} ${sheet} page:`, error);
   } finally {
     entry.loading = false;
     renderStaticLoadSentinel();
   }
-  })();
-  sheetPageRequests.set(key, request);
-  try {
-    await request;
-  } finally {
-    if (sheetPageRequests.get(key) === request) sheetPageRequests.delete(key);
+}
+
+/** True while any selected ETF's holdings have not finished loading. */
+function isHoldingsLoading(): boolean {
+  for (const ticker of state.selected) {
+    if (!holdingsComplete.has(ticker)) return true;
   }
-}
-
-async function acquireHoldingsLoadSlot(): Promise<void> {
-  if (activeHoldingsLoads < MAX_CONCURRENT_HOLDINGS_LOADS) {
-    activeHoldingsLoads += 1;
-    return;
-  }
-  // releaseHoldingsLoadSlot transfers an occupied slot directly to this
-  // waiter, so there is no decrement/increment race between microtasks.
-  await new Promise<void>(resolve => holdingsLoadWaiters.push(resolve));
-}
-
-function releaseHoldingsLoadSlot(): void {
-  const next = holdingsLoadWaiters.shift();
-  if (next) next();
-  else activeHoldingsLoads = Math.max(0, activeHoldingsLoads - 1);
-}
-
-function holdingsEntryIsComplete(entry: SheetEntry | undefined): boolean {
-  return Boolean(entry && entry.manifest && Array.isArray(entry.manifest.pages) && entry.nextPage >= entry.manifest.pages.length);
-}
-
-/** Loads every holdings page for one selected ETF, exactly once at a time. */
-function ensureAllHoldingsForTicker(ticker: string): Promise<void> {
-  const key = `${ticker}:holdings`;
-  if (holdingsEntryIsComplete(sheetState.get(key))) return Promise.resolve();
-  const pending = holdingsLoadPromises.get(ticker);
-  if (pending) return pending;
-
-  const request = (async () => {
-    await acquireHoldingsLoadSlot();
-    try {
-      // A queued all-catalog request can become obsolete while it waits (for
-      // example, the user immediately unchecks some ETFs). Do no wasted I/O.
-      if (!state.selected.has(ticker)) return;
-      holdingsLoadFailures.delete(ticker);
-      const meta = await loadFundMeta(ticker);
-      if (!state.selected.has(ticker)) return;
-      const manifest = meta && meta.holdings;
-      if (!manifest || !Array.isArray(manifest.pages) || !manifest.pages.length) {
-        const known = state.funds.find(fund => fund.ticker === ticker);
-        if (known && known.holdings > 0) holdingsLoadFailures.add(ticker);
-        return;
-      }
-
-      // If the detail-view loader got here first, let its page finish before
-      // taking ownership of this same cache entry.
-      const detailPageRequest = sheetPageRequests.get(key);
-      if (detailPageRequest) await detailPageRequest;
-
-      let entry = sheetState.get(key);
-      if (!entry) {
-        entry = { headers: [], rows: [], nextPage: 0, manifest, loading: false };
-        sheetState.set(key, entry);
-      } else {
-        entry.manifest = manifest;
-      }
-      entry.loading = true;
-      while (entry.nextPage < manifest.pages.length && state.selected.has(ticker)) {
-        const pageIndex = entry.nextPage;
-        const page = await fetchPage(ticker, manifest.pages[pageIndex]);
-        if (!entry.headers.length && page.headers.length) entry.headers = page.headers;
-        entry.rows = entry.rows.concat(page.rows);
-        entry.nextPage = pageIndex + 1;
-        sheetLoadFailures.delete(key);
-        invalidateWatchlistRows();
-        scheduleSelectionDataRefresh(ticker);
-      }
-    } catch (error) {
-      const message = error instanceof Error ? error.message : String(error);
-      holdingsLoadFailures.add(ticker);
-      sheetLoadFailures.set(key, message);
-      console.error(`Failed to preload ${ticker} holdings:`, error);
-    } finally {
-      const entry = sheetState.get(key);
-      if (entry) entry.loading = false;
-      releaseHoldingsLoadSlot();
-    }
-  })();
-
-  holdingsLoadPromises.set(ticker, request);
-  void request.finally(() => {
-    if (holdingsLoadPromises.get(ticker) === request) holdingsLoadPromises.delete(ticker);
-    scheduleSelectionDataRefresh(ticker);
-    // Close the narrow uncheck/recheck race: a reselect can reuse a promise
-    // that was just about to stop because the ticker was momentarily absent.
-    if (state.selected.has(ticker) && !holdingsEntryIsComplete(sheetState.get(key)) && !holdingsLoadFailures.has(ticker)) {
-      void ensureAllHoldingsForTicker(ticker);
-    }
-  });
-  return request;
+  return false;
 }
 
 /**
- * Watchlist aggregation needs every holdings page of every selected ETF.
- * Per-ticker promise deduplication and bounded concurrency avoid duplicate /
- * skipped pages when checkboxes change quickly and avoid a 180-request burst
- * when the All ETFs pill is checked.
+ * Loads every holdings page of one ticker. Runs inside the per-ticker chain,
+ * so it composes safely with the detail-view pager (shared cache entry, no
+ * duplicate or skipped pages). Queued work for an ETF that was deselected in
+ * the meantime is skipped; in-flight loads finish into the cache and are
+ * ignored by the aggregation, which only reads the current selection.
+ */
+async function loadAllHoldingsForTicker(ticker: string): Promise<void> {
+  await withTickerChain(ticker, async () => {
+    if (!state.selected.has(ticker)) return; // deselected while queued: skip
+    const meta = await loadFundMeta(ticker);
+    if (!meta || !meta.holdings || !Array.isArray(meta.holdings.pages) || !meta.holdings.pages.length) return;
+    const key = `${ticker}:holdings`;
+    let entry = sheetState.get(key);
+    if (!entry) {
+      entry = { headers: [], rows: [], nextPage: 0, manifest: meta.holdings, loading: false };
+      sheetState.set(key, entry);
+    }
+    while (entry.nextPage < entry.manifest.pages.length) {
+      if (!state.selected.has(ticker)) return; // deselected mid-load: skip the rest
+      await fetchNextSheetPage(ticker, entry); // chain already held: no re-queue
+    }
+  });
+}
+
+/**
+ * Watchlist aggregation needs every holdings page of every selected ETF
+ * (same pipeline as daggerok/iShares). Runs with bounded concurrency (6
+ * funds at a time) so a whole-catalog selection cannot overload the static
+ * feed; Watchlist holdings are cached under each fund's own key,
+ * independent of the active fund.
  */
 async function ensureHoldingsForSelection(): Promise<void> {
-  const tickers = [...state.selected].filter(ticker => {
-    const fund = state.funds.find(candidate => candidate.ticker === ticker);
-    return Boolean(fund && fund.holdings > 0);
+  const queue = [...state.selected].filter(ticker => !holdingsComplete.has(ticker));
+  if (!queue.length) return;
+  const workers = Array.from({ length: Math.min(HOLDINGS_CONCURRENCY, queue.length) }, async () => {
+    for (;;) {
+      const ticker = queue.shift();
+      if (!ticker) break;
+      try {
+        await loadAllHoldingsForTicker(ticker);
+      } catch (error) {
+        console.error(`Failed to load ${ticker} holdings:`, error);
+      } finally {
+        holdingsComplete.add(ticker);
+        if (state.selected.size > 0) {
+          // Keep the Watchlist tab label honest (Loading… -> N+ -> exact)
+          // even while the user stays on another tab.
+          if (state.activeTab === 'watchlist') scheduleWatchlistRefresh();
+          else renderTabs();
+        }
+      }
+    }
   });
-  await Promise.all(tickers.map(ticker => ensureAllHoldingsForTicker(ticker)));
-  scheduleSelectionDataRefresh();
+  await Promise.all(workers);
+  if (state.selected.size > 0) {
+    if (state.activeTab === 'watchlist') renderWatchlistTable();
+    renderTabs();
+  }
+}
+
+/** Progressive Watchlist rerenders are throttled (~150 ms) while rows stream in. */
+function scheduleWatchlistRefresh(): void {
+  if (state.activeTab !== 'watchlist') return;
+  if (watchlistRefreshTimer !== null) return;
+  watchlistRefreshTimer = setTimeout(() => {
+    watchlistRefreshTimer = null;
+    if (state.activeTab === 'watchlist') { renderWatchlistTable(); renderTabs(); }
+  }, 150);
 }
 
 function activeSheetTab(): 'holdings' | 'history' | null {
@@ -1997,35 +1952,12 @@ function activeSheetTab(): 'holdings' | 'history' | null {
 }
 
 function maybeLoadMoreRows(): void {
-  if (state.activeTab === 'watchlist') {
-    if (watchlistVisibleLimit < renderedWatchlistTotal) {
-      watchlistVisibleLimit += WATCHLIST_PAGE_SIZE;
-      renderWatchlistTable();
-      fitTableHeight();
-      renderStaticLoadSentinel();
-    }
-    return;
-  }
   const sheet = activeSheetTab();
   if (!sheet) return;
   void loadNextSheetPage(sheet);
 }
 
 function renderStaticLoadSentinel(): void {
-  if (state.activeTab === 'watchlist') {
-    const progress = selectedHoldingsLoadState();
-    const shown = Math.min(watchlistVisibleLimit, renderedWatchlistTotal);
-    const moreRows = shown < renderedWatchlistTotal;
-    const show = moreRows || progress.loading;
-    el.staticLoadSentinel.classList.toggle('hidden', !show);
-    el.staticLoadStatus.textContent = moreRows
-      ? `Showing ${shown.toLocaleString('en-US')} of ${renderedWatchlistTotal.toLocaleString('en-US')} holdings — scroll or click to load more…`
-      : progress.loading
-        ? `Loading holdings… ${progress.completeFunds} of ${progress.sourceFunds} selected ETF files ready.`
-        : '';
-    return;
-  }
-
   const sheet = activeSheetTab();
   if (!sheet || !state.activeFundTicker) {
     el.staticLoadSentinel.classList.add('hidden');
@@ -2065,28 +1997,6 @@ function getTabs(): TabInfo[] {
   return tabs;
 }
 
-type SelectedHoldingsLoadState = {
-  sourceFunds: number;
-  completeFunds: number;
-  failedFunds: number;
-  loading: boolean;
-};
-
-function selectedHoldingsLoadState(): SelectedHoldingsLoadState {
-  const sourceTickers = [...state.selected].filter(ticker => {
-    const fund = state.funds.find(candidate => candidate.ticker === ticker);
-    return Boolean(fund && fund.holdings > 0);
-  });
-  const completeFunds = sourceTickers.filter(ticker => holdingsEntryIsComplete(sheetState.get(`${ticker}:holdings`))).length;
-  const failedFunds = sourceTickers.filter(ticker => holdingsLoadFailures.has(ticker)).length;
-  return {
-    sourceFunds: sourceTickers.length,
-    completeFunds,
-    failedFunds,
-    loading: completeFunds + failedFunds < sourceTickers.length,
-  };
-}
-
 function getSelectedTabs(): TabInfo[] {
   const tabs: TabInfo[] = [];
   const activeFund = getActiveFund();
@@ -2101,17 +2011,13 @@ function getSelectedTabs(): TabInfo[] {
     });
   }
 
-  // Keep Watchlist visible while it is the active view even if the selection
-  // just became empty (All ETFs pill uncheck must not navigate away).
-  if (state.selected.size > 0 || state.activeTab === 'watchlist') {
-    const progress = selectedHoldingsLoadState();
-    tabs.push({
-      id: 'watchlist',
-      label: 'Watchlist',
-      count: getDedupedWatchlistRows().length,
-      loading: progress.loading,
-      failed: progress.failedFunds > 0,
-    });
+  if (state.selected.size > 0) {
+    const rowCount = getDedupedWatchlistRows().length;
+    // While holdings are still loading, never show a misleading exact count:
+    // "Loading…" (nothing aggregated yet) or "N+" (partial aggregation that
+    // can only grow). The exact deduplicated count appears on completion.
+    const count = isHoldingsLoading() ? (rowCount ? `${rowCount}+` : 'Loading…') : rowCount;
+    tabs.push({ id: 'watchlist', label: 'Watchlist', count });
   }
 
   return tabs;
@@ -2133,9 +2039,7 @@ function getDetailCount(key: string): number {
   if (key === 'history') return activeFund.history || 0;
   if (key === 'distributions') {
     const meta = fundMetaCache.get(activeFund.ticker);
-    if (meta && meta.distributions && Array.isArray(meta.distributions.rows)) return meta.distributions.rows.length;
-    const summary = activeFund.distributions || { frequency: '', exDate: '', dividend: '' };
-    return [summary.frequency, summary.exDate, summary.dividend].some(value => String(value || '').trim() !== '' && value !== '-') ? 1 : 0;
+    return meta && meta.distributions && Array.isArray(meta.distributions.rows) ? meta.distributions.rows.length : 0;
   }
   return 0;
 }
@@ -2151,37 +2055,7 @@ function ensureValidTab(): void {
 function applyRestoredTab(): void {
   const tabIds = getAllTabIds();
   if (!tabIds.includes(state.activeTab)) state.activeTab = 'All';
-  applySortForTab(state.activeTab);
   syncSearchInput();
-}
-
-/**
- * Switch the active view. Saves the outgoing tab's search query (never when
- * the destination equals the current tab, e.g. boot before DOM hydration)
- * and restores the destination tab's remembered query and sort.
- */
-function switchTab(tab: ActiveTab): void {
-  if (state.activeTab && state.activeTab !== tab) {
-    const curVal = el.searchInput.value;
-    if (curVal && curVal.length > 0) state.queryByTab[state.activeTab] = curVal;
-    else delete state.queryByTab[state.activeTab];
-    persistTabFilters();
-  }
-
-  state.activeTab = tab;
-  applySortForTab(tab);
-  resetSheetPaging();
-  if (tab === 'watchlist') {
-    watchlistVisibleLimit = WATCHLIST_PAGE_SIZE;
-    void ensureHoldingsForSelection();
-  }
-  el.searchInput.value = state.queryByTab[tab] || '';
-  updateSearchClearBtn();
-  persistSiteState();
-  render();
-  // Watchlist already painted its first 250-row chunk; extra pages load on
-  // scroll. Detail sheets still need a kick to fetch the next page.
-  if (tab !== 'watchlist') maybeLoadMoreRows();
 }
 
 function renderTabs(): void {
@@ -2196,24 +2070,21 @@ function renderTabs(): void {
 
 function renderTabButtons(container: any, tabs: TabInfo[], minTabs = 1): void {
   container.classList.toggle('hidden', tabs.length <= minTabs);
-  // The pill box covers the whole catalog (it sits next to the "All ETFs (N)"
-  // count), so its checked state ignores the current tab and search filter.
-  const nonBlacklisted = state.funds.filter(fund => !state.blacklist.has(fund.ticker));
-  const allSelected = nonBlacklisted.length > 0 && nonBlacklisted.every(fund => state.selected.has(fund.ticker));
+  // All ETFs pill checkbox: checked iff EVERY non-blacklisted catalog ETF is
+  // selected (.every over the whole catalog, never a size comparison).
+  const catalogFunds = state.funds.filter(fund => !state.blacklist.has(fund.ticker));
+  const allSelected = catalogFunds.length > 0 && catalogFunds.every(fund => state.selected.has(fund.ticker));
   container.innerHTML = tabs.map(tab => {
     // The All ETFs pill is lit only while no asset class narrows the table
     const isActive = tab.id === state.activeTab && (tab.id !== 'All' || !categoryFilterActive());
     const activeClasses = 'bg-blue-600 text-white font-medium border-blue-500 shadow-sm';
     const inactiveClasses = 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-200 dark:hover:bg-slate-700 border-slate-200 dark:border-slate-700';
-    const countText = tab.loading
-      ? (tab.count > 0 ? `${tab.count.toLocaleString('en-US')}+` : 'Loading…')
-      : `${tab.count.toLocaleString('en-US')}${tab.failed ? ' ⚠' : ''}`;
     if (tab.id === 'All') {
       return `
         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs transition border whitespace-nowrap ${isActive ? activeClasses : inactiveClasses}">
           <input type="checkbox" id="select-all-toggle" ${allSelected ? 'checked' : ''} class="w-3.5 h-3.5 accent-blue-600 cursor-pointer" title="Select / Deselect all ETFs" />
-          <button id="all-etfs-tab-btn" data-tab="All" class="font-medium hover:underline focus:outline-none">
-            ${escapeHtml(tab.label)} (${escapeHtml(countText)})
+          <button data-tab="All" class="font-medium hover:underline focus:outline-none">
+            ${escapeHtml(tab.label)} (${tab.count})
           </button>
         </div>
       `;
@@ -2222,15 +2093,28 @@ function renderTabButtons(container: any, tabs: TabInfo[], minTabs = 1): void {
       <button
         data-tab="${escapeHtml(tab.id)}"
         class="px-3.5 py-1.5 rounded-full text-xs transition border whitespace-nowrap ${isActive ? activeClasses : inactiveClasses}">
-        ${escapeHtml(tab.label)} (${escapeHtml(countText)})
+        ${escapeHtml(tab.label)} (${tab.count})
       </button>
     `;
   }).join('');
 
   container.querySelectorAll('button[data-tab]').forEach((button: any) => {
     button.addEventListener('click', () => {
-      if ((button.dataset.tab || 'All') === 'All' && hiddenCategories.size) { hiddenCategories = new Set(); persistHiddenCategories(); } // All ETFs clears the asset class selection
-      switchTab(button.dataset.tab || 'All');
+      const next = button.dataset.tab || 'All';
+      // Transition guard: leave the current tab's search query saved before
+      // the destination tab restores its own (never overwrite when staying
+      // on the same tab, e.g. at boot before DOM hydration).
+      if (state.activeTab && state.activeTab !== next) saveActiveTabQuery();
+      state.activeTab = next;
+      if (next === 'All' && hiddenCategories.size) { hiddenCategories = new Set(); persistHiddenCategories(); } // All ETFs clears the asset class selection
+      // Coming back to a tab (e.g. All ETFs after visiting Watchlist) must
+      // show the sort the user last chose there, not the tab default.
+      applySortForTab(state.activeTab);
+      resetSheetPaging();
+      syncSearchInput();
+      persistSiteState();
+      render();
+      maybeLoadMoreRows();
     });
   });
 
@@ -2238,9 +2122,8 @@ function renderTabButtons(container: any, tabs: TabInfo[], minTabs = 1): void {
   if (selectAllToggle) {
     selectAllToggle.addEventListener('change', (event: any) => {
       event.stopPropagation();
-      // 'catalog': the pill box keeps whole-catalog semantics — it selects or
-      // deselects every non-blacklisted ETF, regardless of tab or filter.
-      toggleSelectAll(Boolean(event.target.checked), 'catalog');
+      // All ETFs pill: whole non-blacklisted catalog from any tab, no navigation.
+      toggleAllCatalogEfts(Boolean(event.target.checked));
     });
     selectAllToggle.addEventListener('click', (event: any) => event.stopPropagation());
   }
@@ -2312,6 +2195,7 @@ function render(keepRows = true): void {
   const anchor = captureViewAnchor();
   setCatalogColumnStyle(false);
   ensureValidTab();
+  updateSearchClearBtn();
   renderTabs();
   renderBlacklistPanel();
   animateTableUpdate();
@@ -2461,12 +2345,19 @@ function currentQuery(): string {
 function setCurrentQuery(value: string): void {
   if (value) state.queryByTab[state.activeTab] = value;
   else delete state.queryByTab[state.activeTab];
-  persistTabFilters();
-  persistSiteState();
+  persistSearches();
 }
 
+/** Transition guard: stores the current input text under the tab being left. */
+function saveActiveTabQuery(): void {
+  const query = (el.searchInput.value || '').trim();
+  if (query) state.queryByTab[state.activeTab] = query;
+  else delete state.queryByTab[state.activeTab];
+  persistSearches();
+}
+
+/** 1-click clear button visibility: shown iff the input has text. */
 function updateSearchClearBtn(): void {
-  if (!el.searchClearBtn) return;
   el.searchClearBtn.classList.toggle('hidden', !el.searchInput.value);
 }
 
@@ -2479,17 +2370,6 @@ function syncSearchInput(): void {
     ? 'Search ETFs, fund names, holdings, tickers, CUSIPs/ISINs, SEDOLs...'
     : `Search ${tabLabel(state.activeTab)}...`;
   updateSearchClearBtn();
-}
-
-function clearActiveSearchFilter(): void {
-  el.searchInput.value = '';
-  delete state.queryByTab[state.activeTab];
-  persistTabFilters();
-  persistSiteState();
-  updateSearchClearBtn();
-  el.searchInput.focus?.();
-  if (state.activeTab === 'watchlist') watchlistVisibleLimit = WATCHLIST_PAGE_SIZE;
-  render();
 }
 
 function filterRows(rows: any[]): any[] {
@@ -2508,7 +2388,7 @@ function compareValues(a: unknown, b: unknown): number {
   if (an !== null && bn !== null) return an - bn;
   const as = String(a ?? '');
   const bs = String(b ?? '');
-  // SSGA NAV history dates ("21-Aug-2026") sort chronologically.
+  // History dates ("Aug 21 2026") sort chronologically.
   if (/^\d{1,2}-[A-Za-z]{3}-\d{4}$/.test(as) || /^\d{1,2}-[A-Za-z]{3}-\d{4}$/.test(bs)) {
     const ad = Date.parse(as.replace(/-/g, ' '));
     const bd = Date.parse(bs.replace(/-/g, ' '));
@@ -2524,39 +2404,42 @@ function sortRows(rows: any[]): any[] {
   return [...rows].sort((a, b) => compareValues(sortValue(a, key), sortValue(b, key)) * direction);
 }
 
-function sortHeader(label: string, key: string, numeric = false, explicitStickyClass = ''): string {
+// `extraClass` is opt-in and only used by the All ETFs catalog for its
+// horizontally pinned columns (`Use` + `Ticker`). Every other call site
+// (Watchlist, Overview, Distributions, generic sheet views) omits it and
+// renders exactly as before. See the `catalog-sticky-*` rules in index.html.
+function sortHeader(label: string, key: string, numeric = false, extraClass = ''): string {
   const active = state.sortKey === key;
   const arrow = active ? (state.sortDir === 'asc' ? ' ↑' : ' ↓') : '';
   const align = numeric ? ' text-right' : '';
   const tooltip = getHeaderTooltip(label);
-  const button = `<button data-sort="${escapeHtml(key)}" title="${escapeHtml(tooltip)}" class="uppercase tracking-wider hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus:text-blue-600 dark:focus:text-blue-400">${escapeHtml(label)}${arrow}</button>`;
-  const stickyClass = explicitStickyClass || (key === 'ticker' ? ' catalog-sticky-col catalog-sticky-ticker' : '');
-  return `<th class="py-3.5 px-4${align}${stickyClass}" title="${escapeHtml(tooltip)}"><div class="flex items-center gap-1.5${numeric ? ' justify-end' : ''}">${button}${filterBadgeFor(key)}</div></th>`;
-}
-
-/**
- * The rows the catalog table actually renders: catalog tab + active search
- * filter + blacklist exclusion + column filters (the scope of the header Use
- * checkbox and of select-all).
- */
-function visibleCatalogRows(): FundRow[] {
-  return filteredCatalogFunds();
+  return `<th class="py-3.5 px-4${align}${extraClass ? ' ' + extraClass : ''}" title="${escapeHtml(tooltip)}"><div class="flex items-center gap-1.5${numeric ? ' justify-end' : ''}"><button data-sort="${escapeHtml(key)}" title="${escapeHtml(tooltip)}" class="uppercase tracking-wider hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus:text-blue-600 dark:focus:text-blue-400">${escapeHtml(label)}${arrow}</button>${filterBadgeFor(key)}</div></th>`;
 }
 
 function indexHeader(): string {
   return `<th class="py-3.5 px-4 w-12 text-center" title="${escapeHtml(getHeaderTooltip('#'))}">#</th>`;
 }
 
+/**
+ * The rows the catalog table actually renders: catalog tab + active search
+ * filter + blacklist exclusion. This is the exact scope of the header Use
+ * checkbox (checked state is `.every(...)` over these rows, never a
+ * selection-size comparison).
+ */
+function visibleCatalogRows(): FundRow[] {
+  return filteredCatalogFunds();
+}
+
+// Only the All ETFs catalog uses this header (single call site), so the
+// horizontal pin is hard-coded here rather than parameterized.
 function useHeader(): string {
-  // The checked state tracks exactly the rows the table currently renders
-  // (current tab + active search filter), the same set select-all toggles.
   const rows = visibleCatalogRows();
   const allSelected = rows.length > 0 && rows.every(fund => state.selected.has(fund.ticker));
   return `<th class="catalog-sticky-col catalog-sticky-use py-3.5 px-4 w-20 text-center" title="${escapeHtml(getHeaderTooltip('Use'))}">
-    <span class="inline-flex items-center justify-center gap-1">
-      <input type="checkbox" id="select-all-checkbox" ${allSelected ? 'checked' : ''} class="w-4 h-4 accent-blue-600 cursor-pointer" title="Select / Deselect all visible ETFs (current tab + search filter)" />
+    <div class="inline-flex items-center justify-center gap-1">
+      <input type="checkbox" id="select-all-checkbox" ${allSelected ? 'checked' : ''} class="w-4 h-4 accent-blue-600 cursor-pointer" title="Select / Deselect all visible ETFs" />
       <span>Use</span>
-    </span>
+    </div>
   </th>`;
 }
 
@@ -2571,7 +2454,6 @@ function bindSortHeaders(): void {
         state.sortDir = ['ticker', 'name', 'category', 'symbol', 'section', 'metric', 'identifier', 'label'].includes(key) ? 'asc' : 'desc';
       }
       rememberSortForCurrentTab();
-      if (state.activeTab === 'watchlist') watchlistVisibleLimit = WATCHLIST_PAGE_SIZE;
       render(false);
     });
   });
@@ -2582,9 +2464,8 @@ function bindSelectAllCheckbox(): void {
   if (!checkbox) return;
   checkbox.addEventListener('change', (event: any) => {
     event.stopPropagation();
-    // 'visible': the header box manages only the rows currently rendered
-    // (current tab + active search filter), never the hidden ones.
-    toggleSelectAll(Boolean(event.target.checked), 'visible');
+    // Header Use checkbox: strictly the visible (filtered) catalog rows.
+    toggleVisibleSelection(Boolean(event.target.checked));
   });
   checkbox.addEventListener('click', (event: any) => event.stopPropagation());
 }
@@ -2596,7 +2477,7 @@ function renderFundsTable(): void {
     <tr>
       ${indexHeader()}
       ${useHeader()}
-      ${sortHeader('Ticker', 'ticker')}
+      ${sortHeader('Ticker', 'ticker', false, 'catalog-sticky-col catalog-sticky-ticker')}
       ${sortHeader('Fund Name', 'name')}
       ${sortHeader('Type', 'category')}
       ${sortHeader('NAV', 'navValue', true)}
@@ -2633,14 +2514,12 @@ function renderFundsTable(): void {
         <tr data-ticker="${escapeHtml(fund.ticker)}" class="hover:bg-slate-50 dark:hover:bg-slate-700/30 transition border-b border-slate-100 dark:border-slate-700/30 ${selected ? 'selected-row' : ''}">
           <td class="py-2.5 px-4 text-slate-400 dark:text-slate-500 text-xs text-center font-mono">${index + 1}</td>
           <td class="catalog-sticky-col catalog-sticky-use py-2.5 px-4 text-center">
-            <span class="inline-flex items-center justify-center gap-1.5">
+            <div class="inline-flex items-center justify-center gap-1.5">
               <input data-checkbox="${escapeHtml(fund.ticker)}" type="checkbox" ${selected ? 'checked' : ''} class="w-4 h-4 accent-blue-600 cursor-pointer" aria-label="Use ${escapeHtml(fund.ticker)}" />
               <button data-blacklist="${escapeHtml(fund.ticker)}" class="w-4 h-4 rounded text-slate-300 dark:text-slate-600 hover:text-rose-500 dark:hover:text-rose-400 leading-none transition" title="Blacklist ${escapeHtml(fund.ticker)} — hide it from All ETFs">✕</button>
-            </span>
+            </div>
           </td>
-          <td class="catalog-sticky-col catalog-sticky-ticker py-2.5 px-4 font-mono font-semibold text-blue-600 dark:text-blue-400">
-            <button data-open-fund="${escapeHtml(fund.ticker)}" class="hover:underline focus:outline-none focus:underline" title="Open ${escapeHtml(fund.ticker)} details">${escapeHtml(fund.ticker)}</button>
-          </td>
+          <td class="catalog-sticky-col catalog-sticky-ticker py-2.5 px-4 font-mono font-semibold text-blue-600 dark:text-blue-400">${escapeHtml(fund.ticker)}</td>
           <td class="py-2.5 px-4 text-slate-700 dark:text-slate-300 font-medium" title="${escapeHtml(fund.name)}">${escapeHtml(fund.name)}</td>
           <td class="py-2.5 px-4 text-slate-600 dark:text-slate-300">${escapeHtml(categoryLabel(fund.category))}</td>
           <td class="py-2.5 px-4 text-right font-mono text-slate-700 dark:text-slate-300">${escapeHtml(fund.nav || '—')}</td>
@@ -2677,13 +2556,6 @@ function renderFundsTable(): void {
     checkbox.addEventListener('click', (event: any) => event.stopPropagation());
   });
 
-  el.tableBody.querySelectorAll('button[data-open-fund]').forEach((button: any) => {
-    button.addEventListener('click', (event: any) => {
-      event.stopPropagation();
-      openFundDetails(button.dataset.openFund || '');
-    });
-  });
-
   el.tableBody.querySelectorAll('button[data-blacklist]').forEach((button: any) => {
     button.addEventListener('click', (event: any) => {
       event.stopPropagation();
@@ -2701,122 +2573,126 @@ function renderFundsTable(): void {
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-type HoldingPosition = {
-  fund: string;
-  symbol: string;
-  key: string;
-  name: string;
-  weight: number;
-  identifier: string;
-  sector: string;
-  marketValue: number;
-};
+type HoldingPosition = { fund: string; name: string; identifier: string; weight: number; marketValue: number; sector: string; cells: Record<string, unknown> };
 
-function normalizeHoldingHeader(value: string): string {
-  return String(value || '').trim().toLowerCase().replace(/[^a-z0-9]/g, '');
-}
+const MISSING_TOKENS = new Set(['', '-', '--', '—', '–', 'N/A', 'NA', 'NONE', 'NULL']);
 
-const MISSING_HOLDING_VALUES = new Set(['', '-', '--', '—', '–', 'n/a', 'na', 'none', 'null']);
-
-function usableHoldingValue(value: unknown): string {
-  const clean = String(value ?? '').trim();
-  return !clean || MISSING_HOLDING_VALUES.has(clean.toLowerCase()) ? '' : clean;
+/**
+ * Treats blank / dash / N/A-style placeholders as missing. All-zero CUSIPs
+ * (published as `000000000` verbatim by some EDGAR N-PORT filings) also count
+ * as missing, so identifier-less rows fall through to the name instead of
+ * collapsing into one garbage key.
+ */
+function cleanKeyPart(value: unknown): string {
+  const text = String(value ?? '').trim();
+  if (!text || MISSING_TOKENS.has(text.toUpperCase())) return '';
+  if (/^0+$/.test(text)) return '';
+  return text.toUpperCase();
 }
 
 /**
- * Converts the generated SPDR headers and common old/new provider payload
- * aliases into the one Watchlist position contract. In particular, a blank
- * or "-" Ticker must fall back to CUSIP / ISIN / Identifier / SEDOL so bond
- * positions are not silently dropped. A published security name is the last
- * resort for valid cash/derivative rows that genuinely have no identifier.
+ * Documented dedupe key fallback order (docs/ui-contract.md §5):
+ * Ticker -> CUSIP -> ISIN -> Identifier/Security ID -> SEDOL/FIGI -> Name.
+ * Keys are namespaced (T:/C:/I:/D:/S:/N:) so identifier values can never
+ * collide with tickers. Numeric local listing tickers (e.g. 005930) are
+ * valid tickers, not placeholders. Rows are never aggressively dropped:
+ * bonds without exchange tickers, cash positions, derivatives and zero-weight
+ * holdings all resolve to a key (the name being the last resort).
  */
-function sheetPositions(ticker: string): HoldingPosition[] {
-  const entry = sheetState.get(`${ticker}:holdings`);
-  if (!entry || !entry.headers.length) return [];
-  const headerIndexes: Map<string, number> = new Map();
-  entry.headers.forEach((header, index) => headerIndexes.set(normalizeHoldingHeader(header), index));
-  const value = (row: string[], aliases: string[]): string => {
-    for (let i = 0; i < aliases.length; i++) {
-      const index = headerIndexes.get(normalizeHoldingHeader(aliases[i]));
-      if (index === undefined) continue;
-      const found = usableHoldingValue(row[index]);
-      if (found) return found;
+function positionDedupeKey(row: Record<string, unknown>): { key: string; shown: string } | null {
+  const first = (...values: unknown[]): string => {
+    for (const value of values) {
+      const clean = cleanKeyPart(value);
+      if (clean) return clean;
     }
     return '';
   };
+  const ticker = first(row.Ticker, row.Symbol);
+  if (ticker) return { key: `T:${ticker}`, shown: ticker };
+  const cusip = first(row.CUSIP);
+  if (cusip) return { key: `C:${cusip}`, shown: cusip };
+  const isin = first(row.ISIN);
+  if (isin) return { key: `I:${isin}`, shown: isin };
+  const identifier = first(row.Identifier, row['Security ID']);
+  if (identifier) return { key: `D:${identifier}`, shown: identifier };
+  const sedol = first(row.SEDOL, row.FIGI);
+  if (sedol) return { key: `S:${sedol}`, shown: sedol };
+  const name = String(row.Name ?? row['Security Name'] ?? '').trim();
+  if (name) return { key: `N:${name.toUpperCase()}`, shown: name };
+  return null;
+}
 
-  const positions: HoldingPosition[] = [];
-  entry.rows.forEach(row => {
-    const publishedTicker = value(row, ['Ticker', 'Symbol', 'Security Ticker']);
-    const cusip = value(row, ['CUSIP']);
-    const isin = value(row, ['ISIN']);
-    const identifier = value(row, ['Identifier', 'Security ID', 'securityId']);
-    const sedol = value(row, ['SEDOL', 'FIGI']);
-    const name = value(row, ['Name', 'Holding Name', 'holdingName', 'Security Long Description', 'securityLongDescription', 'Security Description']);
-    let key = '';
-    let shown = '';
-    if (publishedTicker) { key = `T:${publishedTicker.toUpperCase()}`; shown = publishedTicker; }
-    else if (cusip) { key = `C:${cusip.toUpperCase()}`; shown = cusip; }
-    else if (isin) { key = `I:${isin.toUpperCase()}`; shown = isin; }
-    else if (identifier) { key = `D:${identifier.toUpperCase()}`; shown = identifier; }
-    else if (sedol) { key = `S:${sedol.toUpperCase()}`; shown = sedol; }
-    else if (name) { key = `N:${name.toUpperCase()}`; shown = name; }
-    else return;
-    const weight = numberOrNull(value(row, ['Weight', 'Weight (%)', 'Market Value Percentage', 'marketValuePercentage']));
-    const marketValue = numberOrNull(value(row, ['Market Value', 'Market Value Base Currency', 'marketValueBaseCurrency']));
-    positions.push({
-      fund: ticker,
-      symbol: shown,
-      key,
-      name,
-      weight: weight === null ? 0 : weight,
-      identifier: identifier || cusip || isin || sedol,
-      sector: value(row, ['Sector', 'GICS Sector', 'gicsSector']),
-      marketValue: marketValue === null ? 0 : marketValue,
+function sheetPositions(ticker: string): HoldingPosition[] {
+  const entry = sheetState.get(`${ticker}:holdings`);
+  if (!entry || !entry.headers.length) return [];
+  return entry.rows.map(row => {
+    // Holding rows carry the exchange ticker resolved at data-build time;
+    // bond / private positions have no ticker ("-") and the key falls back
+    // through the identifier chain to the published name.
+    const cells: Record<string, unknown> = {};
+    entry.headers.forEach((header, index) => {
+      if (header) cells[header] = row[index] ?? '';
     });
+    const weight = numberOrNull(cells.Weight);
+    const rawIdentifier = String(cells.Identifier ?? '').trim();
+    return {
+      fund: ticker,
+      name: String(cells.Name ?? '').trim(),
+      identifier: cleanKeyPart(rawIdentifier) ? rawIdentifier : '',
+      weight: weight === null ? 0 : weight,
+      marketValue: numberOrNull(cells['Market Value']) ?? 0,
+      sector: cleanKeyPart(cells.Sector) ? String(cells.Sector).trim() : '',
+      cells,
+    };
   });
-  return positions.filter(position => usableHoldingValue(position.symbol) !== '');
 }
 
 function getSelectedPositions(): HoldingPosition[] {
   return [...state.selected].flatMap(ticker => sheetPositions(ticker));
 }
 
-function invalidateWatchlistRows(): void {
-  watchlistRevision += 1;
-}
+let watchlistCache: { signature: string; rows: WatchlistRow[] } | null = null;
 
 function getDedupedWatchlistRows(): WatchlistRow[] {
-  if (cachedWatchlistRevision === watchlistRevision) return cachedWatchlistRows;
+  // Memoized: the aggregation is recomputed only when the selection or the
+  // loaded row counts change (progressive streaming and tab label updates
+  // otherwise re-render many times per second on large selections).
+  const tickers = [...state.selected].sort();
+  const signature =
+    tickers.join('|') +
+    '#' +
+    tickers.map(ticker => (sheetState.get(`${ticker}:holdings`)?.rows.length ?? 0)).join(',');
+  if (watchlistCache && watchlistCache.signature === signature) return watchlistCache.rows;
+
   const map: Map<string, WatchlistRow> = new Map();
   getSelectedPositions().forEach(position => {
-    const symbol = position.symbol;
-    const dedupeKey = position.key || `T:${String(symbol).toUpperCase()}`;
-    if (!map.has(dedupeKey)) {
-      map.set(dedupeKey, {
-        symbol,
+    const resolved = positionDedupeKey(position.cells);
+    if (!resolved) return;
+    let row = map.get(resolved.key);
+    if (!row) {
+      row = {
+        key: resolved.key,
+        symbol: resolved.shown,
         name: position.name,
         funds: [],
         fundCount: 0,
         weightSum: 0,
         maxWeight: 0,
         marketValue: 0,
-        sectors: [],
         sector: '',
+        sectors: [],
         cusips: [],
         identifier: '',
         searchIndex: '',
-        _key: dedupeKey,
-      });
+      };
+      map.set(resolved.key, row);
     }
-    const row = map.get(dedupeKey);
-    if (!row) return;
     if (!row.funds.includes(position.fund)) row.funds.push(position.fund);
     row.weightSum += position.weight;
     row.maxWeight = Math.max(row.maxWeight, position.weight);
     row.marketValue += position.marketValue;
-    if (position.identifier && !row.cusips.includes(position.identifier)) row.cusips.push(position.identifier);
     if (position.sector && !row.sectors.includes(position.sector)) row.sectors.push(position.sector);
+    if (position.identifier && !row.cusips.includes(position.identifier)) row.cusips.push(position.identifier);
     if (position.name) row.name = position.name;
   });
   map.forEach(row => {
@@ -2824,13 +2700,13 @@ function getDedupedWatchlistRows(): WatchlistRow[] {
     row.funds.sort();
     row.cusips.sort();
     row.sectors.sort();
-    row.identifier = row.cusips[0] || '';
     row.sector = row.sectors.join(', ');
-    row.searchIndex = [row.symbol, row.name, row.cusips.join(' '), row.sectors.join(' '), row.funds.join(' ')].join(' ').toLowerCase();
+    row.identifier = row.cusips[0] || '';
+    row.searchIndex = [row.symbol, row.name, row.cusips.join(' '), row.sector, row.funds.join(' ')].join(' ').toLowerCase();
   });
-  cachedWatchlistRows = [...map.values()];
-  cachedWatchlistRevision = watchlistRevision;
-  return cachedWatchlistRows;
+  const rows = [...map.values()];
+  watchlistCache = { signature, rows };
+  return rows;
 }
 
 function getVisibleWatchlistRows(): WatchlistRow[] {
@@ -2838,15 +2714,35 @@ function getVisibleWatchlistRows(): WatchlistRow[] {
   return sortRows(applyColumnFilters('watchlist', filterRows(base), WATCHLIST_FILTER_COLUMNS, base));
 }
 
+function watchlistChunkSignature(rows: WatchlistRow[]): string {
+  return [state.sortKey, state.sortDir, currentQuery(), columnFilterSig('watchlist'), rows.length, rows.length ? rows[0].key : ''].join('|');
+}
+
+/** Scroll/click extension of the rendered Watchlist chunk (bounded DOM). */
+function growWatchlistChunk(): void {
+  const rows = getVisibleWatchlistRows();
+  if (watchlistRenderedCount + WATCHLIST_CHUNK >= rows.length) return;
+  watchlistRenderedCount += WATCHLIST_CHUNK;
+  renderWatchlistTable();
+}
+
 function renderWatchlistTable(): void {
-  const allRows = getVisibleWatchlistRows();
-  const rows = allRows.slice(0, watchlistVisibleLimit);
-  const progress = selectedHoldingsLoadState();
-  renderedWatchlistTotal = allRows.length;
+  const rows = getVisibleWatchlistRows();
+  const signature = watchlistChunkSignature(rows);
+  if (signature !== watchlistChunkSig) {
+    watchlistChunkSig = signature;
+    watchlistRenderedCount = 0;
+  }
+  // The complete filtered result drives the counts, Copy Tickers and both
+  // exports; only the DOM is chunked. Scrolling grows the mounted slice.
+  const visibleRows = rows.slice(0, watchlistRenderedCount + WATCHLIST_CHUNK);
+  const hasMore = rows.length > visibleRows.length;
+  const loading = state.selected.size > 0 && isHoldingsLoading();
+
   el.tableHead.innerHTML = `
     <tr>
       ${indexHeader()}
-      ${sortHeader('Ticker', 'symbol', false, ' watchlist-sticky-ticker')}
+      ${sortHeader('Ticker', 'symbol', false, 'watchlist-sticky-col watchlist-sticky-ticker')}
       ${sortHeader('Name', 'name')}
       ${sortHeader('ETFs', 'funds')}
       ${sortHeader('# ETFs', 'fundCount', true)}
@@ -2859,32 +2755,23 @@ function renderWatchlistTable(): void {
   `;
   bindSortHeaders();
 
-  let emptyMessage = '';
   if (!state.selected.size) {
-    emptyMessage = 'No ETFs selected yet. Select ETFs in All ETFs to build the aggregated Watchlist.';
-  } else if (!allRows.length && currentQuery() && getDedupedWatchlistRows().length > 0) {
-    emptyMessage = 'No Watchlist holdings match your search.';
-  } else if (!allRows.length && progress.loading) {
-    emptyMessage = `Loading holdings… ${progress.completeFunds} of ${progress.sourceFunds} selected ETF files ready.`;
-  } else if (!allRows.length && progress.sourceFunds === 0) {
-    emptyMessage = 'Holdings data is not available yet for the selected ETFs. Run the data refresh workflow to publish holdings pages.';
-  } else if (!allRows.length) {
-    emptyMessage = progress.failedFunds > 0
-      ? 'Holdings data could not be loaded for one or more selected ETFs. Refresh the page or run the data refresh workflow.'
-      : 'Holdings data is not available yet for the selected ETFs. Run the data refresh workflow to publish holdings pages.';
-  }
-
-  if (emptyMessage) {
-    el.tableBody.innerHTML = `<tr><td colspan="10" class="py-12 text-center text-slate-400 dark:text-slate-500">${escapeHtml(emptyMessage)}</td></tr>`;
+    el.tableBody.innerHTML = `<tr><td colspan="10" class="py-12 text-center text-slate-400 dark:text-slate-500">Select ETFs in All ETFs to build the aggregated Watchlist.</td></tr>`;
+  } else if (!rows.length) {
+    el.tableBody.innerHTML = `<tr><td colspan="10" class="py-12 text-center text-slate-400 dark:text-slate-500">${
+      loading
+        ? `Loading holdings of ${state.selected.size} selected ETF${state.selected.size === 1 ? '' : 's'}…`
+        : 'Holdings data is not available yet. Run bun ./scripts/update-data.ts to refresh the SPDR feed.'
+    }${currentQuery() ? ' No rows match your search.' : ''}</td></tr>`;
   } else {
-    el.tableBody.innerHTML = rows.map((row, index) => `
+    let html = visibleRows.map((row, index) => `
       <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/30 transition border-b border-slate-100 dark:border-slate-700/30">
         <td class="py-2.5 px-4 text-slate-400 dark:text-slate-500 text-xs text-center font-mono">${index + 1}</td>
-        <td class="watchlist-sticky-ticker py-2.5 px-4 font-mono font-semibold text-blue-600 dark:text-blue-400" title="${escapeHtml(row.symbol)}">${escapeHtml(row.symbol)}</td>
+        <td class="watchlist-sticky-col watchlist-sticky-ticker py-2.5 px-4 font-mono font-semibold text-blue-600 dark:text-blue-400">${escapeHtml(row.symbol)}</td>
         <td class="py-2.5 px-4 text-slate-700 dark:text-slate-300 font-medium" title="${escapeHtml(row.name)}">${escapeHtml(row.name || '—')}</td>
         <td class="py-2.5 px-4 text-slate-700 dark:text-slate-300">
           <div class="flex flex-wrap gap-1 max-w-md">
-            ${row.funds.map((ticker: string) => `<button data-watchlist-fund="${escapeHtml(ticker)}" class="font-mono text-xs bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border border-blue-100 dark:border-blue-800 rounded-full px-2 py-0.5 hover:underline" title="Open ${escapeHtml(ticker)} details">${escapeHtml(ticker)}</button>`).join('')}
+            ${row.funds.map((ticker: string) => `<a href="javascript:void(0)" data-activate-fund="${escapeHtml(ticker)}" title="Open ${escapeHtml(ticker)} detail tabs" class="font-mono text-xs bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border border-blue-100 dark:border-blue-800 rounded-full px-2 py-0.5 hover:underline">${escapeHtml(ticker)}</a>`).join('')}
           </div>
         </td>
         <td class="py-2.5 px-4 text-right font-mono text-slate-700 dark:text-slate-300">${row.fundCount}</td>
@@ -2895,17 +2782,28 @@ function renderWatchlistTable(): void {
         <td class="py-2.5 px-4 font-mono text-slate-600 dark:text-slate-400 text-xs">${escapeHtml(row.identifier || '—')}</td>
       </tr>
     `).join('');
+    if (loading) {
+      html += `<tr><td colspan="10" class="py-3 text-center text-xs text-slate-400 dark:text-slate-500">Loading holdings of the remaining selected ETFs…</td></tr>`;
+    }
+    if (hasMore) {
+      html += `<tr id="watchlist-more-row" class="cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-700/30 transition"><td colspan="10" class="py-3 text-center text-xs text-slate-400 dark:text-slate-500">Scroll or click to load more rows… (${rows.length - visibleRows.length} remaining)</td></tr>`;
+    }
+    el.tableBody.innerHTML = html;
   }
 
-  el.tableBody.querySelectorAll('button[data-watchlist-fund]').forEach((button: any) => {
-    button.addEventListener('click', () => openFundDetails(button.dataset.watchlistFund || ''));
+  el.tableBody.querySelectorAll('a[data-activate-fund]').forEach((link: any) => {
+    link.addEventListener('click', (event: any) => {
+      event.stopPropagation();
+      activateFund(link.dataset.activateFund || '');
     });
+  });
+  const moreRow = el.tableBody.querySelector('#watchlist-more-row');
+  if (moreRow) moreRow.addEventListener('click', () => growWatchlistChunk());
 
   const queryText = currentQuery() ? ` matching “${currentQuery()}”` : '';
-  const loadingText = progress.loading ? ` Holdings are still loading (${progress.completeFunds}/${progress.sourceFunds} ETF files).` : '';
-  setStatus(`Watchlist built from ${state.selected.size} selected ETF${state.selected.size === 1 ? '' : 's'}: ${allRows.length} deduplicated holding${allRows.length === 1 ? '' : 's'}${queryText}.${loadingText}`, progress.loading ? 'info' : 'success');
-  el.tickerCount.textContent = `${allRows.length.toLocaleString('en-US')}${progress.loading ? '+' : ''} holdings`;
-  renderSubtitle(`Watchlist from ${state.selected.size} selected ETF${state.selected.size === 1 ? '' : 's'} · showing ${rows.length.toLocaleString('en-US')} of ${allRows.length.toLocaleString('en-US')} deduplicated holdings${progress.loading ? ' while remaining files load' : ''}.`);
+  setStatus(`Watchlist built from ${state.selected.size} selected ETF${state.selected.size === 1 ? '' : 's'}: ${rows.length} ticker${rows.length === 1 ? '' : 's'}${queryText}. Deduplicated by ticker, or by identifier for bond rows.`, 'success');
+  el.tickerCount.textContent = `${rows.length} tickers`;
+  renderSubtitle();
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -2932,67 +2830,32 @@ function activeDetailTickerText(): string {
   return state.activeFundTicker ? `${state.activeFundTicker}` : '0 ETFs';
 }
 
-function renderMissingSheet(fund: FundRow, sheet: 'holdings' | 'history', message: string, error = false): void {
-  const label = sheet === 'holdings' ? 'Holdings' : 'NAV History';
-  el.tableHead.innerHTML = `<tr>${indexHeader()}<th class="py-3.5 px-4">${escapeHtml(fund.ticker)} ${label}</th></tr>`;
-  el.tableBody.innerHTML = `<tr><td colspan="2" class="py-12 text-center ${error ? 'text-rose-500 dark:text-rose-300' : 'text-slate-400 dark:text-slate-500'}">${escapeHtml(message)}</td></tr>`;
-  el.tickerCount.textContent = fund.ticker;
-  renderSubtitle(message);
-}
-
 function renderSheetTable(fund: FundRow, sheet: 'holdings' | 'history'): void {
   const catalogCount = sheet === 'holdings' ? fund.holdings : fund.history;
-  const key = `${fund.ticker}:${sheet}`;
-  const entry = sheetState.get(key);
-  const label = sheet === 'holdings' ? 'holdings workbook' : 'NAV history workbook';
+  const entry = sheetState.get(sheetKey(sheet));
 
   if (!catalogCount) {
-    renderMissingSheet(fund, sheet, `${fund.ticker} publishes no ${label} (catalog-only fund, for example a commodity trust).`);
+    el.tableHead.innerHTML = `<tr>${indexHeader()}<th class="py-3.5 px-4">${escapeHtml(fund.ticker)}</th></tr>`;
+    el.tableBody.innerHTML = `<tr><td colspan="2" class="py-12 text-center text-slate-400 dark:text-slate-500">${escapeHtml(fund.ticker)} publishes no ${sheet === 'holdings' ? 'holdings' : 'NAV History'} (catalog-only fund, for example a commodity trust).</td></tr>`;
+    el.tickerCount.textContent = fund.ticker;
+    renderSubtitle(`${fund.ticker} has no current static ${sheet} sheet; the feed records the provider coverage limitation in meta.json.`);
     return;
   }
 
   if (!entry) {
-    const knownMeta = fundMetaCache.has(fund.ticker);
-    const meta = knownMeta ? fundMetaCache.get(fund.ticker) : null;
-    const manifest = meta && (sheet === 'holdings' ? meta.holdings : meta.history);
-    if (fundMetaFailures.has(fund.ticker)) {
-      renderMissingSheet(fund, sheet, `Could not load ${fund.ticker} data.`, true);
-      return;
-    }
-    if (knownMeta && (!manifest || !Array.isArray(manifest.pages) || !manifest.pages.length)) {
-      renderMissingSheet(fund, sheet, `${fund.ticker} has no published ${label} pages. Run the data refresh workflow if the catalog count is stale.`);
-      return;
-    }
-
+    // Immediate loading placeholder: the previous fund's table is never left
+    // visible while the next fund loads.
     el.tableHead.innerHTML = `<tr>${indexHeader()}<th class="py-3.5 px-4">Loading…</th></tr>`;
     el.tableBody.innerHTML = `<tr><td colspan="2" class="py-12 text-center text-slate-400 dark:text-slate-500">Loading ${escapeHtml(fund.ticker)} ${sheet}…</td></tr>`;
     el.tickerCount.textContent = fund.ticker;
-    renderSubtitle(`Loading ${fund.ticker} ${sheet}…`);
-    void loadFundMeta(fund.ticker).then(loadedMeta => {
-      if (state.activeFundTicker !== fund.ticker || state.activeTab !== `detail:${sheet}`) return;
-      const loadedManifest = loadedMeta && (sheet === 'holdings' ? loadedMeta.holdings : loadedMeta.history);
-      if (fundMetaFailures.has(fund.ticker) || !loadedManifest || !Array.isArray(loadedManifest.pages) || !loadedManifest.pages.length) {
-        renderMissingSheet(fund, sheet, `Could not load ${fund.ticker} data.`, true);
+    void loadFundMeta(fund.ticker).then(meta => {
+      if (state.activeTab !== `detail:${sheet}` || state.activeFundTicker !== fund.ticker) return;
+      if (!meta) {
+        el.tableBody.innerHTML = `<tr><td colspan="2" class="py-12 text-center text-rose-500">Could not load ${escapeHtml(fund.ticker)} data — meta.json is unavailable. Run bun ./scripts/update-data.ts to refresh the feed, then reload.</td></tr>`;
         return;
       }
-      void ensureSheet(sheet, loadedManifest).then(() => {
-        if (state.activeFundTicker === fund.ticker && state.activeTab === `detail:${sheet}`) render();
+      void ensureSheet(sheet, sheet === 'holdings' ? meta.holdings : meta.history).then(() => render());
     });
-    });
-    return;
-  }
-
-  const failure = sheetLoadFailures.get(key);
-  if (!entry.headers.length) {
-    if (failure) {
-      renderMissingSheet(fund, sheet, `Could not load ${fund.ticker} data.`, true);
-      return;
-    }
-    el.tableHead.innerHTML = `<tr>${indexHeader()}<th class="py-3.5 px-4">Loading…</th></tr>`;
-    el.tableBody.innerHTML = `<tr><td colspan="2" class="py-12 text-center text-slate-400 dark:text-slate-500">Loading ${escapeHtml(fund.ticker)} ${sheet}…</td></tr>`;
-    el.tickerCount.textContent = fund.ticker;
-    renderSubtitle(`Loading ${fund.ticker} ${sheet}…`);
-    if (!entry.loading && entry.nextPage < entry.manifest.pages.length) void loadNextSheetPage(sheet);
     return;
   }
 
@@ -3027,7 +2890,6 @@ function renderSheetTable(fund: FundRow, sheet: 'holdings' | 'history'): void {
 }
 
 function renderOverviewTable(fund: FundRow): void {
-  if (!fundMetaCache.has(fund.ticker) && !fundMetaRequests.has(fund.ticker)) void loadFundMeta(fund.ticker);
   const meta = fundMetaCache.get(fund.ticker);
   const monthEnd = (fund.returns && fund.returns.monthEnd) || {};
   const quarterEnd = (fund.returns && fund.returns.quarterEnd) || {};
@@ -3068,6 +2930,8 @@ function renderOverviewTable(fund: FundRow): void {
     { section: 'Distributions', metric: 'Latest Dividend', value: fund.distributions ? fund.distributions.dividend : null },
     { section: 'Distributions', metric: 'Dividend Yield', value: fund.dividendYield === null || fund.dividendYield === undefined ? null : `${fund.dividendYield.toFixed(2)}%${meta && meta.metrics && meta.metrics.dividendYieldSource === 'indicated' ? ' (indicated: latest distribution x frequency / NAV)' : ' (official, SSGA Fund Dividend Yield)'}` },
     { section: 'Distributions', metric: 'SEC Yield (30-day)', value: fund.secYield === null || fund.secYield === undefined ? null : `${fund.secYield.toFixed(2)}%` },
+    { section: 'Distributions', metric: 'Dividend Yield Basis', value: meta && meta.metrics ? meta.metrics.dividendYieldBasis : null },
+    { section: 'Distributions', metric: 'SEC Yield Basis', value: fund.secYield === null || fund.secYield === undefined ? null : 'official-subsidized-30-day (SSGA product data)' },
     { section: 'Holdings', metric: 'Holdings Rows', value: fund.holdings },
     { section: 'Holdings', metric: 'Holdings As Of', value: meta && meta.holdings ? meta.holdings.asOfDate : null },
     { section: 'Holdings', metric: 'History Rows', value: fund.history },
@@ -3110,52 +2974,23 @@ function renderOverviewTable(fund: FundRow): void {
   renderSubtitle(`${fund.ticker} overview · ${rows.length} metrics. ME = SSGA month-end NAV series, QE = quarter-end NAV series.`);
 }
 
-function rowsForStaticHeaders(headers: string[], rawRows: any[]): string[][] {
-  return rawRows.map(rawRow => {
-    if (Array.isArray(rawRow)) return headers.map((_, index) => String(rawRow[index] ?? ''));
-    const keyByNormalized: Map<string, string> = new Map();
-    Object.keys(rawRow || {}).forEach(key => keyByNormalized.set(normalizeHoldingHeader(key), key));
-    return headers.map(header => {
-      if (rawRow && rawRow[header] !== undefined) return String(rawRow[header] ?? '');
-      const fallbackKey = keyByNormalized.get(normalizeHoldingHeader(header));
-      return fallbackKey && rawRow ? String(rawRow[fallbackKey] ?? '') : '';
-    });
-  });
-}
-
 function renderDistributionsTable(fund: FundRow): void {
-  if (!fundMetaCache.has(fund.ticker)) {
-    el.tableHead.innerHTML = `<tr>${indexHeader()}<th class="py-3.5 px-4">Loading…</th></tr>`;
-    el.tableBody.innerHTML = `<tr><td colspan="2" class="py-12 text-center text-slate-400 dark:text-slate-500">Loading ${escapeHtml(fund.ticker)} distributions…</td></tr>`;
-    el.tickerCount.textContent = fund.ticker;
-    renderSubtitle(`Loading ${fund.ticker} distributions…`);
-    void loadFundMeta(fund.ticker).then(meta => {
-      if (state.activeFundTicker !== fund.ticker || state.activeTab !== 'detail:distributions') return;
-      if (!meta) {
-        el.tableBody.innerHTML = `<tr><td colspan="2" class="py-12 text-center text-slate-400 dark:text-slate-500">No published distributions are available for ${escapeHtml(fund.ticker)}.</td></tr>`;
-        return;
-      }
-      render();
-    });
-    return;
-  }
-
   const meta = fundMetaCache.get(fund.ticker);
   const worksheet = meta && meta.distributions ? meta.distributions : { headers: [], rows: [] };
   const headers: string[] = Array.isArray(worksheet.headers) ? worksheet.headers : [];
-  const sourceRows = rowsForStaticHeaders(headers, Array.isArray(worksheet.rows) ? worksheet.rows : []);
+  const sourceRows: string[][] = Array.isArray(worksheet.rows) ? worksheet.rows : [];
   const rows = sortRows(sheetView('distributions', headers, sourceRows, []));
 
   el.tableHead.innerHTML = `
     <tr>
       ${indexHeader()}
-      ${headers.length ? headers.map((header, index) => sortHeader(header, `col${index}`)).join('') : '<th class="py-3.5 px-4">Distributions</th>'}
+      ${headers.map((header, index) => sortHeader(header, `col${index}`)).join('')}
     </tr>
   `;
   bindSortHeaders();
 
   if (!rows.length) {
-    el.tableBody.innerHTML = `<tr><td colspan="${Math.max(2, headers.length + 1)}" class="py-12 text-center text-slate-400 dark:text-slate-500">No published distribution for ${escapeHtml(fund.ticker)}.</td></tr>`;
+    el.tableBody.innerHTML = `<tr><td colspan="${headers.length + 1}" class="py-12 text-center text-slate-400 dark:text-slate-500">No published distribution for ${escapeHtml(fund.ticker)}.</td></tr>`;
   } else {
     el.tableBody.innerHTML = rows.map((row, index) => {
       const values: string[] = row.values || [];
@@ -3203,28 +3038,34 @@ function renderSubtitleDetails(text?: string): void {
     ? `${state.counts.funds} ETFs · ${(state.counts.holdings || 0).toLocaleString('en-US')} holdings rows · ${(state.counts.history || 0).toLocaleString('en-US')} history rows`
     : '';
   const base = text ? String(text) : 'Search SPDR ETFs, select ETFs via the “Use” checkbox, then use the Watchlist tab.';
-  const selectedTickers = [...state.selected].sort();
-  const selectedSummary = selectedTickers.length ? `
-    <span id="selected-etf-summary" class="flex items-center gap-1.5 min-w-0 mt-1" aria-live="polite">
-      <strong class="shrink-0 text-slate-600 dark:text-slate-300">${selectedTickers.length.toLocaleString('en-US')} selected:</strong>
-      <span class="inline-flex items-center gap-1 min-w-0 max-w-full overflow-x-auto pb-0.5 themed-scroll">
-        ${selectedTickers.map(ticker => `<button data-selected-fund="${escapeHtml(ticker)}" class="shrink-0 rounded-full border px-2 py-0.5 font-mono text-xs ${ticker === state.activeFundTicker ? 'bg-blue-600 border-blue-500 text-white' : 'bg-blue-50 dark:bg-blue-900/30 border-blue-100 dark:border-blue-800 text-blue-700 dark:text-blue-300'} hover:underline" title="Open ${escapeHtml(ticker)} details">${escapeHtml(ticker)}</button>`).join('')}
-      </span>
-    </span>
-  ` : '';
+  // Selected ETF count and clickable ticker badges (active fund highlighted);
+  // re-rendered by every selection writer so the count never lags.
+  const selectedCount = state.selected.size;
+  let selectionItem = '';
+  if (selectedCount > 0) {
+    const catalogFunds = state.funds.filter(fund => !state.blacklist.has(fund.ticker));
+    if (catalogFunds.length > 0 && catalogFunds.length === selectedCount && catalogFunds.every(fund => state.selected.has(fund.ticker))) {
+      selectionItem = ` · All ${catalogFunds.length} ETFs selected`;
+    } else {
+      const badges = [...state.selected].sort().map(ticker => {
+        const isActive = ticker === state.activeFundTicker;
+        return `<a href="javascript:void(0)" data-activate-fund="${escapeHtml(ticker)}" title="View ${escapeHtml(ticker)} details" class="font-semibold ${isActive ? 'text-blue-700 dark:text-blue-300 underline' : 'text-blue-600 dark:text-blue-400 hover:underline'}">${escapeHtml(ticker)}</a>`;
+      }).join(', ');
+      selectionItem = ` · ${selectedCount} selected: ${badges}`;
+    }
+  }
   el.subtitle.innerHTML = `
-    <span class="block sm:inline">${escapeHtml(base)}</span>
+    <span class="block sm:inline">${escapeHtml(base)}${selectionItem}</span>
     <span class="block sm:inline">·${generated ? ` updated ${escapeHtml(generated)}` : ''}${countsText ? ` · ${escapeHtml(countsText)}.` : '.'} Data: <a href="./api/spdr/index.json" target="_blank" rel="noopener noreferrer" class="font-semibold text-blue-600 dark:text-blue-400 hover:underline">api/spdr/index.json</a> generated from <a href="https://www.ssga.com/us/en/intermediary/etfs/fund-finder" target="_blank" rel="noopener noreferrer" class="font-semibold text-blue-600 dark:text-blue-400 hover:underline">SSGA SPDR ETFs</a></span>
-    ${selectedSummary}
   `;
-  el.subtitle.querySelectorAll('button[data-selected-fund]').forEach((button: any) => {
-    button.addEventListener('click', () => openFundDetails(button.dataset.selectedFund || ''));
+  el.subtitle.querySelectorAll('a[data-activate-fund]').forEach((link: any) => {
+    link.addEventListener('click', () => activateFund(link.dataset.activateFund || ''));
   });
 }
 
 function renderSubtitle(text?: string): void {
   renderSubtitleDetails(text);
-  renderHeaderSummary(el.subtitle, state.selected, state.activeFundTicker, openFundDetails);
+  renderHeaderSummary(el.subtitle, state.selected, state.activeFundTicker, activateFund);
 }
 
 function setStatusRow(message: string, tone: 'info' | 'error'): void {
@@ -3235,96 +3076,89 @@ function setStatusRow(message: string, tone: 'info' | 'error'): void {
 // 8. Selection & blacklist
 // =========================================================================
 
-/** Coalesces progressive holdings/meta updates into a responsive UI refresh. */
-function scheduleSelectionDataRefresh(ticker = ''): void {
-  if (ticker) selectionDataChangedTickers.add(ticker);
-  if (selectionDataRefreshTimer !== null) return;
-  selectionDataRefreshTimer = setTimeout(() => {
-    selectionDataRefreshTimer = null;
-    const activeFundChanged = Boolean(state.activeFundTicker && selectionDataChangedTickers.has(state.activeFundTicker));
-    selectionDataChangedTickers.clear();
-    ensureValidTab();
-    if (state.activeTab === 'watchlist' || (isDetailTab(state.activeTab) && activeFundChanged)) {
-      render();
-    } else {
-      // Keep the current table/scroll position stable while only selected-tab
-      // counts (especially Watchlist) change in the background.
-      renderTabs();
-      fitTableHeight();
+/** Active fund fallback: if the active fund was deselected, fall back to the
+ *  first remaining selected fund (or none). */
+function updateActiveFundFallback(): void {
+  // Bulk selection writers (the filtered header checkbox and the All ETFs
+  // pill) can add the first selected fund without going through toggleFund.
+  // Keep a selected fund active in that case too, otherwise the selected-tabs
+  // panel renders as an empty shell until the next page reload restores the
+  // fallback in loadCatalog().
+  if (!state.activeFundTicker || !state.selected.has(state.activeFundTicker)) {
+    state.activeFundTicker = [...state.selected][0] || null;
   }
-  }, 75);
 }
 
-function openFundDetails(ticker: string): void {
-  const cleanTicker = sanitizeTicker(ticker);
-  const known = state.funds.some(fund => fund.ticker === cleanTicker);
-  if (!cleanTicker || !known || state.blacklist.has(cleanTicker)) return;
-  if (!state.selected.has(cleanTicker)) {
-    state.selected.add(cleanTicker);
-    invalidateWatchlistRows();
-  }
-  state.activeFundTicker = cleanTicker;
+/** Shared trailer for every selection writer: keeps localStorage, tabs,
+ *  subtitle badges, per-sheet counts and the Watchlist (visibility, loading
+ *  state, count) in sync immediately — no extra click needed. */
+function afterSelectionChange(): void {
+  updateActiveFundFallback();
   persistSelection();
-  switchTab('detail:overview');
+  ensureValidTab();
+  render();
   void ensureHoldingsForSelection();
-  void loadFundMeta(cleanTicker);
 }
 
+/** Row Use checkbox (or row click): toggles exactly one ETF. */
 function toggleFund(ticker: string): void {
   const cleanTicker = sanitizeTicker(ticker);
   if (!cleanTicker) return;
-  const previousActiveFund = state.activeFundTicker;
 
   if (state.selected.has(cleanTicker)) {
     state.selected.delete(cleanTicker);
-    if (state.activeFundTicker === cleanTicker) state.activeFundTicker = [...state.selected][0] || null;
   } else {
     state.selected.add(cleanTicker);
     state.activeFundTicker = cleanTicker;
   }
 
-  invalidateWatchlistRows();
-  watchlistVisibleLimit = WATCHLIST_PAGE_SIZE;
-  if (previousActiveFund !== state.activeFundTicker) resetSheetPaging();
-  persistSelection();
-  ensureValidTab();
-  render();
-  void ensureHoldingsForSelection();
+  afterSelectionChange();
   const activeTicker = state.activeFundTicker;
-  if (activeTicker && state.activeTab.startsWith('detail:')) void loadFundMeta(activeTicker);
+  if (activeTicker && state.activeTab.startsWith('detail:')) {
+    void loadFundMeta(activeTicker).then(meta => {
+      // Refresh per-sheet counts once the meta arrives (e.g. Distributions).
+      if (meta && state.activeFundTicker === activeTicker && state.activeTab.startsWith('detail:')) render();
+    });
+  }
 }
 
-/**
- * Toggles the selection in bulk. `scope`:
- *  - 'visible' (header "Use" checkbox) — only the rows currently rendered in
- *    the catalog table: current tab + active search filter (visibleFunds is
- *    already tab-scoped and blacklist-excluded). Selecting with a filter
- *    active must not drag the hidden ETFs into the selection, and unchecking
- *    must not drop selections the user made while a different filter was on.
- *  - 'catalog' (checkbox in the All ETFs pill) — every non-blacklisted ETF,
- *    regardless of the current tab or filter; it sits next to the
- *    "All ETFs (N)" count and represents the whole catalog.
- */
-function toggleSelectAll(selectAll: boolean, scope: 'visible' | 'catalog'): void {
-  const previousActiveFund = state.activeFundTicker;
-  const candidates = scope === 'visible'
-    ? visibleCatalogRows()
-    : state.funds.filter(fund => !state.blacklist.has(fund.ticker));
-  candidates.forEach(fund => {
+/** Header Use checkbox: scope is exactly the rows currently rendered by the
+ *  catalog table (catalog + active search filter + blacklist exclusion).
+ *  Checking selects all visible rows; unchecking deselects visible rows only
+ *  (hidden selections survive). */
+function toggleVisibleSelection(selectAll: boolean): void {
+  visibleCatalogRows().forEach(fund => {
     if (selectAll) state.selected.add(fund.ticker);
     else state.selected.delete(fund.ticker);
   });
-  if (!state.selected.size) state.activeFundTicker = null;
-  else if (!state.activeFundTicker || !state.selected.has(state.activeFundTicker)) {
-    state.activeFundTicker = [...state.selected][0] || null;
+  afterSelectionChange();
 }
-  invalidateWatchlistRows();
-  watchlistVisibleLimit = WATCHLIST_PAGE_SIZE;
-  if (previousActiveFund !== state.activeFundTicker) resetSheetPaging();
+
+/** All ETFs pill checkbox: scope is always every non-blacklisted ETF in the
+ *  entire catalog, operating from any tab under any filter. Toggle-only — it
+ *  never navigates away from the current view. */
+function toggleAllCatalogEfts(selectAll: boolean): void {
+  state.funds.filter(fund => !state.blacklist.has(fund.ticker)).forEach(fund => {
+    if (selectAll) state.selected.add(fund.ticker);
+    else state.selected.delete(fund.ticker);
+  });
+  afterSelectionChange();
+}
+
+/** Activates a selected fund from a clickable ticker badge (subtitle or
+ *  Watchlist ETF badges) without changing the selection. */
+function activateFund(ticker: string): void {
+  const clean = sanitizeTicker(ticker);
+  if (!clean || !state.selected.has(clean)) return;
+  state.activeFundTicker = clean;
   persistSelection();
-  ensureValidTab();
+  if (state.activeTab.startsWith('detail:')) {
+    resetSheetPaging();
     render();
-  void ensureHoldingsForSelection();
+    maybeLoadMoreRows();
+  } else {
+    render();
+  }
 }
 
 function clearSelectionAndSearch(): void {
@@ -3332,24 +3166,20 @@ function clearSelectionAndSearch(): void {
   state.activeFundTicker = null;
   state.queryByTab = {};
   state.activeTab = 'All';
-  invalidateWatchlistRows();
-  watchlistVisibleLimit = WATCHLIST_PAGE_SIZE;
-  resetSheetPaging();
   // Sort preferences survive Clear: a sort configured in the past is always
   // kept (per tab, in browser localStorage) and reused. Clear only resets
   // the selection and the searches — never the sort order.
   applySortForTab('All');
   persistSelection();
-  try { localStorage.removeItem(ACTIVE_FUND_KEY); } catch { /* ignore */ }
+  localStorage.removeItem(ACTIVE_FUND_KEY);
   el.searchInput.value = '';
   updateSearchClearBtn();
-  persistTabFilters();
+  persistSearches();
   persistSiteState();
   render();
 }
 
 function blacklistTickers(rawTickers: string[]): void {
-  const previousActiveFund = state.activeFundTicker;
   const known = new Set(state.funds.map(fund => fund.ticker));
   rawTickers
     .flatMap(raw => String(raw || '').split(/[\s,;]+/))
@@ -3361,9 +3191,6 @@ function blacklistTickers(rawTickers: string[]): void {
   if (state.activeFundTicker && state.blacklist.has(state.activeFundTicker)) {
     state.activeFundTicker = [...state.selected][0] || null;
   }
-  invalidateWatchlistRows();
-  watchlistVisibleLimit = WATCHLIST_PAGE_SIZE;
-  if (previousActiveFund !== state.activeFundTicker) resetSheetPaging();
   persistBlacklist();
   persistSelection();
   ensureValidTab();
@@ -3574,103 +3401,80 @@ function fitTableHeight(): void {
 // =========================================================================
 
 function persistSelection(): void {
-  try {
   localStorage.setItem(SELECTED_KEY, JSON.stringify([...state.selected]));
   if (state.activeFundTicker) localStorage.setItem(ACTIVE_FUND_KEY, state.activeFundTicker);
   else localStorage.removeItem(ACTIVE_FUND_KEY);
-  } catch {
-    /* quota or private mode */
-  }
-  persistSiteState();
 }
 
 function persistBlacklist(): void {
-  try {
   localStorage.setItem(BLACKLIST_KEY, JSON.stringify([...state.blacklist]));
-  } catch {
-    /* quota or private mode */
-  }
 }
 
-function cleanTabFilters(source: Record<string, unknown> | null | undefined): Record<string, string> {
+function cleanFilterMap(source: Record<string, unknown>): Record<string, string> {
   const clean: Record<string, string> = {};
-  if (!source || typeof source !== 'object' || Array.isArray(source)) return clean;
-  Object.keys(source).forEach(tab => {
-    const query = source[tab];
+  for (const [tab, query] of Object.entries(source)) {
     if (typeof query === 'string' && query.length > 0) clean[tab] = query;
-  });
-  return clean;
-}
-
-function cleanTabSorts(source: Record<string, unknown> | null | undefined): Record<string, { key: string; dir: SortDirection }> {
-  const clean: Record<string, { key: string; dir: SortDirection }> = {};
-  if (!source || typeof source !== 'object' || Array.isArray(source)) return clean;
-  Object.keys(source).forEach(tab => {
-    const entry: any = source[tab];
-    if (entry && typeof entry.key === 'string' && entry.key !== '' && (entry.dir === 'asc' || entry.dir === 'desc')) {
-      clean[tab] = { key: entry.key, dir: entry.dir };
-    }
-  });
-  return clean;
-}
-
-function persistTabFilters(): void {
-  try {
-    const clean = cleanTabFilters(state.queryByTab);
-    if (Object.keys(clean).length > 0) localStorage.setItem(FILTERS_KEY, JSON.stringify(clean));
-    else localStorage.removeItem(FILTERS_KEY);
-    localStorage.removeItem(SEARCHES_KEY);
-  } catch {
-    /* quota or private mode */
   }
-  persistSiteState();
+  return clean;
 }
 
 function persistSearches(): void {
-  persistTabFilters();
-}
-
-function persistTabSorts(): void {
   try {
-    const clean = cleanTabSorts(state.sortByTab);
-    if (Object.keys(clean).length > 0) localStorage.setItem(SORTS_KEY, JSON.stringify(clean));
-    else localStorage.removeItem(SORTS_KEY);
+    const clean = cleanFilterMap(state.queryByTab);
+    if (Object.keys(clean).length > 0) {
+      localStorage.setItem(FILTERS_KEY, JSON.stringify(clean));
+    } else {
+      localStorage.removeItem(FILTERS_KEY);
+    }
+    localStorage.removeItem(LEGACY_FILTERS_KEY);
+    persistSiteState();
   } catch {
     /* quota or private mode */
   }
-  persistSiteState();
 }
 
 function persistSiteState(): void {
   try {
-    localStorage.setItem(SITE_STATE_KEY, JSON.stringify({
-      activeTab: state.activeTab,
-      activeFundTicker: state.activeFundTicker,
-      sheetFilter: cleanTabFilters(state.queryByTab),
-      sheetSort: cleanTabSorts(state.sortByTab),
-    }));
+    let saved: Record<string, unknown> = {};
+    try {
+      const raw = localStorage.getItem(SITE_STATE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) saved = parsed;
+      }
+    } catch {
+      saved = {};
+    }
+    // sheetFilter mirrors the dedicated per-tab filter map so older sessions
+    // can migrate without reintroducing a global search string.
+    saved.sheetFilter = cleanFilterMap(state.queryByTab);
+    saved.activeTab = state.activeTab;
+    localStorage.setItem(SITE_STATE_KEY, JSON.stringify(saved));
   } catch {
     /* quota or private mode */
   }
 }
 
-function restoreTabSorts(): void {
-  let sorts: Record<string, { key: string; dir: SortDirection }> = {};
-  try {
-    const fromSite = JSON.parse(localStorage.getItem(SITE_STATE_KEY) || 'null');
-    if (fromSite && typeof fromSite === 'object' && !Array.isArray(fromSite)) {
-      Object.assign(sorts, cleanTabSorts(fromSite.sheetSort));
+function persistTabSorts(): void {
+  localStorage.setItem(SORTS_KEY, JSON.stringify(state.sortByTab));
 }
-  } catch {
-    /* corrupt site-state */
-  }
+
+function restoreTabSorts(): void {
   try {
-    const saved = JSON.parse(localStorage.getItem(SORTS_KEY) || 'null');
-    Object.assign(sorts, cleanTabSorts(saved));
-  } catch {
-    /* corrupt sorts key */
+    const saved = JSON.parse(localStorage.getItem(SORTS_KEY) || '{}') || {};
+    const sorts: Record<string, { key: string; dir: SortDirection }> = {};
+    Object.keys(saved).forEach(tab => {
+      const entry = saved[tab];
+      // Keep only well-formed entries; stale keys from older schemas simply
+      // sort a missing column (stable no-op) and never break rendering.
+      if (entry && typeof entry.key === 'string' && entry.key !== '' && (entry.dir === 'asc' || entry.dir === 'desc')) {
+        sorts[tab] = { key: entry.key, dir: entry.dir };
       }
+    });
     state.sortByTab = sorts;
+  } catch {
+    state.sortByTab = {};
+  }
 }
 
 function restoreSelectedEtfs(): void {
@@ -3694,38 +3498,204 @@ function restoreBlacklist(): void {
   }
 }
 
-function restoreSearches(): void {
-  restoreTabFilters();
+/** Boot sanitization: only non-empty string values survive; malformed JSON
+ *  or non-object payloads are dropped instead of crashing the app. */
+function sanitizeFilterMap(value: unknown): Record<string, string> {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return {};
+  return cleanFilterMap(value as Record<string, unknown>);
 }
 
-function restoreTabFilters(): void {
-  let filters: Record<string, string> = {};
+function restoreSiteState(): { activeTab: string | null; sheetFilter: Record<string, string> } {
+  let activeTab: string | null = null;
+  let sheetFilter: Record<string, string> = {};
   try {
-    const fromSite = JSON.parse(localStorage.getItem(SITE_STATE_KEY) || 'null');
-    if (fromSite && typeof fromSite === 'object' && !Array.isArray(fromSite)) {
-      Object.assign(filters, cleanTabFilters(fromSite.sheetFilter));
-      // activeTab is persisted for compatibility but boot always lands on
-      // All ETFs so a reload restores catalog filters into the search box.
+    const raw = localStorage.getItem(SITE_STATE_KEY);
+    if (raw) {
+      const saved = JSON.parse(raw);
+      if (saved && typeof saved === 'object' && !Array.isArray(saved)) {
+        if (typeof saved.activeTab === 'string' && saved.activeTab) activeTab = saved.activeTab;
+        sheetFilter = sanitizeFilterMap(saved.sheetFilter);
+      }
     }
   } catch {
-    /* corrupt site-state */
+    /* corrupt storage: fall back to defaults */
   }
-  try {
-    Object.assign(filters, cleanTabFilters(JSON.parse(localStorage.getItem(SEARCHES_KEY) || 'null')));
-  } catch {
-    /* corrupt legacy searches */
+  return { activeTab, sheetFilter };
 }
+
+function restoreSearches(mirror: Record<string, string> = {}): void {
+  // Priority (highest last): site-state sheetFilter mirror (oldest), the
+  // legacy pre-rename key, then the dedicated per-tab filter key.
+  const filters: Record<string, string> = { ...mirror };
+  const ingest = (raw: string | null): void => {
+    if (!raw) return;
     try {
-    Object.assign(filters, cleanTabFilters(JSON.parse(localStorage.getItem(FILTERS_KEY) || 'null')));
+      Object.assign(filters, sanitizeFilterMap(JSON.parse(raw)));
     } catch {
-    /* corrupt filters key */
+      /* corrupt entry: dropped */
     }
+  };
+  ingest(localStorage.getItem(LEGACY_FILTERS_KEY));
+  ingest(localStorage.getItem(FILTERS_KEY));
   state.queryByTab = filters;
 }
 
 // =========================================================================
 // 12. Bootstrap lifecycle
 // =========================================================================
+
+// =========================================================================
+// 12. N-PORT upload (drag & drop, client-side parse; iShares dropzone twin)
+// =========================================================================
+
+/**
+ * Parses a SEC Form N-PORT-P primary_doc.xml in the browser (DOMParser, no
+ * network). Same normalization as the Bun updater, so uploaded holdings
+ * merge into the Watchlist exactly like static-feed holdings.
+ */
+function parseNportUpload(text: string): { seriesName: string; repPdDate: string; headers: string[]; rows: string[][] } {
+  const doc = new DOMParser().parseFromString(text, 'application/xml');
+  if (doc.querySelector('parsererror')) throw new Error('not a valid XML file');
+  const headers = ['Name', 'Ticker', 'Identifier', 'Weight', 'Market Value', 'Shares Held', 'Asset Category'];
+  const rows: string[][] = [];
+  let seriesName = '';
+  let repPdDate = '';
+  const all = doc.getElementsByTagName('*');
+  let inGenInfo = false;
+  for (let i = 0; i < all.length; i++) {
+    const node = all[i];
+    const tag = node.localName || '';
+    if (tag === 'genInfo') inGenInfo = true;
+    if (inGenInfo && !seriesName && tag === 'seriesName') seriesName = (node.textContent || '').trim();
+    if (inGenInfo && !repPdDate && tag === 'repPdDate') repPdDate = (node.textContent || '').trim();
+    if (tag === 'invstOrSecs') inGenInfo = false;
+    if (tag !== 'invstOrSec') continue;
+    const pick = (parent: Element, name: string): string => {
+      const children = parent.getElementsByTagName('*');
+      for (let c = 0; c < children.length; c++) {
+        if ((children[c].localName || '') === name) return (children[c].textContent || '').trim();
+      }
+      return '';
+    };
+    const name = pick(node, 'name') || pick(node, 'title') || '-';
+    const cusip = pick(node, 'cusip');
+    let identifier = cusip && cusip.toUpperCase() !== 'N/A' ? cusip : '';
+    if (!identifier) {
+      const ids = node.getElementsByTagName('*');
+      for (let c = 0; c < ids.length; c++) {
+        const value = ids[c].getAttribute && ids[c].getAttribute('value');
+        if (value && ['isin', 'sedol', 'other', 'cusip'].includes(ids[c].localName || '')) {
+          identifier = value;
+          break;
+        }
+      }
+    }
+    let marketValue = pick(node, 'valUSD');
+    let balance = pick(node, 'balance');
+    rows.push([
+      name,
+      '-',
+      identifier || '-',
+      pick(node, 'pctVal') || '0',
+      marketValue || '0',
+      balance || '-',
+      pick(node, 'assetCat') || '-',
+    ]);
+  }
+  if (!rows.length && !seriesName) throw new Error('no genInfo/invstOrSec entries found (is this a Form N-PORT primary_doc.xml?)');
+  return { seriesName, repPdDate, headers, rows };
+}
+
+const uploadedFunds = new Map(); // ticker -> { headers, rows }
+
+function normalizeUploadName(value: string): string {
+  return String(value || '')
+    .toUpperCase()
+    .replace(/REG/ig, '')
+    .replace(/\u00ae/g, '')
+    .replace(/\u2122/g, '')
+    .replace(/[^A-Z0-9 ]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .replace(/\b(ETF|FUND|INDEX|THE)\b/g, '')
+    .trim();
+}
+
+function setDropzoneState(stateName: 'loaded' | 'error' | null, text?: string): void {
+  if (!dropzone || !dropzoneText) return;
+  dropzone.classList.remove('dz-loaded', 'dz-error');
+  if (stateName) dropzone.classList.add(stateName);
+  if (text) dropzoneText.textContent = text;
+}
+
+function handleUploadedFile(file: File): void {
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      const parsed = parseNportUpload(String(reader.result || ''));
+      const known = state.funds.find(fund => normalizeUploadName(fund.name) === normalizeUploadName(parsed.seriesName));
+      let ticker = known ? known.ticker : '';
+      if (!ticker) {
+        const answer = window.prompt(`Ticker symbol for "${parsed.seriesName}" (as listed on EDGAR):`, '');
+        ticker = sanitizeTicker(answer);
+      }
+      if (!ticker) {
+        setDropzoneState('error', 'Upload cancelled');
+        window.setTimeout(() => setDropzoneState(null, 'Upload / Drop N-PORT XML'), 1600);
+        return;
+      }
+      uploadedFunds.set(ticker, { headers: parsed.headers, rows: parsed.rows });
+
+      // Merge the uploaded fund into the catalog (override static holdings).
+      const base = known || {
+        ticker, name: parsed.seriesName || ticker, category: 'Uploaded', fundPage: null, dataFile: null,
+        ter: '—', terValue: null, nav: '—', navValue: null, aum: '—', aumValue: null,
+        asOfDate: parsed.repPdDate || '—', inceptionDate: '—', exchange: '', closePrice: '—', closePriceValue: null,
+        premiumDiscount: '—', premiumDiscountValue: null,
+        distributions: { frequency: '—', exDate: '—', dividend: '—' },
+        returns: { monthEnd: null, quarterEnd: null },
+      };
+      const indexFund: any = {
+        ...base,
+        ticker,
+        name: parsed.seriesName || (known ? known.name : ticker),
+        category: known ? known.category : 'Uploaded',
+        metrics: { dividendYield: null, secYield: null },
+        holdings: parsed.rows.length,
+        history: known ? known.history : 0,
+      };
+      const row = normalizeFundRow(indexFund);
+      const existingIndex = state.funds.findIndex(fund => fund.ticker === ticker);
+      if (existingIndex >= 0) state.funds[existingIndex] = row;
+      else state.funds.push(row);
+      state.funds.sort((a, b) => a.ticker.localeCompare(b.ticker));
+
+      // Holdings live in memory: feed the sheet cache + a minimal meta so
+      // detail tabs, lazy paging and Watchlist aggregation all work.
+      sheetState.set(`${ticker}:holdings`, { headers: parsed.headers, rows: parsed.rows, nextPage: 1, manifest: { pages: [], pageSize: parsed.rows.length, totalRows: parsed.rows.length }, loading: false });
+      fundMetaCache.set(ticker, {
+        ...fundMetaCache.get(ticker),
+        ticker,
+        name: row.name,
+        category: row.category,
+        source: { fundPage: row.fundPage, edgarFiling: null, nportDoc: null, provider: 'uploaded N-PORT XML (session only)' },
+        distributions: { frequency: known && known.distributions ? known.distributions.frequency : '—', headers: ['Ex-Date', 'Amount'], rows: [] },
+        holdings: { pages: [], pageSize: parsed.rows.length, totalRows: parsed.rows.length, asOfDate: parsed.repPdDate || 'uploaded' },
+        history: known && fundMetaCache.get(ticker) ? fundMetaCache.get(ticker).history : { pages: [], pageSize: 0, totalRows: 0, asOfDate: '—' },
+        uploaded: true,
+      });
+
+      setDropzoneState('loaded', `${uploadedFunds.size} fund${uploadedFunds.size === 1 ? '' : 's'} uploaded`);
+      setStatus(`Loaded ${ticker} (${parsed.seriesName || 'N-PORT'}): ${parsed.rows.length} holdings${parsed.repPdDate ? ` as of ${parsed.repPdDate}` : ''}. Uploads live for this session.`, 'info');
+      fitTableHeight();
+      render();
+    } catch (error) {
+      console.error('Failed to parse uploaded file:', error);
+      setDropzoneState('error', 'Invalid N-PORT XML');
+      window.setTimeout(() => setDropzoneState(null, 'Upload / Drop N-PORT XML'), 2200);
+    }
+  };
+  reader.readAsText(file);
+}
 
 function bindEvents(): void {
   el.themeToggle.addEventListener('click', () => {
@@ -3737,13 +3707,38 @@ function bindEvents(): void {
   el.searchInput.addEventListener('input', () => {
     setCurrentQuery(el.searchInput.value.trim());
     updateSearchClearBtn();
-    if (state.activeTab === 'watchlist') watchlistVisibleLimit = WATCHLIST_PAGE_SIZE;
     render();
   });
 
+  // 1-click clear: clears the active tab's filter from memory and storage,
+  // clears the input, refocuses it and re-renders the current view.
   el.searchClearBtn.addEventListener('click', () => {
-    clearActiveSearchFilter();
+    el.searchInput.value = '';
+    delete state.queryByTab[state.activeTab];
+    persistSearches();
+    updateSearchClearBtn();
+    if (typeof el.searchInput.focus === 'function') el.searchInput.focus();
+    render();
   });
+
+  // N-PORT dropzone (iShares dropzone parity)
+  if (dropzone && fileInput) {
+    dropzone.addEventListener('click', () => fileInput.click());
+    dropzone.addEventListener('dragover', (event: Event) => {
+      event.preventDefault();
+      dropzone.classList.add('dz-active');
+    });
+    dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dz-active'));
+    dropzone.addEventListener('drop', (event: DragEvent) => {
+      event.preventDefault();
+      dropzone.classList.remove('dz-active');
+      if (event.dataTransfer && event.dataTransfer.files.length) handleUploadedFile(event.dataTransfer.files[0]);
+    });
+    fileInput.addEventListener('change', (event: Event) => {
+      const target: any = event.target;
+      if (target && target.files && target.files.length) handleUploadedFile(target.files[0]);
+    });
+  }
 
   bindColumnFilterEvents();
   el.copyBtn.addEventListener('click', copyTickers);
@@ -3775,15 +3770,18 @@ function bindEvents(): void {
   }
   el.staticLoadSentinel.addEventListener('click', () => maybeLoadMoreRows());
   el.tableScroll.addEventListener('scroll', () => {
-    const distanceToBottom = el.tableScroll.scrollHeight - el.tableScroll.scrollTop - el.tableScroll.clientHeight;
     if (state.activeTab === 'watchlist') {
-      if (distanceToBottom < 600) maybeLoadMoreRows();
+      // Chunked Watchlist: scrolling near the bottom extends the rendered
+      // 250-row chunk; the full deduplicated set is never mounted at once.
+      const distanceToBottom = el.tableScroll.scrollHeight - el.tableScroll.scrollTop - el.tableScroll.clientHeight;
+      if (distanceToBottom < 600) growWatchlistChunk();
       return;
     }
     const sheet = activeSheetTab();
     if (!sheet || !state.activeFundTicker) return;
     const entry = sheetState.get(sheetKey(sheet));
     if (!entry || entry.loading || entry.nextPage >= entry.manifest.pages.length) return;
+    const distanceToBottom = el.tableScroll.scrollHeight - el.tableScroll.scrollTop - el.tableScroll.clientHeight;
     if (distanceToBottom < 600) void loadNextSheetPage(sheet);
   }, { passive: true });
 
@@ -3799,7 +3797,9 @@ function init(): void {
   restoreSelectedEtfs();
   restoreBlacklist();
   restoreColumnFilters();
-  restoreSearches();
+  const siteState = restoreSiteState();
+  if (siteState.activeTab) state.activeTab = siteState.activeTab;
+  restoreSearches(siteState.sheetFilter);
   restoreTabSorts();
   applyTheme(localStorage.getItem(THEME_KEY) === 'dark');
   bindEvents();
