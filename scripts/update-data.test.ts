@@ -13,6 +13,7 @@ import {
   applyHistoryRange,
   configurePacing,
   deriveCatalogMetrics,
+  withYieldBasis,
   expenseRatios,
   fetchWithRetry,
   indicatedYield,
@@ -349,6 +350,25 @@ describe('metrics', () => {
     expect([official.secYield, official.secYieldText, official.secYieldUnsubsidized]).toEqual([0.95, '0.95%', null]);
     expect([official.dividendYield, official.dividendYieldText, official.dividendYieldSource]).toEqual([0.99, '0.99%', 'official']);
     expect(official.indicatedDividendYield).toBeCloseTo(0.9945, 3);
+  });
+
+  test('dividendYieldBasis: code per yield source, null with a null yield, same key set on fresh/legacy/empty rows', () => {
+    const dist = { frequency: 'Quarterly', exDate: '06/18/2026', dividend: '1.903516' };
+    const none = { display: null, value: null };
+    const pd = { fundDividendYield: { display: '0.99%', value: 0.99 }, secYield: none, secYieldUnsubsidized: none } as any;
+    const official = deriveCatalogMetrics(monthEnd, 765.58, dist, pd);
+    const indicated = deriveCatalogMetrics(monthEnd, 765.58, dist);
+    const zero = deriveCatalogMetrics(monthEnd, 765.58, dist, { ...pd, fundDividendYield: { display: '0.00%', value: 0 } });
+    const nothing = deriveCatalogMetrics({ ytd: 1 }, 20, null);
+    expect([official.dividendYieldBasis, indicated.dividendYieldBasis, zero.dividendYieldBasis, nothing.dividendYieldBasis]).toEqual(['official-other', 'indicated', 'official-other', null]);
+    expect(nothing.dividendYield).toBeNull();
+    const legacy = withYieldBasis({ dividendYield: 0.99, dividendYieldSource: 'official', dividendYieldText: '0.99%' });
+    const legacyEmpty = withYieldBasis({ dividendYield: null, dividendYieldSource: null });
+    expect([legacy.dividendYieldBasis, legacyEmpty.dividendYieldBasis, withYieldBasis(null).dividendYieldBasis]).toEqual(['official-other', null, null]);
+    expect(Object.keys(legacy)).toEqual(['dividendYield', 'dividendYieldSource', 'dividendYieldBasis', 'dividendYieldText']);
+    const keys = Object.keys(official).sort();
+    for (const m of [indicated, zero, nothing]) expect(Object.keys(m).sort()).toEqual(keys);
+    expect(withYieldBasis(official)).toEqual(official);
   });
 
   test('young funds and commodity trusts: missing horizons are null, never 0; siAnn needs a year of history', () => {
