@@ -59,9 +59,17 @@ Each fund carries a derived `metrics` object that powers the catalog columns sha
 - `tr3y` / `tr5y` / `tr10y` - cumulative 3Y/5Y/10Y figures `(1 + CAGR)^n - 1` -> *TR 3Y/5Y/10Y*
 - `siAnn` - since-inception annualized -> *SI Ann.*; `null` for funds with less than one year of history at the performance date
 - `dividendYield` - official SSGA Fund Dividend Yield, else an indicated yield (latest distribution x payments per year / price; semi-annual = 2), an estimate derived from SSGA data. HECO, XITK and XSW publish an official `0.00%`, which is kept as `0` (a real zero, not a missing value)
+- `dividendYieldBasis` - code of the definition behind `dividendYield`, `null` exactly when `dividendYield` is `null` (table below)
 - `secYield` - official 30-day SEC yield when published; unavailable otherwise, never `0`
 - `returnsBasis` - always a non-empty label of how the returns are computed: official SSGA month-end NAV total returns, with `tr3y`/`tr5y`/`tr10y` derived from the official annualized figures; no Yahoo or market-price estimates
 - `performanceAsOf` - ISO `YYYY-MM-DD` date of SSGA's month-end performance table the returns are as of (not the NAV date); `null` when SSGA publishes no performance yet (very young funds)
+
+| `dividendYieldBasis` | Meaning for SPDR |
+| --- | --- |
+| `official-other` | SSGA `Fund Dividend Yield` from the product-data workbook; SSGA does not state the window there, so it is not claimed to be trailing 12 months |
+| `indicated` | updater estimate: latest distribution x inferred payments per year / NAV, used only for funds missing from the workbook |
+
+`official-trailing-12m`, `official-distribution-rate` and `computed-trailing-12m` are never produced for SPDR. `dividendYieldSource` (`official` or `indicated`) is kept as is. Funds with a retained index row get the code derived from the yield they carry.
 
 `returnsBasis` and `performanceAsOf` are always the last two keys of `metrics`. Funds launched within the last few months (for example MYCP, MYHF, MYML, QNDX, UCBG) have `performanceAsOf: null` because SSGA has not published a performance table for them yet.
 

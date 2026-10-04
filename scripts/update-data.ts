@@ -926,6 +926,33 @@ export function toIsoDate(value: unknown): string | null {
   return date.toISOString().slice(0, 10);
 }
 
+export type DividendYieldBasis = 'official-other' | 'indicated';
+
+/** Code for the definition behind `dividendYield`; null exactly when the yield is null. */
+export function dividendYieldBasisFor(source: unknown, dividendYield: unknown): DividendYieldBasis | null {
+  if (typeof dividendYield !== 'number' || !Number.isFinite(dividendYield)) return null;
+  switch (source) {
+    // SSGA "Fund Dividend Yield" from the bulk product-data workbook: published, definition not stated there
+    case 'official': return 'official-other';
+    case 'indicated': return 'indicated';
+    default: return 'indicated';
+  }
+}
+
+/** Gives a metrics object read from older output the dividendYieldBasis key (derived from the yield it carries). */
+export function withYieldBasis(metrics: unknown): JsonRecord {
+  const m = (metrics && typeof metrics === 'object' ? metrics : {}) as JsonRecord;
+  const code = dividendYieldBasisFor(m.dividendYieldSource, m.dividendYield);
+  const out: JsonRecord = {};
+  for (const [key, value] of Object.entries(m)) {
+    if (key === 'dividendYieldBasis') continue;
+    out[key] = value;
+    if (key === 'dividendYieldSource') out.dividendYieldBasis = code;
+  }
+  if (!('dividendYieldBasis' in out)) out.dividendYieldBasis = code;
+  return out;
+}
+
 export function deriveCatalogMetrics(
   monthEnd: JsonRecord,
   navValue: number | null,
@@ -974,6 +1001,7 @@ export function deriveCatalogMetrics(
     // that file.
     dividendYield,
     dividendYieldSource: dividendYieldIsOfficial ? 'official' : indicatedDividendYield !== null ? 'indicated' : null,
+    dividendYieldBasis: dividendYieldBasisFor(dividendYieldIsOfficial ? 'official' : 'indicated', dividendYield),
     indicatedDividendYield,
     // 30-Day SEC Yield (subsidized + unsubsidized): SSGA does publish this,
     // in the bulk product-data file.
@@ -1707,10 +1735,10 @@ export async function main(env: Record<string, string | undefined> = process.env
   for (const fund of catalog) {
     const previous = previousRows.get(fund.ticker);
     if (refreshed.has(fund.ticker) || !previous) indexFunds.push(await freshRow(fund));
-    else indexFunds.push({ ...previous, dataFile: (await fileExists(metaPath(fund.ticker))) ? `./funds/${fund.ticker}/meta.json` : null });
+    else indexFunds.push({ ...previous, metrics: withYieldBasis(previous.metrics), dataFile: (await fileExists(metaPath(fund.ticker))) ? `./funds/${fund.ticker}/meta.json` : null });
   }
   for (const [ticker, previous] of previousRows) {
-    if (!catalogTickers.has(ticker) && (await fileExists(metaPath(ticker)))) indexFunds.push(previous);
+    if (!catalogTickers.has(ticker) && (await fileExists(metaPath(ticker)))) indexFunds.push({ ...previous, metrics: withYieldBasis(previous.metrics) });
   }
   indexFunds.sort((a, b) => String(a.ticker).localeCompare(String(b.ticker)));
 
