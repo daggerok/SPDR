@@ -432,7 +432,7 @@ function installMock(overrides: Partial<Mock> = {}): Mock {
     mock.inflight++; mock.peak = Math.max(mock.peak, mock.inflight);
     try {
       if (mock.latency) await new Promise((r) => setTimeout(r, mock.latency));
-      const xlsx = (rows: string[][]) => new Response(buildXlsx(rows));
+      const xlsx = (rows: string[][]) => new Response(new Uint8Array(buildXlsx(rows)));
       if (url.includes('fundfinder')) return Response.json({ data: { funds: { etfs: { categories: [], datas: mock.tickers.map((t) => fundRecord(t, mock.nav[t])) } } } });
       if (url.includes('dividend-distribution')) return Response.json({ data: [] });
       if (url.includes('product-data')) return xlsx(productSheet);
