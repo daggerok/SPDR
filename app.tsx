@@ -10,6 +10,8 @@
  * `!`, no interfaces or enums.
  */
 
+/// <reference types="bun" />
+
 // =========================================================================
 // 1. Types, constants & column tooltips
 // =========================================================================
@@ -1841,7 +1843,7 @@ async function loadNextSheetPage(sheet: 'holdings' | 'history'): Promise<void> {
   if (fullHoldingsLoad) {
     await fullHoldingsLoad;
     return;
-  }
+}
 
   const pending = sheetPageRequests.get(key);
   if (pending) return pending;
@@ -1849,13 +1851,13 @@ async function loadNextSheetPage(sheet: 'holdings' | 'history'): Promise<void> {
   if (!entry || entry.nextPage >= entry.manifest.pages.length) return;
 
   const request = (async () => {
-    entry.loading = true;
-    renderStaticLoadSentinel();
-    try {
-      const generation = sheetGeneration;
+  entry.loading = true;
+  renderStaticLoadSentinel();
+  try {
+    const generation = sheetGeneration;
       const pageIndex = entry.nextPage;
       const page = await fetchPage(ticker, entry.manifest.pages[pageIndex]);
-      if (generation !== sheetGeneration) return;
+    if (generation !== sheetGeneration) return;
       if (!entry.headers.length && page.headers.length) entry.headers = page.headers;
       entry.rows = entry.rows.concat(page.rows);
       entry.nextPage = pageIndex + 1;
@@ -1865,14 +1867,14 @@ async function loadNextSheetPage(sheet: 'holdings' | 'history'): Promise<void> {
         scheduleSelectionDataRefresh(ticker);
       }
       if (state.activeFundTicker === ticker && state.activeTab === `detail:${sheet}`) render();
-    } catch (error) {
+  } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
       sheetLoadFailures.set(key, message);
-      console.error(`Failed to load ${ticker} ${sheet} page:`, error);
-    } finally {
-      entry.loading = false;
-      renderStaticLoadSentinel();
-    }
+    console.error(`Failed to load ${ticker} ${sheet} page:`, error);
+  } finally {
+    entry.loading = false;
+    renderStaticLoadSentinel();
+  }
   })();
   sheetPageRequests.set(key, request);
   try {
@@ -2897,7 +2899,7 @@ function renderWatchlistTable(): void {
 
   el.tableBody.querySelectorAll('button[data-watchlist-fund]').forEach((button: any) => {
     button.addEventListener('click', () => openFundDetails(button.dataset.watchlistFund || ''));
-  });
+    });
 
   const queryText = currentQuery() ? ` matching “${currentQuery()}”` : '';
   const loadingText = progress.loading ? ` Holdings are still loading (${progress.completeFunds}/${progress.sourceFunds} ETF files).` : '';
@@ -2975,7 +2977,7 @@ function renderSheetTable(fund: FundRow, sheet: 'holdings' | 'history'): void {
       }
       void ensureSheet(sheet, loadedManifest).then(() => {
         if (state.activeFundTicker === fund.ticker && state.activeTab === `detail:${sheet}`) render();
-      });
+    });
     });
     return;
   }
@@ -3249,7 +3251,7 @@ function scheduleSelectionDataRefresh(ticker = ''): void {
       // counts (especially Watchlist) change in the background.
       renderTabs();
       fitTableHeight();
-    }
+  }
   }, 75);
 }
 
@@ -3315,13 +3317,13 @@ function toggleSelectAll(selectAll: boolean, scope: 'visible' | 'catalog'): void
   if (!state.selected.size) state.activeFundTicker = null;
   else if (!state.activeFundTicker || !state.selected.has(state.activeFundTicker)) {
     state.activeFundTicker = [...state.selected][0] || null;
-  }
+}
   invalidateWatchlistRows();
   watchlistVisibleLimit = WATCHLIST_PAGE_SIZE;
   if (previousActiveFund !== state.activeFundTicker) resetSheetPaging();
   persistSelection();
   ensureValidTab();
-  render();
+    render();
   void ensureHoldingsForSelection();
 }
 
@@ -3573,9 +3575,9 @@ function fitTableHeight(): void {
 
 function persistSelection(): void {
   try {
-    localStorage.setItem(SELECTED_KEY, JSON.stringify([...state.selected]));
-    if (state.activeFundTicker) localStorage.setItem(ACTIVE_FUND_KEY, state.activeFundTicker);
-    else localStorage.removeItem(ACTIVE_FUND_KEY);
+  localStorage.setItem(SELECTED_KEY, JSON.stringify([...state.selected]));
+  if (state.activeFundTicker) localStorage.setItem(ACTIVE_FUND_KEY, state.activeFundTicker);
+  else localStorage.removeItem(ACTIVE_FUND_KEY);
   } catch {
     /* quota or private mode */
   }
@@ -3584,7 +3586,7 @@ function persistSelection(): void {
 
 function persistBlacklist(): void {
   try {
-    localStorage.setItem(BLACKLIST_KEY, JSON.stringify([...state.blacklist]));
+  localStorage.setItem(BLACKLIST_KEY, JSON.stringify([...state.blacklist]));
   } catch {
     /* quota or private mode */
   }
@@ -3658,7 +3660,7 @@ function restoreTabSorts(): void {
     const fromSite = JSON.parse(localStorage.getItem(SITE_STATE_KEY) || 'null');
     if (fromSite && typeof fromSite === 'object' && !Array.isArray(fromSite)) {
       Object.assign(sorts, cleanTabSorts(fromSite.sheetSort));
-    }
+}
   } catch {
     /* corrupt site-state */
   }
@@ -3667,8 +3669,8 @@ function restoreTabSorts(): void {
     Object.assign(sorts, cleanTabSorts(saved));
   } catch {
     /* corrupt sorts key */
-  }
-  state.sortByTab = sorts;
+      }
+    state.sortByTab = sorts;
 }
 
 function restoreSelectedEtfs(): void {
@@ -3712,12 +3714,12 @@ function restoreTabFilters(): void {
     Object.assign(filters, cleanTabFilters(JSON.parse(localStorage.getItem(SEARCHES_KEY) || 'null')));
   } catch {
     /* corrupt legacy searches */
-  }
-  try {
+}
+    try {
     Object.assign(filters, cleanTabFilters(JSON.parse(localStorage.getItem(FILTERS_KEY) || 'null')));
-  } catch {
+    } catch {
     /* corrupt filters key */
-  }
+    }
   state.queryByTab = filters;
 }
 
