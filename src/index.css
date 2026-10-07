@@ -60,6 +60,33 @@
     .selected-row{background:#eff6ff}
     .dark .selected-row{background:rgba(30,64,175,.22)}
 
+    /* Drag-and-drop zone interaction states (same as daggerok/iShares) */
+    .dz-active {
+      border-color: #3b82f6;
+      background: #eff6ff;
+    }
+    .dark .dz-active {
+      background: #1e293b;
+    }
+    .dz-loaded {
+      border-color: rgba(16, 185, 129, 0.5);
+    }
+    .dz-loaded .dz-label {
+      color: #059669;
+    }
+    .dark .dz-loaded .dz-label {
+      color: #34d399;
+    }
+    .dz-error {
+      border-color: rgba(244, 63, 94, 0.6);
+    }
+    .dz-error .dz-label {
+      color: #e11d48;
+    }
+    .dark .dz-error .dz-label {
+      color: #fb7185;
+    }
+
     /*
      * Scroll fix (also applied to daggerok/iShares): only the table scrolls.
      * The JS layer sizes #table-scroll to the real viewport rest; overscroll
@@ -77,54 +104,66 @@
     @media (prefers-reduced-motion:reduce){.busy-spinner{animation-duration:2.4s}}
 
     /*
-     * Catalog horizontal-scroll affordance: keep the Use checkbox and Ticker
-     * columns visible while the remaining columns (including the row number)
-     * move horizontally. `position:sticky` is applied directly to the `th`/`td`
-     * — NOT to a nested wrapper span. A sticky element can never move past the
-     * bounds of its own containing block, so a sticky *child* inside a plain
-     * `position:static` cell stops being visible the moment that cell's own
-     * (unscrolled) position scrolls past the viewport edge — the pin silently
-     * stops working exactly when it matters most. Sticky must live on the
-     * cell itself so the cell's own box is what tracks the viewport. The same
-     * direct-cell rule pins the Watchlist Ticker column at the left edge.
+     * Horizontal pinning for the catalog table: the Use checkbox and the
+     * Ticker stay visible while the remaining columns (including the row
+     * number) move horizontally. `position:sticky` is applied directly to the
+     * `th`/`td` — NOT to a nested wrapper. A sticky element can never move
+     * past the bounds of its own containing block, so a sticky *child* inside
+     * a plain `position:static` cell stops being visible the moment that
+     * cell's own (unscrolled) position scrolls past the viewport edge: the pin
+     * silently stops working exactly when it matters most. The same direct-cell
+     * rule pins the Watchlist Ticker column at the left edge.
+     *
+     * The colors are this repo's own Tailwind tokens, pre-blended to solid
+     * values: a sticky cell repaints on top of whatever column has scrolled
+     * behind it, so a translucent fill (this repo's `.selected-row` uses
+     * rgba(30,64,175,.22) in dark mode) would let that column's text show
+     * through. Base #172033 = slate-800/50 over slate-900, hover #1f2a3d =
+     * slate-700/30 over that, selected #19274e = rgba(30,64,175,.22) over
+     * that; light-mode #f8fafc / #eff6ff are already opaque.
      */
-    #table-scroll table{min-width:max-content;border-collapse:separate;border-spacing:0;isolation:isolate}
+    #table-scroll table{border-collapse:separate;border-spacing:0;isolation:isolate}
+    /* SPDR only: wide catalog (24 columns of numbers) must keep natural column widths and scroll horizontally */
+    #table-scroll table{min-width:max-content}
     #table-scroll tbody{position:relative;z-index:0}
     #table-scroll tbody tr{position:relative;z-index:0}
     #table-scroll .catalog-sticky-col{position:sticky;background:#fff;background-clip:padding-box}
     #table-scroll thead .catalog-sticky-col{top:0;z-index:30;background:#f8fafc}
     #table-scroll tbody .catalog-sticky-col{z-index:20}
     #table-scroll .catalog-sticky-use{left:0;width:5rem;min-width:5rem}
-    #table-scroll .catalog-sticky-ticker{left:5rem;width:5rem;min-width:5rem;box-shadow:4px 0 6px -6px rgba(15,23,42,.7)}
-    #table-scroll .watchlist-sticky-ticker{position:sticky;left:0;width:10rem;min-width:10rem;max-width:10rem;overflow:hidden;text-overflow:ellipsis;background:#fff;background-clip:padding-box;box-shadow:4px 0 6px -6px rgba(15,23,42,.7)}
-    #table-scroll thead .watchlist-sticky-ticker{top:0;z-index:30;background:#f8fafc}
-    #table-scroll tbody .watchlist-sticky-ticker{z-index:20}
-    .dark #table-scroll .catalog-sticky-col,.dark #table-scroll .watchlist-sticky-ticker{background:#172033}
-    .dark #table-scroll thead .catalog-sticky-col,.dark #table-scroll thead .watchlist-sticky-ticker{background:#0f172a}
-    #table-scroll tbody tr:hover .catalog-sticky-col,#table-scroll tbody tr:hover .watchlist-sticky-ticker{background:#f8fafc}
-    #table-scroll tbody tr.selected-row .catalog-sticky-col{background:#eff6ff}
+    #table-scroll .catalog-sticky-ticker{left:5rem;width:6rem;min-width:6rem;box-shadow:4px 0 6px -6px rgba(15,23,42,.7)}
     /*
-     * The ordinary hover/selected row tints below are translucent rgba() —
-     * fine over the single flat row background they were designed for, but
-     * a sticky cell repaints on top of whatever column has scrolled behind
-     * it, so a translucent fill lets that column's text show through. Pinned
-     * cells get solid, pre-blended hex equivalents instead.
+     * Watchlist Ticker: the first data column there holds an exchange ticker
+     * for equities but a CUSIP/ISIN (or, for a few private/crypto positions,
+     * a longer provider code) for bonds and cash, so the pin gets a fixed
+     * width with defensive truncation instead of a ticker-sized column.
      */
-    .dark #table-scroll tbody tr:hover .catalog-sticky-col,.dark #table-scroll tbody tr:hover .watchlist-sticky-ticker{background:#1f2a3d}
+    #table-scroll .watchlist-sticky-col{position:sticky;background:#fff;background-clip:padding-box}
+    #table-scroll thead .watchlist-sticky-col{top:0;z-index:30;background:#f8fafc}
+    #table-scroll tbody .watchlist-sticky-col{z-index:20}
+    #table-scroll .watchlist-sticky-ticker{left:0;width:10rem;min-width:10rem;max-width:10rem;overflow:hidden;text-overflow:ellipsis;box-shadow:4px 0 6px -6px rgba(15,23,42,.7)}
+    .dark #table-scroll .catalog-sticky-col,.dark #table-scroll .watchlist-sticky-col{background:#172033}
+    .dark #table-scroll thead .catalog-sticky-col,.dark #table-scroll thead .watchlist-sticky-col{background:#0f172a}
+    #table-scroll tbody tr:hover .catalog-sticky-col,#table-scroll tbody tr:hover .watchlist-sticky-col{background:#f8fafc}
+    #table-scroll tbody tr.selected-row .catalog-sticky-col{background:#eff6ff}
+    .dark #table-scroll tbody tr:hover .catalog-sticky-col,.dark #table-scroll tbody tr:hover .watchlist-sticky-col{background:#1f2a3d}
     .dark #table-scroll tbody tr.selected-row .catalog-sticky-col{background:#19274e}
 
     /* Detail navigation expands into place after an ETF is selected. */
     main.space-y-6 > #selected-tabs-panel{margin-top:1.5rem;padding-top:1rem;padding-bottom:1rem;border-color:rgb(226 232 240)}
     .dark main.space-y-6 > #selected-tabs-panel{border-color:rgb(51 65 85)}
 
-    /* Blacklist manager panel: same smooth expand/collapse contract as the
-       detail nav above (max-height is set inline by JS from scrollHeight
-       since the chip list, unlike the detail tabs, has no bounded height). */
+    /*
+     * Blacklist manager: same smooth expand/collapse contract as the detail
+     * nav above. Its max-height is set inline by JS from scrollHeight, not by
+     * a fixed rem value, because the chip list (unlike the detail tabs) has no
+     * bounded height.
+     */
     main.space-y-6 > #blacklist-panel{max-height:0;margin-top:0;overflow:hidden;opacity:0;transform:translateY(-10px);padding-top:0;padding-bottom:0;border-color:transparent;transition:max-height .32s ease,margin-top .32s ease,padding .32s ease,opacity .22s ease,transform .32s ease,border-color .22s ease}
     main.space-y-6 > #blacklist-panel.is-visible{margin-top:1.5rem;padding-top:1rem;padding-bottom:1rem;opacity:1;transform:translateY(0);border-color:rgb(226 232 240)}
     .dark main.space-y-6 > #blacklist-panel.is-visible{border-color:rgb(51 65 85)}
 
-    @keyframes tableRefresh{from{opacity:.32}to{opacity:1}}
+    @keyframes tableRefresh{from{opacity:.32;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
     #table-body.table-content-enter{animation:tableRefresh .22s ease-out}
     @media (prefers-reduced-motion:reduce){#table-body.table-content-enter{animation:none}main.space-y-6 > #selected-tabs-panel{transition:none}main.space-y-6 > #blacklist-panel{transition:none}}
 
