@@ -27,93 +27,93 @@
     "value": null
   },
   "nav": {
-    "display": "$63.27",
-    "value": 63.27,
-    "asOfDate": "Oct 01 2026"
+    "display": "$59.53",
+    "value": 59.53,
+    "asOfDate": "Oct 08 2026"
   },
   "aum": {
-    "display": "$80.98 M",
-    "value": 80980000,
-    "asOfDate": "Oct 01 2026"
+    "display": "$76.20 M",
+    "value": 76200000,
+    "asOfDate": "Oct 08 2026"
   },
   "pricing": {
     "exchange": "NASDAQ REGULAR MARKET",
-    "closePrice": "$63.29",
-    "premiumDiscount": "0.12%"
+    "closePrice": "$59.59",
+    "premiumDiscount": "0.03%"
   },
   "inceptionDate": "Sep 09 2024",
   "returns": {
     "monthEnd": {
-      "asOfDate": "Aug 31 2026",
-      "mo1": -4.22,
-      "mo1Text": "-4.22%",
-      "qtd": -9.24,
-      "qtdText": "-9.24%",
-      "ytd": 54.78,
-      "ytdText": "54.78%",
-      "yr1": 76.57,
-      "yr1Text": "76.57%",
+      "asOfDate": "Sep 30 2026",
+      "mo1": 4,
+      "mo1Text": "4.00%",
+      "qtd": -5.62,
+      "qtdText": "-5.62%",
+      "ytd": 60.97,
+      "ytdText": "60.97%",
+      "yr1": 52.83,
+      "yr1Text": "52.83%",
       "yr3": null,
       "yr3Text": null,
       "yr5": null,
       "yr5Text": null,
       "yr10": null,
       "yr10Text": null,
-      "sinceInception": 59.53,
-      "sinceInceptionText": "59.53%",
+      "sinceInception": 59.59,
+      "sinceInceptionText": "59.59%",
       "inceptionDate": "Sep 09 2024"
     },
     "quarterEnd": {
-      "asOfDate": "Jun 30 2026",
-      "mo1": 1.43,
-      "mo1Text": "1.43%",
-      "qtd": 72.35,
-      "qtdText": "72.35%",
-      "ytd": 70.55,
-      "ytdText": "70.55%",
-      "yr1": 100.88,
-      "yr1Text": "100.88%",
+      "asOfDate": "Sep 30 2026",
+      "mo1": 4,
+      "mo1Text": "4.00%",
+      "qtd": -5.62,
+      "qtdText": "-5.62%",
+      "ytd": 60.97,
+      "ytdText": "60.97%",
+      "yr1": 52.83,
+      "yr1Text": "52.83%",
       "yr3": null,
       "yr3Text": null,
       "yr5": null,
       "yr5Text": null,
       "yr10": null,
       "yr10Text": null,
-      "sinceInception": 75.89,
-      "sinceInceptionText": "75.89%"
+      "sinceInception": 59.59,
+      "sinceInceptionText": "59.59%"
     }
   },
   "metrics": {
-    "ytd": 54.78,
-    "tr1y": 76.57,
+    "ytd": 60.97,
+    "tr1y": 52.83,
     "tr3y": null,
     "tr5y": null,
     "tr10y": null,
     "cagr3y": null,
     "cagr5y": null,
     "cagr10y": null,
-    "siAnn": 59.53,
+    "siAnn": 59.59,
     "dividendYield": 0,
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
     "indicatedDividendYield": null,
-    "secYield": -0.61,
-    "secYieldUnsubsidized": null,
-    "tr1yText": "76.57%",
+    "secYield": -0.65,
+    "secYieldUnsubsidized": -0.66,
+    "tr1yText": "52.83%",
     "tr3yText": null,
     "tr5yText": null,
     "tr10yText": null,
     "cagr3yText": null,
     "cagr5yText": null,
     "cagr10yText": null,
-    "siAnnText": "59.53%",
+    "siAnnText": "59.59%",
     "indicatedDividendYieldText": null,
     "dividendYieldText": "0.00%",
-    "secYieldText": "-0.61%",
-    "secYieldUnsubsidizedText": null,
-    "ytdText": "54.78%",
+    "secYieldText": "-0.65%",
+    "secYieldUnsubsidizedText": "-0.66%",
+    "ytdText": "60.97%",
     "returnsBasis": "official SSGA month-end NAV total returns (YTD, 1Y, annualized 3Y/5Y/10Y and since inception); tr3y/tr5y/tr10y are derived from the official annualized figures as (1 + CAGR)^n - 1; no Yahoo or market-price estimates",
-    "performanceAsOf": "2026-08-31"
+    "performanceAsOf": "2026-09-30"
   },
   "distributions": {
     "headers": [
@@ -144,11 +144,11 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "01-Oct-2026",
+    "asOfDate": "08-Oct-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 518,
+    "totalRows": 523,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
@@ -156,12 +156,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 439,
+    "totalRows": 444,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "02-Oct-2026"
+    "asOfDate": "09-Oct-2026"
   }
 }

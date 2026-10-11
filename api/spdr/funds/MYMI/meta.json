@@ -27,93 +27,93 @@
     "value": null
   },
   "nav": {
-    "display": "$23.97",
-    "value": 23.97,
-    "asOfDate": "Oct 01 2026"
+    "display": "$23.86",
+    "value": 23.86,
+    "asOfDate": "Oct 08 2026"
   },
   "aum": {
-    "display": "$14.38 M",
-    "value": 14380000,
-    "asOfDate": "Oct 01 2026"
+    "display": "$14.32 M",
+    "value": 14320000,
+    "asOfDate": "Oct 08 2026"
   },
   "pricing": {
     "exchange": "NASDAQ REGULAR MARKET",
-    "closePrice": "$23.90",
-    "premiumDiscount": "-0.30%"
+    "closePrice": "$23.88",
+    "premiumDiscount": "0.04%"
   },
   "inceptionDate": "Sep 23 2024",
   "returns": {
     "monthEnd": {
-      "asOfDate": "Aug 31 2026",
-      "mo1": 0.3,
-      "mo1Text": "0.30%",
-      "qtd": -0.23,
-      "qtdText": "-0.23%",
-      "ytd": 1.13,
-      "ytdText": "1.13%",
-      "yr1": 3.01,
-      "yr1Text": "3.01%",
+      "asOfDate": "Sep 30 2026",
+      "mo1": -2.22,
+      "mo1Text": "-2.22%",
+      "qtd": -2.44,
+      "qtdText": "-2.44%",
+      "ytd": -1.12,
+      "ytdText": "-1.12%",
+      "yr1": -0.17,
+      "yr1Text": "-0.17%",
       "yr3": null,
       "yr3Text": null,
       "yr5": null,
       "yr5Text": null,
       "yr10": null,
       "yr10Text": null,
-      "sinceInception": 1.88,
-      "sinceInceptionText": "1.88%",
+      "sinceInception": 0.68,
+      "sinceInceptionText": "0.68%",
       "inceptionDate": "Sep 23 2024"
     },
     "quarterEnd": {
-      "asOfDate": "Jun 30 2026",
-      "mo1": 0.39,
-      "mo1Text": "0.39%",
-      "qtd": 1.12,
-      "qtdText": "1.12%",
-      "ytd": 1.36,
-      "ytdText": "1.36%",
-      "yr1": 4.11,
-      "yr1Text": "4.11%",
+      "asOfDate": "Sep 30 2026",
+      "mo1": -2.22,
+      "mo1Text": "-2.22%",
+      "qtd": -2.44,
+      "qtdText": "-2.44%",
+      "ytd": -1.12,
+      "ytdText": "-1.12%",
+      "yr1": -0.17,
+      "yr1Text": "-0.17%",
       "yr3": null,
       "yr3Text": null,
       "yr5": null,
       "yr5Text": null,
       "yr10": null,
       "yr10Text": null,
-      "sinceInception": 2.19,
-      "sinceInceptionText": "2.19%"
+      "sinceInception": 0.68,
+      "sinceInceptionText": "0.68%"
     }
   },
   "metrics": {
-    "ytd": 1.13,
-    "tr1y": 3.01,
+    "ytd": -1.12,
+    "tr1y": -0.17,
     "tr3y": null,
     "tr5y": null,
     "tr10y": null,
     "cagr3y": null,
     "cagr5y": null,
     "cagr10y": null,
-    "siAnn": 1.88,
-    "dividendYield": 2.86,
+    "siAnn": 0.68,
+    "dividendYield": 2.87,
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
-    "indicatedDividendYield": 2.8816,
-    "secYield": 3.51,
-    "secYieldUnsubsidized": null,
-    "tr1yText": "3.01%",
+    "indicatedDividendYield": 2.8948,
+    "secYield": 3.66,
+    "secYieldUnsubsidized": 3.66,
+    "tr1yText": "-0.17%",
     "tr3yText": null,
     "tr5yText": null,
     "tr10yText": null,
     "cagr3yText": null,
     "cagr5yText": null,
     "cagr10yText": null,
-    "siAnnText": "1.88%",
-    "indicatedDividendYieldText": "2.88%",
-    "dividendYieldText": "2.86%",
-    "secYieldText": "3.51%",
-    "secYieldUnsubsidizedText": null,
-    "ytdText": "1.13%",
+    "siAnnText": "0.68%",
+    "indicatedDividendYieldText": "2.89%",
+    "dividendYieldText": "2.87%",
+    "secYieldText": "3.66%",
+    "secYieldUnsubsidizedText": "3.66%",
+    "ytdText": "-1.12%",
     "returnsBasis": "official SSGA month-end NAV total returns (YTD, 1Y, annualized 3Y/5Y/10Y and since inception); tr3y/tr5y/tr10y are derived from the official annualized figures as (1 + CAGR)^n - 1; no Yahoo or market-price estimates",
-    "performanceAsOf": "2026-08-31"
+    "performanceAsOf": "2026-09-30"
   },
   "distributions": {
     "headers": [
@@ -138,17 +138,17 @@
     ]
   },
   "holdings": {
-    "totalRows": 110,
+    "totalRows": 109,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "01-Oct-2026",
+    "asOfDate": "08-Oct-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 508,
+    "totalRows": 513,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
@@ -156,12 +156,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 439,
+    "totalRows": 444,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "02-Oct-2026"
+    "asOfDate": "09-Oct-2026"
   }
 }
