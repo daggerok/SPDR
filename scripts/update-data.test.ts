@@ -456,9 +456,9 @@ const readJson = (dir: string, path: string) => JSON.parse(readFileSync(join(dir
 const listFiles = (dir: string, prefix = ''): string[] =>
   readdirSync(join(dir, prefix), { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))
     .flatMap((e) => (e.isDirectory() ? listFiles(dir, `${prefix}${e.name}/`) : [`${prefix}${e.name}`]));
-const runMain = async (env: Record<string, string> = {}) => {
+const runMain = async (env: Record<string, string> = {}, lines: string[] = []) => {
   const log = console.log;
-  console.log = () => {};
+  console.log = (...args: unknown[]) => { lines.push(args.join(' ')); };
   try { await main({ REQUEST_SLEEP: '0', MAX_RETRIES: '1', USE_SYSTEM_CA: 'false', CONCURRENCY: '1', ...env }); } finally { console.log = log; }
 };
 const row = (dir: string, ticker: string) => readJson(dir, 'index.json').funds.find((f: any) => f.ticker === ticker);
@@ -475,6 +475,20 @@ describe('pipeline', () => {
     expect(gld.holdingsStatus).toBe('empty');
     expect(Object.keys(gld.metrics)).toEqual(Object.keys(row(dir, 'SPY').metrics));
     for (const f of readJson(dir, 'index.json').funds) if (f.dataFile) expect(existsSync(join(dir, f.dataFile))).toBe(true);
+  });
+
+  test('console output: one catalog line, then two [ done ] lines with reporter tallies and published counts', async () => {
+    tempRoot();
+    installMock({ failNavhist: new Set(['XLK']) });
+    const lines: string[] = [];
+    await runMain({}, lines);
+    const text = lines.join('\n');
+    expect(text).toContain('[ catalog  ] 3 SPDR ETFs (ssga.com fund finder)');
+    expect(text).toContain('              TICKERS=all');
+    expect(text).not.toContain('\n\n');
+    expect(lines.at(-2)).toMatch(/^\[ done     \] 3 funds: 2 updated, 0 unchanged, 0 kept, 0 skipped, 1 failed in \d+\.\ds$/);
+    expect(lines.at(-1)).toBe('[ done     ] counts: 3 funds / 1 holdings rows / 600 history rows');
+    expect(text).toContain('XLK   failed    reason=XLK navhist: 500'); // the [fetch  ] label is not repeated
   });
 
   test('a fund that never got a meta.json is listed with dataFile null and a full metrics object', async () => {
