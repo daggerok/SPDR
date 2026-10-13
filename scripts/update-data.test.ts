@@ -13,6 +13,8 @@ import {
   applyHistoryRange,
   configurePacing,
   deriveCatalogMetrics,
+  distributionHistoryUrl,
+  distributionsWorksheet,
   withYieldBasis,
   expenseRatios,
   fetchWithRetry,
@@ -27,6 +29,7 @@ import {
   normalizeNumberText,
   paceRequests,
   parseAumRange,
+  parseDistributionHistory,
   parseProductDataSheet,
   parseRange,
   parseXlsxSheet,
@@ -322,8 +325,23 @@ describe('metrics', () => {
     for (const [value, years] of [[null, 3], [Number.NaN, 3], [10, 0]] as const) expect(annualizedToTotal(value, years)).toBeNull();
   });
 
+  test('distribution history: array rows are normalized, non-arrays are errors, the latest feed row is added when missing', () => {
+    expect(parseDistributionHistory([{ ...distRow('09/18/2026', '1.0'), extra: 1 }, { exDate: '' }, null])).toEqual([
+      { exDate: '09/18/2026', recordDate: '09/18/2026', payableDate: '09/18/2026', dividend: '1.0', stCapGains: '-', ltCapGains: '-' },
+    ]);
+    expect(() => parseDistributionHistory({ data: [] })).toThrow(/JSON array/);
+    const history = parseDistributionHistory(spyHistory.slice(1));
+    const latest = { frequency: 'Quarterly', ...parseDistributionHistory([spyHistory[0]])[0] };
+    expect(distributionsWorksheet(latest, history).rows.map((r) => r[0])).toEqual(['09/18/2026', '06/18/2026', '03/20/2026']);
+    expect(distributionsWorksheet(latest, parseDistributionHistory(spyHistory)).rows).toHaveLength(3);
+    const noFeed = distributionsWorksheet(undefined, history);
+    expect(noFeed.frequency).toBeNull();
+    expect(noFeed.rows[0]).toEqual(['06/18/2026', '06/18/2026', '06/18/2026', '1.903516', '-', '-']);
+    expect(noFeed.rows).toHaveLength(2);
+  });
+
   test('indicated yield: frequency multiplier (semi-annual is 2), null when any piece is missing', () => {
-    expect(indicatedYield({ frequency: 'Quarterly', dividend: '1.903516' }, 765.58)).toBeCloseTo(0.9945, 3);
+    expect(indicatedYield({ frequency: 'Quarterly', dividend: '1.903516' }, 765.58)).toBe(0.99); // 2 decimals like the official yield
     expect(indicatedYield({ frequency: 'Monthly', dividend: '0.10' }, 25)).toBeCloseTo(4.8, 3);
     expect(indicatedYield({ frequency: 'Semi-Annually', dividend: '1.00' }, 100)).toBe(2);
     expect(indicatedYield({ frequency: 'Annually', dividend: '2.00' }, 100)).toBe(2);
@@ -349,7 +367,7 @@ describe('metrics', () => {
     } as any);
     expect([official.secYield, official.secYieldText, official.secYieldUnsubsidized]).toEqual([0.95, '0.95%', null]);
     expect([official.dividendYield, official.dividendYieldText, official.dividendYieldSource]).toEqual([0.99, '0.99%', 'official']);
-    expect(official.indicatedDividendYield).toBeCloseTo(0.9945, 3);
+    expect(official.indicatedDividendYield).toBe(0.99);
   });
 
   test('dividendYieldBasis: code per yield source, null with a null yield, same key set on fresh/legacy/empty rows', () => {
@@ -416,7 +434,11 @@ const holdingsSheet = (t: string) => [['Fund Name:', `${t} fund`], ['Ticker Symb
 const productSheet = [['Ticker', 'ISIN', 'CUSIP', 'Gross Expense Ratio', '* Net Expense Ratio', '30 Day SEC Yield', '30 Day SEC Yield (Unsubsidized)', 'Fund Dividend Yield', 'Index Dividend Yield'],
   ['SPY', 'US1', 'C1', '0.0945%', '0.0800%', '0.95%', '-', '1.00%', '1.10%'], ['XLK', 'US2', 'C2', '0.08%', '-', '-', '-', '0.55%', '0.60%'], ['GLD', 'US3', 'C3', '0.40%', '-', '-', '-', '0.00%', '-']];
 
-type Mock = { tickers: string[]; nav: Record<string, number>; hist: number; failNavhist: Set<string>; latency: number; inflight: number; peak: number };
+type Mock = { tickers: string[]; nav: Record<string, number>; hist: number; failNavhist: Set<string>; failDistributions: Set<string>; latency: number; inflight: number; peak: number };
+// SPY pays quarterly: the lineup feed lists only the latest row, the per-fund history lists all three.
+const distRow = (exDate: string, dividend: string) => ({ exDate, recordDate: exDate, payableDate: exDate, dividend, shortTeamCapital: '-', longTeamCapital: '-' });
+const spyHistory = [distRow('09/18/2026', '1.888834'), distRow('06/18/2026', '1.903516'), distRow('03/20/2026', '1.738591')];
+const distributionFeed = { data: [{ name: 'US Domicile', frequencyData: [{ name: 'Quarterly', fund: [{ fundTicker: 'SPY', ...spyHistory[0], historyDataSize: '3' }] }] }] };
 function fundRecord(ticker: string, nav: number) {
   const record: Record<string, unknown> = { fundTicker: ticker, fundName: `${ticker} ETF`, fundUri: `/etfs/${ticker.toLowerCase()}`, ter: ['0.10%', 0.1], nav: [`$${nav}`, nav], aum: ['$1,000 M', 1000], asOfDate: ['Sep 30 2026', 0], closePrice: ['$1', 1], premiumDiscount: ['0.01%', 0.01], inceptionDate: ['Jan 22 1993', 0] };
   for (const [suffix, date] of [['', 'Aug 31 2026'], ['_1', 'Jun 30 2026']]) {
@@ -426,7 +448,7 @@ function fundRecord(ticker: string, nav: number) {
   return record;
 }
 function installMock(overrides: Partial<Mock> = {}): Mock {
-  const mock: Mock = { tickers: ['SPY', 'XLK', 'GLD'], nav: { SPY: 500, XLK: 200, GLD: 300 }, hist: 300, failNavhist: new Set(), latency: 0, inflight: 0, peak: 0, ...overrides };
+  const mock: Mock = { tickers: ['SPY', 'XLK', 'GLD'], nav: { SPY: 500, XLK: 200, GLD: 300 }, hist: 300, failNavhist: new Set(), failDistributions: new Set(), latency: 0, inflight: 0, peak: 0, ...overrides };
   globalThis.fetch = (async (input: unknown) => {
     const url = String(input);
     mock.inflight++; mock.peak = Math.max(mock.peak, mock.inflight);
@@ -434,7 +456,9 @@ function installMock(overrides: Partial<Mock> = {}): Mock {
       if (mock.latency) await new Promise((r) => setTimeout(r, mock.latency));
       const xlsx = (rows: string[][]) => new Response(new Uint8Array(buildXlsx(rows)));
       if (url.includes('fundfinder')) return Response.json({ data: { funds: { etfs: { categories: [], datas: mock.tickers.map((t) => fundRecord(t, mock.nav[t])) } } } });
-      if (url.includes('dividend-distribution')) return Response.json({ data: [] });
+      const distTicker = /dividend-distribution.*[?&]ticker=([A-Z]+)/.exec(url)?.[1];
+      if (distTicker) return mock.failDistributions.has(distTicker) ? new Response('err', { status: 500 }) : Response.json(distTicker === 'SPY' ? spyHistory : []);
+      if (url.includes('dividend-distribution')) return Response.json(distributionFeed);
       if (url.includes('product-data')) return xlsx(productSheet);
       const m = /(holdings-daily|navhist|pdhist)-us-en-([a-z]+)\.xlsx/.exec(url);
       if (!m) return new Response('no', { status: 404 });
@@ -477,6 +501,24 @@ describe('pipeline', () => {
     for (const f of readJson(dir, 'index.json').funds) if (f.dataFile) expect(existsSync(join(dir, f.dataFile))).toBe(true);
   });
 
+  test('distributions: the full per-fund history is stored (not only the latest row); a failed history keeps the fund as published', async () => {
+    const dir = tempRoot();
+    installMock();
+    await runMain();
+    const spy = readJson(dir, 'funds/SPY/meta.json');
+    expect(spy.distributions.frequency).toBe('Quarterly');
+    expect(spy.distributions.headers).toEqual(['Ex-Date', 'Record Date', 'Payable Date', 'Dividend', 'ST Cap Gains', 'LT Cap Gains']);
+    expect(spy.distributions.rows.map((r: string[]) => r[0])).toEqual(['09/18/2026', '06/18/2026', '03/20/2026']);
+    expect(spy.source.distributionsDownload).toBe(distributionHistoryUrl('SPY'));
+    expect(readJson(dir, 'funds/GLD/meta.json').distributions).toEqual({ frequency: null, headers: [], rows: [] });
+    expect(row(dir, 'SPY').distributions).toEqual({ frequency: 'Quarterly', exDate: '09/18/2026', dividend: '1.888834' });
+    const meta = readFileSync(join(dir, 'funds/SPY/meta.json'), 'utf8');
+    installMock({ nav: { SPY: 777, XLK: 200, GLD: 300 }, failDistributions: new Set(['SPY']) });
+    await runMain();
+    expect(readFileSync(join(dir, 'funds/SPY/meta.json'), 'utf8')).toBe(meta);
+    expect(row(dir, 'SPY').navValue).toBe(500);
+  });
+
   test('console output: one catalog line, then two [ done ] lines with reporter tallies and published counts', async () => {
     tempRoot();
     installMock({ failNavhist: new Set(['XLK']) });
@@ -488,6 +530,7 @@ describe('pipeline', () => {
     expect(text).not.toContain('\n\n');
     expect(lines.at(-2)).toMatch(/^\[ done     \] 3 funds: 2 updated, 0 unchanged, 0 kept, 0 skipped, 1 failed in \d+\.\ds$/);
     expect(lines.at(-1)).toBe('[ done     ] counts: 3 funds / 1 holdings rows / 600 history rows');
+    expect(text).toMatch(/SPY   updated   history=300 holdings=1 divs=3 /);
     expect(text).toContain('XLK   failed    reason=XLK navhist: 500'); // the [fetch  ] label is not repeated
   });
 

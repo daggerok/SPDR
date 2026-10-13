@@ -160,7 +160,7 @@ function outputCounts(funds: number, holdings: number, history: number): string 
 // SPDR (State Street Global Advisors) static data updater.
 // Fetches the public SPDR US ETF catalog, per-fund daily holdings XLSX,
 // NAV history XLSX, daily Premium/Discount history XLSX, the latest dividend
-// distribution, and the bulk product-data XLSX (ISIN/CUSIP/SEC yield/Fund
+// distribution and the full per-fund distribution history, and the bulk product-data XLSX (ISIN/CUSIP/SEC yield/Fund
 // Dividend Yield for the whole lineup), then writes a deterministic,
 // paginated static JSON API under ./api/spdr, following the daggerok/iShares
 // repository design (no dependencies, Bun only).
@@ -178,6 +178,10 @@ const FUND_FINDER_URL =
   'https://www.ssga.com/bin/v1/ssmp/fund/fundfinder?country=us&language=en&role=intermediary&product=etfs&ui=fund-finder';
 const DISTRIBUTIONS_URL =
   'https://www.ssga.com/bin/v1/ssmp/fund/dividend-distribution?country=us&language=en&role=intermediary&product=etfs';
+/** Full per-fund distribution history (newest first); the SSGA "ETF Historical Distributions" page loads the same JSON. */
+export function distributionHistoryUrl(ticker: string): string {
+  return `${DISTRIBUTIONS_URL}&ticker=${encodeURIComponent(ticker)}`;
+}
 const FUND_DATA_BASE = 'https://www.ssga.com/library-content/products/fund-data/etfs/us';
 const PRODUCT_DATA_URL = `${FUND_DATA_BASE}/spdr-product-data-us-en.xlsx`;
 const SSGA_SITE = 'https://www.ssga.com';
@@ -481,7 +485,8 @@ function printHelp(): void {
     '  - Premium/Discount history: pdhist-us-en-{ticker}.xlsx',
     '  - Product data:    spdr-product-data-us-en.xlsx (ISIN/CUSIP/SEC yield/',
     '                      Fund Dividend Yield, whole lineup, fetched once)',
-    '  - Distributions:   latest dividend distribution per fund',
+    '  - Distributions:   full distribution history per fund (SSGA dividend-distribution',
+    '                      JSON with ticker=), frequency from the latest-distribution feed',
     '',
     'Defaults live in scripts/update-data.config.json; the environment overrides them',
     '(the Update SPDR ETF data workflow adds `advanced` JSON and dispatch inputs in between).',
@@ -935,7 +940,8 @@ export function indicatedYield(
   const dividend = Number(String(distribution.dividend).replace(/[^0-9.\-]/g, ''));
   if (!Number.isFinite(dividend) || dividend <= 0) return null;
   if (typeof navValue !== 'number' || !Number.isFinite(navValue) || navValue <= 0) return null;
-  return Math.round(((dividend * perYear) / navValue) * 100 * 10000) / 10000;
+  // Two decimals, like the official Fund Dividend Yield and every other percent metric.
+  return Math.round(((dividend * perYear) / navValue) * 100 * 100) / 100;
 }
 
 function percentText(value: number | null): string | null {
@@ -1203,7 +1209,7 @@ function catalogFromIndex(previous: JsonRecord): CatalogFund[] {
 }
 
 // ---------------------------------------------------------------------------
-// Distributions feed (latest dividend row per fund)
+// Distributions: lineup feed (latest row + frequency per fund) and per-fund history
 // ---------------------------------------------------------------------------
 
 function normalizeDistributions(payload: JsonRecord): Map<string, JsonRecord> {
@@ -1423,21 +1429,39 @@ function returnFiltersPass(fund: CatalogFund, config: UpdaterConfig): boolean {
   return true;
 }
 
-function distributionsWorksheet(distribution: JsonRecord | undefined): { headers: string[]; rows: string[][] } {
-  if (!distribution) return { headers: [], rows: [] };
+/** Per-fund history payload: a JSON array of distribution rows (empty for funds that never paid); anything else is an error. */
+export function parseDistributionHistory(payload: unknown): JsonRecord[] {
+  if (!Array.isArray(payload)) throw new Error('distribution history: expected a JSON array');
+  return payload
+    .filter((item): item is JsonRecord => Boolean(item) && typeof item === 'object')
+    .map((item) => ({
+      exDate: cleanText(item.exDate),
+      recordDate: cleanText(item.recordDate),
+      payableDate: cleanText(item.payableDate),
+      dividend: cleanText(item.dividend),
+      stCapGains: cleanText(item.shortTeamCapital),
+      ltCapGains: cleanText(item.longTeamCapital),
+    }))
+    .filter((item) => item.exDate !== '');
+}
+
+/**
+ * Every published distribution, newest first, as SSGA lists it. The frequency is the fund's current one from the
+ * lineup feed (the history rows carry none), so it is stored once for the worksheet, not per row. The feed's latest
+ * row is added on top when the history does not list its ex-date yet.
+ */
+export function distributionsWorksheet(
+  latest: JsonRecord | undefined,
+  history: JsonRecord[] = [],
+): { frequency: string | null; headers: string[]; rows: string[][] } {
+  const rows = latest && latest.exDate && !history.some((item) => item.exDate === latest.exDate) ? [latest, ...history] : history;
+  if (!rows.length) return { frequency: latest?.frequency || null, headers: [], rows: [] };
   return {
-    headers: ['Frequency', 'Ex-Date', 'Record Date', 'Payable Date', 'Dividend', 'ST Cap Gains', 'LT Cap Gains'],
-    rows: [
-      [
-        distribution.frequency,
-        distribution.exDate,
-        distribution.recordDate,
-        distribution.payableDate,
-        distribution.dividend,
-        distribution.stCapGains,
-        distribution.ltCapGains,
-      ].map((cell) => String(cell ?? '')),
-    ],
+    frequency: latest?.frequency || null,
+    headers: ['Ex-Date', 'Record Date', 'Payable Date', 'Dividend', 'ST Cap Gains', 'LT Cap Gains'],
+    rows: rows.map((item) =>
+      [item.exDate, item.recordDate, item.payableDate, item.dividend, item.stCapGains, item.ltCapGains].map((cell) => String(cell ?? '')),
+    ),
   };
 }
 
@@ -1453,6 +1477,7 @@ async function processFund(
     const holdingsUrl = `${FUND_DATA_BASE}/holdings-daily-us-en-${ticker.toLowerCase()}.xlsx`;
     const historyUrl = `${FUND_DATA_BASE}/navhist-us-en-${ticker.toLowerCase()}.xlsx`;
     const pdHistUrl = `${FUND_DATA_BASE}/pdhist-us-en-${ticker.toLowerCase()}.xlsx`;
+    const distributionsUrl = distributionHistoryUrl(ticker);
 
     // Phase 1: fetch and compute everything in memory. Any failure here leaves the fund exactly as published before.
     const holdingsResponse = await fetchWithRetry(holdingsUrl, `[fetch  ] ${ticker} holdings`);
@@ -1490,6 +1515,11 @@ async function processFund(
       if (config.historyRange !== 'max') pdTable = await mergeOlderRows(fundDir, 'premium-discount', pdTable);
     }
 
+    // A failed history request fails the fund (previous files kept) instead of publishing a one-row history.
+    const distributionsResponse = await fetchWithRetry(distributionsUrl, `[fetch  ] ${ticker} distributions`);
+    if (!distributionsResponse.ok) throw new Error(`distributions: ${distributionsResponse.status} ${distributionsResponse.statusText}`);
+    const distributionHistory = parseDistributionHistory(await distributionsResponse.json().catch(() => null));
+
     // Phase 2: write once. Pages first, then meta.json, then stale pages are removed.
     if (config.storeRawDownloads) {
       const rawDir = decodeURIComponent(new URL('raw/', API_ROOT).pathname);
@@ -1517,6 +1547,7 @@ async function processFund(
         holdingsDownload: holdingsUrl,
         navDownload: historyUrl,
         premiumDiscountDownload: pdHistUrl,
+        distributionsDownload: distributionsUrl,
         productDataDownload: PRODUCT_DATA_URL,
         factsheet: fund.factsheetUrl,
       },
@@ -1529,7 +1560,7 @@ async function processFund(
       inceptionDate: fund.inceptionDate,
       returns: { monthEnd: fund.monthEnd, quarterEnd: fund.quarterEnd },
       metrics: deriveCatalogMetrics(fund.monthEnd, fund.navValue, distribution, productData),
-      distributions: distributionsWorksheet(distribution),
+      distributions: distributionsWorksheet(distribution, distributionHistory),
       holdings: holdingsResult.manifest,
       history: historyResult.manifest,
       premiumDiscountHistory: premiumDiscountResult ? premiumDiscountResult.manifest : null,
