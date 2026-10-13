@@ -2,7 +2,7 @@
   "ticker": "XTN",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 3952,
+  "totalRows": 3953,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "09-Oct-2026",
+      "NAV": "99.776235",
+      "Shares Outstanding": "2960000",
+      "Total Net Assets": "295337654.72"
+    },
     {
       "Date": "08-Oct-2026",
       "NAV": "100.167554",
@@ -6003,12 +6009,6 @@
       "NAV": "65.455769",
       "Shares Outstanding": "6190000",
       "Total Net Assets": "405171211.08"
-    },
-    {
-      "Date": "13-Oct-2022",
-      "NAV": "66.584334",
-      "Shares Outstanding": "6190000",
-      "Total Net Assets": "412157028.11"
     }
   ]
 }

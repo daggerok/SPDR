@@ -2,7 +2,7 @@
   "ticker": "MDYG",
   "page": 5,
   "pageSize": 1000,
-  "totalRows": 5259,
+  "totalRows": 5260,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "16-Nov-2010",
+      "NAV": "68.369073",
+      "Shares Outstanding": "1000000",
+      "Total Net Assets": "68369073.43"
+    },
     {
       "Date": "15-Nov-2010",
       "NAV": "69.438929",
@@ -6003,12 +6009,6 @@
       "NAV": "61.156531",
       "Shares Outstanding": "350000",
       "Total Net Assets": "21404785.94"
-    },
-    {
-      "Date": "27-Nov-2006",
-      "NAV": "61.052558",
-      "Shares Outstanding": "350000",
-      "Total Net Assets": "21368395.32"
     }
   ]
 }

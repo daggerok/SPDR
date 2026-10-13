@@ -2,7 +2,7 @@
   "ticker": "SJNK",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 3666,
+  "totalRows": 3667,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "13-Oct-2022",
+      "NAV": "23.774766",
+      "Shares Outstanding": "123700000",
+      "Total Net Assets": "2940938513.41"
+    },
     {
       "Date": "12-Oct-2022",
       "NAV": "23.812087",
@@ -6003,12 +6009,6 @@
       "NAV": "27.166957",
       "Shares Outstanding": "119200000",
       "Total Net Assets": "3238301254.2"
-    },
-    {
-      "Date": "23-Oct-2018",
-      "NAV": "27.140599",
-      "Shares Outstanding": "121900000",
-      "Total Net Assets": "3308439028.19"
     }
   ]
 }

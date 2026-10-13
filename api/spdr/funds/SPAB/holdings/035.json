@@ -2,7 +2,7 @@
   "ticker": "SPAB",
   "page": 35,
   "pageSize": 250,
-  "totalRows": 8692,
+  "totalRows": 8725,
   "headers": [
     "Name",
     "Identifier",
@@ -16,37 +16,411 @@
   ],
   "rows": [
     {
+      "Name": "FNMA POOL BC4991 FN 04/46 FIXED 3.5",
+      "Identifier": "US3140F0RM83",
+      "SEDOL": "-",
+      "Weight": "0.000156",
+      "Coupon": "3.5",
+      "Par Value": "18184.03",
+      "Market Value": "15963.18",
+      "Local Currency": "USD",
+      "Maturity": "04/01/2046"
+    },
+    {
+      "Name": "GNMA POOL 774274 GN 12/41 FIXED 4.5",
+      "Identifier": "US36176R6K35",
+      "SEDOL": "-",
+      "Weight": "0.000155",
+      "Coupon": "4.5",
+      "Par Value": "16614.03",
+      "Market Value": "15914.41",
+      "Local Currency": "USD",
+      "Maturity": "12/15/2041"
+    },
+    {
+      "Name": "FNMA POOL 730181 FN 05/34 FIXED 5",
+      "Identifier": "US31402JFW27",
+      "SEDOL": "-",
+      "Weight": "0.000152",
+      "Coupon": "5",
+      "Par Value": "15809.78",
+      "Market Value": "15604.23",
+      "Local Currency": "USD",
+      "Maturity": "05/01/2034"
+    },
+    {
+      "Name": "FED HM LN PC POOL G02251 FG 08/36 FIXED 6",
+      "Identifier": "US3128LXQC70",
+      "SEDOL": "-",
+      "Weight": "0.000152",
+      "Coupon": "6",
+      "Par Value": "15357.31",
+      "Market Value": "15564.39",
+      "Local Currency": "USD",
+      "Maturity": "08/01/2036"
+    },
+    {
+      "Name": "GNMA POOL 675324 GN 04/38 FIXED 6",
+      "Identifier": "US36295NG921",
+      "SEDOL": "-",
+      "Weight": "0.000152",
+      "Coupon": "6",
+      "Par Value": "15302.07",
+      "Market Value": "15550.47",
+      "Local Currency": "USD",
+      "Maturity": "04/15/2038"
+    },
+    {
+      "Name": "FNMA POOL BC1809 FN 05/46 FIXED 3.5",
+      "Identifier": "US3140EWAK15",
+      "SEDOL": "-",
+      "Weight": "0.000152",
+      "Coupon": "3.5",
+      "Par Value": "17709.58",
+      "Market Value": "15546.67",
+      "Local Currency": "USD",
+      "Maturity": "05/01/2046"
+    },
+    {
+      "Name": "FNMA POOL AL5259 FN 05/29 FIXED VAR",
+      "Identifier": "US3138EMZZ72",
+      "SEDOL": "-",
+      "Weight": "0.00015",
+      "Coupon": "3.5",
+      "Par Value": "15596.21",
+      "Market Value": "15382.73",
+      "Local Currency": "USD",
+      "Maturity": "05/01/2029"
+    },
+    {
+      "Name": "FNMA POOL BC8396 FN 04/46 FIXED 3.5",
+      "Identifier": "US3140F4KJ40",
+      "SEDOL": "-",
+      "Weight": "0.000149",
+      "Coupon": "3.5",
+      "Par Value": "17417.24",
+      "Market Value": "15290.04",
+      "Local Currency": "USD",
+      "Maturity": "04/01/2046"
+    },
+    {
+      "Name": "GNMA POOL 764992 GN 03/42 FIXED 3.5",
+      "Identifier": "US36176FUR71",
+      "SEDOL": "-",
+      "Weight": "0.000147",
+      "Coupon": "3.5",
+      "Par Value": "16756.17",
+      "Market Value": "15112.38",
+      "Local Currency": "USD",
+      "Maturity": "03/15/2042"
+    },
+    {
+      "Name": "FED HM LN PC POOL G05205 FG 01/39 FIXED 5",
+      "Identifier": "US3128M7DJ21",
+      "SEDOL": "-",
+      "Weight": "0.000147",
+      "Coupon": "5",
+      "Par Value": "15289.37",
+      "Market Value": "15099.02",
+      "Local Currency": "USD",
+      "Maturity": "01/01/2039"
+    },
+    {
+      "Name": "FED HM LN PC POOL G08693 FG 03/46 FIXED 3.5",
+      "Identifier": "US3128MJXX32",
+      "SEDOL": "-",
+      "Weight": "0.000146",
+      "Coupon": "3.5",
+      "Par Value": "16902.6",
+      "Market Value": "14955.24",
+      "Local Currency": "USD",
+      "Maturity": "03/01/2046"
+    },
+    {
+      "Name": "FNMA POOL AB9403 FN 05/33 FIXED 3",
+      "Identifier": "US31417GNV40",
+      "SEDOL": "-",
+      "Weight": "0.000146",
+      "Coupon": "3",
+      "Par Value": "15864.69",
+      "Market Value": "14945.35",
+      "Local Currency": "USD",
+      "Maturity": "05/01/2033"
+    },
+    {
+      "Name": "FNMA POOL AK5850 FN 04/42 FIXED 3.5",
+      "Identifier": "US3138EAQC41",
+      "SEDOL": "-",
+      "Weight": "0.000146",
+      "Coupon": "3.5",
+      "Par Value": "16546.56",
+      "Market Value": "14934.91",
+      "Local Currency": "USD",
+      "Maturity": "04/01/2042"
+    },
+    {
+      "Name": "FED HM LN PC POOL G08733 FG 11/46 FIXED 3.5",
+      "Identifier": "US3128MJY791",
+      "SEDOL": "-",
+      "Weight": "0.000141",
+      "Coupon": "3.5",
+      "Par Value": "16465.3",
+      "Market Value": "14475.63",
+      "Local Currency": "USD",
+      "Maturity": "11/01/2046"
+    },
+    {
+      "Name": "FED HM LN PC POOL Q40718 FG 05/46 FIXED 3.5",
+      "Identifier": "US3132WDYQ12",
+      "SEDOL": "-",
+      "Weight": "0.000141",
+      "Coupon": "3.5",
+      "Par Value": "16398.65",
+      "Market Value": "14417.03",
+      "Local Currency": "USD",
+      "Maturity": "05/01/2046"
+    },
+    {
+      "Name": "FNMA POOL AZ0968 FN 08/45 FIXED 4",
+      "Identifier": "US3138YSCE41",
+      "SEDOL": "-",
+      "Weight": "0.00014",
+      "Coupon": "4",
+      "Par Value": "15784.54",
+      "Market Value": "14344.73",
+      "Local Currency": "USD",
+      "Maturity": "08/01/2045"
+    },
+    {
+      "Name": "FNMA POOL 725419 FN 10/33 FIXED VAR",
+      "Identifier": "US31402C4C34",
+      "SEDOL": "-",
+      "Weight": "0.00014",
+      "Coupon": "4.5",
+      "Par Value": "14708.05",
+      "Market Value": "14313.55",
+      "Local Currency": "USD",
+      "Maturity": "10/01/2033"
+    },
+    {
+      "Name": "FED HM LN PC POOL A91259 FG 02/40 FIXED 4.5",
+      "Identifier": "US312939MG37",
+      "SEDOL": "-",
+      "Weight": "0.000139",
+      "Coupon": "4.5",
+      "Par Value": "14868.22",
+      "Market Value": "14243.37",
+      "Local Currency": "USD",
+      "Maturity": "02/01/2040"
+    },
+    {
+      "Name": "FNMA POOL AX4110 FN 10/44 FIXED 4",
+      "Identifier": "US3138Y5R813",
+      "SEDOL": "-",
+      "Weight": "0.000135",
+      "Coupon": "4",
+      "Par Value": "15146.81",
+      "Market Value": "13864.99",
+      "Local Currency": "USD",
+      "Maturity": "10/01/2044"
+    },
+    {
+      "Name": "FED HM LN PC POOL G08699 FG 03/46 FIXED 4",
+      "Identifier": "US3128MJX546",
+      "SEDOL": "BDGMW26",
+      "Weight": "0.000135",
+      "Coupon": "4",
+      "Par Value": "15188.14",
+      "Market Value": "13812.25",
+      "Local Currency": "USD",
+      "Maturity": "03/01/2046"
+    },
+    {
+      "Name": "GNMA POOL 737660 GN 11/40 FIXED 4",
+      "Identifier": "US3620ARQM64",
+      "SEDOL": "-",
+      "Weight": "0.000134",
+      "Coupon": "4",
+      "Par Value": "14749.55",
+      "Market Value": "13783.72",
+      "Local Currency": "USD",
+      "Maturity": "11/15/2040"
+    },
+    {
+      "Name": "FNMA POOL AV0944 FN 01/44 FIXED 4.5",
+      "Identifier": "US3138XCBN16",
+      "SEDOL": "-",
+      "Weight": "0.000134",
+      "Coupon": "4.5",
+      "Par Value": "14486.09",
+      "Market Value": "13701.34",
+      "Local Currency": "USD",
+      "Maturity": "01/01/2044"
+    },
+    {
+      "Name": "FED HM LN PC POOL G18483 FG 09/28 FIXED 2.5",
+      "Identifier": "US3128MMRD70",
+      "SEDOL": "-",
+      "Weight": "0.000129",
+      "Coupon": "2.5",
+      "Par Value": "13476.72",
+      "Market Value": "13178.17",
+      "Local Currency": "USD",
+      "Maturity": "09/01/2028"
+    },
+    {
+      "Name": "FED HM LN PC POOL V82617 FG 09/46 FIXED 3.5",
+      "Identifier": "US3132L74A43",
+      "SEDOL": "-",
+      "Weight": "0.000128",
+      "Coupon": "3.5",
+      "Par Value": "14968.27",
+      "Market Value": "13160.17",
+      "Local Currency": "USD",
+      "Maturity": "09/01/2046"
+    },
+    {
+      "Name": "FNMA POOL 985661 FN 06/38 FIXED 5.5",
+      "Identifier": "US31415P5W41",
+      "SEDOL": "-",
+      "Weight": "0.000128",
+      "Coupon": "5.5",
+      "Par Value": "13238.87",
+      "Market Value": "13157.13",
+      "Local Currency": "USD",
+      "Maturity": "06/01/2038"
+    },
+    {
+      "Name": "GNMA POOL 782560 GN 02/39 FIXED 5.5",
+      "Identifier": "US36241KZZ47",
+      "SEDOL": "-",
+      "Weight": "0.000128",
+      "Coupon": "5.5",
+      "Par Value": "13148.75",
+      "Market Value": "13106.85",
+      "Local Currency": "USD",
+      "Maturity": "02/15/2039"
+    },
+    {
+      "Name": "FED HM LN PC POOL G04691 FG 06/38 FIXED 5",
+      "Identifier": "US3128M6RL48",
+      "SEDOL": "-",
+      "Weight": "0.00012",
+      "Coupon": "5",
+      "Par Value": "12484.99",
+      "Market Value": "12329.55",
+      "Local Currency": "USD",
+      "Maturity": "06/01/2038"
+    },
+    {
+      "Name": "FED HM LN PC POOL G30642 FG 05/33 FIXED 3",
+      "Identifier": "US3128CUWB85",
+      "SEDOL": "-",
+      "Weight": "0.000117",
+      "Coupon": "3",
+      "Par Value": "12775.75",
+      "Market Value": "12046.19",
+      "Local Currency": "USD",
+      "Maturity": "05/01/2033"
+    },
+    {
+      "Name": "GNMA POOL 734224 GN 02/41 FIXED 4.5",
+      "Identifier": "US3620AMVR00",
+      "SEDOL": "-",
+      "Weight": "0.000117",
+      "Coupon": "4.5",
+      "Par Value": "12642.39",
+      "Market Value": "12020.85",
+      "Local Currency": "USD",
+      "Maturity": "02/15/2041"
+    },
+    {
+      "Name": "GNMA II POOL MA3938 G2 09/46 FIXED 4",
+      "Identifier": "US36179SLT23",
+      "SEDOL": "BYP9XN3",
+      "Weight": "0.000115",
+      "Coupon": "4",
+      "Par Value": "13030.58",
+      "Market Value": "11825.72",
+      "Local Currency": "USD",
+      "Maturity": "09/20/2046"
+    },
+    {
+      "Name": "FNMA POOL AS5312 FN 07/45 FIXED 3.5",
+      "Identifier": "US3138WE3W71",
+      "SEDOL": "-",
+      "Weight": "0.000115",
+      "Coupon": "3.5",
+      "Par Value": "13346.6",
+      "Market Value": "11792.46",
+      "Local Currency": "USD",
+      "Maturity": "07/01/2045"
+    },
+    {
+      "Name": "GNMA POOL 548510 GN 07/31 FIXED 6.5",
+      "Identifier": "US36213AKX18",
+      "SEDOL": "-",
+      "Weight": "0.000115",
+      "Coupon": "6.5",
+      "Par Value": "11585.76",
+      "Market Value": "11784.76",
+      "Local Currency": "USD",
+      "Maturity": "07/15/2031"
+    },
+    {
+      "Name": "FNMA POOL AW8167 FN 02/42 FIXED 3.5",
+      "Identifier": "US3138XYCD45",
+      "SEDOL": "-",
+      "Weight": "0.000114",
+      "Coupon": "3.5",
+      "Par Value": "12906.84",
+      "Market Value": "11686.61",
+      "Local Currency": "USD",
+      "Maturity": "02/01/2042"
+    },
+    {
+      "Name": "FNMA POOL AS5729 FN 09/30 FIXED 3",
+      "Identifier": "US3138WFLK07",
+      "SEDOL": "-",
+      "Weight": "0.000113",
+      "Coupon": "3",
+      "Par Value": "11931.88",
+      "Market Value": "11572.96",
+      "Local Currency": "USD",
+      "Maturity": "09/01/2030"
+    },
+    {
       "Name": "FED HM LN PC POOL A68726 FG 11/37 FIXED 6.5",
       "Identifier": "US3128L0VT67",
       "SEDOL": "-",
       "Weight": "0.000112",
       "Coupon": "6.5",
       "Par Value": "11148.36",
-      "Market Value": "11482.65",
+      "Market Value": "11486.64",
       "Local Currency": "USD",
       "Maturity": "11/01/2037"
-    },
-    {
-      "Name": "FED HM LN PC POOL G08707 FG 05/46 FIXED 4",
-      "Identifier": "US3128MJYD68",
-      "SEDOL": "BYYM2G9",
-      "Weight": "0.000109",
-      "Coupon": "4",
-      "Par Value": "12206.69",
-      "Market Value": "11120.26",
-      "Local Currency": "USD",
-      "Maturity": "05/01/2046"
     },
     {
       "Name": "GNMA II POOL AO1103 G2 09/45 FIXED 3.5",
       "Identifier": "US3617A1GL27",
       "SEDOL": "-",
-      "Weight": "0.000109",
+      "Weight": "0.000108",
       "Coupon": "3.5",
       "Par Value": "12545.45",
-      "Market Value": "11119.89",
+      "Market Value": "11119.75",
       "Local Currency": "USD",
       "Maturity": "09/20/2045"
+    },
+    {
+      "Name": "FED HM LN PC POOL G08707 FG 05/46 FIXED 4",
+      "Identifier": "US3128MJYD68",
+      "SEDOL": "BYYM2G9",
+      "Weight": "0.000108",
+      "Coupon": "4",
+      "Par Value": "12206.69",
+      "Market Value": "11100.89",
+      "Local Currency": "USD",
+      "Maturity": "05/01/2046"
     },
     {
       "Name": "FED HM LN PC POOL G60342 FG 05/42 FIXED 4.5",
@@ -55,7 +429,7 @@
       "Weight": "0.000108",
       "Coupon": "4.5",
       "Par Value": "11530.65",
-      "Market Value": "11042.49",
+      "Market Value": "11046.06",
       "Local Currency": "USD",
       "Maturity": "05/01/2042"
     },
@@ -63,10 +437,10 @@
       "Name": "FED HM LN PC POOL J33361 FG 12/30 FIXED 3",
       "Identifier": "US31307PWW57",
       "SEDOL": "-",
-      "Weight": "0.000107",
+      "Weight": "0.000106",
       "Coupon": "3",
       "Par Value": "11209.08",
-      "Market Value": "10891.02",
+      "Market Value": "10886.27",
       "Local Currency": "USD",
       "Maturity": "12/01/2030"
     },
@@ -77,7 +451,7 @@
       "Weight": "0.000101",
       "Coupon": "5.5",
       "Par Value": "10334.96",
-      "Market Value": "10335.13",
+      "Market Value": "10340.77",
       "Local Currency": "USD",
       "Maturity": "05/01/2037"
     },
@@ -85,10 +459,10 @@
       "Name": "FNMA POOL 821579 FN 06/35 FIXED 6",
       "Identifier": "US31406VXG66",
       "SEDOL": "-",
-      "Weight": "0.000101",
+      "Weight": "0.0001",
       "Coupon": "6",
       "Par Value": "10160.54",
-      "Market Value": "10279.86",
+      "Market Value": "10274.29",
       "Local Currency": "USD",
       "Maturity": "06/01/2035"
     },
@@ -96,10 +470,10 @@
       "Name": "FNMA POOL AB9300 FN 05/33 FIXED 3",
       "Identifier": "US31417GKN50",
       "SEDOL": "-",
-      "Weight": "0.000098",
+      "Weight": "0.000097",
       "Coupon": "3",
       "Par Value": "10571.16",
-      "Market Value": "9995.6",
+      "Market Value": "9986.55",
       "Local Currency": "USD",
       "Maturity": "05/01/2033"
     },
@@ -107,10 +481,10 @@
       "Name": "FED HM LN PC POOL A91386 FG 03/40 FIXED 4.5",
       "Identifier": "US312939RF09",
       "SEDOL": "-",
-      "Weight": "0.000097",
+      "Weight": "0.000096",
       "Coupon": "4.5",
       "Par Value": "10313.68",
-      "Market Value": "9877.04",
+      "Market Value": "9880.24",
       "Local Currency": "USD",
       "Maturity": "03/01/2040"
     },
@@ -121,7 +495,7 @@
       "Weight": "0.000096",
       "Coupon": "4.5",
       "Par Value": "10277.91",
-      "Market Value": "9832.98",
+      "Market Value": "9813.49",
       "Local Currency": "USD",
       "Maturity": "06/15/2039"
     },
@@ -129,10 +503,10 @@
       "Name": "GNMA POOL 677205 GN 08/38 FIXED 5.5",
       "Identifier": "US36295QKS83",
       "SEDOL": "-",
-      "Weight": "0.000096",
+      "Weight": "0.000095",
       "Coupon": "5.5",
       "Par Value": "9807.1",
-      "Market Value": "9795.46",
+      "Market Value": "9777.1",
       "Local Currency": "USD",
       "Maturity": "08/15/2038"
     },
@@ -140,10 +514,10 @@
       "Name": "FED HM LN PC POOL G08702 FG 04/46 FIXED 3.5",
       "Identifier": "US3128MJX884",
       "SEDOL": "BZBY016",
-      "Weight": "0.000094",
+      "Weight": "0.000093",
       "Coupon": "3.5",
       "Par Value": "10859.23",
-      "Market Value": "9550.05",
+      "Market Value": "9547",
       "Local Currency": "USD",
       "Maturity": "04/01/2046"
     },
@@ -151,10 +525,10 @@
       "Name": "FNMA POOL AR9247 FN 03/28 FIXED 2.5",
       "Identifier": "US3138W7HZ09",
       "SEDOL": "-",
-      "Weight": "0.000093",
+      "Weight": "0.000092",
       "Coupon": "2.5",
       "Par Value": "9638.87",
-      "Market Value": "9467.3",
+      "Market Value": "9466.75",
       "Local Currency": "USD",
       "Maturity": "03/01/2028"
     },
@@ -165,7 +539,7 @@
       "Weight": "0.000092",
       "Coupon": "5.5",
       "Par Value": "9459.57",
-      "Market Value": "9434.02",
+      "Market Value": "9438.26",
       "Local Currency": "USD",
       "Maturity": "10/01/2034"
     },
@@ -173,10 +547,10 @@
       "Name": "FNMA POOL 815631 FN 05/35 FIXED 6",
       "Identifier": "US31406PEC95",
       "SEDOL": "-",
-      "Weight": "0.000092",
+      "Weight": "0.000091",
       "Coupon": "6",
       "Par Value": "9247.09",
-      "Market Value": "9355.91",
+      "Market Value": "9350.83",
       "Local Currency": "USD",
       "Maturity": "05/01/2035"
     },
@@ -184,10 +558,10 @@
       "Name": "FNMA POOL AL9867 FN 02/32 FIXED VAR",
       "Identifier": "US3138ER6D71",
       "SEDOL": "-",
-      "Weight": "0.000092",
+      "Weight": "0.000091",
       "Coupon": "3",
       "Par Value": "9765.98",
-      "Market Value": "9355.19",
+      "Market Value": "9349.11",
       "Local Currency": "USD",
       "Maturity": "02/01/2032"
     },
@@ -198,7 +572,7 @@
       "Weight": "0.000091",
       "Coupon": "2.5",
       "Par Value": "9551.1",
-      "Market Value": "9335.75",
+      "Market Value": "9334.62",
       "Local Currency": "USD",
       "Maturity": "09/01/2028"
     },
@@ -206,10 +580,10 @@
       "Name": "FNMA POOL AS6799 FN 03/31 FIXED 3",
       "Identifier": "US3138WGRV80",
       "SEDOL": "-",
-      "Weight": "0.000091",
+      "Weight": "0.00009",
       "Coupon": "3",
       "Par Value": "9597.21",
-      "Market Value": "9253.49",
+      "Market Value": "9248.29",
       "Local Currency": "USD",
       "Maturity": "03/01/2031"
     },
@@ -217,7 +591,7 @@
       "Name": "FED HM LN PC POOL A73702 FG 03/38 FIXED 5",
       "Identifier": "US3128L7DF19",
       "SEDOL": "-",
-      "Weight": "0.000089",
+      "Weight": "0.000088",
       "Coupon": "5",
       "Par Value": "9045.75",
       "Market Value": "9045.75",
@@ -231,7 +605,7 @@
       "Weight": "0.000088",
       "Coupon": "5",
       "Par Value": "9143.52",
-      "Market Value": "9030.37",
+      "Market Value": "9029.68",
       "Local Currency": "USD",
       "Maturity": "10/01/2039"
     },
@@ -239,10 +613,10 @@
       "Name": "GNMA POOL 745125 GN 06/40 FIXED 4",
       "Identifier": "US3620C0YW23",
       "SEDOL": "-",
-      "Weight": "0.000088",
+      "Weight": "0.000087",
       "Coupon": "4",
       "Par Value": "9559.07",
-      "Market Value": "8968.45",
+      "Market Value": "8951.1",
       "Local Currency": "USD",
       "Maturity": "06/15/2040"
     },
@@ -253,7 +627,7 @@
       "Weight": "0.000087",
       "Coupon": "3",
       "Par Value": "9252.66",
-      "Market Value": "8935.6",
+      "Market Value": "8930.65",
       "Local Currency": "USD",
       "Maturity": "02/01/2031"
     },
@@ -261,10 +635,10 @@
       "Name": "GNMA POOL 783143 GN 10/40 FIXED 4",
       "Identifier": "US36241LP425",
       "SEDOL": "-",
-      "Weight": "0.000085",
+      "Weight": "0.000084",
       "Coupon": "4",
       "Par Value": "9246.39",
-      "Market Value": "8645.03",
+      "Market Value": "8628.49",
       "Local Currency": "USD",
       "Maturity": "10/15/2040"
     },
@@ -275,7 +649,7 @@
       "Weight": "0.000083",
       "Coupon": "4",
       "Par Value": "9366.99",
-      "Market Value": "8499.7",
+      "Market Value": "8500.88",
       "Local Currency": "USD",
       "Maturity": "06/20/2046"
     },
@@ -286,7 +660,7 @@
       "Weight": "0.000082",
       "Coupon": "3.5",
       "Par Value": "8546.64",
-      "Market Value": "8419.78",
+      "Market Value": "8418.26",
       "Local Currency": "USD",
       "Maturity": "01/01/2029"
     },
@@ -297,7 +671,7 @@
       "Weight": "0.000082",
       "Coupon": "3",
       "Par Value": "8847.44",
-      "Market Value": "8413.33",
+      "Market Value": "8404.48",
       "Local Currency": "USD",
       "Maturity": "08/01/2032"
     },
@@ -308,7 +682,7 @@
       "Weight": "0.00008",
       "Coupon": "5",
       "Par Value": "8346.88",
-      "Market Value": "8172.55",
+      "Market Value": "8156.65",
       "Local Currency": "USD",
       "Maturity": "05/15/2039"
     },
@@ -316,10 +690,10 @@
       "Name": "GNMA II POOL MA3105 G2 09/45 FIXED 3.5",
       "Identifier": "US36179RNW50",
       "SEDOL": "-",
-      "Weight": "0.000079",
+      "Weight": "0.000078",
       "Coupon": "3.5",
       "Par Value": "9057.83",
-      "Market Value": "8029.16",
+      "Market Value": "8029.07",
       "Local Currency": "USD",
       "Maturity": "09/20/2045"
     },
@@ -330,7 +704,7 @@
       "Weight": "0.000078",
       "Coupon": "5",
       "Par Value": "8050.32",
-      "Market Value": "7971.1",
+      "Market Value": "7974.76",
       "Local Currency": "USD",
       "Maturity": "04/01/2036"
     },
@@ -341,7 +715,7 @@
       "Weight": "0.000077",
       "Coupon": "5.5",
       "Par Value": "7844.15",
-      "Market Value": "7875.06",
+      "Market Value": "7870.43",
       "Local Currency": "USD",
       "Maturity": "06/15/2033"
     },
@@ -352,7 +726,7 @@
       "Weight": "0.000077",
       "Coupon": "4",
       "Par Value": "8636.34",
-      "Market Value": "7857.11",
+      "Market Value": "7858.88",
       "Local Currency": "USD",
       "Maturity": "12/01/2045"
     },
@@ -360,10 +734,10 @@
       "Name": "FED HM LN PC POOL G18605 FG 06/31 FIXED 3",
       "Identifier": "US3128MMU769",
       "SEDOL": "-",
-      "Weight": "0.000076",
+      "Weight": "0.000075",
       "Coupon": "3",
       "Par Value": "8049.02",
-      "Market Value": "7746.28",
+      "Market Value": "7741.67",
       "Local Currency": "USD",
       "Maturity": "06/01/2031"
     },
@@ -374,7 +748,7 @@
       "Weight": "0.000074",
       "Coupon": "7",
       "Par Value": "7511.36",
-      "Market Value": "7560.48",
+      "Market Value": "7559.67",
       "Local Currency": "USD",
       "Maturity": "07/01/2029"
     },
@@ -385,7 +759,7 @@
       "Weight": "0.000073",
       "Coupon": "5",
       "Par Value": "7585.22",
-      "Market Value": "7484.59",
+      "Market Value": "7486.73",
       "Local Currency": "USD",
       "Maturity": "02/01/2035"
     },
@@ -393,10 +767,10 @@
       "Name": "FED HM LN PC POOL Q39434 FG 03/46 FIXED 3.5",
       "Identifier": "US3132QWPU79",
       "SEDOL": "-",
-      "Weight": "0.000073",
+      "Weight": "0.000072",
       "Coupon": "3.5",
       "Par Value": "8438.53",
-      "Market Value": "7421.19",
+      "Market Value": "7418.82",
       "Local Currency": "USD",
       "Maturity": "03/01/2046"
     },
@@ -404,10 +778,10 @@
       "Name": "FED HM LN PC POOL Q02430 FG 08/41 FIXED 4",
       "Identifier": "US3132GFVX22",
       "SEDOL": "-",
-      "Weight": "0.000071",
+      "Weight": "0.00007",
       "Coupon": "4",
       "Par Value": "7784.04",
-      "Market Value": "7216.1",
+      "Market Value": "7209",
       "Local Currency": "USD",
       "Maturity": "08/01/2041"
     },
@@ -415,10 +789,10 @@
       "Name": "FNMA POOL AZ5718 FN 09/30 FIXED 3",
       "Identifier": "US3138YXK878",
       "SEDOL": "-",
-      "Weight": "0.000071",
+      "Weight": "0.00007",
       "Coupon": "3",
       "Par Value": "7422.75",
-      "Market Value": "7203.34",
+      "Market Value": "7200.19",
       "Local Currency": "USD",
       "Maturity": "09/01/2030"
     },
@@ -429,7 +803,7 @@
       "Weight": "0.000069",
       "Coupon": "5.5",
       "Par Value": "7136.13",
-      "Market Value": "7090.3",
+      "Market Value": "7092.07",
       "Local Currency": "USD",
       "Maturity": "09/01/2040"
     },
@@ -440,7 +814,7 @@
       "Weight": "0.000069",
       "Coupon": "4.5",
       "Par Value": "7370.93",
-      "Market Value": "7040.95",
+      "Market Value": "7041.68",
       "Local Currency": "USD",
       "Maturity": "08/01/2041"
     },
@@ -451,7 +825,7 @@
       "Weight": "0.000067",
       "Coupon": "4",
       "Par Value": "7409.47",
-      "Market Value": "6849.02",
+      "Market Value": "6820.44",
       "Local Currency": "USD",
       "Maturity": "10/01/2044"
     },
@@ -462,31 +836,31 @@
       "Weight": "0.000065",
       "Coupon": "3.5",
       "Par Value": "7491.34",
-      "Market Value": "6625.64",
+      "Market Value": "6618.53",
       "Local Currency": "USD",
       "Maturity": "03/01/2046"
-    },
-    {
-      "Name": "FNMA POOL AS7760 FN 08/46 FIXED 4",
-      "Identifier": "US3138WHTS17",
-      "SEDOL": "-",
-      "Weight": "0.000065",
-      "Coupon": "4",
-      "Par Value": "7268.48",
-      "Market Value": "6613.24",
-      "Local Currency": "USD",
-      "Maturity": "08/01/2046"
     },
     {
       "Name": "FNMA POOL 933019 FN 10/37 FIXED 6.5",
       "Identifier": "US31412SAU96",
       "SEDOL": "-",
-      "Weight": "0.000065",
+      "Weight": "0.000064",
       "Coupon": "6.5",
       "Par Value": "6422.06",
-      "Market Value": "6605.91",
+      "Market Value": "6608.22",
       "Local Currency": "USD",
       "Maturity": "10/01/2037"
+    },
+    {
+      "Name": "FNMA POOL AS7760 FN 08/46 FIXED 4",
+      "Identifier": "US3138WHTS17",
+      "SEDOL": "-",
+      "Weight": "0.000064",
+      "Coupon": "4",
+      "Par Value": "7268.48",
+      "Market Value": "6601.74",
+      "Local Currency": "USD",
+      "Maturity": "08/01/2046"
     },
     {
       "Name": "GNMA POOL 680678 GN 01/38 FIXED 6",
@@ -495,7 +869,7 @@
       "Weight": "0.000064",
       "Coupon": "6",
       "Par Value": "6441.54",
-      "Market Value": "6529.3",
+      "Market Value": "6521.14",
       "Local Currency": "USD",
       "Maturity": "01/15/2038"
     },
@@ -506,7 +880,7 @@
       "Weight": "0.000063",
       "Coupon": "4.5",
       "Par Value": "6734.85",
-      "Market Value": "6463.99",
+      "Market Value": "6466.91",
       "Local Currency": "USD",
       "Maturity": "07/01/2039"
     },
@@ -517,7 +891,7 @@
       "Weight": "0.000063",
       "Coupon": "5.5",
       "Par Value": "6405.71",
-      "Market Value": "6408.64",
+      "Market Value": "6412.17",
       "Local Currency": "USD",
       "Maturity": "01/01/2037"
     },
@@ -528,7 +902,7 @@
       "Weight": "0.000062",
       "Coupon": "2.5",
       "Par Value": "6497.8",
-      "Market Value": "6375.73",
+      "Market Value": "6375.17",
       "Local Currency": "USD",
       "Maturity": "07/01/2028"
     },
@@ -539,7 +913,7 @@
       "Weight": "0.000062",
       "Coupon": "3",
       "Par Value": "6547.78",
-      "Market Value": "6373.49",
+      "Market Value": "6371.08",
       "Local Currency": "USD",
       "Maturity": "04/01/2030"
     },
@@ -547,10 +921,10 @@
       "Name": "FED HM LN PC POOL Q39440 FG 03/46 FIXED 4",
       "Identifier": "US3132QWP290",
       "SEDOL": "-",
-      "Weight": "0.00006",
+      "Weight": "0.000059",
       "Coupon": "4",
       "Par Value": "6674.31",
-      "Market Value": "6077.45",
+      "Market Value": "6066.81",
       "Local Currency": "USD",
       "Maturity": "03/01/2046"
     },
@@ -561,7 +935,7 @@
       "Weight": "0.000059",
       "Coupon": "3.5",
       "Par Value": "6825.72",
-      "Market Value": "6045.8",
+      "Market Value": "6039.33",
       "Local Currency": "USD",
       "Maturity": "02/01/2046"
     },
@@ -569,10 +943,10 @@
       "Name": "FNMA POOL AS6795 FN 03/46 FIXED 4",
       "Identifier": "US3138WGRR78",
       "SEDOL": "BD2Z360",
-      "Weight": "0.000058",
+      "Weight": "0.000057",
       "Coupon": "4",
       "Par Value": "6488.28",
-      "Market Value": "5901.93",
+      "Market Value": "5891.64",
       "Local Currency": "USD",
       "Maturity": "03/01/2046"
     },
@@ -583,7 +957,7 @@
       "Weight": "0.000057",
       "Coupon": "3",
       "Par Value": "6661.98",
-      "Market Value": "5837.09",
+      "Market Value": "5838.85",
       "Local Currency": "USD",
       "Maturity": "02/01/2043"
     },
@@ -594,7 +968,7 @@
       "Weight": "0.000055",
       "Coupon": "3",
       "Par Value": "6559.96",
-      "Market Value": "5638.12",
+      "Market Value": "5636.68",
       "Local Currency": "USD",
       "Maturity": "11/01/2045"
     },
@@ -605,7 +979,7 @@
       "Weight": "0.000054",
       "Coupon": "6",
       "Par Value": "5438.42",
-      "Market Value": "5530.81",
+      "Market Value": "5522.46",
       "Local Currency": "USD",
       "Maturity": "08/15/2037"
     },
@@ -616,7 +990,7 @@
       "Weight": "0.000053",
       "Coupon": "6",
       "Par Value": "5423.91",
-      "Market Value": "5458.68",
+      "Market Value": "5457.03",
       "Local Currency": "USD",
       "Maturity": "09/15/2034"
     },
@@ -624,10 +998,10 @@
       "Name": "GNMA POOL 712759 GN 05/39 FIXED 5",
       "Identifier": "US36297HZY79",
       "SEDOL": "-",
-      "Weight": "0.000053",
+      "Weight": "0.000052",
       "Coupon": "5",
       "Par Value": "5498.21",
-      "Market Value": "5368.49",
+      "Market Value": "5358.39",
       "Local Currency": "USD",
       "Maturity": "05/15/2039"
     },
@@ -638,7 +1012,7 @@
       "Weight": "0.000052",
       "Coupon": "3.5",
       "Par Value": "5425.62",
-      "Market Value": "5324.16",
+      "Market Value": "5322.24",
       "Local Currency": "USD",
       "Maturity": "10/01/2030"
     },
@@ -649,7 +1023,7 @@
       "Weight": "0.000052",
       "Coupon": "3",
       "Par Value": "5600.89",
-      "Market Value": "5289.54",
+      "Market Value": "5284.55",
       "Local Currency": "USD",
       "Maturity": "05/01/2033"
     },
@@ -660,7 +1034,7 @@
       "Weight": "0.000051",
       "Coupon": "4",
       "Par Value": "5710.01",
-      "Market Value": "5196.05",
+      "Market Value": "5197.22",
       "Local Currency": "USD",
       "Maturity": "01/01/2046"
     },
@@ -668,10 +1042,10 @@
       "Name": "FNMA POOL 604605 FN 09/31 FIXED 6.5",
       "Identifier": "US31388GU668",
       "SEDOL": "-",
-      "Weight": "0.000049",
+      "Weight": "0.000048",
       "Coupon": "6.5",
       "Par Value": "4875.45",
-      "Market Value": "4962.2",
+      "Market Value": "4963.03",
       "Local Currency": "USD",
       "Maturity": "09/01/2031"
     },
@@ -682,7 +1056,7 @@
       "Weight": "0.000048",
       "Coupon": "3.3",
       "Par Value": "5000",
-      "Market Value": "4943.35",
+      "Market Value": "4944.25",
       "Local Currency": "USD",
       "Maturity": "04/01/2027"
     },
@@ -693,7 +1067,7 @@
       "Weight": "0.000048",
       "Coupon": "5",
       "Par Value": "4989.91",
-      "Market Value": "4940.81",
+      "Market Value": "4943.08",
       "Local Currency": "USD",
       "Maturity": "11/01/2035"
     },
@@ -701,10 +1075,10 @@
       "Name": "ANDEAVOR LOGIS LP/CORP COMPANY GUAR 12/27 4.25",
       "Identifier": "US03350WAC38",
       "SEDOL": "BNNFQ48",
-      "Weight": "0.000048",
+      "Weight": "0.000047",
       "Coupon": "4.25",
       "Par Value": "5000",
-      "Market Value": "4874.15",
+      "Market Value": "4861.1",
       "Local Currency": "USD",
       "Maturity": "12/01/2027"
     },
@@ -715,7 +1089,7 @@
       "Weight": "0.000047",
       "Coupon": "3.5",
       "Par Value": "5513.16",
-      "Market Value": "4848.5",
+      "Market Value": "4846.95",
       "Local Currency": "USD",
       "Maturity": "07/01/2046"
     },
@@ -726,7 +1100,7 @@
       "Weight": "0.000047",
       "Coupon": "6.5",
       "Par Value": "4680.36",
-      "Market Value": "4809.45",
+      "Market Value": "4810.26",
       "Local Currency": "USD",
       "Maturity": "07/01/2036"
     },
@@ -737,7 +1111,7 @@
       "Weight": "0.000047",
       "Coupon": "3",
       "Par Value": "4939.4",
-      "Market Value": "4795.47",
+      "Market Value": "4793.3",
       "Local Currency": "USD",
       "Maturity": "12/01/2030"
     },
@@ -748,7 +1122,7 @@
       "Weight": "0.000045",
       "Coupon": "3",
       "Par Value": "4784.68",
-      "Market Value": "4635.95",
+      "Market Value": "4633.78",
       "Local Currency": "USD",
       "Maturity": "08/01/2030"
     },
@@ -759,7 +1133,7 @@
       "Weight": "0.000044",
       "Coupon": "4.5",
       "Par Value": "4771.6",
-      "Market Value": "4509.99",
+      "Market Value": "4508.78",
       "Local Currency": "USD",
       "Maturity": "01/01/2045"
     },
@@ -770,7 +1144,7 @@
       "Weight": "0.000043",
       "Coupon": "3.5",
       "Par Value": "4973.37",
-      "Market Value": "4373.78",
+      "Market Value": "4372.39",
       "Local Currency": "USD",
       "Maturity": "08/01/2046"
     },
@@ -781,7 +1155,7 @@
       "Weight": "0.00004",
       "Coupon": "4.5",
       "Par Value": "4312.41",
-      "Market Value": "4130.51",
+      "Market Value": "4148.2",
       "Local Currency": "USD",
       "Maturity": "12/01/2039"
     },
@@ -792,7 +1166,7 @@
       "Weight": "0.00004",
       "Coupon": "4.5",
       "Par Value": "4355.36",
-      "Market Value": "4114.79",
+      "Market Value": "4113.67",
       "Local Currency": "USD",
       "Maturity": "08/01/2044"
     },
@@ -803,7 +1177,7 @@
       "Weight": "0.000039",
       "Coupon": "3.5",
       "Par Value": "4504.44",
-      "Market Value": "3992.59",
+      "Market Value": "3992.54",
       "Local Currency": "USD",
       "Maturity": "05/20/2045"
     },
@@ -814,7 +1188,7 @@
       "Weight": "0.000038",
       "Coupon": "6.5",
       "Par Value": "3808.07",
-      "Market Value": "3923.92",
+      "Market Value": "3925.3",
       "Local Currency": "USD",
       "Maturity": "02/01/2038"
     },
@@ -825,7 +1199,7 @@
       "Weight": "0.000037",
       "Coupon": "3.5",
       "Par Value": "3909.44",
-      "Market Value": "3810",
+      "Market Value": "3808.08",
       "Local Currency": "USD",
       "Maturity": "03/01/2031"
     },
@@ -836,7 +1210,7 @@
       "Weight": "0.000036",
       "Coupon": "4",
       "Par Value": "4079.47",
-      "Market Value": "3655.13",
+      "Market Value": "3654.62",
       "Local Currency": "USD",
       "Maturity": "10/01/2044"
     },
@@ -847,7 +1221,7 @@
       "Weight": "0.000035",
       "Coupon": "5.5",
       "Par Value": "3575.01",
-      "Market Value": "3552.04",
+      "Market Value": "3552.92",
       "Local Currency": "USD",
       "Maturity": "06/01/2038"
     },
@@ -858,20 +1232,9 @@
       "Weight": "0.000035",
       "Coupon": "3.5",
       "Par Value": "3591.26",
-      "Market Value": "3542.65",
+      "Market Value": "3541.92",
       "Local Currency": "USD",
       "Maturity": "12/01/2029"
-    },
-    {
-      "Name": "PACIFIC GAS + ELECTRIC 1ST MORTGAGE 08/42 3.75",
-      "Identifier": "US694308HA83",
-      "SEDOL": "B7MTCC9",
-      "Weight": "0.000034",
-      "Coupon": "3.75",
-      "Par Value": "5000",
-      "Market Value": "3491.9",
-      "Local Currency": "USD",
-      "Maturity": "08/15/2042"
     },
     {
       "Name": "GNMA II POOL MA3377 G2 01/46 FIXED 4",
@@ -880,9 +1243,20 @@
       "Weight": "0.000034",
       "Coupon": "4",
       "Par Value": "3828.52",
-      "Market Value": "3487.29",
+      "Market Value": "3487.57",
       "Local Currency": "USD",
       "Maturity": "01/20/2046"
+    },
+    {
+      "Name": "PACIFIC GAS + ELECTRIC 1ST MORTGAGE 08/42 3.75",
+      "Identifier": "US694308HA83",
+      "SEDOL": "B7MTCC9",
+      "Weight": "0.000034",
+      "Coupon": "3.75",
+      "Par Value": "5000",
+      "Market Value": "3487.05",
+      "Local Currency": "USD",
+      "Maturity": "08/15/2042"
     },
     {
       "Name": "FNMA POOL 504249 FN 09/29 FIXED 7",
@@ -891,7 +1265,7 @@
       "Weight": "0.000034",
       "Coupon": "7",
       "Par Value": "3454.56",
-      "Market Value": "3482.76",
+      "Market Value": "3482.15",
       "Local Currency": "USD",
       "Maturity": "09/01/2029"
     },
@@ -902,7 +1276,7 @@
       "Weight": "0.000034",
       "Coupon": "4.5",
       "Par Value": "3666.24",
-      "Market Value": "3473.3",
+      "Market Value": "3473.12",
       "Local Currency": "USD",
       "Maturity": "10/01/2043"
     },
@@ -913,7 +1287,7 @@
       "Weight": "0.000034",
       "Coupon": "3.5",
       "Par Value": "3918.15",
-      "Market Value": "3445.78",
+      "Market Value": "3444.68",
       "Local Currency": "USD",
       "Maturity": "07/01/2046"
     },
@@ -924,7 +1298,7 @@
       "Weight": "0.000034",
       "Coupon": "3.5",
       "Par Value": "3917.38",
-      "Market Value": "3439.77",
+      "Market Value": "3438.67",
       "Local Currency": "USD",
       "Maturity": "06/01/2046"
     },
@@ -935,7 +1309,7 @@
       "Weight": "0.000032",
       "Coupon": "5",
       "Par Value": "3371.41",
-      "Market Value": "3294",
+      "Market Value": "3295.46",
       "Local Currency": "USD",
       "Maturity": "07/01/2040"
     },
@@ -946,7 +1320,7 @@
       "Weight": "0.000032",
       "Coupon": "3",
       "Par Value": "3374.33",
-      "Market Value": "3273.57",
+      "Market Value": "3272.1",
       "Local Currency": "USD",
       "Maturity": "08/01/2030"
     },
@@ -957,20 +1331,9 @@
       "Weight": "0.000032",
       "Coupon": "3.5",
       "Par Value": "3610.35",
-      "Market Value": "3270.62",
+      "Market Value": "3269.02",
       "Local Currency": "USD",
       "Maturity": "12/01/2041"
-    },
-    {
-      "Name": "FNMA POOL BC2819 FN 09/46 FIXED 4",
-      "Identifier": "US3140EXDZ30",
-      "SEDOL": "-",
-      "Weight": "0.000031",
-      "Coupon": "4",
-      "Par Value": "3491.38",
-      "Market Value": "3176.4",
-      "Local Currency": "USD",
-      "Maturity": "09/01/2046"
     },
     {
       "Name": "FED HM LN PC POOL Q42393 FG 08/46 FIXED 3.5",
@@ -979,18 +1342,29 @@
       "Weight": "0.000031",
       "Coupon": "3.5",
       "Par Value": "3606.56",
-      "Market Value": "3171.76",
+      "Market Value": "3170.74",
       "Local Currency": "USD",
       "Maturity": "08/01/2046"
+    },
+    {
+      "Name": "FNMA POOL BC2819 FN 09/46 FIXED 4",
+      "Identifier": "US3140EXDZ30",
+      "SEDOL": "-",
+      "Weight": "0.000031",
+      "Coupon": "4",
+      "Par Value": "3491.38",
+      "Market Value": "3170.87",
+      "Local Currency": "USD",
+      "Maturity": "09/01/2046"
     },
     {
       "Name": "FNMA POOL AS6174 FN 11/30 FIXED 3.5",
       "Identifier": "US3138WF2G04",
       "SEDOL": "-",
-      "Weight": "0.000031",
+      "Weight": "0.00003",
       "Coupon": "3.5",
       "Par Value": "3196.54",
-      "Market Value": "3120.14",
+      "Market Value": "3118.6",
       "Local Currency": "USD",
       "Maturity": "11/01/2030"
     },
@@ -1001,7 +1375,7 @@
       "Weight": "0.00003",
       "Coupon": "3",
       "Par Value": "3210.63",
-      "Market Value": "3112.33",
+      "Market Value": "3110.9",
       "Local Currency": "USD",
       "Maturity": "11/01/2030"
     },
@@ -1012,7 +1386,7 @@
       "Weight": "0.00003",
       "Coupon": "4",
       "Par Value": "3361.73",
-      "Market Value": "3057.93",
+      "Market Value": "3052.59",
       "Local Currency": "USD",
       "Maturity": "08/01/2046"
     },
@@ -1023,7 +1397,7 @@
       "Weight": "0.000028",
       "Coupon": "4",
       "Par Value": "3158.43",
-      "Market Value": "2873",
+      "Market Value": "2867.99",
       "Local Currency": "USD",
       "Maturity": "04/01/2046"
     },
@@ -1034,7 +1408,7 @@
       "Weight": "0.000028",
       "Coupon": "6",
       "Par Value": "2782.83",
-      "Market Value": "2819.87",
+      "Market Value": "2820.22",
       "Local Currency": "USD",
       "Maturity": "03/01/2036"
     },
@@ -1045,7 +1419,7 @@
       "Weight": "0.000027",
       "Coupon": "3.5",
       "Par Value": "3166.57",
-      "Market Value": "2780.72",
+      "Market Value": "2779.83",
       "Local Currency": "USD",
       "Maturity": "07/01/2046"
     },
@@ -1056,7 +1430,7 @@
       "Weight": "0.000027",
       "Coupon": "3.5",
       "Par Value": "3015.69",
-      "Market Value": "2731.92",
+      "Market Value": "2730.58",
       "Local Currency": "USD",
       "Maturity": "12/01/2041"
     },
@@ -1067,7 +1441,7 @@
       "Weight": "0.000027",
       "Coupon": "4.5",
       "Par Value": "2849.98",
-      "Market Value": "2723.93",
+      "Market Value": "2718.48",
       "Local Currency": "USD",
       "Maturity": "06/15/2040"
     },
@@ -1078,7 +1452,7 @@
       "Weight": "0.000026",
       "Coupon": "5",
       "Par Value": "2737.15",
-      "Market Value": "2674.3",
+      "Market Value": "2675.49",
       "Local Currency": "USD",
       "Maturity": "06/01/2040"
     },
@@ -1089,7 +1463,7 @@
       "Weight": "0.000024",
       "Coupon": "3",
       "Par Value": "2500.37",
-      "Market Value": "2484.89",
+      "Market Value": "2484.98",
       "Local Currency": "USD",
       "Maturity": "08/01/2027"
     },
@@ -1100,7 +1474,7 @@
       "Weight": "0.000024",
       "Coupon": "4",
       "Par Value": "2721.08",
-      "Market Value": "2475.17",
+      "Market Value": "2470.86",
       "Local Currency": "USD",
       "Maturity": "08/01/2046"
     },
@@ -1111,7 +1485,7 @@
       "Weight": "0.000023",
       "Coupon": "5",
       "Par Value": "2398.66",
-      "Market Value": "2343.58",
+      "Market Value": "2344.62",
       "Local Currency": "USD",
       "Maturity": "06/01/2040"
     },
@@ -1122,7 +1496,7 @@
       "Weight": "0.000023",
       "Coupon": "5",
       "Par Value": "2384.39",
-      "Market Value": "2329.64",
+      "Market Value": "2330.68",
       "Local Currency": "USD",
       "Maturity": "06/01/2040"
     },
@@ -1133,7 +1507,7 @@
       "Weight": "0.000023",
       "Coupon": "6",
       "Par Value": "2288.48",
-      "Market Value": "2317.73",
+      "Market Value": "2313.56",
       "Local Currency": "USD",
       "Maturity": "06/01/2033"
     },
@@ -1144,7 +1518,7 @@
       "Weight": "0.000022",
       "Coupon": "3",
       "Par Value": "2364.05",
-      "Market Value": "2288.89",
+      "Market Value": "2287.79",
       "Local Currency": "USD",
       "Maturity": "12/01/2030"
     },
@@ -1155,7 +1529,7 @@
       "Weight": "0.000022",
       "Coupon": "5",
       "Par Value": "2317.31",
-      "Market Value": "2285.14",
+      "Market Value": "2285.49",
       "Local Currency": "USD",
       "Maturity": "10/01/2033"
     },
@@ -1166,7 +1540,7 @@
       "Weight": "0.000022",
       "Coupon": "5",
       "Par Value": "2323.26",
-      "Market Value": "2281.24",
+      "Market Value": "2277.61",
       "Local Currency": "USD",
       "Maturity": "12/15/2038"
     },
@@ -1177,7 +1551,7 @@
       "Weight": "0.000022",
       "Coupon": "4.5",
       "Par Value": "2356.33",
-      "Market Value": "2250.84",
+      "Market Value": "2251.08",
       "Local Currency": "USD",
       "Maturity": "04/01/2041"
     },
@@ -1188,7 +1562,7 @@
       "Weight": "0.000021",
       "Coupon": "5",
       "Par Value": "2193.33",
-      "Market Value": "2147.02",
+      "Market Value": "2148.16",
       "Local Currency": "USD",
       "Maturity": "01/01/2040"
     },
@@ -1199,7 +1573,7 @@
       "Weight": "0.000021",
       "Coupon": "5",
       "Par Value": "2154.84",
-      "Market Value": "2126.23",
+      "Market Value": "2126.84",
       "Local Currency": "USD",
       "Maturity": "07/01/2034"
     },
@@ -1221,7 +1595,7 @@
       "Weight": "0.00002",
       "Coupon": "5.5",
       "Par Value": "2061.75",
-      "Market Value": "2065.6",
+      "Market Value": "2065.21",
       "Local Currency": "USD",
       "Maturity": "07/01/2028"
     },
@@ -1232,7 +1606,7 @@
       "Weight": "0.00002",
       "Coupon": "3.5",
       "Par Value": "2060.35",
-      "Market Value": "2004.82",
+      "Market Value": "2003.72",
       "Local Currency": "USD",
       "Maturity": "03/01/2031"
     },
@@ -1240,10 +1614,10 @@
       "Name": "GNMA POOL 598839 GN 11/32 FIXED 6",
       "Identifier": "US36200EHQ70",
       "SEDOL": "-",
-      "Weight": "0.00002",
+      "Weight": "0.000019",
       "Coupon": "6",
       "Par Value": "1982.45",
-      "Market Value": "1997.93",
+      "Market Value": "1997.26",
       "Local Currency": "USD",
       "Maturity": "11/15/2032"
     },
@@ -1254,7 +1628,7 @@
       "Weight": "0.000019",
       "Coupon": "3.5",
       "Par Value": "2254.82",
-      "Market Value": "1980.07",
+      "Market Value": "1979.43",
       "Local Currency": "USD",
       "Maturity": "02/01/2046"
     },
@@ -1262,10 +1636,10 @@
       "Name": "FED HM LN PC POOL C75229 FG 01/33 FIXED 6",
       "Identifier": "US31288DY297",
       "SEDOL": "-",
-      "Weight": "0.000018",
+      "Weight": "0.000017",
       "Coupon": "6",
       "Par Value": "1772.7",
-      "Market Value": "1794.49",
+      "Market Value": "1790.31",
       "Local Currency": "USD",
       "Maturity": "01/01/2033"
     },
@@ -1276,7 +1650,7 @@
       "Weight": "0.000017",
       "Coupon": "7",
       "Par Value": "1660.81",
-      "Market Value": "1711.32",
+      "Market Value": "1711.43",
       "Local Currency": "USD",
       "Maturity": "09/01/2031"
     },
@@ -1287,7 +1661,7 @@
       "Weight": "0.000016",
       "Coupon": "5.5",
       "Par Value": "1680.01",
-      "Market Value": "1682.52",
+      "Market Value": "1683.44",
       "Local Currency": "USD",
       "Maturity": "11/01/2037"
     },
@@ -1298,20 +1672,9 @@
       "Weight": "0.000016",
       "Coupon": "5",
       "Par Value": "1677.71",
-      "Market Value": "1639.19",
+      "Market Value": "1639.92",
       "Local Currency": "USD",
       "Maturity": "02/01/2041"
-    },
-    {
-      "Name": "GNMA POOL 720159 GN 07/39 FIXED 4.5",
-      "Identifier": "US3620A6B487",
-      "SEDOL": "-",
-      "Weight": "0.000016",
-      "Coupon": "4.5",
-      "Par Value": "1714.55",
-      "Market Value": "1638.67",
-      "Local Currency": "USD",
-      "Maturity": "07/15/2039"
     },
     {
       "Name": "FED HM LN PC POOL G04814 FG 10/38 FIXED 5.5",
@@ -1320,9 +1683,20 @@
       "Weight": "0.000016",
       "Coupon": "5.5",
       "Par Value": "1643.93",
-      "Market Value": "1635.76",
+      "Market Value": "1636.17",
       "Local Currency": "USD",
       "Maturity": "10/01/2038"
+    },
+    {
+      "Name": "GNMA POOL 720159 GN 07/39 FIXED 4.5",
+      "Identifier": "US3620A6B487",
+      "SEDOL": "-",
+      "Weight": "0.000016",
+      "Coupon": "4.5",
+      "Par Value": "1714.55",
+      "Market Value": "1635.41",
+      "Local Currency": "USD",
+      "Maturity": "07/15/2039"
     },
     {
       "Name": "FED HM LN PC POOL G02596 FG 01/37 FIXED 6",
@@ -1331,7 +1705,7 @@
       "Weight": "0.000016",
       "Coupon": "6",
       "Par Value": "1583.15",
-      "Market Value": "1604.3",
+      "Market Value": "1604.5",
       "Local Currency": "USD",
       "Maturity": "01/01/2037"
     },
@@ -1339,10 +1713,10 @@
       "Name": "FNMA POOL AS5412 FN 07/30 FIXED 2.5",
       "Identifier": "US3138WFAN64",
       "SEDOL": "-",
-      "Weight": "0.000016",
+      "Weight": "0.000015",
       "Coupon": "2.5",
       "Par Value": "1648.38",
-      "Market Value": "1589.54",
+      "Market Value": "1588.91",
       "Local Currency": "USD",
       "Maturity": "07/01/2030"
     },
@@ -1353,7 +1727,7 @@
       "Weight": "0.000015",
       "Coupon": "6",
       "Par Value": "1535.96",
-      "Market Value": "1554.9",
+      "Market Value": "1551.28",
       "Local Currency": "USD",
       "Maturity": "11/01/2032"
     },
@@ -1364,7 +1738,7 @@
       "Weight": "0.000015",
       "Coupon": "5",
       "Par Value": "1577.95",
-      "Market Value": "1541.57",
+      "Market Value": "1542.26",
       "Local Currency": "USD",
       "Maturity": "06/01/2040"
     },
@@ -1375,7 +1749,7 @@
       "Weight": "0.000015",
       "Coupon": "6.5",
       "Par Value": "1489.28",
-      "Market Value": "1500.65",
+      "Market Value": "1500.38",
       "Local Currency": "USD",
       "Maturity": "08/15/2031"
     },
@@ -1386,7 +1760,7 @@
       "Weight": "0.000014",
       "Coupon": "6",
       "Par Value": "1394.63",
-      "Market Value": "1412.72",
+      "Market Value": "1413.86",
       "Local Currency": "USD",
       "Maturity": "10/01/2038"
     },
@@ -1397,7 +1771,7 @@
       "Weight": "0.000014",
       "Coupon": "3.5",
       "Par Value": "1541.86",
-      "Market Value": "1399.02",
+      "Market Value": "1398.34",
       "Local Currency": "USD",
       "Maturity": "11/01/2041"
     },
@@ -1408,7 +1782,7 @@
       "Weight": "0.000014",
       "Coupon": "6",
       "Par Value": "1365.94",
-      "Market Value": "1384.06",
+      "Market Value": "1385.17",
       "Local Currency": "USD",
       "Maturity": "12/01/2037"
     },
@@ -1419,7 +1793,7 @@
       "Weight": "0.000013",
       "Coupon": "3",
       "Par Value": "1397.21",
-      "Market Value": "1323.06",
+      "Market Value": "1324.5",
       "Local Currency": "USD",
       "Maturity": "01/01/2043"
     },
@@ -1430,7 +1804,7 @@
       "Weight": "0.000013",
       "Coupon": "6",
       "Par Value": "1276.54",
-      "Market Value": "1292.28",
+      "Market Value": "1289.27",
       "Local Currency": "USD",
       "Maturity": "10/01/2032"
     },
@@ -1441,7 +1815,7 @@
       "Weight": "0.000012",
       "Coupon": "7.5",
       "Par Value": "1273.76",
-      "Market Value": "1274.19",
+      "Market Value": "1274.18",
       "Local Currency": "USD",
       "Maturity": "07/15/2027"
     },
@@ -1452,7 +1826,7 @@
       "Weight": "0.000012",
       "Coupon": "4",
       "Par Value": "1317.93",
-      "Market Value": "1235.61",
+      "Market Value": "1233.24",
       "Local Currency": "USD",
       "Maturity": "07/15/2040"
     },
@@ -1463,7 +1837,7 @@
       "Weight": "0.000012",
       "Coupon": "6",
       "Par Value": "1204.65",
-      "Market Value": "1208.22",
+      "Market Value": "1208.4",
       "Local Currency": "USD",
       "Maturity": "03/01/2033"
     },
@@ -1474,7 +1848,7 @@
       "Weight": "0.000012",
       "Coupon": "6.5",
       "Par Value": "1156.08",
-      "Market Value": "1178.86",
+      "Market Value": "1179",
       "Local Currency": "USD",
       "Maturity": "07/01/2032"
     },
@@ -1485,7 +1859,7 @@
       "Weight": "0.000011",
       "Coupon": "4.5",
       "Par Value": "1204.33",
-      "Market Value": "1148.45",
+      "Market Value": "1146.09",
       "Local Currency": "USD",
       "Maturity": "08/15/2040"
     },
@@ -1496,7 +1870,7 @@
       "Weight": "0.000011",
       "Coupon": "6",
       "Par Value": "1083.23",
-      "Market Value": "1095.98",
+      "Market Value": "1092.85",
       "Local Currency": "USD",
       "Maturity": "08/01/2031"
     },
@@ -1504,10 +1878,10 @@
       "Name": "EURO CURRENCY",
       "Identifier": "999EURZ94",
       "SEDOL": "-",
-      "Weight": "0.000011",
+      "Weight": "0.00001",
       "Coupon": "0",
       "Par Value": "960.36",
-      "Market Value": "1076.37",
+      "Market Value": "1075.22",
       "Local Currency": "EUR",
       "Maturity": "-"
     },
@@ -1518,7 +1892,7 @@
       "Weight": "0.00001",
       "Coupon": "4.5",
       "Par Value": "1064.32",
-      "Market Value": "1021.62",
+      "Market Value": "1019.7",
       "Local Currency": "USD",
       "Maturity": "04/15/2039"
     },
@@ -1529,7 +1903,7 @@
       "Weight": "0.000009",
       "Coupon": "6.5",
       "Par Value": "931.82",
-      "Market Value": "949.67",
+      "Market Value": "949.83",
       "Local Currency": "USD",
       "Maturity": "08/01/2031"
     },
@@ -1540,7 +1914,7 @@
       "Weight": "0.000009",
       "Coupon": "6",
       "Par Value": "933.41",
-      "Market Value": "945.79",
+      "Market Value": "946.55",
       "Local Currency": "USD",
       "Maturity": "03/01/2040"
     },
@@ -1551,7 +1925,7 @@
       "Weight": "0.000009",
       "Coupon": "6",
       "Par Value": "930.76",
-      "Market Value": "937.66",
+      "Market Value": "937.33",
       "Local Currency": "USD",
       "Maturity": "11/15/2032"
     },
@@ -1562,7 +1936,7 @@
       "Weight": "0.000009",
       "Coupon": "5.5",
       "Par Value": "895.36",
-      "Market Value": "896.82",
+      "Market Value": "896.69",
       "Local Currency": "USD",
       "Maturity": "04/01/2028"
     },
@@ -1573,7 +1947,7 @@
       "Weight": "0.000008",
       "Coupon": "3.5",
       "Par Value": "879.33",
-      "Market Value": "864.6",
+      "Market Value": "864.43",
       "Local Currency": "USD",
       "Maturity": "01/01/2029"
     },
@@ -1584,7 +1958,7 @@
       "Weight": "0.000008",
       "Coupon": "4.5",
       "Par Value": "869.63",
-      "Market Value": "835.77",
+      "Market Value": "836.15",
       "Local Currency": "USD",
       "Maturity": "02/01/2039"
     },
@@ -1595,7 +1969,7 @@
       "Weight": "0.000007",
       "Coupon": "6",
       "Par Value": "738.17",
-      "Market Value": "747.27",
+      "Market Value": "745.53",
       "Local Currency": "USD",
       "Maturity": "02/01/2033"
     },
@@ -1606,7 +1980,7 @@
       "Weight": "0.000007",
       "Coupon": "4.5",
       "Par Value": "757.25",
-      "Market Value": "722.27",
+      "Market Value": "722.35",
       "Local Currency": "USD",
       "Maturity": "02/01/2041"
     },
@@ -1617,7 +1991,7 @@
       "Weight": "0.000007",
       "Coupon": "6.5",
       "Par Value": "706.16",
-      "Market Value": "719.69",
+      "Market Value": "719.81",
       "Local Currency": "USD",
       "Maturity": "12/01/2031"
     },
@@ -1628,7 +2002,7 @@
       "Weight": "0.000006",
       "Coupon": "6",
       "Par Value": "588.18",
-      "Market Value": "595.43",
+      "Market Value": "594.05",
       "Local Currency": "USD",
       "Maturity": "12/01/2032"
     },
@@ -1639,7 +2013,7 @@
       "Weight": "0.000005",
       "Coupon": "5",
       "Par Value": "513.03",
-      "Market Value": "506.97",
+      "Market Value": "507.18",
       "Local Currency": "USD",
       "Maturity": "12/01/2036"
     },
@@ -1650,7 +2024,7 @@
       "Weight": "0.000005",
       "Coupon": "3.5",
       "Par Value": "480.46",
-      "Market Value": "478.18",
+      "Market Value": "478.2",
       "Local Currency": "USD",
       "Maturity": "01/01/2027"
     },
@@ -1661,7 +2035,7 @@
       "Weight": "0.000005",
       "Coupon": "5.5",
       "Par Value": "472.78",
-      "Market Value": "474.28",
+      "Market Value": "473.5",
       "Local Currency": "USD",
       "Maturity": "04/15/2037"
     },
@@ -1672,7 +2046,7 @@
       "Weight": "0.000005",
       "Coupon": "4",
       "Par Value": "500",
-      "Market Value": "469.44",
+      "Market Value": "469.02",
       "Local Currency": "USD",
       "Maturity": "06/15/2029"
     },
@@ -1683,7 +2057,7 @@
       "Weight": "0.000004",
       "Coupon": "5",
       "Par Value": "432.15",
-      "Market Value": "425.52",
+      "Market Value": "425.59",
       "Local Currency": "USD",
       "Maturity": "11/01/2033"
     },
@@ -1694,7 +2068,7 @@
       "Weight": "0.000004",
       "Coupon": "4",
       "Par Value": "459.47",
-      "Market Value": "418.11",
+      "Market Value": "418.21",
       "Local Currency": "USD",
       "Maturity": "08/01/2045"
     },
@@ -1705,7 +2079,7 @@
       "Weight": "0.000004",
       "Coupon": "4",
       "Par Value": "416.81",
-      "Market Value": "412.24",
+      "Market Value": "412.17",
       "Local Currency": "USD",
       "Maturity": "07/01/2029"
     },
@@ -1716,7 +2090,7 @@
       "Weight": "0.000004",
       "Coupon": "5.5",
       "Par Value": "394.2",
-      "Market Value": "394.64",
+      "Market Value": "393.95",
       "Local Currency": "USD",
       "Maturity": "07/01/2033"
     },
@@ -1727,7 +2101,7 @@
       "Weight": "0.000004",
       "Coupon": "4.5",
       "Par Value": "409.28",
-      "Market Value": "391.95",
+      "Market Value": "392.08",
       "Local Currency": "USD",
       "Maturity": "06/01/2040"
     },
@@ -1738,7 +2112,7 @@
       "Weight": "0.000003",
       "Coupon": "7",
       "Par Value": "336.62",
-      "Market Value": "347.66",
+      "Market Value": "347.68",
       "Local Currency": "USD",
       "Maturity": "10/01/2032"
     },
@@ -1749,7 +2123,7 @@
       "Weight": "0.000003",
       "Coupon": "7.5",
       "Par Value": "326.89",
-      "Market Value": "328.67",
+      "Market Value": "328.64",
       "Local Currency": "USD",
       "Maturity": "03/01/2028"
     },
@@ -1760,7 +2134,7 @@
       "Weight": "0.000003",
       "Coupon": "6",
       "Par Value": "322.75",
-      "Market Value": "326.89",
+      "Market Value": "326.3",
       "Local Currency": "USD",
       "Maturity": "02/01/2033"
     },
@@ -1771,7 +2145,7 @@
       "Weight": "0.000003",
       "Coupon": "5.5",
       "Par Value": "312.5",
-      "Market Value": "312.65",
+      "Market Value": "312.64",
       "Local Currency": "USD",
       "Maturity": "06/01/2027"
     },
@@ -1782,7 +2156,7 @@
       "Weight": "0.000003",
       "Coupon": "5",
       "Par Value": "305.68",
-      "Market Value": "298.62",
+      "Market Value": "298.01",
       "Local Currency": "USD",
       "Maturity": "04/15/2039"
     },
@@ -1793,7 +2167,7 @@
       "Weight": "0.000003",
       "Coupon": "6",
       "Par Value": "285.37",
-      "Market Value": "288.89",
+      "Market Value": "288.22",
       "Local Currency": "USD",
       "Maturity": "01/01/2033"
     },
@@ -1804,7 +2178,7 @@
       "Weight": "0.000003",
       "Coupon": "5.5",
       "Par Value": "281.29",
-      "Market Value": "280.53",
+      "Market Value": "280.66",
       "Local Currency": "USD",
       "Maturity": "10/01/2034"
     },
@@ -1815,7 +2189,7 @@
       "Weight": "0.000003",
       "Coupon": "5",
       "Par Value": "270.47",
-      "Market Value": "267.27",
+      "Market Value": "267.38",
       "Local Currency": "USD",
       "Maturity": "12/01/2036"
     },
@@ -1826,7 +2200,7 @@
       "Weight": "0.000003",
       "Coupon": "7.5",
       "Par Value": "264.1",
-      "Market Value": "265.58",
+      "Market Value": "265.55",
       "Local Currency": "USD",
       "Maturity": "10/15/2029"
     },
@@ -1837,7 +2211,7 @@
       "Weight": "0.000002",
       "Coupon": "6",
       "Par Value": "225.87",
-      "Market Value": "227.48",
+      "Market Value": "227.42",
       "Local Currency": "USD",
       "Maturity": "11/01/2029"
     },
@@ -1848,7 +2222,7 @@
       "Weight": "0.000002",
       "Coupon": "6.5",
       "Par Value": "212.12",
-      "Market Value": "216.6",
+      "Market Value": "216.62",
       "Local Currency": "USD",
       "Maturity": "07/01/2032"
     },
@@ -1859,7 +2233,7 @@
       "Weight": "0.000002",
       "Coupon": "4.65",
       "Par Value": "420",
-      "Market Value": "215.22",
+      "Market Value": "215.75",
       "Local Currency": "USD",
       "Maturity": "05/15/2050"
     },
@@ -1870,7 +2244,7 @@
       "Weight": "0.000002",
       "Coupon": "5.5",
       "Par Value": "200.76",
-      "Market Value": "199.76",
+      "Market Value": "199.81",
       "Local Currency": "USD",
       "Maturity": "07/01/2038"
     },
@@ -1892,7 +2266,7 @@
       "Weight": "0.000001",
       "Coupon": "5.5",
       "Par Value": "118.44",
-      "Market Value": "118.62",
+      "Market Value": "118.68",
       "Local Currency": "USD",
       "Maturity": "09/01/2037"
     },
@@ -1903,7 +2277,7 @@
       "Weight": "0.000001",
       "Coupon": "6",
       "Par Value": "116.57",
-      "Market Value": "118.01",
+      "Market Value": "117.73",
       "Local Currency": "USD",
       "Maturity": "01/01/2033"
     },
@@ -1914,7 +2288,7 @@
       "Weight": "0.000001",
       "Coupon": "6",
       "Par Value": "115.39",
-      "Market Value": "117.17",
+      "Market Value": "117.02",
       "Local Currency": "USD",
       "Maturity": "10/15/2036"
     },
@@ -1925,7 +2299,7 @@
       "Weight": "0.000001",
       "Coupon": "6.5",
       "Par Value": "110.2",
-      "Market Value": "111.07",
+      "Market Value": "111.05",
       "Local Currency": "USD",
       "Maturity": "12/01/2030"
     },
@@ -1947,7 +2321,7 @@
       "Weight": "0.000001",
       "Coupon": "4.5",
       "Par Value": "111.32",
-      "Market Value": "106.9",
+      "Market Value": "106.69",
       "Local Currency": "USD",
       "Maturity": "03/15/2038"
     },
@@ -1958,7 +2332,7 @@
       "Weight": "0.000001",
       "Coupon": "7",
       "Par Value": "100.4",
-      "Market Value": "101.29",
+      "Market Value": "101.27",
       "Local Currency": "USD",
       "Maturity": "01/01/2030"
     },
@@ -1980,7 +2354,7 @@
       "Weight": "0.000001",
       "Coupon": "6.6",
       "Par Value": "78",
-      "Market Value": "76.96",
+      "Market Value": "77.14",
       "Local Currency": "USD",
       "Maturity": "04/01/2050"
     },
@@ -2002,7 +2376,7 @@
       "Weight": "0.000001",
       "Coupon": "5",
       "Par Value": "64.24",
-      "Market Value": "63.45",
+      "Market Value": "63.44",
       "Local Currency": "USD",
       "Maturity": "02/01/2038"
     },
@@ -2035,7 +2409,7 @@
       "Weight": "0",
       "Coupon": "7.5",
       "Par Value": "48.29",
-      "Market Value": "49.75",
+      "Market Value": "49.72",
       "Local Currency": "USD",
       "Maturity": "03/01/2031"
     },
@@ -2115,17 +2489,6 @@
       "Market Value": "2.7",
       "Local Currency": "USD",
       "Maturity": "04/15/2027"
-    },
-    {
-      "Name": "DISCOVERY COMMUNICATIONS COMPANY GUAR 09/47 5.2",
-      "Identifier": "US25470DCW74",
-      "SEDOL": "-",
-      "Weight": "0",
-      "Coupon": "5.2",
-      "Par Value": "0",
-      "Market Value": "0",
-      "Local Currency": "USD",
-      "Maturity": "09/20/2047"
     }
   ]
 }

@@ -2,7 +2,7 @@
   "ticker": "KIE",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 5259,
+  "totalRows": 5260,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "09-Oct-2026",
+      "NAV": "60.083975",
+      "Shares Outstanding": "8750000",
+      "Total Net Assets": "525734781.37"
+    },
     {
       "Date": "08-Oct-2026",
       "NAV": "60.616302",
@@ -6003,12 +6009,6 @@
       "NAV": "37.858889",
       "Shares Outstanding": "11300000",
       "Total Net Assets": "427805448.97"
-    },
-    {
-      "Date": "13-Oct-2022",
-      "NAV": "38.547092",
-      "Shares Outstanding": "10850000",
-      "Total Net Assets": "418235947.78"
     }
   ]
 }

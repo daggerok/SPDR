@@ -2,7 +2,7 @@
   "ticker": "FEZ",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 6034,
+  "totalRows": 6035,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "09-Oct-2026",
+      "NAV": "65.666277",
+      "Shares Outstanding": "63150967",
+      "Total Net Assets": "4147019713.43"
+    },
     {
       "Date": "08-Oct-2026",
       "NAV": "65.245527",
@@ -6003,12 +6009,6 @@
       "NAV": "31.55678",
       "Shares Outstanding": "42650967",
       "Total Net Assets": "1345927198.87"
-    },
-    {
-      "Date": "13-Oct-2022",
-      "NAV": "31.258024",
-      "Shares Outstanding": "42650967",
-      "Total Net Assets": "1333184936.91"
     }
   ]
 }

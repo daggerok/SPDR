@@ -2,7 +2,7 @@
   "ticker": "SLYV",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 6542,
+  "totalRows": 6543,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "09-Oct-2026",
+      "NAV": "102.956836",
+      "Shares Outstanding": "45802102",
+      "Total Net Assets": "4715639518.97"
+    },
     {
       "Date": "08-Oct-2026",
       "NAV": "103.291988",
@@ -6003,12 +6009,6 @@
       "NAV": "69.444679",
       "Shares Outstanding": "52552102",
       "Total Net Assets": "3649463839.02"
-    },
-    {
-      "Date": "13-Oct-2022",
-      "NAV": "70.937409",
-      "Shares Outstanding": "52552102",
-      "Total Net Assets": "3727909977.12"
     }
   ]
 }

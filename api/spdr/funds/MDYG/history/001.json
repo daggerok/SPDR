@@ -2,7 +2,7 @@
   "ticker": "MDYG",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 5259,
+  "totalRows": 5260,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "09-Oct-2026",
+      "NAV": "106.880088",
+      "Shares Outstanding": "27000000",
+      "Total Net Assets": "2885762389.37"
+    },
     {
       "Date": "08-Oct-2026",
       "NAV": "105.789597",
@@ -6003,12 +6009,6 @@
       "NAV": "61.147241",
       "Shares Outstanding": "27400000",
       "Total Net Assets": "1675434410.88"
-    },
-    {
-      "Date": "13-Oct-2022",
-      "NAV": "63.063369",
-      "Shares Outstanding": "27400000",
-      "Total Net Assets": "1727936307.02"
     }
   ]
 }

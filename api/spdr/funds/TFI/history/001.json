@@ -2,7 +2,7 @@
   "ticker": "TFI",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 4801,
+  "totalRows": 4802,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "09-Oct-2026",
+      "NAV": "42.73073",
+      "Shares Outstanding": "67051036",
+      "Total Net Assets": "2865139715.76"
+    },
     {
       "Date": "08-Oct-2026",
       "NAV": "42.452512",
@@ -6003,12 +6009,6 @@
       "NAV": "44.370261",
       "Shares Outstanding": "70651036",
       "Total Net Assets": "3134804892.86"
-    },
-    {
-      "Date": "13-Oct-2022",
-      "NAV": "44.359931",
-      "Shares Outstanding": "71651036",
-      "Total Net Assets": "3178435031.59"
     }
   ]
 }

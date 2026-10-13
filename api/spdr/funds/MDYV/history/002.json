@@ -2,7 +2,7 @@
   "ticker": "MDYV",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 5259,
+  "totalRows": 5260,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "13-Oct-2022",
+      "NAV": "60.341433",
+      "Shares Outstanding": "24600000",
+      "Total Net Assets": "1484399256.58"
+    },
     {
       "Date": "12-Oct-2022",
       "NAV": "58.940416",
@@ -6003,12 +6009,6 @@
       "NAV": "48.091099",
       "Shares Outstanding": "18300000",
       "Total Net Assets": "880067108.33"
-    },
-    {
-      "Date": "23-Oct-2018",
-      "NAV": "49.564475",
-      "Shares Outstanding": "18250000",
-      "Total Net Assets": "904551669.17"
     }
   ]
 }
