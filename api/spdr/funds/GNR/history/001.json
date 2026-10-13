@@ -2,7 +2,7 @@
   "ticker": "GNR",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 4047,
+  "totalRows": 4048,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "12-Oct-2026",
+      "NAV": "75.760085",
+      "Shares Outstanding": "68425000",
+      "Total Net Assets": "5183883804.32"
+    },
     {
       "Date": "09-Oct-2026",
       "NAV": "75.445775",
@@ -6003,12 +6009,6 @@
       "NAV": "52.084758",
       "Shares Outstanding": "60250000",
       "Total Net Assets": "3138105854.38"
-    },
-    {
-      "Date": "14-Oct-2022",
-      "NAV": "51.126344",
-      "Shares Outstanding": "60250000",
-      "Total Net Assets": "3080361419.05"
     }
   ]
 }

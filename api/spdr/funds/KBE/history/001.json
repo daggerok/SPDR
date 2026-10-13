@@ -2,7 +2,7 @@
   "ticker": "KBE",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 5260,
+  "totalRows": 5261,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "12-Oct-2026",
+      "NAV": "63.367409",
+      "Shares Outstanding": "22602118",
+      "Total Net Assets": "1432237665.15"
+    },
     {
       "Date": "09-Oct-2026",
       "NAV": "63.098173",
@@ -6003,12 +6009,6 @@
       "NAV": "47.430471",
       "Shares Outstanding": "43552118",
       "Total Net Assets": "2065697458.74"
-    },
-    {
-      "Date": "14-Oct-2022",
-      "NAV": "46.207847",
-      "Shares Outstanding": "43352118",
-      "Total Net Assets": "2003208043.67"
     }
   ]
 }

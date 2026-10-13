@@ -2,7 +2,7 @@
   "ticker": "SPYM",
   "page": 5,
   "pageSize": 1000,
-  "totalRows": 5260,
+  "totalRows": 5261,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "17-Nov-2010",
+      "NAV": "55.395319",
+      "Shares Outstanding": "700000",
+      "Total Net Assets": "38776723.45"
+    },
     {
       "Date": "16-Nov-2010",
       "NAV": "55.353393",
@@ -6003,12 +6009,6 @@
       "NAV": "64.226654",
       "Shares Outstanding": "200000",
       "Total Net Assets": "12845330.78"
-    },
-    {
-      "Date": "28-Nov-2006",
-      "NAV": "63.601134",
-      "Shares Outstanding": "200000",
-      "Total Net Assets": "12720226.89"
     }
   ]
 }

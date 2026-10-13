@@ -2,7 +2,7 @@
   "ticker": "BWZ",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 4463,
+  "totalRows": 4464,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "12-Oct-2026",
+      "NAV": "26.542861",
+      "Shares Outstanding": "12000000",
+      "Total Net Assets": "318514335.29"
+    },
     {
       "Date": "09-Oct-2026",
       "NAV": "26.570668",
@@ -6003,12 +6009,6 @@
       "NAV": "24.78737",
       "Shares Outstanding": "5400000",
       "Total Net Assets": "133851796"
-    },
-    {
-      "Date": "14-Oct-2022",
-      "NAV": "24.698612",
-      "Shares Outstanding": "5400000",
-      "Total Net Assets": "133372507.45"
     }
   ]
 }

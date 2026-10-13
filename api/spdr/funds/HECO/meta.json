@@ -11,6 +11,7 @@
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-heco.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-heco.xlsx",
     "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-heco.xlsx",
+    "distributionsDownload": "https://www.ssga.com/bin/v1/ssmp/fund/dividend-distribution?country=us&language=en&role=intermediary&product=etfs&ticker=HECO",
     "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-heco.pdf"
   },
@@ -116,8 +117,8 @@
     "performanceAsOf": "2026-09-30"
   },
   "distributions": {
+    "frequency": "Annually",
     "headers": [
-      "Frequency",
       "Ex-Date",
       "Record Date",
       "Payable Date",
@@ -127,12 +128,19 @@
     ],
     "rows": [
       [
-        "Annually",
         "12/29/2025",
         "12/29/2025",
         "12/31/2025",
         "0.000000",
         "0.000000",
+        "0.000000"
+      ],
+      [
+        "12/27/2024",
+        "12/27/2024",
+        "12/31/2024",
+        "0.304878",
+        "0.516035",
         "0.000000"
       ]
     ]
@@ -148,7 +156,7 @@
     "status": "ok"
   },
   "history": {
-    "totalRows": 524,
+    "totalRows": 525,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [

@@ -52,7 +52,8 @@ Defaults live in `scripts/update-data.config.json`, one string value per control
 | --- | --- |
 | Catalog (all US SPDR ETFs) | `https://www.ssga.com/us/en/intermediary/etfs/fund-finder` (SSGA fund finder JSON) |
 | Holdings per fund | `https://www.ssga.com/us/en/intermediary/etfs/library-content/products/fund-data/etfs/us/holdings-daily-us-{TICKER}.xlsx` (per-fund holdings XLSX) |
-| Daily history, distributions | `https://www.ssga.com/us/en/intermediary/etfs/library-content/products/fund-data/etfs/us/navhistory-daily-us-{TICKER}.xlsx` (NAV history XLSX) |
+| Daily history | `https://www.ssga.com/us/en/intermediary/etfs/library-content/products/fund-data/etfs/us/navhistory-daily-us-{TICKER}.xlsx` (NAV history XLSX) |
+| Distributions (full history per fund, newest first; frequency from the latest-distribution feed) | `ssga.com/bin/v1/ssmp/fund/dividend-distribution?country=us&language=en&role=intermediary&product=etfs&ticker={TICKER}` (JSON, the data behind SSGA's ETF Historical Distributions page) |
 | Daily Premium/Discount history | `ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-{TICKER}.xlsx` |
 | ISIN, CUSIP, official 30-Day SEC Yield (subsidized/unsubsidized), official Fund Dividend Yield (whole lineup, one fetch per run) | `ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx` |
 | Fallback | Previously published `api/spdr/index.json` |

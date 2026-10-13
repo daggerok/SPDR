@@ -2,7 +2,7 @@
   "ticker": "KOMP",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 2002,
+  "totalRows": 2003,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "12-Oct-2026",
+      "NAV": "65.277392",
+      "Shares Outstanding": "39695000",
+      "Total Net Assets": "2591186058.66"
+    },
     {
       "Date": "09-Oct-2026",
       "NAV": "66.346628",
@@ -6003,12 +6009,6 @@
       "NAV": "38.919454",
       "Shares Outstanding": "39225000",
       "Total Net Assets": "1526615585.81"
-    },
-    {
-      "Date": "14-Oct-2022",
-      "NAV": "37.632956",
-      "Shares Outstanding": "39275000",
-      "Total Net Assets": "1478034360.29"
     }
   ]
 }

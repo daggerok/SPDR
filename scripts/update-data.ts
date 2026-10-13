@@ -22,10 +22,12 @@ function outputConfigEntries(config: Record<string, any>): [string, string][] {
     performanceRanges: 'PERFORMANCE', totalReturnRanges: 'TOTAL_RETURN',
     skipVanEck: 'SKIP_VANECK', skipProShares: 'SKIP_PROSHARES',
     skipWisdomTree: 'SKIP_WISDOMTREE', skipGoldmanSachs: 'SKIP_GOLDMANSACHS',
+    skipGlobalX: 'SKIP_GLOBALX', skipNorthernTrust: 'SKIP_NORTHERNTRUST',
   };
-  const range = (v: any): string => v?.source ?? `${Number.isFinite(v?.min) ? v.min : ''}:${Number.isFinite(v?.max) ? v.max : ''}`;
+  const range = (v: any): string => typeof v === 'string' ? v : v?.source ?? `${Number.isFinite(v?.min) ? v.min : ''}:${Number.isFinite(v?.max) ? v.max : ''}`;
   for (const [key, value] of Object.entries(config)) {
-    const name = aliases[key] ?? key.replace(/([a-z0-9])([A-Z])/g, '$1_$2').toUpperCase();
+    if (['proxyGapMs', 'fetchTimeoutMs', 'retryDelayMs'].includes(key)) continue;
+    const name = aliases[key] ?? (/^[A-Z0-9_]+$/.test(key) ? key : key.replace(/([a-z0-9])([A-Z])/g, '$1_$2').toUpperCase());
     if (name === 'PERFORMANCE' || name === 'TOTAL_RETURN') {
       for (const period of ['YTD', '1Y', '3Y', '5Y', '10Y']) values.set(`${name}_${period}`, range(value?.[period]));
     } else if (['AUM', 'TER', 'DIVIDEND_YIELD', 'SEC_YIELD'].includes(name)) {
@@ -40,13 +42,18 @@ function outputConfigEntries(config: Record<string, any>): [string, string][] {
     return (ai < 0 ? first.length : ai) - (bi < 0 ? first.length : bi) || a.localeCompare(b);
   });
 }
+function outputConfigValue(key: string, value: string): string {
+  if (/TOKEN|PASSWORD|SECRET|COOKIE|SEC_UA/i.test(key)) return '<redacted>';
+  if (key === 'TICKERS' && ['', 'null', 'undefined'].includes(value)) return 'all';
+  return outputClean(value);
+}
 function outputPrintConfig(brand: string, config: Record<string, any>): void {
   const entries: [string, string][] = [...outputConfigEntries(config), ['VERBOSE', String(outputVerbose())]];
-  console.log(`[ config   ] ${brand} updater:\n${entries.map(([key, value]) => `              ${key}=${/TOKEN|PASSWORD|SECRET|COOKIE/i.test(key) ? '<redacted>' : outputClean(value)}`).join('\n')}`);
+  console.log(`[ config   ] ${brand} updater:\n${entries.map(([key, value]) => `              ${key}=${outputConfigValue(key, value)}`).join('\n')}`);
 }
 function outputHasOutputFilters(config: Record<string, any>): boolean {
   return outputConfigEntries(config).some(([name, value]) =>
-    /^(TICKERS|CATEGORY|AUM|TER|DIVIDEND_YIELD|SEC_YIELD|PERFORMANCE_|TOTAL_RETURN_)/.test(name) &&
+    /^(CATEGORY|AUM|TER|DIVIDEND_YIELD|SEC_YIELD|PERFORMANCE_|TOTAL_RETURN_)/.test(name) &&
     !['', ':', 'null', 'all'].includes(value));
 }
 function outputPrintFilter(selected: number, total: number, deferred = false): void {
@@ -78,18 +85,29 @@ async function outputInspectFund(root: URL | string, ticker: string): Promise<{ 
 }
 const outputCount = (value: any): unknown => typeof value === 'number' ? value : Array.isArray(value) ? value.length : value?.totalRows ?? value?.rows?.length ?? null;
 const outputScalar = (value: any): any => value && typeof value === 'object' ? value.display ?? value.value ?? null : value;
+const outputUnits: Record<string, number> = { K: 1e3, M: 1e6, B: 1e9, T: 1e12, THOUSAND: 1e3, MILLION: 1e6, BILLION: 1e9, TRILLION: 1e12 };
 function outputMoney(value: any): string {
-  const raw = outputScalar(value);
+  const raw = value && typeof value === 'object' && typeof value.value === 'number' && Number.isFinite(value.value) ? value.value : outputScalar(value);
   if (raw === null || raw === undefined || raw === '—' || raw === '--') return 'null';
   const text = String(raw).replace(/[$,\s]/g, '');
-  const match = text.match(/^([+-]?[\d.]+)([KMBT])?$/i);
+  const match = text.match(/^([+-]?[\d.]+)(K|M|B|T|Thousand|Million|Billion|Trillion)?$/i);
   if (!match) return outputClean(raw);
-  const number = Number(match[1]) * ({ K: 1e3, M: 1e6, B: 1e9, T: 1e12 }[match[2]?.toUpperCase() as 'K' | 'M' | 'B' | 'T'] ?? 1);
+  const number = Number(match[1]) * (outputUnits[match[2]?.toUpperCase() ?? ''] ?? 1);
   if (!Number.isFinite(number)) return 'null';
   for (const [unit, scale] of [['T', 1e12], ['B', 1e9], ['M', 1e6], ['K', 1e3]] as const) {
     if (Math.abs(number) >= scale) return `$${(number / scale).toFixed(1)}${unit}`;
   }
   return `$${number.toFixed(2)}`;
+}
+/** Yields: rounded to 2 decimals without trailing zeros; placeholders are omitted like null. */
+function outputPercent(value: any): unknown {
+  const raw = outputScalar(value);
+  if (raw === null || raw === undefined) return null;
+  if (typeof raw === 'number') return Number.isFinite(raw) ? Number(raw.toFixed(2)) : null;
+  const text = String(raw).trim().replace(/%$/, '').trim();
+  if (['', '-', '—', '--', 'n/a'].includes(text.toLowerCase())) return null;
+  const number = Number(text.replace(/,/g, ''));
+  return Number.isFinite(number) ? Number(number.toFixed(2)) : outputClean(raw);
 }
 function outputFundLine(index: number, total: number, ticker: string, status: string, data: any = {}, reason?: unknown): string {
   const width = Math.max(2, String(total).length);
@@ -110,28 +128,41 @@ function outputFundLine(index: number, total: number, ticker: string, status: st
     field('divs', outputCount(data.worksheets?.Distributions ?? data.distributions)),
     field('netAssets', outputMoney(data.netAssets ?? data.aum)),
     field('total', outputMoney(data.totalFundNetAssets ?? data.totalNetAssets)),
-    field('div', outputScalar(data.trailingYield ?? data.yields?.effectiveYield ?? data.yields?.dividendYield ?? data.dividendYield ?? metrics.dividendYield)),
-    field('sec', outputScalar(data.secYield ?? data.yields?.secYield ?? metrics.secYield)),
+    field('div', outputPercent(data.trailingYield ?? data.yields?.effectiveYield ?? data.yields?.dividendYield ?? data.dividendYield ?? metrics.dividendYield)),
+    field('sec', outputPercent(data.secYield ?? data.yields?.secYield ?? metrics.secYield)),
     field('wp', data.workplaceRaw),
   ].filter(part => part !== '').join(' ');
   return `[ ${String(index).padStart(width)}/${String(total).padEnd(width)}  ] ${outputClean(ticker).padEnd(5)} ${status.padEnd(9)}${detail ? ` ${detail}` : ''}${reason ? ` reason=${outputClean(reason)}` : ''}`;
 }
 function outputCreateReporter(root: URL | string, total: number) {
   let completed = 0;
+  const tally = new Map<string, number>();
   return {
     before: (ticker: string) => outputInspectFund(root, ticker),
     async result(ticker: string, before: { digest: string }, status?: string, reason?: unknown, extra: any = {}) {
       const after = await outputInspectFund(root, ticker);
-      console.log(outputFundLine(++completed, total, ticker, status ?? (before.digest === after.digest ? 'unchanged' : 'updated'), { ...after.meta, ...extra }, reason));
+      const final = status ?? (before.digest === after.digest ? 'unchanged' : 'updated');
+      tally.set(final, (tally.get(final) ?? 0) + 1);
+      console.log(outputFundLine(++completed, total, ticker, final, { ...after.meta, ...extra }, reason));
+    },
+    /** First [ done ] line: the statuses of every fund line this reporter printed. */
+    summary(startedAt: number): string {
+      const order = ['updated', 'unchanged', 'kept', 'skipped', 'failed'];
+      const statuses = [...order, ...[...tally.keys()].filter(status => !order.includes(status))];
+      return `[ done     ] ${completed} fund${completed === 1 ? '' : 's'}: ${statuses.map(status => `${tally.get(status) ?? 0} ${status}`).join(', ')} in ${((Date.now() - startedAt) / 1000).toFixed(1)}s`;
     },
   };
+}
+/** Second [ done ] line: published totals. */
+function outputCounts(funds: number, holdings: number, history: number): string {
+  return `[ done     ] counts: ${funds.toLocaleString('en-US')} funds / ${holdings.toLocaleString('en-US')} holdings rows / ${history.toLocaleString('en-US')} history rows`;
 }
 
 
 // SPDR (State Street Global Advisors) static data updater.
 // Fetches the public SPDR US ETF catalog, per-fund daily holdings XLSX,
 // NAV history XLSX, daily Premium/Discount history XLSX, the latest dividend
-// distribution, and the bulk product-data XLSX (ISIN/CUSIP/SEC yield/Fund
+// distribution and the full per-fund distribution history, and the bulk product-data XLSX (ISIN/CUSIP/SEC yield/Fund
 // Dividend Yield for the whole lineup), then writes a deterministic,
 // paginated static JSON API under ./api/spdr, following the daggerok/iShares
 // repository design (no dependencies, Bun only).
@@ -149,6 +180,10 @@ const FUND_FINDER_URL =
   'https://www.ssga.com/bin/v1/ssmp/fund/fundfinder?country=us&language=en&role=intermediary&product=etfs&ui=fund-finder';
 const DISTRIBUTIONS_URL =
   'https://www.ssga.com/bin/v1/ssmp/fund/dividend-distribution?country=us&language=en&role=intermediary&product=etfs';
+/** Full per-fund distribution history (newest first); the SSGA "ETF Historical Distributions" page loads the same JSON. */
+export function distributionHistoryUrl(ticker: string): string {
+  return `${DISTRIBUTIONS_URL}&ticker=${encodeURIComponent(ticker)}`;
+}
 const FUND_DATA_BASE = 'https://www.ssga.com/library-content/products/fund-data/etfs/us';
 const PRODUCT_DATA_URL = `${FUND_DATA_BASE}/spdr-product-data-us-en.xlsx`;
 const SSGA_SITE = 'https://www.ssga.com';
@@ -212,6 +247,11 @@ export function normalizeNumberText(raw: unknown): string {
 
 function pad3(value: number): string {
   return String(value).padStart(3, '0');
+}
+
+/** A message is tagged once: a leading `[...]` request label is stripped before the line tag is added. */
+function untaggedMessage(error: unknown): string {
+  return (error instanceof Error ? error.message : String(error)).replace(/^\s*\[[^\]]*\]\s*/, '');
 }
 
 function sleep(ms: number): Promise<void> {
@@ -447,7 +487,8 @@ function printHelp(): void {
     '  - Premium/Discount history: pdhist-us-en-{ticker}.xlsx',
     '  - Product data:    spdr-product-data-us-en.xlsx (ISIN/CUSIP/SEC yield/',
     '                      Fund Dividend Yield, whole lineup, fetched once)',
-    '  - Distributions:   latest dividend distribution per fund',
+    '  - Distributions:   full distribution history per fund (SSGA dividend-distribution',
+    '                      JSON with ticker=), frequency from the latest-distribution feed',
     '',
     'Defaults live in scripts/update-data.config.json; the environment overrides them',
     '(the Update SPDR ETF data workflow adds `advanced` JSON and dispatch inputs in between).',
@@ -901,7 +942,8 @@ export function indicatedYield(
   const dividend = Number(String(distribution.dividend).replace(/[^0-9.\-]/g, ''));
   if (!Number.isFinite(dividend) || dividend <= 0) return null;
   if (typeof navValue !== 'number' || !Number.isFinite(navValue) || navValue <= 0) return null;
-  return Math.round(((dividend * perYear) / navValue) * 100 * 10000) / 10000;
+  // Two decimals, like the official Fund Dividend Yield and every other percent metric.
+  return Math.round(((dividend * perYear) / navValue) * 100 * 100) / 100;
 }
 
 function percentText(value: number | null): string | null {
@@ -1169,7 +1211,7 @@ function catalogFromIndex(previous: JsonRecord): CatalogFund[] {
 }
 
 // ---------------------------------------------------------------------------
-// Distributions feed (latest dividend row per fund)
+// Distributions: lineup feed (latest row + frequency per fund) and per-fund history
 // ---------------------------------------------------------------------------
 
 function normalizeDistributions(payload: JsonRecord): Map<string, JsonRecord> {
@@ -1389,21 +1431,39 @@ function returnFiltersPass(fund: CatalogFund, config: UpdaterConfig): boolean {
   return true;
 }
 
-function distributionsWorksheet(distribution: JsonRecord | undefined): { headers: string[]; rows: string[][] } {
-  if (!distribution) return { headers: [], rows: [] };
+/** Per-fund history payload: a JSON array of distribution rows (empty for funds that never paid); anything else is an error. */
+export function parseDistributionHistory(payload: unknown): JsonRecord[] {
+  if (!Array.isArray(payload)) throw new Error('distribution history: expected a JSON array');
+  return payload
+    .filter((item): item is JsonRecord => Boolean(item) && typeof item === 'object')
+    .map((item) => ({
+      exDate: cleanText(item.exDate),
+      recordDate: cleanText(item.recordDate),
+      payableDate: cleanText(item.payableDate),
+      dividend: cleanText(item.dividend),
+      stCapGains: cleanText(item.shortTeamCapital),
+      ltCapGains: cleanText(item.longTeamCapital),
+    }))
+    .filter((item) => item.exDate !== '');
+}
+
+/**
+ * Every published distribution, newest first, as SSGA lists it. The frequency is the fund's current one from the
+ * lineup feed (the history rows carry none), so it is stored once for the worksheet, not per row. The feed's latest
+ * row is added on top when the history does not list its ex-date yet.
+ */
+export function distributionsWorksheet(
+  latest: JsonRecord | undefined,
+  history: JsonRecord[] = [],
+): { frequency: string | null; headers: string[]; rows: string[][] } {
+  const rows = latest && latest.exDate && !history.some((item) => item.exDate === latest.exDate) ? [latest, ...history] : history;
+  if (!rows.length) return { frequency: latest?.frequency || null, headers: [], rows: [] };
   return {
-    headers: ['Frequency', 'Ex-Date', 'Record Date', 'Payable Date', 'Dividend', 'ST Cap Gains', 'LT Cap Gains'],
-    rows: [
-      [
-        distribution.frequency,
-        distribution.exDate,
-        distribution.recordDate,
-        distribution.payableDate,
-        distribution.dividend,
-        distribution.stCapGains,
-        distribution.ltCapGains,
-      ].map((cell) => String(cell ?? '')),
-    ],
+    frequency: latest?.frequency || null,
+    headers: ['Ex-Date', 'Record Date', 'Payable Date', 'Dividend', 'ST Cap Gains', 'LT Cap Gains'],
+    rows: rows.map((item) =>
+      [item.exDate, item.recordDate, item.payableDate, item.dividend, item.stCapGains, item.ltCapGains].map((cell) => String(cell ?? '')),
+    ),
   };
 }
 
@@ -1419,6 +1479,7 @@ async function processFund(
     const holdingsUrl = `${FUND_DATA_BASE}/holdings-daily-us-en-${ticker.toLowerCase()}.xlsx`;
     const historyUrl = `${FUND_DATA_BASE}/navhist-us-en-${ticker.toLowerCase()}.xlsx`;
     const pdHistUrl = `${FUND_DATA_BASE}/pdhist-us-en-${ticker.toLowerCase()}.xlsx`;
+    const distributionsUrl = distributionHistoryUrl(ticker);
 
     // Phase 1: fetch and compute everything in memory. Any failure here leaves the fund exactly as published before.
     const holdingsResponse = await fetchWithRetry(holdingsUrl, `[fetch  ] ${ticker} holdings`);
@@ -1456,6 +1517,11 @@ async function processFund(
       if (config.historyRange !== 'max') pdTable = await mergeOlderRows(fundDir, 'premium-discount', pdTable);
     }
 
+    // A failed history request fails the fund (previous files kept) instead of publishing a one-row history.
+    const distributionsResponse = await fetchWithRetry(distributionsUrl, `[fetch  ] ${ticker} distributions`);
+    if (!distributionsResponse.ok) throw new Error(`distributions: ${distributionsResponse.status} ${distributionsResponse.statusText}`);
+    const distributionHistory = parseDistributionHistory(await distributionsResponse.json().catch(() => null));
+
     // Phase 2: write once. Pages first, then meta.json, then stale pages are removed.
     if (config.storeRawDownloads) {
       const rawDir = decodeURIComponent(new URL('raw/', API_ROOT).pathname);
@@ -1483,6 +1549,7 @@ async function processFund(
         holdingsDownload: holdingsUrl,
         navDownload: historyUrl,
         premiumDiscountDownload: pdHistUrl,
+        distributionsDownload: distributionsUrl,
         productDataDownload: PRODUCT_DATA_URL,
         factsheet: fund.factsheetUrl,
       },
@@ -1495,7 +1562,7 @@ async function processFund(
       inceptionDate: fund.inceptionDate,
       returns: { monthEnd: fund.monthEnd, quarterEnd: fund.quarterEnd },
       metrics: deriveCatalogMetrics(fund.monthEnd, fund.navValue, distribution, productData),
-      distributions: distributionsWorksheet(distribution),
+      distributions: distributionsWorksheet(distribution, distributionHistory),
       holdings: holdingsResult.manifest,
       history: historyResult.manifest,
       premiumDiscountHistory: premiumDiscountResult ? premiumDiscountResult.manifest : null,
@@ -1508,7 +1575,7 @@ async function processFund(
 
     return { ticker, status: changed ? 'updated' : 'unchanged', changed };
   } catch (error) {
-    const reason = error instanceof Error ? error.message : String(error);
+    const reason = untaggedMessage(error);
 
     return { ticker, status: 'failed', reason, changed: false };
   }
@@ -1575,6 +1642,7 @@ export async function main(env: Record<string, string | undefined> = process.env
   })();
 
   let catalog: CatalogFund[] = [];
+  let catalogSource = 'ssga.com fund finder';
   try {
     catalog = normalizeCatalog(await fetchJson(FUND_FINDER_URL, '[catalog] fundfinder'));
   } catch (error) {
@@ -1583,6 +1651,7 @@ export async function main(env: Record<string, string | undefined> = process.env
   if (!catalog.length && previousIndex?.funds?.length) {
     console.warn(`[ ${'catalog'.padEnd(9)}] falling back to ${previousIndex.funds.length} published funds`);
     catalog = catalogFromIndex(previousIndex);
+    catalogSource = 'previous index.json';
   }
   if (!catalog.length) throw new Error('No SPDR funds discovered and no previous catalog to fall back to');
 
@@ -1613,6 +1682,8 @@ export async function main(env: Record<string, string | undefined> = process.env
       return new Map<string, ProductDataRow>();
     }
   })();
+
+  console.log(`[ ${'catalog'.padEnd(9)}] ${catalog.length} SPDR ETFs (${catalogSource})`);
 
   const unknownTickers = config.tickers.filter((ticker) => !catalog.some((fund) => fund.ticker === ticker));
   if (unknownTickers.length) throw new Error(`TICKERS: unknown ticker(s) ${unknownTickers.join(', ')} (not in the SPDR catalog)`);
@@ -1774,9 +1845,8 @@ export async function main(env: Record<string, string | undefined> = process.env
   const skipped = results.filter((result) => result.status === 'skipped').length;
   const updated = results.filter((result) => result.status === 'updated').length;
   const unchanged = results.filter((result) => result.status === 'unchanged').length;
-  console.log(
-    `\n[ ${'summary'.padEnd(9)}] processed=${results.length} updated=${updated} unchanged=${unchanged} skipped=${skipped} failed=${failed} indexChanged=${indexChanged} elapsed=${((Date.now() - startedAt) / 1000).toFixed(1)}s`,
-  );
+  console.log(output.summary(startedAt));
+  console.log(outputCounts(indexPayload.counts.funds, indexPayload.counts.holdings, indexPayload.counts.history));
 
   if (process.env.GITHUB_STEP_SUMMARY) {
     await appendFile(
@@ -1864,7 +1934,7 @@ if (import.meta.main) {
     printHelp();
   } else {
     await main().catch((error: unknown) => {
-      console.error(`[ ${'error'.padEnd(9)}] ${error instanceof Error ? error.message : String(error)}`);
+      console.error(`[ ${'error'.padEnd(9)}] ${untaggedMessage(error)}`);
       process.exitCode = 1;
     });
   }

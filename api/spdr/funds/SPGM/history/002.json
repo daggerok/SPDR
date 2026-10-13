@@ -2,7 +2,7 @@
   "ticker": "SPGM",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 3680,
+  "totalRows": 3681,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "14-Oct-2022",
+      "NAV": "42.902261",
+      "Shares Outstanding": "10200000",
+      "Total Net Assets": "437603058.98"
+    },
     {
       "Date": "13-Oct-2022",
       "NAV": "43.433892",
@@ -6003,12 +6009,6 @@
       "NAV": "74.387312",
       "Shares Outstanding": "1400000",
       "Total Net Assets": "104142236.41"
-    },
-    {
-      "Date": "24-Oct-2018",
-      "NAV": "73.847176",
-      "Shares Outstanding": "1400000",
-      "Total Net Assets": "103386046.23"
     }
   ]
 }

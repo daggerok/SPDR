@@ -11,6 +11,7 @@
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-qndx.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-qndx.xlsx",
     "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-qndx.xlsx",
+    "distributionsDownload": "https://www.ssga.com/bin/v1/ssmp/fund/dividend-distribution?country=us&language=en&role=intermediary&product=etfs&ticker=QNDX",
     "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": null
   },
@@ -93,10 +94,10 @@
     "cagr5y": null,
     "cagr10y": null,
     "siAnn": null,
-    "dividendYield": 0.4281,
+    "dividendYield": 0.43,
     "dividendYieldSource": "indicated",
     "dividendYieldBasis": "indicated",
-    "indicatedDividendYield": 0.4281,
+    "indicatedDividendYield": 0.43,
     "secYield": 0.42,
     "secYieldUnsubsidized": 0.42,
     "tr1yText": null,
@@ -116,8 +117,8 @@
     "performanceAsOf": "2026-09-30"
   },
   "distributions": {
+    "frequency": "Quarterly",
     "headers": [
-      "Frequency",
       "Ex-Date",
       "Record Date",
       "Payable Date",
@@ -127,7 +128,6 @@
     ],
     "rows": [
       [
-        "Quarterly",
         "09/21/2026",
         "09/21/2026",
         "09/23/2026",
@@ -148,7 +148,7 @@
     "status": "ok"
   },
   "history": {
-    "totalRows": 77,
+    "totalRows": 78,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [

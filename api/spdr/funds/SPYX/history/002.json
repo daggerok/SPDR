@@ -2,7 +2,7 @@
   "ticker": "SPYX",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 2731,
+  "totalRows": 2732,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "14-Oct-2022",
+      "NAV": "86.641841",
+      "Shares Outstanding": "12740000",
+      "Total Net Assets": "1103817054.23"
+    },
     {
       "Date": "13-Oct-2022",
       "NAV": "88.69278",
@@ -6003,12 +6009,6 @@
       "NAV": "65.561798",
       "Shares Outstanding": "4350000",
       "Total Net Assets": "285193819.58"
-    },
-    {
-      "Date": "24-Oct-2018",
-      "NAV": "64.286604",
-      "Shares Outstanding": "4450000",
-      "Total Net Assets": "286075387.53"
     }
   ]
 }

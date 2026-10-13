@@ -2,7 +2,7 @@
   "ticker": "XLB",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 5754,
+  "totalRows": 5755,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "12-Oct-2026",
+      "NAV": "49.431003",
+      "Shares Outstanding": "158747450",
+      "Total Net Assets": "7847045661.01"
+    },
     {
       "Date": "09-Oct-2026",
       "NAV": "49.409914",
@@ -6003,12 +6009,6 @@
       "NAV": "69.877457",
       "Shares Outstanding": "72223725",
       "Total Net Assets": "5046810240.37"
-    },
-    {
-      "Date": "14-Oct-2022",
-      "NAV": "68.145064",
-      "Shares Outstanding": "72223725",
-      "Total Net Assets": "4921690334.98"
     }
   ]
 }

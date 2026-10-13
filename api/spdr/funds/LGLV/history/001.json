@@ -2,7 +2,7 @@
   "ticker": "LGLV",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 3432,
+  "totalRows": 3433,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "12-Oct-2026",
+      "NAV": "179.12967",
+      "Shares Outstanding": "6360000",
+      "Total Net Assets": "1139264701.74"
+    },
     {
       "Date": "09-Oct-2026",
       "NAV": "177.851774",
@@ -6003,12 +6009,6 @@
       "NAV": "125.575012",
       "Shares Outstanding": "4480000",
       "Total Net Assets": "562576051.66"
-    },
-    {
-      "Date": "14-Oct-2022",
-      "NAV": "122.794274",
-      "Shares Outstanding": "4470000",
-      "Total Net Assets": "548890403.58"
     }
   ]
 }

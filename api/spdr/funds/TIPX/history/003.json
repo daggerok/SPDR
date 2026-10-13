@@ -2,7 +2,7 @@
   "ticker": "TIPX",
   "page": 3,
   "pageSize": 1000,
-  "totalRows": 3363,
+  "totalRows": 3364,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "24-Oct-2018",
+      "NAV": "18.863768",
+      "Shares Outstanding": "17200000",
+      "Total Net Assets": "324456802.72"
+    },
     {
       "Date": "23-Oct-2018",
       "NAV": "18.839694",
@@ -6003,12 +6009,6 @@
       "NAV": "19.468444",
       "Shares Outstanding": "600000",
       "Total Net Assets": "11681066.6"
-    },
-    {
-      "Date": "04-Nov-2014",
-      "NAV": "19.453174",
-      "Shares Outstanding": "600000",
-      "Total Net Assets": "11671904.26"
     }
   ]
 }

@@ -184,7 +184,7 @@ const COLUMN_TOOLTIPS: Record<string, string> = {
   History: 'Rows in the fund\'s NAV history file.',
   'As Of': 'NAV / AUM as-of date.',
   Frequency: 'Frequency — sortable payment cadence from the SSGA dividend distribution feed: 01 - Monthly, 04 - Quarterly, 06 - Semi-annually, 12 - Annually; 00 denotes unavailable/unknown and 99 denotes irregular.',
-  'Ex-Date': 'Ex-dividend date of the latest distribution.',
+  'Ex-Date': 'Ex-dividend date of the distribution (Overview shows the latest one).',
   Dividend: 'Latest dividend per share.',
   Coupon: 'Bond annual coupon rate (%).',
   Maturity: 'Bond maturity date.',

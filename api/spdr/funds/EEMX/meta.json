@@ -11,6 +11,7 @@
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-eemx.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-eemx.xlsx",
     "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-eemx.xlsx",
+    "distributionsDownload": "https://www.ssga.com/bin/v1/ssmp/fund/dividend-distribution?country=us&language=en&role=intermediary&product=etfs&ticker=EEMX",
     "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-eemx.pdf"
   },
@@ -96,7 +97,7 @@
     "dividendYield": 1.81,
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
-    "indicatedDividendYield": 0.4474,
+    "indicatedDividendYield": 0.45,
     "secYield": 1.38,
     "secYieldUnsubsidized": 1.38,
     "tr1yText": "30.20%",
@@ -116,8 +117,8 @@
     "performanceAsOf": "2026-09-30"
   },
   "distributions": {
+    "frequency": "Semi-Annually",
     "headers": [
-      "Frequency",
       "Ex-Date",
       "Record Date",
       "Payable Date",
@@ -127,11 +128,178 @@
     ],
     "rows": [
       [
-        "Semi-Annually",
         "06/01/2026",
         "06/01/2026",
         "06/05/2026",
         "0.118861",
+        "-",
+        "-"
+      ],
+      [
+        "11/25/2025",
+        "11/25/2025",
+        "12/02/2025",
+        "0.840274",
+        "0.000000",
+        "0.000000"
+      ],
+      [
+        "06/02/2025",
+        "06/02/2025",
+        "06/06/2025",
+        "0.131069",
+        "-",
+        "-"
+      ],
+      [
+        "12/18/2024",
+        "12/18/2024",
+        "12/24/2024",
+        "0.527134",
+        "0.000000",
+        "0.000000"
+      ],
+      [
+        "06/03/2024",
+        "06/03/2024",
+        "06/07/2024",
+        "0.202430",
+        "-",
+        "-"
+      ],
+      [
+        "12/15/2023",
+        "12/18/2023",
+        "12/22/2023",
+        "0.472740",
+        "0.000000",
+        "0.000000"
+      ],
+      [
+        "06/01/2023",
+        "06/02/2023",
+        "06/08/2023",
+        "0.205470",
+        "-",
+        "-"
+      ],
+      [
+        "12/16/2022",
+        "12/19/2022",
+        "12/23/2022",
+        "1.011230",
+        "0.000000",
+        "-"
+      ],
+      [
+        "06/01/2022",
+        "06/02/2022",
+        "06/08/2022",
+        "0.354028",
+        "-",
+        "-"
+      ],
+      [
+        "12/17/2021",
+        "12/20/2021",
+        "12/27/2021",
+        "0.918932",
+        "0.000000",
+        "0.000000"
+      ],
+      [
+        "06/01/2021",
+        "06/02/2021",
+        "06/08/2021",
+        "0.341443",
+        "-",
+        "-"
+      ],
+      [
+        "12/18/2020",
+        "12/21/2020",
+        "12/28/2020",
+        "0.759607",
+        "0.000000",
+        "0.000000"
+      ],
+      [
+        "06/01/2020",
+        "06/02/2020",
+        "06/08/2020",
+        "0.333844",
+        "-",
+        "-"
+      ],
+      [
+        "12/20/2019",
+        "12/23/2019",
+        "12/30/2019",
+        "1.405807",
+        "-",
+        "-"
+      ],
+      [
+        "06/03/2019",
+        "06/04/2019",
+        "06/10/2019",
+        "0.279872",
+        "-",
+        "-"
+      ],
+      [
+        "12/21/2018",
+        "12/24/2018",
+        "12/31/2018",
+        "0.983631",
+        "-",
+        "-"
+      ],
+      [
+        "06/01/2018",
+        "06/04/2018",
+        "06/08/2018",
+        "0.386937",
+        "-",
+        "-"
+      ],
+      [
+        "12/15/2017",
+        "12/18/2017",
+        "12/28/2017",
+        "0.235823",
+        "0.437037",
+        "-"
+      ],
+      [
+        "09/15/2017",
+        "09/18/2017",
+        "09/27/2017",
+        "0.580965",
+        "-",
+        "-"
+      ],
+      [
+        "06/16/2017",
+        "06/20/2017",
+        "06/28/2017",
+        "0.216328",
+        "-",
+        "-"
+      ],
+      [
+        "03/17/2017",
+        "03/21/2017",
+        "03/29/2017",
+        "0.239804",
+        "-",
+        "-"
+      ],
+      [
+        "12/16/2016",
+        "12/20/2016",
+        "12/29/2016",
+        "0.078661",
         "-",
         "-"
       ]
@@ -152,7 +320,7 @@
     "status": "ok"
   },
   "history": {
-    "totalRows": 2504,
+    "totalRows": 2505,
     "pageSize": 1000,
     "pageCount": 3,
     "pages": [

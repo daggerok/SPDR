@@ -2,7 +2,7 @@
   "ticker": "HAIL",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 2209,
+  "totalRows": 2210,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "12-Oct-2026",
+      "NAV": "32.94281",
+      "Shares Outstanding": "510000",
+      "Total Net Assets": "16800832.89"
+    },
     {
       "Date": "09-Oct-2026",
       "NAV": "33.663677",
@@ -6003,12 +6009,6 @@
       "NAV": "30.771659",
       "Shares Outstanding": "2100000",
       "Total Net Assets": "64620482.96"
-    },
-    {
-      "Date": "14-Oct-2022",
-      "NAV": "29.760818",
-      "Shares Outstanding": "2100000",
-      "Total Net Assets": "62497718.45"
     }
   ]
 }
