@@ -11,6 +11,7 @@
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-allw.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-allw.xlsx",
     "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-allw.xlsx",
+    "distributionsDownload": "https://www.ssga.com/bin/v1/ssmp/fund/dividend-distribution?country=us&language=en&role=intermediary&product=etfs&ticker=ALLW",
     "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-allw.pdf"
   },
@@ -96,7 +97,7 @@
     "dividendYield": 2.98,
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
-    "indicatedDividendYield": 2.9803,
+    "indicatedDividendYield": 2.98,
     "secYield": 1.82,
     "secYieldUnsubsidized": 1.77,
     "tr1yText": "7.63%",
@@ -116,8 +117,8 @@
     "performanceAsOf": "2026-09-30"
   },
   "distributions": {
+    "frequency": "Annually",
     "headers": [
-      "Frequency",
       "Ex-Date",
       "Record Date",
       "Payable Date",
@@ -127,7 +128,6 @@
     ],
     "rows": [
       [
-        "Annually",
         "12/29/2025",
         "12/29/2025",
         "12/31/2025",
@@ -148,7 +148,7 @@
     "status": "ok"
   },
   "history": {
-    "totalRows": 403,
+    "totalRows": 404,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [

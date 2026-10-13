@@ -2,7 +2,7 @@
   "ticker": "DIA",
   "page": 3,
   "pageSize": 1000,
-  "totalRows": 5754,
+  "totalRows": 5755,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "24-Oct-2018",
+      "NAV": "245.696524",
+      "Shares Outstanding": "86192867",
+      "Total Net Assets": "21177287828.05"
+    },
     {
       "Date": "23-Oct-2018",
       "NAV": "251.769875",
@@ -6003,12 +6009,6 @@
       "NAV": "174.576748",
       "Shares Outstanding": "71742867",
       "Total Net Assets": "12524636431.03"
-    },
-    {
-      "Date": "04-Nov-2014",
-      "NAV": "173.495448",
-      "Shares Outstanding": "69742867",
-      "Total Net Assets": "12100069952.02"
     }
   ]
 }

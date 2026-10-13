@@ -11,6 +11,7 @@
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-priv.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-priv.xlsx",
     "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-priv.xlsx",
+    "distributionsDownload": "https://www.ssga.com/bin/v1/ssmp/fund/dividend-distribution?country=us&language=en&role=intermediary&product=etfs&ticker=PRIV",
     "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-priv.pdf"
   },
@@ -96,7 +97,7 @@
     "dividendYield": 4.74,
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
-    "indicatedDividendYield": 4.7596,
+    "indicatedDividendYield": 4.76,
     "secYield": 5.1,
     "secYieldUnsubsidized": 5.1,
     "tr1yText": "-1.55%",
@@ -116,8 +117,8 @@
     "performanceAsOf": "2026-09-30"
   },
   "distributions": {
+    "frequency": "Monthly",
     "headers": [
-      "Frequency",
       "Ex-Date",
       "Record Date",
       "Payable Date",
@@ -127,11 +128,154 @@
     ],
     "rows": [
       [
-        "Monthly",
         "10/01/2026",
         "10/01/2026",
         "10/06/2026",
         "0.095153",
+        "-",
+        "-"
+      ],
+      [
+        "09/01/2026",
+        "09/01/2026",
+        "09/04/2026",
+        "0.098506",
+        "-",
+        "-"
+      ],
+      [
+        "08/03/2026",
+        "08/03/2026",
+        "08/06/2026",
+        "0.095995",
+        "-",
+        "-"
+      ],
+      [
+        "07/01/2026",
+        "07/01/2026",
+        "07/07/2026",
+        "0.094552",
+        "-",
+        "-"
+      ],
+      [
+        "06/01/2026",
+        "06/01/2026",
+        "06/04/2026",
+        "0.096999",
+        "-",
+        "-"
+      ],
+      [
+        "05/01/2026",
+        "05/01/2026",
+        "05/06/2026",
+        "0.098428",
+        "-",
+        "-"
+      ],
+      [
+        "04/01/2026",
+        "04/01/2026",
+        "04/06/2026",
+        "0.093125",
+        "-",
+        "-"
+      ],
+      [
+        "03/02/2026",
+        "03/02/2026",
+        "03/05/2026",
+        "0.082413",
+        "-",
+        "-"
+      ],
+      [
+        "02/02/2026",
+        "02/02/2026",
+        "02/05/2026",
+        "0.093588",
+        "-",
+        "-"
+      ],
+      [
+        "12/18/2025",
+        "12/18/2025",
+        "12/23/2025",
+        "0.097462",
+        "0.000000",
+        "0.000000"
+      ],
+      [
+        "12/01/2025",
+        "12/01/2025",
+        "12/04/2025",
+        "0.096755",
+        "-",
+        "-"
+      ],
+      [
+        "11/03/2025",
+        "11/03/2025",
+        "11/06/2025",
+        "0.093534",
+        "-",
+        "-"
+      ],
+      [
+        "10/01/2025",
+        "10/01/2025",
+        "10/06/2025",
+        "0.094402",
+        "-",
+        "-"
+      ],
+      [
+        "09/02/2025",
+        "09/02/2025",
+        "09/05/2025",
+        "0.094818",
+        "-",
+        "-"
+      ],
+      [
+        "08/01/2025",
+        "08/01/2025",
+        "08/06/2025",
+        "0.107669",
+        "-",
+        "-"
+      ],
+      [
+        "07/01/2025",
+        "07/01/2025",
+        "07/07/2025",
+        "0.104127",
+        "-",
+        "-"
+      ],
+      [
+        "06/02/2025",
+        "06/02/2025",
+        "06/05/2025",
+        "0.083408",
+        "-",
+        "-"
+      ],
+      [
+        "05/01/2025",
+        "05/01/2025",
+        "05/06/2025",
+        "0.095104",
+        "-",
+        "-"
+      ],
+      [
+        "04/01/2025",
+        "04/01/2025",
+        "04/04/2025",
+        "0.085917",
         "-",
         "-"
       ]
@@ -149,7 +293,7 @@
     "status": "ok"
   },
   "history": {
-    "totalRows": 408,
+    "totalRows": 409,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [

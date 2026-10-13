@@ -2,7 +2,7 @@
   "ticker": "IBND",
   "page": 4,
   "pageSize": 1000,
-  "totalRows": 4127,
+  "totalRows": 4128,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "04-Nov-2014",
+      "NAV": "35.329892",
+      "Shares Outstanding": "7900000",
+      "Total Net Assets": "279106147.39"
+    },
     {
       "Date": "03-Nov-2014",
       "NAV": "35.034718",
@@ -6003,12 +6009,6 @@
       "NAV": "33.12073",
       "Shares Outstanding": "200000",
       "Total Net Assets": "6624146.07"
-    },
-    {
-      "Date": "17-Nov-2010",
-      "NAV": "33.09607",
-      "Shares Outstanding": "200000",
-      "Total Net Assets": "6619214.02"
     }
   ]
 }

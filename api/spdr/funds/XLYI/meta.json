@@ -11,6 +11,7 @@
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-xlyi.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-xlyi.xlsx",
     "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-xlyi.xlsx",
+    "distributionsDownload": "https://www.ssga.com/bin/v1/ssmp/fund/dividend-distribution?country=us&language=en&role=intermediary&product=etfs&ticker=XLYI",
     "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-xlyi.pdf"
   },
@@ -96,7 +97,7 @@
     "dividendYield": 15.38,
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
-    "indicatedDividendYield": 14.1175,
+    "indicatedDividendYield": 14.12,
     "secYield": 0.58,
     "secYieldUnsubsidized": 0.58,
     "tr1yText": "-4.33%",
@@ -116,8 +117,8 @@
     "performanceAsOf": "2026-09-30"
   },
   "distributions": {
+    "frequency": "Monthly",
     "headers": [
-      "Frequency",
       "Ex-Date",
       "Record Date",
       "Payable Date",
@@ -127,11 +128,114 @@
     ],
     "rows": [
       [
-        "Monthly",
         "10/01/2026",
         "10/01/2026",
         "10/05/2026",
         "0.257527",
+        "-",
+        "-"
+      ],
+      [
+        "09/01/2026",
+        "09/01/2026",
+        "09/03/2026",
+        "0.185915",
+        "-",
+        "-"
+      ],
+      [
+        "08/03/2026",
+        "08/03/2026",
+        "08/05/2026",
+        "0.235088",
+        "-",
+        "-"
+      ],
+      [
+        "07/01/2026",
+        "07/01/2026",
+        "07/06/2026",
+        "0.273760",
+        "-",
+        "-"
+      ],
+      [
+        "06/01/2026",
+        "06/01/2026",
+        "06/03/2026",
+        "0.277927",
+        "-",
+        "-"
+      ],
+      [
+        "05/01/2026",
+        "05/01/2026",
+        "05/05/2026",
+        "0.330728",
+        "-",
+        "-"
+      ],
+      [
+        "04/01/2026",
+        "04/01/2026",
+        "04/06/2026",
+        "0.341957",
+        "-",
+        "-"
+      ],
+      [
+        "03/02/2026",
+        "03/02/2026",
+        "03/04/2026",
+        "0.184042",
+        "-",
+        "-"
+      ],
+      [
+        "02/02/2026",
+        "02/02/2026",
+        "02/04/2026",
+        "0.297660",
+        "-",
+        "-"
+      ],
+      [
+        "12/29/2025",
+        "12/29/2025",
+        "12/31/2025",
+        "0.450360",
+        "0.000000",
+        "0.000000"
+      ],
+      [
+        "12/01/2025",
+        "12/01/2025",
+        "12/03/2025",
+        "0.217459",
+        "-",
+        "-"
+      ],
+      [
+        "11/03/2025",
+        "11/03/2025",
+        "11/05/2025",
+        "0.314532",
+        "-",
+        "-"
+      ],
+      [
+        "10/01/2025",
+        "10/01/2025",
+        "10/03/2025",
+        "0.234223",
+        "-",
+        "-"
+      ],
+      [
+        "09/02/2025",
+        "09/02/2025",
+        "09/05/2025",
+        "0.442945",
         "-",
         "-"
       ]
@@ -148,7 +252,7 @@
     "status": "ok"
   },
   "history": {
-    "totalRows": 303,
+    "totalRows": 304,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [

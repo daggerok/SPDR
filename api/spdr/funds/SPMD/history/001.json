@@ -2,7 +2,7 @@
   "ticker": "SPMD",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 5260,
+  "totalRows": 5261,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "12-Oct-2026",
+      "NAV": "64.071372",
+      "Shares Outstanding": "286300000",
+      "Total Net Assets": "18343633859.98"
+    },
     {
       "Date": "09-Oct-2026",
       "NAV": "64.317767",
@@ -6003,12 +6009,6 @@
       "NAV": "40.380603",
       "Shares Outstanding": "119550000",
       "Total Net Assets": "4827501031.14"
-    },
-    {
-      "Date": "14-Oct-2022",
-      "NAV": "39.292092",
-      "Shares Outstanding": "121550000",
-      "Total Net Assets": "4775953838.94"
     }
   ]
 }

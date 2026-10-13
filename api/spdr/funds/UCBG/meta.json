@@ -11,6 +11,7 @@
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-ucbg.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-ucbg.xlsx",
     "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-ucbg.xlsx",
+    "distributionsDownload": "https://www.ssga.com/bin/v1/ssmp/fund/dividend-distribution?country=us&language=en&role=intermediary&product=etfs&ticker=UCBG",
     "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
     "factsheet": null
   },
@@ -93,10 +94,10 @@
     "cagr5y": null,
     "cagr10y": null,
     "siAnn": null,
-    "dividendYield": 0.3448,
+    "dividendYield": 0.34,
     "dividendYieldSource": "indicated",
     "dividendYieldBasis": "indicated",
-    "indicatedDividendYield": 0.3448,
+    "indicatedDividendYield": 0.34,
     "secYield": 1.35,
     "secYieldUnsubsidized": 1.35,
     "tr1yText": null,
@@ -116,8 +117,8 @@
     "performanceAsOf": null
   },
   "distributions": {
+    "frequency": "Quarterly",
     "headers": [
-      "Frequency",
       "Ex-Date",
       "Record Date",
       "Payable Date",
@@ -127,7 +128,6 @@
     ],
     "rows": [
       [
-        "Quarterly",
         "09/21/2026",
         "09/21/2026",
         "09/23/2026",
@@ -151,7 +151,7 @@
     "status": "ok"
   },
   "history": {
-    "totalRows": 28,
+    "totalRows": 29,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [

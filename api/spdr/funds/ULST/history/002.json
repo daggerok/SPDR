@@ -2,7 +2,7 @@
   "ticker": "ULST",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 3270,
+  "totalRows": 3271,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "14-Oct-2022",
+      "NAV": "39.852251",
+      "Shares Outstanding": "9225000",
+      "Total Net Assets": "367637011.37"
+    },
     {
       "Date": "13-Oct-2022",
       "NAV": "39.844212",
@@ -6003,12 +6009,6 @@
       "NAV": "40.289833",
       "Shares Outstanding": "2500000",
       "Total Net Assets": "100724581.82"
-    },
-    {
-      "Date": "24-Oct-2018",
-      "NAV": "40.284248",
-      "Shares Outstanding": "2500000",
-      "Total Net Assets": "100710619.55"
     }
   ]
 }
