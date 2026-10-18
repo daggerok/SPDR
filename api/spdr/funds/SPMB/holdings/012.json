@@ -2,7 +2,7 @@
   "ticker": "SPMB",
   "page": 12,
   "pageSize": 250,
-  "totalRows": 2758,
+  "totalRows": 2756,
   "headers": [
     "Name",
     "Identifier",
@@ -15,39 +15,6 @@
     "Maturity"
   ],
   "rows": [
-    {
-      "Name": "FNMA POOL BM4200 FN 02/28 FIXED VAR",
-      "Identifier": "US3140J8U279",
-      "SEDOL": "-",
-      "Weight": "0.000012",
-      "Coupon": "3.5",
-      "Par Value": "800.94",
-      "Market Value": "797.5",
-      "Local Currency": "USD",
-      "Maturity": "02/01/2028"
-    },
-    {
-      "Name": "FED HM LN PC POOL ZS8448 FR 11/26 FIXED 3",
-      "Identifier": "US3132A9L549",
-      "SEDOL": "-",
-      "Weight": "0.000011",
-      "Coupon": "3",
-      "Par Value": "776.81",
-      "Market Value": "776.81",
-      "Local Currency": "USD",
-      "Maturity": "11/01/2026"
-    },
-    {
-      "Name": "FNMA POOL AJ7716 FN 12/26 FIXED 3",
-      "Identifier": "US3138E0SE06",
-      "SEDOL": "-",
-      "Weight": "0.000005",
-      "Coupon": "3",
-      "Par Value": "359.99",
-      "Market Value": "358.3",
-      "Local Currency": "USD",
-      "Maturity": "12/01/2026"
-    },
     {
       "Name": "FNMA POOL AL2723 FN 09/27 FIXED VAR",
       "Identifier": "US3138EKAZ81",
@@ -66,7 +33,7 @@
       "Weight": "0.000004",
       "Coupon": "4",
       "Par Value": "285.66",
-      "Market Value": "283.34",
+      "Market Value": "283.36",
       "Local Currency": "USD",
       "Maturity": "05/01/2029"
     },
@@ -77,7 +44,7 @@
       "Weight": "0.000004",
       "Coupon": "3",
       "Par Value": "259.51",
-      "Market Value": "258.1",
+      "Market Value": "258.16",
       "Local Currency": "USD",
       "Maturity": "02/01/2027"
     },
@@ -88,7 +55,7 @@
       "Weight": "0.000003",
       "Coupon": "3",
       "Par Value": "173.9",
-      "Market Value": "173.08",
+      "Market Value": "173.12",
       "Local Currency": "USD",
       "Maturity": "12/01/2026"
     },
@@ -96,12 +63,23 @@
       "Name": "FNMA POOL AW7396 FN 01/27 FIXED 3.5",
       "Identifier": "US3138XXGE09",
       "SEDOL": "-",
-      "Weight": "0.000002",
+      "Weight": "0.000001",
       "Coupon": "3.5",
       "Par Value": "103.01",
-      "Market Value": "102.52",
+      "Market Value": "102.54",
       "Local Currency": "USD",
       "Maturity": "01/01/2027"
+    },
+    {
+      "Name": "US DOLLAR",
+      "Identifier": "999USDZ92",
+      "SEDOL": "-",
+      "Weight": "-0.146276",
+      "Coupon": "0",
+      "Par Value": "-10052630.51",
+      "Market Value": "-10052630.51",
+      "Local Currency": "USD",
+      "Maturity": "-"
     }
   ]
 }

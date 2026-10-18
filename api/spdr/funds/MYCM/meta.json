@@ -28,19 +28,19 @@
     "value": null
   },
   "nav": {
-    "display": "$23.46",
-    "value": 23.46,
-    "asOfDate": "Oct 09 2026"
+    "display": "$23.60",
+    "value": 23.6,
+    "asOfDate": "Oct 15 2026"
   },
   "aum": {
-    "display": "$8.21 M",
-    "value": 8210000.000000001,
-    "asOfDate": "Oct 09 2026"
+    "display": "$8.26 M",
+    "value": 8260000,
+    "asOfDate": "Oct 15 2026"
   },
   "pricing": {
     "exchange": "NASDAQ REGULAR MARKET",
-    "closePrice": "$23.47",
-    "premiumDiscount": "0.04%"
+    "closePrice": "$23.62",
+    "premiumDiscount": "0.08%"
   },
   "inceptionDate": "Sep 23 2024",
   "returns": {
@@ -94,10 +94,10 @@
     "cagr5y": null,
     "cagr10y": null,
     "siAnn": 1.36,
-    "dividendYield": 4.95,
+    "dividendYield": 4.92,
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
-    "indicatedDividendYield": 5.07,
+    "indicatedDividendYield": 5.04,
     "secYield": 5.85,
     "secYieldUnsubsidized": 5.85,
     "tr1yText": "-1.86%",
@@ -108,8 +108,8 @@
     "cagr5yText": null,
     "cagr10yText": null,
     "siAnnText": "1.36%",
-    "indicatedDividendYieldText": "5.07%",
-    "dividendYieldText": "4.95%",
+    "indicatedDividendYieldText": "5.04%",
+    "dividendYieldText": "4.92%",
     "secYieldText": "5.85%",
     "secYieldUnsubsidizedText": "5.85%",
     "ytdText": "-3.04%",
@@ -330,17 +330,17 @@
     ]
   },
   "holdings": {
-    "totalRows": 89,
+    "totalRows": 88,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "09-Oct-2026",
+    "asOfDate": "15-Oct-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 515,
+    "totalRows": 518,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
@@ -348,12 +348,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 444,
+    "totalRows": 449,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "09-Oct-2026"
+    "asOfDate": "16-Oct-2026"
   }
 }

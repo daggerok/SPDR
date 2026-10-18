@@ -2,7 +2,7 @@
   "ticker": "EDIV",
   "page": 1,
   "pageSize": 250,
-  "totalRows": 140,
+  "totalRows": 135,
   "headers": [
     "Name",
     "Ticker",
@@ -19,9 +19,9 @@
       "Ticker": "2688",
       "Identifier": "633393905",
       "SEDOL": "6333937",
-      "Weight": "3.241178",
+      "Weight": "3.217508",
       "Sector": "-",
-      "Shares Held": "5998500",
+      "Shares Held": "6017200",
       "Local Currency": "HKD"
     },
     {
@@ -29,7 +29,7 @@
       "Ticker": "NED",
       "Identifier": "662800903",
       "SEDOL": "6628008",
-      "Weight": "2.876294",
+      "Weight": "2.933024",
       "Sector": "-",
       "Shares Held": "1979964",
       "Local Currency": "ZAR"
@@ -39,29 +39,9 @@
       "Ticker": "288",
       "Identifier": "BLLHKZ904",
       "SEDOL": "BLLHKZ1",
-      "Weight": "2.216923",
+      "Weight": "2.200983",
       "Sector": "-",
       "Shares Held": "30779500",
-      "Local Currency": "HKD"
-    },
-    {
-      "Name": "BANCO SANTANDER  BRASIL UNIT",
-      "Ticker": "SANB11",
-      "Identifier": "B4V5RY903",
-      "SEDOL": "B4V5RY4",
-      "Weight": "2.208372",
-      "Sector": "-",
-      "Shares Held": "4450000",
-      "Local Currency": "BRL"
-    },
-    {
-      "Name": "CHINA TOWER CORP LTD H",
-      "Ticker": "788",
-      "Identifier": "BTVMCY907",
-      "SEDOL": "BTVMCY5",
-      "Weight": "2.182038",
-      "Sector": "-",
-      "Shares Held": "21719500",
       "Local Currency": "HKD"
     },
     {
@@ -69,17 +49,47 @@
       "Ticker": "5876",
       "Identifier": "B7LV1N902",
       "SEDOL": "B7LV1N0",
-      "Weight": "2.0651",
+      "Weight": "2.150578",
       "Sector": "-",
-      "Shares Held": "15471700",
+      "Shares Held": "15425700",
       "Local Currency": "TWD"
+    },
+    {
+      "Name": "CHINA TOWER CORP LTD H",
+      "Ticker": "788",
+      "Identifier": "BTVMCY907",
+      "SEDOL": "BTVMCY5",
+      "Weight": "2.149752",
+      "Sector": "-",
+      "Shares Held": "21719500",
+      "Local Currency": "HKD"
+    },
+    {
+      "Name": "BANCO SANTANDER  BRASIL UNIT",
+      "Ticker": "SANB11",
+      "Identifier": "B4V5RY903",
+      "SEDOL": "B4V5RY4",
+      "Weight": "2.126695",
+      "Sector": "-",
+      "Shares Held": "4450000",
+      "Local Currency": "BRL"
+    },
+    {
+      "Name": "SANLAM LTD",
+      "Ticker": "SLMj",
+      "Identifier": "B0L675905",
+      "SEDOL": "B0L6750",
+      "Weight": "2.049179",
+      "Sector": "-",
+      "Shares Held": "4685501",
+      "Local Currency": "ZAR"
     },
     {
       "Name": "MALAYAN BANKING BHD",
       "Ticker": "MAYBANK",
       "Identifier": "655632008",
       "SEDOL": "6556325",
-      "Weight": "2.00974",
+      "Weight": "2.039315",
       "Sector": "-",
       "Shares Held": "9749300",
       "Local Currency": "MYR"
@@ -89,27 +99,17 @@
       "Ticker": "1102",
       "Identifier": "605633007",
       "SEDOL": "6056331",
-      "Weight": "2.002402",
+      "Weight": "2.018452",
       "Sector": "-",
-      "Shares Held": "20491000",
+      "Shares Held": "20426000",
       "Local Currency": "TWD"
-    },
-    {
-      "Name": "SANLAM LTD",
-      "Ticker": "SLMj",
-      "Identifier": "B0L675905",
-      "SEDOL": "B0L6750",
-      "Weight": "1.994052",
-      "Sector": "-",
-      "Shares Held": "4685501",
-      "Local Currency": "ZAR"
     },
     {
       "Name": "CIMB GROUP HOLDINGS BHD",
       "Ticker": "CIMB",
       "Identifier": "607574001",
       "SEDOL": "6075745",
-      "Weight": "1.966987",
+      "Weight": "2.001333",
       "Sector": "-",
       "Shares Held": "12893400",
       "Local Currency": "MYR"
@@ -119,117 +119,127 @@
       "Ticker": "7010",
       "Identifier": "B12M7Q903",
       "SEDOL": "B12M7Q5",
-      "Weight": "1.910826",
+      "Weight": "1.865614",
       "Sector": "-",
       "Shares Held": "1962567",
       "Local Currency": "SAR"
-    },
-    {
-      "Name": "ITC LTD",
-      "Ticker": "ITC",
-      "Identifier": "B0JGGP902",
-      "SEDOL": "B0JGGP5",
-      "Weight": "1.828073",
-      "Sector": "-",
-      "Shares Held": "7744423",
-      "Local Currency": "INR"
     },
     {
       "Name": "FIRSTRAND LTD",
       "Ticker": "FSR",
       "Identifier": "660699901",
       "SEDOL": "6606996",
-      "Weight": "1.789973",
+      "Weight": "1.822608",
       "Sector": "-",
       "Shares Held": "3952857",
       "Local Currency": "ZAR"
+    },
+    {
+      "Name": "ITC LTD",
+      "Ticker": "ITC",
+      "Identifier": "B0JGGP902",
+      "SEDOL": "B0JGGP5",
+      "Weight": "1.821105",
+      "Sector": "-",
+      "Shares Held": "7744423",
+      "Local Currency": "INR"
     },
     {
       "Name": "ADVANTECH CO LTD",
       "Ticker": "2395",
       "Identifier": "620267906",
       "SEDOL": "6202673",
-      "Weight": "1.774615",
+      "Weight": "1.649199",
       "Sector": "-",
-      "Shares Held": "908000",
+      "Shares Held": "905000",
       "Local Currency": "TWD"
-    },
-    {
-      "Name": "NEPI ROCKCASTLE N.V.",
-      "Ticker": "NRP",
-      "Identifier": "BLF9GQ904",
-      "SEDOL": "BLF9GQ6",
-      "Weight": "1.630956",
-      "Sector": "-",
-      "Shares Held": "2219637",
-      "Local Currency": "ZAR"
-    },
-    {
-      "Name": "NATIONAL BANK OF KUWAIT",
-      "Ticker": "NBK",
-      "Identifier": "688952902",
-      "SEDOL": "6889526",
-      "Weight": "1.596314",
-      "Sector": "-",
-      "Shares Held": "7055290",
-      "Local Currency": "KWD"
-    },
-    {
-      "Name": "EMIRATES TELECOM GROUP CO",
-      "Ticker": "EAND",
-      "Identifier": "632217907",
-      "SEDOL": "6322173",
-      "Weight": "1.596026",
-      "Sector": "-",
-      "Shares Held": "3308732",
-      "Local Currency": "AED"
     },
     {
       "Name": "PUBLIC BANK BERHAD",
       "Ticker": "PBBANK",
       "Identifier": "B012W4901",
       "SEDOL": "B012W42",
-      "Weight": "1.592596",
+      "Weight": "1.63125",
       "Sector": "-",
       "Shares Held": "16584100",
       "Local Currency": "MYR"
     },
     {
-      "Name": "WISTRON CORP",
-      "Ticker": "3231",
-      "Identifier": "667248900",
-      "SEDOL": "6672481",
-      "Weight": "1.555221",
+      "Name": "NEPI ROCKCASTLE N.V.",
+      "Ticker": "NRP",
+      "Identifier": "BLF9GQ904",
+      "SEDOL": "BLF9GQ6",
+      "Weight": "1.61461",
       "Sector": "-",
-      "Shares Held": "3069000",
-      "Local Currency": "TWD"
+      "Shares Held": "2219637",
+      "Local Currency": "ZAR"
+    },
+    {
+      "Name": "EMIRATES TELECOM GROUP CO",
+      "Ticker": "EAND",
+      "Identifier": "632217907",
+      "SEDOL": "6322173",
+      "Weight": "1.583916",
+      "Sector": "-",
+      "Shares Held": "3308732",
+      "Local Currency": "AED"
     },
     {
       "Name": "UNI PRESIDENT ENTERPRISES CO",
       "Ticker": "1216",
       "Identifier": "670039007",
       "SEDOL": "6700393",
-      "Weight": "1.545627",
+      "Weight": "1.570372",
       "Sector": "-",
-      "Shares Held": "7605000",
+      "Shares Held": "7566000",
       "Local Currency": "TWD"
+    },
+    {
+      "Name": "NATIONAL BANK OF KUWAIT",
+      "Ticker": "NBK",
+      "Identifier": "688952902",
+      "SEDOL": "6889526",
+      "Weight": "1.565462",
+      "Sector": "-",
+      "Shares Held": "7055290",
+      "Local Currency": "KWD"
     },
     {
       "Name": "CHUNGHWA TELECOM CO LTD",
       "Ticker": "2412",
       "Identifier": "628784902",
       "SEDOL": "6287841",
-      "Weight": "1.515896",
+      "Weight": "1.524091",
       "Sector": "-",
-      "Shares Held": "3849000",
+      "Shares Held": "3828000",
       "Local Currency": "TWD"
+    },
+    {
+      "Name": "TAIWAN MOBILE CO LTD",
+      "Ticker": "3045",
+      "Identifier": "629049909",
+      "SEDOL": "6290496",
+      "Weight": "1.482277",
+      "Sector": "-",
+      "Shares Held": "4334000",
+      "Local Currency": "TWD"
+    },
+    {
+      "Name": "TECH MAHINDRA LTD",
+      "Ticker": "TECHM",
+      "Identifier": "BWFGD6901",
+      "SEDOL": "BWFGD63",
+      "Weight": "1.472324",
+      "Sector": "-",
+      "Shares Held": "1001412",
+      "Local Currency": "INR"
     },
     {
       "Name": "ADNOC DRILLING CO PJSC",
       "Ticker": "ADNOCDRILL",
       "Identifier": "ACI20RPQ7",
       "SEDOL": "BN12D39",
-      "Weight": "1.477706",
+      "Weight": "1.431888",
       "Sector": "-",
       "Shares Held": "11331441",
       "Local Currency": "AED"
@@ -239,19 +249,19 @@
       "Ticker": "3311",
       "Identifier": "B0BM5T901",
       "SEDOL": "B0BM5T8",
-      "Weight": "1.459401",
+      "Weight": "1.426901",
       "Sector": "-",
       "Shares Held": "15354000",
       "Local Currency": "HKD"
     },
     {
-      "Name": "TAIWAN MOBILE CO LTD",
-      "Ticker": "3045",
-      "Identifier": "629049909",
-      "SEDOL": "6290496",
-      "Weight": "1.452756",
+      "Name": "MEGA FINANCIAL HOLDING CO LT",
+      "Ticker": "2886",
+      "Identifier": "644406902",
+      "SEDOL": "6444066",
+      "Weight": "1.424386",
       "Sector": "-",
-      "Shares Held": "4358000",
+      "Shares Held": "10392000",
       "Local Currency": "TWD"
     },
     {
@@ -259,37 +269,37 @@
       "Ticker": "2912",
       "Identifier": "670498906",
       "SEDOL": "6704986",
-      "Weight": "1.400046",
+      "Weight": "1.42285",
       "Sector": "-",
-      "Shares Held": "2445000",
+      "Shares Held": "2433000",
       "Local Currency": "TWD"
     },
     {
-      "Name": "MEGA FINANCIAL HOLDING CO LT",
-      "Ticker": "2886",
-      "Identifier": "644406902",
-      "SEDOL": "6444066",
-      "Weight": "1.384461",
+      "Name": "WISTRON CORP",
+      "Ticker": "3231",
+      "Identifier": "667248900",
+      "SEDOL": "6672481",
+      "Weight": "1.403301",
       "Sector": "-",
-      "Shares Held": "10446000",
+      "Shares Held": "3054000",
       "Local Currency": "TWD"
     },
     {
-      "Name": "TECH MAHINDRA LTD",
-      "Ticker": "TECHM",
-      "Identifier": "BWFGD6901",
-      "SEDOL": "BWFGD63",
-      "Weight": "1.34552",
+      "Name": "FAR EASTONE TELECOMM CO LTD",
+      "Ticker": "4904",
+      "Identifier": "642185904",
+      "SEDOL": "6421854",
+      "Weight": "1.357965",
       "Sector": "-",
-      "Shares Held": "1001412",
-      "Local Currency": "INR"
+      "Shares Held": "4603000",
+      "Local Currency": "TWD"
     },
     {
       "Name": "PTT PCL NVDR",
       "Ticker": "PTT",
       "Identifier": "642040901",
       "SEDOL": "6420408",
-      "Weight": "1.338382",
+      "Weight": "1.354996",
       "Sector": "-",
       "Shares Held": "13071600",
       "Local Currency": "THB"
@@ -299,7 +309,7 @@
       "Ticker": "BVT",
       "Identifier": "610008906",
       "SEDOL": "6100089",
-      "Weight": "1.32886",
+      "Weight": "1.34909",
       "Sector": "-",
       "Shares Held": "1135407",
       "Local Currency": "ZAR"
@@ -309,19 +319,19 @@
       "Ticker": "8464",
       "Identifier": "BSZLN1907",
       "SEDOL": "BSZLN15",
-      "Weight": "1.320269",
+      "Weight": "1.299074",
       "Sector": "-",
-      "Shares Held": "1340000",
+      "Shares Held": "1334000",
       "Local Currency": "TWD"
     },
     {
-      "Name": "FAR EASTONE TELECOMM CO LTD",
-      "Ticker": "4904",
-      "Identifier": "642185904",
-      "SEDOL": "6421854",
-      "Weight": "1.318527",
+      "Name": "FIRST FINANCIAL HOLDING CO",
+      "Ticker": "2892",
+      "Identifier": "658011903",
+      "SEDOL": "6580119",
+      "Weight": "1.289939",
       "Sector": "-",
-      "Shares Held": "4627000",
+      "Shares Held": "11877000",
       "Local Currency": "TWD"
     },
     {
@@ -329,7 +339,7 @@
       "Ticker": "MOL",
       "Identifier": "BD5ZXH906",
       "SEDOL": "BD5ZXH8",
-      "Weight": "1.294693",
+      "Weight": "1.283419",
       "Sector": "-",
       "Shares Held": "974382",
       "Local Currency": "HUF"
@@ -339,57 +349,17 @@
       "Ticker": "TENAGA",
       "Identifier": "690461009",
       "SEDOL": "6904612",
-      "Weight": "1.282788",
+      "Weight": "1.276635",
       "Sector": "-",
       "Shares Held": "4739600",
       "Local Currency": "MYR"
-    },
-    {
-      "Name": "ADVANCED INFO SERVICE NVDR",
-      "Ticker": "ADVANC",
-      "Identifier": "641260906",
-      "SEDOL": "6412609",
-      "Weight": "1.2442",
-      "Sector": "-",
-      "Shares Held": "1455300",
-      "Local Currency": "THB"
-    },
-    {
-      "Name": "FIRST FINANCIAL HOLDING CO",
-      "Ticker": "2892",
-      "Identifier": "658011903",
-      "SEDOL": "6580119",
-      "Weight": "1.240617",
-      "Sector": "-",
-      "Shares Held": "11940000",
-      "Local Currency": "TWD"
-    },
-    {
-      "Name": "SYSTEX CORP",
-      "Ticker": "6214",
-      "Identifier": "657403903",
-      "SEDOL": "6574037",
-      "Weight": "1.240334",
-      "Sector": "-",
-      "Shares Held": "2403000",
-      "Local Currency": "TWD"
-    },
-    {
-      "Name": "HELLENIC TELECOMMUN ORGANIZA",
-      "Ticker": "HTO",
-      "Identifier": "505160903",
-      "SEDOL": "5051605",
-      "Weight": "1.235255",
-      "Sector": "-",
-      "Shares Held": "664237",
-      "Local Currency": "EUR"
     },
     {
       "Name": "SHOPRITE HOLDINGS LTD",
       "Ticker": "SHP",
       "Identifier": "680157906",
       "SEDOL": "6801575",
-      "Weight": "1.234072",
+      "Weight": "1.257495",
       "Sector": "-",
       "Shares Held": "731539",
       "Local Currency": "ZAR"
@@ -399,79 +369,99 @@
       "Ticker": "RICHT",
       "Identifier": "ACI06DSC4",
       "SEDOL": "BC9ZH86",
-      "Weight": "1.186885",
+      "Weight": "1.241353",
       "Sector": "-",
-      "Shares Held": "365616",
+      "Shares Held": "374457",
       "Local Currency": "HUF"
+    },
+    {
+      "Name": "SYSTEX CORP",
+      "Ticker": "6214",
+      "Identifier": "657403903",
+      "SEDOL": "6574037",
+      "Weight": "1.229745",
+      "Sector": "-",
+      "Shares Held": "2391000",
+      "Local Currency": "TWD"
+    },
+    {
+      "Name": "ADVANCED INFO SERVICE NVDR",
+      "Ticker": "ADVANC",
+      "Identifier": "641260906",
+      "SEDOL": "6412609",
+      "Weight": "1.228922",
+      "Sector": "-",
+      "Shares Held": "1455300",
+      "Local Currency": "THB"
     },
     {
       "Name": "JARIR MARKETING CO",
       "Ticker": "4190",
       "Identifier": "B128FM904",
       "SEDOL": "B128FM5",
-      "Weight": "1.173187",
+      "Weight": "1.228714",
       "Sector": "-",
       "Shares Held": "3208191",
       "Local Currency": "SAR"
     },
     {
-      "Name": "PRIMAX ELECTRONICS LTD",
-      "Ticker": "4915",
-      "Identifier": "B5M70F906",
-      "SEDOL": "B5M70F8",
-      "Weight": "1.140321",
+      "Name": "HELLENIC TELECOMMUN ORGANIZA",
+      "Ticker": "HTO",
+      "Identifier": "505160903",
+      "SEDOL": "5051605",
+      "Weight": "1.206124",
       "Sector": "-",
-      "Shares Held": "6701000",
-      "Local Currency": "TWD"
+      "Shares Held": "664237",
+      "Local Currency": "EUR"
     },
     {
       "Name": "KIMBERLY CLARK DE MEXICO A",
       "Ticker": "KIMBER A",
       "Identifier": "249191008",
       "SEDOL": "2491914",
-      "Weight": "1.086984",
+      "Weight": "1.129303",
       "Sector": "-",
       "Shares Held": "6136320",
       "Local Currency": "MXN"
     },
     {
-      "Name": "HENGAN INTL GROUP CO LTD",
-      "Ticker": "1044",
-      "Identifier": "613623909",
-      "SEDOL": "6136233",
-      "Weight": "1.061266",
+      "Name": "PRIMAX ELECTRONICS LTD",
+      "Ticker": "4915",
+      "Identifier": "B5M70F906",
+      "SEDOL": "B5M70F8",
+      "Weight": "1.103211",
       "Sector": "-",
-      "Shares Held": "4963000",
-      "Local Currency": "HKD"
+      "Shares Held": "6665000",
+      "Local Currency": "TWD"
     },
     {
       "Name": "BID CORP LTD",
       "Ticker": "BID",
       "Identifier": "BZBFKT902",
       "SEDOL": "BZBFKT7",
-      "Weight": "1.058538",
+      "Weight": "1.079302",
       "Sector": "-",
       "Shares Held": "462600",
       "Local Currency": "ZAR"
+    },
+    {
+      "Name": "HENGAN INTL GROUP CO LTD",
+      "Ticker": "1044",
+      "Identifier": "613623909",
+      "SEDOL": "6136233",
+      "Weight": "1.072451",
+      "Sector": "-",
+      "Shares Held": "4963000",
+      "Local Currency": "HKD"
     },
     {
       "Name": "AMMB HOLDINGS BHD",
       "Ticker": "AMBANK",
       "Identifier": "604702001",
       "SEDOL": "6047023",
-      "Weight": "1.022188",
+      "Weight": "1.062402",
       "Sector": "-",
       "Shares Held": "7974500",
-      "Local Currency": "MYR"
-    },
-    {
-      "Name": "TELEKOM MALAYSIA BHD",
-      "Ticker": "TM",
-      "Identifier": "686839002",
-      "SEDOL": "6868398",
-      "Weight": "0.96631",
-      "Sector": "-",
-      "Shares Held": "5835700",
       "Local Currency": "MYR"
     },
     {
@@ -479,57 +469,67 @@
       "Ticker": "PTT-F",
       "Identifier": "BD0BDJ902",
       "SEDOL": "BD0BDJ3",
-      "Weight": "0.938278",
+      "Weight": "0.949925",
       "Sector": "-",
       "Shares Held": "9163900",
       "Local Currency": "THB"
+    },
+    {
+      "Name": "TELEKOM MALAYSIA BHD",
+      "Ticker": "TM",
+      "Identifier": "686839002",
+      "SEDOL": "6868398",
+      "Weight": "0.940945",
+      "Sector": "-",
+      "Shares Held": "5835700",
+      "Local Currency": "MYR"
     },
     {
       "Name": "TUNG HO STEEL ENTERPRISE COR",
       "Ticker": "2006",
       "Identifier": "690731906",
       "SEDOL": "6907310",
-      "Weight": "0.904419",
+      "Weight": "0.92281",
       "Sector": "-",
-      "Shares Held": "3944000",
+      "Shares Held": "3923000",
       "Local Currency": "TWD"
-    },
-    {
-      "Name": "BOROUGE",
-      "Ticker": "BOROUGE",
-      "Identifier": "ACI262LW7",
-      "SEDOL": "BN2SB32",
-      "Weight": "0.870949",
-      "Sector": "-",
-      "Shares Held": "15858280",
-      "Local Currency": "AED"
-    },
-    {
-      "Name": "WESTPORTS HOLDINGS BHD",
-      "Ticker": "WPRTS",
-      "Identifier": "BDFM1K902",
-      "SEDOL": "BDFM1K8",
-      "Weight": "0.868657",
-      "Sector": "-",
-      "Shares Held": "6160677",
-      "Local Currency": "MYR"
     },
     {
       "Name": "COCA COLA FEMSA SAB DE CV",
       "Ticker": "KOF UBL",
       "Identifier": "ACI1B9209",
       "SEDOL": "BHHP0S4",
-      "Weight": "0.85684",
+      "Weight": "0.893118",
       "Sector": "-",
       "Shares Held": "918480",
       "Local Currency": "MXN"
+    },
+    {
+      "Name": "WESTPORTS HOLDINGS BHD",
+      "Ticker": "WPRTS",
+      "Identifier": "BDFM1K902",
+      "SEDOL": "BDFM1K8",
+      "Weight": "0.860387",
+      "Sector": "-",
+      "Shares Held": "6160677",
+      "Local Currency": "MYR"
+    },
+    {
+      "Name": "BOROUGE",
+      "Ticker": "BOROUGE",
+      "Identifier": "ACI262LW7",
+      "SEDOL": "BN2SB32",
+      "Weight": "0.852031",
+      "Sector": "-",
+      "Shares Held": "15858280",
+      "Local Currency": "AED"
     },
     {
       "Name": "ARAB NATIONAL BANK",
       "Ticker": "1080",
       "Identifier": "B12LZK907",
       "SEDOL": "B12LZK2",
-      "Weight": "0.840429",
+      "Weight": "0.809928",
       "Sector": "-",
       "Shares Held": "1669165",
       "Local Currency": "SAR"
@@ -539,7 +539,7 @@
       "Ticker": "SIB",
       "Identifier": "B10287900",
       "SEDOL": "B102875",
-      "Weight": "0.818305",
+      "Weight": "0.804637",
       "Sector": "-",
       "Shares Held": "11991238",
       "Local Currency": "AED"
@@ -549,7 +549,7 @@
       "Ticker": "ORDS",
       "Identifier": "615817905",
       "SEDOL": "6158174",
-      "Weight": "0.811606",
+      "Weight": "0.785589",
       "Sector": "-",
       "Shares Held": "2972815",
       "Local Currency": "QAR"
@@ -559,47 +559,67 @@
       "Ticker": "Y92",
       "Identifier": "B15F66900",
       "SEDOL": "B15F664",
-      "Weight": "0.795243",
+      "Weight": "0.774778",
       "Sector": "-",
       "Shares Held": "27606400",
       "Local Currency": "SGD"
-    },
-    {
-      "Name": "ABU DHABI NATIONAL OIL CO FO",
-      "Ticker": "ADNOCDIST",
-      "Identifier": "BYVGM6909",
-      "SEDOL": "BYVGM64",
-      "Weight": "0.770383",
-      "Sector": "-",
-      "Shares Held": "8430659",
-      "Local Currency": "AED"
-    },
-    {
-      "Name": "MOBILE TELECOMMUNICATIONS CO",
-      "Ticker": "7030",
-      "Identifier": "B2QG18904",
-      "SEDOL": "B2QG180",
-      "Weight": "0.765015",
-      "Sector": "-",
-      "Shares Held": "3443632",
-      "Local Currency": "SAR"
     },
     {
       "Name": "PROLOGIS PROPERTY MEXICO SA",
       "Ticker": "FIBRAPL 14",
       "Identifier": "ACI08KJ10",
       "SEDOL": "BN56JP1",
-      "Weight": "0.741844",
+      "Weight": "0.757653",
       "Sector": "-",
       "Shares Held": "2087079",
       "Local Currency": "MXN"
+    },
+    {
+      "Name": "MISC BHD",
+      "Ticker": "MISC",
+      "Identifier": "655799005",
+      "SEDOL": "6557997",
+      "Weight": "0.742689",
+      "Sector": "-",
+      "Shares Held": "4312000",
+      "Local Currency": "MYR"
+    },
+    {
+      "Name": "ABU DHABI NATIONAL OIL CO FO",
+      "Ticker": "ADNOCDIST",
+      "Identifier": "BYVGM6909",
+      "SEDOL": "BYVGM64",
+      "Weight": "0.73679",
+      "Sector": "-",
+      "Shares Held": "8430659",
+      "Local Currency": "AED"
+    },
+    {
+      "Name": "INVESTEC LTD",
+      "Ticker": "INL",
+      "Identifier": "B17BBR905",
+      "SEDOL": "B17BBR6",
+      "Weight": "0.71243",
+      "Sector": "-",
+      "Shares Held": "1062206",
+      "Local Currency": "ZAR"
+    },
+    {
+      "Name": "MOBILE TELECOMMUNICATIONS CO",
+      "Ticker": "7030",
+      "Identifier": "B2QG18904",
+      "SEDOL": "B2QG180",
+      "Weight": "0.711126",
+      "Sector": "-",
+      "Shares Held": "3443632",
+      "Local Currency": "SAR"
     },
     {
       "Name": "ZHEJIANG EXPRESSWAY CO H",
       "Ticker": "576",
       "Identifier": "699076907",
       "SEDOL": "6990763",
-      "Weight": "0.708625",
+      "Weight": "0.702741",
       "Sector": "-",
       "Shares Held": "10682000",
       "Local Currency": "HKD"
@@ -609,59 +629,29 @@
       "Ticker": "ZAIN",
       "Identifier": "660008905",
       "SEDOL": "6600084",
-      "Weight": "0.704471",
+      "Weight": "0.673744",
       "Sector": "-",
       "Shares Held": "4356887",
       "Local Currency": "KWD"
-    },
-    {
-      "Name": "INVESTEC LTD",
-      "Ticker": "INL",
-      "Identifier": "B17BBR905",
-      "SEDOL": "B17BBR6",
-      "Weight": "0.702146",
-      "Sector": "-",
-      "Shares Held": "1062206",
-      "Local Currency": "ZAR"
-    },
-    {
-      "Name": "MISC BHD",
-      "Ticker": "MISC",
-      "Identifier": "655799005",
-      "SEDOL": "6557997",
-      "Weight": "0.68773",
-      "Sector": "-",
-      "Shares Held": "4312000",
-      "Local Currency": "MYR"
-    },
-    {
-      "Name": "AL RAYAN BANK",
-      "Ticker": "MARK",
-      "Identifier": "B0VR7W909",
-      "SEDOL": "B0VR7W0",
-      "Weight": "0.638631",
-      "Sector": "-",
-      "Shares Held": "15065779",
-      "Local Currency": "QAR"
-    },
-    {
-      "Name": "CHINA COMMUNICATIONS SERVI H",
-      "Ticker": "552",
-      "Identifier": "B1HVJ1909",
-      "SEDOL": "B1HVJ16",
-      "Weight": "0.632091",
-      "Sector": "-",
-      "Shares Held": "14164000",
-      "Local Currency": "HKD"
     },
     {
       "Name": "HAITIAN INTERNATIONAL HLDGS",
       "Ticker": "1882",
       "Identifier": "B1L2RC905",
       "SEDOL": "B1L2RC2",
-      "Weight": "0.631076",
+      "Weight": "0.61432",
       "Sector": "-",
       "Shares Held": "3256000",
+      "Local Currency": "HKD"
+    },
+    {
+      "Name": "CHINA COMMUNICATIONS SERVI H",
+      "Ticker": "552",
+      "Identifier": "B1HVJ1909",
+      "SEDOL": "B1HVJ16",
+      "Weight": "0.610762",
+      "Sector": "-",
+      "Shares Held": "14164000",
       "Local Currency": "HKD"
     },
     {
@@ -669,19 +659,29 @@
       "Ticker": "AVI",
       "Identifier": "604095901",
       "SEDOL": "6040958",
-      "Weight": "0.594955",
+      "Weight": "0.601918",
       "Sector": "-",
-      "Shares Held": "1356463",
+      "Shares Held": "1442073",
       "Local Currency": "ZAR"
+    },
+    {
+      "Name": "AL RAYAN BANK",
+      "Ticker": "MARK",
+      "Identifier": "B0VR7W909",
+      "SEDOL": "B0VR7W0",
+      "Weight": "0.59929",
+      "Sector": "-",
+      "Shares Held": "15065779",
+      "Local Currency": "QAR"
     },
     {
       "Name": "FAR EASTERN INTL BANK",
       "Ticker": "2845",
       "Identifier": "632845905",
       "SEDOL": "6328450",
-      "Weight": "0.593671",
+      "Weight": "0.586889",
       "Sector": "-",
-      "Shares Held": "17052677",
+      "Shares Held": "16965677",
       "Local Currency": "TWD"
     },
     {
@@ -689,7 +689,7 @@
       "Ticker": "BPI",
       "Identifier": "607496908",
       "SEDOL": "6074968",
-      "Weight": "0.572511",
+      "Weight": "0.574526",
       "Sector": "-",
       "Shares Held": "4437280",
       "Local Currency": "PHP"
@@ -699,57 +699,57 @@
       "Ticker": "SIME",
       "Identifier": "B29TTR903",
       "SEDOL": "B29TTR1",
-      "Weight": "0.565141",
+      "Weight": "0.533442",
       "Sector": "-",
       "Shares Held": "10800900",
       "Local Currency": "MYR"
-    },
-    {
-      "Name": "BANCO ABC BRASIL SA",
-      "Ticker": "ABCB4",
-      "Identifier": "B23DMP905",
-      "SEDOL": "B23DMP8",
-      "Weight": "0.521747",
-      "Sector": "-",
-      "Shares Held": "1025387",
-      "Local Currency": "BRL"
-    },
-    {
-      "Name": "INDOFOOD SUKSES MAKMUR TBK P",
-      "Ticker": "INDF",
-      "Identifier": "628397903",
-      "SEDOL": "6283979",
-      "Weight": "0.513593",
-      "Sector": "-",
-      "Shares Held": "15392600",
-      "Local Currency": "IDR"
-    },
-    {
-      "Name": "KRUK SA",
-      "Ticker": "KRU",
-      "Identifier": "B4PTLY904",
-      "SEDOL": "B4PTLY0",
-      "Weight": "0.500891",
-      "Sector": "-",
-      "Shares Held": "65725",
-      "Local Currency": "PLN"
     },
     {
       "Name": "SPORTON INTERNATIONAL INC",
       "Ticker": "6146",
       "Identifier": "643138902",
       "SEDOL": "6431381",
-      "Weight": "0.491212",
+      "Weight": "0.513646",
       "Sector": "-",
-      "Shares Held": "954150",
+      "Shares Held": "948150",
       "Local Currency": "TWD"
+    },
+    {
+      "Name": "INDOFOOD SUKSES MAKMUR TBK P",
+      "Ticker": "INDF",
+      "Identifier": "628397903",
+      "SEDOL": "6283979",
+      "Weight": "0.505484",
+      "Sector": "-",
+      "Shares Held": "15392600",
+      "Local Currency": "IDR"
+    },
+    {
+      "Name": "BANCO ABC BRASIL SA",
+      "Ticker": "ABCB4",
+      "Identifier": "B23DMP905",
+      "SEDOL": "B23DMP8",
+      "Weight": "0.498482",
+      "Sector": "-",
+      "Shares Held": "1025387",
+      "Local Currency": "BRL"
+    },
+    {
+      "Name": "KRUK SA",
+      "Ticker": "KRU",
+      "Identifier": "B4PTLY904",
+      "SEDOL": "B4PTLY0",
+      "Weight": "0.49143",
+      "Sector": "-",
+      "Shares Held": "65725",
+      "Local Currency": "PLN"
     },
     {
       "Name": "AXIATA GROUP BERHAD",
       "Ticker": "AXIATA",
       "Identifier": "B2QZGV905",
       "SEDOL": "B2QZGV5",
-      "Weight": "0.449382",
+      "Weight": "0.457478",
       "Sector": "-",
       "Shares Held": "13200900",
       "Local Currency": "MYR"
@@ -759,7 +759,7 @@
       "Ticker": "STC",
       "Identifier": "BTHH03905",
       "SEDOL": "BTHH039",
-      "Weight": "0.417139",
+      "Weight": "0.401853",
       "Sector": "-",
       "Shares Held": "2553697",
       "Local Currency": "KWD"
@@ -769,7 +769,7 @@
       "Ticker": "ABK",
       "Identifier": "601311905",
       "SEDOL": "6013110",
-      "Weight": "0.402131",
+      "Weight": "0.390166",
       "Sector": "-",
       "Shares Held": "4857994",
       "Local Currency": "KWD"
@@ -779,9 +779,9 @@
       "Ticker": "EGCO",
       "Identifier": "636855900",
       "SEDOL": "6368553",
-      "Weight": "0.364729",
+      "Weight": "0.3628",
       "Sector": "-",
-      "Shares Held": "1149100",
+      "Shares Held": "1143400",
       "Local Currency": "THB"
     },
     {
@@ -789,19 +789,39 @@
       "Ticker": "BRES",
       "Identifier": "B0YTG2908",
       "SEDOL": "B0YTG26",
-      "Weight": "0.359574",
+      "Weight": "0.359955",
       "Sector": "-",
       "Shares Held": "7403767",
       "Local Currency": "QAR"
+    },
+    {
+      "Name": "STARK TECHNOLOGY INC",
+      "Ticker": "2480",
+      "Identifier": "620585901",
+      "SEDOL": "6205854",
+      "Weight": "0.352689",
+      "Sector": "-",
+      "Shares Held": "711000",
+      "Local Currency": "TWD"
     },
     {
       "Name": "GENERTEC UNIVERSAL MEDICAL G",
       "Ticker": "2666",
       "Identifier": "BYW753904",
       "SEDOL": "BYW7534",
-      "Weight": "0.327266",
+      "Weight": "0.32543",
       "Sector": "-",
       "Shares Held": "6561500",
+      "Local Currency": "HKD"
+    },
+    {
+      "Name": "CRYSTAL INTERNATIONAL GROUP",
+      "Ticker": "2232",
+      "Identifier": "BF09MJ902",
+      "SEDOL": "BF09MJ4",
+      "Weight": "0.318488",
+      "Sector": "-",
+      "Shares Held": "4025500",
       "Local Currency": "HKD"
     },
     {
@@ -809,47 +829,27 @@
       "Ticker": "MBT",
       "Identifier": "651444903",
       "SEDOL": "6514442",
-      "Weight": "0.323442",
+      "Weight": "0.317846",
       "Sector": "-",
       "Shares Held": "3885830",
       "Local Currency": "PHP"
-    },
-    {
-      "Name": "STARK TECHNOLOGY INC",
-      "Ticker": "2480",
-      "Identifier": "620585901",
-      "SEDOL": "6205854",
-      "Weight": "0.315382",
-      "Sector": "-",
-      "Shares Held": "711000",
-      "Local Currency": "TWD"
     },
     {
       "Name": "QATAR NAVIGATION",
       "Ticker": "QNNS",
       "Identifier": "614820900",
       "SEDOL": "6148205",
-      "Weight": "0.304664",
+      "Weight": "0.295155",
       "Sector": "-",
       "Shares Held": "1379155",
       "Local Currency": "QAR"
-    },
-    {
-      "Name": "CRYSTAL INTERNATIONAL GROUP",
-      "Ticker": "2232",
-      "Identifier": "BF09MJ902",
-      "SEDOL": "BF09MJ4",
-      "Weight": "0.302049",
-      "Sector": "-",
-      "Shares Held": "4025500",
-      "Local Currency": "HKD"
     },
     {
       "Name": "SALHIA REAL ESTATE CO KSC",
       "Ticker": "SRE",
       "Identifier": "676963903",
       "SEDOL": "6769639",
-      "Weight": "0.296246",
+      "Weight": "0.290731",
       "Sector": "-",
       "Shares Held": "2886156",
       "Local Currency": "KWD"
@@ -859,37 +859,37 @@
       "Ticker": "4003",
       "Identifier": "B4P2SD902",
       "SEDOL": "B4P2SD7",
-      "Weight": "0.285333",
+      "Weight": "0.286479",
       "Sector": "-",
       "Shares Held": "232483",
       "Local Currency": "SAR"
-    },
-    {
-      "Name": "MAXIS BHD",
-      "Ticker": "MAXIS",
-      "Identifier": "B5387L905",
-      "SEDOL": "B5387L5",
-      "Weight": "0.282112",
-      "Sector": "-",
-      "Shares Held": "3835800",
-      "Local Currency": "MYR"
     },
     {
       "Name": "NETCARE LTD",
       "Ticker": "NTC",
       "Identifier": "663642908",
       "SEDOL": "6636421",
-      "Weight": "0.281011",
+      "Weight": "0.281042",
       "Sector": "-",
       "Shares Held": "3044896",
       "Local Currency": "ZAR"
+    },
+    {
+      "Name": "MAXIS BHD",
+      "Ticker": "MAXIS",
+      "Identifier": "B5387L905",
+      "SEDOL": "B5387L5",
+      "Weight": "0.279392",
+      "Sector": "-",
+      "Shares Held": "3835800",
+      "Local Currency": "MYR"
     },
     {
       "Name": "TTY BIOPHARM CO LTD",
       "Ticker": "4105",
       "Identifier": "639787902",
       "SEDOL": "6397870",
-      "Weight": "0.279253",
+      "Weight": "0.275554",
       "Sector": "-",
       "Shares Held": "1284000",
       "Local Currency": "TWD"
@@ -899,7 +899,7 @@
       "Ticker": "9917",
       "Identifier": "687781906",
       "SEDOL": "6877811",
-      "Weight": "0.277561",
+      "Weight": "0.27335",
       "Sector": "-",
       "Shares Held": "969450",
       "Local Currency": "TWD"
@@ -909,7 +909,7 @@
       "Ticker": "PETGAS",
       "Identifier": "670397900",
       "SEDOL": "6703972",
-      "Weight": "0.254128",
+      "Weight": "0.257996",
       "Sector": "-",
       "Shares Held": "706400",
       "Local Currency": "MYR"
@@ -919,7 +919,7 @@
       "Ticker": "RATCH",
       "Identifier": "636277907",
       "SEDOL": "6362771",
-      "Weight": "0.24137",
+      "Weight": "0.239985",
       "Sector": "-",
       "Shares Held": "2497900",
       "Local Currency": "THB"
@@ -929,7 +929,7 @@
       "Ticker": "1030",
       "Identifier": "B12M7M902",
       "SEDOL": "B12M7M1",
-      "Weight": "0.233663",
+      "Weight": "0.225985",
       "Sector": "-",
       "Shares Held": "876808",
       "Local Currency": "SAR"
@@ -939,7 +939,7 @@
       "Ticker": "CDB",
       "Identifier": "608624904",
       "SEDOL": "6086242",
-      "Weight": "0.208338",
+      "Weight": "0.211502",
       "Sector": "-",
       "Shares Held": "3965800",
       "Local Currency": "MYR"
@@ -949,7 +949,7 @@
       "Ticker": "TEL",
       "Identifier": "BDGN27907",
       "SEDOL": "BDGN274",
-      "Weight": "0.206257",
+      "Weight": "0.211502",
       "Sector": "-",
       "Shares Held": "131225",
       "Local Currency": "PHP"
@@ -959,77 +959,77 @@
       "Ticker": "MER",
       "Identifier": "B247XZ903",
       "SEDOL": "B247XZ6",
-      "Weight": "0.19979",
+      "Weight": "0.196333",
       "Sector": "-",
       "Shares Held": "334500",
       "Local Currency": "PHP"
-    },
-    {
-      "Name": "SUNWAY REAL ESTATE INVESTMEN",
-      "Ticker": "SUNREIT",
-      "Identifier": "B62QFR902",
-      "SEDOL": "B62QFR9",
-      "Weight": "0.185457",
-      "Sector": "-",
-      "Shares Held": "4222800",
-      "Local Currency": "MYR"
     },
     {
       "Name": "ADVANCED INFO SERVICE FOREIG",
       "Ticker": "ADVANC-F",
       "Identifier": "641259908",
       "SEDOL": "6412591",
-      "Weight": "0.181761",
+      "Weight": "0.179529",
       "Sector": "-",
       "Shares Held": "212600",
       "Local Currency": "THB"
     },
     {
-      "Name": "UNITED DEVELOPMENT CO",
-      "Ticker": "UDCD",
-      "Identifier": "665109906",
-      "SEDOL": "6651093",
-      "Weight": "0.170562",
+      "Name": "SUNWAY REAL ESTATE INVESTMEN",
+      "Ticker": "SUNREIT",
+      "Identifier": "B62QFR902",
+      "SEDOL": "B62QFR9",
+      "Weight": "0.178764",
       "Sector": "-",
-      "Shares Held": "9658971",
-      "Local Currency": "QAR"
+      "Shares Held": "4222800",
+      "Local Currency": "MYR"
     },
     {
       "Name": "XINHUA WINSHARE PUBLISHING H",
       "Ticker": "811",
       "Identifier": "B1XCJB901",
       "SEDOL": "B1XCJB3",
-      "Weight": "0.162897",
+      "Weight": "0.168231",
       "Sector": "-",
       "Shares Held": "1824000",
       "Local Currency": "HKD"
     },
     {
-      "Name": "REUNERT LTD",
-      "Ticker": "RLO",
-      "Identifier": "672872900",
-      "SEDOL": "6728726",
-      "Weight": "0.151146",
+      "Name": "UNITED DEVELOPMENT CO",
+      "Ticker": "UDCD",
+      "Identifier": "665109906",
+      "SEDOL": "6651093",
+      "Weight": "0.159753",
       "Sector": "-",
-      "Shares Held": "528763",
-      "Local Currency": "ZAR"
+      "Shares Held": "9658971",
+      "Local Currency": "QAR"
     },
     {
       "Name": "YFY INC",
       "Ticker": "1907",
       "Identifier": "698861903",
       "SEDOL": "6988616",
-      "Weight": "0.145853",
+      "Weight": "0.147122",
       "Sector": "-",
       "Shares Held": "1907000",
       "Local Currency": "TWD"
+    },
+    {
+      "Name": "REUNERT LTD",
+      "Ticker": "RLO",
+      "Identifier": "672872900",
+      "SEDOL": "6728726",
+      "Weight": "0.146359",
+      "Sector": "-",
+      "Shares Held": "528763",
+      "Local Currency": "ZAR"
     },
     {
       "Name": "SUN INTERNATIONAL LTD",
       "Ticker": "SUI",
       "Identifier": "B0KS49903",
       "SEDOL": "B0KS490",
-      "Weight": "0.14091",
+      "Weight": "0.13914",
       "Sector": "-",
       "Shares Held": "610455",
       "Local Currency": "ZAR"
@@ -1039,47 +1039,37 @@
       "Ticker": "-",
       "Identifier": "999RUBZ90",
       "SEDOL": "-",
-      "Weight": "0.113809",
+      "Weight": "0.113466",
       "Sector": "-",
       "Shares Held": "112363919.46",
       "Local Currency": "RUB"
-    },
-    {
-      "Name": "HONG KONG DOLLAR",
-      "Ticker": "-",
-      "Identifier": "999HKDZ99",
-      "SEDOL": "-",
-      "Weight": "0.113636",
-      "Sector": "-",
-      "Shares Held": "10389228.16",
-      "Local Currency": "HKD"
     },
     {
       "Name": "MALAYSIAN RINGGIT",
       "Ticker": "-",
       "Identifier": "999MYRZ92",
       "SEDOL": "-",
-      "Weight": "0.07991",
+      "Weight": "0.10363",
       "Sector": "-",
-      "Shares Held": "3802812.95",
+      "Shares Held": "4993862.95",
       "Local Currency": "MYR"
     },
     {
-      "Name": "SOUTH AFRICAN RAND",
+      "Name": "SSI US GOV MONEY MARKET CLASS",
       "Ticker": "-",
-      "Identifier": "999ZARZ99",
+      "Identifier": "924QSGII3",
       "SEDOL": "-",
-      "Weight": "0.07023",
+      "Weight": "0.075877",
       "Sector": "-",
-      "Shares Held": "13530082.51",
-      "Local Currency": "ZAR"
+      "Shares Held": "895861.63",
+      "Local Currency": "USD"
     },
     {
       "Name": "RATCH GROUP PCL FOREIGN",
       "Ticker": "RATCH-F",
       "Identifier": "BK1W1W903",
       "SEDOL": "BK1W1W3",
-      "Weight": "0.066577",
+      "Weight": "0.066195",
       "Sector": "-",
       "Shares Held": "689000",
       "Local Currency": "THB"
@@ -1089,7 +1079,7 @@
       "Ticker": "PTT",
       "Identifier": "BD0BDH906",
       "SEDOL": "BD0BDH1",
-      "Weight": "0.047549",
+      "Weight": "0.048139",
       "Sector": "-",
       "Shares Held": "464400",
       "Local Currency": "THB"
@@ -1099,167 +1089,187 @@
       "Ticker": "-",
       "Identifier": "999THBZ91",
       "SEDOL": "-",
-      "Weight": "0.047381",
+      "Weight": "0.0468",
       "Sector": "-",
       "Shares Held": "18510404.75",
       "Local Currency": "THB"
-    },
-    {
-      "Name": "BRAZILIAN REAL",
-      "Ticker": "-",
-      "Identifier": "999BRLZ97",
-      "SEDOL": "-",
-      "Weight": "0.033894",
-      "Sector": "-",
-      "Shares Held": "1969025.28",
-      "Local Currency": "BRL"
-    },
-    {
-      "Name": "SSI US GOV MONEY MARKET CLASS",
-      "Ticker": "-",
-      "Identifier": "924QSGII3",
-      "SEDOL": "-",
-      "Weight": "0.03333",
-      "Sector": "-",
-      "Shares Held": "388276.64",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "KUWAITI DINAR",
-      "Ticker": "-",
-      "Identifier": "999KWDZ99",
-      "SEDOL": "-",
-      "Weight": "0.026197",
-      "Sector": "-",
-      "Shares Held": "94943.65",
-      "Local Currency": "KWD"
     },
     {
       "Name": "NEW TAIWAN DOLLAR",
       "Ticker": "-",
       "Identifier": "999TWDZ90",
       "SEDOL": "-",
-      "Weight": "0.024684",
+      "Weight": "0.044969",
       "Sector": "-",
-      "Shares Held": "9181980",
+      "Shares Held": "17224450",
       "Local Currency": "TWD"
     },
     {
-      "Name": "BANCO ABC BRASIL SA   RCT",
-      "Ticker": "ABCB10",
-      "Identifier": "BQGCZR902",
-      "SEDOL": "BQGCZR3",
-      "Weight": "0.015014",
+      "Name": "SAUDI RIYAL",
+      "Ticker": "-",
+      "Identifier": "999SARZ95",
+      "SEDOL": "-",
+      "Weight": "0.019048",
       "Sector": "-",
-      "Shares Held": "29093",
-      "Local Currency": "BRL"
+      "Shares Held": "843999.81",
+      "Local Currency": "SAR"
     },
     {
       "Name": "US DOLLAR",
       "Ticker": "-",
       "Identifier": "999USDZ92",
       "SEDOL": "-",
-      "Weight": "0.007792",
+      "Weight": "0.014662",
       "Sector": "-",
-      "Shares Held": "90771.37",
+      "Shares Held": "173108.39",
       "Local Currency": "USD"
     },
     {
-      "Name": "RATCH GROUP PCL",
-      "Ticker": "RATCH",
-      "Identifier": "BK1W1V905",
-      "SEDOL": "BK1W1V2",
-      "Weight": "0.00545",
+      "Name": "BANCO ABC BRASIL SA   RCT",
+      "Ticker": "ABCB10",
+      "Identifier": "BQGCZR902",
+      "SEDOL": "BQGCZR3",
+      "Weight": "0.014075",
       "Sector": "-",
-      "Shares Held": "56400",
-      "Local Currency": "THB"
+      "Shares Held": "29093",
+      "Local Currency": "BRL"
     },
     {
-      "Name": "SINGAPORE DOLLAR",
+      "Name": "SOUTH AFRICAN RAND",
       "Ticker": "-",
-      "Identifier": "999SGDZ90",
+      "Identifier": "999ZARZ99",
       "SEDOL": "-",
-      "Weight": "0.002375",
+      "Weight": "0.012929",
       "Sector": "-",
-      "Shares Held": "35449.99",
-      "Local Currency": "SGD"
+      "Shares Held": "2521464.09",
+      "Local Currency": "ZAR"
     },
     {
-      "Name": "QATARI RIAL",
+      "Name": "HONG KONG DOLLAR",
       "Ticker": "-",
-      "Identifier": "999QARZ99",
+      "Identifier": "999HKDZ99",
       "SEDOL": "-",
-      "Weight": "0.001551",
+      "Weight": "0.008947",
       "Sector": "-",
-      "Shares Held": "65794.34",
-      "Local Currency": "QAR"
-    },
-    {
-      "Name": "CZECH KORUNA",
-      "Ticker": "-",
-      "Identifier": "999CZKZ98",
-      "SEDOL": "-",
-      "Weight": "0.001437",
-      "Sector": "-",
-      "Shares Held": "364421.66",
-      "Local Currency": "CZK"
-    },
-    {
-      "Name": "EURO CURRENCY",
-      "Ticker": "-",
-      "Identifier": "999EURZ94",
-      "SEDOL": "-",
-      "Weight": "0.001262",
-      "Sector": "-",
-      "Shares Held": "13135.68",
-      "Local Currency": "EUR"
-    },
-    {
-      "Name": "POLISH ZLOTY",
-      "Ticker": "-",
-      "Identifier": "999PLNZ98",
-      "SEDOL": "-",
-      "Weight": "0.00118",
-      "Sector": "-",
-      "Shares Held": "53867.44",
-      "Local Currency": "PLN"
-    },
-    {
-      "Name": "UAE DIRHAM",
-      "Ticker": "-",
-      "Identifier": "999AEDZ91",
-      "SEDOL": "-",
-      "Weight": "0.000892",
-      "Sector": "-",
-      "Shares Held": "38163.18",
-      "Local Currency": "AED"
+      "Shares Held": "828914.3",
+      "Local Currency": "HKD"
     },
     {
       "Name": "MEXICAN PESO (NEW)",
       "Ticker": "-",
       "Identifier": "999MXNZ92",
       "SEDOL": "-",
-      "Weight": "0.000645",
+      "Weight": "0.007979",
       "Sector": "-",
-      "Shares Held": "138112.76",
+      "Shares Held": "1737645.68",
       "Local Currency": "MXN"
+    },
+    {
+      "Name": "RATCH GROUP PCL",
+      "Ticker": "RATCH",
+      "Identifier": "BK1W1V905",
+      "SEDOL": "BK1W1V2",
+      "Weight": "0.005419",
+      "Sector": "-",
+      "Shares Held": "56400",
+      "Local Currency": "THB"
+    },
+    {
+      "Name": "QATARI RIAL",
+      "Ticker": "-",
+      "Identifier": "999QARZ99",
+      "SEDOL": "-",
+      "Weight": "0.004745",
+      "Sector": "-",
+      "Shares Held": "203961.97",
+      "Local Currency": "QAR"
+    },
+    {
+      "Name": "BRAZILIAN REAL",
+      "Ticker": "-",
+      "Identifier": "999BRLZ97",
+      "SEDOL": "-",
+      "Weight": "0.004068",
+      "Sector": "-",
+      "Shares Held": "242152.88",
+      "Local Currency": "BRL"
+    },
+    {
+      "Name": "SINGAPORE DOLLAR",
+      "Ticker": "-",
+      "Identifier": "999SGDZ90",
+      "SEDOL": "-",
+      "Weight": "0.002341",
+      "Sector": "-",
+      "Shares Held": "35449.99",
+      "Local Currency": "SGD"
     },
     {
       "Name": "HUNGARIAN FORINT",
       "Ticker": "-",
       "Identifier": "999HUFZ93",
       "SEDOL": "-",
-      "Weight": "0.000167",
+      "Weight": "0.001512",
       "Sector": "-",
-      "Shares Held": "634987.58",
+      "Shares Held": "5798824.58",
       "Local Currency": "HUF"
+    },
+    {
+      "Name": "CZECH KORUNA",
+      "Ticker": "-",
+      "Identifier": "999CZKZ98",
+      "SEDOL": "-",
+      "Weight": "0.00142",
+      "Sector": "-",
+      "Shares Held": "364421.66",
+      "Local Currency": "CZK"
+    },
+    {
+      "Name": "UAE DIRHAM",
+      "Ticker": "-",
+      "Identifier": "999AEDZ91",
+      "SEDOL": "-",
+      "Weight": "0.001345",
+      "Sector": "-",
+      "Shares Held": "58310.5",
+      "Local Currency": "AED"
+    },
+    {
+      "Name": "POLISH ZLOTY",
+      "Ticker": "-",
+      "Identifier": "999PLNZ98",
+      "SEDOL": "-",
+      "Weight": "0.00117",
+      "Sector": "-",
+      "Shares Held": "53867.44",
+      "Local Currency": "PLN"
+    },
+    {
+      "Name": "KUWAITI DINAR",
+      "Ticker": "-",
+      "Identifier": "999KWDZ99",
+      "SEDOL": "-",
+      "Weight": "0.001091",
+      "Sector": "-",
+      "Shares Held": "4005.62",
+      "Local Currency": "KWD"
+    },
+    {
+      "Name": "EURO CURRENCY",
+      "Ticker": "-",
+      "Identifier": "999EURZ94",
+      "SEDOL": "-",
+      "Weight": "0.000823",
+      "Sector": "-",
+      "Shares Held": "8675.46",
+      "Local Currency": "EUR"
     },
     {
       "Name": "PHILIPPINE PESO",
       "Ticker": "-",
       "Identifier": "999PHPZ98",
       "SEDOL": "-",
-      "Weight": "0.000029",
+      "Weight": "0.000028",
       "Sector": "-",
       "Shares Held": "21011.66",
       "Local Currency": "PHP"
@@ -1269,7 +1279,7 @@
       "Ticker": "-",
       "Identifier": "999EGPZ94",
       "SEDOL": "-",
-      "Weight": "0.000023",
+      "Weight": "0.000022",
       "Sector": "-",
       "Shares Held": "14020.01",
       "Local Currency": "EGP"
@@ -1283,16 +1293,6 @@
       "Sector": "-",
       "Shares Held": "577.97",
       "Local Currency": "MAD"
-    },
-    {
-      "Name": "SAUDI RIYAL",
-      "Ticker": "-",
-      "Identifier": "999SARZ95",
-      "SEDOL": "-",
-      "Weight": "0.000001",
-      "Sector": "-",
-      "Shares Held": "56.69",
-      "Local Currency": "SAR"
     },
     {
       "Name": "SOUTH KOREAN WON",
@@ -1325,16 +1325,6 @@
       "Local Currency": "GBP"
     },
     {
-      "Name": "EURO CURRENCY",
-      "Ticker": "-",
-      "Identifier": "EUR999999",
-      "SEDOL": "-",
-      "Weight": "0",
-      "Sector": "-",
-      "Shares Held": "-71452.66",
-      "Local Currency": "-"
-    },
-    {
       "Name": "COLOMBIAN PESO",
       "Ticker": "-",
       "Identifier": "999COPZ99",
@@ -1365,51 +1355,11 @@
       "Local Currency": "TRY"
     },
     {
-      "Name": "HONG KONG DOLLAR",
-      "Ticker": "-",
-      "Identifier": "HKD999999",
-      "SEDOL": "-",
-      "Weight": "0",
-      "Sector": "-",
-      "Shares Held": "-784811",
-      "Local Currency": "-"
-    },
-    {
-      "Name": "SOUTH AFRICAN RAND",
-      "Ticker": "-",
-      "Identifier": "ZAR999999",
-      "SEDOL": "-",
-      "Weight": "-0.000001",
-      "Sector": "-",
-      "Shares Held": "-2480811",
-      "Local Currency": "-"
-    },
-    {
-      "Name": "KUWAITI DINAR",
-      "Ticker": "-",
-      "Identifier": "KWD999999",
-      "SEDOL": "-",
-      "Weight": "-0.000002",
-      "Sector": "-",
-      "Shares Held": "-74669.52",
-      "Local Currency": "-"
-    },
-    {
-      "Name": "UAE DIRHAM",
-      "Ticker": "-",
-      "Identifier": "AED999999",
-      "SEDOL": "-",
-      "Weight": "-0.000002",
-      "Sector": "-",
-      "Shares Held": "-1212180.75",
-      "Local Currency": "-"
-    },
-    {
       "Name": "MSCI EMGMKT       DEC26",
       "Ticker": "MESZ6",
       "Identifier": "ADI2VCHN0",
       "SEDOL": "-",
-      "Weight": "-0.003371",
+      "Weight": "-0.034113",
       "Sector": "-",
       "Shares Held": "5000",
       "Local Currency": "USD"

@@ -28,19 +28,19 @@
     "value": null
   },
   "nav": {
-    "display": "$24.86",
-    "value": 24.86,
-    "asOfDate": "Oct 09 2026"
+    "display": "$24.87",
+    "value": 24.87,
+    "asOfDate": "Oct 15 2026"
   },
   "aum": {
-    "display": "$44.74 M",
-    "value": 44740000,
-    "asOfDate": "Oct 09 2026"
+    "display": "$44.76 M",
+    "value": 44760000,
+    "asOfDate": "Oct 15 2026"
   },
   "pricing": {
     "exchange": "NASDAQ REGULAR MARKET",
     "closePrice": "$24.88",
-    "premiumDiscount": "0.08%"
+    "premiumDiscount": "0.07%"
   },
   "inceptionDate": "Sep 23 2024",
   "returns": {
@@ -98,8 +98,8 @@
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
     "indicatedDividendYield": 4.4,
-    "secYield": 4.86,
-    "secYieldUnsubsidized": 4.86,
+    "secYield": 4.91,
+    "secYieldUnsubsidized": 4.91,
     "tr1yText": "3.61%",
     "tr3yText": null,
     "tr5yText": null,
@@ -110,8 +110,8 @@
     "siAnnText": "3.99%",
     "indicatedDividendYieldText": "4.40%",
     "dividendYieldText": "4.30%",
-    "secYieldText": "4.86%",
-    "secYieldUnsubsidizedText": "4.86%",
+    "secYieldText": "4.91%",
+    "secYieldUnsubsidizedText": "4.91%",
     "ytdText": "2.41%",
     "returnsBasis": "official SSGA month-end NAV total returns (YTD, 1Y, annualized 3Y/5Y/10Y and since inception); tr3y/tr5y/tr10y are derived from the official annualized figures as (1 + CAGR)^n - 1; no Yahoo or market-price estimates",
     "performanceAsOf": "2026-09-30"
@@ -330,17 +330,17 @@
     ]
   },
   "holdings": {
-    "totalRows": 168,
+    "totalRows": 166,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "09-Oct-2026",
+    "asOfDate": "15-Oct-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 515,
+    "totalRows": 518,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
@@ -348,12 +348,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 444,
+    "totalRows": 449,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "09-Oct-2026"
+    "asOfDate": "16-Oct-2026"
   }
 }
