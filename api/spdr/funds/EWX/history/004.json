@@ -2,7 +2,7 @@
   "ticker": "EWX",
   "page": 4,
   "pageSize": 1000,
-  "totalRows": 4637,
+  "totalRows": 4638,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "10-Nov-2014",
+      "NAV": "47.208412",
+      "Shares Outstanding": "10800000",
+      "Total Net Assets": "509850847.1"
+    },
     {
       "Date": "07-Nov-2014",
       "NAV": "46.97523",
@@ -6003,12 +6009,6 @@
       "NAV": "55.541049",
       "Shares Outstanding": "21300000",
       "Total Net Assets": "1183024353.38"
-    },
-    {
-      "Date": "23-Nov-2010",
-      "NAV": "55.513195",
-      "Shares Outstanding": "21300000",
-      "Total Net Assets": "1182431061.1"
     }
   ]
 }

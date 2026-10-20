@@ -2,7 +2,7 @@
   "ticker": "SPYD",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 2762,
+  "totalRows": 2763,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "20-Oct-2022",
+      "NAV": "36.327065",
+      "Shares Outstanding": "199050000",
+      "Total Net Assets": "7230902276.99"
+    },
     {
       "Date": "19-Oct-2022",
       "NAV": "36.716317",
@@ -6003,12 +6009,6 @@
       "NAV": "36.433472",
       "Shares Outstanding": "20200000",
       "Total Net Assets": "735956141.5"
-    },
-    {
-      "Date": "30-Oct-2018",
-      "NAV": "36.650021",
-      "Shares Outstanding": "20200000",
-      "Total Net Assets": "740330416.26"
     }
   ]
 }

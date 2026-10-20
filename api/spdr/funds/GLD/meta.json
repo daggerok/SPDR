@@ -40,7 +40,7 @@
   "pricing": {
     "exchange": "NYSE ARCA",
     "closePrice": "$382.01",
-    "premiumDiscount": null
+    "premiumDiscount": "0.03%"
   },
   "inceptionDate": "Nov 18 2004",
   "returns": {
@@ -131,7 +131,7 @@
     "status": "empty"
   },
   "history": {
-    "totalRows": 5552,
+    "totalRows": 5553,
     "pageSize": 1000,
     "pageCount": 6,
     "pages": [
@@ -144,12 +144,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 458,
+    "totalRows": 459,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "16-Oct-2026"
+    "asOfDate": "19-Oct-2026"
   }
 }

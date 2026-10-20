@@ -2,7 +2,7 @@
   "ticker": "SPTL",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 4880,
+  "totalRows": 4881,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "20-Oct-2022",
+      "NAV": "27.669588",
+      "Shares Outstanding": "168000000",
+      "Total Net Assets": "4648490840.72"
+    },
     {
       "Date": "19-Oct-2022",
       "NAV": "28.083478",
@@ -6003,12 +6009,6 @@
       "NAV": "32.687233",
       "Shares Outstanding": "34500000",
       "Total Net Assets": "1127709523.21"
-    },
-    {
-      "Date": "30-Oct-2018",
-      "NAV": "32.951733",
-      "Shares Outstanding": "34200000",
-      "Total Net Assets": "1126949284.92"
     }
   ]
 }

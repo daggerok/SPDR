@@ -2,7 +2,7 @@
   "ticker": "XES",
   "page": 5,
   "pageSize": 1000,
-  "totalRows": 5117,
+  "totalRows": 5118,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "23-Nov-2010",
+      "NAV": "33.735441",
+      "Shares Outstanding": "10550000",
+      "Total Net Assets": "355908906.06"
+    },
     {
       "Date": "22-Nov-2010",
       "NAV": "34.447022",
@@ -6003,12 +6009,6 @@
       "NAV": "30.977497",
       "Shares Outstanding": "1050000",
       "Total Net Assets": "32526371.41"
-    },
-    {
-      "Date": "04-Dec-2006",
-      "NAV": "30.963689",
-      "Shares Outstanding": "1050000",
-      "Total Net Assets": "32511873.33"
     }
   ]
 }

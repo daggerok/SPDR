@@ -2,7 +2,7 @@
   "ticker": "SPLB",
   "page": 3,
   "pageSize": 1000,
-  "totalRows": 4432,
+  "totalRows": 4433,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "30-Oct-2018",
+      "NAV": "25.266161",
+      "Shares Outstanding": "14349986",
+      "Total Net Assets": "362569051.36"
+    },
     {
       "Date": "29-Oct-2018",
       "NAV": "25.411585",
@@ -6003,12 +6009,6 @@
       "NAV": "40.172607",
       "Shares Outstanding": "6300000",
       "Total Net Assets": "253087420.96"
-    },
-    {
-      "Date": "10-Nov-2014",
-      "NAV": "40.16914",
-      "Shares Outstanding": "6200000",
-      "Total Net Assets": "249048668.25"
     }
   ]
 }

@@ -40,7 +40,7 @@
   "pricing": {
     "exchange": "NYSE ARCA",
     "closePrice": "$82.46",
-    "premiumDiscount": null
+    "premiumDiscount": "0.04%"
   },
   "inceptionDate": "Jun 25 2018",
   "returns": {
@@ -131,7 +131,7 @@
     "status": "empty"
   },
   "history": {
-    "totalRows": 2130,
+    "totalRows": 2131,
     "pageSize": 1000,
     "pageCount": 3,
     "pages": [
@@ -141,12 +141,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 458,
+    "totalRows": 459,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "16-Oct-2026"
+    "asOfDate": "19-Oct-2026"
   }
 }

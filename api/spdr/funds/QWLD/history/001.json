@@ -2,7 +2,7 @@
   "ticker": "QWLD",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 3111,
+  "totalRows": 3112,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "16-Oct-2026",
+      "NAV": "157.816085",
+      "Shares Outstanding": "1125000",
+      "Total Net Assets": "177543095.36"
+    },
     {
       "Date": "15-Oct-2026",
       "NAV": "157.755773",
@@ -6003,12 +6009,6 @@
       "NAV": "87.509498",
       "Shares Outstanding": "700000",
       "Total Net Assets": "61256648.74"
-    },
-    {
-      "Date": "20-Oct-2022",
-      "NAV": "86.51969",
-      "Shares Outstanding": "700000",
-      "Total Net Assets": "60563783.24"
     }
   ]
 }

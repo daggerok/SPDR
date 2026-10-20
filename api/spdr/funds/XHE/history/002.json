@@ -2,7 +2,7 @@
   "ticker": "XHE",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 3957,
+  "totalRows": 3958,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "20-Oct-2022",
+      "NAV": "82.653121",
+      "Shares Outstanding": "4450000",
+      "Total Net Assets": "367806387.36"
+    },
     {
       "Date": "19-Oct-2022",
       "NAV": "83.175466",
@@ -6003,12 +6009,6 @@
       "NAV": "77.145296",
       "Shares Outstanding": "8900000",
       "Total Net Assets": "686593132.49"
-    },
-    {
-      "Date": "30-Oct-2018",
-      "NAV": "76.913228",
-      "Shares Outstanding": "8900000",
-      "Total Net Assets": "684527725.95"
     }
   ]
 }

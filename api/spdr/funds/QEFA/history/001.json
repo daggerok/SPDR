@@ -2,7 +2,7 @@
   "ticker": "QEFA",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 3111,
+  "totalRows": 3112,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "16-Oct-2026",
+      "NAV": "99.9863",
+      "Shares Outstanding": "10450000",
+      "Total Net Assets": "1044856834.01"
+    },
     {
       "Date": "15-Oct-2026",
       "NAV": "98.829432",
@@ -6003,12 +6009,6 @@
       "NAV": "56.198007",
       "Shares Outstanding": "12550000",
       "Total Net Assets": "705284985.92"
-    },
-    {
-      "Date": "20-Oct-2022",
-      "NAV": "56.817935",
-      "Shares Outstanding": "12450000",
-      "Total Net Assets": "707383288.4"
     }
   ]
 }

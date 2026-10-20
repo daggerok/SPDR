@@ -2,7 +2,7 @@
   "ticker": "SHM",
   "page": 3,
   "pageSize": 1000,
-  "totalRows": 4784,
+  "totalRows": 4785,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "30-Oct-2018",
+      "NAV": "47.62656",
+      "Shares Outstanding": "77451082",
+      "Total Net Assets": "3688728586.7"
+    },
     {
       "Date": "29-Oct-2018",
       "NAV": "47.639599",
@@ -6003,12 +6009,6 @@
       "NAV": "24.37583",
       "Shares Outstanding": "97302164",
       "Total Net Assets": "2371820959.78"
-    },
-    {
-      "Date": "10-Nov-2014",
-      "NAV": "24.373371",
-      "Shares Outstanding": "97302164",
-      "Total Net Assets": "2371581788.24"
     }
   ]
 }

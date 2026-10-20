@@ -2,7 +2,7 @@
   "ticker": "SIMS",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 2213,
+  "totalRows": 2214,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "16-Oct-2026",
+      "NAV": "41.342762",
+      "Shares Outstanding": "190000",
+      "Total Net Assets": "7855124.76"
+    },
     {
       "Date": "15-Oct-2026",
       "NAV": "41.735415",
@@ -6003,12 +6009,6 @@
       "NAV": "32.492778",
       "Shares Outstanding": "870000",
       "Total Net Assets": "28268717"
-    },
-    {
-      "Date": "20-Oct-2022",
-      "NAV": "31.673615",
-      "Shares Outstanding": "870000",
-      "Total Net Assets": "27556045.09"
     }
   ]
 }

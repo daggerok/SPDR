@@ -2,7 +2,7 @@
   "ticker": "MMTM",
   "page": 6,
   "pageSize": 250,
-  "totalRows": 1478,
+  "totalRows": 1491,
   "headers": [
     "Name",
     "Ticker",
@@ -19,9 +19,19 @@
       "Ticker": "EYE",
       "Identifier": "63845R107",
       "SEDOL": "BYP71H7",
-      "Weight": "0.000945",
+      "Weight": "0.000946",
       "Sector": "-",
       "Shares Held": "70",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "MIDDLESEX WATER CO",
+      "Ticker": "MSEX",
+      "Identifier": "596680108",
+      "SEDOL": "2589466",
+      "Weight": "0.000931",
+      "Sector": "-",
+      "Shares Held": "22",
       "Local Currency": "USD"
     },
     {
@@ -35,33 +45,13 @@
       "Local Currency": "USD"
     },
     {
-      "Name": "FACTSET RESEARCH SYSTEMS INC",
-      "Ticker": "FDS",
-      "Identifier": "303075105",
-      "SEDOL": "2329770",
-      "Weight": "0.000923",
+      "Name": "FTI CONSULTING INC",
+      "Ticker": "FCN",
+      "Identifier": "302941109",
+      "SEDOL": "2351449",
+      "Weight": "0.000921",
       "Sector": "-",
-      "Shares Held": "4",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "LULULEMON ATHLETICA INC",
-      "Ticker": "LULU",
-      "Identifier": "550021109",
-      "SEDOL": "B23FN39",
-      "Weight": "0.000909",
-      "Sector": "-",
-      "Shares Held": "12",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "MIDDLESEX WATER CO",
-      "Ticker": "MSEX",
-      "Identifier": "596680108",
-      "SEDOL": "2589466",
-      "Weight": "0.000906",
-      "Sector": "-",
-      "Shares Held": "22",
+      "Shares Held": "8",
       "Local Currency": "USD"
     },
     {
@@ -69,59 +59,19 @@
       "Ticker": "TMP",
       "Identifier": "890110109",
       "SEDOL": "2888613",
-      "Weight": "0.000892",
+      "Weight": "0.000908",
       "Sector": "-",
       "Shares Held": "12",
       "Local Currency": "USD"
     },
     {
-      "Name": "ADDUS HOMECARE CORP",
-      "Ticker": "ADUS",
-      "Identifier": "6739106",
-      "SEDOL": "B55BN47",
-      "Weight": "0.00089",
+      "Name": "LULULEMON ATHLETICA INC",
+      "Ticker": "LULU",
+      "Identifier": "550021109",
+      "SEDOL": "B23FN39",
+      "Weight": "0.000903",
       "Sector": "-",
-      "Shares Held": "10",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "AMERICAN ASSETS TRUST INC",
-      "Ticker": "AAT",
-      "Identifier": "24013104",
-      "SEDOL": "B3NTLD4",
-      "Weight": "0.000885",
-      "Sector": "-",
-      "Shares Held": "54",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "PATRICK INDUSTRIES INC",
-      "Ticker": "PATK",
-      "Identifier": "703343103",
-      "SEDOL": "2673154",
-      "Weight": "0.000885",
-      "Sector": "-",
-      "Shares Held": "17",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "PINTEREST INC  CLASS A",
-      "Ticker": "PINS",
-      "Identifier": "72352L106",
-      "SEDOL": "BJ2Z0H2",
-      "Weight": "0.000885",
-      "Sector": "-",
-      "Shares Held": "51",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "SPRINKLR INC A",
-      "Ticker": "CXM",
-      "Identifier": "85208T107",
-      "SEDOL": "BNKCPP6",
-      "Weight": "0.000876",
-      "Sector": "-",
-      "Shares Held": "196",
+      "Shares Held": "12",
       "Local Currency": "USD"
     },
     {
@@ -129,19 +79,79 @@
       "Ticker": "WMG",
       "Identifier": "934550203",
       "SEDOL": "BLGJ610",
-      "Weight": "0.000868",
+      "Weight": "0.000901",
       "Sector": "-",
       "Shares Held": "37",
       "Local Currency": "USD"
     },
     {
-      "Name": "TRIMBLE INC",
-      "Ticker": "TRMB",
-      "Identifier": "896239100",
-      "SEDOL": "2903958",
-      "Weight": "0.000839",
+      "Name": "ADDUS HOMECARE CORP",
+      "Ticker": "ADUS",
+      "Identifier": "6739106",
+      "SEDOL": "B55BN47",
+      "Weight": "0.000899",
       "Sector": "-",
-      "Shares Held": "18",
+      "Shares Held": "10",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "PATRICK INDUSTRIES INC",
+      "Ticker": "PATK",
+      "Identifier": "703343103",
+      "SEDOL": "2673154",
+      "Weight": "0.000897",
+      "Sector": "-",
+      "Shares Held": "17",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "AMERICAN ASSETS TRUST INC",
+      "Ticker": "AAT",
+      "Identifier": "24013104",
+      "SEDOL": "B3NTLD4",
+      "Weight": "0.000891",
+      "Sector": "-",
+      "Shares Held": "54",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "SPRINKLR INC A",
+      "Ticker": "CXM",
+      "Identifier": "85208T107",
+      "SEDOL": "BNKCPP6",
+      "Weight": "0.000886",
+      "Sector": "-",
+      "Shares Held": "196",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "NEXTPOWER INC",
+      "Ticker": "NXT",
+      "Identifier": "65290E101",
+      "SEDOL": "BR1GTS6",
+      "Weight": "0.000869",
+      "Sector": "-",
+      "Shares Held": "14",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "PINTEREST INC  CLASS A",
+      "Ticker": "PINS",
+      "Identifier": "72352L106",
+      "SEDOL": "BJ2Z0H2",
+      "Weight": "0.000866",
+      "Sector": "-",
+      "Shares Held": "51",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "INSTALLED BUILDING PRODUCTS",
+      "Ticker": "IBP",
+      "Identifier": "45780R101",
+      "SEDOL": "BJSP4C9",
+      "Weight": "0.000864",
+      "Sector": "-",
+      "Shares Held": "6",
       "Local Currency": "USD"
     },
     {
@@ -149,19 +159,9 @@
       "Ticker": "VSNT",
       "Identifier": "925283103",
       "SEDOL": "BVV5S84",
-      "Weight": "0.000836",
+      "Weight": "0.000862",
       "Sector": "-",
       "Shares Held": "35",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "ADT INC",
-      "Ticker": "ADT",
-      "Identifier": "00090Q103",
-      "SEDOL": "BFWCP81",
-      "Weight": "0.000834",
-      "Sector": "-",
-      "Shares Held": "159",
       "Local Currency": "USD"
     },
     {
@@ -169,9 +169,29 @@
       "Ticker": "POST",
       "Identifier": "737446104",
       "SEDOL": "B6T0518",
-      "Weight": "0.000828",
+      "Weight": "0.000852",
       "Sector": "-",
       "Shares Held": "14",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "BWX TECHNOLOGIES INC",
+      "Ticker": "BWXT",
+      "Identifier": "05605H100",
+      "SEDOL": "BZ0W624",
+      "Weight": "0.00085",
+      "Sector": "-",
+      "Shares Held": "8",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "ADT INC",
+      "Ticker": "ADT",
+      "Identifier": "00090Q103",
+      "SEDOL": "BFWCP81",
+      "Weight": "0.000847",
+      "Sector": "-",
+      "Shares Held": "159",
       "Local Currency": "USD"
     },
     {
@@ -179,9 +199,39 @@
       "Ticker": "SAM",
       "Identifier": "100557107",
       "SEDOL": "2113393",
-      "Weight": "0.000822",
+      "Weight": "0.000841",
       "Sector": "-",
       "Shares Held": "6",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "LENNOX INTERNATIONAL INC",
+      "Ticker": "LII",
+      "Identifier": "526107107",
+      "SEDOL": "2442053",
+      "Weight": "0.000832",
+      "Sector": "-",
+      "Shares Held": "3",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "TRIMBLE INC",
+      "Ticker": "TRMB",
+      "Identifier": "896239100",
+      "SEDOL": "2903958",
+      "Weight": "0.00083",
+      "Sector": "-",
+      "Shares Held": "18",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "BOOZ ALLEN HAMILTON HOLDINGS",
+      "Ticker": "BAH",
+      "Identifier": "99502106",
+      "SEDOL": "B5367T7",
+      "Weight": "0.000806",
+      "Sector": "-",
+      "Shares Held": "14",
       "Local Currency": "USD"
     },
     {
@@ -195,53 +245,23 @@
       "Local Currency": "USD"
     },
     {
-      "Name": "BOOZ ALLEN HAMILTON HOLDINGS",
-      "Ticker": "BAH",
-      "Identifier": "99502106",
-      "SEDOL": "B5367T7",
-      "Weight": "0.000797",
-      "Sector": "-",
-      "Shares Held": "14",
-      "Local Currency": "USD"
-    },
-    {
       "Name": "UPBOUND GROUP INC",
       "Ticker": "UPBD",
       "Identifier": "76009N100",
       "SEDOL": "2733092",
-      "Weight": "0.000792",
+      "Weight": "0.0008",
       "Sector": "-",
       "Shares Held": "63",
       "Local Currency": "USD"
     },
     {
-      "Name": "SAFEHOLD INC",
-      "Ticker": "SAFE",
-      "Identifier": "78646V107",
-      "SEDOL": "BMDBB99",
-      "Weight": "0.000768",
+      "Name": "KONTOOR BRANDS INC",
+      "Ticker": "KTB",
+      "Identifier": "50050N103",
+      "SEDOL": "BJTJGC4",
+      "Weight": "0.000795",
       "Sector": "-",
-      "Shares Held": "87",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "ALPHA + OMEGA SEMICONDUCTOR",
-      "Ticker": "AOSL",
-      "Identifier": "G6331P104",
-      "SEDOL": "B5Q3KZ2",
-      "Weight": "0.000767",
-      "Sector": "-",
-      "Shares Held": "43",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "PAPA JOHN S INTL INC",
-      "Ticker": "PZZA",
-      "Identifier": "698813102",
-      "SEDOL": "2696117",
-      "Weight": "0.000763",
-      "Sector": "-",
-      "Shares Held": "51",
+      "Shares Held": "14",
       "Local Currency": "USD"
     },
     {
@@ -249,29 +269,39 @@
       "Ticker": "CHTR",
       "Identifier": "16119P108",
       "SEDOL": "BZ6VT82",
-      "Weight": "0.000757",
+      "Weight": "0.000768",
       "Sector": "-",
       "Shares Held": "9",
       "Local Currency": "USD"
     },
     {
-      "Name": "CALIFORNIA WATER SERVICE GRP",
-      "Ticker": "CWT",
-      "Identifier": "130788102",
-      "SEDOL": "2165383",
-      "Weight": "0.000739",
+      "Name": "PAPA JOHN S INTL INC",
+      "Ticker": "PZZA",
+      "Identifier": "698813102",
+      "SEDOL": "2696117",
+      "Weight": "0.000767",
       "Sector": "-",
-      "Shares Held": "21",
+      "Shares Held": "51",
       "Local Currency": "USD"
     },
     {
-      "Name": "DELUXE CORP",
-      "Ticker": "DLX",
-      "Identifier": "248019101",
-      "SEDOL": "2260363",
-      "Weight": "0.000735",
+      "Name": "SAFEHOLD INC",
+      "Ticker": "SAFE",
+      "Identifier": "78646V107",
+      "SEDOL": "BMDBB99",
+      "Weight": "0.000765",
       "Sector": "-",
-      "Shares Held": "42",
+      "Shares Held": "87",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "BOYD GAMING CORP",
+      "Ticker": "BYD",
+      "Identifier": "103304101",
+      "SEDOL": "2117232",
+      "Weight": "0.00076",
+      "Sector": "-",
+      "Shares Held": "14",
       "Local Currency": "USD"
     },
     {
@@ -279,9 +309,29 @@
       "Ticker": "FIZZ",
       "Identifier": "635017106",
       "SEDOL": "2638625",
-      "Weight": "0.000734",
+      "Weight": "0.000759",
       "Sector": "-",
       "Shares Held": "28",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "DELUXE CORP",
+      "Ticker": "DLX",
+      "Identifier": "248019101",
+      "SEDOL": "2260363",
+      "Weight": "0.000755",
+      "Sector": "-",
+      "Shares Held": "42",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "CALIFORNIA WATER SERVICE GRP",
+      "Ticker": "CWT",
+      "Identifier": "130788102",
+      "SEDOL": "2165383",
+      "Weight": "0.000755",
+      "Sector": "-",
+      "Shares Held": "21",
       "Local Currency": "USD"
     },
     {
@@ -289,39 +339,29 @@
       "Ticker": "GPI",
       "Identifier": "398905109",
       "SEDOL": "2121352",
-      "Weight": "0.000733",
+      "Weight": "0.000751",
       "Sector": "-",
       "Shares Held": "4",
       "Local Currency": "USD"
     },
     {
-      "Name": "ALASKA AIR GROUP INC",
-      "Ticker": "ALK",
-      "Identifier": "11659109",
-      "SEDOL": "2012605",
-      "Weight": "0.000697",
+      "Name": "FIDELITY NATIONAL FINANCIAL",
+      "Ticker": "FNF",
+      "Identifier": "31620R303",
+      "SEDOL": "BNBRDD4",
+      "Weight": "0.000745",
       "Sector": "-",
-      "Shares Held": "25",
+      "Shares Held": "24",
       "Local Currency": "USD"
     },
     {
-      "Name": "KOPPERS HOLDINGS INC",
-      "Ticker": "KOP",
-      "Identifier": "50060P106",
-      "SEDOL": "B0X46B1",
-      "Weight": "0.000697",
+      "Name": "ALPHA + OMEGA SEMICONDUCTOR",
+      "Ticker": "AOSL",
+      "Identifier": "G6331P104",
+      "SEDOL": "B5Q3KZ2",
+      "Weight": "0.000725",
       "Sector": "-",
-      "Shares Held": "21",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "ENERPAC TOOL GROUP CORP",
-      "Ticker": "EPAC",
-      "Identifier": "292765104",
-      "SEDOL": "BH3T5K7",
-      "Weight": "0.000697",
-      "Sector": "-",
-      "Shares Held": "26",
+      "Shares Held": "43",
       "Local Currency": "USD"
     },
     {
@@ -329,9 +369,49 @@
       "Ticker": "DPZ",
       "Identifier": "25754A201",
       "SEDOL": "B01SD70",
-      "Weight": "0.000695",
+      "Weight": "0.000718",
       "Sector": "-",
       "Shares Held": "3",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "ENERPAC TOOL GROUP CORP",
+      "Ticker": "EPAC",
+      "Identifier": "292765104",
+      "SEDOL": "BH3T5K7",
+      "Weight": "0.000709",
+      "Sector": "-",
+      "Shares Held": "26",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "LAS VEGAS SANDS CORP",
+      "Ticker": "LVS",
+      "Identifier": "517834107",
+      "SEDOL": "B02T2J7",
+      "Weight": "0.000707",
+      "Sector": "-",
+      "Shares Held": "24",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "KOPPERS HOLDINGS INC",
+      "Ticker": "KOP",
+      "Identifier": "50060P106",
+      "SEDOL": "B0X46B1",
+      "Weight": "0.000705",
+      "Sector": "-",
+      "Shares Held": "21",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "SOLAREDGE TECHNOLOGIES INC",
+      "Ticker": "SEDG",
+      "Identifier": "83417M104",
+      "SEDOL": "BWC52Q6",
+      "Weight": "0.000705",
+      "Sector": "-",
+      "Shares Held": "29",
       "Local Currency": "USD"
     },
     {
@@ -339,7 +419,7 @@
       "Ticker": "CTS",
       "Identifier": "126501105",
       "SEDOL": "2239244",
-      "Weight": "0.000676",
+      "Weight": "0.000682",
       "Sector": "-",
       "Shares Held": "16",
       "Local Currency": "USD"
@@ -349,9 +429,59 @@
       "Ticker": "MBGL",
       "Identifier": "60744M106",
       "SEDOL": "BWM34D1",
-      "Weight": "0.000672",
+      "Weight": "0.000681",
       "Sector": "-",
       "Shares Held": "47",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "ALASKA AIR GROUP INC",
+      "Ticker": "ALK",
+      "Identifier": "11659109",
+      "SEDOL": "2012605",
+      "Weight": "0.000681",
+      "Sector": "-",
+      "Shares Held": "25",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "DICK S SPORTING GOODS INC",
+      "Ticker": "DKS",
+      "Identifier": "253393102",
+      "SEDOL": "2969637",
+      "Weight": "0.000672",
+      "Sector": "-",
+      "Shares Held": "6",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "FOUR CORNERS PROPERTY TRUST",
+      "Ticker": "FCPT",
+      "Identifier": "35086T109",
+      "SEDOL": "BZ16HK0",
+      "Weight": "0.000665",
+      "Sector": "-",
+      "Shares Held": "39",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "APTIV PLC",
+      "Ticker": "APTV",
+      "Identifier": "G3265R107",
+      "SEDOL": "BTDN8H1",
+      "Weight": "0.000661",
+      "Sector": "-",
+      "Shares Held": "19",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "IPG PHOTONICS CORP",
+      "Ticker": "IPGP",
+      "Identifier": "44980X109",
+      "SEDOL": "2698782",
+      "Weight": "0.000661",
+      "Sector": "-",
+      "Shares Held": "12",
       "Local Currency": "USD"
     },
     {
@@ -359,7 +489,7 @@
       "Ticker": "TNC",
       "Identifier": "880345103",
       "SEDOL": "2883641",
-      "Weight": "0.000656",
+      "Weight": "0.000659",
       "Sector": "-",
       "Shares Held": "13",
       "Local Currency": "USD"
@@ -369,29 +499,9 @@
       "Ticker": "DXC",
       "Identifier": "23355L106",
       "SEDOL": "BYXD7B3",
-      "Weight": "0.000653",
+      "Weight": "0.000655",
       "Sector": "-",
       "Shares Held": "62",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "FOUR CORNERS PROPERTY TRUST",
-      "Ticker": "FCPT",
-      "Identifier": "35086T109",
-      "SEDOL": "BZ16HK0",
-      "Weight": "0.00065",
-      "Sector": "-",
-      "Shares Held": "39",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "STAAR SURGICAL CO",
-      "Ticker": "STAA",
-      "Identifier": "852312305",
-      "SEDOL": "2836292",
-      "Weight": "0.000646",
-      "Sector": "-",
-      "Shares Held": "38",
       "Local Currency": "USD"
     },
     {
@@ -399,7 +509,7 @@
       "Ticker": "LPX",
       "Identifier": "546347105",
       "SEDOL": "2535243",
-      "Weight": "0.000636",
+      "Weight": "0.000652",
       "Sector": "-",
       "Shares Held": "12",
       "Local Currency": "USD"
@@ -409,19 +519,29 @@
       "Ticker": "PCTY",
       "Identifier": "70438V106",
       "SEDOL": "BKM4N88",
-      "Weight": "0.000635",
+      "Weight": "0.000645",
       "Sector": "-",
       "Shares Held": "5",
       "Local Currency": "USD"
     },
     {
-      "Name": "ELF BEAUTY INC",
-      "Ticker": "ELF",
-      "Identifier": "26856L103",
-      "SEDOL": "BDDQ975",
-      "Weight": "0.000621",
+      "Name": "SPX TECHNOLOGIES INC",
+      "Ticker": "SPXC",
+      "Identifier": "78473E103",
+      "SEDOL": "BQ1L7V3",
+      "Weight": "0.000644",
       "Sector": "-",
-      "Shares Held": "7",
+      "Shares Held": "5",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "STAAR SURGICAL CO",
+      "Ticker": "STAA",
+      "Identifier": "852312305",
+      "SEDOL": "2836292",
+      "Weight": "0.000627",
+      "Sector": "-",
+      "Shares Held": "38",
       "Local Currency": "USD"
     },
     {
@@ -429,19 +549,19 @@
       "Ticker": "WDFC",
       "Identifier": "929236107",
       "SEDOL": "2944742",
-      "Weight": "0.000615",
+      "Weight": "0.000617",
       "Sector": "-",
       "Shares Held": "4",
       "Local Currency": "USD"
     },
     {
-      "Name": "COMMVAULT SYSTEMS INC",
-      "Ticker": "CVLT",
-      "Identifier": "204166102",
-      "SEDOL": "B142B38",
-      "Weight": "0.000607",
+      "Name": "ELF BEAUTY INC",
+      "Ticker": "ELF",
+      "Identifier": "26856L103",
+      "SEDOL": "BDDQ975",
+      "Weight": "0.000616",
       "Sector": "-",
-      "Shares Held": "5",
+      "Shares Held": "7",
       "Local Currency": "USD"
     },
     {
@@ -449,7 +569,7 @@
       "Ticker": "PSN",
       "Identifier": "70202L102",
       "SEDOL": "BJN4N02",
-      "Weight": "0.000607",
+      "Weight": "0.000616",
       "Sector": "-",
       "Shares Held": "18",
       "Local Currency": "USD"
@@ -459,29 +579,19 @@
       "Ticker": "TRUP",
       "Identifier": "898202106",
       "SEDOL": "BP3YM85",
-      "Weight": "0.000596",
+      "Weight": "0.00061",
       "Sector": "-",
       "Shares Held": "28",
       "Local Currency": "USD"
     },
     {
-      "Name": "QUALYS INC",
-      "Ticker": "QLYS",
-      "Identifier": "74758T303",
-      "SEDOL": "B7XJTN8",
-      "Weight": "0.000589",
+      "Name": "POLARIS INC",
+      "Ticker": "PII",
+      "Identifier": "731068102",
+      "SEDOL": "2692933",
+      "Weight": "0.000607",
       "Sector": "-",
-      "Shares Held": "4",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "AGNT INC",
-      "Ticker": "AGNT",
-      "Identifier": "30212W100",
-      "SEDOL": "BDH2902",
-      "Weight": "0.000586",
-      "Sector": "-",
-      "Shares Held": "196",
+      "Shares Held": "15",
       "Local Currency": "USD"
     },
     {
@@ -489,49 +599,29 @@
       "Ticker": "CHH",
       "Identifier": "169905106",
       "SEDOL": "2106780",
-      "Weight": "0.000572",
+      "Weight": "0.000588",
       "Sector": "-",
       "Shares Held": "7",
       "Local Currency": "USD"
     },
     {
-      "Name": "DUOLINGO",
-      "Ticker": "DUOL",
-      "Identifier": "26603R106",
-      "SEDOL": "BMCM6P4",
-      "Weight": "0.000569",
+      "Name": "S+P500 EMINI FUT  DEC26",
+      "Ticker": "ESZ6",
+      "Identifier": "ADI2VB4H9",
+      "SEDOL": "-",
+      "Weight": "0.000582",
       "Sector": "-",
-      "Shares Held": "5",
+      "Shares Held": "100",
       "Local Currency": "USD"
     },
     {
-      "Name": "TANDEM DIABETES CARE INC",
-      "Ticker": "TNDM",
-      "Identifier": "875372203",
-      "SEDOL": "BF3W461",
-      "Weight": "0.000568",
+      "Name": "AGNT INC",
+      "Ticker": "AGNT",
+      "Identifier": "30212W100",
+      "SEDOL": "BDH2902",
+      "Weight": "0.000582",
       "Sector": "-",
-      "Shares Held": "45",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "AMPHASTAR PHARMACEUTICALS IN",
-      "Ticker": "AMPH",
-      "Identifier": "03209R103",
-      "SEDOL": "BNFWZS4",
-      "Weight": "0.000565",
-      "Sector": "-",
-      "Shares Held": "28",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "SPROUTS FARMERS MARKET INC",
-      "Ticker": "SFM",
-      "Identifier": "85208M102",
-      "SEDOL": "BCGCR79",
-      "Weight": "0.00056",
-      "Sector": "-",
-      "Shares Held": "11",
+      "Shares Held": "196",
       "Local Currency": "USD"
     },
     {
@@ -539,7 +629,7 @@
       "Ticker": "MKC",
       "Identifier": "579780206",
       "SEDOL": "2550161",
-      "Weight": "0.000559",
+      "Weight": "0.000575",
       "Sector": "-",
       "Shares Held": "16",
       "Local Currency": "USD"
@@ -549,7 +639,7 @@
       "Ticker": "MZTI",
       "Identifier": "513847103",
       "SEDOL": "2503206",
-      "Weight": "0.000552",
+      "Weight": "0.000567",
       "Sector": "-",
       "Shares Held": "7",
       "Local Currency": "USD"
@@ -559,9 +649,19 @@
       "Ticker": "ERIE",
       "Identifier": "29530P102",
       "SEDOL": "2311711",
-      "Weight": "0.000547",
+      "Weight": "0.000567",
       "Sector": "-",
       "Shares Held": "3",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "TANDEM DIABETES CARE INC",
+      "Ticker": "TNDM",
+      "Identifier": "875372203",
+      "SEDOL": "BF3W461",
+      "Weight": "0.000567",
+      "Sector": "-",
+      "Shares Held": "45",
       "Local Currency": "USD"
     },
     {
@@ -569,19 +669,29 @@
       "Ticker": "KNSL",
       "Identifier": "49714P108",
       "SEDOL": "BD1MGQ3",
-      "Weight": "0.000546",
+      "Weight": "0.000566",
       "Sector": "-",
       "Shares Held": "2",
       "Local Currency": "USD"
     },
     {
-      "Name": "HIMS + HERS HEALTH INC",
-      "Ticker": "HIMS",
-      "Identifier": "433000106",
-      "SEDOL": "BN46048",
-      "Weight": "0.000539",
+      "Name": "AMPHASTAR PHARMACEUTICALS IN",
+      "Ticker": "AMPH",
+      "Identifier": "03209R103",
+      "SEDOL": "BNFWZS4",
+      "Weight": "0.000562",
       "Sector": "-",
-      "Shares Held": "24",
+      "Shares Held": "28",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "SPROUTS FARMERS MARKET INC",
+      "Ticker": "SFM",
+      "Identifier": "85208M102",
+      "SEDOL": "BCGCR79",
+      "Weight": "0.000556",
+      "Sector": "-",
+      "Shares Held": "11",
       "Local Currency": "USD"
     },
     {
@@ -589,9 +699,19 @@
       "Ticker": "TAP",
       "Identifier": "60871R209",
       "SEDOL": "B067BM3",
-      "Weight": "0.000537",
+      "Weight": "0.000552",
       "Sector": "-",
       "Shares Held": "18",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "DUOLINGO",
+      "Ticker": "DUOL",
+      "Identifier": "26603R106",
+      "SEDOL": "BMCM6P4",
+      "Weight": "0.00055",
+      "Sector": "-",
+      "Shares Held": "5",
       "Local Currency": "USD"
     },
     {
@@ -599,7 +719,7 @@
       "Ticker": "LTC",
       "Identifier": "502175102",
       "SEDOL": "2498788",
-      "Weight": "0.00053",
+      "Weight": "0.000542",
       "Sector": "-",
       "Shares Held": "16",
       "Local Currency": "USD"
@@ -609,49 +729,9 @@
       "Ticker": "IPAR",
       "Identifier": "458334109",
       "SEDOL": "2473150",
-      "Weight": "0.000528",
+      "Weight": "0.000538",
       "Sector": "-",
       "Shares Held": "6",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "NORTHWEST BANCSHARES INC",
-      "Ticker": "NWBI",
-      "Identifier": "667340103",
-      "SEDOL": "B523Z73",
-      "Weight": "0.000523",
-      "Sector": "-",
-      "Shares Held": "46",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "AGILYSYS INC",
-      "Ticker": "AGYS",
-      "Identifier": "00847J105",
-      "SEDOL": "2689162",
-      "Weight": "0.00052",
-      "Sector": "-",
-      "Shares Held": "6",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "GENPACT LTD",
-      "Ticker": "G",
-      "Identifier": "G3922B107",
-      "SEDOL": "B23DBK6",
-      "Weight": "0.000517",
-      "Sector": "-",
-      "Shares Held": "18",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "SABRE CORP",
-      "Ticker": "SABR",
-      "Identifier": "78573M104",
-      "SEDOL": "BLLHH27",
-      "Weight": "0.000517",
-      "Sector": "-",
-      "Shares Held": "378",
       "Local Currency": "USD"
     },
     {
@@ -659,19 +739,39 @@
       "Ticker": "POOL",
       "Identifier": "73278L105",
       "SEDOL": "2781585",
-      "Weight": "0.000517",
+      "Weight": "0.000535",
       "Sector": "-",
       "Shares Held": "4",
       "Local Currency": "USD"
     },
     {
-      "Name": "FOX FACTORY HOLDING CORP",
-      "Ticker": "FOXF",
-      "Identifier": "35138V102",
-      "SEDOL": "BCRY5K3",
-      "Weight": "0.000509",
+      "Name": "KRATOS DEFENSE + SECURITY",
+      "Ticker": "KTOS",
+      "Identifier": "50077B207",
+      "SEDOL": "2512149",
+      "Weight": "0.000533",
       "Sector": "-",
-      "Shares Held": "36",
+      "Shares Held": "17",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "NORTHWEST BANCSHARES INC",
+      "Ticker": "NWBI",
+      "Identifier": "667340103",
+      "SEDOL": "B523Z73",
+      "Weight": "0.000532",
+      "Sector": "-",
+      "Shares Held": "46",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "HIMS + HERS HEALTH INC",
+      "Ticker": "HIMS",
+      "Identifier": "433000106",
+      "SEDOL": "BN46048",
+      "Weight": "0.000522",
+      "Sector": "-",
+      "Shares Held": "24",
       "Local Currency": "USD"
     },
     {
@@ -679,9 +779,29 @@
       "Ticker": "EXLS",
       "Identifier": "302081104",
       "SEDOL": "B07LST0",
-      "Weight": "0.000508",
+      "Weight": "0.000521",
       "Sector": "-",
       "Shares Held": "17",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "GENPACT LTD",
+      "Ticker": "G",
+      "Identifier": "G3922B107",
+      "SEDOL": "B23DBK6",
+      "Weight": "0.00052",
+      "Sector": "-",
+      "Shares Held": "18",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "AGILYSYS INC",
+      "Ticker": "AGYS",
+      "Identifier": "00847J105",
+      "SEDOL": "2689162",
+      "Weight": "0.000511",
+      "Sector": "-",
+      "Shares Held": "6",
       "Local Currency": "USD"
     },
     {
@@ -689,39 +809,9 @@
       "Ticker": "HNI",
       "Identifier": "404251100",
       "SEDOL": "2435246",
-      "Weight": "0.000503",
+      "Weight": "0.000509",
       "Sector": "-",
       "Shares Held": "14",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "MARKETAXESS HOLDINGS INC",
-      "Ticker": "MKTX",
-      "Identifier": "57060D108",
-      "SEDOL": "B03Q9D0",
-      "Weight": "0.000503",
-      "Sector": "-",
-      "Shares Held": "4",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "APPFOLIO INC   A",
-      "Ticker": "APPF",
-      "Identifier": "03783C100",
-      "SEDOL": "BYN7H48",
-      "Weight": "0.000501",
-      "Sector": "-",
-      "Shares Held": "3",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "UNDER ARMOUR INC CLASS A",
-      "Ticker": "UAA",
-      "Identifier": "904311107",
-      "SEDOL": "B0PZN11",
-      "Weight": "0.0005",
-      "Sector": "-",
-      "Shares Held": "134",
       "Local Currency": "USD"
     },
     {
@@ -729,7 +819,7 @@
       "Ticker": "BLDR",
       "Identifier": "12008R107",
       "SEDOL": "B0BV2M7",
-      "Weight": "0.000492",
+      "Weight": "0.000508",
       "Sector": "-",
       "Shares Held": "12",
       "Local Currency": "USD"
@@ -739,29 +829,39 @@
       "Ticker": "TFX",
       "Identifier": "879369106",
       "SEDOL": "2881407",
-      "Weight": "0.00049",
+      "Weight": "0.000506",
       "Sector": "-",
       "Shares Held": "5",
       "Local Currency": "USD"
     },
     {
-      "Name": "INSIGHT ENTERPRISES INC",
-      "Ticker": "NSIT",
-      "Identifier": "45765U103",
-      "SEDOL": "2475060",
-      "Weight": "0.000486",
+      "Name": "APPFOLIO INC   A",
+      "Ticker": "APPF",
+      "Identifier": "03783C100",
+      "SEDOL": "BYN7H48",
+      "Weight": "0.000493",
       "Sector": "-",
-      "Shares Held": "4",
+      "Shares Held": "3",
       "Local Currency": "USD"
     },
     {
-      "Name": "UNDER ARMOUR INC CLASS C",
-      "Ticker": "UA",
-      "Identifier": "904311206",
-      "SEDOL": "BDF9YM2",
-      "Weight": "0.000483",
+      "Name": "UNDER ARMOUR INC CLASS A",
+      "Ticker": "UAA",
+      "Identifier": "904311107",
+      "SEDOL": "B0PZN11",
+      "Weight": "0.000492",
       "Sector": "-",
-      "Shares Held": "133",
+      "Shares Held": "134",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "SABRE CORP",
+      "Ticker": "SABR",
+      "Identifier": "78573M104",
+      "SEDOL": "BLLHH27",
+      "Weight": "0.000492",
+      "Sector": "-",
+      "Shares Held": "378",
       "Local Currency": "USD"
     },
     {
@@ -769,29 +869,29 @@
       "Ticker": "DORM",
       "Identifier": "258278100",
       "SEDOL": "2718594",
-      "Weight": "0.000472",
+      "Weight": "0.00048",
       "Sector": "-",
       "Shares Held": "5",
       "Local Currency": "USD"
     },
     {
-      "Name": "JETBLUE AIRWAYS CORP",
-      "Ticker": "JBLU",
-      "Identifier": "477143101",
-      "SEDOL": "2852760",
-      "Weight": "0.000469",
+      "Name": "UNDER ARMOUR INC CLASS C",
+      "Ticker": "UA",
+      "Identifier": "904311206",
+      "SEDOL": "BDF9YM2",
+      "Weight": "0.000477",
       "Sector": "-",
-      "Shares Held": "195",
+      "Shares Held": "133",
       "Local Currency": "USD"
     },
     {
-      "Name": "TRADE DESK INC/THE  CLASS A",
-      "Ticker": "TTD",
-      "Identifier": "88339J105",
-      "SEDOL": "BD8FDD1",
-      "Weight": "0.000452",
+      "Name": "LYFT INC A",
+      "Ticker": "LYFT",
+      "Identifier": "55087P104",
+      "SEDOL": "BJT1RW7",
+      "Weight": "0.000456",
       "Sector": "-",
-      "Shares Held": "45",
+      "Shares Held": "35",
       "Local Currency": "USD"
     },
     {
@@ -799,9 +899,39 @@
       "Ticker": "ESAB",
       "Identifier": "29605J106",
       "SEDOL": "BJLTMN5",
-      "Weight": "0.000451",
+      "Weight": "0.000456",
       "Sector": "-",
       "Shares Held": "9",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "FOX FACTORY HOLDING CORP",
+      "Ticker": "FOXF",
+      "Identifier": "35138V102",
+      "SEDOL": "BCRY5K3",
+      "Weight": "0.000448",
+      "Sector": "-",
+      "Shares Held": "36",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "JETBLUE AIRWAYS CORP",
+      "Ticker": "JBLU",
+      "Identifier": "477143101",
+      "SEDOL": "2852760",
+      "Weight": "0.000443",
+      "Sector": "-",
+      "Shares Held": "195",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "HILTON GRAND VACATIONS INC",
+      "Ticker": "HGV",
+      "Identifier": "43283X105",
+      "SEDOL": "BYSLHX4",
+      "Weight": "0.00044",
+      "Sector": "-",
+      "Shares Held": "16",
       "Local Currency": "USD"
     },
     {
@@ -809,19 +939,29 @@
       "Ticker": "VNT",
       "Identifier": "928881101",
       "SEDOL": "BH4GV32",
-      "Weight": "0.000433",
+      "Weight": "0.000439",
       "Sector": "-",
       "Shares Held": "17",
       "Local Currency": "USD"
     },
     {
-      "Name": "AVANTOR INC",
-      "Ticker": "AVTR",
-      "Identifier": "05352A100",
-      "SEDOL": "BJLT387",
-      "Weight": "0.000418",
+      "Name": "MP MATERIALS CORP",
+      "Ticker": "MP",
+      "Identifier": "553368101",
+      "SEDOL": "BN15Y35",
+      "Weight": "0.000436",
       "Sector": "-",
-      "Shares Held": "34",
+      "Shares Held": "14",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "TRADE DESK INC/THE  CLASS A",
+      "Ticker": "TTD",
+      "Identifier": "88339J105",
+      "SEDOL": "BD8FDD1",
+      "Weight": "0.000427",
+      "Sector": "-",
+      "Shares Held": "45",
       "Local Currency": "USD"
     },
     {
@@ -829,29 +969,9 @@
       "Ticker": "LZ",
       "Identifier": "52466B103",
       "SEDOL": "B82GC49",
-      "Weight": "0.000417",
+      "Weight": "0.000413",
       "Sector": "-",
       "Shares Held": "88",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "SCIENCE APPLICATIONS INTE",
-      "Ticker": "SAIC",
-      "Identifier": "808625107",
-      "SEDOL": "BDTZZG7",
-      "Weight": "0.000408",
-      "Sector": "-",
-      "Shares Held": "4",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "XENCOR INC",
-      "Ticker": "XNCR",
-      "Identifier": "98401F105",
-      "SEDOL": "BGCYWN8",
-      "Weight": "0.000404",
-      "Sector": "-",
-      "Shares Held": "22",
       "Local Currency": "USD"
     },
     {
@@ -859,29 +979,9 @@
       "Ticker": "RYAN",
       "Identifier": "78351F107",
       "SEDOL": "BNXKSK3",
-      "Weight": "0.000398",
+      "Weight": "0.000411",
       "Sector": "-",
       "Shares Held": "13",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "VESTIS CORP",
-      "Ticker": "VSTS",
-      "Identifier": "29430C102",
-      "SEDOL": "BP5JNQ3",
-      "Weight": "0.000396",
-      "Sector": "-",
-      "Shares Held": "36",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "CHEWY INC   CLASS A",
-      "Ticker": "CHWY",
-      "Identifier": "16679L109",
-      "SEDOL": "BJLFHW7",
-      "Weight": "0.000391",
-      "Sector": "-",
-      "Shares Held": "24",
       "Local Currency": "USD"
     },
     {
@@ -889,19 +989,49 @@
       "Ticker": "ABM",
       "Identifier": "957100",
       "SEDOL": "2024901",
-      "Weight": "0.000388",
+      "Weight": "0.000397",
       "Sector": "-",
       "Shares Held": "10",
       "Local Currency": "USD"
     },
     {
-      "Name": "INTEGER HOLDINGS CORP",
-      "Ticker": "ITGR",
-      "Identifier": "45826H109",
-      "SEDOL": "BD06LM7",
+      "Name": "CHEWY INC   CLASS A",
+      "Ticker": "CHWY",
+      "Identifier": "16679L109",
+      "SEDOL": "BJLFHW7",
+      "Weight": "0.00039",
+      "Sector": "-",
+      "Shares Held": "24",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "XENCOR INC",
+      "Ticker": "XNCR",
+      "Identifier": "98401F105",
+      "SEDOL": "BGCYWN8",
+      "Weight": "0.00039",
+      "Sector": "-",
+      "Shares Held": "22",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "VESTIS CORP",
+      "Ticker": "VSTS",
+      "Identifier": "29430C102",
+      "SEDOL": "BP5JNQ3",
       "Weight": "0.000387",
       "Sector": "-",
-      "Shares Held": "4",
+      "Shares Held": "36",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "DUTCH BROS INC CLASS A",
+      "Ticker": "BROS",
+      "Identifier": "26701L100",
+      "SEDOL": "BMWP7H2",
+      "Weight": "0.000383",
+      "Sector": "-",
+      "Shares Held": "12",
       "Local Currency": "USD"
     },
     {
@@ -909,19 +1039,9 @@
       "Ticker": "AVAV",
       "Identifier": "8073108",
       "SEDOL": "B1P5YY8",
-      "Weight": "0.000377",
+      "Weight": "0.000378",
       "Sector": "-",
       "Shares Held": "4",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "DENTSPLY SIRONA INC",
-      "Ticker": "XRAY",
-      "Identifier": "24906P109",
-      "SEDOL": "BYNPPC6",
-      "Weight": "0.000371",
-      "Sector": "-",
-      "Shares Held": "55",
       "Local Currency": "USD"
     },
     {
@@ -929,19 +1049,9 @@
       "Ticker": "AIN",
       "Identifier": "12348108",
       "SEDOL": "2012757",
-      "Weight": "0.000371",
+      "Weight": "0.000377",
       "Sector": "-",
       "Shares Held": "8",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "G III APPAREL GROUP LTD",
-      "Ticker": "GIII",
-      "Identifier": "36237H101",
-      "SEDOL": "2369721",
-      "Weight": "0.000369",
-      "Sector": "-",
-      "Shares Held": "17",
       "Local Currency": "USD"
     },
     {
@@ -949,19 +1059,29 @@
       "Ticker": "AMN",
       "Identifier": "1744101",
       "SEDOL": "2813552",
-      "Weight": "0.000367",
+      "Weight": "0.000377",
       "Sector": "-",
       "Shares Held": "12",
       "Local Currency": "USD"
     },
     {
-      "Name": "FRESHPET INC",
-      "Ticker": "FRPT",
-      "Identifier": "358039105",
-      "SEDOL": "BS7K7M9",
-      "Weight": "0.000362",
+      "Name": "G III APPAREL GROUP LTD",
+      "Ticker": "GIII",
+      "Identifier": "36237H101",
+      "SEDOL": "2369721",
+      "Weight": "0.000374",
       "Sector": "-",
-      "Shares Held": "7",
+      "Shares Held": "17",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "DENTSPLY SIRONA INC",
+      "Ticker": "XRAY",
+      "Identifier": "24906P109",
+      "SEDOL": "BYNPPC6",
+      "Weight": "0.000365",
+      "Sector": "-",
+      "Shares Held": "55",
       "Local Currency": "USD"
     },
     {
@@ -969,19 +1089,9 @@
       "Ticker": "DOCS",
       "Identifier": "26622P107",
       "SEDOL": "BMD22Y4",
-      "Weight": "0.000361",
+      "Weight": "0.00036",
       "Sector": "-",
       "Shares Held": "15",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "KNIFE RIVER CORP",
-      "Ticker": "KNF",
-      "Identifier": "498894104",
-      "SEDOL": "BPLL4V5",
-      "Weight": "0.000344",
-      "Sector": "-",
-      "Shares Held": "9",
       "Local Currency": "USD"
     },
     {
@@ -989,19 +1099,19 @@
       "Ticker": "PLNT",
       "Identifier": "72703H101",
       "SEDOL": "BYSFJV8",
-      "Weight": "0.00034",
+      "Weight": "0.000355",
       "Sector": "-",
       "Shares Held": "9",
       "Local Currency": "USD"
     },
     {
-      "Name": "DROPBOX INC CLASS A",
-      "Ticker": "DBX",
-      "Identifier": "26210C104",
-      "SEDOL": "BG0T321",
-      "Weight": "0.000335",
+      "Name": "KNIFE RIVER CORP",
+      "Ticker": "KNF",
+      "Identifier": "498894104",
+      "SEDOL": "BPLL4V5",
+      "Weight": "0.000352",
       "Sector": "-",
-      "Shares Held": "12",
+      "Shares Held": "9",
       "Local Currency": "USD"
     },
     {
@@ -1009,19 +1119,9 @@
       "Ticker": "QTWO",
       "Identifier": "74736L109",
       "SEDOL": "BKM4KV0",
-      "Weight": "0.000333",
+      "Weight": "0.000336",
       "Sector": "-",
       "Shares Held": "7",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "HEARTLAND EXPRESS INC",
-      "Ticker": "HTLD",
-      "Identifier": "422347104",
-      "SEDOL": "2414018",
-      "Weight": "0.000332",
-      "Sector": "-",
-      "Shares Held": "39",
       "Local Currency": "USD"
     },
     {
@@ -1029,49 +1129,29 @@
       "Ticker": "EXPO",
       "Identifier": "30214U102",
       "SEDOL": "2330318",
-      "Weight": "0.000331",
+      "Weight": "0.000334",
       "Sector": "-",
       "Shares Held": "6",
       "Local Currency": "USD"
     },
     {
-      "Name": "QUIDELORTHO CORP",
-      "Ticker": "QDEL",
-      "Identifier": "219798105",
-      "SEDOL": "BM9VY27",
-      "Weight": "0.00033",
+      "Name": "HEARTLAND EXPRESS INC",
+      "Ticker": "HTLD",
+      "Identifier": "422347104",
+      "SEDOL": "2414018",
+      "Weight": "0.000331",
       "Sector": "-",
-      "Shares Held": "31",
+      "Shares Held": "39",
       "Local Currency": "USD"
     },
     {
-      "Name": "UPWORK INC",
-      "Ticker": "UPWK",
-      "Identifier": "91688F104",
-      "SEDOL": "BGRFWV4",
-      "Weight": "0.000327",
+      "Name": "BUCKLE INC/THE",
+      "Ticker": "BKE",
+      "Identifier": "118440106",
+      "SEDOL": "2149934",
+      "Weight": "0.000324",
       "Sector": "-",
-      "Shares Held": "49",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "CARMAX INC",
-      "Ticker": "KMX",
-      "Identifier": "143130102",
-      "SEDOL": "2983563",
-      "Weight": "0.000322",
-      "Sector": "-",
-      "Shares Held": "8",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "VIR BIOTECHNOLOGY INC",
-      "Ticker": "VIR",
-      "Identifier": "92764N102",
-      "SEDOL": "BK4PZ38",
-      "Weight": "0.00032",
-      "Sector": "-",
-      "Shares Held": "40",
+      "Shares Held": "9",
       "Local Currency": "USD"
     },
     {
@@ -1079,19 +1159,19 @@
       "Ticker": "MORN",
       "Identifier": "617700109",
       "SEDOL": "B081VR8",
-      "Weight": "0.00032",
+      "Weight": "0.000322",
       "Sector": "-",
       "Shares Held": "2",
       "Local Currency": "USD"
     },
     {
-      "Name": "HAMILTON LANE INC CLASS A",
-      "Ticker": "HLNE",
-      "Identifier": "407497106",
-      "SEDOL": "BF0SR29",
-      "Weight": "0.000319",
+      "Name": "UPWORK INC",
+      "Ticker": "UPWK",
+      "Identifier": "91688F104",
+      "SEDOL": "BGRFWV4",
+      "Weight": "0.00032",
       "Sector": "-",
-      "Shares Held": "5",
+      "Shares Held": "49",
       "Local Currency": "USD"
     },
     {
@@ -1099,19 +1179,9 @@
       "Ticker": "LRN",
       "Identifier": "86333M108",
       "SEDOL": "BLD5321",
-      "Weight": "0.000318",
+      "Weight": "0.000319",
       "Sector": "-",
       "Shares Held": "5",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "NEWELL BRANDS INC",
-      "Ticker": "NWL",
-      "Identifier": "651229106",
-      "SEDOL": "2635701",
-      "Weight": "0.000317",
-      "Sector": "-",
-      "Shares Held": "72",
       "Local Currency": "USD"
     },
     {
@@ -1119,9 +1189,29 @@
       "Ticker": "HIW",
       "Identifier": "431284108",
       "SEDOL": "2420640",
-      "Weight": "0.000313",
+      "Weight": "0.000318",
       "Sector": "-",
       "Shares Held": "14",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "HAMILTON LANE INC CLASS A",
+      "Ticker": "HLNE",
+      "Identifier": "407497106",
+      "SEDOL": "BF0SR29",
+      "Weight": "0.000317",
+      "Sector": "-",
+      "Shares Held": "5",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "LUMEN TECHNOLOGIES INC",
+      "Ticker": "LUMN",
+      "Identifier": "550241103",
+      "SEDOL": "BMDH249",
+      "Weight": "0.000317",
+      "Sector": "-",
+      "Shares Held": "88",
       "Local Currency": "USD"
     },
     {
@@ -1129,7 +1219,7 @@
       "Ticker": "HRL",
       "Identifier": "440452100",
       "SEDOL": "2437264",
-      "Weight": "0.000309",
+      "Weight": "0.000316",
       "Sector": "-",
       "Shares Held": "20",
       "Local Currency": "USD"
@@ -1139,9 +1229,19 @@
       "Ticker": "ALRM",
       "Identifier": "11642105",
       "SEDOL": "BYN7H26",
-      "Weight": "0.000308",
+      "Weight": "0.000311",
       "Sector": "-",
       "Shares Held": "7",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "QUIDELORTHO CORP",
+      "Ticker": "QDEL",
+      "Identifier": "219798105",
+      "SEDOL": "BM9VY27",
+      "Weight": "0.00031",
+      "Sector": "-",
+      "Shares Held": "31",
       "Local Currency": "USD"
     },
     {
@@ -1149,19 +1249,19 @@
       "Ticker": "IRT",
       "Identifier": "45378A106",
       "SEDOL": "BCRYTK1",
-      "Weight": "0.000303",
+      "Weight": "0.000309",
       "Sector": "-",
       "Shares Held": "27",
       "Local Currency": "USD"
     },
     {
-      "Name": "WINNEBAGO INDUSTRIES",
-      "Ticker": "WGO",
-      "Identifier": "974637100",
-      "SEDOL": "2972721",
-      "Weight": "0.000302",
+      "Name": "VIR BIOTECHNOLOGY INC",
+      "Ticker": "VIR",
+      "Identifier": "92764N102",
+      "SEDOL": "BK4PZ38",
+      "Weight": "0.000309",
       "Sector": "-",
-      "Shares Held": "16",
+      "Shares Held": "40",
       "Local Currency": "USD"
     },
     {
@@ -1169,7 +1269,7 @@
       "Ticker": "WING",
       "Identifier": "974155103",
       "SEDOL": "BYYXHN4",
-      "Weight": "0.0003",
+      "Weight": "0.000306",
       "Sector": "-",
       "Shares Held": "3",
       "Local Currency": "USD"
@@ -1179,39 +1279,19 @@
       "Ticker": "OLED",
       "Identifier": "91347P105",
       "SEDOL": "2277880",
-      "Weight": "0.0003",
+      "Weight": "0.000302",
       "Sector": "-",
       "Shares Held": "5",
       "Local Currency": "USD"
     },
     {
-      "Name": "CENTURY COMMUNITIES INC",
-      "Ticker": "CCS",
-      "Identifier": "156504300",
-      "SEDOL": "BN7ZZ47",
-      "Weight": "0.000297",
+      "Name": "WINNEBAGO INDUSTRIES",
+      "Ticker": "WGO",
+      "Identifier": "974637100",
+      "SEDOL": "2972721",
+      "Weight": "0.000298",
       "Sector": "-",
-      "Shares Held": "7",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "INNOSPEC INC",
-      "Ticker": "IOSP",
-      "Identifier": "45768S105",
-      "SEDOL": "2245597",
-      "Weight": "0.000295",
-      "Sector": "-",
-      "Shares Held": "4",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "BADGER METER INC",
-      "Ticker": "BMI",
-      "Identifier": "56525108",
-      "SEDOL": "2069128",
-      "Weight": "0.000291",
-      "Sector": "-",
-      "Shares Held": "3",
+      "Shares Held": "16",
       "Local Currency": "USD"
     },
     {
@@ -1219,9 +1299,29 @@
       "Ticker": "CXT",
       "Identifier": "224441105",
       "SEDOL": "BQ7W2W6",
-      "Weight": "0.00029",
+      "Weight": "0.000297",
       "Sector": "-",
       "Shares Held": "7",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "CENTURY COMMUNITIES INC",
+      "Ticker": "CCS",
+      "Identifier": "156504300",
+      "SEDOL": "BN7ZZ47",
+      "Weight": "0.000296",
+      "Sector": "-",
+      "Shares Held": "7",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "BADGER METER INC",
+      "Ticker": "BMI",
+      "Identifier": "56525108",
+      "SEDOL": "2069128",
+      "Weight": "0.000294",
+      "Sector": "-",
+      "Shares Held": "3",
       "Local Currency": "USD"
     },
     {
@@ -1229,19 +1329,9 @@
       "Ticker": "APOG",
       "Identifier": "37598109",
       "SEDOL": "2046176",
-      "Weight": "0.000284",
+      "Weight": "0.000289",
       "Sector": "-",
       "Shares Held": "9",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "WAYSTAR HOLDING CORP",
-      "Ticker": "WAY",
-      "Identifier": "946784105",
-      "SEDOL": "BSWYNW8",
-      "Weight": "0.000281",
-      "Sector": "-",
-      "Shares Held": "13",
       "Local Currency": "USD"
     },
     {
@@ -1249,7 +1339,7 @@
       "Ticker": "HZO",
       "Identifier": "567908108",
       "SEDOL": "2250353",
-      "Weight": "0.00028",
+      "Weight": "0.000284",
       "Sector": "-",
       "Shares Held": "7",
       "Local Currency": "USD"
@@ -1259,7 +1349,7 @@
       "Ticker": "HLIT",
       "Identifier": "413160102",
       "SEDOL": "2510659",
-      "Weight": "0.000275",
+      "Weight": "0.000282",
       "Sector": "-",
       "Shares Held": "34",
       "Local Currency": "USD"
@@ -1269,9 +1359,19 @@
       "Ticker": "MMSI",
       "Identifier": "589889104",
       "SEDOL": "2580555",
-      "Weight": "0.000274",
+      "Weight": "0.000277",
       "Sector": "-",
       "Shares Held": "4",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "WAYSTAR HOLDING CORP",
+      "Ticker": "WAY",
+      "Identifier": "946784105",
+      "SEDOL": "BSWYNW8",
+      "Weight": "0.000276",
+      "Sector": "-",
+      "Shares Held": "13",
       "Local Currency": "USD"
     },
     {
@@ -1279,19 +1379,9 @@
       "Ticker": "ACI",
       "Identifier": "13091103",
       "SEDOL": "BYNQ369",
-      "Weight": "0.000269",
+      "Weight": "0.000274",
       "Sector": "-",
       "Shares Held": "27",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "SPS COMMERCE INC",
-      "Ticker": "SPSC",
-      "Identifier": "78463M107",
-      "SEDOL": "B57VWJ3",
-      "Weight": "0.000265",
-      "Sector": "-",
-      "Shares Held": "4",
       "Local Currency": "USD"
     },
     {
@@ -1299,19 +1389,9 @@
       "Ticker": "CWST",
       "Identifier": "147448104",
       "SEDOL": "2120490",
-      "Weight": "0.000264",
+      "Weight": "0.000273",
       "Sector": "-",
       "Shares Held": "4",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "EVERTEC INC",
-      "Ticker": "EVTC",
-      "Identifier": "30040P103",
-      "SEDOL": "B7KY3Z6",
-      "Weight": "0.000264",
-      "Sector": "-",
-      "Shares Held": "11",
       "Local Currency": "USD"
     },
     {
@@ -1319,7 +1399,7 @@
       "Ticker": "CLX",
       "Identifier": "189054109",
       "SEDOL": "2204026",
-      "Weight": "0.000264",
+      "Weight": "0.00027",
       "Sector": "-",
       "Shares Held": "4",
       "Local Currency": "USD"
@@ -1329,17 +1409,47 @@
       "Ticker": "BF.B",
       "Identifier": "115637209",
       "SEDOL": "2146838",
-      "Weight": "0.000262",
+      "Weight": "0.000269",
       "Sector": "-",
       "Shares Held": "12",
       "Local Currency": "USD"
     },
     {
-      "Name": "ALEXANDRIA REAL ESTATE EQUIT",
-      "Ticker": "ARE",
-      "Identifier": "15271109",
-      "SEDOL": "2009210",
-      "Weight": "0.000259",
+      "Name": "EVERTEC INC",
+      "Ticker": "EVTC",
+      "Identifier": "30040P103",
+      "SEDOL": "B7KY3Z6",
+      "Weight": "0.000266",
+      "Sector": "-",
+      "Shares Held": "11",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "THOR INDUSTRIES INC",
+      "Ticker": "THO",
+      "Identifier": "885160101",
+      "SEDOL": "2889876",
+      "Weight": "0.000265",
+      "Sector": "-",
+      "Shares Held": "5",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "SPS COMMERCE INC",
+      "Ticker": "SPSC",
+      "Identifier": "78463M107",
+      "SEDOL": "B57VWJ3",
+      "Weight": "0.000264",
+      "Sector": "-",
+      "Shares Held": "4",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "CENTRAL GARDEN + PET CO",
+      "Ticker": "CENT",
+      "Identifier": "153527106",
+      "SEDOL": "2183868",
+      "Weight": "0.000261",
       "Sector": "-",
       "Shares Held": "8",
       "Local Currency": "USD"
@@ -1349,17 +1459,17 @@
       "Ticker": "TRIP",
       "Identifier": "896945201",
       "SEDOL": "B6ZC3N6",
-      "Weight": "0.000258",
+      "Weight": "0.00026",
       "Sector": "-",
       "Shares Held": "36",
       "Local Currency": "USD"
     },
     {
-      "Name": "CENTRAL GARDEN + PET CO",
-      "Ticker": "CENT",
-      "Identifier": "153527106",
-      "SEDOL": "2183868",
-      "Weight": "0.000256",
+      "Name": "ALEXANDRIA REAL ESTATE EQUIT",
+      "Ticker": "ARE",
+      "Identifier": "15271109",
+      "SEDOL": "2009210",
+      "Weight": "0.000258",
       "Sector": "-",
       "Shares Held": "8",
       "Local Currency": "USD"
@@ -1369,9 +1479,29 @@
       "Ticker": "KD",
       "Identifier": "50155Q100",
       "SEDOL": "BP6JW21",
-      "Weight": "0.000252",
+      "Weight": "0.000256",
       "Sector": "-",
       "Shares Held": "25",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "ARTIVION INC",
+      "Ticker": "AORT",
+      "Identifier": "228903100",
+      "SEDOL": "2239017",
+      "Weight": "0.000253",
+      "Sector": "-",
+      "Shares Held": "15",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "NORTHERN OIL AND GAS INC",
+      "Ticker": "NOG",
+      "Identifier": "665531307",
+      "SEDOL": "BN6RJM0",
+      "Weight": "0.000253",
+      "Sector": "-",
+      "Shares Held": "12",
       "Local Currency": "USD"
     },
     {
@@ -1379,7 +1509,7 @@
       "Ticker": "PGNY",
       "Identifier": "74340E103",
       "SEDOL": "BKWD3M9",
-      "Weight": "0.000252",
+      "Weight": "0.00025",
       "Sector": "-",
       "Shares Held": "12",
       "Local Currency": "USD"
@@ -1389,19 +1519,19 @@
       "Ticker": "VCEL",
       "Identifier": "92346J108",
       "SEDOL": "BSBMN89",
-      "Weight": "0.000251",
+      "Weight": "0.000249",
       "Sector": "-",
       "Shares Held": "8",
       "Local Currency": "USD"
     },
     {
-      "Name": "ARTIVION INC",
-      "Ticker": "AORT",
-      "Identifier": "228903100",
-      "SEDOL": "2239017",
-      "Weight": "0.000251",
+      "Name": "DAUCH CORPORATION",
+      "Ticker": "DCH",
+      "Identifier": "24061103",
+      "SEDOL": "2382416",
+      "Weight": "0.000248",
       "Sector": "-",
-      "Shares Held": "15",
+      "Shares Held": "66",
       "Local Currency": "USD"
     },
     {
@@ -1409,7 +1539,7 @@
       "Ticker": "CRVL",
       "Identifier": "221006109",
       "SEDOL": "2347277",
-      "Weight": "0.000245",
+      "Weight": "0.000247",
       "Sector": "-",
       "Shares Held": "4",
       "Local Currency": "USD"
@@ -1419,17 +1549,17 @@
       "Ticker": "MPT",
       "Identifier": "58463J304",
       "SEDOL": "B0JL5L9",
-      "Weight": "0.000242",
+      "Weight": "0.000238",
       "Sector": "-",
       "Shares Held": "102",
       "Local Currency": "USD"
     },
     {
-      "Name": "BOX INC   CLASS A",
-      "Ticker": "BOX",
-      "Identifier": "10316T104",
-      "SEDOL": "BVB3BV2",
-      "Weight": "0.000241",
+      "Name": "SILGAN HOLDINGS INC",
+      "Ticker": "SLGN",
+      "Identifier": "827048109",
+      "SEDOL": "2809324",
+      "Weight": "0.000234",
       "Sector": "-",
       "Shares Held": "8",
       "Local Currency": "USD"
@@ -1439,39 +1569,9 @@
       "Ticker": "SSTK",
       "Identifier": "825690100",
       "SEDOL": "B7ZR219",
-      "Weight": "0.000239",
+      "Weight": "0.000234",
       "Sector": "-",
       "Shares Held": "68",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "NORTHERN OIL AND GAS INC",
-      "Ticker": "NOG",
-      "Identifier": "665531307",
-      "SEDOL": "BN6RJM0",
-      "Weight": "0.000236",
-      "Sector": "-",
-      "Shares Held": "12",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "SILGAN HOLDINGS INC",
-      "Ticker": "SLGN",
-      "Identifier": "827048109",
-      "SEDOL": "2809324",
-      "Weight": "0.000229",
-      "Sector": "-",
-      "Shares Held": "8",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "NETSTREIT CORP",
-      "Ticker": "NTST",
-      "Identifier": "64119V303",
-      "SEDOL": "BMFLYL0",
-      "Weight": "0.000212",
-      "Sector": "-",
-      "Shares Held": "16",
       "Local Currency": "USD"
     },
     {
@@ -1479,29 +1579,9 @@
       "Ticker": "CNS",
       "Identifier": "19247A100",
       "SEDOL": "B02H882",
-      "Weight": "0.000211",
+      "Weight": "0.000216",
       "Sector": "-",
       "Shares Held": "4",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "SHIFT4 PAYMENTS INC CLASS A",
-      "Ticker": "FOUR",
-      "Identifier": "82452J109",
-      "SEDOL": "BLF0L75",
-      "Weight": "0.00021",
-      "Sector": "-",
-      "Shares Held": "7",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "ROBERT HALF INC",
-      "Ticker": "RHI",
-      "Identifier": "770323103",
-      "SEDOL": "2110703",
-      "Weight": "0.00021",
-      "Sector": "-",
-      "Shares Held": "8",
       "Local Currency": "USD"
     },
     {
@@ -1509,9 +1589,29 @@
       "Ticker": "RES",
       "Identifier": "749660106",
       "SEDOL": "2719456",
-      "Weight": "0.000208",
+      "Weight": "0.000216",
       "Sector": "-",
       "Shares Held": "46",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "SHIFT4 PAYMENTS INC CLASS A",
+      "Ticker": "FOUR",
+      "Identifier": "82452J109",
+      "SEDOL": "BLF0L75",
+      "Weight": "0.000214",
+      "Sector": "-",
+      "Shares Held": "7",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "NETSTREIT CORP",
+      "Ticker": "NTST",
+      "Identifier": "64119V303",
+      "SEDOL": "BMFLYL0",
+      "Weight": "0.000213",
+      "Sector": "-",
+      "Shares Held": "16",
       "Local Currency": "USD"
     },
     {
@@ -1519,7 +1619,7 @@
       "Ticker": "REYN",
       "Identifier": "76171L106",
       "SEDOL": "BKV9674",
-      "Weight": "0.000208",
+      "Weight": "0.000212",
       "Sector": "-",
       "Shares Held": "12",
       "Local Currency": "USD"
@@ -1529,7 +1629,7 @@
       "Ticker": "PRGO",
       "Identifier": "G97822103",
       "SEDOL": "BGH1M56",
-      "Weight": "0.000202",
+      "Weight": "0.000206",
       "Sector": "-",
       "Shares Held": "16",
       "Local Currency": "USD"
@@ -1539,7 +1639,7 @@
       "Ticker": "EEFT",
       "Identifier": "298736109",
       "SEDOL": "2320148",
-      "Weight": "0.0002",
+      "Weight": "0.000202",
       "Sector": "-",
       "Shares Held": "4",
       "Local Currency": "USD"
@@ -1549,7 +1649,7 @@
       "Ticker": "GPK",
       "Identifier": "388689101",
       "SEDOL": "B2Q8249",
-      "Weight": "0.0002",
+      "Weight": "0.000199",
       "Sector": "-",
       "Shares Held": "30",
       "Local Currency": "USD"
@@ -1559,7 +1659,7 @@
       "Ticker": "CALX",
       "Identifier": "13100M509",
       "SEDOL": "B3S4L67",
-      "Weight": "0.000199",
+      "Weight": "0.000198",
       "Sector": "-",
       "Shares Held": "7",
       "Local Currency": "USD"
@@ -1569,7 +1669,7 @@
       "Ticker": "SAH",
       "Identifier": "83545G102",
       "SEDOL": "2125246",
-      "Weight": "0.000194",
+      "Weight": "0.000197",
       "Sector": "-",
       "Shares Held": "4",
       "Local Currency": "USD"
@@ -1579,9 +1679,19 @@
       "Ticker": "PBH",
       "Identifier": "74112D101",
       "SEDOL": "B0650P3",
-      "Weight": "0.000188",
+      "Weight": "0.000194",
       "Sector": "-",
       "Shares Held": "5",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "CUSHMAN + WAKEFIELD LTD",
+      "Ticker": "CWK",
+      "Identifier": "G2717C106",
+      "SEDOL": "BQ3R8B6",
+      "Weight": "0.000193",
+      "Sector": "-",
+      "Shares Held": "22",
       "Local Currency": "USD"
     },
     {
@@ -1589,19 +1699,9 @@
       "Ticker": "UTI",
       "Identifier": "913915104",
       "SEDOL": "2002543",
-      "Weight": "0.000188",
+      "Weight": "0.000191",
       "Sector": "-",
       "Shares Held": "12",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "LA Z BOY INC",
-      "Ticker": "LZB",
-      "Identifier": "505336107",
-      "SEDOL": "2508405",
-      "Weight": "0.000186",
-      "Sector": "-",
-      "Shares Held": "8",
       "Local Currency": "USD"
     },
     {
@@ -1609,9 +1709,19 @@
       "Ticker": "COLM",
       "Identifier": "198516106",
       "SEDOL": "2229126",
-      "Weight": "0.000186",
+      "Weight": "0.000187",
       "Sector": "-",
       "Shares Held": "4",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "LA Z BOY INC",
+      "Ticker": "LZB",
+      "Identifier": "505336107",
+      "SEDOL": "2508405",
+      "Weight": "0.000187",
+      "Sector": "-",
+      "Shares Held": "8",
       "Local Currency": "USD"
     },
     {
@@ -1619,19 +1729,9 @@
       "Ticker": "CPB",
       "Identifier": "134429109",
       "SEDOL": "2162845",
-      "Weight": "0.000182",
+      "Weight": "0.000185",
       "Sector": "-",
       "Shares Held": "12",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "RH",
-      "Ticker": "RH",
-      "Identifier": "74967X103",
-      "SEDOL": "BYXR425",
-      "Weight": "0.00018",
-      "Sector": "-",
-      "Shares Held": "2",
       "Local Currency": "USD"
     },
     {
@@ -1639,19 +1739,19 @@
       "Ticker": "PAYO",
       "Identifier": "70451X104",
       "SEDOL": "BLSPX60",
-      "Weight": "0.000175",
+      "Weight": "0.000177",
       "Sector": "-",
       "Shares Held": "32",
       "Local Currency": "USD"
     },
     {
-      "Name": "INTEGRA LIFESCIENCES HOLDING",
-      "Ticker": "IART",
-      "Identifier": "457985208",
-      "SEDOL": "2248693",
-      "Weight": "0.000165",
+      "Name": "RH",
+      "Ticker": "RH",
+      "Identifier": "74967X103",
+      "SEDOL": "BYXR425",
+      "Weight": "0.000175",
       "Sector": "-",
-      "Shares Held": "16",
+      "Shares Held": "2",
       "Local Currency": "USD"
     },
     {
@@ -1659,59 +1759,19 @@
       "Ticker": "MGEE",
       "Identifier": "55277P104",
       "SEDOL": "2554163",
-      "Weight": "0.000163",
+      "Weight": "0.000168",
       "Sector": "-",
       "Shares Held": "3",
       "Local Currency": "USD"
     },
     {
-      "Name": "SAREPTA THERAPEUTICS INC",
-      "Ticker": "SRPT",
-      "Identifier": "803607100",
-      "SEDOL": "B8DPDT7",
-      "Weight": "0.000163",
+      "Name": "INTEGRA LIFESCIENCES HOLDING",
+      "Ticker": "IART",
+      "Identifier": "457985208",
+      "SEDOL": "2248693",
+      "Weight": "0.000164",
       "Sector": "-",
-      "Shares Held": "12",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "INSPIRE MEDICAL SYSTEMS INC",
-      "Ticker": "INSP",
-      "Identifier": "457730109",
-      "SEDOL": "BDT5KT5",
-      "Weight": "0.000161",
-      "Sector": "-",
-      "Shares Held": "3",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "BLACKBAUD INC",
-      "Ticker": "BLKB",
-      "Identifier": "09227Q100",
-      "SEDOL": "2458878",
-      "Weight": "0.000157",
-      "Sector": "-",
-      "Shares Held": "4",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "PROGRESS SOFTWARE CORP",
-      "Ticker": "PRGS",
-      "Identifier": "743312100",
-      "SEDOL": "2705198",
-      "Weight": "0.000156",
-      "Sector": "-",
-      "Shares Held": "5",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "INSPERITY INC",
-      "Ticker": "NSP",
-      "Identifier": "45778Q107",
-      "SEDOL": "2007281",
-      "Weight": "0.000155",
-      "Sector": "-",
-      "Shares Held": "4",
+      "Shares Held": "16",
       "Local Currency": "USD"
     },
     {
@@ -1719,9 +1779,49 @@
       "Ticker": "DFH",
       "Identifier": "26154D100",
       "SEDOL": "BMFZ3F9",
-      "Weight": "0.000155",
+      "Weight": "0.000164",
       "Sector": "-",
       "Shares Held": "24",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "BLACKBAUD INC",
+      "Ticker": "BLKB",
+      "Identifier": "09227Q100",
+      "SEDOL": "2458878",
+      "Weight": "0.00016",
+      "Sector": "-",
+      "Shares Held": "4",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "INSPIRE MEDICAL SYSTEMS INC",
+      "Ticker": "INSP",
+      "Identifier": "457730109",
+      "SEDOL": "BDT5KT5",
+      "Weight": "0.00016",
+      "Sector": "-",
+      "Shares Held": "3",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "INSPERITY INC",
+      "Ticker": "NSP",
+      "Identifier": "45778Q107",
+      "SEDOL": "2007281",
+      "Weight": "0.000159",
+      "Sector": "-",
+      "Shares Held": "4",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "SAREPTA THERAPEUTICS INC",
+      "Ticker": "SRPT",
+      "Identifier": "803607100",
+      "SEDOL": "B8DPDT7",
+      "Weight": "0.000159",
+      "Sector": "-",
+      "Shares Held": "12",
       "Local Currency": "USD"
     },
     {
@@ -1729,29 +1829,19 @@
       "Ticker": "KMPR",
       "Identifier": "488401100",
       "SEDOL": "B52KRV2",
-      "Weight": "0.000152",
+      "Weight": "0.000159",
       "Sector": "-",
       "Shares Held": "7",
       "Local Currency": "USD"
     },
     {
-      "Name": "EVERFORTH INC",
-      "Ticker": "EFOR",
-      "Identifier": "00191U102",
-      "SEDOL": "BFY8W20",
-      "Weight": "0.000151",
+      "Name": "PROGRESS SOFTWARE CORP",
+      "Ticker": "PRGS",
+      "Identifier": "743312100",
+      "SEDOL": "2705198",
+      "Weight": "0.000158",
       "Sector": "-",
       "Shares Held": "5",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "WILLSCOT HOLDINGS CORP",
-      "Ticker": "WSC",
-      "Identifier": "971378104",
-      "SEDOL": "BMHL0Z4",
-      "Weight": "0.00015",
-      "Sector": "-",
-      "Shares Held": "12",
       "Local Currency": "USD"
     },
     {
@@ -1759,7 +1849,7 @@
       "Ticker": "WHR",
       "Identifier": "963320106",
       "SEDOL": "2960384",
-      "Weight": "0.00015",
+      "Weight": "0.000151",
       "Sector": "-",
       "Shares Held": "7",
       "Local Currency": "USD"
@@ -1769,9 +1859,29 @@
       "Ticker": "HRB",
       "Identifier": "93671105",
       "SEDOL": "2105505",
-      "Weight": "0.000148",
+      "Weight": "0.000151",
       "Sector": "-",
       "Shares Held": "4",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "EVERFORTH INC",
+      "Ticker": "EFOR",
+      "Identifier": "00191U102",
+      "SEDOL": "BFY8W20",
+      "Weight": "0.000149",
+      "Sector": "-",
+      "Shares Held": "5",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "WILLSCOT HOLDINGS CORP",
+      "Ticker": "WSC",
+      "Identifier": "971378104",
+      "SEDOL": "BMHL0Z4",
+      "Weight": "0.000148",
+      "Sector": "-",
+      "Shares Held": "12",
       "Local Currency": "USD"
     },
     {
@@ -1779,7 +1889,7 @@
       "Ticker": "SLG",
       "Identifier": "78440X887",
       "SEDOL": "BPGKM57",
-      "Weight": "0.000144",
+      "Weight": "0.000146",
       "Sector": "-",
       "Shares Held": "4",
       "Local Currency": "USD"
@@ -1789,9 +1899,19 @@
       "Ticker": "BL",
       "Identifier": "09239B109",
       "SEDOL": "BD3WZS6",
-      "Weight": "0.00014",
+      "Weight": "0.000139",
       "Sector": "-",
       "Shares Held": "6",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "CAPRI HOLDINGS LTD",
+      "Ticker": "CPRI",
+      "Identifier": "G1890L107",
+      "SEDOL": "BJ1N1M9",
+      "Weight": "0.000136",
+      "Sector": "-",
+      "Shares Held": "11",
       "Local Currency": "USD"
     },
     {
@@ -1799,29 +1919,9 @@
       "Ticker": "LGIH",
       "Identifier": "50187T106",
       "SEDOL": "BG3G1B4",
-      "Weight": "0.000135",
-      "Sector": "-",
-      "Shares Held": "4",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "MANPOWERGROUP INC",
-      "Ticker": "MAN",
-      "Identifier": "56418H100",
-      "SEDOL": "2562490",
-      "Weight": "0.000134",
-      "Sector": "-",
-      "Shares Held": "4",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "SKYDANCE CORP",
-      "Ticker": "SKYD",
-      "Identifier": "69932A204",
-      "SEDOL": "BSNMNQ5",
       "Weight": "0.000133",
       "Sector": "-",
-      "Shares Held": "24",
+      "Shares Held": "4",
       "Local Currency": "USD"
     },
     {
@@ -1829,7 +1929,7 @@
       "Ticker": "ADMA",
       "Identifier": "899104",
       "SEDOL": "B9NSBM2",
-      "Weight": "0.000131",
+      "Weight": "0.000132",
       "Sector": "-",
       "Shares Held": "16",
       "Local Currency": "USD"
@@ -1839,7 +1939,7 @@
       "Ticker": "EXP",
       "Identifier": "26969P108",
       "SEDOL": "2191399",
-      "Weight": "0.00013",
+      "Weight": "0.000132",
       "Sector": "-",
       "Shares Held": "1",
       "Local Currency": "USD"
@@ -1849,29 +1949,19 @@
       "Ticker": "AMR",
       "Identifier": "20764106",
       "SEDOL": "BMFND53",
-      "Weight": "0.00013",
+      "Weight": "0.000129",
       "Sector": "-",
       "Shares Held": "1",
       "Local Currency": "USD"
     },
     {
-      "Name": "FIRST ADVANTAGE CORP",
-      "Ticker": "FA",
-      "Identifier": "31846B108",
-      "SEDOL": "BNKGY06",
-      "Weight": "0.000123",
+      "Name": "SKYDANCE CORP",
+      "Ticker": "SKYD",
+      "Identifier": "69932A204",
+      "SEDOL": "BSNMNQ5",
+      "Weight": "0.000129",
       "Sector": "-",
-      "Shares Held": "8",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "J + J SNACK FOODS CORP",
-      "Ticker": "JJSF",
-      "Identifier": "466032109",
-      "SEDOL": "2469171",
-      "Weight": "0.000121",
-      "Sector": "-",
-      "Shares Held": "2",
+      "Shares Held": "24",
       "Local Currency": "USD"
     },
     {
@@ -1879,9 +1969,29 @@
       "Ticker": "CAG",
       "Identifier": "205887102",
       "SEDOL": "2215460",
-      "Weight": "0.000119",
+      "Weight": "0.000123",
       "Sector": "-",
       "Shares Held": "11",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "J + J SNACK FOODS CORP",
+      "Ticker": "JJSF",
+      "Identifier": "466032109",
+      "SEDOL": "2469171",
+      "Weight": "0.000122",
+      "Sector": "-",
+      "Shares Held": "2",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "FIRST ADVANTAGE CORP",
+      "Ticker": "FA",
+      "Identifier": "31846B108",
+      "SEDOL": "BNKGY06",
+      "Weight": "0.000119",
+      "Sector": "-",
+      "Shares Held": "8",
       "Local Currency": "USD"
     },
     {
@@ -1889,9 +1999,19 @@
       "Ticker": "BCC",
       "Identifier": "09739D100",
       "SEDOL": "B9BP4R1",
-      "Weight": "0.000115",
+      "Weight": "0.000118",
       "Sector": "-",
       "Shares Held": "2",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "PILGRIM S PRIDE CORP",
+      "Ticker": "PPC",
+      "Identifier": "72147K108",
+      "SEDOL": "B5L3PZ2",
+      "Weight": "0.000114",
+      "Sector": "-",
+      "Shares Held": "5",
       "Local Currency": "USD"
     },
     {
@@ -1899,7 +2019,7 @@
       "Ticker": "FLO",
       "Identifier": "343498101",
       "SEDOL": "2744243",
-      "Weight": "0.000112",
+      "Weight": "0.000114",
       "Sector": "-",
       "Shares Held": "24",
       "Local Currency": "USD"
@@ -1909,7 +2029,7 @@
       "Ticker": "KBR",
       "Identifier": "48242W106",
       "SEDOL": "B1HHB18",
-      "Weight": "0.000111",
+      "Weight": "0.000113",
       "Sector": "-",
       "Shares Held": "4",
       "Local Currency": "USD"
@@ -1919,19 +2039,9 @@
       "Ticker": "LAZ",
       "Identifier": "52110M109",
       "SEDOL": "BRT46K3",
-      "Weight": "0.000111",
+      "Weight": "0.000112",
       "Sector": "-",
       "Shares Held": "4",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "PILGRIM S PRIDE CORP",
-      "Ticker": "PPC",
-      "Identifier": "72147K108",
-      "SEDOL": "B5L3PZ2",
-      "Weight": "0.00011",
-      "Sector": "-",
-      "Shares Held": "5",
       "Local Currency": "USD"
     },
     {
@@ -1939,7 +2049,7 @@
       "Ticker": "CNMD",
       "Identifier": "207410101",
       "SEDOL": "2216010",
-      "Weight": "0.000108",
+      "Weight": "0.000109",
       "Sector": "-",
       "Shares Held": "3",
       "Local Currency": "USD"
@@ -1949,7 +2059,7 @@
       "Ticker": "CNXC",
       "Identifier": "20602D101",
       "SEDOL": "BNKVVY4",
-      "Weight": "0.000106",
+      "Weight": "0.000108",
       "Sector": "-",
       "Shares Held": "5",
       "Local Currency": "USD"
@@ -1959,19 +2069,9 @@
       "Ticker": "GSHD",
       "Identifier": "38267D109",
       "SEDOL": "BZ2YT30",
-      "Weight": "0.000105",
+      "Weight": "0.000108",
       "Sector": "-",
       "Shares Held": "3",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "WALKER + DUNLOP INC",
-      "Ticker": "WD",
-      "Identifier": "93148P102",
-      "SEDOL": "B4TZV44",
-      "Weight": "0.000102",
-      "Sector": "-",
-      "Shares Held": "4",
       "Local Currency": "USD"
     },
     {
@@ -1979,7 +2079,17 @@
       "Ticker": "SLVM",
       "Identifier": "871332102",
       "SEDOL": "BMW72C8",
-      "Weight": "0.000099",
+      "Weight": "0.000102",
+      "Sector": "-",
+      "Shares Held": "4",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "WALKER + DUNLOP INC",
+      "Ticker": "WD",
+      "Identifier": "93148P102",
+      "SEDOL": "B4TZV44",
+      "Weight": "0.000101",
       "Sector": "-",
       "Shares Held": "4",
       "Local Currency": "USD"
@@ -1999,7 +2109,7 @@
       "Ticker": "GT",
       "Identifier": "382550101",
       "SEDOL": "2378200",
-      "Weight": "0.000098",
+      "Weight": "0.000096",
       "Sector": "-",
       "Shares Held": "29",
       "Local Currency": "USD"
@@ -2009,19 +2119,9 @@
       "Ticker": "YELP",
       "Identifier": "985817105",
       "SEDOL": "B7KCD72",
-      "Weight": "0.000094",
+      "Weight": "0.000092",
       "Sector": "-",
       "Shares Held": "6",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "GIBRALTAR INDUSTRIES INC",
-      "Ticker": "ROCK",
-      "Identifier": "374689107",
-      "SEDOL": "2369226",
-      "Weight": "0.00009",
-      "Sector": "-",
-      "Shares Held": "3",
       "Local Currency": "USD"
     },
     {
@@ -2029,9 +2129,19 @@
       "Ticker": "BFS",
       "Identifier": "804395101",
       "SEDOL": "2777777",
-      "Weight": "0.000089",
+      "Weight": "0.000091",
       "Sector": "-",
       "Shares Held": "4",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "GIBRALTAR INDUSTRIES INC",
+      "Ticker": "ROCK",
+      "Identifier": "374689107",
+      "SEDOL": "2369226",
+      "Weight": "0.000088",
+      "Sector": "-",
+      "Shares Held": "3",
       "Local Currency": "USD"
     },
     {
@@ -2039,9 +2149,19 @@
       "Ticker": "EPC",
       "Identifier": "28035Q102",
       "SEDOL": "BX8ZSB4",
-      "Weight": "0.000086",
+      "Weight": "0.000087",
       "Sector": "-",
       "Shares Held": "4",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "WILEY (JOHN) + SONS CLASS A",
+      "Ticker": "WLY",
+      "Identifier": "968223206",
+      "SEDOL": "2965668",
+      "Weight": "0.000082",
+      "Sector": "-",
+      "Shares Held": "2",
       "Local Currency": "USD"
     },
     {
@@ -2055,23 +2175,33 @@
       "Local Currency": "USD"
     },
     {
-      "Name": "WILEY (JOHN) + SONS CLASS A",
-      "Ticker": "WLY",
-      "Identifier": "968223206",
-      "SEDOL": "2965668",
-      "Weight": "0.000081",
-      "Sector": "-",
-      "Shares Held": "2",
-      "Local Currency": "USD"
-    },
-    {
       "Name": "SIMPLY GOOD FOODS CO/THE",
       "Ticker": "SMPL",
       "Identifier": "82900L102",
       "SEDOL": "BF27XF9",
-      "Weight": "0.000077",
+      "Weight": "0.000078",
       "Sector": "-",
       "Shares Held": "9",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "COMSTOCK RESOURCES INC",
+      "Ticker": "CRK",
+      "Identifier": "205768302",
+      "SEDOL": "BD82PS1",
+      "Weight": "0.000076",
+      "Sector": "-",
+      "Shares Held": "7",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "MERCHANTS BANCORP/IN",
+      "Ticker": "MBIN",
+      "Identifier": "58844R108",
+      "SEDOL": "BYZ1PQ6",
+      "Weight": "0.000076",
+      "Sector": "-",
+      "Shares Held": "2",
       "Local Currency": "USD"
     },
     {
@@ -2085,21 +2215,11 @@
       "Local Currency": "USD"
     },
     {
-      "Name": "MERCHANTS BANCORP/IN",
-      "Ticker": "MBIN",
-      "Identifier": "58844R108",
-      "SEDOL": "BYZ1PQ6",
-      "Weight": "0.000075",
-      "Sector": "-",
-      "Shares Held": "2",
-      "Local Currency": "USD"
-    },
-    {
       "Name": "HANMI FINANCIAL CORPORATION",
       "Ticker": "HAFC",
       "Identifier": "410495204",
       "SEDOL": "B6TPXR5",
-      "Weight": "0.000071",
+      "Weight": "0.000072",
       "Sector": "-",
       "Shares Held": "3",
       "Local Currency": "USD"
@@ -2135,16 +2255,6 @@
       "Local Currency": "USD"
     },
     {
-      "Name": "MARA HOLDINGS INC",
-      "Ticker": "MARA",
-      "Identifier": "565788106",
-      "SEDOL": "BLR7B52",
-      "Weight": "0.000064",
-      "Sector": "-",
-      "Shares Held": "10",
-      "Local Currency": "USD"
-    },
-    {
       "Name": "MASTERBRAND INC",
       "Ticker": "MBC",
       "Identifier": "57638P104",
@@ -2159,7 +2269,7 @@
       "Ticker": "WEN",
       "Identifier": "95058W100",
       "SEDOL": "B3NXMJ9",
-      "Weight": "0.000061",
+      "Weight": "0.000062",
       "Sector": "-",
       "Shares Held": "12",
       "Local Currency": "USD"
@@ -2169,7 +2279,7 @@
       "Ticker": "FMC",
       "Identifier": "302491303",
       "SEDOL": "2328603",
-      "Weight": "0.00006",
+      "Weight": "0.000061",
       "Sector": "-",
       "Shares Held": "14",
       "Local Currency": "USD"
@@ -2179,9 +2289,19 @@
       "Ticker": "ENOV",
       "Identifier": "194014502",
       "SEDOL": "BJLTMX5",
-      "Weight": "0.000059",
+      "Weight": "0.000061",
       "Sector": "-",
       "Shares Held": "4",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "MARA HOLDINGS INC",
+      "Ticker": "MARA",
+      "Identifier": "565788106",
+      "SEDOL": "BLR7B52",
+      "Weight": "0.000058",
+      "Sector": "-",
+      "Shares Held": "10",
       "Local Currency": "USD"
     },
     {
@@ -2189,19 +2309,9 @@
       "Ticker": "GTM",
       "Identifier": "98980F104",
       "SEDOL": "BMWF095",
-      "Weight": "0.000056",
+      "Weight": "0.000053",
       "Sector": "-",
       "Shares Held": "18",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "ARBOR REALTY TRUST INC",
-      "Ticker": "ABR",
-      "Identifier": "38923108",
-      "SEDOL": "B00N2S0",
-      "Weight": "0.000047",
-      "Sector": "-",
-      "Shares Held": "22",
       "Local Currency": "USD"
     },
     {
@@ -2215,11 +2325,21 @@
       "Local Currency": "USD"
     },
     {
+      "Name": "ARBOR REALTY TRUST INC",
+      "Ticker": "ABR",
+      "Identifier": "38923108",
+      "SEDOL": "B00N2S0",
+      "Weight": "0.000046",
+      "Sector": "-",
+      "Shares Held": "22",
+      "Local Currency": "USD"
+    },
+    {
       "Name": "DOUBLEVERIFY HOLDINGS INC",
       "Ticker": "DV",
       "Identifier": "25862V105",
       "SEDOL": "BMDX9Z7",
-      "Weight": "0.000041",
+      "Weight": "0.000042",
       "Sector": "-",
       "Shares Held": "4",
       "Local Currency": "USD"
@@ -2229,7 +2349,7 @@
       "Ticker": "DEI",
       "Identifier": "25960P109",
       "SEDOL": "B1G3M58",
-      "Weight": "0.000029",
+      "Weight": "0.00003",
       "Sector": "-",
       "Shares Held": "4",
       "Local Currency": "USD"
@@ -2239,7 +2359,7 @@
       "Ticker": "NSSC",
       "Identifier": "630402105",
       "SEDOL": "2622253",
-      "Weight": "0.000027",
+      "Weight": "0.000028",
       "Sector": "-",
       "Shares Held": "1",
       "Local Currency": "USD"
@@ -2249,7 +2369,7 @@
       "Ticker": "HOS",
       "Identifier": "42330P107",
       "SEDOL": "2037062",
-      "Weight": "0.000026",
+      "Weight": "0.000027",
       "Sector": "-",
       "Shares Held": "5",
       "Local Currency": "USD"
@@ -2279,7 +2399,7 @@
       "Ticker": "DNOW",
       "Identifier": "67011P100",
       "SEDOL": "BMH0MV1",
-      "Weight": "0.000011",
+      "Weight": "0.000012",
       "Sector": "-",
       "Shares Held": "1",
       "Local Currency": "USD"
@@ -2292,6 +2412,16 @@
       "Weight": "0.000003",
       "Sector": "-",
       "Shares Held": "358",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "US DOLLAR",
+      "Ticker": "-",
+      "Identifier": "999USDZ92",
+      "SEDOL": "-",
+      "Weight": "-0.095679",
+      "Sector": "-",
+      "Shares Held": "-123400.42",
       "Local Currency": "USD"
     }
   ]
