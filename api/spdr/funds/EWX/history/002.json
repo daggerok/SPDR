@@ -2,7 +2,7 @@
   "ticker": "EWX",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 4638,
+  "totalRows": 4640,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,18 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "24-Oct-2022",
+      "NAV": "45.01614",
+      "Shares Outstanding": "12400000",
+      "Total Net Assets": "558200136.93"
+    },
+    {
+      "Date": "21-Oct-2022",
+      "NAV": "45.293021",
+      "Shares Outstanding": "12400000",
+      "Total Net Assets": "561633458.82"
+    },
     {
       "Date": "20-Oct-2022",
       "NAV": "45.451423",
@@ -5997,18 +6009,6 @@
       "NAV": "42.596027",
       "Shares Outstanding": "10500000",
       "Total Net Assets": "447258283.65"
-    },
-    {
-      "Date": "01-Nov-2018",
-      "NAV": "41.893867",
-      "Shares Outstanding": "10500000",
-      "Total Net Assets": "439885605.7"
-    },
-    {
-      "Date": "31-Oct-2018",
-      "NAV": "41.175519",
-      "Shares Outstanding": "10500000",
-      "Total Net Assets": "432342951.71"
     }
   ]
 }

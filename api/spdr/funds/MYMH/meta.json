@@ -30,17 +30,17 @@
   "nav": {
     "display": "$24.34",
     "value": 24.34,
-    "asOfDate": "Oct 16 2026"
+    "asOfDate": "Oct 20 2026"
   },
   "aum": {
     "display": "$7.30 M",
     "value": 7300000,
-    "asOfDate": "Oct 16 2026"
+    "asOfDate": "Oct 20 2026"
   },
   "pricing": {
     "exchange": "NASDAQ REGULAR MARKET",
-    "closePrice": "$24.40",
-    "premiumDiscount": "0.25%"
+    "closePrice": "$24.38",
+    "premiumDiscount": "0.19%"
   },
   "inceptionDate": "Sep 23 2024",
   "returns": {
@@ -98,8 +98,8 @@
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
     "indicatedDividendYield": 2.81,
-    "secYield": 3.7,
-    "secYieldUnsubsidized": 3.7,
+    "secYield": 3.72,
+    "secYieldUnsubsidized": 3.72,
     "tr1yText": "1.11%",
     "tr3yText": null,
     "tr5yText": null,
@@ -110,8 +110,8 @@
     "siAnnText": "1.22%",
     "indicatedDividendYieldText": "2.81%",
     "dividendYieldText": "2.79%",
-    "secYieldText": "3.70%",
-    "secYieldUnsubsidizedText": "3.70%",
+    "secYieldText": "3.72%",
+    "secYieldUnsubsidizedText": "3.72%",
     "ytdText": "0.14%",
     "returnsBasis": "official SSGA month-end NAV total returns (YTD, 1Y, annualized 3Y/5Y/10Y and since inception); tr3y/tr5y/tr10y are derived from the official annualized figures as (1 + CAGR)^n - 1; no Yahoo or market-price estimates",
     "performanceAsOf": "2026-09-30"
@@ -330,17 +330,17 @@
     ]
   },
   "holdings": {
-    "totalRows": 70,
+    "totalRows": 69,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "16-Oct-2026",
+    "asOfDate": "19-Oct-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 519,
+    "totalRows": 521,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
@@ -348,12 +348,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 449,
+    "totalRows": 451,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "16-Oct-2026"
+    "asOfDate": "20-Oct-2026"
   }
 }

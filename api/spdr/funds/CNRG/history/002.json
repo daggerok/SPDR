@@ -2,7 +2,7 @@
   "ticker": "CNRG",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 2007,
+  "totalRows": 2009,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,18 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "24-Oct-2022",
+      "NAV": "78.558112",
+      "Shares Outstanding": "3835000",
+      "Total Net Assets": "301270361.33"
+    },
+    {
+      "Date": "21-Oct-2022",
+      "NAV": "79.202261",
+      "Shares Outstanding": "3835000",
+      "Total Net Assets": "303740670.01"
+    },
     {
       "Date": "20-Oct-2022",
       "NAV": "77.278954",
@@ -5997,18 +6009,6 @@
       "NAV": "29.775833",
       "Shares Outstanding": "100000",
       "Total Net Assets": "2977583.34"
-    },
-    {
-      "Date": "01-Nov-2018",
-      "NAV": "29.799007",
-      "Shares Outstanding": "100000",
-      "Total Net Assets": "2979900.66"
-    },
-    {
-      "Date": "31-Oct-2018",
-      "NAV": "29.148769",
-      "Shares Outstanding": "100000",
-      "Total Net Assets": "2914876.87"
     }
   ]
 }

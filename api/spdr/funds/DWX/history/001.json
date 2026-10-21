@@ -2,7 +2,7 @@
   "ticker": "DWX",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 4701,
+  "totalRows": 4703,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,18 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "20-Oct-2026",
+      "NAV": "46.708126",
+      "Shares Outstanding": "11051326",
+      "Total Net Assets": "516186724.02"
+    },
+    {
+      "Date": "19-Oct-2026",
+      "NAV": "46.506715",
+      "Shares Outstanding": "11151326",
+      "Total Net Assets": "518611536.44"
+    },
     {
       "Date": "16-Oct-2026",
       "NAV": "46.810573",
@@ -5997,18 +6009,6 @@
       "NAV": "29.249739",
       "Shares Outstanding": "15651326",
       "Total Net Assets": "457797194.31"
-    },
-    {
-      "Date": "24-Oct-2022",
-      "NAV": "28.772408",
-      "Shares Outstanding": "15651326",
-      "Total Net Assets": "450326337.53"
-    },
-    {
-      "Date": "21-Oct-2022",
-      "NAV": "28.499913",
-      "Shares Outstanding": "15651326",
-      "Total Net Assets": "446061427.41"
     }
   ]
 }

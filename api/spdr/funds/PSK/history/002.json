@@ -2,7 +2,7 @@
   "ticker": "PSK",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 4301,
+  "totalRows": 4303,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,18 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "24-Oct-2022",
+      "NAV": "32.432079",
+      "Shares Outstanding": "30050000",
+      "Total Net Assets": "974583984.33"
+    },
+    {
+      "Date": "21-Oct-2022",
+      "NAV": "32.410372",
+      "Shares Outstanding": "30050000",
+      "Total Net Assets": "973931669"
+    },
     {
       "Date": "20-Oct-2022",
       "NAV": "32.584291",
@@ -5997,18 +6009,6 @@
       "NAV": "41.252852",
       "Shares Outstanding": "15250000",
       "Total Net Assets": "629105991.24"
-    },
-    {
-      "Date": "01-Nov-2018",
-      "NAV": "41.442385",
-      "Shares Outstanding": "15250000",
-      "Total Net Assets": "631996371.39"
-    },
-    {
-      "Date": "31-Oct-2018",
-      "NAV": "41.583448",
-      "Shares Outstanding": "15250000",
-      "Total Net Assets": "634147583.58"
     }
   ]
 }

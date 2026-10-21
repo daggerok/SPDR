@@ -2,7 +2,7 @@
   "ticker": "GLD",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 5553,
+  "totalRows": 5554,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "23-Nov-2022",
+      "NAV": "161.966742",
+      "Shares Outstanding": "313200000",
+      "Total Net Assets": "50727983633.54"
+    },
     {
       "Date": "22-Nov-2022",
       "NAV": "162.229195",
@@ -6003,12 +6009,6 @@
       "NAV": "121.274806",
       "Shares Outstanding": "270400000",
       "Total Net Assets": "32792707670.77"
-    },
-    {
-      "Date": "31-Dec-2018",
-      "NAV": "121.159258",
-      "Shares Outstanding": "267800000",
-      "Total Net Assets": "32446449244.68"
     }
   ]
 }

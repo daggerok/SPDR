@@ -28,19 +28,19 @@
     "value": null
   },
   "nav": {
-    "display": "$110.31",
-    "value": 110.31,
-    "asOfDate": "Oct 16 2026"
+    "display": "$110.20",
+    "value": 110.2,
+    "asOfDate": "Oct 20 2026"
   },
   "aum": {
-    "display": "$23,585.14 M",
-    "value": 23585140000,
-    "asOfDate": "Oct 16 2026"
+    "display": "$23,445.19 M",
+    "value": 23445190000,
+    "asOfDate": "Oct 20 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$110.32",
-    "premiumDiscount": "-0.01%"
+    "closePrice": "$110.19",
+    "premiumDiscount": "0.03%"
   },
   "inceptionDate": "Jun 18 2018",
   "returns": {
@@ -98,8 +98,8 @@
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
     "indicatedDividendYield": 1.32,
-    "secYield": 1.14,
-    "secYieldUnsubsidized": 1.14,
+    "secYield": 1.13,
+    "secYieldUnsubsidized": 1.13,
     "tr1yText": "-5.12%",
     "tr3yText": "75.06%",
     "tr5yText": "45.92%",
@@ -110,8 +110,8 @@
     "siAnnText": "11.17%",
     "indicatedDividendYieldText": "1.32%",
     "dividendYieldText": "1.25%",
-    "secYieldText": "1.14%",
-    "secYieldUnsubsidizedText": "1.14%",
+    "secYieldText": "1.13%",
+    "secYieldUnsubsidizedText": "1.13%",
     "ytdText": "-4.87%",
     "returnsBasis": "official SSGA month-end NAV total returns (YTD, 1Y, annualized 3Y/5Y/10Y and since inception); tr3y/tr5y/tr10y are derived from the official annualized figures as (1 + CAGR)^n - 1; no Yahoo or market-price estimates",
     "performanceAsOf": "2026-09-30"
@@ -400,11 +400,11 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "16-Oct-2026",
+    "asOfDate": "19-Oct-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 2095,
+    "totalRows": 2097,
     "pageSize": 1000,
     "pageCount": 3,
     "pages": [
@@ -414,12 +414,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 449,
+    "totalRows": 451,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "16-Oct-2026"
+    "asOfDate": "20-Oct-2026"
   }
 }

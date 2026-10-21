@@ -2,7 +2,7 @@
   "ticker": "EBND",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 3939,
+  "totalRows": 3941,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,18 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "20-Oct-2026",
+      "NAV": "20.747095",
+      "Shares Outstanding": "109100000",
+      "Total Net Assets": "2263508110.74"
+    },
+    {
+      "Date": "19-Oct-2026",
+      "NAV": "20.696561",
+      "Shares Outstanding": "109100000",
+      "Total Net Assets": "2257994854.14"
+    },
     {
       "Date": "16-Oct-2026",
       "NAV": "20.713387",
@@ -5997,18 +6009,6 @@
       "NAV": "18.730384",
       "Shares Outstanding": "103000000",
       "Total Net Assets": "1929229523.43"
-    },
-    {
-      "Date": "24-Oct-2022",
-      "NAV": "18.609543",
-      "Shares Outstanding": "104000000",
-      "Total Net Assets": "1935392522.93"
-    },
-    {
-      "Date": "21-Oct-2022",
-      "NAV": "18.616609",
-      "Shares Outstanding": "104000000",
-      "Total Net Assets": "1936127332.71"
     }
   ]
 }

@@ -2,7 +2,7 @@
   "ticker": "HYMB",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 3904,
+  "totalRows": 3906,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,18 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "20-Oct-2026",
+      "NAV": "23.635269",
+      "Shares Outstanding": "161000000",
+      "Total Net Assets": "3805278358.44"
+    },
+    {
+      "Date": "19-Oct-2026",
+      "NAV": "23.635663",
+      "Shares Outstanding": "161000000",
+      "Total Net Assets": "3805341702.43"
+    },
     {
       "Date": "16-Oct-2026",
       "NAV": "23.654376",
@@ -5997,18 +6009,6 @@
       "NAV": "46.768069",
       "Shares Outstanding": "37900000",
       "Total Net Assets": "1772509802.5"
-    },
-    {
-      "Date": "24-Oct-2022",
-      "NAV": "46.918195",
-      "Shares Outstanding": "37400000",
-      "Total Net Assets": "1754740485.34"
-    },
-    {
-      "Date": "21-Oct-2022",
-      "NAV": "47.249727",
-      "Shares Outstanding": "37400000",
-      "Total Net Assets": "1767139786.68"
     }
   ]
 }
