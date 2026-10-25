@@ -18,6 +18,7 @@ import {
   withYieldBasis,
   expenseRatios,
   fetchWithRetry,
+  holdingsGuard,
   indicatedYield,
   installSystemCa,
   isCertError,
@@ -266,6 +267,21 @@ describe('parsing', () => {
     ]), 'holdings');
     expect(bond.table.headers).not.toContain('Ticker');
     expect(bond.table.rows[0][5]).toBe('77000000');
+  });
+
+  test('holdings guard: header-only, renamed weight column, broken weights, a bad weight sum and a halved sheet are rejected', () => {
+    const headers = ['Name', 'Ticker', 'Weight'];
+    const rows = [{ Name: 'A', Ticker: 'A', Weight: '60%' }, { Name: 'B', Ticker: 'B', Weight: '40%' }];
+    expect(holdingsGuard(headers, rows, 2)).toBeNull();
+    expect(holdingsGuard(headers, [['A', 'A', '60'], ['B', 'B', '40']], null)).toBeNull();
+    expect(holdingsGuard([], [], 0)).toBeNull(); // nothing published before: an empty sheet is honest
+    expect(holdingsGuard(headers, [], 505)).toContain('no holdings rows');
+    expect(holdingsGuard(['Name', 'Ticker', 'Wt'], rows, 2)).toContain('no weight column');
+    expect(holdingsGuard(headers, rows.map((row) => ({ ...row, Weight: '6\u200B0' })), 2)).toContain('numeric weight');
+    const allocation = [{ Name: 'Cash&Collateral', Ticker: '-', Weight: '100' }, { Name: 'Equities', Ticker: '-', Weight: '476' }];
+    expect(holdingsGuard(headers, allocation, 2)).toContain('outside 50..150');
+    expect(holdingsGuard(headers, allocation, 2, ['sum'])).toBeNull();
+    expect(holdingsGuard(headers, rows, 5)).toContain('less than half');
   });
 
   test('NAV and premium/discount history workbooks (blank rows dropped, registered mark stripped)', () => {
@@ -571,6 +587,30 @@ describe('pipeline', () => {
     await runMain();
     expect(snap()).toEqual(before);
     expect(listFiles(dir).filter((f) => f.endsWith('.tmp'))).toEqual([]);
+  });
+
+  test('broken fresh holdings (renamed Weight header, header-only sheet) keep the fund exactly as published and report it failed', async () => {
+    const dir = tempRoot();
+    installMock();
+    await runMain();
+    const snap = () => [JSON.stringify(row(dir, 'SPY')), ...listFiles(dir, 'funds/SPY/').map((f) => `${f}:${readFileSync(join(dir, f), 'utf8')}`)];
+    const before = snap();
+    expect(readJson(dir, 'funds/SPY/meta.json').holdings.totalRows).toBe(1);
+    const sheets: Record<string, string[][]> = {
+      renamed: holdingsSheet('SPY').map((r) => r.map((cell) => (cell === 'Weight' ? 'Weighting' : cell))),
+      headerOnly: holdingsSheet('SPY').slice(0, 4),
+    };
+    for (const [name, sheet] of Object.entries(sheets)) {
+      installMock({ nav: { SPY: 777, XLK: 200, GLD: 300 } });
+      const good = globalThis.fetch;
+      globalThis.fetch = (async (input: unknown, init?: RequestInit) => (String(input).includes('holdings-daily-us-en-spy')
+        ? new Response(new Uint8Array(buildXlsx(sheet)))
+        : good(input as string, init))) as unknown as typeof fetch;
+      const lines: string[] = [];
+      await runMain({}, lines); // XLK and GLD still update, so the run itself succeeds
+      expect([name, snap()]).toEqual([name, before]);
+      expect(lines.join('\n')).toMatch(/SPY +failed .*reason=holdings guard: /);
+    }
   });
 
   test('a fund whose source failed keeps its previous index row and meta exactly as published', async () => {
