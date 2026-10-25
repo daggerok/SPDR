@@ -2,7 +2,7 @@
   "ticker": "OBND",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 1272,
+  "totalRows": 1274,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,18 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "22-Oct-2026",
+      "NAV": "24.826172",
+      "Shares Outstanding": "1250000",
+      "Total Net Assets": "31032714.61"
+    },
+    {
+      "Date": "21-Oct-2026",
+      "NAV": "24.733166",
+      "Shares Outstanding": "1250000",
+      "Total Net Assets": "30916457.35"
+    },
     {
       "Date": "20-Oct-2026",
       "NAV": "24.731431",
@@ -5997,18 +6009,6 @@
       "NAV": "24.998985",
       "Shares Outstanding": "1100000",
       "Total Net Assets": "27498883.46"
-    },
-    {
-      "Date": "26-Oct-2022",
-      "NAV": "24.848138",
-      "Shares Outstanding": "1100000",
-      "Total Net Assets": "27332951.37"
-    },
-    {
-      "Date": "25-Oct-2022",
-      "NAV": "24.722699",
-      "Shares Outstanding": "1100000",
-      "Total Net Assets": "27194969.28"
     }
   ]
 }

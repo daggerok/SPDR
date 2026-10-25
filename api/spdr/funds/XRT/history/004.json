@@ -2,7 +2,7 @@
   "ticker": "XRT",
   "page": 4,
   "pageSize": 1000,
-  "totalRows": 5120,
+  "totalRows": 5122,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,18 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "14-Nov-2014",
+      "NAV": "91.300792",
+      "Shares Outstanding": "10950113",
+      "Total Net Assets": "999753985.46"
+    },
+    {
+      "Date": "13-Nov-2014",
+      "NAV": "91.116706",
+      "Shares Outstanding": "10000113",
+      "Total Net Assets": "911177354.79"
+    },
     {
       "Date": "12-Nov-2014",
       "NAV": "91.491667",
@@ -5997,18 +6009,6 @@
       "NAV": "47.671936",
       "Shares Outstanding": "17000113",
       "Total Net Assets": "810428300.41"
-    },
-    {
-      "Date": "30-Nov-2010",
-      "NAV": "47.128815",
-      "Shares Outstanding": "13000113",
-      "Total Net Assets": "612679923.04"
-    },
-    {
-      "Date": "29-Nov-2010",
-      "NAV": "46.981531",
-      "Shares Outstanding": "15900113",
-      "Total Net Assets": "747011647.28"
     }
   ]
 }

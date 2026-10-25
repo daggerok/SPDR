@@ -2,7 +2,7 @@
   "ticker": "KRE",
   "page": 5,
   "pageSize": 1000,
-  "totalRows": 5120,
+  "totalRows": 5122,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,18 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "30-Nov-2010",
+      "NAV": "22.557038",
+      "Shares Outstanding": "24602585",
+      "Total Net Assets": "554961442.11"
+    },
+    {
+      "Date": "29-Nov-2010",
+      "NAV": "22.856092",
+      "Shares Outstanding": "24702585",
+      "Total Net Assets": "564604543.61"
+    },
     {
       "Date": "26-Nov-2010",
       "NAV": "22.664288",
@@ -5997,18 +6009,6 @@
       "NAV": "49.703853",
       "Shares Outstanding": "2000000",
       "Total Net Assets": "99407706.84"
-    },
-    {
-      "Date": "08-Dec-2006",
-      "NAV": "49.595879",
-      "Shares Outstanding": "2250000",
-      "Total Net Assets": "111590727.74"
-    },
-    {
-      "Date": "07-Dec-2006",
-      "NAV": "49.679636",
-      "Shares Outstanding": "2450000",
-      "Total Net Assets": "121715108.13"
     }
   ]
 }

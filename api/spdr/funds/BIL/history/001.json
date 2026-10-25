@@ -2,7 +2,7 @@
   "ticker": "BIL",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 4883,
+  "totalRows": 4885,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,18 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "22-Oct-2026",
+      "NAV": "91.6025",
+      "Shares Outstanding": "558364503",
+      "Total Net Assets": "51147584515.68"
+    },
+    {
+      "Date": "21-Oct-2026",
+      "NAV": "91.59144",
+      "Shares Outstanding": "557764503",
+      "Total Net Assets": "51086453737.87"
+    },
     {
       "Date": "20-Oct-2026",
       "NAV": "91.58117",
@@ -5997,18 +6009,6 @@
       "NAV": "91.564735",
       "Shares Outstanding": "292494503",
       "Total Net Assets": "26782181614.82"
-    },
-    {
-      "Date": "26-Oct-2022",
-      "NAV": "91.556712",
-      "Shares Outstanding": "291794503",
-      "Total Net Assets": "26715745258.06"
-    },
-    {
-      "Date": "25-Oct-2022",
-      "NAV": "91.550156",
-      "Shares Outstanding": "291344503",
-      "Total Net Assets": "26672634601.95"
     }
   ]
 }

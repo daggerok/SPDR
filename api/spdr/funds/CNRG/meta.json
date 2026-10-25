@@ -28,19 +28,19 @@
     "value": null
   },
   "nav": {
-    "display": "$77.65",
-    "value": 77.65,
-    "asOfDate": "Oct 20 2026"
+    "display": "$76.52",
+    "value": 76.52,
+    "asOfDate": "Oct 22 2026"
   },
   "aum": {
-    "display": "$161.91 M",
-    "value": 161910000,
-    "asOfDate": "Oct 20 2026"
+    "display": "$158.77 M",
+    "value": 158770000,
+    "asOfDate": "Oct 22 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$77.63",
-    "premiumDiscount": "0.00%"
+    "closePrice": "$76.48",
+    "premiumDiscount": "-0.05%"
   },
   "inceptionDate": "Oct 22 2018",
   "returns": {
@@ -94,10 +94,10 @@
     "cagr5y": -0.99,
     "cagr10y": null,
     "siAnn": 15.34,
-    "dividendYield": 1.65,
+    "dividendYield": 1.66,
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
-    "indicatedDividendYield": 1.85,
+    "indicatedDividendYield": 1.88,
     "secYield": 1.06,
     "secYieldUnsubsidized": 1.06,
     "tr1yText": "0.83%",
@@ -108,8 +108,8 @@
     "cagr5yText": "-0.99%",
     "cagr10yText": null,
     "siAnnText": "15.34%",
-    "indicatedDividendYieldText": "1.85%",
-    "dividendYieldText": "1.65%",
+    "indicatedDividendYieldText": "1.88%",
+    "dividendYieldText": "1.66%",
     "secYieldText": "1.06%",
     "secYieldUnsubsidizedText": "1.06%",
     "ytdText": "-5.85%",
@@ -386,17 +386,17 @@
     ]
   },
   "holdings": {
-    "totalRows": 40,
+    "totalRows": 41,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "19-Oct-2026",
+    "asOfDate": "22-Oct-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 2009,
+    "totalRows": 2011,
     "pageSize": 1000,
     "pageCount": 3,
     "pages": [
@@ -406,12 +406,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 451,
+    "totalRows": 454,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "20-Oct-2026"
+    "asOfDate": "23-Oct-2026"
   }
 }

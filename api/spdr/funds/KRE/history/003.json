@@ -2,7 +2,7 @@
   "ticker": "KRE",
   "page": 3,
   "pageSize": 1000,
-  "totalRows": 5120,
+  "totalRows": 5122,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,18 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "05-Nov-2018",
+      "NAV": "54.904834",
+      "Shares Outstanding": "80002585",
+      "Total Net Assets": "4392528674.46"
+    },
+    {
+      "Date": "02-Nov-2018",
+      "NAV": "54.694628",
+      "Shares Outstanding": "80952585",
+      "Total Net Assets": "4427671493.62"
+    },
     {
       "Date": "01-Nov-2018",
       "NAV": "54.501299",
@@ -5997,18 +6009,6 @@
       "NAV": "40.209592",
       "Shares Outstanding": "55552585",
       "Total Net Assets": "2233746770.18"
-    },
-    {
-      "Date": "14-Nov-2014",
-      "NAV": "40.516822",
-      "Shares Outstanding": "55752585",
-      "Total Net Assets": "2258917548.19"
-    },
-    {
-      "Date": "13-Nov-2014",
-      "NAV": "40.654631",
-      "Shares Outstanding": "55752585",
-      "Total Net Assets": "2266600794.48"
     }
   ]
 }

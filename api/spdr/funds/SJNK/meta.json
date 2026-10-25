@@ -28,19 +28,19 @@
     "value": null
   },
   "nav": {
-    "display": "$24.03",
-    "value": 24.03,
-    "asOfDate": "Oct 20 2026"
+    "display": "$24.04",
+    "value": 24.04,
+    "asOfDate": "Oct 22 2026"
   },
   "aum": {
-    "display": "$4,363.19 M",
-    "value": 4363190000,
-    "asOfDate": "Oct 20 2026"
+    "display": "$4,336.97 M",
+    "value": 4336970000,
+    "asOfDate": "Oct 22 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$24.05",
-    "premiumDiscount": "0.12%"
+    "closePrice": "$24.09",
+    "premiumDiscount": "0.23%"
   },
   "inceptionDate": "Mar 14 2012",
   "returns": {
@@ -98,8 +98,8 @@
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
     "indicatedDividendYield": 7.42,
-    "secYield": 7.69,
-    "secYieldUnsubsidized": 7.69,
+    "secYield": 7.75,
+    "secYieldUnsubsidized": 7.75,
     "tr1yText": "1.69%",
     "tr3yText": "23.19%",
     "tr5yText": "24.08%",
@@ -110,8 +110,8 @@
     "siAnnText": "4.52%",
     "indicatedDividendYieldText": "7.42%",
     "dividendYieldText": "7.20%",
-    "secYieldText": "7.69%",
-    "secYieldUnsubsidizedText": "7.69%",
+    "secYieldText": "7.75%",
+    "secYieldUnsubsidizedText": "7.75%",
     "ytdText": "0.48%",
     "returnsBasis": "official SSGA month-end NAV total returns (YTD, 1Y, annualized 3Y/5Y/10Y and since inception); tr3y/tr5y/tr10y are derived from the official annualized figures as (1 + CAGR)^n - 1; no Yahoo or market-price estimates",
     "performanceAsOf": "2026-09-30"
@@ -1522,7 +1522,7 @@
     ]
   },
   "holdings": {
-    "totalRows": 1123,
+    "totalRows": 1126,
     "pageSize": 250,
     "pageCount": 5,
     "pages": [
@@ -1532,11 +1532,11 @@
       "./holdings/004.json",
       "./holdings/005.json"
     ],
-    "asOfDate": "19-Oct-2026",
+    "asOfDate": "22-Oct-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 3674,
+    "totalRows": 3676,
     "pageSize": 1000,
     "pageCount": 4,
     "pages": [
@@ -1547,12 +1547,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 451,
+    "totalRows": 454,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "20-Oct-2026"
+    "asOfDate": "23-Oct-2026"
   }
 }

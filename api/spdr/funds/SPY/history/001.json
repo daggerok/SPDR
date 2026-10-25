@@ -2,7 +2,7 @@
   "ticker": "SPY",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 5761,
+  "totalRows": 5763,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,18 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "22-Oct-2026",
+      "NAV": "763.789533",
+      "Shares Outstanding": "1061182116",
+      "Total Net Assets": "810519792950.71"
+    },
+    {
+      "Date": "21-Oct-2026",
+      "NAV": "773.118066",
+      "Shares Outstanding": "1061532116",
+      "Total Net Assets": "820689656539.86"
+    },
     {
       "Date": "20-Oct-2026",
       "NAV": "768.668932",
@@ -5997,18 +6009,6 @@
       "NAV": "379.673015",
       "Shares Outstanding": "953882116",
       "Total Net Assets": "362163298659.68"
-    },
-    {
-      "Date": "26-Oct-2022",
-      "NAV": "381.987344",
-      "Shares Outstanding": "942182116",
-      "Total Net Assets": "359901644105.02"
-    },
-    {
-      "Date": "25-Oct-2022",
-      "NAV": "384.8232",
-      "Shares Outstanding": "948182116",
-      "Total Net Assets": "364882475782.09"
     }
   ]
 }

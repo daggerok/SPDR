@@ -28,19 +28,19 @@
     "value": null
   },
   "nav": {
-    "display": "$25.54",
-    "value": 25.54,
-    "asOfDate": "Oct 20 2026"
+    "display": "$25.16",
+    "value": 25.16,
+    "asOfDate": "Oct 22 2026"
   },
   "aum": {
-    "display": "$0.51 M",
-    "value": 510000,
-    "asOfDate": "Oct 20 2026"
+    "display": "$0.50 M",
+    "value": 500000,
+    "asOfDate": "Oct 22 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$25.52",
-    "premiumDiscount": "-0.01%"
+    "closePrice": "$25.18",
+    "premiumDiscount": "0.02%"
   },
   "inceptionDate": "Oct 13 2026",
   "returns": {
@@ -122,17 +122,17 @@
     "rows": []
   },
   "holdings": {
-    "totalRows": 7,
+    "totalRows": 8,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "19-Oct-2026",
+    "asOfDate": "22-Oct-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 6,
+    "totalRows": 8,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
@@ -140,12 +140,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 6,
+    "totalRows": 9,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "20-Oct-2026"
+    "asOfDate": "23-Oct-2026"
   }
 }

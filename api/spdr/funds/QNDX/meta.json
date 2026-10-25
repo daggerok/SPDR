@@ -13,7 +13,7 @@
     "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-qndx.xlsx",
     "distributionsDownload": "https://www.ssga.com/bin/v1/ssmp/fund/dividend-distribution?country=us&language=en&role=intermediary&product=etfs&ticker=QNDX",
     "productDataDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/spdr-product-data-us-en.xlsx",
-    "factsheet": null
+    "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-qndx.pdf"
   },
   "expenseRatio": {
     "display": "0.10%",
@@ -28,19 +28,19 @@
     "value": null
   },
   "nav": {
-    "display": "$24.29",
-    "value": 24.29,
-    "asOfDate": "Oct 20 2026"
+    "display": "$23.86",
+    "value": 23.86,
+    "asOfDate": "Oct 22 2026"
   },
   "aum": {
-    "display": "$549.04 M",
-    "value": 549040000,
-    "asOfDate": "Oct 20 2026"
+    "display": "$565.39 M",
+    "value": 565390000,
+    "asOfDate": "Oct 22 2026"
   },
   "pricing": {
     "exchange": "NASDAQ REGULAR MARKET",
-    "closePrice": "$24.29",
-    "premiumDiscount": "0.00%"
+    "closePrice": "$23.87",
+    "premiumDiscount": "0.04%"
   },
   "inceptionDate": "Jun 23 2026",
   "returns": {
@@ -94,10 +94,10 @@
     "cagr5y": null,
     "cagr10y": null,
     "siAnn": null,
-    "dividendYield": 0.45,
+    "dividendYield": 0.46,
     "dividendYieldSource": "indicated",
     "dividendYieldBasis": "indicated",
-    "indicatedDividendYield": 0.45,
+    "indicatedDividendYield": 0.46,
     "secYield": 0.44,
     "secYieldUnsubsidized": 0.44,
     "tr1yText": null,
@@ -108,8 +108,8 @@
     "cagr5yText": null,
     "cagr10yText": null,
     "siAnnText": null,
-    "indicatedDividendYieldText": "0.45%",
-    "dividendYieldText": "0.45%",
+    "indicatedDividendYieldText": "0.46%",
+    "dividendYieldText": "0.46%",
     "secYieldText": "0.44%",
     "secYieldUnsubsidizedText": "0.44%",
     "ytdText": null,
@@ -144,11 +144,11 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "19-Oct-2026",
+    "asOfDate": "22-Oct-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 84,
+    "totalRows": 86,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
@@ -156,12 +156,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 84,
+    "totalRows": 86,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "20-Oct-2026"
+    "asOfDate": "22-Oct-2026"
   }
 }
