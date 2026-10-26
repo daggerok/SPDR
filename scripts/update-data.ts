@@ -747,6 +747,9 @@ export function loadSharedStrings(bytes: Uint8Array): string[] {
 
 export type SheetTable = { headers: string[]; rows: string[][] };
 
+/** Holdings columns that carry identifiers, kept exactly as published (never number-normalized). */
+const IDENTIFIER_HEADERS = /^(ticker|identifier|sedol|cusip|isin)$/i;
+
 /**
  * Converts raw worksheet rows into a {meta, table} pair. The SPDR workbooks
  * start with 2-3 metadata rows (Fund Name, Ticker Symbol, holdings as-of)
@@ -782,6 +785,8 @@ export function sheetToTable(
   let width = headerRow.length;
   while (width > 0 && cleanText(headerRow[width - 1]) === '') width -= 1;
   const headers = headerRow.slice(0, width).map((cell) => cleanText(cell));
+  // Identifiers are text: number normalization would strip leading zeros (CUSIP 037833100, A-share ticker 002594).
+  const textColumns = new Set(headers.flatMap((header, i) => (IDENTIFIER_HEADERS.test(header) ? [i] : [])));
   const rows: string[][] = [];
   for (let i = headerIndex + 1; i < rawRows.length; i += 1) {
     const row = rawRows[i];
@@ -789,7 +794,7 @@ export function sheetToTable(
     // Every holding/history row has at least two populated cells; this drops the
     // trailing legal disclaimer row (one long cell) and blank separator rows.
     if (!row || cells.filter((cell) => cell !== '').length < 2) continue;
-    rows.push(cells.map((cell) => normalizeNumberText(cell)));
+    rows.push(cells.map((cell, i) => (textColumns.has(i) ? cell : normalizeNumberText(cell))));
   }
   return { meta, table: { headers, rows } };
 }
@@ -1680,7 +1685,7 @@ export async function main(env: Record<string, string | undefined> = process.env
     try {
       return normalizeDistributions(await fetchJson(DISTRIBUTIONS_URL, '[distr  ] dividend-distribution'));
     } catch (error) {
-      console.warn(`[ ${'distr'.padEnd(9)}] dividend feed failed (${(error as Error).message}); continuing without it`);
+      console.warn(`[ ${'distr'.padEnd(9)}] dividend feed failed (${(error as Error).message}); published funds are kept`);
       return new Map<string, JsonRecord>();
     }
   })();
@@ -1699,12 +1704,21 @@ export async function main(env: Record<string, string | undefined> = process.env
       }
       return parseProductDataSheet(bytes);
     } catch (error) {
-      console.warn(`[ ${'catalog'.padEnd(9)}] product-data failed (${(error as Error).message}); continuing without it`);
+      console.warn(`[ ${'catalog'.padEnd(9)}] product-data failed (${(error as Error).message}); published funds are kept`);
       return new Map<string, ProductDataRow>();
     }
   })();
 
   console.log(`[ ${'catalog'.padEnd(9)}] ${catalog.length} SPDR ETFs (${catalogSource})`);
+  // A failed or empty bulk feed is a failed required source for every published fund: its ISIN, CUSIP, SEC yield,
+  // official dividend yield, net TER and distributions would be rewritten as null or degraded. Such funds keep
+  // their published state and report failed; only new funds (no meta.json yet) are built.
+  const bulkFailures = [
+    ...(distributions.size ? [] : ['dividend-distribution feed']),
+    ...(productData.size ? [] : ['product-data workbook']),
+  ];
+  const fileExists = (path: string): Promise<boolean> => access(path).then(() => true, () => false);
+  const metaPath = (ticker: string): string => decodeURIComponent(new URL(`funds/${ticker}/meta.json`, API_ROOT).pathname);
 
   // A closed fund whose row is published is a known ticker even after the live catalog dropped it (the run then writes only its closed mark).
   const publishedTickers = new Set<string>((previousIndex?.funds || []).map((row: JsonRecord) => String(row.ticker)));
@@ -1751,7 +1765,9 @@ export async function main(env: Record<string, string | undefined> = process.env
       if (index >= batch.length) return;
       const fund = batch[index];
       const before = await output.before(fund.ticker);
-      const result = await processFund(fund, distributions.get(fund.ticker), productData.get(fund.ticker), config);
+      const result: FundResult = bulkFailures.length && (await fileExists(metaPath(fund.ticker)))
+        ? { ticker: fund.ticker, status: 'failed', reason: `${bulkFailures.join(' and ')} failed, kept as published`, changed: false }
+        : await processFund(fund, distributions.get(fund.ticker), productData.get(fund.ticker), config);
       results.push(result);
       await output.result(fund.ticker, before, result.status === 'failed' || result.status === 'skipped' ? result.status : undefined, result.reason);
     }
@@ -1762,8 +1778,6 @@ export async function main(env: Record<string, string | undefined> = process.env
 
   // Live details from disk for refreshed funds.
   const refreshed = new Set(results.filter((result) => result.status === 'updated' || result.status === 'unchanged').map((result) => result.ticker));
-  const fileExists = (path: string): Promise<boolean> => access(path).then(() => true, () => false);
-  const metaPath = (ticker: string): string => decodeURIComponent(new URL(`funds/${ticker}/meta.json`, API_ROOT).pathname);
   const counts = new Map<string, { holdings: number; history: number; premiumDiscount: number; holdingsStatus: string | null }>();
   for (const ticker of refreshed) {
     try {
