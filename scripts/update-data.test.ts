@@ -273,6 +273,17 @@ describe('parsing', () => {
     expect(bond.table.rows[0][5]).toBe('77000000');
   });
 
+  test('identifier columns keep their published text: leading zeros and E-shaped CUSIPs survive, numbers are still expanded', () => {
+    const sheet = table(buildXlsx([
+      ['Fund Name:', 'SPDR S&P China ETF'], ['Ticker Symbol:', 'GXC'], ['Holdings:', 'As of 23-Oct-2026'],
+      ['Name', 'Ticker', 'Identifier', 'SEDOL', 'Weight', 'Sector', 'Shares Held', 'Local Currency'],
+      ['BYD CO LTD A', '002594', '037833100', '0263494', '1.5', '-', '1.80135563E8', 'CNY'],
+      ['ACME CORP', 'ACME', '123456E10', 'B0LMTQ3', '98.5', '-', '5.84E7', 'USD'],
+    ]), 'holdings');
+    expect(sheet.table.rows.map((r) => r.slice(1, 4))).toEqual([['002594', '037833100', '0263494'], ['ACME', '123456E10', 'B0LMTQ3']]);
+    expect(sheet.table.rows.map((r) => r[6])).toEqual(['180135563', '58400000']);
+  });
+
   test('holdings guard: header-only, renamed weight column, broken weights, a bad weight sum and a halved sheet are rejected', () => {
     const headers = ['Name', 'Ticker', 'Weight'];
     const rows = [{ Name: 'A', Ticker: 'A', Weight: '60%' }, { Name: 'B', Ticker: 'B', Weight: '40%' }];
@@ -459,7 +470,7 @@ const holdingsSheet = (t: string) => [['Fund Name:', `${t} fund`], ['Ticker Symb
 const productSheet = [['Ticker', 'ISIN', 'CUSIP', 'Gross Expense Ratio', '* Net Expense Ratio', '30 Day SEC Yield', '30 Day SEC Yield (Unsubsidized)', 'Fund Dividend Yield', 'Index Dividend Yield'],
   ['SPY', 'US1', 'C1', '0.0945%', '0.0800%', '0.95%', '-', '1.00%', '1.10%'], ['XLK', 'US2', 'C2', '0.08%', '-', '-', '-', '0.55%', '0.60%'], ['GLD', 'US3', 'C3', '0.40%', '-', '-', '-', '0.00%', '-']];
 
-type Mock = { tickers: string[]; nav: Record<string, number>; hist: number; failNavhist: Set<string>; failDistributions: Set<string>; latency: number; inflight: number; peak: number };
+type Mock = { tickers: string[]; nav: Record<string, number>; hist: number; failNavhist: Set<string>; failDistributions: Set<string>; failBulk: Set<string>; latency: number; inflight: number; peak: number };
 // SPY pays quarterly: the lineup feed lists only the latest row, the per-fund history lists all three.
 const distRow = (exDate: string, dividend: string) => ({ exDate, recordDate: exDate, payableDate: exDate, dividend, shortTeamCapital: '-', longTeamCapital: '-' });
 const spyHistory = [distRow('09/18/2026', '1.888834'), distRow('06/18/2026', '1.903516'), distRow('03/20/2026', '1.738591')];
@@ -473,7 +484,7 @@ function fundRecord(ticker: string, nav: number) {
   return record;
 }
 function installMock(overrides: Partial<Mock> = {}): Mock {
-  const mock: Mock = { tickers: ['SPY', 'XLK', 'GLD'], nav: { SPY: 500, XLK: 200, GLD: 300 }, hist: 300, failNavhist: new Set(), failDistributions: new Set(), latency: 0, inflight: 0, peak: 0, ...overrides };
+  const mock: Mock = { tickers: ['SPY', 'XLK', 'GLD'], nav: { SPY: 500, XLK: 200, GLD: 300 }, hist: 300, failNavhist: new Set(), failDistributions: new Set(), failBulk: new Set(), latency: 0, inflight: 0, peak: 0, ...overrides };
   globalThis.fetch = (async (input: unknown) => {
     const url = String(input);
     mock.inflight++; mock.peak = Math.max(mock.peak, mock.inflight);
@@ -483,6 +494,7 @@ function installMock(overrides: Partial<Mock> = {}): Mock {
       if (url.includes('fundfinder')) return Response.json({ data: { funds: { etfs: { categories: [], datas: mock.tickers.map((t) => fundRecord(t, mock.nav[t])) } } } });
       const distTicker = /dividend-distribution.*[?&]ticker=([A-Z]+)/.exec(url)?.[1];
       if (distTicker) return mock.failDistributions.has(distTicker) ? new Response('err', { status: 500 }) : Response.json(distTicker === 'SPY' ? spyHistory : []);
+      for (const bulk of ['dividend-distribution', 'product-data']) if (url.includes(bulk) && !url.includes('ticker=') && mock.failBulk.has(bulk)) return new Response('err', { status: 500 });
       if (url.includes('dividend-distribution')) return Response.json(distributionFeed);
       if (url.includes('product-data')) return xlsx(productSheet);
       const m = /(holdings-daily|navhist|pdhist)-us-en-([a-z]+)\.xlsx/.exec(url);
@@ -745,6 +757,23 @@ describe('pipeline 3', () => {
     expect(order('E')).toEqual(['A', 'C', 'E']);
     expect(order(null)).toEqual(['A', 'C', 'E']);
   });
+
+  test('a failed or empty bulk feed keeps every published fund as published (failed); a new fund is still built', async () => {
+    for (const bulk of ['product-data', 'dividend-distribution']) {
+      const dir = tempRoot();
+      installMock();
+      await runMain();
+      const metas = ['SPY', 'XLK', 'GLD'].map((t) => readFileSync(join(dir, `funds/${t}/meta.json`), 'utf8'));
+      const spyRow = row(dir, 'SPY');
+      const lines: string[] = [];
+      installMock({ tickers: ['SPY', 'XLK', 'GLD', 'XLE'], nav: { SPY: 777, XLK: 200, GLD: 300, XLE: 90 }, failBulk: new Set([bulk]) });
+      await runMain({}, lines);
+      expect(['SPY', 'XLK', 'GLD'].map((t) => readFileSync(join(dir, `funds/${t}/meta.json`), 'utf8'))).toEqual(metas);
+      expect(row(dir, 'SPY')).toEqual(spyRow);
+      expect(lines.join('\n')).toMatch(/SPY +failed .*reason=.*failed, kept as published/);
+      expect(row(dir, 'XLE').dataFile).toBe('./funds/XLE/meta.json');
+    }
+  }, 20_000);
 
   test('soft deadline: no new funds are started, the index is still written', async () => {
     const dir = tempRoot();

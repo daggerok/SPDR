@@ -83,7 +83,7 @@ Each fund carries a derived `metrics` object that powers the catalog columns sha
 
 Expense ratio: `terValue` / `ter` are the NET expense ratio (after waivers; the single published figure when there is no waiver), `terGrossValue` / `terGross` the gross ratio. Both come from the product-data workbook ("Gross Expense Ratio", "Net Expense Ratio"), with the fund finder expense ratio as the gross fallback. The `TER` filter uses the net value.
 
-Sources and scope: SPDR has no Yahoo Finance and no SEC EDGAR source. Everything comes from SSGA's own files, so there is no `SKIP_YAHOO`, `EDGAR_FALLBACK` or `SEC_UA` control. Yields are the official 30-day SEC yield and Fund Dividend Yield from SSGA's product-data workbook.
+Sources and scope: SPDR has no Yahoo Finance and no SEC EDGAR source. Everything comes from SSGA's own files, so there is no `SKIP_YAHOO`, `EDGAR_FALLBACK` or `SEC_UA` control. Yields are the official 30-day SEC yield and Fund Dividend Yield from SSGA's product-data workbook. When the product-data workbook or the dividend-distribution feed fails or comes back empty, every published fund is kept exactly as published and reported failed; only new funds are built. Identifier columns of the holdings workbooks (Ticker, Identifier, SEDOL) are kept as published text, so CUSIP `037833100` and A-share ticker `002594` keep their leading zeros.
 
 Commodity trusts such as GLD and GLDM hold metal and publish no holdings workbook. That is valid: they get `meta.json`, NAV, returns and history, with holdings `status: "empty"` (`holdingsStatus` in `index.json`). A fund that published holdings before is never emptied by a transient 404.
 
