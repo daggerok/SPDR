@@ -1469,6 +1469,17 @@ export function distributionsWorksheet(
   };
 }
 
+/**
+ * The shared holdingsGuard plus what only SPDR needs: the UI reads holdings cells by the exact header text Name and
+ * Weight, so a workbook that answered 200 must carry that header row. A renamed column (Weight (%), which the shared
+ * guard accepts for other brands) or a shifted sheet whose header row was not found (a new fund's 0-row result would
+ * otherwise be published as status "empty") is broken. Commodity trusts without holdings answer 404 and never get here.
+ */
+export function spdrHoldingsProblem(table: SheetTable, previousRows: number | null | undefined, relax: ReadonlyArray<string>): string | null {
+  if (!table.headers.includes('Name') || !table.headers.includes('Weight')) return `no Name and Weight header row (headers: ${table.headers.join(', ') || 'none'})`;
+  return holdingsGuard(table.headers, table.rows, previousRows, relax);
+}
+
 async function processFund(
   fund: CatalogFund,
   distribution: JsonRecord | undefined,
@@ -1501,7 +1512,7 @@ async function processFund(
       // Freshly fetched holdings that look broken (no weight column, non-numeric weights, a bad weight sum, half the rows gone)
       // never replace the published ones: the fund fails here, before anything of it is written, and keeps its previous state.
       const previousMeta = await readPreviousMeta();
-      const holdingsProblem = holdingsGuard(holdings.table.headers, holdings.table.rows, previousMeta?.holdings?.totalRows, HOLDINGS_GUARD_RELAX[ticker] ?? HOLDINGS_GUARD_RELAX['*'] ?? []);
+      const holdingsProblem = spdrHoldingsProblem(holdings.table, previousMeta?.holdings?.totalRows, HOLDINGS_GUARD_RELAX[ticker] ?? HOLDINGS_GUARD_RELAX['*'] ?? []);
       if (holdingsProblem) throw new Error(`holdings guard: ${holdingsProblem}`);
     }
 
