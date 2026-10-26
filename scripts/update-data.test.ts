@@ -7,10 +7,12 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import {
+  CLOSED_FUNDS,
   CONTROL_NAMES,
   RETURNS_BASIS,
   annualizedToTotal,
   applyHistoryRange,
+  closedFund,
   configurePacing,
   deriveCatalogMetrics,
   distributionHistoryUrl,
@@ -178,7 +180,9 @@ describe('controls', () => {
     for (const b of [{ CONCURRENCY: 'abc' }, { MAX_FETCHES: 'x' }, { MAX_RETRIES: '0' }, { STORE_RAW_DOWNLOADS: 'maybe' }]) expect(() => loadConfig(b)).toThrow();
     expect(loadConfig({ STORE_RAW_DOWNLOADS: 'off' }).storeRawDownloads).toBe(false);
   });
+});
 
+describe('controls 2', () => {
   test('range parsers: bounds, K/M/B/T and presets, percent signs, rejection of colonless or inverted values', () => {
     for (const empty of ['', ':', '  :  ']) expect(parseRange(empty, 'X')).toBeUndefined();
     expect(parseRange('5:20', 'X')).toEqual({ min: 5, max: 20 });
@@ -283,7 +287,9 @@ describe('parsing', () => {
     expect(holdingsGuard(headers, allocation, 2, ['sum'])).toBeNull();
     expect(holdingsGuard(headers, rows, 5)).toContain('less than half');
   });
+});
 
+describe('parsing 2', () => {
   test('NAV and premium/discount history workbooks (blank rows dropped, registered mark stripped)', () => {
     const nav = table(buildXlsx([
       ['Fund Name:', 'SPDR Gold MiniShares'], ['Ticker Symbol:', 'GLDM®'], ['Date', 'NAV', 'Shares Outstanding', 'Total Net Assets'],
@@ -331,9 +337,10 @@ describe('parsing', () => {
 });
 
 // ---------------------------------------------------------------------------
-describe('metrics', () => {
-  const monthEnd = { ytd: 10.06, yr1: 19.4, yr3: 19.18, yr5: 12.72, yr10: 14.93, sinceInception: 10.8 };
+// month-end returns shared by both metrics groups
+const monthEnd = { ytd: 10.06, yr1: 19.4, yr3: 19.18, yr5: 12.72, yr10: 14.93, sinceInception: 10.8 };
 
+describe('metrics', () => {
   test('annualized -> total conversion, null (never 0) on bad input', () => {
     expect(annualizedToTotal(19.18, 3)).toBeCloseTo(69.28, 2);
     expect(annualizedToTotal(14.93, 10)).toBeCloseTo(302.1, 1);
@@ -385,7 +392,9 @@ describe('metrics', () => {
     expect([official.dividendYield, official.dividendYieldText, official.dividendYieldSource]).toEqual([0.99, '0.99%', 'official']);
     expect(official.indicatedDividendYield).toBe(0.99);
   });
+});
 
+describe('metrics 2', () => {
   test('dividendYieldBasis: code per yield source, null with a null yield, same key set on fresh/legacy/empty rows', () => {
     const dist = { frequency: 'Quarterly', exDate: '06/18/2026', dividend: '1.903516' };
     const none = { display: null, value: null };
@@ -575,7 +584,9 @@ describe('pipeline', () => {
     expect(row(dir, 'XLK')).toEqual(before.find((f: any) => f.ticker === 'XLK'));
     expect(readFileSync(join(dir, 'funds/XLK/meta.json'), 'utf8')).toBe(xlkMeta);
   });
+});
 
+describe('pipeline 2', () => {
   test('a second identical run writes nothing (same files, bytes and mtimes, no temp files)', async () => {
     const dir = tempRoot();
     installMock();
@@ -641,6 +652,56 @@ describe('pipeline', () => {
     expect(readFileSync(join(dir, 'funds/SPY/meta.json'), 'utf8')).toBe(meta);
   });
 
+  test('a closed fund is never fetched or reported failed: its files stay as published, its index row says closed, a rerun writes nothing', async () => {
+    const entry = { ticker: 'XLK', closed: '2026-10-01', source: 'https://www.sec.gov/Archives/edgar/data/1/notice.htm' };
+    expect(() => closedFund([{ ...entry, closed: 'soon' }], 'XLK')).toThrow('CLOSED_FUNDS');
+    expect(closedFund([entry], 'xlk')).toEqual(entry);
+    const dir = tempRoot();
+    installMock();
+    await runMain();
+    const files = () => listFiles(dir).filter((f) => f !== 'index.json').map((f) => `${f}:${readFileSync(join(dir, f), 'utf8')}`);
+    const snap = () => listFiles(dir).map((f) => `${f}:${readFileSync(join(dir, f), 'utf8')}`);
+    const first = files();
+    const published = row(dir, 'XLK');
+    const calls: string[] = [];
+    const watch = (tickers: string[]) => {
+      installMock({ tickers, nav: { SPY: 500, XLK: 999, GLD: 300 } });
+      const good = globalThis.fetch;
+      globalThis.fetch = (async (input: unknown, init?: RequestInit) => {
+        calls.push(String(input));
+        // a header-only XLK sheet: the guard would reject it
+        return String(input).includes('holdings-daily-us-en-xlk') ? new Response(new Uint8Array(buildXlsx(holdingsSheet('XLK').slice(0, 4)))) : good(input as string, init);
+      }) as unknown as typeof fetch;
+    };
+    CLOSED_FUNDS.push(entry);
+    try {
+      watch(['SPY', 'XLK', 'GLD']);
+      const lines: string[] = [];
+      await runMain({ TICKERS: 'XLK' }, lines);
+      await runMain({}, lines);
+      expect(calls.filter((url) => /xlk/i.test(url))).toEqual([]);
+      expect(process.exitCode).not.toBe(1);
+      expect(lines.join('\n')).not.toMatch(/XLK +failed/);
+      expect(files()).toEqual(first);
+      expect(readJson(dir, 'index.json').funds.map((f: any) => f.ticker)).toEqual(['GLD', 'SPY', 'XLK']);
+      expect(row(dir, 'XLK')).toEqual({ ...published, status: 'closed', closedDate: entry.closed, closedSource: entry.source });
+      expect(row(dir, 'XLK').dataFile).toBe('./funds/XLK/meta.json');
+      const closed = snap();
+      await runMain();
+      expect(snap()).toEqual(closed);
+      // the live catalog dropped the closed fund: a TICKERS run for it is still accepted, its row and files survive
+      watch(['SPY', 'GLD']);
+      await runMain({ TICKERS: 'XLK' });
+      await runMain();
+      expect(calls.filter((url) => /xlk/i.test(url))).toEqual([]);
+      expect(snap()).toEqual(closed);
+    } finally {
+      CLOSED_FUNDS.splice(CLOSED_FUNDS.indexOf(entry), 1);
+    }
+  });
+});
+
+describe('pipeline 3', () => {
   test('unknown TICKERS is an error that writes nothing; all selected funds failing is an error', async () => {
     const dir = tempRoot();
     installMock();
