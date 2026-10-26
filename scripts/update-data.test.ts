@@ -44,6 +44,9 @@ import {
   setSoftDeadlineMs,
   sheetToTable,
   toIsoDate,
+  withListedTickers,
+  HOLDINGS_GUARD_RELAX,
+  holdingsWeightCount,
 } from './update-data';
 
 // ---------------------------------------------------------------------------
@@ -284,6 +287,17 @@ describe('parsing', () => {
     expect(sheet.table.rows.map((r) => r[6])).toEqual(['180135563', '58400000']);
   });
 
+  test('holdings tickers: a bare symbol only for a U.S. listing; local codes, futures, options and cash get -', () => {
+    const headers = ['Name', 'Ticker', 'Identifier', 'Weight', 'Local Currency', 'Number of Contracts'];
+    const rows = [
+      ['ARCOSA INC', 'ACA', '039653100', '1', 'USD', '-'], ['CREDIT AGRICOLE SA', 'ACA', '4262335', '1', 'EUR', '-'], ['TAIWAN SEMICONDUCTOR', '2330', '6889106', '1', 'TWD', '-'],
+      ['S+P500 EMINI FUT  DEC26', 'ESZ6', 'ESZ6', '1', 'USD', '4'], ['MICROSOFT CORP NOV26 515 PUT', 'MSFT261120P00515000', 'X', '1', 'USD', '2'], ['U.S. Dollar', 'CASH_USD', 'CASH_USD', '1', 'USD', '-'],
+    ];
+    expect(withListedTickers({ headers, rows }).rows.map((row) => row[1])).toEqual(['ACA', '-', '-', '-', '-', '-']);
+    // a fund of SPDR funds publishes no currency: its tickers stay, its futures do not
+    expect(withListedTickers({ headers: ['Name', 'Ticker', 'Weight'], rows: [['STATE STREET SPDR PORTFOLIO S+', 'SPYM', '50'], ['AUST 10Y BOND FUT DEC26', 'XMZ6', '1']] }).rows.map((row) => row[1])).toEqual(['SPYM', '-']);
+  });
+
   test('holdings guard: header-only, renamed weight column, broken weights, a bad weight sum and a halved sheet are rejected', () => {
     const headers = ['Name', 'Ticker', 'Weight'];
     const rows = [{ Name: 'A', Ticker: 'A', Weight: '60%' }, { Name: 'B', Ticker: 'B', Weight: '40%' }];
@@ -341,9 +355,12 @@ describe('parsing 2', () => {
     expect(() => parseProductDataSheet(buildXlsx([['not', 'a', 'header', 'row']]))).toThrow();
   });
 
-  test('dates: SSGA formats normalize to ISO, garbage becomes null', () => {
-    for (const ok of ['Aug 31 2026', '08/31/2026', '2026-08-31']) expect(toIsoDate(ok)).toBe('2026-08-31');
-    for (const bad of ['Feb 30 2026', '', null, '-']) expect(toIsoDate(bad)).toBeNull();
+  test('dates: SSGA formats normalize to ISO in every time zone, garbage becomes null', () => {
+    for (const tz of ['Asia/Tokyo', 'America/Los_Angeles', 'UTC']) {
+      process.env.TZ = tz;
+      for (const ok of ['Aug 31 2026', '08/31/2026', '2026-08-31', 'Aug 31, 2026', 'August 31 2026', '31-Aug-2026', '08/31/26']) expect(toIsoDate(ok)).toBe('2026-08-31');
+      for (const bad of ['Feb 30 2026', '', null, '-']) expect(toIsoDate(bad)).toBeNull();
+    }
   });
 });
 
@@ -435,6 +452,9 @@ describe('metrics 2', () => {
     expect(deriveCatalogMetrics({ ...base, inceptionDate: 'Feb 10 2026' }, 10, null).siAnn).toBeNull();
     expect(deriveCatalogMetrics({ ...base, inceptionDate: 'Aug 31 2025' }, 10, null).siAnn).toBe(4.2);
     expect(deriveCatalogMetrics({ ...base, inceptionDate: 'Sep 01 2025' }, 10, null).siAnn).toBeNull();
+    // every horizon the fund is too young for is null, not only since inception (calendar anniversary)
+    const young2 = deriveCatalogMetrics({ ...base, yr1: 3, yr3: 4, yr5: 5, inceptionDate: 'Aug 31 2024' }, 10, null);
+    expect([young2.tr1y, young2.cagr3y, young2.tr3y, young2.cagr5y, young2.siAnn]).toEqual([3, null, null, null, 4.2]);
   });
 
   test('returnsBasis and performanceAsOf travel together at the end of every metrics object', () => {
@@ -717,7 +737,7 @@ describe('pipeline 3', () => {
   test('unknown TICKERS is an error that writes nothing; all selected funds failing is an error', async () => {
     const dir = tempRoot();
     installMock();
-    await expect(runMain({ TICKERS: 'XXXX' })).rejects.toThrow(/unknown ticker/);
+    await expect(runMain({ TICKERS: 'XXXX' })).rejects.toThrow('TICKERS: XXXX not in the SPDR catalog or published feed; nothing was fetched or written');
     expect(existsSync(join(dir, 'index.json'))).toBe(false);
     installMock({ failNavhist: new Set(['SPY', 'XLK', 'GLD']) });
     await expect(runMain({ CONCURRENCY: '3' })).rejects.toThrow(/all 3 selected funds failed/);
@@ -793,6 +813,66 @@ function statSyncMtime(path: string): number {
 // Resolves to 'hung' when the promise is still pending after `ms`, so a missing timeout fails fast instead of hanging bun.
 const settled = (p: Promise<unknown>, ms = 3000) =>
   Promise.race([p.then((v) => (typeof v === 'string' ? v : 'resolved'), () => 'rejected'), new Promise<string>((r) => setTimeout(() => r('hung'), ms))]);
+
+describe('pipeline 4', () => {
+  test('a relaxed guard still keeps numeric published weights from an all-dash sheet (Q24)', async () => {
+    const dir = tempRoot();
+    installMock();
+    await runMain();
+    const before = listFiles(dir).map((f) => `${f}:${readFileSync(join(dir, f), 'utf8')}`);
+    const good = globalThis.fetch;
+    const dashes = holdingsSheet('SPY').map((r, i) => (i === 4 ? r.map((cell, c) => (c === 2 ? '-' : cell)) : r));
+    globalThis.fetch = (async (input: unknown, init?: RequestInit) => (String(input).includes('holdings-daily-us-en-spy')
+      ? new Response(new Uint8Array(buildXlsx(dashes)))
+      : good(input as string, init))) as unknown as typeof fetch;
+    HOLDINGS_GUARD_RELAX.SPY = ['numeric', 'sum'];
+    const lines: string[] = [];
+    try {
+      await runMain({ TICKERS: 'SPY,XLK' }, lines);
+    } finally {
+      delete HOLDINGS_GUARD_RELAX.SPY;
+    }
+    expect(listFiles(dir).map((f) => `${f}:${readFileSync(join(dir, f), 'utf8')}`)).toEqual(before);
+    expect(lines.join('\n')).toMatch(/SPY +failed .*reason=holdings guard: no row has a numeric weight/);
+    expect(holdingsWeightCount(['Name', 'Weight'], [['A', '-'], ['B', '2']])).toBe(1);
+  });
+
+  test('TICKERS outside the live catalog stops the run before any fund request; a stale catalog-only row is dropped (Q27)', async () => {
+    const dir = tempRoot();
+    installMock();
+    await runMain();
+    const index = readJson(dir, 'index.json');
+    index.funds.push({ ...row(dir, 'XLK'), ticker: 'NOPE', dataFile: null });
+    writeFileSync(join(dir, 'index.json'), JSON.stringify(index));
+    const before = listFiles(dir).map((f) => `${f}:${readFileSync(join(dir, f), 'utf8')}`);
+    const requests: string[] = [];
+    const good = globalThis.fetch;
+    globalThis.fetch = (async (input: unknown, init?: RequestInit) => { requests.push(String(input)); return good(input as string, init); }) as unknown as typeof fetch;
+    await expect(runMain({ TICKERS: 'NOPE' })).rejects.toThrow('TICKERS: NOPE not in the SPDR catalog or published feed; nothing was fetched or written');
+    expect(requests.filter((url) => !url.includes('fundfinder'))).toEqual([]);
+    expect(listFiles(dir).map((f) => `${f}:${readFileSync(join(dir, f), 'utf8')}`)).toEqual(before);
+    await runMain({ TICKERS: 'SPY' });
+    expect(readJson(dir, 'index.json').funds.map((f: any) => f.ticker)).toEqual(['GLD', 'SPY', 'XLK']);
+  });
+
+  test('NEW FUNDS announces a fund on its first successful publish, a new catalog-only fund as not published yet (Q28)', async () => {
+    const dir = tempRoot();
+    installMock({ tickers: ['SPY', 'XLK'] });
+    await runMain();
+    installMock();
+    process.env.GITHUB_STEP_SUMMARY = join(dir, '..', `${dir.split('/').pop()}-summary.md`);
+    dirs.push(process.env.GITHUB_STEP_SUMMARY);
+    const announced = async (env: Record<string, string>): Promise<string[]> => {
+      const lines: string[] = [];
+      await runMain(env, lines);
+      return lines.filter((line) => /^NEW FUNDS/.test(line));
+    };
+    expect(await announced({ TICKERS: 'SPY' })).toEqual(['NEW FUNDS (not published yet): GLD']);
+    expect(readFileSync(process.env.GITHUB_STEP_SUMMARY, 'utf8')).toContain('### NEW FUNDS\n\nNEW FUNDS (not published yet): GLD\n');
+    expect(await announced({ TICKERS: 'SPY' })).toEqual([]);
+    expect(await announced({ TICKERS: 'GLD' })).toEqual(['NEW FUNDS: GLD']);
+  });
+});
 
 describe('network', () => {
   test('a stalled connection (headers never arrive) is aborted by the timeout', async () => {
