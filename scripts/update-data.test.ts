@@ -598,6 +598,8 @@ describe('pipeline', () => {
     expect(readJson(dir, 'funds/SPY/meta.json').holdings.totalRows).toBe(1);
     const sheets: Record<string, string[][]> = {
       renamed: holdingsSheet('SPY').map((r) => r.map((cell) => (cell === 'Weight' ? 'Weighting' : cell))),
+      // the shared guard accepts Weight (%), but the UI reads only Weight
+      percent: holdingsSheet('SPY').map((r) => r.map((cell) => (cell === 'Weight' ? 'Weight (%)' : cell))),
       headerOnly: holdingsSheet('SPY').slice(0, 4),
     };
     for (const [name, sheet] of Object.entries(sheets)) {
@@ -611,6 +613,19 @@ describe('pipeline', () => {
       expect([name, snap()]).toEqual([name, before]);
       expect(lines.join('\n')).toMatch(/SPY +failed .*reason=holdings guard: /);
     }
+    // a new fund whose workbook is shifted (header row not found, 0 rows) is failed, not published as "empty" holdings
+    const fresh = tempRoot();
+    installMock();
+    const good = globalThis.fetch;
+    const shifted = holdingsSheet('XLK').slice(0, 4).map((r) => r.map((cell) => (cell === 'Weight' ? 'Weight (%)' : cell)));
+    globalThis.fetch = (async (input: unknown, init?: RequestInit) => (String(input).includes('holdings-daily-us-en-xlk')
+      ? new Response(new Uint8Array(buildXlsx(shifted)))
+      : good(input as string, init))) as unknown as typeof fetch;
+    const lines: string[] = [];
+    await runMain({}, lines);
+    expect(lines.join('\n')).toMatch(/XLK +failed .*reason=holdings guard: no Name and Weight header row/);
+    expect(existsSync(join(fresh, 'funds/XLK/meta.json'))).toBe(false);
+    expect(row(fresh, 'XLK').dataFile).toBeNull();
   });
 
   test('a fund whose source failed keeps its previous index row and meta exactly as published', async () => {
