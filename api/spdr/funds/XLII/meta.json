@@ -28,19 +28,19 @@
     "value": null
   },
   "nav": {
-    "display": "$23.89",
-    "value": 23.89,
-    "asOfDate": "Oct 22 2026"
+    "display": "$24.14",
+    "value": 24.14,
+    "asOfDate": "Oct 28 2026"
   },
   "aum": {
-    "display": "$16.25 M",
-    "value": 16250000,
-    "asOfDate": "Oct 22 2026"
+    "display": "$16.66 M",
+    "value": 16660000,
+    "asOfDate": "Oct 28 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$23.89",
-    "premiumDiscount": "-0.02%"
+    "closePrice": "$24.16",
+    "premiumDiscount": "-0.14%"
   },
   "inceptionDate": "Jul 29 2025",
   "returns": {
@@ -94,10 +94,10 @@
     "cagr5y": null,
     "cagr10y": null,
     "siAnn": 10.36,
-    "dividendYield": 13.53,
+    "dividendYield": 13.43,
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
-    "indicatedDividendYield": 15.01,
+    "indicatedDividendYield": 14.85,
     "secYield": 0.88,
     "secYieldUnsubsidized": 0.88,
     "tr1yText": "9.74%",
@@ -108,8 +108,8 @@
     "cagr5yText": null,
     "cagr10yText": null,
     "siAnnText": "10.36%",
-    "indicatedDividendYieldText": "15.01%",
-    "dividendYieldText": "13.53%",
+    "indicatedDividendYieldText": "14.85%",
+    "dividendYieldText": "13.43%",
     "secYieldText": "0.88%",
     "secYieldUnsubsidizedText": "0.88%",
     "ytdText": "5.76%",
@@ -242,17 +242,17 @@
     ]
   },
   "holdings": {
-    "totalRows": 6,
+    "totalRows": 5,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "22-Oct-2026",
+    "asOfDate": "28-Oct-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 312,
+    "totalRows": 316,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
@@ -260,12 +260,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 313,
+    "totalRows": 316,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "23-Oct-2026"
+    "asOfDate": "28-Oct-2026"
   }
 }

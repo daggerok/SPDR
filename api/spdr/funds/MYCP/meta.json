@@ -3,8 +3,8 @@
   "name": "State Street My2036 Corporate Bond ETF",
   "category": "Fixed Income Sector",
   "identifiers": {
-    "isin": "US78470P4990",
-    "cusip": "78470P499"
+    "isin": null,
+    "cusip": null
   },
   "source": {
     "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-my2036-corporate-bond-etf-mycp",
@@ -28,19 +28,19 @@
     "value": null
   },
   "nav": {
-    "display": "$24.87",
-    "value": 24.87,
-    "asOfDate": "Oct 22 2026"
+    "display": "$24.85",
+    "value": 24.85,
+    "asOfDate": "Oct 28 2026"
   },
   "aum": {
-    "display": "$7.46 M",
-    "value": 7460000,
-    "asOfDate": "Oct 22 2026"
+    "display": "$7.45 M",
+    "value": 7450000,
+    "asOfDate": "Oct 28 2026"
   },
   "pricing": {
     "exchange": "NASDAQ REGULAR MARKET",
-    "closePrice": "$24.90",
-    "premiumDiscount": "0.13%"
+    "closePrice": "$24.86",
+    "premiumDiscount": "0.08%"
   },
   "inceptionDate": "Sep 23 2026",
   "returns": {
@@ -98,8 +98,8 @@
     "dividendYieldSource": "indicated",
     "dividendYieldBasis": "indicated",
     "indicatedDividendYield": 1.51,
-    "secYield": 6.04,
-    "secYieldUnsubsidized": 6.04,
+    "secYield": null,
+    "secYieldUnsubsidized": null,
     "tr1yText": null,
     "tr3yText": null,
     "tr5yText": null,
@@ -110,8 +110,8 @@
     "siAnnText": null,
     "indicatedDividendYieldText": "1.51%",
     "dividendYieldText": "1.51%",
-    "secYieldText": "6.04%",
-    "secYieldUnsubsidizedText": "6.04%",
+    "secYieldText": null,
+    "secYieldUnsubsidizedText": null,
     "ytdText": null,
     "returnsBasis": "official SSGA month-end NAV total returns (YTD, 1Y, annualized 3Y/5Y/10Y and since inception); tr3y/tr5y/tr10y are derived from the official annualized figures as (1 + CAGR)^n - 1; no Yahoo or market-price estimates",
     "performanceAsOf": null
@@ -138,17 +138,17 @@
     ]
   },
   "holdings": {
-    "totalRows": 56,
+    "totalRows": 55,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "22-Oct-2026",
+    "asOfDate": "28-Oct-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 23,
+    "totalRows": 27,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
@@ -156,12 +156,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 23,
+    "totalRows": 26,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "23-Oct-2026"
+    "asOfDate": "28-Oct-2026"
   }
 }

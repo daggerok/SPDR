@@ -28,19 +28,19 @@
     "value": null
   },
   "nav": {
-    "display": "$23.57",
-    "value": 23.57,
-    "asOfDate": "Oct 22 2026"
+    "display": "$23.54",
+    "value": 23.54,
+    "asOfDate": "Oct 28 2026"
   },
   "aum": {
-    "display": "$11.08 M",
-    "value": 11080000,
-    "asOfDate": "Oct 22 2026"
+    "display": "$11.77 M",
+    "value": 11770000,
+    "asOfDate": "Oct 28 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$23.59",
-    "premiumDiscount": "0.01%"
+    "closePrice": "$23.58",
+    "premiumDiscount": "0.19%"
   },
   "inceptionDate": "Jul 29 2025",
   "returns": {
@@ -94,10 +94,10 @@
     "cagr5y": null,
     "cagr10y": null,
     "siAnn": 3.54,
-    "dividendYield": 11.15,
+    "dividendYield": 11.2,
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
-    "indicatedDividendYield": 10.9,
+    "indicatedDividendYield": 10.91,
     "secYield": 1.25,
     "secYieldUnsubsidized": 1.25,
     "tr1yText": "0.81%",
@@ -108,8 +108,8 @@
     "cagr5yText": null,
     "cagr10yText": null,
     "siAnnText": "3.54%",
-    "indicatedDividendYieldText": "10.90%",
-    "dividendYieldText": "11.15%",
+    "indicatedDividendYieldText": "10.91%",
+    "dividendYieldText": "11.20%",
     "secYieldText": "1.25%",
     "secYieldUnsubsidizedText": "1.25%",
     "ytdText": "-1.04%",
@@ -242,17 +242,17 @@
     ]
   },
   "holdings": {
-    "totalRows": 4,
+    "totalRows": 6,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "22-Oct-2026",
+    "asOfDate": "28-Oct-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 312,
+    "totalRows": 316,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
@@ -260,12 +260,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 313,
+    "totalRows": 316,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "23-Oct-2026"
+    "asOfDate": "28-Oct-2026"
   }
 }

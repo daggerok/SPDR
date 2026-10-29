@@ -28,19 +28,19 @@
     "value": null
   },
   "nav": {
-    "display": "$46.39",
-    "value": 46.39,
-    "asOfDate": "Oct 22 2026"
+    "display": "$46.37",
+    "value": 46.37,
+    "asOfDate": "Oct 28 2026"
   },
   "aum": {
-    "display": "$543.91 M",
-    "value": 543910000,
-    "asOfDate": "Oct 22 2026"
+    "display": "$543.74 M",
+    "value": 543740000,
+    "asOfDate": "Oct 28 2026"
   },
   "pricing": {
     "exchange": "Cboe BZX Exchange, Inc",
-    "closePrice": "$46.41",
-    "premiumDiscount": "0.03%"
+    "closePrice": "$46.42",
+    "premiumDiscount": "0.10%"
   },
   "inceptionDate": "Apr 13 2016",
   "returns": {
@@ -97,7 +97,7 @@
     "dividendYield": 4.45,
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
-    "indicatedDividendYield": 4.49,
+    "indicatedDividendYield": 4.5,
     "secYield": 4.95,
     "secYieldUnsubsidized": 4.95,
     "tr1yText": "2.04%",
@@ -108,7 +108,7 @@
     "cagr5yText": "2.73%",
     "cagr10yText": "2.30%",
     "siAnnText": "2.36%",
-    "indicatedDividendYieldText": "4.49%",
+    "indicatedDividendYieldText": "4.50%",
     "dividendYieldText": "4.45%",
     "secYieldText": "4.95%",
     "secYieldUnsubsidizedText": "4.95%",
@@ -1138,7 +1138,7 @@
     ]
   },
   "holdings": {
-    "totalRows": 597,
+    "totalRows": 603,
     "pageSize": 250,
     "pageCount": 3,
     "pages": [
@@ -1146,11 +1146,11 @@
       "./holdings/002.json",
       "./holdings/003.json"
     ],
-    "asOfDate": "23-Oct-2026",
+    "asOfDate": "28-Oct-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 2648,
+    "totalRows": 2652,
     "pageSize": 1000,
     "pageCount": 3,
     "pages": [
@@ -1160,12 +1160,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 454,
+    "totalRows": 457,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "23-Oct-2026"
+    "asOfDate": "28-Oct-2026"
   }
 }

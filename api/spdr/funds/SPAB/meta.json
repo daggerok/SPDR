@@ -28,18 +28,18 @@
     "value": null
   },
   "nav": {
-    "display": "$24.76",
-    "value": 24.76,
-    "asOfDate": "Oct 22 2026"
+    "display": "$24.71",
+    "value": 24.71,
+    "asOfDate": "Oct 28 2026"
   },
   "aum": {
-    "display": "$10,461.63 M",
-    "value": 10461630000,
-    "asOfDate": "Oct 22 2026"
+    "display": "$10,338.55 M",
+    "value": 10338550000,
+    "asOfDate": "Oct 28 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$24.77",
+    "closePrice": "$24.71",
     "premiumDiscount": "0.02%"
   },
   "inceptionDate": "May 23 2007",
@@ -97,7 +97,7 @@
     "dividendYield": 4.22,
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
-    "indicatedDividendYield": 4.31,
+    "indicatedDividendYield": 4.32,
     "secYield": 5.17,
     "secYieldUnsubsidized": 5.17,
     "tr1yText": "-1.87%",
@@ -108,7 +108,7 @@
     "cagr5yText": "-0.66%",
     "cagr10yText": "1.09%",
     "siAnnText": "2.88%",
-    "indicatedDividendYieldText": "4.31%",
+    "indicatedDividendYieldText": "4.32%",
     "dividendYieldText": "4.22%",
     "secYieldText": "5.17%",
     "secYieldUnsubsidizedText": "5.17%",
@@ -1986,9 +1986,9 @@
     ]
   },
   "holdings": {
-    "totalRows": 8788,
+    "totalRows": 8729,
     "pageSize": 250,
-    "pageCount": 36,
+    "pageCount": 35,
     "pages": [
       "./holdings/001.json",
       "./holdings/002.json",
@@ -2024,14 +2024,13 @@
       "./holdings/032.json",
       "./holdings/033.json",
       "./holdings/034.json",
-      "./holdings/035.json",
-      "./holdings/036.json"
+      "./holdings/035.json"
     ],
-    "asOfDate": "22-Oct-2026",
+    "asOfDate": "28-Oct-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 4885,
+    "totalRows": 4889,
     "pageSize": 1000,
     "pageCount": 5,
     "pages": [
@@ -2043,12 +2042,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 454,
+    "totalRows": 457,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "23-Oct-2026"
+    "asOfDate": "28-Oct-2026"
   }
 }
