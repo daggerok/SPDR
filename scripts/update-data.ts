@@ -132,7 +132,7 @@ function outputFundLine(index: number, total: number, ticker: string, status: st
     field('sec', outputPercent(data.secYield ?? data.yields?.secYield ?? metrics.secYield)),
     field('wp', data.workplaceRaw),
   ].filter(part => part !== '').join(' ');
-  return `[ ${String(index).padStart(width)}/${String(total).padEnd(width)}  ] ${outputClean(ticker).padEnd(5)} ${status.padEnd(9)}${detail ? ` ${detail}` : ''}${reason ? ` reason=${outputClean(reason)}` : ''}`;
+  return `[ ${`${String(index).padStart(width)}/${total}`.padEnd(8)} ] ${outputClean(ticker).padEnd(5)} ${status.padEnd(9)}${detail ? ` ${detail}` : ''}${reason ? ` reason=${outputClean(reason)}` : ''}`;
 }
 function outputCreateReporter(root: URL | string, total: number) {
   let completed = 0;
@@ -590,7 +590,7 @@ export async function fetchWithRetry(url: string, label: string): Promise<Respon
         if (attempt >= maxRetriesConfig) throw new Error(`403 rate limited after ${attempt + 1} attempts: ${label}`);
         const waitSeconds = 15 * (attempt + 1);
         outputNote(
-          `[ ${'retry'.padEnd(9)}] ${label} status=403 attempt=${attempt + 1}/${maxRetriesConfig + 1} waiting=${waitSeconds}s`,
+          `[ ${'retry'.padEnd(8)} ] ${label} status=403 attempt=${attempt + 1}/${maxRetriesConfig + 1} waiting=${waitSeconds}s`,
         );
         await sleep(waitSeconds * 1000);
         attempt += 1;
@@ -600,7 +600,7 @@ export async function fetchWithRetry(url: string, label: string): Promise<Respon
       if (RETRYABLE_STATUS.has(response.status) && attempt < maxRetriesConfig) {
         const waitSeconds = Math.min(30, 2 ** attempt * 3);
         outputNote(
-          `[ ${'retry'.padEnd(9)}] ${label} status=${response.status} attempt=${attempt + 1}/${maxRetriesConfig + 1} waiting=${waitSeconds}s`,
+          `[ ${'retry'.padEnd(8)} ] ${label} status=${response.status} attempt=${attempt + 1}/${maxRetriesConfig + 1} waiting=${waitSeconds}s`,
         );
         await sleep(waitSeconds * 1000);
         attempt += 1;
@@ -612,7 +612,7 @@ export async function fetchWithRetry(url: string, label: string): Promise<Respon
       if (attempt >= maxRetriesConfig) throw error;
       const waitSeconds = Math.min(30, 2 ** attempt * 3);
       outputNote(
-        `[ ${'retry'.padEnd(9)}] ${label} error=${(error as Error).message} attempt=${attempt + 1}/${maxRetriesConfig + 1} waiting=${waitSeconds}s`,
+        `[ ${'retry'.padEnd(8)} ] ${label} error=${(error as Error).message} attempt=${attempt + 1}/${maxRetriesConfig + 1} waiting=${waitSeconds}s`,
       );
       await sleep(waitSeconds * 1000);
       attempt += 1;
@@ -1531,7 +1531,7 @@ async function processFund(
     const distributionsUrl = distributionHistoryUrl(ticker);
 
     // Phase 1: fetch and compute everything in memory. Any failure here leaves the fund exactly as published before.
-    const holdingsResponse = await fetchWithRetry(holdingsUrl, `[fetch  ] ${ticker} holdings`);
+    const holdingsResponse = await fetchWithRetry(holdingsUrl, `[ fetch    ] ${ticker} holdings`);
     let holdingsBytes: Uint8Array | null = null;
     let holdings: { meta: JsonRecord; table: SheetTable } = { meta: {}, table: { headers: [], rows: [] } };
     const readPreviousMeta = () => readFile(decodeURIComponent(new URL('meta.json', fundDir).pathname), 'utf8').then(JSON.parse).catch(() => null);
@@ -1555,13 +1555,13 @@ async function processFund(
       if (holdingsProblem) throw new Error(`holdings guard: ${holdingsProblem}`);
     }
 
-    const history = await fetchXlsx(historyUrl, `[fetch  ] ${ticker} navhist`);
+    const history = await fetchXlsx(historyUrl, `[ fetch    ] ${ticker} navhist`);
     const historyTable = sheetToTable(history.rows, 'history');
     historyTable.table = applyHistoryRange(historyTable.table, config.historyRange);
     if (config.historyRange !== 'max') historyTable.table = await mergeOlderRows(fundDir, 'history', historyTable.table);
 
     // Not every fund publishes a daily Premium/Discount history workbook.
-    const pdHistResponse = await fetchWithRetry(pdHistUrl, `[fetch  ] ${ticker} pdhist`);
+    const pdHistResponse = await fetchWithRetry(pdHistUrl, `[ fetch    ] ${ticker} pdhist`);
     let pdHistBytes: Uint8Array | null = null;
     let pdTable: SheetTable | null = null;
     if (pdHistResponse.status === 404) {
@@ -1576,7 +1576,7 @@ async function processFund(
     }
 
     // A failed history request fails the fund (previous files kept) instead of publishing a one-row history.
-    const distributionsResponse = await fetchWithRetry(distributionsUrl, `[fetch  ] ${ticker} distributions`);
+    const distributionsResponse = await fetchWithRetry(distributionsUrl, `[ fetch    ] ${ticker} distributions`);
     if (!distributionsResponse.ok) throw new Error(`distributions: ${distributionsResponse.status} ${distributionsResponse.statusText}`);
     const distributionHistory = parseDistributionHistory(await distributionsResponse.json().catch(() => null));
 
@@ -1702,12 +1702,12 @@ export async function main(env: Record<string, string | undefined> = process.env
   let catalog: CatalogFund[] = [];
   let catalogSource = 'ssga.com fund finder';
   try {
-    catalog = normalizeCatalog(await fetchJson(FUND_FINDER_URL, '[catalog] fundfinder'));
+    catalog = normalizeCatalog(await fetchJson(FUND_FINDER_URL, '[ catalog  ] fundfinder'));
   } catch (error) {
-    console.warn(`[ ${'catalog'.padEnd(9)}] fundfinder failed (${(error as Error).message})`);
+    console.warn(`[ ${'catalog'.padEnd(8)} ] fundfinder failed (${(error as Error).message})`);
   }
   if (!catalog.length && previousIndex?.funds?.length) {
-    console.warn(`[ ${'catalog'.padEnd(9)}] falling back to ${previousIndex.funds.length} published funds`);
+    console.warn(`[ ${'catalog'.padEnd(8)} ] falling back to ${previousIndex.funds.length} published funds`);
     catalog = catalogFromIndex(previousIndex);
     catalogSource = 'previous index.json';
   }
@@ -1719,9 +1719,9 @@ export async function main(env: Record<string, string | undefined> = process.env
 
   const distributions = await (async () => {
     try {
-      return normalizeDistributions(await fetchJson(DISTRIBUTIONS_URL, '[distr  ] dividend-distribution'));
+      return normalizeDistributions(await fetchJson(DISTRIBUTIONS_URL, '[ distr    ] dividend-distribution'));
     } catch (error) {
-      console.warn(`[ ${'distr'.padEnd(9)}] dividend feed failed (${(error as Error).message}); published funds are kept`);
+      console.warn(`[ ${'distr'.padEnd(8)} ] dividend feed failed (${(error as Error).message}); published funds are kept`);
       return new Map<string, JsonRecord>();
     }
   })();
@@ -1730,7 +1730,7 @@ export async function main(env: Record<string, string | undefined> = process.env
   // for the whole lineup in one file (see parseProductDataSheet).
   const productData = await (async () => {
     try {
-      const response = await fetchWithRetry(PRODUCT_DATA_URL, '[catalog] product-data');
+      const response = await fetchWithRetry(PRODUCT_DATA_URL, '[ catalog  ] product-data');
       if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
       const bytes = new Uint8Array(await response.arrayBuffer());
       if (config.storeRawDownloads) {
@@ -1740,12 +1740,12 @@ export async function main(env: Record<string, string | undefined> = process.env
       }
       return parseProductDataSheet(bytes);
     } catch (error) {
-      console.warn(`[ ${'catalog'.padEnd(9)}] product-data failed (${(error as Error).message}); published funds are kept`);
+      console.warn(`[ ${'catalog'.padEnd(8)} ] product-data failed (${(error as Error).message}); published funds are kept`);
       return new Map<string, ProductDataRow>();
     }
   })();
 
-  console.log(`[ ${'catalog'.padEnd(9)}] ${catalog.length} SPDR ETFs (${catalogSource})`);
+  console.log(`[ ${'catalog'.padEnd(8)} ] ${catalog.length} SPDR ETFs (${catalogSource})`);
   // A failed or empty bulk feed is a failed required source for every published fund: its ISIN, CUSIP, SEC yield,
   // official dividend yield, net TER and distributions would be rewritten as null or degraded. Such funds keep
   // their published state and report failed; only new funds (no meta.json yet) are built.
@@ -1798,7 +1798,7 @@ export async function main(env: Record<string, string | undefined> = process.env
   }
   await Promise.all(Array.from({ length: Math.max(1, config.concurrency) }, () => worker()));
   const taken = Math.min(cursorIndex, batch.length);
-  if (deadlineHit) console.warn(`[ ${'deadline'.padEnd(9)}] soft deadline reached; ${batch.length - results.length} selected funds not started, index still written`);
+  if (deadlineHit) console.warn(`[ ${'deadline'.padEnd(8)} ] soft deadline reached; ${batch.length - results.length} selected funds not started, index still written`);
 
   // Live details from disk for refreshed funds.
   const refreshed = new Set(results.filter((result) => result.status === 'updated' || result.status === 'unchanged').map((result) => result.ticker));
@@ -2001,7 +2001,7 @@ if (import.meta.main) {
     printHelp();
   } else {
     await main().catch((error: unknown) => {
-      console.error(`[ ${'error'.padEnd(9)}] ${untaggedMessage(error)}`);
+      console.error(`[ ${'error'.padEnd(8)} ] ${untaggedMessage(error)}`);
       process.exitCode = 1;
     });
   }
