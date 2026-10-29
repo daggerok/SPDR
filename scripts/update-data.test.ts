@@ -556,6 +556,8 @@ describe('pipeline', () => {
     expect(gld.holdingsStatus).toBe('empty');
     expect(Object.keys(gld.metrics)).toEqual(Object.keys(row(dir, 'SPY').metrics));
     for (const f of readJson(dir, 'index.json').funds) if (f.dataFile) expect(existsSync(join(dir, f.dataFile))).toBe(true);
+    // the 52-week range keys from the published history pages (shared range-52w block)
+    for (const f of readJson(dir, 'index.json').funds) expect(Object.keys(f.metrics)).toEqual(expect.arrayContaining(['week52Low', 'week52High', 'range52w', 'range52wClose', 'range52wAsOf', 'range52wSince', 'range52wBasis']));
   });
 
   test('distributions: the full per-fund history is stored (not only the latest row); a failed history keeps the fund as published', async () => {
