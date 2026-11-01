@@ -2,7 +2,7 @@
   "ticker": "EDIV",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 3947,
+  "totalRows": 3948,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "29-Oct-2026",
+      "NAV": "40.472733",
+      "Shares Outstanding": "29000000",
+      "Total Net Assets": "1173709268.81"
+    },
     {
       "Date": "28-Oct-2026",
       "NAV": "40.516444",
@@ -6003,12 +6009,6 @@
       "NAV": "21.864141",
       "Shares Outstanding": "7800000",
       "Total Net Assets": "170540300.03"
-    },
-    {
-      "Date": "02-Nov-2022",
-      "NAV": "22.024518",
-      "Shares Outstanding": "7800000",
-      "Total Net Assets": "171791239.63"
     }
   ]
 }

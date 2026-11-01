@@ -2,7 +2,7 @@
   "ticker": "EFAX",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 2517,
+  "totalRows": 2518,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "02-Nov-2022",
+      "NAV": "62.048097",
+      "Shares Outstanding": "3450000",
+      "Total Net Assets": "214065936.3"
+    },
     {
       "Date": "01-Nov-2022",
       "NAV": "62.02953",
@@ -6003,12 +6009,6 @@
       "NAV": "64.6903",
       "Shares Outstanding": "1100000",
       "Total Net Assets": "71159330.34"
-    },
-    {
-      "Date": "12-Nov-2018",
-      "NAV": "64.617317",
-      "Shares Outstanding": "1100000",
-      "Total Net Assets": "71079048.71"
     }
   ]
 }

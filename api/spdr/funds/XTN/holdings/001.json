@@ -2,7 +2,7 @@
   "ticker": "XTN",
   "page": 1,
   "pageSize": 250,
-  "totalRows": 46,
+  "totalRows": 45,
   "headers": [
     "Name",
     "Ticker",
@@ -19,7 +19,7 @@
       "Ticker": "RXO",
       "Identifier": "74982T103",
       "SEDOL": "BN6QSL9",
-      "Weight": "4.001201",
+      "Weight": "3.960713",
       "Sector": "-",
       "Shares Held": "308692",
       "Local Currency": "USD"
@@ -29,7 +29,7 @@
       "Ticker": "R",
       "Identifier": "783549108",
       "SEDOL": "2760669",
-      "Weight": "3.267192",
+      "Weight": "3.287669",
       "Sector": "-",
       "Shares Held": "25242",
       "Local Currency": "USD"
@@ -39,7 +39,7 @@
       "Ticker": "LUV",
       "Identifier": "844741108",
       "SEDOL": "2831543",
-      "Weight": "3.264615",
+      "Weight": "3.241321",
       "Sector": "-",
       "Shares Held": "159914",
       "Local Currency": "USD"
@@ -49,29 +49,9 @@
       "Ticker": "LYFT",
       "Identifier": "55087P104",
       "SEDOL": "BJT1RW7",
-      "Weight": "3.186135",
+      "Weight": "3.161679",
       "Sector": "-",
       "Shares Held": "415199",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "CSX CORP",
-      "Ticker": "CSX",
-      "Identifier": "126408103",
-      "SEDOL": "2160753",
-      "Weight": "3.121995",
-      "Sector": "-",
-      "Shares Held": "127891",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "GXO LOGISTICS INC",
-      "Ticker": "GXO",
-      "Identifier": "36262G101",
-      "SEDOL": "BNNTGF1",
-      "Weight": "3.10551",
-      "Sector": "-",
-      "Shares Held": "133914",
       "Local Currency": "USD"
     },
     {
@@ -79,29 +59,29 @@
       "Ticker": "UPS",
       "Identifier": "911312106",
       "SEDOL": "2517382",
-      "Weight": "3.091019",
+      "Weight": "3.103656",
       "Sector": "-",
       "Shares Held": "62316",
       "Local Currency": "USD"
     },
     {
-      "Name": "KIRBY CORP",
-      "Ticker": "KEX",
-      "Identifier": "497266106",
-      "SEDOL": "2493534",
-      "Weight": "3.062116",
+      "Name": "GXO LOGISTICS INC",
+      "Ticker": "GXO",
+      "Identifier": "36262G101",
+      "SEDOL": "BNNTGF1",
+      "Weight": "3.102705",
       "Sector": "-",
-      "Shares Held": "44638",
+      "Shares Held": "133914",
       "Local Currency": "USD"
     },
     {
-      "Name": "NORFOLK SOUTHERN CORP",
-      "Ticker": "NSC",
-      "Identifier": "655844108",
-      "SEDOL": "2641894",
-      "Weight": "3.041536",
+      "Name": "CSX CORP",
+      "Ticker": "CSX",
+      "Identifier": "126408103",
+      "SEDOL": "2160753",
+      "Weight": "3.100245",
       "Sector": "-",
-      "Shares Held": "19156",
+      "Shares Held": "127891",
       "Local Currency": "USD"
     },
     {
@@ -109,9 +89,29 @@
       "Ticker": "UNP",
       "Identifier": "907818108",
       "SEDOL": "2914734",
-      "Weight": "3.041025",
+      "Weight": "3.046482",
       "Sector": "-",
       "Shares Held": "21744",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "NORFOLK SOUTHERN CORP",
+      "Ticker": "NSC",
+      "Identifier": "655844108",
+      "SEDOL": "2641894",
+      "Weight": "3.041761",
+      "Sector": "-",
+      "Shares Held": "19156",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "KIRBY CORP",
+      "Ticker": "KEX",
+      "Identifier": "497266106",
+      "SEDOL": "2493534",
+      "Weight": "3.0242",
+      "Sector": "-",
+      "Shares Held": "44638",
       "Local Currency": "USD"
     },
     {
@@ -119,7 +119,7 @@
       "Ticker": "EXPD",
       "Identifier": "302130109",
       "SEDOL": "2325507",
-      "Weight": "3.038168",
+      "Weight": "3.020869",
       "Sector": "-",
       "Shares Held": "32814",
       "Local Currency": "USD"
@@ -129,7 +129,7 @@
       "Ticker": "DAL",
       "Identifier": "247361702",
       "SEDOL": "B1W9D46",
-      "Weight": "2.965387",
+      "Weight": "2.977115",
       "Sector": "-",
       "Shares Held": "78585",
       "Local Currency": "USD"
@@ -139,7 +139,7 @@
       "Ticker": "MATX",
       "Identifier": "57686G105",
       "SEDOL": "B8GNC91",
-      "Weight": "2.929544",
+      "Weight": "2.870503",
       "Sector": "-",
       "Shares Held": "27252",
       "Local Currency": "USD"
@@ -149,7 +149,7 @@
       "Ticker": "FDX",
       "Identifier": "31428X106",
       "SEDOL": "2142784",
-      "Weight": "2.865376",
+      "Weight": "2.86137",
       "Sector": "-",
       "Shares Held": "20032",
       "Local Currency": "USD"
@@ -159,9 +159,19 @@
       "Ticker": "XPO",
       "Identifier": "983793100",
       "SEDOL": "B6Z1355",
-      "Weight": "2.864004",
+      "Weight": "2.850456",
       "Sector": "-",
       "Shares Held": "33565",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "SAIA INC",
+      "Ticker": "SAIA",
+      "Identifier": "78709Y105",
+      "SEDOL": "2982399",
+      "Weight": "2.846288",
+      "Sector": "-",
+      "Shares Held": "17879",
       "Local Currency": "USD"
     },
     {
@@ -169,7 +179,7 @@
       "Ticker": "AAL",
       "Identifier": "02376R102",
       "SEDOL": "BCV7KT2",
-      "Weight": "2.824554",
+      "Weight": "2.835287",
       "Sector": "-",
       "Shares Held": "478094",
       "Local Currency": "USD"
@@ -179,7 +189,7 @@
       "Ticker": "UAL",
       "Identifier": "910047109",
       "SEDOL": "B4QG225",
-      "Weight": "2.806742",
+      "Weight": "2.821045",
       "Sector": "-",
       "Shares Held": "57783",
       "Local Currency": "USD"
@@ -189,7 +199,7 @@
       "Ticker": "SKYW",
       "Identifier": "830879102",
       "SEDOL": "2814210",
-      "Weight": "2.79962",
+      "Weight": "2.803155",
       "Sector": "-",
       "Shares Held": "62573",
       "Local Currency": "USD"
@@ -199,19 +209,9 @@
       "Ticker": "ODFL",
       "Identifier": "679580100",
       "SEDOL": "2656423",
-      "Weight": "2.766171",
+      "Weight": "2.717933",
       "Sector": "-",
       "Shares Held": "33984",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "SAIA INC",
-      "Ticker": "SAIA",
-      "Identifier": "78709Y105",
-      "SEDOL": "2982399",
-      "Weight": "2.725677",
-      "Sector": "-",
-      "Shares Held": "17879",
       "Local Currency": "USD"
     },
     {
@@ -219,7 +219,7 @@
       "Ticker": "ARCB",
       "Identifier": "03937C105",
       "SEDOL": "BLTFST7",
-      "Weight": "2.686143",
+      "Weight": "2.666812",
       "Sector": "-",
       "Shares Held": "45463",
       "Local Currency": "USD"
@@ -229,19 +229,9 @@
       "Ticker": "UBER",
       "Identifier": "90353T100",
       "SEDOL": "BK6N347",
-      "Weight": "2.668935",
+      "Weight": "2.656141",
       "Sector": "-",
       "Shares Held": "87070",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "KNIGHT SWIFT TRANSPORTATION",
-      "Ticker": "KNX",
-      "Identifier": "499049104",
-      "SEDOL": "BF0LKD0",
-      "Weight": "2.569951",
-      "Sector": "-",
-      "Shares Held": "89916",
       "Local Currency": "USD"
     },
     {
@@ -249,9 +239,19 @@
       "Ticker": "ALK",
       "Identifier": "011659109",
       "SEDOL": "2012605",
-      "Weight": "2.561223",
+      "Weight": "2.571264",
       "Sector": "-",
       "Shares Held": "153280",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "KNIGHT SWIFT TRANSPORTATION",
+      "Ticker": "KNX",
+      "Identifier": "499049104",
+      "SEDOL": "BF0LKD0",
+      "Weight": "2.551446",
+      "Sector": "-",
+      "Shares Held": "89916",
       "Local Currency": "USD"
     },
     {
@@ -259,7 +259,7 @@
       "Ticker": "FDXF",
       "Identifier": "314352105",
       "SEDOL": "BVSVT37",
-      "Weight": "2.520705",
+      "Weight": "2.521955",
       "Sector": "-",
       "Shares Held": "49547",
       "Local Currency": "USD"
@@ -269,7 +269,7 @@
       "Ticker": "CHRW",
       "Identifier": "12541W209",
       "SEDOL": "2116228",
-      "Weight": "2.46237",
+      "Weight": "2.429804",
       "Sector": "-",
       "Shares Held": "41091",
       "Local Currency": "USD"
@@ -279,9 +279,19 @@
       "Ticker": "JBHT",
       "Identifier": "445658107",
       "SEDOL": "2445416",
-      "Weight": "2.418251",
+      "Weight": "2.37661",
       "Sector": "-",
       "Shares Held": "23064",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "AVIS BUDGET GROUP INC",
+      "Ticker": "CAR",
+      "Identifier": "053774105",
+      "SEDOL": "B1CL8J2",
+      "Weight": "2.341678",
+      "Sector": "-",
+      "Shares Held": "46656",
       "Local Currency": "USD"
     },
     {
@@ -289,7 +299,7 @@
       "Ticker": "LSTR",
       "Identifier": "515098101",
       "SEDOL": "2503994",
-      "Weight": "2.325462",
+      "Weight": "2.340314",
       "Sector": "-",
       "Shares Held": "35675",
       "Local Currency": "USD"
@@ -299,19 +309,9 @@
       "Ticker": "JOBY",
       "Identifier": "G65163100",
       "SEDOL": "BMCRLL0",
-      "Weight": "2.299031",
+      "Weight": "2.271652",
       "Sector": "-",
       "Shares Held": "963663",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "AVIS BUDGET GROUP INC",
-      "Ticker": "CAR",
-      "Identifier": "053774105",
-      "SEDOL": "B1CL8J2",
-      "Weight": "2.229231",
-      "Sector": "-",
-      "Shares Held": "46656",
       "Local Currency": "USD"
     },
     {
@@ -319,7 +319,7 @@
       "Ticker": "ALGT",
       "Identifier": "01748X102",
       "SEDOL": "B15M2C3",
-      "Weight": "2.086319",
+      "Weight": "2.07859",
       "Sector": "-",
       "Shares Held": "61479",
       "Local Currency": "USD"
@@ -329,7 +329,7 @@
       "Ticker": "WERN",
       "Identifier": "950755108",
       "SEDOL": "2948852",
-      "Weight": "1.928538",
+      "Weight": "1.940691",
       "Sector": "-",
       "Shares Held": "151364",
       "Local Currency": "USD"
@@ -339,7 +339,7 @@
       "Ticker": "HUBG",
       "Identifier": "443320106",
       "SEDOL": "2407632",
-      "Weight": "1.920233",
+      "Weight": "1.926978",
       "Sector": "-",
       "Shares Held": "155646",
       "Local Currency": "USD"
@@ -349,7 +349,7 @@
       "Ticker": "SNDR",
       "Identifier": "80689H102",
       "SEDOL": "BYVN953",
-      "Weight": "1.780212",
+      "Weight": "1.743618",
       "Sector": "-",
       "Shares Held": "127589",
       "Local Currency": "USD"
@@ -359,7 +359,7 @@
       "Ticker": "UHAL.B",
       "Identifier": "023586506",
       "SEDOL": "BP0VMC3",
-      "Weight": "1.452568",
+      "Weight": "1.479559",
       "Sector": "-",
       "Shares Held": "63629",
       "Local Currency": "USD"
@@ -369,7 +369,7 @@
       "Ticker": "JBLU",
       "Identifier": "477143101",
       "SEDOL": "2852760",
-      "Weight": "1.115933",
+      "Weight": "1.180022",
       "Sector": "-",
       "Shares Held": "833753",
       "Local Currency": "USD"
@@ -379,7 +379,7 @@
       "Ticker": "MRTN",
       "Identifier": "573075108",
       "SEDOL": "2568357",
-      "Weight": "0.66635",
+      "Weight": "0.664061",
       "Sector": "-",
       "Shares Held": "121688",
       "Local Currency": "USD"
@@ -389,7 +389,7 @@
       "Ticker": "ULCC",
       "Identifier": "35909R108",
       "SEDOL": "BFMKYK0",
-      "Weight": "0.62368",
+      "Weight": "0.647215",
       "Sector": "-",
       "Shares Held": "215239",
       "Local Currency": "USD"
@@ -399,19 +399,9 @@
       "Ticker": "FWRD",
       "Identifier": "34986A104",
       "SEDOL": "BTJZB05",
-      "Weight": "0.578753",
+      "Weight": "0.58262",
       "Sector": "-",
       "Shares Held": "70260",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "HEARTLAND EXPRESS INC",
-      "Ticker": "HTLD",
-      "Identifier": "422347104",
-      "SEDOL": "2414018",
-      "Weight": "0.552647",
-      "Sector": "-",
-      "Shares Held": "115483",
       "Local Currency": "USD"
     },
     {
@@ -419,9 +409,19 @@
       "Ticker": "GNK",
       "Identifier": "Y2685T131",
       "SEDOL": "BD08758",
-      "Weight": "0.551662",
+      "Weight": "0.566998",
       "Sector": "-",
       "Shares Held": "45832",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "HEARTLAND EXPRESS INC",
+      "Ticker": "HTLD",
+      "Identifier": "422347104",
+      "SEDOL": "2414018",
+      "Weight": "0.556248",
+      "Sector": "-",
+      "Shares Held": "115483",
       "Local Currency": "USD"
     },
     {
@@ -429,7 +429,7 @@
       "Ticker": "CVLG",
       "Identifier": "22284P105",
       "SEDOL": "2200853",
-      "Weight": "0.467501",
+      "Weight": "0.459542",
       "Sector": "-",
       "Shares Held": "34362",
       "Local Currency": "USD"
@@ -439,7 +439,7 @@
       "Ticker": "HTZ",
       "Identifier": "42806J700",
       "SEDOL": "BNM5672",
-      "Weight": "0.419346",
+      "Weight": "0.423075",
       "Sector": "-",
       "Shares Held": "469962",
       "Local Currency": "USD"
@@ -449,7 +449,7 @@
       "Ticker": "FIP",
       "Identifier": "35953C106",
       "SEDOL": "BPSJQ05",
-      "Weight": "0.272319",
+      "Weight": "0.274821",
       "Sector": "-",
       "Shares Held": "206355",
       "Local Currency": "USD"
@@ -459,19 +459,9 @@
       "Ticker": "-",
       "Identifier": "924QSGII3",
       "SEDOL": "-",
-      "Weight": "0.089408",
+      "Weight": "0.088298",
       "Sector": "-",
-      "Shares Held": "190379.15",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "US DOLLAR",
-      "Ticker": "-",
-      "Identifier": "999USDZ92",
-      "SEDOL": "-",
-      "Weight": "-0.000045",
-      "Sector": "-",
-      "Shares Held": "-96.59",
+      "Shares Held": "190282.56",
       "Local Currency": "USD"
     }
   ]

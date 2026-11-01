@@ -1,13 +1,13 @@
 {
   "ticker": "SPTL",
-  "name": "State Street SPDR Portfolio Long Term Treasury ETF",
+  "name": "State Street SPDR Portfolio Long Term Treasury Index ETF",
   "category": "Fixed Income Sector",
   "identifiers": {
     "isin": "US78464A6644",
     "cusip": "78464A664"
   },
   "source": {
-    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-portfolio-long-term-treasury-etf-sptl",
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-portfolio-long-term-treasury-index-etf-sptl",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-sptl.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-sptl.xlsx",
     "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-sptl.xlsx",
@@ -28,19 +28,19 @@
     "value": null
   },
   "nav": {
-    "display": "$24.72",
-    "value": 24.72,
-    "asOfDate": "Oct 28 2026"
+    "display": "$24.87",
+    "value": 24.87,
+    "asOfDate": "Oct 29 2026"
   },
   "aum": {
-    "display": "$11,556.07 M",
-    "value": 11556070000,
-    "asOfDate": "Oct 28 2026"
+    "display": "$11,562.96 M",
+    "value": 11562960000,
+    "asOfDate": "Oct 29 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$24.73",
-    "premiumDiscount": "0.04%"
+    "closePrice": "$24.87",
+    "premiumDiscount": "0.03%"
   },
   "inceptionDate": "May 23 2007",
   "returns": {
@@ -97,7 +97,7 @@
     "dividendYield": 4.4,
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
-    "indicatedDividendYield": 4.41,
+    "indicatedDividendYield": 4.39,
     "secYield": 5.41,
     "secYieldUnsubsidized": 5.41,
     "tr1yText": "-7.68%",
@@ -108,7 +108,7 @@
     "cagr5yText": "-7.29%",
     "cagr10yText": "-2.16%",
     "siAnnText": "2.85%",
-    "indicatedDividendYieldText": "4.41%",
+    "indicatedDividendYieldText": "4.39%",
     "dividendYieldText": "4.40%",
     "secYieldText": "5.41%",
     "secYieldUnsubsidizedText": "5.41%",
@@ -1986,17 +1986,17 @@
     ]
   },
   "holdings": {
-    "totalRows": 103,
+    "totalRows": 102,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "28-Oct-2026",
+    "asOfDate": "29-Oct-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 4889,
+    "totalRows": 4890,
     "pageSize": 1000,
     "pageCount": 5,
     "pages": [
@@ -2008,12 +2008,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 457,
+    "totalRows": 459,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "28-Oct-2026"
+    "asOfDate": "30-Oct-2026"
   }
 }

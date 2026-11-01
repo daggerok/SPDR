@@ -2,7 +2,7 @@
   "ticker": "KBE",
   "page": 4,
   "pageSize": 1000,
-  "totalRows": 5273,
+  "totalRows": 5274,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "21-Nov-2014",
+      "NAV": "33.272579",
+      "Shares Outstanding": "81802118",
+      "Total Net Assets": "2721767457.28"
+    },
     {
       "Date": "20-Nov-2014",
       "NAV": "33.465587",
@@ -6003,12 +6009,6 @@
       "NAV": "24.465536",
       "Shares Outstanding": "61102118",
       "Total Net Assets": "1494896059.33"
-    },
-    {
-      "Date": "07-Dec-2010",
-      "NAV": "23.764523",
-      "Shares Outstanding": "57602118",
-      "Total Net Assets": "1368886846.26"
     }
   ]
 }

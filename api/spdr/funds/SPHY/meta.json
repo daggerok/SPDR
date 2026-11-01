@@ -1,13 +1,13 @@
 {
   "ticker": "SPHY",
-  "name": "State Street SPDR Portfolio High Yield Bond ETF",
+  "name": "State Street SPDR Portfolio High Yield Bond Index ETF",
   "category": "Fixed Income Sector",
   "identifiers": {
     "isin": "US78468R6062",
     "cusip": "78468R606"
   },
   "source": {
-    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-portfolio-high-yield-bond-etf-sphy",
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-portfolio-high-yield-bond-index-etf-sphy",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-sphy.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-sphy.xlsx",
     "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-sphy.xlsx",
@@ -28,19 +28,19 @@
     "value": null
   },
   "nav": {
-    "display": "$22.61",
-    "value": 22.61,
-    "asOfDate": "Oct 28 2026"
+    "display": "$22.58",
+    "value": 22.58,
+    "asOfDate": "Oct 29 2026"
   },
   "aum": {
-    "display": "$11,836.43 M",
-    "value": 11836430000,
-    "asOfDate": "Oct 28 2026"
+    "display": "$11,911.18 M",
+    "value": 11911180000,
+    "asOfDate": "Oct 29 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$22.67",
-    "premiumDiscount": "0.20%"
+    "closePrice": "$22.64",
+    "premiumDiscount": "0.27%"
   },
   "inceptionDate": "Jun 18 2012",
   "returns": {
@@ -97,9 +97,9 @@
     "dividendYield": 7.38,
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
-    "indicatedDividendYield": 7.37,
-    "secYield": 7.99,
-    "secYieldUnsubsidized": 7.99,
+    "indicatedDividendYield": 7.38,
+    "secYield": 7.98,
+    "secYieldUnsubsidized": 7.98,
     "tr1yText": "1.49%",
     "tr3yText": "26.15%",
     "tr5yText": "20.21%",
@@ -108,10 +108,10 @@
     "cagr5yText": "3.75%",
     "cagr10yText": "4.55%",
     "siAnnText": "4.85%",
-    "indicatedDividendYieldText": "7.37%",
+    "indicatedDividendYieldText": "7.38%",
     "dividendYieldText": "7.38%",
-    "secYieldText": "7.99%",
-    "secYieldUnsubsidizedText": "7.99%",
+    "secYieldText": "7.98%",
+    "secYieldUnsubsidizedText": "7.98%",
     "ytdText": "0.17%",
     "returnsBasis": "official SSGA month-end NAV total returns (YTD, 1Y, annualized 3Y/5Y/10Y and since inception); tr3y/tr5y/tr10y are derived from the official annualized figures as (1 + CAGR)^n - 1; no Yahoo or market-price estimates",
     "performanceAsOf": "2026-09-30"
@@ -1506,7 +1506,7 @@
     ]
   },
   "holdings": {
-    "totalRows": 1935,
+    "totalRows": 1931,
     "pageSize": 250,
     "pageCount": 8,
     "pages": [
@@ -1519,11 +1519,11 @@
       "./holdings/007.json",
       "./holdings/008.json"
     ],
-    "asOfDate": "28-Oct-2026",
+    "asOfDate": "29-Oct-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 3614,
+    "totalRows": 3615,
     "pageSize": 1000,
     "pageCount": 4,
     "pages": [
@@ -1534,12 +1534,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 457,
+    "totalRows": 459,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "28-Oct-2026"
+    "asOfDate": "30-Oct-2026"
   }
 }

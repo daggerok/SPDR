@@ -28,19 +28,19 @@
     "value": null
   },
   "nav": {
-    "display": "$24.73",
-    "value": 24.73,
-    "asOfDate": "Oct 28 2026"
+    "display": "$24.76",
+    "value": 24.76,
+    "asOfDate": "Oct 29 2026"
   },
   "aum": {
-    "display": "$115.01 M",
-    "value": 115010000,
-    "asOfDate": "Oct 28 2026"
+    "display": "$115.14 M",
+    "value": 115140000,
+    "asOfDate": "Oct 29 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
     "closePrice": "$24.75",
-    "premiumDiscount": "0.09%"
+    "premiumDiscount": "-0.02%"
   },
   "inceptionDate": "Sep 09 2025",
   "returns": {
@@ -97,7 +97,7 @@
     "dividendYield": 4.19,
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
-    "indicatedDividendYield": 4.32,
+    "indicatedDividendYield": 4.31,
     "secYield": 4.86,
     "secYieldUnsubsidized": 4.86,
     "tr1yText": "2.58%",
@@ -108,7 +108,7 @@
     "cagr5yText": null,
     "cagr10yText": null,
     "siAnnText": "2.65%",
-    "indicatedDividendYieldText": "4.32%",
+    "indicatedDividendYieldText": "4.31%",
     "dividendYieldText": "4.19%",
     "secYieldText": "4.86%",
     "secYieldUnsubsidizedText": "4.86%",
@@ -234,17 +234,17 @@
     ]
   },
   "holdings": {
-    "totalRows": 163,
+    "totalRows": 164,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "28-Oct-2026",
+    "asOfDate": "29-Oct-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 287,
+    "totalRows": 288,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
@@ -252,12 +252,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 287,
+    "totalRows": 289,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "28-Oct-2026"
+    "asOfDate": "30-Oct-2026"
   }
 }

@@ -2,7 +2,7 @@
   "ticker": "SDY",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 5273,
+  "totalRows": 5274,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "02-Nov-2022",
+      "NAV": "120.38752",
+      "Shares Outstanding": "183053658",
+      "Total Net Assets": "22037375981.52"
+    },
     {
       "Date": "01-Nov-2022",
       "NAV": "122.883057",
@@ -6003,12 +6009,6 @@
       "NAV": "96.1561",
       "Shares Outstanding": "166753658",
       "Total Net Assets": "16034381393.07"
-    },
-    {
-      "Date": "12-Nov-2018",
-      "NAV": "96.0943",
-      "Shares Outstanding": "166753658",
-      "Total Net Assets": "16024076105.7"
     }
   ]
 }

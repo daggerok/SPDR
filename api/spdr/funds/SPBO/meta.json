@@ -1,13 +1,13 @@
 {
   "ticker": "SPBO",
-  "name": "State Street SPDR Portfolio Corporate Bond ETF",
+  "name": "State Street SPDR Portfolio Corporate Bond Index ETF",
   "category": "Fixed Income Sector",
   "identifiers": {
     "isin": "US78464A1447",
     "cusip": "78464A144"
   },
   "source": {
-    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-portfolio-corporate-bond-etf-spbo",
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-portfolio-corporate-bond-index-etf-spbo",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-spbo.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-spbo.xlsx",
     "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-spbo.xlsx",
@@ -28,19 +28,19 @@
     "value": null
   },
   "nav": {
-    "display": "$27.90",
-    "value": 27.9,
-    "asOfDate": "Oct 28 2026"
+    "display": "$27.95",
+    "value": 27.95,
+    "asOfDate": "Oct 29 2026"
   },
   "aum": {
-    "display": "$2,131.72 M",
-    "value": 2131719999.9999998,
-    "asOfDate": "Oct 28 2026"
+    "display": "$2,135.47 M",
+    "value": 2135469999.9999998,
+    "asOfDate": "Oct 29 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$27.92",
-    "premiumDiscount": "0.08%"
+    "closePrice": "$27.96",
+    "premiumDiscount": "0.05%"
   },
   "inceptionDate": "Apr 06 2011",
   "returns": {
@@ -94,12 +94,12 @@
     "cagr5y": -0.3,
     "cagr10y": 2.17,
     "siAnn": 3.18,
-    "dividendYield": 5.29,
+    "dividendYield": 5.28,
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
-    "indicatedDividendYield": 5.35,
-    "secYield": 5.95,
-    "secYieldUnsubsidized": 5.95,
+    "indicatedDividendYield": 5.34,
+    "secYield": 5.94,
+    "secYieldUnsubsidized": 5.94,
     "tr1yText": "-2.19%",
     "tr3yText": "16.43%",
     "tr5yText": "-1.49%",
@@ -108,10 +108,10 @@
     "cagr5yText": "-0.30%",
     "cagr10yText": "2.17%",
     "siAnnText": "3.18%",
-    "indicatedDividendYieldText": "5.35%",
-    "dividendYieldText": "5.29%",
-    "secYieldText": "5.95%",
-    "secYieldUnsubsidizedText": "5.95%",
+    "indicatedDividendYieldText": "5.34%",
+    "dividendYieldText": "5.28%",
+    "secYieldText": "5.94%",
+    "secYieldUnsubsidizedText": "5.94%",
     "ytdText": "-2.92%",
     "returnsBasis": "official SSGA month-end NAV total returns (YTD, 1Y, annualized 3Y/5Y/10Y and since inception); tr3y/tr5y/tr10y are derived from the official annualized figures as (1 + CAGR)^n - 1; no Yahoo or market-price estimates",
     "performanceAsOf": "2026-09-30"
@@ -1618,7 +1618,7 @@
     ]
   },
   "holdings": {
-    "totalRows": 4471,
+    "totalRows": 4469,
     "pageSize": 250,
     "pageCount": 18,
     "pages": [
@@ -1641,11 +1641,11 @@
       "./holdings/017.json",
       "./holdings/018.json"
     ],
-    "asOfDate": "28-Oct-2026",
+    "asOfDate": "29-Oct-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 3917,
+    "totalRows": 3918,
     "pageSize": 1000,
     "pageCount": 4,
     "pages": [
@@ -1656,12 +1656,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 457,
+    "totalRows": 458,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "28-Oct-2026"
+    "asOfDate": "29-Oct-2026"
   }
 }

@@ -1,13 +1,13 @@
 {
   "ticker": "CNRG",
-  "name": "State Street SPDR S&P Kensho Clean Power ETF",
+  "name": "State Street SPDR S&P Kensho Grid Innovation ETF",
   "category": "Equity",
   "identifiers": {
     "isin": "US78468R6559",
     "cusip": "78468R655"
   },
   "source": {
-    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-kensho-clean-power-etf-cnrg",
+    "fundPage": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-kensho-grid-innovation-etf-cnrg",
     "holdingsDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-cnrg.xlsx",
     "navDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-cnrg.xlsx",
     "premiumDiscountDownload": "https://www.ssga.com/library-content/products/fund-data/etfs/us/pdhist-us-en-cnrg.xlsx",
@@ -28,19 +28,19 @@
     "value": null
   },
   "nav": {
-    "display": "$78.14",
-    "value": 78.14,
-    "asOfDate": "Oct 28 2026"
+    "display": "$78.65",
+    "value": 78.65,
+    "asOfDate": "Oct 29 2026"
   },
   "aum": {
-    "display": "$162.15 M",
-    "value": 162150000,
-    "asOfDate": "Oct 28 2026"
+    "display": "$163.20 M",
+    "value": 163200000,
+    "asOfDate": "Oct 29 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$78.11",
-    "premiumDiscount": "0.08%"
+    "closePrice": "$78.59",
+    "premiumDiscount": "-0.03%"
   },
   "inceptionDate": "Oct 22 2018",
   "returns": {
@@ -94,10 +94,10 @@
     "cagr5y": -0.99,
     "cagr10y": null,
     "siAnn": 15.34,
-    "dividendYield": 1.63,
+    "dividendYield": 1.62,
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
-    "indicatedDividendYield": 1.84,
+    "indicatedDividendYield": 1.83,
     "secYield": 1.05,
     "secYieldUnsubsidized": 1.05,
     "tr1yText": "0.83%",
@@ -108,8 +108,8 @@
     "cagr5yText": "-0.99%",
     "cagr10yText": null,
     "siAnnText": "15.34%",
-    "indicatedDividendYieldText": "1.84%",
-    "dividendYieldText": "1.63%",
+    "indicatedDividendYieldText": "1.83%",
+    "dividendYieldText": "1.62%",
     "secYieldText": "1.05%",
     "secYieldUnsubsidizedText": "1.05%",
     "ytdText": "-5.85%",
@@ -386,17 +386,17 @@
     ]
   },
   "holdings": {
-    "totalRows": 39,
+    "totalRows": 40,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "28-Oct-2026",
+    "asOfDate": "29-Oct-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 2015,
+    "totalRows": 2016,
     "pageSize": 1000,
     "pageCount": 3,
     "pages": [
@@ -406,12 +406,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 457,
+    "totalRows": 459,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "28-Oct-2026"
+    "asOfDate": "30-Oct-2026"
   }
 }

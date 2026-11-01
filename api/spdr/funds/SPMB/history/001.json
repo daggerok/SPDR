@@ -2,7 +2,7 @@
   "ticker": "SPMB",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 4476,
+  "totalRows": 4477,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "29-Oct-2026",
+      "NAV": "21.626755",
+      "Shares Outstanding": "323700000",
+      "Total Net Assets": "7000580645.22"
+    },
     {
       "Date": "28-Oct-2026",
       "NAV": "21.546825",
@@ -6003,12 +6009,6 @@
       "NAV": "20.975162",
       "Shares Outstanding": "177600000",
       "Total Net Assets": "3725188852.96"
-    },
-    {
-      "Date": "02-Nov-2022",
-      "NAV": "21.087464",
-      "Shares Outstanding": "177500000",
-      "Total Net Assets": "3743024795.25"
     }
   ]
 }

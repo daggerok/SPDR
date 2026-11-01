@@ -2,7 +2,7 @@
   "ticker": "SIMS",
   "page": 1,
   "pageSize": 250,
-  "totalRows": 55,
+  "totalRows": 56,
   "headers": [
     "Name",
     "Ticker",
@@ -15,11 +15,21 @@
   ],
   "rows": [
     {
+      "Name": "ADT INC",
+      "Ticker": "ADT",
+      "Identifier": "00090Q103",
+      "SEDOL": "BFWCP81",
+      "Weight": "3.866477",
+      "Sector": "-",
+      "Shares Held": "31584",
+      "Local Currency": "USD"
+    },
+    {
       "Name": "ALARM.COM HOLDINGS INC",
       "Ticker": "ALRM",
       "Identifier": "011642105",
       "SEDOL": "BYN7H26",
-      "Weight": "3.775799",
+      "Weight": "3.784019",
       "Sector": "-",
       "Shares Held": "4585",
       "Local Currency": "USD"
@@ -29,7 +39,7 @@
       "Ticker": "TTEK",
       "Identifier": "88162G103",
       "SEDOL": "2883890",
-      "Weight": "3.636329",
+      "Weight": "3.682159",
       "Sector": "-",
       "Shares Held": "7794",
       "Local Currency": "USD"
@@ -39,39 +49,9 @@
       "Ticker": "VLTO",
       "Identifier": "92338C103",
       "SEDOL": "BPGMZQ5",
-      "Weight": "3.340899",
+      "Weight": "3.306695",
       "Sector": "-",
       "Shares Held": "2562",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "ITRON INC",
-      "Ticker": "ITRI",
-      "Identifier": "465741106",
-      "SEDOL": "2471949",
-      "Weight": "3.118313",
-      "Sector": "-",
-      "Shares Held": "2655",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "JOHNSON CONTROLS INTERNATION",
-      "Ticker": "JCI",
-      "Identifier": "G51502105",
-      "SEDOL": "BY7QL61",
-      "Weight": "3.031905",
-      "Sector": "-",
-      "Shares Held": "1519",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "BADGER METER INC",
-      "Ticker": "BMI",
-      "Identifier": "056525108",
-      "SEDOL": "2069128",
-      "Weight": "3.009525",
-      "Sector": "-",
-      "Shares Held": "1647",
       "Local Currency": "USD"
     },
     {
@@ -79,19 +59,39 @@
       "Ticker": "ARLO",
       "Identifier": "04206A101",
       "SEDOL": "BYWPZY9",
-      "Weight": "2.972027",
+      "Weight": "3.142465",
       "Sector": "-",
       "Shares Held": "17177",
       "Local Currency": "USD"
     },
     {
-      "Name": "ADT INC",
-      "Ticker": "ADT",
-      "Identifier": "00090Q103",
-      "SEDOL": "BFWCP81",
-      "Weight": "2.968769",
+      "Name": "ITRON INC",
+      "Ticker": "ITRI",
+      "Identifier": "465741106",
+      "SEDOL": "2471949",
+      "Weight": "3.11817",
       "Sector": "-",
-      "Shares Held": "31584",
+      "Shares Held": "2655",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "BADGER METER INC",
+      "Ticker": "BMI",
+      "Identifier": "056525108",
+      "SEDOL": "2069128",
+      "Weight": "3.057655",
+      "Sector": "-",
+      "Shares Held": "1647",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "JOHNSON CONTROLS INTERNATION",
+      "Ticker": "JCI",
+      "Identifier": "G51502105",
+      "SEDOL": "BY7QL61",
+      "Weight": "2.981862",
+      "Sector": "-",
+      "Shares Held": "1519",
       "Local Currency": "USD"
     },
     {
@@ -99,7 +99,7 @@
       "Ticker": "WTTR",
       "Identifier": "81617J301",
       "SEDOL": "BDHSLL5",
-      "Weight": "2.892755",
+      "Weight": "2.842735",
       "Sector": "-",
       "Shares Held": "11500",
       "Local Currency": "USD"
@@ -109,7 +109,7 @@
       "Ticker": "TSLA",
       "Identifier": "88160R101",
       "SEDOL": "B616C79",
-      "Weight": "2.840656",
+      "Weight": "2.771208",
       "Sector": "-",
       "Shares Held": "554",
       "Local Currency": "USD"
@@ -119,7 +119,7 @@
       "Ticker": "SLAB",
       "Identifier": "826919102",
       "SEDOL": "2568131",
-      "Weight": "2.731452",
+      "Weight": "2.677858",
       "Sector": "-",
       "Shares Held": "971",
       "Local Currency": "USD"
@@ -129,7 +129,7 @@
       "Ticker": "HWKN",
       "Identifier": "420261109",
       "SEDOL": "2415594",
-      "Weight": "2.689053",
+      "Weight": "2.623664",
       "Sector": "-",
       "Shares Held": "1376",
       "Local Currency": "USD"
@@ -139,7 +139,7 @@
       "Ticker": "BE",
       "Identifier": "093712107",
       "SEDOL": "BDD1BB8",
-      "Weight": "2.615452",
+      "Weight": "2.492522",
       "Sector": "-",
       "Shares Held": "904",
       "Local Currency": "USD"
@@ -149,7 +149,7 @@
       "Ticker": "PNR",
       "Identifier": "G7S00T104",
       "SEDOL": "BLS09M3",
-      "Weight": "2.420208",
+      "Weight": "2.420467",
       "Sector": "-",
       "Shares Held": "2964",
       "Local Currency": "USD"
@@ -159,9 +159,19 @@
       "Ticker": "ERII",
       "Identifier": "29270J100",
       "SEDOL": "B3B5J07",
-      "Weight": "2.355658",
+      "Weight": "2.35965",
       "Sector": "-",
       "Shares Held": "26720",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "ALLEGION PLC",
+      "Ticker": "ALLE",
+      "Identifier": "G0176J109",
+      "SEDOL": "BFRT3W7",
+      "Weight": "2.234284",
+      "Sector": "-",
+      "Shares Held": "963",
       "Local Currency": "USD"
     },
     {
@@ -169,7 +179,7 @@
       "Ticker": "GNRC",
       "Identifier": "368736104",
       "SEDOL": "B6197Q2",
-      "Weight": "2.260291",
+      "Weight": "2.232235",
       "Sector": "-",
       "Shares Held": "885",
       "Local Currency": "USD"
@@ -179,19 +189,9 @@
       "Ticker": "XYL",
       "Identifier": "98419M100",
       "SEDOL": "B3P2CN8",
-      "Weight": "2.210418",
+      "Weight": "2.223273",
       "Sector": "-",
       "Shares Held": "1975",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "ALLEGION PLC",
-      "Ticker": "ALLE",
-      "Identifier": "G0176J109",
-      "SEDOL": "BFRT3W7",
-      "Weight": "2.206883",
-      "Sector": "-",
-      "Shares Held": "963",
       "Local Currency": "USD"
     },
     {
@@ -199,7 +199,7 @@
       "Ticker": "SHLS",
       "Identifier": "82489W107",
       "SEDOL": "BMDJ085",
-      "Weight": "2.193971",
+      "Weight": "2.142378",
       "Sector": "-",
       "Shares Held": "22878",
       "Local Currency": "USD"
@@ -209,19 +209,9 @@
       "Ticker": "AMRC",
       "Identifier": "02361E108",
       "SEDOL": "B3SWPT2",
-      "Weight": "2.114134",
+      "Weight": "2.137381",
       "Sector": "-",
       "Shares Held": "8206",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "ROKU INC",
-      "Ticker": "ROKU",
-      "Identifier": "77543R102",
-      "SEDOL": "BZ1LFG7",
-      "Weight": "2.100408",
-      "Sector": "-",
-      "Shares Held": "1066",
       "Local Currency": "USD"
     },
     {
@@ -229,19 +219,19 @@
       "Ticker": "ROP",
       "Identifier": "776696106",
       "SEDOL": "2749602",
-      "Weight": "2.084988",
+      "Weight": "2.080246",
       "Sector": "-",
       "Shares Held": "373",
       "Local Currency": "USD"
     },
     {
-      "Name": "SUNCOR ENERGY INC",
-      "Ticker": "SU",
-      "Identifier": "867224107",
-      "SEDOL": "B3NB0P5",
-      "Weight": "1.973094",
+      "Name": "ROKU INC",
+      "Ticker": "ROKU",
+      "Identifier": "77543R102",
+      "SEDOL": "BZ1LFG7",
+      "Weight": "2.066954",
       "Sector": "-",
-      "Shares Held": "2006",
+      "Shares Held": "1066",
       "Local Currency": "USD"
     },
     {
@@ -249,9 +239,19 @@
       "Ticker": "SHEL",
       "Identifier": "780259305",
       "SEDOL": "BPK3CG3",
-      "Weight": "1.930786",
+      "Weight": "1.932388",
       "Sector": "-",
       "Shares Held": "1447",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "SUNCOR ENERGY INC",
+      "Ticker": "SU",
+      "Identifier": "867224107",
+      "SEDOL": "B3NB0P5",
+      "Weight": "1.931487",
+      "Sector": "-",
+      "Shares Held": "2006",
       "Local Currency": "USD"
     },
     {
@@ -259,7 +259,7 @@
       "Ticker": "BP",
       "Identifier": "055622104",
       "SEDOL": "2142621",
-      "Weight": "1.832234",
+      "Weight": "1.811667",
       "Sector": "-",
       "Shares Held": "2901",
       "Local Currency": "USD"
@@ -269,19 +269,9 @@
       "Ticker": "AYI",
       "Identifier": "00508Y102",
       "SEDOL": "2818461",
-      "Weight": "1.785841",
+      "Weight": "1.802768",
       "Sector": "-",
       "Shares Held": "444",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "NAPCO SECURITY TECHNOLOGIES",
-      "Ticker": "NSSC",
-      "Identifier": "630402105",
-      "SEDOL": "2622253",
-      "Weight": "1.778918",
-      "Sector": "-",
-      "Shares Held": "3536",
       "Local Currency": "USD"
     },
     {
@@ -289,9 +279,19 @@
       "Ticker": "AME",
       "Identifier": "031100100",
       "SEDOL": "2089212",
-      "Weight": "1.768914",
+      "Weight": "1.755047",
       "Sector": "-",
       "Shares Held": "562",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "NAPCO SECURITY TECHNOLOGIES",
+      "Ticker": "NSSC",
+      "Identifier": "630402105",
+      "SEDOL": "2622253",
+      "Weight": "1.753421",
+      "Sector": "-",
+      "Shares Held": "3536",
       "Local Currency": "USD"
     },
     {
@@ -299,7 +299,7 @@
       "Ticker": "TEL",
       "Identifier": "G87052109",
       "SEDOL": "BRC3N84",
-      "Weight": "1.731569",
+      "Weight": "1.704722",
       "Sector": "-",
       "Shares Held": "617",
       "Local Currency": "USD"
@@ -309,7 +309,7 @@
       "Ticker": "REZI",
       "Identifier": "76118Y104",
       "SEDOL": "BFD1TJ6",
-      "Weight": "1.637452",
+      "Weight": "1.64391",
       "Sector": "-",
       "Shares Held": "7050",
       "Local Currency": "USD"
@@ -319,7 +319,7 @@
       "Ticker": "DD",
       "Identifier": "26614N201",
       "SEDOL": "BW60F13",
-      "Weight": "1.621944",
+      "Weight": "1.607628",
       "Sector": "-",
       "Shares Held": "922",
       "Local Currency": "USD"
@@ -329,39 +329,9 @@
       "Ticker": "EVGO",
       "Identifier": "30052F100",
       "SEDOL": "BP2Q7L0",
-      "Weight": "1.551393",
+      "Weight": "1.504783",
       "Sector": "-",
       "Shares Held": "97841",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "PARSONS CORP",
-      "Ticker": "PSN",
-      "Identifier": "70202L102",
-      "SEDOL": "BJN4N02",
-      "Weight": "1.413709",
-      "Sector": "-",
-      "Shares Held": "2206",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "CLEARWAY ENERGY INC C",
-      "Ticker": "CWEN",
-      "Identifier": "18539C204",
-      "SEDOL": "BGJRH57",
-      "Weight": "1.385072",
-      "Sector": "-",
-      "Shares Held": "3332",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "MUELLER WATER PRODUCTS INC A",
-      "Ticker": "MWA",
-      "Identifier": "624758108",
-      "SEDOL": "B15RZR4",
-      "Weight": "1.364858",
-      "Sector": "-",
-      "Shares Held": "4862",
       "Local Currency": "USD"
     },
     {
@@ -369,19 +339,39 @@
       "Ticker": "CNM",
       "Identifier": "21874C102",
       "SEDOL": "BNXKS92",
-      "Weight": "1.34482",
+      "Weight": "1.379634",
       "Sector": "-",
       "Shares Held": "2520",
       "Local Currency": "USD"
     },
     {
-      "Name": "CARRIER GLOBAL CORP",
-      "Ticker": "CARR",
-      "Identifier": "14448C104",
-      "SEDOL": "BK4N0D7",
-      "Weight": "1.302789",
+      "Name": "MUELLER WATER PRODUCTS INC A",
+      "Ticker": "MWA",
+      "Identifier": "624758108",
+      "SEDOL": "B15RZR4",
+      "Weight": "1.373725",
       "Sector": "-",
-      "Shares Held": "1833",
+      "Shares Held": "4862",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "CLEARWAY ENERGY INC C",
+      "Ticker": "CWEN",
+      "Identifier": "18539C204",
+      "SEDOL": "BGJRH57",
+      "Weight": "1.358839",
+      "Sector": "-",
+      "Shares Held": "3332",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "PARSONS CORP",
+      "Ticker": "PSN",
+      "Identifier": "70202L102",
+      "SEDOL": "BJN4N02",
+      "Weight": "1.349733",
+      "Sector": "-",
+      "Shares Held": "2206",
       "Local Currency": "USD"
     },
     {
@@ -389,9 +379,19 @@
       "Ticker": "GNTX",
       "Identifier": "371901109",
       "SEDOL": "2366799",
-      "Weight": "1.287962",
+      "Weight": "1.271263",
       "Sector": "-",
       "Shares Held": "5059",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "CARRIER GLOBAL CORP",
+      "Ticker": "CARR",
+      "Identifier": "14448C104",
+      "SEDOL": "BK4N0D7",
+      "Weight": "1.262698",
+      "Sector": "-",
+      "Shares Held": "1833",
       "Local Currency": "USD"
     },
     {
@@ -399,7 +399,7 @@
       "Ticker": "BCE",
       "Identifier": "05534B760",
       "SEDOL": "B188TJ4",
-      "Weight": "1.28069",
+      "Weight": "1.254732",
       "Sector": "-",
       "Shares Held": "5043",
       "Local Currency": "USD"
@@ -409,7 +409,7 @@
       "Ticker": "NRG",
       "Identifier": "629377508",
       "SEDOL": "2212922",
-      "Weight": "1.270658",
+      "Weight": "1.249724",
       "Sector": "-",
       "Shares Held": "1033",
       "Local Currency": "USD"
@@ -419,7 +419,7 @@
       "Ticker": "CEVA",
       "Identifier": "157210105",
       "SEDOL": "2986937",
-      "Weight": "1.245392",
+      "Weight": "1.209441",
       "Sector": "-",
       "Shares Held": "3033",
       "Local Currency": "USD"
@@ -429,19 +429,9 @@
       "Ticker": "FCEL",
       "Identifier": "35952H700",
       "SEDOL": "BSPS0J3",
-      "Weight": "1.20717",
+      "Weight": "1.161276",
       "Sector": "-",
       "Shares Held": "7687",
-      "Local Currency": "USD"
-    },
-    {
-      "Name": "HIMAX TECHNOLOGIES INC ADR",
-      "Ticker": "HIMX",
-      "Identifier": "43289P106",
-      "SEDOL": "B126TB6",
-      "Weight": "1.169568",
-      "Sector": "-",
-      "Shares Held": "7677",
       "Local Currency": "USD"
     },
     {
@@ -449,9 +439,19 @@
       "Ticker": "CWCO",
       "Identifier": "G23773107",
       "SEDOL": "2099095",
-      "Weight": "1.14873",
+      "Weight": "1.113218",
       "Sector": "-",
       "Shares Held": "3354",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "HIMAX TECHNOLOGIES INC ADR",
+      "Ticker": "HIMX",
+      "Identifier": "43289P106",
+      "SEDOL": "B126TB6",
+      "Weight": "1.113108",
+      "Sector": "-",
+      "Shares Held": "7677",
       "Local Currency": "USD"
     },
     {
@@ -459,7 +459,7 @@
       "Ticker": "CHPT",
       "Identifier": "15961R303",
       "SEDOL": "BVN2B39",
-      "Weight": "1.130963",
+      "Weight": "1.111827",
       "Sector": "-",
       "Shares Held": "9670",
       "Local Currency": "USD"
@@ -469,7 +469,7 @@
       "Ticker": "ON",
       "Identifier": "682189105",
       "SEDOL": "2583576",
-      "Weight": "1.085045",
+      "Weight": "1.055462",
       "Sector": "-",
       "Shares Held": "1131",
       "Local Currency": "USD"
@@ -479,7 +479,7 @@
       "Ticker": "BIDU",
       "Identifier": "056752108",
       "SEDOL": "B0FXT17",
-      "Weight": "1.069975",
+      "Weight": "1.035012",
       "Sector": "-",
       "Shares Held": "1061",
       "Local Currency": "USD"
@@ -489,7 +489,7 @@
       "Ticker": "HON",
       "Identifier": "438516205",
       "SEDOL": "BN7RHC5",
-      "Weight": "0.837176",
+      "Weight": "0.829324",
       "Sector": "-",
       "Shares Held": "301",
       "Local Currency": "USD"
@@ -499,7 +499,7 @@
       "Ticker": "ENPH",
       "Identifier": "29355A107",
       "SEDOL": "B65SQW4",
-      "Weight": "0.781084",
+      "Weight": "0.790315",
       "Sector": "-",
       "Shares Held": "2464",
       "Local Currency": "USD"
@@ -509,7 +509,7 @@
       "Ticker": "ADIG",
       "Identifier": "001026103",
       "SEDOL": "BWL8631",
-      "Weight": "0.774011",
+      "Weight": "0.773425",
       "Sector": "-",
       "Shares Held": "3525",
       "Local Currency": "USD"
@@ -519,7 +519,7 @@
       "Ticker": "HONA",
       "Identifier": "43849R105",
       "SEDOL": "BN7RHB4",
-      "Weight": "0.675934",
+      "Weight": "0.597484",
       "Sector": "-",
       "Shares Held": "301",
       "Local Currency": "USD"
@@ -529,7 +529,7 @@
       "Ticker": "SMRT",
       "Identifier": "83193G107",
       "SEDOL": "BPCHD26",
-      "Weight": "0.456666",
+      "Weight": "0.453133",
       "Sector": "-",
       "Shares Held": "26667",
       "Local Currency": "USD"
@@ -539,7 +539,7 @@
       "Ticker": "FLNC",
       "Identifier": "34379V103",
       "SEDOL": "BMXC0N9",
-      "Weight": "0.450471",
+      "Weight": "0.433345",
       "Sector": "-",
       "Shares Held": "5737",
       "Local Currency": "USD"
@@ -549,9 +549,19 @@
       "Ticker": "-",
       "Identifier": "924QSGII3",
       "SEDOL": "-",
-      "Weight": "0.139255",
+      "Weight": "0.13616",
       "Sector": "-",
       "Shares Held": "10977.91",
+      "Local Currency": "USD"
+    },
+    {
+      "Name": "US DOLLAR",
+      "Ticker": "-",
+      "Identifier": "999USDZ92",
+      "SEDOL": "-",
+      "Weight": "0.010509",
+      "Sector": "-",
+      "Shares Held": "847.26",
       "Local Currency": "USD"
     },
     {
@@ -559,7 +569,7 @@
       "Ticker": "-",
       "Identifier": "999CADZ91",
       "SEDOL": "-",
-      "Weight": "-0.017888",
+      "Weight": "-0.017565",
       "Sector": "-",
       "Shares Held": "-1979.49",
       "Local Currency": "CAD"

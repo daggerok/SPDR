@@ -2,7 +2,7 @@
   "ticker": "SPEU",
   "page": 3,
   "pageSize": 1000,
-  "totalRows": 6049,
+  "totalRows": 6050,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "12-Nov-2018",
+      "NAV": "31.391986",
+      "Shares Outstanding": "5550370",
+      "Total Net Assets": "174237136.07"
+    },
     {
       "Date": "09-Nov-2018",
       "NAV": "31.997875",
@@ -6003,12 +6009,6 @@
       "NAV": "36.432067",
       "Shares Outstanding": "7100370",
       "Total Net Assets": "258681156.31"
-    },
-    {
-      "Date": "21-Nov-2014",
-      "NAV": "36.36082",
-      "Shares Outstanding": "7100370",
-      "Total Net Assets": "258175272.49"
     }
   ]
 }

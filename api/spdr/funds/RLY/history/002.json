@@ -2,7 +2,7 @@
   "ticker": "RLY",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 3651,
+  "totalRows": 3652,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "02-Nov-2022",
+      "NAV": "27.679882",
+      "Shares Outstanding": "19660000",
+      "Total Net Assets": "544186489.03"
+    },
     {
       "Date": "01-Nov-2022",
       "NAV": "28.033581",
@@ -6003,12 +6009,6 @@
       "NAV": "24.561865",
       "Shares Outstanding": "5450000",
       "Total Net Assets": "133862166.39"
-    },
-    {
-      "Date": "12-Nov-2018",
-      "NAV": "24.785738",
-      "Shares Outstanding": "5500000",
-      "Total Net Assets": "136321559.68"
     }
   ]
 }

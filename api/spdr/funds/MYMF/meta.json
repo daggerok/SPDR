@@ -30,17 +30,17 @@
   "nav": {
     "display": "$24.94",
     "value": 24.94,
-    "asOfDate": "Oct 28 2026"
+    "asOfDate": "Oct 29 2026"
   },
   "aum": {
     "display": "$8.73 M",
     "value": 8730000,
-    "asOfDate": "Oct 28 2026"
+    "asOfDate": "Oct 29 2026"
   },
   "pricing": {
     "exchange": "NASDAQ REGULAR MARKET",
-    "closePrice": "$24.89",
-    "premiumDiscount": "-0.19%"
+    "closePrice": "$24.91",
+    "premiumDiscount": "-0.12%"
   },
   "inceptionDate": "Sep 23 2024",
   "returns": {
@@ -98,8 +98,8 @@
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
     "indicatedDividendYield": 2.46,
-    "secYield": 3.05,
-    "secYieldUnsubsidized": 3.05,
+    "secYield": 2.99,
+    "secYieldUnsubsidized": 2.99,
     "tr1yText": "2.32%",
     "tr3yText": null,
     "tr5yText": null,
@@ -110,8 +110,8 @@
     "siAnnText": "2.43%",
     "indicatedDividendYieldText": "2.46%",
     "dividendYieldText": "2.47%",
-    "secYieldText": "3.05%",
-    "secYieldUnsubsidizedText": "3.05%",
+    "secYieldText": "2.99%",
+    "secYieldUnsubsidizedText": "2.99%",
     "ytdText": "1.64%",
     "returnsBasis": "official SSGA month-end NAV total returns (YTD, 1Y, annualized 3Y/5Y/10Y and since inception); tr3y/tr5y/tr10y are derived from the official annualized figures as (1 + CAGR)^n - 1; no Yahoo or market-price estimates",
     "performanceAsOf": "2026-09-30"
@@ -336,11 +336,11 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "28-Oct-2026",
+    "asOfDate": "29-Oct-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 527,
+    "totalRows": 528,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
@@ -348,12 +348,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 457,
+    "totalRows": 458,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "28-Oct-2026"
+    "asOfDate": "29-Oct-2026"
   }
 }

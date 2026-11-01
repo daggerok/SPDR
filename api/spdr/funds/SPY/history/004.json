@@ -2,7 +2,7 @@
   "ticker": "SPY",
   "page": 4,
   "pageSize": 1000,
-  "totalRows": 5767,
+  "totalRows": 5768,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "21-Nov-2014",
+      "NAV": "206.677708",
+      "Shares Outstanding": "967632116",
+      "Total Net Assets": "199987987906.55"
+    },
     {
       "Date": "20-Nov-2014",
       "NAV": "205.578732",
@@ -6003,12 +6009,6 @@
       "NAV": "123.30665",
       "Shares Outstanding": "675482116",
       "Total Net Assets": "83291436653.59"
-    },
-    {
-      "Date": "07-Dec-2010",
-      "NAV": "122.822313",
-      "Shares Outstanding": "683182116",
-      "Total Net Assets": "83910007477.78"
     }
   ]
 }

@@ -2,7 +2,7 @@
   "ticker": "XOP",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 5126,
+  "totalRows": 5127,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "02-Nov-2022",
+      "NAV": "149.183116",
+      "Shares Outstanding": "33550000",
+      "Total Net Assets": "5005093552.14"
+    },
     {
       "Date": "01-Nov-2022",
       "NAV": "153.128205",
@@ -6003,12 +6009,6 @@
       "NAV": "34.240163",
       "Shares Outstanding": "75000000",
       "Total Net Assets": "2568012190.32"
-    },
-    {
-      "Date": "12-Nov-2018",
-      "NAV": "35.107369",
-      "Shares Outstanding": "76200000",
-      "Total Net Assets": "2675181508.19"
     }
   ]
 }

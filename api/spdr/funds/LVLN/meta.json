@@ -30,17 +30,17 @@
   "nav": {
     "display": "$24.56",
     "value": 24.56,
-    "asOfDate": "Oct 28 2026"
+    "asOfDate": "Oct 29 2026"
   },
   "aum": {
     "display": "$51.59 M",
     "value": 51590000,
-    "asOfDate": "Oct 28 2026"
+    "asOfDate": "Oct 29 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
     "closePrice": "$24.61",
-    "premiumDiscount": "0.21%"
+    "premiumDiscount": "0.12%"
   },
   "inceptionDate": "Nov 17 2025",
   "returns": {
@@ -98,8 +98,8 @@
     "dividendYieldSource": "indicated",
     "dividendYieldBasis": "indicated",
     "indicatedDividendYield": 6.69,
-    "secYield": 7.11,
-    "secYieldUnsubsidized": 7.1,
+    "secYield": 7.16,
+    "secYieldUnsubsidized": 7.15,
     "tr1yText": null,
     "tr3yText": null,
     "tr5yText": null,
@@ -110,8 +110,8 @@
     "siAnnText": null,
     "indicatedDividendYieldText": "6.69%",
     "dividendYieldText": "6.69%",
-    "secYieldText": "7.11%",
-    "secYieldUnsubsidizedText": "7.10%",
+    "secYieldText": "7.16%",
+    "secYieldUnsubsidizedText": "7.15%",
     "ytdText": "3.55%",
     "returnsBasis": "official SSGA month-end NAV total returns (YTD, 1Y, annualized 3Y/5Y/10Y and since inception); tr3y/tr5y/tr10y are derived from the official annualized figures as (1 + CAGR)^n - 1; no Yahoo or market-price estimates",
     "performanceAsOf": "2026-09-30"
@@ -218,17 +218,17 @@
     ]
   },
   "holdings": {
-    "totalRows": 202,
+    "totalRows": 199,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "28-Oct-2026",
+    "asOfDate": "30-Oct-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 238,
+    "totalRows": 239,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
@@ -236,12 +236,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 237,
+    "totalRows": 239,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "28-Oct-2026"
+    "asOfDate": "30-Oct-2026"
   }
 }

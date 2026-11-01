@@ -2,7 +2,7 @@
   "ticker": "GMF",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 4939,
+  "totalRows": 4940,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "02-Nov-2022",
+      "NAV": "86.941444",
+      "Shares Outstanding": "3600000",
+      "Total Net Assets": "312989199.42"
+    },
     {
       "Date": "01-Nov-2022",
       "NAV": "86.535925",
@@ -6003,12 +6009,6 @@
       "NAV": "89.391564",
       "Shares Outstanding": "4500000",
       "Total Net Assets": "402262038.98"
-    },
-    {
-      "Date": "12-Nov-2018",
-      "NAV": "88.71199",
-      "Shares Outstanding": "4500000",
-      "Total Net Assets": "399203957.02"
     }
   ]
 }
