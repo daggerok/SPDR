@@ -28,40 +28,40 @@
     "value": null
   },
   "nav": {
-    "display": "$24.76",
-    "value": 24.76,
-    "asOfDate": "Oct 29 2026"
+    "display": "$24.75",
+    "value": 24.75,
+    "asOfDate": "Nov 05 2026"
   },
   "aum": {
-    "display": "$115.14 M",
-    "value": 115140000,
-    "asOfDate": "Oct 29 2026"
+    "display": "$115.09 M",
+    "value": 115090000,
+    "asOfDate": "Nov 05 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$24.75",
-    "premiumDiscount": "-0.02%"
+    "closePrice": "$24.70",
+    "premiumDiscount": "-0.23%"
   },
   "inceptionDate": "Sep 09 2025",
   "returns": {
     "monthEnd": {
-      "asOfDate": "Sep 30 2026",
-      "mo1": -0.62,
-      "mo1Text": "-0.62%",
-      "qtd": -0.16,
-      "qtdText": "-0.16%",
-      "ytd": 1.32,
-      "ytdText": "1.32%",
-      "yr1": 2.58,
-      "yr1Text": "2.58%",
+      "asOfDate": "Oct 31 2026",
+      "mo1": 0.75,
+      "mo1Text": "0.75%",
+      "qtd": 0.75,
+      "qtdText": "0.75%",
+      "ytd": 2.08,
+      "ytdText": "2.08%",
+      "yr1": 2.96,
+      "yr1Text": "2.96%",
       "yr3": null,
       "yr3Text": null,
       "yr5": null,
       "yr5Text": null,
       "yr10": null,
       "yr10Text": null,
-      "sinceInception": 2.65,
-      "sinceInceptionText": "2.65%",
+      "sinceInception": 3.13,
+      "sinceInceptionText": "3.13%",
       "inceptionDate": "Sep 09 2025"
     },
     "quarterEnd": {
@@ -85,36 +85,36 @@
     }
   },
   "metrics": {
-    "ytd": 1.32,
-    "tr1y": 2.58,
+    "ytd": 2.08,
+    "tr1y": 2.96,
     "tr3y": null,
     "tr5y": null,
     "tr10y": null,
     "cagr3y": null,
     "cagr5y": null,
     "cagr10y": null,
-    "siAnn": 2.65,
-    "dividendYield": 4.19,
+    "siAnn": 3.13,
+    "dividendYield": 4.23,
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
-    "indicatedDividendYield": 4.31,
+    "indicatedDividendYield": 4.62,
     "secYield": 4.86,
     "secYieldUnsubsidized": 4.86,
-    "tr1yText": "2.58%",
+    "tr1yText": "2.96%",
     "tr3yText": null,
     "tr5yText": null,
     "tr10yText": null,
     "cagr3yText": null,
     "cagr5yText": null,
     "cagr10yText": null,
-    "siAnnText": "2.65%",
-    "indicatedDividendYieldText": "4.31%",
-    "dividendYieldText": "4.19%",
+    "siAnnText": "3.13%",
+    "indicatedDividendYieldText": "4.62%",
+    "dividendYieldText": "4.23%",
     "secYieldText": "4.86%",
     "secYieldUnsubsidizedText": "4.86%",
-    "ytdText": "1.32%",
+    "ytdText": "2.08%",
     "returnsBasis": "official SSGA month-end NAV total returns (YTD, 1Y, annualized 3Y/5Y/10Y and since inception); tr3y/tr5y/tr10y are derived from the official annualized figures as (1 + CAGR)^n - 1; no Yahoo or market-price estimates",
-    "performanceAsOf": "2026-09-30"
+    "performanceAsOf": "2026-10-31"
   },
   "distributions": {
     "frequency": "Monthly",
@@ -127,6 +127,14 @@
       "LT Cap Gains"
     ],
     "rows": [
+      [
+        "11/02/2026",
+        "11/02/2026",
+        "11/05/2026",
+        "0.095187",
+        "-",
+        "-"
+      ],
       [
         "10/01/2026",
         "10/01/2026",
@@ -234,17 +242,17 @@
     ]
   },
   "holdings": {
-    "totalRows": 164,
+    "totalRows": 166,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "29-Oct-2026",
+    "asOfDate": "05-Nov-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 288,
+    "totalRows": 293,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
@@ -252,12 +260,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 289,
+    "totalRows": 294,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "30-Oct-2026"
+    "asOfDate": "06-Nov-2026"
   }
 }

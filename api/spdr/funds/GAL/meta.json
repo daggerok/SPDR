@@ -28,40 +28,40 @@
     "value": null
   },
   "nav": {
-    "display": "$52.69",
-    "value": 52.69,
-    "asOfDate": "Oct 29 2026"
+    "display": "$51.45",
+    "value": 51.45,
+    "asOfDate": "Nov 05 2026"
   },
   "aum": {
-    "display": "$318.76 M",
-    "value": 318760000,
-    "asOfDate": "Oct 29 2026"
+    "display": "$323.08 M",
+    "value": 323080000,
+    "asOfDate": "Nov 05 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$52.67",
-    "premiumDiscount": "0.00%"
+    "closePrice": "$51.41",
+    "premiumDiscount": "-0.01%"
   },
   "inceptionDate": "Apr 25 2012",
   "returns": {
     "monthEnd": {
-      "asOfDate": "Sep 30 2026",
-      "mo1": -2.04,
-      "mo1Text": "-2.04%",
-      "qtd": -0.32,
-      "qtdText": "-0.32%",
-      "ytd": 7.71,
-      "ytdText": "7.71%",
-      "yr1": 10.29,
-      "yr1Text": "10.29%",
-      "yr3": 14.31,
-      "yr3Text": "14.31%",
-      "yr5": 6.99,
-      "yr5Text": "6.99%",
-      "yr10": 7.84,
-      "yr10Text": "7.84%",
-      "sinceInception": 7.22,
-      "sinceInceptionText": "7.22%",
+      "asOfDate": "Oct 31 2026",
+      "mo1": -0.31,
+      "mo1Text": "-0.31%",
+      "qtd": -0.31,
+      "qtdText": "-0.31%",
+      "ytd": 7.37,
+      "ytdText": "7.37%",
+      "yr1": 8.59,
+      "yr1Text": "8.59%",
+      "yr3": 14.98,
+      "yr3Text": "14.98%",
+      "yr5": 6.24,
+      "yr5Text": "6.24%",
+      "yr10": 8.07,
+      "yr10Text": "8.07%",
+      "sinceInception": 7.15,
+      "sinceInceptionText": "7.15%",
       "inceptionDate": "Apr 25 2012"
     },
     "quarterEnd": {
@@ -85,36 +85,36 @@
     }
   },
   "metrics": {
-    "ytd": 7.71,
-    "tr1y": 10.29,
-    "tr3y": 49.37,
-    "tr5y": 40.19,
-    "tr10y": 112.72,
-    "cagr3y": 14.31,
-    "cagr5y": 6.99,
-    "cagr10y": 7.84,
-    "siAnn": 7.22,
-    "dividendYield": 2.75,
+    "ytd": 7.37,
+    "tr1y": 8.59,
+    "tr3y": 52.01,
+    "tr5y": 35.34,
+    "tr10y": 117.3,
+    "cagr3y": 14.98,
+    "cagr5y": 6.24,
+    "cagr10y": 8.07,
+    "siAnn": 7.15,
+    "dividendYield": 2.82,
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
-    "indicatedDividendYield": 2.15,
-    "secYield": 3,
-    "secYieldUnsubsidized": 3,
-    "tr1yText": "10.29%",
-    "tr3yText": "49.37%",
-    "tr5yText": "40.19%",
-    "tr10yText": "112.72%",
-    "cagr3yText": "14.31%",
-    "cagr5yText": "6.99%",
-    "cagr10yText": "7.84%",
-    "siAnnText": "7.22%",
-    "indicatedDividendYieldText": "2.15%",
-    "dividendYieldText": "2.75%",
-    "secYieldText": "3.00%",
-    "secYieldUnsubsidizedText": "3.00%",
-    "ytdText": "7.71%",
+    "indicatedDividendYield": 2.2,
+    "secYield": 3.13,
+    "secYieldUnsubsidized": 3.13,
+    "tr1yText": "8.59%",
+    "tr3yText": "52.01%",
+    "tr5yText": "35.34%",
+    "tr10yText": "117.30%",
+    "cagr3yText": "14.98%",
+    "cagr5yText": "6.24%",
+    "cagr10yText": "8.07%",
+    "siAnnText": "7.15%",
+    "indicatedDividendYieldText": "2.20%",
+    "dividendYieldText": "2.82%",
+    "secYieldText": "3.13%",
+    "secYieldUnsubsidizedText": "3.13%",
+    "ytdText": "7.37%",
     "returnsBasis": "official SSGA month-end NAV total returns (YTD, 1Y, annualized 3Y/5Y/10Y and since inception); tr3y/tr5y/tr10y are derived from the official annualized figures as (1 + CAGR)^n - 1; no Yahoo or market-price estimates",
-    "performanceAsOf": "2026-09-30"
+    "performanceAsOf": "2026-10-31"
   },
   "distributions": {
     "frequency": "Quarterly",
@@ -594,17 +594,17 @@
     ]
   },
   "holdings": {
-    "totalRows": 19,
+    "totalRows": 18,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "29-Oct-2026",
+    "asOfDate": "05-Nov-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 3652,
+    "totalRows": 3657,
     "pageSize": 1000,
     "pageCount": 4,
     "pages": [
@@ -615,12 +615,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 459,
+    "totalRows": 464,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "30-Oct-2026"
+    "asOfDate": "06-Nov-2026"
   }
 }

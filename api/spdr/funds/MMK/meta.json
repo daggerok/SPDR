@@ -28,18 +28,18 @@
     "value": 0.18
   },
   "nav": {
-    "display": "$100.31",
-    "value": 100.31,
-    "asOfDate": "Oct 29 2026"
+    "display": "$100.07",
+    "value": 100.07,
+    "asOfDate": "Nov 05 2026"
   },
   "aum": {
-    "display": "$32.10 M",
-    "value": 32100000,
-    "asOfDate": "Oct 29 2026"
+    "display": "$32.02 M",
+    "value": 32020000.000000004,
+    "asOfDate": "Nov 05 2026"
   },
   "pricing": {
     "exchange": "New York Stock Exchange LLC",
-    "closePrice": "$100.31",
+    "closePrice": "$100.07",
     "premiumDiscount": "0.00%"
   },
   "inceptionDate": "Feb 10 2026",
@@ -94,10 +94,10 @@
     "cagr5y": null,
     "cagr10y": null,
     "siAnn": null,
-    "dividendYield": 3.72,
+    "dividendYield": 3.82,
     "dividendYieldSource": "indicated",
     "dividendYieldBasis": "indicated",
-    "indicatedDividendYield": 3.72,
+    "indicatedDividendYield": 3.82,
     "secYield": null,
     "secYieldUnsubsidized": null,
     "tr1yText": null,
@@ -108,8 +108,8 @@
     "cagr5yText": null,
     "cagr10yText": null,
     "siAnnText": null,
-    "indicatedDividendYieldText": "3.72%",
-    "dividendYieldText": "3.72%",
+    "indicatedDividendYieldText": "3.82%",
+    "dividendYieldText": "3.82%",
     "secYieldText": null,
     "secYieldUnsubsidizedText": null,
     "ytdText": null,
@@ -127,6 +127,14 @@
       "LT Cap Gains"
     ],
     "rows": [
+      [
+        "11/02/2026",
+        "11/02/2026",
+        "11/05/2026",
+        "0.318772",
+        "-",
+        "-"
+      ],
       [
         "10/01/2026",
         "10/01/2026",
@@ -194,17 +202,17 @@
     ]
   },
   "holdings": {
-    "totalRows": 74,
+    "totalRows": 69,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "29-Oct-2026",
+    "asOfDate": "05-Nov-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 182,
+    "totalRows": 187,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
@@ -212,12 +220,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 180,
+    "totalRows": 186,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "29-Oct-2026"
+    "asOfDate": "06-Nov-2026"
   }
 }

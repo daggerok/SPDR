@@ -28,40 +28,40 @@
     "value": null
   },
   "nav": {
-    "display": "$43.15",
-    "value": 43.15,
-    "asOfDate": "Oct 29 2026"
+    "display": "$43.31",
+    "value": 43.31,
+    "asOfDate": "Nov 05 2026"
   },
   "aum": {
-    "display": "$24,162.34 M",
-    "value": 24162340000,
-    "asOfDate": "Oct 29 2026"
+    "display": "$23,913.04 M",
+    "value": 23913040000,
+    "asOfDate": "Nov 05 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$43.14",
-    "premiumDiscount": "-0.01%"
+    "closePrice": "$43.30",
+    "premiumDiscount": "0.02%"
   },
   "inceptionDate": "Dec 16 1998",
   "returns": {
     "monthEnd": {
-      "asOfDate": "Sep 30 2026",
-      "mo1": -5.89,
-      "mo1Text": "-5.89%",
-      "qtd": -12.38,
-      "qtdText": "-12.38%",
-      "ytd": -5.71,
-      "ytdText": "-5.71%",
-      "yr1": -7.05,
-      "yr1Text": "-7.05%",
-      "yr3": 13.51,
-      "yr3Text": "13.51%",
-      "yr5": 7.48,
-      "yr5Text": "7.48%",
-      "yr10": 8.23,
-      "yr10Text": "8.23%",
-      "sinceInception": 7.29,
-      "sinceInceptionText": "7.29%",
+      "asOfDate": "Oct 31 2026",
+      "mo1": 10.16,
+      "mo1Text": "10.16%",
+      "qtd": 10.16,
+      "qtdText": "10.16%",
+      "ytd": 3.88,
+      "ytdText": "3.88%",
+      "yr1": 0.3,
+      "yr1Text": "0.30%",
+      "yr3": 16.74,
+      "yr3Text": "16.74%",
+      "yr5": 8.58,
+      "yr5Text": "8.58%",
+      "yr10": 9.19,
+      "yr10Text": "9.19%",
+      "sinceInception": 7.64,
+      "sinceInceptionText": "7.64%",
       "inceptionDate": "Dec 16 1998"
     },
     "quarterEnd": {
@@ -85,36 +85,36 @@
     }
   },
   "metrics": {
-    "ytd": -5.71,
-    "tr1y": -7.05,
-    "tr3y": 46.25,
-    "tr5y": 43.43,
-    "tr10y": 120.53,
-    "cagr3y": 13.51,
-    "cagr5y": 7.48,
-    "cagr10y": 8.23,
-    "siAnn": 7.29,
-    "dividendYield": 2.81,
+    "ytd": 3.88,
+    "tr1y": 0.3,
+    "tr3y": 59.1,
+    "tr5y": 50.92,
+    "tr10y": 140.9,
+    "cagr3y": 16.74,
+    "cagr5y": 8.58,
+    "cagr10y": 9.19,
+    "siAnn": 7.64,
+    "dividendYield": 2.8,
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
-    "indicatedDividendYield": 2.78,
-    "secYield": 2.85,
-    "secYieldUnsubsidized": 2.85,
-    "tr1yText": "-7.05%",
-    "tr3yText": "46.25%",
-    "tr5yText": "43.43%",
-    "tr10yText": "120.53%",
-    "cagr3yText": "13.51%",
-    "cagr5yText": "7.48%",
-    "cagr10yText": "8.23%",
-    "siAnnText": "7.29%",
-    "indicatedDividendYieldText": "2.78%",
-    "dividendYieldText": "2.81%",
-    "secYieldText": "2.85%",
-    "secYieldUnsubsidizedText": "2.85%",
-    "ytdText": "-5.71%",
+    "indicatedDividendYield": 2.77,
+    "secYield": 2.84,
+    "secYieldUnsubsidized": 2.84,
+    "tr1yText": "0.30%",
+    "tr3yText": "59.10%",
+    "tr5yText": "50.92%",
+    "tr10yText": "140.90%",
+    "cagr3yText": "16.74%",
+    "cagr5yText": "8.58%",
+    "cagr10yText": "9.19%",
+    "siAnnText": "7.64%",
+    "indicatedDividendYieldText": "2.77%",
+    "dividendYieldText": "2.80%",
+    "secYieldText": "2.84%",
+    "secYieldUnsubsidizedText": "2.84%",
+    "ytdText": "3.88%",
     "returnsBasis": "official SSGA month-end NAV total returns (YTD, 1Y, annualized 3Y/5Y/10Y and since inception); tr3y/tr5y/tr10y are derived from the official annualized figures as (1 + CAGR)^n - 1; no Yahoo or market-price estimates",
-    "performanceAsOf": "2026-09-30"
+    "performanceAsOf": "2026-10-31"
   },
   "distributions": {
     "frequency": "Quarterly",
@@ -1024,11 +1024,11 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "29-Oct-2026",
+    "asOfDate": "05-Nov-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 5768,
+    "totalRows": 5773,
     "pageSize": 1000,
     "pageCount": 6,
     "pages": [
@@ -1041,12 +1041,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 459,
+    "totalRows": 464,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "30-Oct-2026"
+    "asOfDate": "06-Nov-2026"
   }
 }
