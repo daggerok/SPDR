@@ -69,6 +69,13 @@ Each fund carries a derived `metrics` object that powers the catalog columns sha
 - `dividendYield` - official SSGA Fund Dividend Yield, else an indicated yield (latest distribution x payments per year / price; semi-annual = 2), an estimate derived from SSGA data. HECO, XITK and XSW publish an official `0.00%`, which is kept as `0` (a real zero, not a missing value)
 - `dividendYieldBasis` - code of the definition behind `dividendYield`, `null` exactly when `dividendYield` is `null` (table below)
 - `secYield` - official 30-day SEC yield when published; unavailable otherwise, never `0`
+- Swing metrics (shared `swing` block, the formulas of the Stocks feed) from the Yahoo Finance daily closes since listing (chart API, split-adjusted, not dividend-adjusted; the published NAV and market price history is not split-adjusted), with the last close as the price. Read for every fund the run updates (none after the 25-minute soft deadline); a failed chart, or one that starts more than 31 days after the published history, keeps the published values; `null` (never `0`) when the history is too short:
+  - `pctFrom52wHigh` - last close against the highest close of the last 52 weeks, in percent
+  - `athPrice`, `athDate`, `athBasis` - highest close of the whole history, its date and the history it covers (`daily closes since <first date>`)
+  - `pctFromAth` - last close against `athPrice`, in percent
+  - `volatility1y` - annualized volatility of the last 252 daily log returns, in percent (needs 253 closes)
+  - `sigmaFromMean60d` - distance of the last close from the mean of the last 60 closes, in sample standard deviations
+  - `high60d`, `low60d` - highest and lowest of the last 60 closes
 - `returnsBasis` - always a non-empty label of how the returns are computed: official SSGA month-end NAV total returns, with `tr3y`/`tr5y`/`tr10y` derived from the official annualized figures; no Yahoo or market-price estimates
 - `performanceAsOf` - ISO `YYYY-MM-DD` date of SSGA's month-end performance table the returns are as of (not the NAV date); `null` when SSGA publishes no performance yet (very young funds)
 
