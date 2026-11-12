@@ -503,6 +503,9 @@ function fundRecord(ticker: string, nav: number) {
   }
   return record;
 }
+// the swing block's daily chart (period1=0): 300 closes rising 0.1 a day from 2025-01-02
+const SWING_CHART_URL = /query1\.finance\.yahoo\.com\/v8\/finance\/chart\/[^?]+\?period1=0&period2=\d+&interval=1d&includePrePost=false/;
+const swingChart = () => ({ chart: { result: [{ meta: { dataGranularity: '1d' }, timestamp: Array.from({ length: 300 }, (_, i) => Date.UTC(2025, 0, 2) / 1000 + i * 86_400), indicators: { quote: [{ close: Array.from({ length: 300 }, (_, i) => Math.round((40 + i / 10) * 100) / 100) }] } }] } });
 function installMock(overrides: Partial<Mock> = {}): Mock {
   const mock: Mock = { tickers: ['SPY', 'XLK', 'GLD'], nav: { SPY: 500, XLK: 200, GLD: 300 }, hist: 300, failNavhist: new Set(), failDistributions: new Set(), failBulk: new Set(), latency: 0, inflight: 0, peak: 0, ...overrides };
   globalThis.fetch = (async (input: unknown) => {
@@ -517,6 +520,7 @@ function installMock(overrides: Partial<Mock> = {}): Mock {
       for (const bulk of ['dividend-distribution', 'product-data']) if (url.includes(bulk) && !url.includes('ticker=') && mock.failBulk.has(bulk)) return new Response('err', { status: 500 });
       if (url.includes('dividend-distribution')) return Response.json(distributionFeed);
       if (url.includes('product-data')) return xlsx(productSheet);
+      if (SWING_CHART_URL.test(url)) return Response.json(swingChart());
       const m = /(holdings-daily|navhist|pdhist)-us-en-([a-z]+)\.xlsx/.exec(url);
       if (!m) return new Response('no', { status: 404 });
       const ticker = m[2].toUpperCase();
@@ -549,6 +553,9 @@ describe('pipeline', () => {
   test('commodity trust without holdings (GLD) still gets meta.json, empty holdings and the same metrics keys', async () => {
     const dir = tempRoot();
     installMock();
+    const requests: string[] = [];
+    const good = globalThis.fetch;
+    globalThis.fetch = (async (input: unknown, init?: RequestInit) => { requests.push(String(input)); return good(input as string, init); }) as unknown as typeof fetch;
     await runMain();
     const gld = row(dir, 'GLD');
     expect(gld.dataFile).toBe('./funds/GLD/meta.json');
@@ -558,6 +565,12 @@ describe('pipeline', () => {
     for (const f of readJson(dir, 'index.json').funds) if (f.dataFile) expect(existsSync(join(dir, f.dataFile))).toBe(true);
     // the 52-week range keys from the published history pages (shared range-52w block)
     for (const f of readJson(dir, 'index.json').funds) expect(Object.keys(f.metrics)).toEqual(expect.arrayContaining(['week52Low', 'week52High', 'range52w', 'range52wClose', 'range52wAsOf', 'range52wSince', 'range52wBasis']));
+    // the swing keys from the Yahoo daily closes (period1=0) of the funds the run refreshed (swing block)
+    const SWING_KEYS = ['pctFrom52wHigh', 'athPrice', 'athDate', 'athBasis', 'pctFromAth', 'volatility1y', 'sigmaFromMean60d', 'high60d', 'low60d'];
+    for (const f of readJson(dir, 'index.json').funds) expect(Object.keys(f.metrics).slice(-11, -2)).toEqual(SWING_KEYS);
+    expect(requests.filter((url) => SWING_CHART_URL.test(url)).map((url) => /chart\/([^?]+)/.exec(url)?.[1]).sort()).toEqual(['GLD', 'SPY', 'XLK']);
+    const spy = row(dir, 'SPY').metrics;
+    expect([spy.athBasis, spy.athPrice, spy.high60d, spy.volatility1y]).toEqual(['daily closes since 2025-01-02', 69.9, 69.9, expect.any(Number)]);
   });
 
   test('distributions: the full per-fund history is stored (not only the latest row); a failed history keeps the fund as published', async () => {
