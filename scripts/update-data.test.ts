@@ -505,7 +505,7 @@ function fundRecord(ticker: string, nav: number) {
 }
 // the swing block's daily chart (period1=0): 300 closes rising 0.1 a day from 2025-01-02
 const SWING_CHART_URL = /query1\.finance\.yahoo\.com\/v8\/finance\/chart\/[^?]+\?period1=0&period2=\d+&interval=1d&includePrePost=false/;
-const swingChart = () => ({ chart: { result: [{ meta: { dataGranularity: '1d' }, timestamp: Array.from({ length: 300 }, (_, i) => Date.UTC(2025, 0, 2) / 1000 + i * 86_400), indicators: { quote: [{ close: Array.from({ length: 300 }, (_, i) => Math.round((40 + i / 10) * 100) / 100) }] } }] } });
+const swingChart = () => ({ chart: { result: [{ meta: { dataGranularity: '1d', firstTradeDate: Date.UTC(2025, 0, 2) / 1000 }, events: { dividends: { [String(Date.parse('2026-09-21T00:00:00Z') / 1000)]: { amount: 0.25, date: Date.parse('2026-09-21T00:00:00Z') / 1000 } } }, timestamp: Array.from({ length: 300 }, (_, i) => Date.UTC(2025, 0, 2) / 1000 + i * 86_400), indicators: { quote: [{ close: Array.from({ length: 300 }, (_, i) => Math.round((40 + i / 10) * 100) / 100) }] } }] } });
 function installMock(overrides: Partial<Mock> = {}): Mock {
   const mock: Mock = { tickers: ['SPY', 'XLK', 'GLD'], nav: { SPY: 500, XLK: 200, GLD: 300 }, hist: 300, failNavhist: new Set(), failDistributions: new Set(), failBulk: new Set(), latency: 0, inflight: 0, peak: 0, ...overrides };
   globalThis.fetch = (async (input: unknown) => {
@@ -567,7 +567,13 @@ describe('pipeline', () => {
     for (const f of readJson(dir, 'index.json').funds) expect(Object.keys(f.metrics)).toEqual(expect.arrayContaining(['week52Low', 'week52High', 'range52w', 'range52wClose', 'range52wAsOf', 'range52wSince', 'range52wBasis']));
     // the swing keys from the Yahoo daily closes (period1=0) of the funds the run refreshed (swing block)
     const SWING_KEYS = ['pctFrom52wHigh', 'athPrice', 'athDate', 'athBasis', 'pctFromAth', 'volatility1y', 'sigmaFromMean60d', 'high60d', 'low60d'];
-    for (const f of readJson(dir, 'index.json').funds) expect(Object.keys(f.metrics).slice(-11, -2)).toEqual(SWING_KEYS);
+    for (const f of readJson(dir, 'index.json').funds) expect(Object.keys(f.metrics).slice(-17, -8)).toEqual(SWING_KEYS);
+    // the dividend keys from the Yahoo dividend events of the same chart (dividends block, tap mode): one payment in the last 12 months,
+    // no complete year after the listing year, so growth, streak and cut are null (never 0)
+    const DIVIDEND_KEYS = ['dividendRate', 'dividendGrowth', 'dividendGrowth3y', 'dividendGrowth5y', 'dividendStreak', 'dividendCut10y'];
+    for (const f of readJson(dir, 'index.json').funds) expect(Object.keys(f.metrics).slice(-8, -2)).toEqual(DIVIDEND_KEYS);
+    expect(DIVIDEND_KEYS.map((key) => row(dir, 'SPY').metrics[key])).toEqual([0.25, null, null, null, null, null]);
+    expect(requests.filter((url) => /chart\/SPY\?period1=0&.*includePrePost=false/.test(url))).toHaveLength(1);
     expect(requests.filter((url) => SWING_CHART_URL.test(url)).map((url) => /chart\/([^?]+)/.exec(url)?.[1]).sort()).toEqual(['GLD', 'SPY', 'XLK']);
     const spy = row(dir, 'SPY').metrics;
     expect([spy.athBasis, spy.athPrice, spy.high60d, spy.volatility1y]).toEqual(['daily closes since 2025-01-02', 69.9, 69.9, expect.any(Number)]);
