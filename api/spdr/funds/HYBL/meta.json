@@ -16,11 +16,11 @@
     "factsheet": "https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-hybl.pdf"
   },
   "expenseRatio": {
-    "display": "0.70%",
-    "value": 0.7,
+    "display": "0.55%",
+    "value": 0.55,
     "gross": {
-      "display": "0.70%",
-      "value": 0.7
+      "display": "0.55%",
+      "value": 0.55
     }
   },
   "netExpenseRatio": {
@@ -28,40 +28,40 @@
     "value": null
   },
   "nav": {
-    "display": "$27.33",
-    "value": 27.33,
-    "asOfDate": "Nov 05 2026"
+    "display": "$27.34",
+    "value": 27.34,
+    "asOfDate": "Nov 12 2026"
   },
   "aum": {
-    "display": "$560.24 M",
-    "value": 560240000,
-    "asOfDate": "Nov 05 2026"
+    "display": "$560.48 M",
+    "value": 560480000,
+    "asOfDate": "Nov 12 2026"
   },
   "pricing": {
     "exchange": "Cboe BZX Exchange, Inc",
-    "closePrice": "$27.25",
-    "premiumDiscount": "-0.27%"
+    "closePrice": "$27.27",
+    "premiumDiscount": "-0.24%"
   },
   "inceptionDate": "Feb 16 2022",
   "returns": {
     "monthEnd": {
-      "asOfDate": "Sep 30 2026",
-      "mo1": -1.03,
-      "mo1Text": "-1.03%",
-      "qtd": 0.57,
-      "qtdText": "0.57%",
-      "ytd": 1.87,
-      "ytdText": "1.87%",
-      "yr1": 3.56,
-      "yr1Text": "3.56%",
-      "yr3": 8,
-      "yr3Text": "8.00%",
+      "asOfDate": "Oct 31 2026",
+      "mo1": -0.23,
+      "mo1Text": "-0.23%",
+      "qtd": -0.23,
+      "qtdText": "-0.23%",
+      "ytd": 1.64,
+      "ytdText": "1.64%",
+      "yr1": 3.01,
+      "yr1Text": "3.01%",
+      "yr3": 8.16,
+      "yr3Text": "8.16%",
       "yr5": null,
       "yr5Text": null,
       "yr10": null,
       "yr10Text": null,
-      "sinceInception": 5.46,
-      "sinceInceptionText": "5.46%",
+      "sinceInception": 5.31,
+      "sinceInceptionText": "5.31%",
       "inceptionDate": "Feb 16 2022"
     },
     "quarterEnd": {
@@ -85,36 +85,36 @@
     }
   },
   "metrics": {
-    "ytd": 1.87,
-    "tr1y": 3.56,
-    "tr3y": 25.97,
+    "ytd": 1.64,
+    "tr1y": 3.01,
+    "tr3y": 26.53,
     "tr5y": null,
     "tr10y": null,
-    "cagr3y": 8,
+    "cagr3y": 8.16,
     "cagr5y": null,
     "cagr10y": null,
-    "siAnn": 5.46,
-    "dividendYield": 7.13,
+    "siAnn": 5.31,
+    "dividendYield": 7.12,
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
     "indicatedDividendYield": 7.45,
-    "secYield": 7.51,
-    "secYieldUnsubsidized": 7.5,
-    "tr1yText": "3.56%",
-    "tr3yText": "25.97%",
+    "secYield": 7.5,
+    "secYieldUnsubsidized": 7.49,
+    "tr1yText": "3.01%",
+    "tr3yText": "26.53%",
     "tr5yText": null,
     "tr10yText": null,
-    "cagr3yText": "8.00%",
+    "cagr3yText": "8.16%",
     "cagr5yText": null,
     "cagr10yText": null,
-    "siAnnText": "5.46%",
+    "siAnnText": "5.31%",
     "indicatedDividendYieldText": "7.45%",
-    "dividendYieldText": "7.13%",
-    "secYieldText": "7.51%",
-    "secYieldUnsubsidizedText": "7.50%",
-    "ytdText": "1.87%",
+    "dividendYieldText": "7.12%",
+    "secYieldText": "7.50%",
+    "secYieldUnsubsidizedText": "7.49%",
+    "ytdText": "1.64%",
     "returnsBasis": "official SSGA month-end NAV total returns (YTD, 1Y, annualized 3Y/5Y/10Y and since inception); tr3y/tr5y/tr10y are derived from the official annualized figures as (1 + CAGR)^n - 1; no Yahoo or market-price estimates",
-    "performanceAsOf": "2026-09-30"
+    "performanceAsOf": "2026-10-31"
   },
   "distributions": {
     "frequency": "Monthly",
@@ -586,7 +586,7 @@
     ]
   },
   "holdings": {
-    "totalRows": 638,
+    "totalRows": 645,
     "pageSize": 250,
     "pageCount": 3,
     "pages": [
@@ -594,11 +594,11 @@
       "./holdings/002.json",
       "./holdings/003.json"
     ],
-    "asOfDate": "05-Nov-2026",
+    "asOfDate": "12-Nov-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 1185,
+    "totalRows": 1190,
     "pageSize": 1000,
     "pageCount": 2,
     "pages": [
@@ -607,12 +607,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 464,
+    "totalRows": 469,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "06-Nov-2026"
+    "asOfDate": "13-Nov-2026"
   }
 }

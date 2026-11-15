@@ -28,40 +28,40 @@
     "value": null
   },
   "nav": {
-    "display": "$47.82",
-    "value": 47.82,
-    "asOfDate": "Nov 05 2026"
+    "display": "$48.15",
+    "value": 48.15,
+    "asOfDate": "Nov 12 2026"
   },
   "aum": {
-    "display": "$167.36 M",
-    "value": 167360000,
-    "asOfDate": "Nov 05 2026"
+    "display": "$168.51 M",
+    "value": 168510000,
+    "asOfDate": "Nov 12 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$45.68",
-    "premiumDiscount": "-4.51%"
+    "closePrice": "$48.22",
+    "premiumDiscount": "0.13%"
   },
   "inceptionDate": "Oct 24 2016",
   "returns": {
     "monthEnd": {
-      "asOfDate": "Sep 30 2026",
-      "mo1": -0.44,
-      "mo1Text": "-0.44%",
-      "qtd": -0.46,
-      "qtdText": "-0.46%",
-      "ytd": 24.71,
-      "ytdText": "24.71%",
-      "yr1": 30.2,
-      "yr1Text": "30.20%",
-      "yr3": 24.86,
-      "yr3Text": "24.86%",
-      "yr5": 9.51,
-      "yr5Text": "9.51%",
-      "yr10": null,
-      "yr10Text": null,
-      "sinceInception": 9.05,
-      "sinceInceptionText": "9.05%",
+      "asOfDate": "Oct 31 2026",
+      "mo1": -8.46,
+      "mo1Text": "-8.46%",
+      "qtd": -8.46,
+      "qtdText": "-8.46%",
+      "ytd": 14.16,
+      "ytdText": "14.16%",
+      "yr1": 14.53,
+      "yr1Text": "14.53%",
+      "yr3": 22.79,
+      "yr3Text": "22.79%",
+      "yr5": 7.33,
+      "yr5Text": "7.33%",
+      "yr10": 8.18,
+      "yr10Text": "8.18%",
+      "sinceInception": 8.01,
+      "sinceInceptionText": "8.01%",
       "inceptionDate": "Oct 24 2016"
     },
     "quarterEnd": {
@@ -85,36 +85,36 @@
     }
   },
   "metrics": {
-    "ytd": 24.71,
-    "tr1y": 30.2,
-    "tr3y": 94.66,
-    "tr5y": 57.5,
-    "tr10y": null,
-    "cagr3y": 24.86,
-    "cagr5y": 9.51,
-    "cagr10y": null,
-    "siAnn": 9.05,
-    "dividendYield": 2.01,
+    "ytd": 14.16,
+    "tr1y": 14.53,
+    "tr3y": 85.14,
+    "tr5y": 42.43,
+    "tr10y": 119.52,
+    "cagr3y": 22.79,
+    "cagr5y": 7.33,
+    "cagr10y": 8.18,
+    "siAnn": 8.01,
+    "dividendYield": 1.99,
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
-    "indicatedDividendYield": 0.5,
-    "secYield": 1.58,
-    "secYieldUnsubsidized": 1.58,
-    "tr1yText": "30.20%",
-    "tr3yText": "94.66%",
-    "tr5yText": "57.50%",
-    "tr10yText": null,
-    "cagr3yText": "24.86%",
-    "cagr5yText": "9.51%",
-    "cagr10yText": null,
-    "siAnnText": "9.05%",
-    "indicatedDividendYieldText": "0.50%",
-    "dividendYieldText": "2.01%",
-    "secYieldText": "1.58%",
-    "secYieldUnsubsidizedText": "1.58%",
-    "ytdText": "24.71%",
+    "indicatedDividendYield": 0.49,
+    "secYield": 1.6,
+    "secYieldUnsubsidized": 1.6,
+    "tr1yText": "14.53%",
+    "tr3yText": "85.14%",
+    "tr5yText": "42.43%",
+    "tr10yText": "119.52%",
+    "cagr3yText": "22.79%",
+    "cagr5yText": "7.33%",
+    "cagr10yText": "8.18%",
+    "siAnnText": "8.01%",
+    "indicatedDividendYieldText": "0.49%",
+    "dividendYieldText": "1.99%",
+    "secYieldText": "1.60%",
+    "secYieldUnsubsidizedText": "1.60%",
+    "ytdText": "14.16%",
     "returnsBasis": "official SSGA month-end NAV total returns (YTD, 1Y, annualized 3Y/5Y/10Y and since inception); tr3y/tr5y/tr10y are derived from the official annualized figures as (1 + CAGR)^n - 1; no Yahoo or market-price estimates",
-    "performanceAsOf": "2026-09-30"
+    "performanceAsOf": "2026-10-31"
   },
   "distributions": {
     "frequency": "Semi-Annually",
@@ -316,11 +316,11 @@
       "./holdings/004.json",
       "./holdings/005.json"
     ],
-    "asOfDate": "05-Nov-2026",
+    "asOfDate": "12-Nov-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 2523,
+    "totalRows": 2528,
     "pageSize": 1000,
     "pageCount": 3,
     "pages": [
@@ -330,12 +330,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 464,
+    "totalRows": 469,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "06-Nov-2026"
+    "asOfDate": "13-Nov-2026"
   }
 }

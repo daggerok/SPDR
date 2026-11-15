@@ -28,28 +28,28 @@
     "value": null
   },
   "nav": {
-    "display": "$24.57",
-    "value": 24.57,
-    "asOfDate": "Nov 05 2026"
+    "display": "$24.55",
+    "value": 24.55,
+    "asOfDate": "Nov 12 2026"
   },
   "aum": {
     "display": "$4.91 M",
     "value": 4910000,
-    "asOfDate": "Nov 05 2026"
+    "asOfDate": "Nov 12 2026"
   },
   "pricing": {
     "exchange": "NASDAQ REGULAR MARKET",
-    "closePrice": "$24.61",
-    "premiumDiscount": "0.15%"
+    "closePrice": "$24.57",
+    "premiumDiscount": "0.07%"
   },
   "inceptionDate": "Feb 25 2026",
   "returns": {
     "monthEnd": {
-      "asOfDate": "Sep 30 2026",
-      "mo1": -0.42,
-      "mo1Text": "-0.42%",
-      "qtd": 0.31,
-      "qtdText": "0.31%",
+      "asOfDate": "Oct 31 2026",
+      "mo1": 0.22,
+      "mo1Text": "0.22%",
+      "qtd": 0.22,
+      "qtdText": "0.22%",
       "ytd": null,
       "ytdText": null,
       "yr1": null,
@@ -60,8 +60,8 @@
       "yr5Text": null,
       "yr10": null,
       "yr10Text": null,
-      "sinceInception": 1.8,
-      "sinceInceptionText": "1.80%",
+      "sinceInception": 2.02,
+      "sinceInceptionText": "2.02%",
       "inceptionDate": "Feb 25 2026"
     },
     "quarterEnd": {
@@ -98,8 +98,8 @@
     "dividendYieldSource": "indicated",
     "dividendYieldBasis": "indicated",
     "indicatedDividendYield": 5.86,
-    "secYield": 6.36,
-    "secYieldUnsubsidized": 6.36,
+    "secYield": 6.4,
+    "secYieldUnsubsidized": 6.4,
     "tr1yText": null,
     "tr3yText": null,
     "tr5yText": null,
@@ -110,11 +110,11 @@
     "siAnnText": null,
     "indicatedDividendYieldText": "5.86%",
     "dividendYieldText": "5.86%",
-    "secYieldText": "6.36%",
-    "secYieldUnsubsidizedText": "6.36%",
+    "secYieldText": "6.40%",
+    "secYieldUnsubsidizedText": "6.40%",
     "ytdText": null,
     "returnsBasis": "official SSGA month-end NAV total returns (YTD, 1Y, annualized 3Y/5Y/10Y and since inception); tr3y/tr5y/tr10y are derived from the official annualized figures as (1 + CAGR)^n - 1; no Yahoo or market-price estimates",
-    "performanceAsOf": "2026-09-30"
+    "performanceAsOf": "2026-10-31"
   },
   "distributions": {
     "frequency": "Monthly",
@@ -194,17 +194,17 @@
     ]
   },
   "holdings": {
-    "totalRows": 85,
+    "totalRows": 84,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "05-Nov-2026",
+    "asOfDate": "12-Nov-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 177,
+    "totalRows": 182,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
@@ -212,12 +212,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 177,
+    "totalRows": 182,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "06-Nov-2026"
+    "asOfDate": "13-Nov-2026"
   }
 }

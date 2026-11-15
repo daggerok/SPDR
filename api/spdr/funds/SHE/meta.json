@@ -28,40 +28,40 @@
     "value": null
   },
   "nav": {
-    "display": "$147.35",
-    "value": 147.35,
-    "asOfDate": "Nov 05 2026"
+    "display": "$154.13",
+    "value": 154.13,
+    "asOfDate": "Nov 12 2026"
   },
   "aum": {
-    "display": "$327.85 M",
-    "value": 327850000,
-    "asOfDate": "Nov 05 2026"
+    "display": "$342.93 M",
+    "value": 342930000,
+    "asOfDate": "Nov 12 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$147.36",
-    "premiumDiscount": "-0.03%"
+    "closePrice": "$154.03",
+    "premiumDiscount": "0.01%"
   },
   "inceptionDate": "Mar 07 2016",
   "returns": {
     "monthEnd": {
-      "asOfDate": "Sep 30 2026",
-      "mo1": -0.56,
-      "mo1Text": "-0.56%",
-      "qtd": 2.04,
-      "qtdText": "2.04%",
-      "ytd": 20.19,
-      "ytdText": "20.19%",
-      "yr1": 24.82,
-      "yr1Text": "24.82%",
-      "yr3": 24.27,
-      "yr3Text": "24.27%",
-      "yr5": 10.73,
-      "yr5Text": "10.73%",
-      "yr10": 12.49,
-      "yr10Text": "12.49%",
-      "sinceInception": 12.64,
-      "sinceInceptionText": "12.64%",
+      "asOfDate": "Oct 31 2026",
+      "mo1": -2.91,
+      "mo1Text": "-2.91%",
+      "qtd": -2.91,
+      "qtdText": "-2.91%",
+      "ytd": 16.69,
+      "ytdText": "16.69%",
+      "yr1": 17.99,
+      "yr1Text": "17.99%",
+      "yr3": 23.48,
+      "yr3Text": "23.48%",
+      "yr5": 8.8,
+      "yr5Text": "8.80%",
+      "yr10": 12.4,
+      "yr10Text": "12.40%",
+      "sinceInception": 12.22,
+      "sinceInceptionText": "12.22%",
       "inceptionDate": "Mar 07 2016"
     },
     "quarterEnd": {
@@ -85,36 +85,36 @@
     }
   },
   "metrics": {
-    "ytd": 20.19,
-    "tr1y": 24.82,
-    "tr3y": 91.91,
-    "tr5y": 66.47,
-    "tr10y": 224.44,
-    "cagr3y": 24.27,
-    "cagr5y": 10.73,
-    "cagr10y": 12.49,
-    "siAnn": 12.64,
-    "dividendYield": 1.19,
+    "ytd": 16.69,
+    "tr1y": 17.99,
+    "tr3y": 88.27,
+    "tr5y": 52.46,
+    "tr10y": 221.86,
+    "cagr3y": 23.48,
+    "cagr5y": 8.8,
+    "cagr10y": 12.4,
+    "siAnn": 12.22,
+    "dividendYield": 1.14,
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
-    "indicatedDividendYield": 1.33,
-    "secYield": 1.1,
-    "secYieldUnsubsidized": 1.1,
-    "tr1yText": "24.82%",
-    "tr3yText": "91.91%",
-    "tr5yText": "66.47%",
-    "tr10yText": "224.44%",
-    "cagr3yText": "24.27%",
-    "cagr5yText": "10.73%",
-    "cagr10yText": "12.49%",
-    "siAnnText": "12.64%",
-    "indicatedDividendYieldText": "1.33%",
-    "dividendYieldText": "1.19%",
-    "secYieldText": "1.10%",
-    "secYieldUnsubsidizedText": "1.10%",
-    "ytdText": "20.19%",
+    "indicatedDividendYield": 1.27,
+    "secYield": 1.06,
+    "secYieldUnsubsidized": 1.06,
+    "tr1yText": "17.99%",
+    "tr3yText": "88.27%",
+    "tr5yText": "52.46%",
+    "tr10yText": "221.86%",
+    "cagr3yText": "23.48%",
+    "cagr5yText": "8.80%",
+    "cagr10yText": "12.40%",
+    "siAnnText": "12.22%",
+    "indicatedDividendYieldText": "1.27%",
+    "dividendYieldText": "1.14%",
+    "secYieldText": "1.06%",
+    "secYieldUnsubsidizedText": "1.06%",
+    "ytdText": "16.69%",
     "returnsBasis": "official SSGA month-end NAV total returns (YTD, 1Y, annualized 3Y/5Y/10Y and since inception); tr3y/tr5y/tr10y are derived from the official annualized figures as (1 + CAGR)^n - 1; no Yahoo or market-price estimates",
-    "performanceAsOf": "2026-09-30"
+    "performanceAsOf": "2026-10-31"
   },
   "distributions": {
     "frequency": "Quarterly",
@@ -480,11 +480,11 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "05-Nov-2026",
+    "asOfDate": "12-Nov-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 2684,
+    "totalRows": 2689,
     "pageSize": 1000,
     "pageCount": 3,
     "pages": [
@@ -494,12 +494,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 464,
+    "totalRows": 469,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "06-Nov-2026"
+    "asOfDate": "13-Nov-2026"
   }
 }

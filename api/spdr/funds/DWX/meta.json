@@ -28,19 +28,19 @@
     "value": null
   },
   "nav": {
-    "display": "$48.27",
-    "value": 48.27,
-    "asOfDate": "Nov 05 2026"
+    "display": "$47.53",
+    "value": 47.53,
+    "asOfDate": "Nov 12 2026"
   },
   "aum": {
-    "display": "$528.64 M",
-    "value": 528640000,
-    "asOfDate": "Nov 05 2026"
+    "display": "$508.66 M",
+    "value": 508660000,
+    "asOfDate": "Nov 12 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$47.65",
-    "premiumDiscount": "-1.47%"
+    "closePrice": "$47.57",
+    "premiumDiscount": "0.10%"
   },
   "inceptionDate": "Feb 12 2008",
   "returns": {
@@ -94,10 +94,10 @@
     "cagr5y": 8.48,
     "cagr10y": 7.21,
     "siAnn": 2.91,
-    "dividendYield": 3.99,
+    "dividendYield": 4.05,
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
-    "indicatedDividendYield": 3.11,
+    "indicatedDividendYield": 3.16,
     "secYield": 3.35,
     "secYieldUnsubsidized": 3.35,
     "tr1yText": "15.47%",
@@ -108,8 +108,8 @@
     "cagr5yText": "8.48%",
     "cagr10yText": "7.21%",
     "siAnnText": "2.91%",
-    "indicatedDividendYieldText": "3.11%",
-    "dividendYieldText": "3.99%",
+    "indicatedDividendYieldText": "3.16%",
+    "dividendYieldText": "4.05%",
     "secYieldText": "3.35%",
     "secYieldUnsubsidizedText": "3.35%",
     "ytdText": "10.71%",
@@ -730,17 +730,17 @@
     ]
   },
   "holdings": {
-    "totalRows": 123,
+    "totalRows": 133,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "05-Nov-2026",
+    "asOfDate": "12-Nov-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 4715,
+    "totalRows": 4720,
     "pageSize": 1000,
     "pageCount": 5,
     "pages": [
@@ -752,12 +752,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 464,
+    "totalRows": 469,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "06-Nov-2026"
+    "asOfDate": "13-Nov-2026"
   }
 }

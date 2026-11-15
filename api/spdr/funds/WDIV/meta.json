@@ -28,40 +28,40 @@
     "value": null
   },
   "nav": {
-    "display": "$83.42",
-    "value": 83.42,
-    "asOfDate": "Nov 05 2026"
+    "display": "$82.46",
+    "value": 82.46,
+    "asOfDate": "Nov 12 2026"
   },
   "aum": {
-    "display": "$283.61 M",
-    "value": 283610000,
-    "asOfDate": "Nov 05 2026"
+    "display": "$280.37 M",
+    "value": 280370000,
+    "asOfDate": "Nov 12 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$82.77",
-    "premiumDiscount": "-0.88%"
+    "closePrice": "$82.58",
+    "premiumDiscount": "0.25%"
   },
   "inceptionDate": "May 29 2013",
   "returns": {
     "monthEnd": {
-      "asOfDate": "Sep 30 2026",
-      "mo1": -3.23,
-      "mo1Text": "-3.23%",
-      "qtd": 3.46,
-      "qtdText": "3.46%",
-      "ytd": 11.83,
-      "ytdText": "11.83%",
-      "yr1": 17.27,
-      "yr1Text": "17.27%",
-      "yr3": 19.46,
-      "yr3Text": "19.46%",
-      "yr5": 9.42,
-      "yr5Text": "9.42%",
-      "yr10": 7.36,
-      "yr10Text": "7.36%",
-      "sinceInception": 7.06,
-      "sinceInceptionText": "7.06%",
+      "asOfDate": "Oct 31 2026",
+      "mo1": 1.68,
+      "mo1Text": "1.68%",
+      "qtd": 1.68,
+      "qtdText": "1.68%",
+      "ytd": 13.71,
+      "ytdText": "13.71%",
+      "yr1": 19.75,
+      "yr1Text": "19.75%",
+      "yr3": 21.57,
+      "yr3Text": "21.57%",
+      "yr5": 9.48,
+      "yr5Text": "9.48%",
+      "yr10": 7.85,
+      "yr10Text": "7.85%",
+      "sinceInception": 7.15,
+      "sinceInceptionText": "7.15%",
       "inceptionDate": "May 29 2013"
     },
     "quarterEnd": {
@@ -85,36 +85,36 @@
     }
   },
   "metrics": {
-    "ytd": 11.83,
-    "tr1y": 17.27,
-    "tr3y": 70.48,
-    "tr5y": 56.85,
-    "tr10y": 103.43,
-    "cagr3y": 19.46,
-    "cagr5y": 9.42,
-    "cagr10y": 7.36,
-    "siAnn": 7.06,
-    "dividendYield": 4.17,
+    "ytd": 13.71,
+    "tr1y": 19.75,
+    "tr3y": 79.67,
+    "tr5y": 57.28,
+    "tr10y": 112.91,
+    "cagr3y": 21.57,
+    "cagr5y": 9.48,
+    "cagr10y": 7.85,
+    "siAnn": 7.15,
+    "dividendYield": 4.22,
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
-    "indicatedDividendYield": 3.96,
-    "secYield": 3.96,
-    "secYieldUnsubsidized": 3.96,
-    "tr1yText": "17.27%",
-    "tr3yText": "70.48%",
-    "tr5yText": "56.85%",
-    "tr10yText": "103.43%",
-    "cagr3yText": "19.46%",
-    "cagr5yText": "9.42%",
-    "cagr10yText": "7.36%",
-    "siAnnText": "7.06%",
-    "indicatedDividendYieldText": "3.96%",
-    "dividendYieldText": "4.17%",
-    "secYieldText": "3.96%",
-    "secYieldUnsubsidizedText": "3.96%",
-    "ytdText": "11.83%",
+    "indicatedDividendYield": 4.01,
+    "secYield": 3.97,
+    "secYieldUnsubsidized": 3.97,
+    "tr1yText": "19.75%",
+    "tr3yText": "79.67%",
+    "tr5yText": "57.28%",
+    "tr10yText": "112.91%",
+    "cagr3yText": "21.57%",
+    "cagr5yText": "9.48%",
+    "cagr10yText": "7.85%",
+    "siAnnText": "7.15%",
+    "indicatedDividendYieldText": "4.01%",
+    "dividendYieldText": "4.22%",
+    "secYieldText": "3.97%",
+    "secYieldUnsubsidizedText": "3.97%",
+    "ytdText": "13.71%",
     "returnsBasis": "official SSGA month-end NAV total returns (YTD, 1Y, annualized 3Y/5Y/10Y and since inception); tr3y/tr5y/tr10y are derived from the official annualized figures as (1 + CAGR)^n - 1; no Yahoo or market-price estimates",
-    "performanceAsOf": "2026-09-30"
+    "performanceAsOf": "2026-10-31"
   },
   "distributions": {
     "frequency": "Quarterly",
@@ -568,11 +568,11 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "05-Nov-2026",
+    "asOfDate": "12-Nov-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 3383,
+    "totalRows": 3388,
     "pageSize": 1000,
     "pageCount": 4,
     "pages": [
@@ -583,12 +583,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 464,
+    "totalRows": 469,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "06-Nov-2026"
+    "asOfDate": "13-Nov-2026"
   }
 }

@@ -28,28 +28,28 @@
     "value": 0.18
   },
   "nav": {
-    "display": "$100.07",
-    "value": 100.07,
-    "asOfDate": "Nov 05 2026"
+    "display": "$100.14",
+    "value": 100.14,
+    "asOfDate": "Nov 12 2026"
   },
   "aum": {
-    "display": "$32.02 M",
-    "value": 32020000.000000004,
-    "asOfDate": "Nov 05 2026"
+    "display": "$32.04 M",
+    "value": 32040000,
+    "asOfDate": "Nov 12 2026"
   },
   "pricing": {
     "exchange": "New York Stock Exchange LLC",
-    "closePrice": "$100.07",
+    "closePrice": "$100.14",
     "premiumDiscount": "0.00%"
   },
   "inceptionDate": "Feb 10 2026",
   "returns": {
     "monthEnd": {
-      "asOfDate": "Sep 30 2026",
-      "mo1": 0.29,
-      "mo1Text": "0.29%",
-      "qtd": 0.93,
-      "qtdText": "0.93%",
+      "asOfDate": "Oct 31 2026",
+      "mo1": 0.35,
+      "mo1Text": "0.35%",
+      "qtd": 0.35,
+      "qtdText": "0.35%",
       "ytd": null,
       "ytdText": null,
       "yr1": null,
@@ -60,8 +60,8 @@
       "yr5Text": null,
       "yr10": null,
       "yr10Text": null,
-      "sinceInception": 2.32,
-      "sinceInceptionText": "2.32%",
+      "sinceInception": 2.67,
+      "sinceInceptionText": "2.67%",
       "inceptionDate": "Feb 10 2026"
     },
     "quarterEnd": {
@@ -114,7 +114,7 @@
     "secYieldUnsubsidizedText": null,
     "ytdText": null,
     "returnsBasis": "official SSGA month-end NAV total returns (YTD, 1Y, annualized 3Y/5Y/10Y and since inception); tr3y/tr5y/tr10y are derived from the official annualized figures as (1 + CAGR)^n - 1; no Yahoo or market-price estimates",
-    "performanceAsOf": "2026-09-30"
+    "performanceAsOf": "2026-10-31"
   },
   "distributions": {
     "frequency": "Monthly",
@@ -202,17 +202,17 @@
     ]
   },
   "holdings": {
-    "totalRows": 69,
+    "totalRows": 74,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "05-Nov-2026",
+    "asOfDate": "12-Nov-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 187,
+    "totalRows": 192,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
@@ -220,12 +220,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 186,
+    "totalRows": 191,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "06-Nov-2026"
+    "asOfDate": "13-Nov-2026"
   }
 }
