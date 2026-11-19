@@ -28,19 +28,19 @@
     "value": null
   },
   "nav": {
-    "display": "$22.40",
-    "value": 22.4,
-    "asOfDate": "Nov 12 2026"
+    "display": "$21.23",
+    "value": 21.23,
+    "asOfDate": "Nov 18 2026"
   },
   "aum": {
-    "display": "$0.45 M",
-    "value": 450000,
-    "asOfDate": "Nov 12 2026"
+    "display": "$0.42 M",
+    "value": 420000,
+    "asOfDate": "Nov 18 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$22.37",
-    "premiumDiscount": "-0.01%"
+    "closePrice": "$21.22",
+    "premiumDiscount": "-0.03%"
   },
   "inceptionDate": "Oct 13 2026",
   "returns": {
@@ -98,8 +98,8 @@
     "dividendYieldSource": null,
     "dividendYieldBasis": null,
     "indicatedDividendYield": null,
-    "secYield": 0.38,
-    "secYieldUnsubsidized": 0.38,
+    "secYield": 0.41,
+    "secYieldUnsubsidized": 0.41,
     "tr1yText": null,
     "tr3yText": null,
     "tr5yText": null,
@@ -110,8 +110,8 @@
     "siAnnText": null,
     "indicatedDividendYieldText": null,
     "dividendYieldText": null,
-    "secYieldText": "0.38%",
-    "secYieldUnsubsidizedText": "0.38%",
+    "secYieldText": "0.41%",
+    "secYieldUnsubsidizedText": "0.41%",
     "ytdText": null,
     "returnsBasis": "official SSGA month-end NAV total returns (YTD, 1Y, annualized 3Y/5Y/10Y and since inception); tr3y/tr5y/tr10y are derived from the official annualized figures as (1 + CAGR)^n - 1; no Yahoo or market-price estimates",
     "performanceAsOf": null
@@ -128,11 +128,11 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "12-Nov-2026",
+    "asOfDate": "17-Nov-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 23,
+    "totalRows": 27,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
@@ -140,12 +140,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 24,
+    "totalRows": 27,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "13-Nov-2026"
+    "asOfDate": "18-Nov-2026"
   }
 }

@@ -28,19 +28,19 @@
     "value": null
   },
   "nav": {
-    "display": "$206.82",
-    "value": 206.82,
-    "asOfDate": "Nov 12 2026"
+    "display": "$199.44",
+    "value": 199.44,
+    "asOfDate": "Nov 18 2026"
   },
   "aum": {
-    "display": "$523.25 M",
-    "value": 523250000,
-    "asOfDate": "Nov 12 2026"
+    "display": "$538.49 M",
+    "value": 538490000,
+    "asOfDate": "Nov 18 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$206.92",
-    "premiumDiscount": "0.03%"
+    "closePrice": "$199.66",
+    "premiumDiscount": "0.05%"
   },
   "inceptionDate": "Sep 28 2011",
   "returns": {
@@ -98,8 +98,8 @@
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
     "indicatedDividendYield": null,
-    "secYield": -0.1,
-    "secYieldUnsubsidized": -0.1,
+    "secYield": -0.11,
+    "secYieldUnsubsidized": -0.11,
     "tr1yText": "5.76%",
     "tr3yText": "75.71%",
     "tr5yText": "16.38%",
@@ -110,8 +110,8 @@
     "siAnnText": "15.87%",
     "indicatedDividendYieldText": null,
     "dividendYieldText": "0.00%",
-    "secYieldText": "-0.10%",
-    "secYieldUnsubsidizedText": "-0.10%",
+    "secYieldText": "-0.11%",
+    "secYieldUnsubsidizedText": "-0.11%",
     "ytdText": "12.16%",
     "returnsBasis": "official SSGA month-end NAV total returns (YTD, 1Y, annualized 3Y/5Y/10Y and since inception); tr3y/tr5y/tr10y are derived from the official annualized figures as (1 + CAGR)^n - 1; no Yahoo or market-price estimates",
     "performanceAsOf": "2026-10-31"
@@ -616,11 +616,11 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "12-Nov-2026",
+    "asOfDate": "17-Nov-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 3807,
+    "totalRows": 3811,
     "pageSize": 1000,
     "pageCount": 4,
     "pages": [
@@ -631,12 +631,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 469,
+    "totalRows": 472,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "13-Nov-2026"
+    "asOfDate": "18-Nov-2026"
   }
 }
