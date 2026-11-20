@@ -2,7 +2,7 @@
   "ticker": "CWB",
   "page": 3,
   "pageSize": 1000,
-  "totalRows": 4432,
+  "totalRows": 4433,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "04-Dec-2018",
+      "NAV": "50.96002",
+      "Shares Outstanding": "85300000",
+      "Total Net Assets": "4346889682.91"
+    },
     {
       "Date": "03-Dec-2018",
       "NAV": "51.938541",
@@ -6003,12 +6009,6 @@
       "NAV": "47.91624",
       "Shares Outstanding": "58600000",
       "Total Net Assets": "2807891681.25"
-    },
-    {
-      "Date": "15-Dec-2014",
-      "NAV": "48.179081",
-      "Shares Outstanding": "58600000",
-      "Total Net Assets": "2823294140.04"
     }
   ]
 }

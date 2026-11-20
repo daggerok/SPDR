@@ -28,19 +28,19 @@
     "value": null
   },
   "nav": {
-    "display": "$26.25",
-    "value": 26.25,
-    "asOfDate": "Nov 18 2026"
+    "display": "$26.22",
+    "value": 26.22,
+    "asOfDate": "Nov 19 2026"
   },
   "aum": {
-    "display": "$293.95 M",
-    "value": 293950000,
-    "asOfDate": "Nov 18 2026"
+    "display": "$293.65 M",
+    "value": 293650000,
+    "asOfDate": "Nov 19 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$26.29",
-    "premiumDiscount": "0.11%"
+    "closePrice": "$26.15",
+    "premiumDiscount": "-0.05%"
   },
   "inceptionDate": "Jan 15 2009",
   "returns": {
@@ -94,12 +94,12 @@
     "cagr5y": -1.23,
     "cagr10y": -0.36,
     "siAnn": -0.28,
-    "dividendYield": 2.2,
+    "dividendYield": 2.21,
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
     "indicatedDividendYield": 2.5,
-    "secYield": 2.87,
-    "secYieldUnsubsidized": 2.87,
+    "secYield": 2.86,
+    "secYieldUnsubsidized": 2.86,
     "tr1yText": "-0.01%",
     "tr3yText": "10.87%",
     "tr5yText": "-6.00%",
@@ -109,9 +109,9 @@
     "cagr10yText": "-0.36%",
     "siAnnText": "-0.28%",
     "indicatedDividendYieldText": "2.50%",
-    "dividendYieldText": "2.20%",
-    "secYieldText": "2.87%",
-    "secYieldUnsubsidizedText": "2.87%",
+    "dividendYieldText": "2.21%",
+    "secYieldText": "2.86%",
+    "secYieldUnsubsidizedText": "2.86%",
     "ytdText": "-1.07%",
     "returnsBasis": "official SSGA month-end NAV total returns (YTD, 1Y, annualized 3Y/5Y/10Y and since inception); tr3y/tr5y/tr10y are derived from the official annualized figures as (1 + CAGR)^n - 1; no Yahoo or market-price estimates",
     "performanceAsOf": "2026-10-31"
@@ -1841,11 +1841,11 @@
       "./holdings/001.json",
       "./holdings/002.json"
     ],
-    "asOfDate": "17-Nov-2026",
+    "asOfDate": "19-Nov-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 4491,
+    "totalRows": 4492,
     "pageSize": 1000,
     "pageCount": 5,
     "pages": [
@@ -1857,12 +1857,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 472,
+    "totalRows": 473,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "18-Nov-2026"
+    "asOfDate": "19-Nov-2026"
   }
 }

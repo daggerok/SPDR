@@ -2,7 +2,7 @@
   "ticker": "XES",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 5141,
+  "totalRows": 5142,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "23-Nov-2022",
+      "NAV": "78.026042",
+      "Shares Outstanding": "4065000",
+      "Total Net Assets": "317175861.67"
+    },
     {
       "Date": "22-Nov-2022",
       "NAV": "79.819402",
@@ -6003,12 +6009,6 @@
       "NAV": "10.969913",
       "Shares Outstanding": "22850000",
       "Total Net Assets": "250662521.31"
-    },
-    {
-      "Date": "04-Dec-2018",
-      "NAV": "11.533213",
-      "Shares Outstanding": "23250000",
-      "Total Net Assets": "268147209.06"
     }
   ]
 }

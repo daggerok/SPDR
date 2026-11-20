@@ -2,7 +2,7 @@
   "ticker": "EMHC",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 1414,
+  "totalRows": 1415,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "19-Nov-2026",
+      "NAV": "23.731534",
+      "Shares Outstanding": "13500000",
+      "Total Net Assets": "320375713.05"
+    },
     {
       "Date": "18-Nov-2026",
       "NAV": "23.796753",
@@ -6003,12 +6009,6 @@
       "NAV": "23.322673",
       "Shares Outstanding": "4700000",
       "Total Net Assets": "109616561.81"
-    },
-    {
-      "Date": "23-Nov-2022",
-      "NAV": "23.187992",
-      "Shares Outstanding": "4700000",
-      "Total Net Assets": "108983560.8"
     }
   ]
 }

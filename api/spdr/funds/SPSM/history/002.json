@@ -2,7 +2,7 @@
   "ticker": "SPSM",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 3365,
+  "totalRows": 3366,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "23-Nov-2022",
+      "NAV": "39.33453",
+      "Shares Outstanding": "119100000",
+      "Total Net Assets": "4684742522.8"
+    },
     {
       "Date": "22-Nov-2022",
       "NAV": "39.285163",
@@ -6003,12 +6009,6 @@
       "NAV": "29.164062",
       "Shares Outstanding": "46100000",
       "Total Net Assets": "1344463274.04"
-    },
-    {
-      "Date": "04-Dec-2018",
-      "NAV": "29.190007",
-      "Shares Outstanding": "46050000",
-      "Total Net Assets": "1344199844.52"
     }
   ]
 }

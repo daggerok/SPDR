@@ -2,7 +2,7 @@
   "ticker": "SPYG",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 6571,
+  "totalRows": 6572,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "23-Nov-2022",
+      "NAV": "54.140008",
+      "Shares Outstanding": "260150108",
+      "Total Net Assets": "14084528959.15"
+    },
     {
       "Date": "22-Nov-2022",
       "NAV": "53.636986",
@@ -6003,12 +6009,6 @@
       "NAV": "35.000924",
       "Shares Outstanding": "100300108",
       "Total Net Assets": "3510596437.19"
-    },
-    {
-      "Date": "04-Dec-2018",
-      "NAV": "34.914085",
-      "Shares Outstanding": "99950108",
-      "Total Net Assets": "3489666536.3"
     }
   ]
 }

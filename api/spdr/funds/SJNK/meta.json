@@ -28,19 +28,19 @@
     "value": null
   },
   "nav": {
-    "display": "$23.92",
-    "value": 23.92,
-    "asOfDate": "Nov 18 2026"
+    "display": "$23.89",
+    "value": 23.89,
+    "asOfDate": "Nov 19 2026"
   },
   "aum": {
-    "display": "$4,314.42 M",
-    "value": 4314420000,
-    "asOfDate": "Nov 18 2026"
+    "display": "$4,331.86 M",
+    "value": 4331860000,
+    "asOfDate": "Nov 19 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$23.94",
-    "premiumDiscount": "0.08%"
+    "closePrice": "$23.89",
+    "premiumDiscount": "0.01%"
   },
   "inceptionDate": "Mar 14 2012",
   "returns": {
@@ -94,12 +94,12 @@
     "cagr5y": 4.39,
     "cagr10y": 4.87,
     "siAnn": 4.49,
-    "dividendYield": 7.25,
+    "dividendYield": 7.26,
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
-    "indicatedDividendYield": 7.34,
-    "secYield": 7.78,
-    "secYieldUnsubsidized": 7.78,
+    "indicatedDividendYield": 7.35,
+    "secYield": 7.81,
+    "secYieldUnsubsidized": 7.81,
     "tr1yText": "1.55%",
     "tr3yText": "24.47%",
     "tr5yText": "23.96%",
@@ -108,10 +108,10 @@
     "cagr5yText": "4.39%",
     "cagr10yText": "4.87%",
     "siAnnText": "4.49%",
-    "indicatedDividendYieldText": "7.34%",
-    "dividendYieldText": "7.25%",
-    "secYieldText": "7.78%",
-    "secYieldUnsubsidizedText": "7.78%",
+    "indicatedDividendYieldText": "7.35%",
+    "dividendYieldText": "7.26%",
+    "secYieldText": "7.81%",
+    "secYieldUnsubsidizedText": "7.81%",
     "ytdText": "0.46%",
     "returnsBasis": "official SSGA month-end NAV total returns (YTD, 1Y, annualized 3Y/5Y/10Y and since inception); tr3y/tr5y/tr10y are derived from the official annualized figures as (1 + CAGR)^n - 1; no Yahoo or market-price estimates",
     "performanceAsOf": "2026-10-31"
@@ -1540,11 +1540,11 @@
       "./holdings/004.json",
       "./holdings/005.json"
     ],
-    "asOfDate": "17-Nov-2026",
+    "asOfDate": "19-Nov-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 3695,
+    "totalRows": 3696,
     "pageSize": 1000,
     "pageCount": 4,
     "pages": [
@@ -1555,12 +1555,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 472,
+    "totalRows": 473,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "18-Nov-2026"
+    "asOfDate": "19-Nov-2026"
   }
 }

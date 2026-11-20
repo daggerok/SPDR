@@ -2,7 +2,7 @@
   "ticker": "RWR",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 6427,
+  "totalRows": 6428,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "19-Nov-2026",
+      "NAV": "108.867504",
+      "Shares Outstanding": "16906617",
+      "Total Net Assets": "1840581197.2"
+    },
     {
       "Date": "18-Nov-2026",
       "NAV": "110.721197",
@@ -6003,12 +6009,6 @@
       "NAV": "92.029716",
       "Shares Outstanding": "17031617",
       "Total Net Assets": "1567414876.99"
-    },
-    {
-      "Date": "23-Nov-2022",
-      "NAV": "91.352934",
-      "Shares Outstanding": "16931617",
-      "Total Net Assets": "1546752885.9"
     }
   ]
 }

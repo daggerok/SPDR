@@ -2,7 +2,7 @@
   "ticker": "SRLN",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 3430,
+  "totalRows": 3431,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "23-Nov-2022",
+      "NAV": "41.515079",
+      "Shares Outstanding": "153050000",
+      "Total Net Assets": "6353882770.06"
+    },
     {
       "Date": "22-Nov-2022",
       "NAV": "41.491118",
@@ -6003,12 +6009,6 @@
       "NAV": "46.096945",
       "Shares Outstanding": "68700000",
       "Total Net Assets": "3166860139.76"
-    },
-    {
-      "Date": "04-Dec-2018",
-      "NAV": "46.304509",
-      "Shares Outstanding": "68700000",
-      "Total Net Assets": "3181119739.74"
     }
   ]
 }

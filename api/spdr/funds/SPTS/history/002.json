@@ -2,7 +2,7 @@
   "ticker": "SPTS",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 3767,
+  "totalRows": 3768,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "23-Nov-2022",
+      "NAV": "28.880315",
+      "Shares Outstanding": "143800000",
+      "Total Net Assets": "4152989331.31"
+    },
     {
       "Date": "22-Nov-2022",
       "NAV": "28.857968",
@@ -6003,12 +6009,6 @@
       "NAV": "29.447459",
       "Shares Outstanding": "22700000",
       "Total Net Assets": "668457308.36"
-    },
-    {
-      "Date": "04-Dec-2018",
-      "NAV": "29.418591",
-      "Shares Outstanding": "22100000",
-      "Total Net Assets": "650150857.54"
     }
   ]
 }

@@ -2,7 +2,7 @@
   "ticker": "QEMM",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 3135,
+  "totalRows": 3136,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "19-Nov-2026",
+      "NAV": "72.113857",
+      "Shares Outstanding": "725000",
+      "Total Net Assets": "52282546.54"
+    },
     {
       "Date": "18-Nov-2026",
       "NAV": "73.040616",
@@ -6003,12 +6009,6 @@
       "NAV": "54.940375",
       "Shares Outstanding": "775000",
       "Total Net Assets": "42578790.3"
-    },
-    {
-      "Date": "23-Nov-2022",
-      "NAV": "54.355438",
-      "Shares Outstanding": "775000",
-      "Total Net Assets": "42125464.28"
     }
   ]
 }

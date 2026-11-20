@@ -2,7 +2,7 @@
   "ticker": "EEMX",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 2532,
+  "totalRows": 2533,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "23-Nov-2022",
+      "NAV": "57.078899",
+      "Shares Outstanding": "1600000",
+      "Total Net Assets": "91326238.78"
+    },
     {
       "Date": "22-Nov-2022",
       "NAV": "56.768104",
@@ -6003,12 +6009,6 @@
       "NAV": "58.636755",
       "Shares Outstanding": "550000",
       "Total Net Assets": "32250215.52"
-    },
-    {
-      "Date": "04-Dec-2018",
-      "NAV": "60.742093",
-      "Shares Outstanding": "550000",
-      "Total Net Assets": "33408151.41"
     }
   ]
 }

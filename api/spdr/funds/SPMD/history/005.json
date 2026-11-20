@@ -2,7 +2,7 @@
   "ticker": "SPMD",
   "page": 5,
   "pageSize": 1000,
-  "totalRows": 5288,
+  "totalRows": 5289,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "29-Dec-2010",
+      "NAV": "59.350692",
+      "Shares Outstanding": "1000000",
+      "Total Net Assets": "59350691.56"
+    },
     {
       "Date": "28-Dec-2010",
       "NAV": "59.170629",
@@ -6003,12 +6009,6 @@
       "NAV": "57.194764",
       "Shares Outstanding": "300000",
       "Total Net Assets": "17158429.24"
-    },
-    {
-      "Date": "10-Jan-2007",
-      "NAV": "56.616656",
-      "Shares Outstanding": "300000",
-      "Total Net Assets": "16984996.65"
     }
   ]
 }

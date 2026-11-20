@@ -2,7 +2,7 @@
   "ticker": "KCE",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 5288,
+  "totalRows": 5289,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "19-Nov-2026",
+      "NAV": "149.229468",
+      "Shares Outstanding": "2925000",
+      "Total Net Assets": "436496193.51"
+    },
     {
       "Date": "18-Nov-2026",
       "NAV": "153.077721",
@@ -6003,12 +6009,6 @@
       "NAV": "84.705558",
       "Shares Outstanding": "1250000",
       "Total Net Assets": "105881947.38"
-    },
-    {
-      "Date": "23-Nov-2022",
-      "NAV": "84.503356",
-      "Shares Outstanding": "1250000",
-      "Total Net Assets": "105629194.58"
     }
   ]
 }

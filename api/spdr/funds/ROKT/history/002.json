@@ -2,7 +2,7 @@
   "ticker": "ROKT",
   "page": 2,
   "pageSize": 1000,
-  "totalRows": 2030,
+  "totalRows": 2031,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "23-Nov-2022",
+      "NAV": "39.358536",
+      "Shares Outstanding": "450000",
+      "Total Net Assets": "17711341.41"
+    },
     {
       "Date": "22-Nov-2022",
       "NAV": "39.306699",
@@ -6003,12 +6009,6 @@
       "NAV": "27.4676",
       "Shares Outstanding": "100000",
       "Total Net Assets": "2746760"
-    },
-    {
-      "Date": "04-Dec-2018",
-      "NAV": "27.697883",
-      "Shares Outstanding": "100000",
-      "Total Net Assets": "2769788.34"
     }
   ]
 }

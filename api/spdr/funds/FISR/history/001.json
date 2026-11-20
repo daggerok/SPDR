@@ -2,7 +2,7 @@
   "ticker": "FISR",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 1920,
+  "totalRows": 1921,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "19-Nov-2026",
+      "NAV": "24.660322",
+      "Shares Outstanding": "27150000",
+      "Total Net Assets": "669527754.15"
+    },
     {
       "Date": "18-Nov-2026",
       "NAV": "24.65091",
@@ -6003,12 +6009,6 @@
       "NAV": "25.940108",
       "Shares Outstanding": "5340000",
       "Total Net Assets": "138520179.16"
-    },
-    {
-      "Date": "23-Nov-2022",
-      "NAV": "25.934043",
-      "Shares Outstanding": "5270000",
-      "Total Net Assets": "136672405.56"
     }
   ]
 }
