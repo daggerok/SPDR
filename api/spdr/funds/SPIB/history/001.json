@@ -2,7 +2,7 @@
   "ticker": "SPIB",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 4478,
+  "totalRows": 4479,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "24-Nov-2026",
+      "NAV": "32.551634",
+      "Shares Outstanding": "347000072",
+      "Total Net Assets": "11295419513.16"
+    },
     {
       "Date": "23-Nov-2026",
       "NAV": "32.570479",
@@ -6003,12 +6009,6 @@
       "NAV": "32.063716",
       "Shares Outstanding": "185400072",
       "Total Net Assets": "5944615242.07"
-    },
-    {
-      "Date": "29-Nov-2022",
-      "NAV": "31.874146",
-      "Shares Outstanding": "183800072",
-      "Total Net Assets": "5858470260.68"
     }
   ]
 }

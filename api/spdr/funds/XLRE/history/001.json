@@ -2,7 +2,7 @@
   "ticker": "XLRE",
   "page": 1,
   "pageSize": 1000,
-  "totalRows": 2799,
+  "totalRows": 2800,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "24-Nov-2026",
+      "NAV": "43.444563",
+      "Shares Outstanding": "187750000",
+      "Total Net Assets": "8156716736.49"
+    },
     {
       "Date": "23-Nov-2026",
       "NAV": "42.909467",
@@ -6003,12 +6009,6 @@
       "NAV": "39.268507",
       "Shares Outstanding": "130450000",
       "Total Net Assets": "5122576688.6"
-    },
-    {
-      "Date": "29-Nov-2022",
-      "NAV": "38.367075",
-      "Shares Outstanding": "131600000",
-      "Total Net Assets": "5049107082.5"
     }
   ]
 }

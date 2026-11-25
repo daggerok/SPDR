@@ -2,7 +2,7 @@
   "ticker": "DIA",
   "page": 5,
   "pageSize": 1000,
-  "totalRows": 5785,
+  "totalRows": 5786,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "03-Jan-2011",
+      "NAV": "116.449959",
+      "Shares Outstanding": "75242867",
+      "Total Net Assets": "8762028769.75"
+    },
     {
       "Date": "31-Dec-2010",
       "NAV": "115.521878",
@@ -6003,12 +6009,6 @@
       "NAV": "125.710075",
       "Shares Outstanding": "60202501",
       "Total Net Assets": "7568060887.69"
-    },
-    {
-      "Date": "16-Jan-2007",
-      "NAV": "125.740132",
-      "Shares Outstanding": "50451150",
-      "Total Net Assets": "6343734264.97"
     }
   ]
 }
