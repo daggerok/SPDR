@@ -28,19 +28,19 @@
     "value": null
   },
   "nav": {
-    "display": "$21.86",
-    "value": 21.86,
-    "asOfDate": "Nov 19 2026"
+    "display": "$22.05",
+    "value": 22.05,
+    "asOfDate": "Nov 23 2026"
   },
   "aum": {
-    "display": "$1,046.87 M",
-    "value": 1046869999.9999999,
-    "asOfDate": "Nov 19 2026"
+    "display": "$1,111.13 M",
+    "value": 1111130000,
+    "asOfDate": "Nov 23 2026"
   },
   "pricing": {
     "exchange": "NASDAQ REGULAR MARKET",
-    "closePrice": "$21.86",
-    "premiumDiscount": "0.00%"
+    "closePrice": "$22.05",
+    "premiumDiscount": "0.04%"
   },
   "inceptionDate": "Jun 23 2026",
   "returns": {
@@ -94,10 +94,10 @@
     "cagr5y": null,
     "cagr10y": null,
     "siAnn": null,
-    "dividendYield": 0.5,
+    "dividendYield": 0.49,
     "dividendYieldSource": "indicated",
     "dividendYieldBasis": "indicated",
-    "indicatedDividendYield": 0.5,
+    "indicatedDividendYield": 0.49,
     "secYield": 0.49,
     "secYieldUnsubsidized": 0.49,
     "tr1yText": null,
@@ -108,8 +108,8 @@
     "cagr5yText": null,
     "cagr10yText": null,
     "siAnnText": null,
-    "indicatedDividendYieldText": "0.50%",
-    "dividendYieldText": "0.50%",
+    "indicatedDividendYieldText": "0.49%",
+    "dividendYieldText": "0.49%",
     "secYieldText": "0.49%",
     "secYieldUnsubsidizedText": "0.49%",
     "ytdText": null,
@@ -144,11 +144,11 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "19-Nov-2026",
+    "asOfDate": "23-Nov-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 106,
+    "totalRows": 108,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
@@ -156,12 +156,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 106,
+    "totalRows": 108,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "19-Nov-2026"
+    "asOfDate": "23-Nov-2026"
   }
 }

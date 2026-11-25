@@ -28,18 +28,18 @@
     "value": null
   },
   "nav": {
-    "display": "$91.57",
-    "value": 91.57,
-    "asOfDate": "Nov 19 2026"
+    "display": "$91.60",
+    "value": 91.6,
+    "asOfDate": "Nov 23 2026"
   },
   "aum": {
-    "display": "$50,811.86 M",
-    "value": 50811860000,
-    "asOfDate": "Nov 19 2026"
+    "display": "$51,611.81 M",
+    "value": 51611810000,
+    "asOfDate": "Nov 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$91.57",
+    "closePrice": "$91.60",
     "premiumDiscount": "0.00%"
   },
   "inceptionDate": "May 25 2007",
@@ -98,8 +98,8 @@
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
     "indicatedDividendYield": 4.04,
-    "secYield": 3.89,
-    "secYieldUnsubsidized": 3.89,
+    "secYield": 3.91,
+    "secYieldUnsubsidized": 3.91,
     "tr1yText": "3.66%",
     "tr3yText": "13.89%",
     "tr5yText": "20.04%",
@@ -110,8 +110,8 @@
     "siAnnText": "1.41%",
     "indicatedDividendYieldText": "4.04%",
     "dividendYieldText": "3.67%",
-    "secYieldText": "3.89%",
-    "secYieldUnsubsidizedText": "3.89%",
+    "secYieldText": "3.91%",
+    "secYieldUnsubsidizedText": "3.91%",
     "ytdText": "3.02%",
     "returnsBasis": "official SSGA month-end NAV total returns (YTD, 1Y, annualized 3Y/5Y/10Y and since inception); tr3y/tr5y/tr10y are derived from the official annualized figures as (1 + CAGR)^n - 1; no Yahoo or market-price estimates",
     "performanceAsOf": "2026-10-31"
@@ -2000,11 +2000,11 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "19-Nov-2026",
+    "asOfDate": "23-Nov-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 4905,
+    "totalRows": 4907,
     "pageSize": 1000,
     "pageCount": 5,
     "pages": [
@@ -2016,12 +2016,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 473,
+    "totalRows": 475,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "19-Nov-2026"
+    "asOfDate": "23-Nov-2026"
   }
 }

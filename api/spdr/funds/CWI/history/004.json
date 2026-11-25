@@ -2,7 +2,7 @@
   "ticker": "CWI",
   "page": 4,
   "pageSize": 1000,
-  "totalRows": 5001,
+  "totalRows": 5003,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,18 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "17-Dec-2014",
+      "NAV": "33.025896",
+      "Shares Outstanding": "16600000",
+      "Total Net Assets": "548229868.73"
+    },
+    {
+      "Date": "16-Dec-2014",
+      "NAV": "33.03626",
+      "Shares Outstanding": "16600000",
+      "Total Net Assets": "548401920.43"
+    },
     {
       "Date": "15-Dec-2014",
       "NAV": "32.776609",
@@ -5997,18 +6009,6 @@
       "NAV": "33.803263",
       "Shares Outstanding": "12200000",
       "Total Net Assets": "412399804.09"
-    },
-    {
-      "Date": "31-Dec-2010",
-      "NAV": "33.681531",
-      "Shares Outstanding": "12200000",
-      "Total Net Assets": "410914680.08"
-    },
-    {
-      "Date": "30-Dec-2010",
-      "NAV": "33.506525",
-      "Shares Outstanding": "12200000",
-      "Total Net Assets": "408779608.82"
     }
   ]
 }

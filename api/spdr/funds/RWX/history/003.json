@@ -2,7 +2,7 @@
   "ticker": "RWX",
   "page": 3,
   "pageSize": 1000,
-  "totalRows": 5016,
+  "totalRows": 5018,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,18 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "07-Dec-2018",
+      "NAV": "37.541561",
+      "Shares Outstanding": "66235379",
+      "Total Net Assets": "2486579511.92"
+    },
+    {
+      "Date": "06-Dec-2018",
+      "NAV": "37.175954",
+      "Shares Outstanding": "66235379",
+      "Total Net Assets": "2462363431.32"
+    },
     {
       "Date": "04-Dec-2018",
       "NAV": "37.31562",
@@ -5997,18 +6009,6 @@
       "NAV": "41.393811",
       "Shares Outstanding": "117335379",
       "Total Net Assets": "4856958461.49"
-    },
-    {
-      "Date": "17-Dec-2014",
-      "NAV": "41.215938",
-      "Shares Outstanding": "117335379",
-      "Total Net Assets": "4836087675.38"
-    },
-    {
-      "Date": "16-Dec-2014",
-      "NAV": "41.314878",
-      "Shares Outstanding": "117135379",
-      "Total Net Assets": "4839433909.61"
     }
   ]
 }

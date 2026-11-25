@@ -28,19 +28,19 @@
     "value": null
   },
   "nav": {
-    "display": "$23.28",
-    "value": 23.28,
-    "asOfDate": "Nov 19 2026"
+    "display": "$23.36",
+    "value": 23.36,
+    "asOfDate": "Nov 23 2026"
   },
   "aum": {
-    "display": "$13.27 M",
-    "value": 13270000,
-    "asOfDate": "Nov 19 2026"
+    "display": "$13.08 M",
+    "value": 13080000,
+    "asOfDate": "Nov 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$23.30",
-    "premiumDiscount": "-0.10%"
+    "closePrice": "$23.37",
+    "premiumDiscount": "0.02%"
   },
   "inceptionDate": "Jul 29 2025",
   "returns": {
@@ -94,10 +94,10 @@
     "cagr5y": null,
     "cagr10y": null,
     "siAnn": 6.89,
-    "dividendYield": 11.28,
+    "dividendYield": 11.24,
     "dividendYieldSource": "official",
     "dividendYieldBasis": "official-other",
-    "indicatedDividendYield": 11.16,
+    "indicatedDividendYield": 11.12,
     "secYield": 1.24,
     "secYieldUnsubsidized": 1.24,
     "tr1yText": "6.84%",
@@ -108,8 +108,8 @@
     "cagr5yText": null,
     "cagr10yText": null,
     "siAnnText": "6.89%",
-    "indicatedDividendYieldText": "11.16%",
-    "dividendYieldText": "11.28%",
+    "indicatedDividendYieldText": "11.12%",
+    "dividendYieldText": "11.24%",
     "secYieldText": "1.24%",
     "secYieldUnsubsidizedText": "1.24%",
     "ytdText": "3.30%",
@@ -250,17 +250,17 @@
     ]
   },
   "holdings": {
-    "totalRows": 4,
+    "totalRows": 3,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "19-Nov-2026",
+    "asOfDate": "23-Nov-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 332,
+    "totalRows": 334,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
@@ -268,12 +268,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 332,
+    "totalRows": 334,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "19-Nov-2026"
+    "asOfDate": "23-Nov-2026"
   }
 }

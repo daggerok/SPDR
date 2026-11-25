@@ -28,19 +28,19 @@
     "value": null
   },
   "nav": {
-    "display": "$26.79",
-    "value": 26.79,
-    "asOfDate": "Nov 19 2026"
+    "display": "$26.96",
+    "value": 26.96,
+    "asOfDate": "Nov 23 2026"
   },
   "aum": {
     "display": "$0.54 M",
     "value": 540000,
-    "asOfDate": "Nov 19 2026"
+    "asOfDate": "Nov 23 2026"
   },
   "pricing": {
     "exchange": "NYSE ARCA",
-    "closePrice": "$26.81",
-    "premiumDiscount": "0.01%"
+    "closePrice": "$26.99",
+    "premiumDiscount": "0.02%"
   },
   "inceptionDate": "Oct 13 2026",
   "returns": {
@@ -98,8 +98,8 @@
     "dividendYieldSource": null,
     "dividendYieldBasis": null,
     "indicatedDividendYield": null,
-    "secYield": 2.13,
-    "secYieldUnsubsidized": 2.13,
+    "secYield": 2.11,
+    "secYieldUnsubsidized": 2.11,
     "tr1yText": null,
     "tr3yText": null,
     "tr5yText": null,
@@ -110,8 +110,8 @@
     "siAnnText": null,
     "indicatedDividendYieldText": null,
     "dividendYieldText": null,
-    "secYieldText": "2.13%",
-    "secYieldUnsubsidizedText": "2.13%",
+    "secYieldText": "2.11%",
+    "secYieldUnsubsidizedText": "2.11%",
     "ytdText": null,
     "returnsBasis": "official SSGA month-end NAV total returns (YTD, 1Y, annualized 3Y/5Y/10Y and since inception); tr3y/tr5y/tr10y are derived from the official annualized figures as (1 + CAGR)^n - 1; no Yahoo or market-price estimates",
     "performanceAsOf": null
@@ -128,11 +128,11 @@
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "19-Nov-2026",
+    "asOfDate": "23-Nov-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 28,
+    "totalRows": 30,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
@@ -140,12 +140,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 28,
+    "totalRows": 30,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "19-Nov-2026"
+    "asOfDate": "23-Nov-2026"
   }
 }

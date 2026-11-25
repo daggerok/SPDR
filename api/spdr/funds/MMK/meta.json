@@ -28,19 +28,19 @@
     "value": 0.18
   },
   "nav": {
-    "display": "$100.21",
-    "value": 100.21,
-    "asOfDate": "Nov 19 2026"
+    "display": "$100.26",
+    "value": 100.26,
+    "asOfDate": "Nov 23 2026"
   },
   "aum": {
-    "display": "$34.07 M",
-    "value": 34070000,
-    "asOfDate": "Nov 19 2026"
+    "display": "$34.09 M",
+    "value": 34090000,
+    "asOfDate": "Nov 23 2026"
   },
   "pricing": {
     "exchange": "New York Stock Exchange LLC",
-    "closePrice": "$100.22",
-    "premiumDiscount": "0.01%"
+    "closePrice": "$100.25",
+    "premiumDiscount": "-0.01%"
   },
   "inceptionDate": "Feb 10 2026",
   "returns": {
@@ -202,17 +202,17 @@
     ]
   },
   "holdings": {
-    "totalRows": 72,
+    "totalRows": 70,
     "pageSize": 250,
     "pageCount": 1,
     "pages": [
       "./holdings/001.json"
     ],
-    "asOfDate": "19-Nov-2026",
+    "asOfDate": "23-Nov-2026",
     "status": "ok"
   },
   "history": {
-    "totalRows": 197,
+    "totalRows": 199,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
@@ -220,12 +220,12 @@
     ]
   },
   "premiumDiscountHistory": {
-    "totalRows": 195,
+    "totalRows": 197,
     "pageSize": 1000,
     "pageCount": 1,
     "pages": [
       "./premium-discount/001.json"
     ],
-    "asOfDate": "19-Nov-2026"
+    "asOfDate": "23-Nov-2026"
   }
 }
