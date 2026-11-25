@@ -2,7 +2,7 @@
   "ticker": "MMK",
   "page": 1,
   "pageSize": 250,
-  "totalRows": 70,
+  "totalRows": 72,
   "headers": [
     "Investment Category",
     "Name",
@@ -20,25 +20,25 @@
       "Investment Category": "CASH",
       "Name": "US DOLLAR",
       "Identifier": "999USDZ92",
-      "Principal Amount": "13737156.01",
+      "Principal Amount": "12540026.24",
       "Coupon": "0",
       "Weighted Average Maturity Date": "-",
       "Weighted Average Liquidity Date": "-",
-      "Market Value": "13737156.01",
-      "Weight": "40.300521",
-      "Shares Held": "13737156.01"
+      "Market Value": "12540026.24",
+      "Weight": "36.783234",
+      "Shares Held": "12540026.24"
     },
     {
       "Investment Category": "COMMERCIAL PAPER",
-      "Name": "VERTO CAP I COMPARTMENT 11/26 ZCP",
-      "Identifier": "US92541DLR34",
-      "Principal Amount": "599602",
+      "Name": "ANGLESEA FDG PLC + ANG",
+      "Identifier": "US0347M3M196",
+      "Principal Amount": "749416.67",
       "Coupon": "0",
-      "Weighted Average Maturity Date": "11/25/2026",
-      "Weighted Average Liquidity Date": "11/25/2026",
-      "Market Value": "599867.47",
-      "Weight": "1.759824",
-      "Shares Held": "600000"
+      "Weighted Average Maturity Date": "12/01/2026",
+      "Weighted Average Liquidity Date": "12/01/2026",
+      "Market Value": "749425.43",
+      "Weight": "2.198264",
+      "Shares Held": "750000"
     },
     {
       "Investment Category": "COMMERCIAL PAPER",
@@ -48,8 +48,8 @@
       "Coupon": "0",
       "Weighted Average Maturity Date": "11/27/2026",
       "Weighted Average Liquidity Date": "11/27/2026",
-      "Market Value": "499781.15",
-      "Weight": "1.466202",
+      "Market Value": "499835.95",
+      "Weight": "1.466152",
       "Shares Held": "500000"
     },
     {
@@ -60,8 +60,8 @@
       "Coupon": "0",
       "Weighted Average Maturity Date": "02/16/2027",
       "Weighted Average Liquidity Date": "02/16/2027",
-      "Market Value": "445282.52",
-      "Weight": "1.30632",
+      "Market Value": "445340.12",
+      "Weight": "1.306301",
       "Shares Held": "450000"
     },
     {
@@ -72,33 +72,9 @@
       "Coupon": "0",
       "Weighted Average Maturity Date": "02/02/2027",
       "Weighted Average Liquidity Date": "02/02/2027",
-      "Market Value": "371755.69",
-      "Weight": "1.090615",
+      "Market Value": "371794.09",
+      "Weight": "1.090571",
       "Shares Held": "375000"
-    },
-    {
-      "Investment Category": "CORPORATE BONDS",
-      "Name": "BANK MONTREAL CHICAGO BRH",
-      "Identifier": "US06370BAY02",
-      "Principal Amount": "350000",
-      "Coupon": "4.34",
-      "Weighted Average Maturity Date": "09/20/2027",
-      "Weighted Average Liquidity Date": "09/20/2027",
-      "Market Value": "350276.5",
-      "Weight": "1.027602",
-      "Shares Held": "350000"
-    },
-    {
-      "Investment Category": "CERTIFICATE OF DEPOSIT",
-      "Name": "NORDEA BANK ABP",
-      "Identifier": "US65558WRL45",
-      "Principal Amount": "350293.25",
-      "Coupon": "4.28",
-      "Weighted Average Maturity Date": "01/19/2027",
-      "Weighted Average Liquidity Date": "01/19/2027",
-      "Market Value": "350153.76",
-      "Weight": "1.027242",
-      "Shares Held": "350000"
     },
     {
       "Investment Category": "BANKERS ACCEPTANCE",
@@ -108,56 +84,20 @@
       "Coupon": "5",
       "Weighted Average Maturity Date": "11/16/2027",
       "Weighted Average Liquidity Date": "11/16/2027",
-      "Market Value": "350112.84",
-      "Weight": "1.027122",
+      "Market Value": "350338.14",
+      "Weight": "1.027635",
       "Shares Held": "350000"
     },
     {
-      "Investment Category": "CERTIFICATE OF DEPOSIT - EURODOLLAR",
-      "Name": "SWEDBANK AB PUBL IAM COML PAPE 02/27 VAR",
-      "Identifier": "US87020YGK82",
+      "Investment Category": "CORPORATE BONDS",
+      "Name": "BANK MONTREAL CHICAGO BRH",
+      "Identifier": "US06370BAY02",
       "Principal Amount": "350000",
-      "Coupon": "4.18",
-      "Weighted Average Maturity Date": "02/11/2027",
-      "Weighted Average Liquidity Date": "02/11/2027",
-      "Market Value": "350102.9",
-      "Weight": "1.027092",
-      "Shares Held": "350000"
-    },
-    {
-      "Investment Category": "BANKERS ACCEPTANCE",
-      "Name": "KBC BK NV INSTL CTF DEP PROGRA",
-      "Identifier": "US4823TD4S70",
-      "Principal Amount": "350000",
-      "Coupon": "4.25",
-      "Weighted Average Maturity Date": "01/04/2027",
-      "Weighted Average Liquidity Date": "01/04/2027",
-      "Market Value": "350068.53",
-      "Weight": "1.026992",
-      "Shares Held": "350000"
-    },
-    {
-      "Investment Category": "CERTIFICATE OF DEPOSIT - EURODOLLAR",
-      "Name": "ROYAL BANK OF CANADA",
-      "Identifier": "US78014XSP32",
-      "Principal Amount": "350000",
-      "Coupon": "4.21",
-      "Weighted Average Maturity Date": "02/05/2027",
-      "Weighted Average Liquidity Date": "02/05/2027",
-      "Market Value": "350065.56",
-      "Weight": "1.026983",
-      "Shares Held": "350000"
-    },
-    {
-      "Investment Category": "CERTIFICATE OF DEPOSIT - EURODOLLAR",
-      "Name": "HSBC BANK PLC",
-      "Identifier": "US40433FWB11",
-      "Principal Amount": "350160.6",
-      "Coupon": "4.29",
-      "Weighted Average Maturity Date": "12/16/2026",
-      "Weighted Average Liquidity Date": "12/16/2026",
-      "Market Value": "350058.87",
-      "Weight": "1.026963",
+      "Coupon": "4.34",
+      "Weighted Average Maturity Date": "09/20/2027",
+      "Weighted Average Liquidity Date": "09/20/2027",
+      "Market Value": "350301",
+      "Weight": "1.027526",
       "Shares Held": "350000"
     },
     {
@@ -168,8 +108,8 @@
       "Coupon": "5",
       "Weighted Average Maturity Date": "11/15/2027",
       "Weighted Average Liquidity Date": "11/15/2027",
-      "Market Value": "350044.52",
-      "Weight": "1.026921",
+      "Market Value": "350297.43",
+      "Weight": "1.027516",
       "Shares Held": "350000"
     },
     {
@@ -180,8 +120,68 @@
       "Coupon": "5",
       "Weighted Average Maturity Date": "11/12/2027",
       "Weighted Average Liquidity Date": "11/12/2027",
-      "Market Value": "350032.03",
-      "Weight": "1.026885",
+      "Market Value": "350252",
+      "Weight": "1.027382",
+      "Shares Held": "350000"
+    },
+    {
+      "Investment Category": "CERTIFICATE OF DEPOSIT",
+      "Name": "NORDEA BANK ABP",
+      "Identifier": "US65558WRL45",
+      "Principal Amount": "350293.25",
+      "Coupon": "4.28",
+      "Weighted Average Maturity Date": "01/19/2027",
+      "Weighted Average Liquidity Date": "01/19/2027",
+      "Market Value": "350151.06",
+      "Weight": "1.027086",
+      "Shares Held": "350000"
+    },
+    {
+      "Investment Category": "CERTIFICATE OF DEPOSIT - EURODOLLAR",
+      "Name": "SWEDBANK AB PUBL IAM COML PAPE 02/27 VAR",
+      "Identifier": "US87020YGK82",
+      "Principal Amount": "350000",
+      "Coupon": "4.19",
+      "Weighted Average Maturity Date": "02/11/2027",
+      "Weighted Average Liquidity Date": "02/11/2027",
+      "Market Value": "350102.27",
+      "Weight": "1.026943",
+      "Shares Held": "350000"
+    },
+    {
+      "Investment Category": "BANKERS ACCEPTANCE",
+      "Name": "KBC BK NV INSTL CTF DEP PROGRA",
+      "Identifier": "US4823TD4S70",
+      "Principal Amount": "350000",
+      "Coupon": "4.25",
+      "Weighted Average Maturity Date": "01/04/2027",
+      "Weighted Average Liquidity Date": "01/04/2027",
+      "Market Value": "350071.93",
+      "Weight": "1.026854",
+      "Shares Held": "350000"
+    },
+    {
+      "Investment Category": "CERTIFICATE OF DEPOSIT - EURODOLLAR",
+      "Name": "ROYAL BANK OF CANADA",
+      "Identifier": "US78014XSP32",
+      "Principal Amount": "350000",
+      "Coupon": "4.21",
+      "Weighted Average Maturity Date": "02/05/2027",
+      "Weighted Average Liquidity Date": "02/05/2027",
+      "Market Value": "350064.93",
+      "Weight": "1.026834",
+      "Shares Held": "350000"
+    },
+    {
+      "Investment Category": "CERTIFICATE OF DEPOSIT - EURODOLLAR",
+      "Name": "HSBC BANK PLC",
+      "Identifier": "US40433FWB11",
+      "Principal Amount": "350160.6",
+      "Coupon": "4.3",
+      "Weighted Average Maturity Date": "12/16/2026",
+      "Weighted Average Liquidity Date": "12/16/2026",
+      "Market Value": "350056.56",
+      "Weight": "1.026809",
       "Shares Held": "350000"
     },
     {
@@ -192,8 +192,8 @@
       "Coupon": "4.27",
       "Weighted Average Maturity Date": "05/10/2027",
       "Weighted Average Liquidity Date": "05/10/2027",
-      "Market Value": "350006.77",
-      "Weight": "1.02681",
+      "Market Value": "350006.7",
+      "Weight": "1.026663",
       "Shares Held": "350000"
     },
     {
@@ -205,19 +205,7 @@
       "Weighted Average Maturity Date": "02/26/2027",
       "Weighted Average Liquidity Date": "-",
       "Market Value": "350000",
-      "Weight": "1.026791",
-      "Shares Held": "350000"
-    },
-    {
-      "Investment Category": "BANKERS ACCEPTANCE",
-      "Name": "SUMITOMO MITSUI BKG CORP",
-      "Identifier": "US86565GQ523",
-      "Principal Amount": "350000",
-      "Coupon": "4.31",
-      "Weighted Average Maturity Date": "08/18/2027",
-      "Weighted Average Liquidity Date": "08/18/2027",
-      "Market Value": "349999.69",
-      "Weight": "1.02679",
+      "Weight": "1.026643",
       "Shares Held": "350000"
     },
     {
@@ -228,8 +216,32 @@
       "Coupon": "3.92",
       "Weighted Average Maturity Date": "11/27/2026",
       "Weighted Average Liquidity Date": "11/27/2026",
-      "Market Value": "349999.48",
-      "Weight": "1.026789",
+      "Market Value": "349999.69",
+      "Weight": "1.026642",
+      "Shares Held": "350000"
+    },
+    {
+      "Investment Category": "BANKERS ACCEPTANCE",
+      "Name": "SUMITOMO MITSUI BKG CORP",
+      "Identifier": "US86565GQ523",
+      "Principal Amount": "350000",
+      "Coupon": "4.31",
+      "Weighted Average Maturity Date": "08/18/2027",
+      "Weighted Average Liquidity Date": "08/18/2027",
+      "Market Value": "349999.65",
+      "Weight": "1.026642",
+      "Shares Held": "350000"
+    },
+    {
+      "Investment Category": "BANKERS ACCEPTANCE",
+      "Name": "NORINCHUKIN BK NEW YORK BRH IN ZCP12/2026",
+      "Identifier": "US65603BTA79",
+      "Principal Amount": "350000",
+      "Coupon": "3.94",
+      "Weighted Average Maturity Date": "12/01/2026",
+      "Weighted Average Liquidity Date": "12/01/2026",
+      "Market Value": "349998.6",
+      "Weight": "1.026639",
       "Shares Held": "350000"
     },
     {
@@ -240,8 +252,8 @@
       "Coupon": "4.22",
       "Weighted Average Maturity Date": "03/10/2027",
       "Weighted Average Liquidity Date": "03/10/2027",
-      "Market Value": "349997.17",
-      "Weight": "1.026782",
+      "Market Value": "349997.31",
+      "Weight": "1.026635",
       "Shares Held": "350000"
     },
     {
@@ -249,11 +261,11 @@
       "Name": "MUFG BK LTD",
       "Identifier": "US55381BVV79",
       "Principal Amount": "350000",
-      "Coupon": "4.21",
+      "Coupon": "4.22",
       "Weighted Average Maturity Date": "01/15/2027",
       "Weighted Average Liquidity Date": "01/15/2027",
-      "Market Value": "349995.28",
-      "Weight": "1.026777",
+      "Market Value": "349995.24",
+      "Weight": "1.026629",
       "Shares Held": "350000"
     },
     {
@@ -261,11 +273,11 @@
       "Name": "UNITED OVERSEAS BK LTD ZCP05/2027",
       "Identifier": "91127RNV5",
       "Principal Amount": "350000",
-      "Coupon": "4.23",
+      "Coupon": "4.24",
       "Weighted Average Maturity Date": "05/03/2027",
       "Weighted Average Liquidity Date": "05/03/2027",
-      "Market Value": "349991.67",
-      "Weight": "1.026766",
+      "Market Value": "349993.91",
+      "Weight": "1.026625",
       "Shares Held": "350000"
     },
     {
@@ -273,35 +285,23 @@
       "Name": "UNITED OVERSEAS BK LTD",
       "Identifier": "US91127RNR48",
       "Principal Amount": "350000",
-      "Coupon": "4.18",
+      "Coupon": "4.19",
       "Weighted Average Maturity Date": "04/09/2027",
       "Weighted Average Liquidity Date": "04/09/2027",
-      "Market Value": "349968.78",
-      "Weight": "1.026699",
+      "Market Value": "349970.85",
+      "Weight": "1.026558",
       "Shares Held": "350000"
     },
     {
       "Investment Category": "COMMERCIAL PAPER",
       "Name": "CHESHAM FNC/ CHESH LLC",
-      "Identifier": "US16537JLR58",
-      "Principal Amount": "349961.31",
-      "Coupon": "0",
-      "Weighted Average Maturity Date": "11/25/2026",
-      "Weighted Average Liquidity Date": "11/25/2026",
+      "Identifier": "16537JLT1",
+      "Principal Amount": "349922.61",
+      "Coupon": "0.01",
+      "Weighted Average Maturity Date": "11/27/2026",
+      "Weighted Average Liquidity Date": "-",
       "Market Value": "349961.31",
-      "Weight": "1.026677",
-      "Shares Held": "350000"
-    },
-    {
-      "Investment Category": "COMMERCIAL PAPER",
-      "Name": "HQLA FDG LLC SER CHAMPLAIN SER",
-      "Identifier": "US44333BLR05",
-      "Principal Amount": "349767.83",
-      "Coupon": "0",
-      "Weighted Average Maturity Date": "11/25/2026",
-      "Weighted Average Liquidity Date": "11/25/2026",
-      "Market Value": "349922.44",
-      "Weight": "1.026563",
+      "Weight": "1.02653",
       "Shares Held": "350000"
     },
     {
@@ -312,8 +312,8 @@
       "Coupon": "4.47",
       "Weighted Average Maturity Date": "03/02/2027",
       "Weighted Average Liquidity Date": "03/02/2027",
-      "Market Value": "349920.31",
-      "Weight": "1.026557",
+      "Market Value": "349920.55",
+      "Weight": "1.02641",
       "Shares Held": "350000"
     },
     {
@@ -324,8 +324,20 @@
       "Coupon": "4.22",
       "Weighted Average Maturity Date": "07/02/2027",
       "Weighted Average Liquidity Date": "07/02/2027",
-      "Market Value": "349884.85",
-      "Weight": "1.026453",
+      "Market Value": "349886.22",
+      "Weight": "1.026309",
+      "Shares Held": "350000"
+    },
+    {
+      "Investment Category": "COMMERCIAL PAPER",
+      "Name": "ONIC FDG LLC SER VI 12/26 ZCP",
+      "Identifier": "46224DM19",
+      "Principal Amount": "349763.75",
+      "Coupon": "0",
+      "Weighted Average Maturity Date": "12/01/2026",
+      "Weighted Average Liquidity Date": "12/01/2026",
+      "Market Value": "349803.13",
+      "Weight": "1.026066",
       "Shares Held": "350000"
     },
     {
@@ -336,20 +348,20 @@
       "Coupon": "0",
       "Weighted Average Maturity Date": "11/30/2026",
       "Weighted Average Liquidity Date": "11/30/2026",
-      "Market Value": "349731.87",
-      "Weight": "1.026004",
+      "Market Value": "349770.4",
+      "Weight": "1.02597",
       "Shares Held": "350000"
     },
     {
-      "Investment Category": "BANKERS ACCEPTANCE",
-      "Name": "PARK AVE COLL NOTES",
-      "Identifier": "US70018RJE45",
-      "Principal Amount": "350000",
-      "Coupon": "4.26",
-      "Weighted Average Maturity Date": "03/08/2027",
-      "Weighted Average Liquidity Date": "03/08/2027",
-      "Market Value": "349683.04",
-      "Weight": "1.025861",
+      "Investment Category": "COMMERCIAL PAPER",
+      "Name": "AQUITAINE FDG CO LLC",
+      "Identifier": "US03843MM117",
+      "Principal Amount": "349726.42",
+      "Coupon": "0",
+      "Weighted Average Maturity Date": "12/01/2026",
+      "Weighted Average Liquidity Date": "12/01/2026",
+      "Market Value": "349729.84",
+      "Weight": "1.025851",
       "Shares Held": "350000"
     },
     {
@@ -360,8 +372,20 @@
       "Coupon": "0",
       "Weighted Average Maturity Date": "12/03/2026",
       "Weighted Average Liquidity Date": "12/03/2026",
-      "Market Value": "349658.95",
-      "Weight": "1.02579",
+      "Market Value": "349697.62",
+      "Weight": "1.025756",
+      "Shares Held": "350000"
+    },
+    {
+      "Investment Category": "BANKERS ACCEPTANCE",
+      "Name": "PARK AVE COLL NOTES",
+      "Identifier": "US70018RJE45",
+      "Principal Amount": "350000",
+      "Coupon": "4.26",
+      "Weighted Average Maturity Date": "03/08/2027",
+      "Weighted Average Liquidity Date": "03/08/2027",
+      "Market Value": "349686.19",
+      "Weight": "1.025723",
       "Shares Held": "350000"
     },
     {
@@ -372,8 +396,8 @@
       "Coupon": "0",
       "Weighted Average Maturity Date": "12/18/2026",
       "Weighted Average Liquidity Date": "12/18/2026",
-      "Market Value": "349011.67",
-      "Weight": "1.023891",
+      "Market Value": "349052.9",
+      "Weight": "1.023865",
       "Shares Held": "350000"
     },
     {
@@ -384,8 +408,8 @@
       "Coupon": "0.01",
       "Weighted Average Maturity Date": "01/11/2027",
       "Weighted Average Liquidity Date": "01/11/2027",
-      "Market Value": "348088.41",
-      "Weight": "1.021183",
+      "Market Value": "348129.53",
+      "Weight": "1.021157",
       "Shares Held": "350000"
     },
     {
@@ -396,8 +420,8 @@
       "Coupon": "0.01",
       "Weighted Average Maturity Date": "02/22/2027",
       "Weighted Average Liquidity Date": "02/22/2027",
-      "Market Value": "346224.13",
-      "Weight": "1.015713",
+      "Market Value": "346269.46",
+      "Weight": "1.0157",
       "Shares Held": "350000"
     },
     {
@@ -408,8 +432,8 @@
       "Coupon": "0",
       "Weighted Average Maturity Date": "03/04/2027",
       "Weighted Average Liquidity Date": "03/04/2027",
-      "Market Value": "345950.35",
-      "Weight": "1.01491",
+      "Market Value": "345989.04",
+      "Weight": "1.014878",
       "Shares Held": "350000"
     },
     {
@@ -420,8 +444,8 @@
       "Coupon": "0",
       "Weighted Average Maturity Date": "03/10/2027",
       "Weighted Average Liquidity Date": "03/10/2027",
-      "Market Value": "345348.57",
-      "Weight": "1.013145",
+      "Market Value": "345392.74",
+      "Weight": "1.013129",
       "Shares Held": "350000"
     },
     {
@@ -432,8 +456,8 @@
       "Coupon": "0",
       "Weighted Average Maturity Date": "04/02/2027",
       "Weighted Average Liquidity Date": "04/02/2027",
-      "Market Value": "344413.62",
-      "Weight": "1.010402",
+      "Market Value": "344460.34",
+      "Weight": "1.010394",
       "Shares Held": "350000"
     },
     {
@@ -444,8 +468,8 @@
       "Coupon": "0",
       "Weighted Average Maturity Date": "04/16/2027",
       "Weighted Average Liquidity Date": "04/16/2027",
-      "Market Value": "343765.14",
-      "Weight": "1.008499",
+      "Market Value": "343808.99",
+      "Weight": "1.008483",
       "Shares Held": "350000"
     },
     {
@@ -456,8 +480,8 @@
       "Coupon": "0",
       "Weighted Average Maturity Date": "05/18/2027",
       "Weighted Average Liquidity Date": "05/18/2027",
-      "Market Value": "341990.85",
-      "Weight": "1.003294",
+      "Market Value": "342040.34",
+      "Weight": "1.003295",
       "Shares Held": "350000"
     },
     {
@@ -468,8 +492,8 @@
       "Coupon": "4",
       "Weighted Average Maturity Date": "12/23/2026",
       "Weighted Average Liquidity Date": "12/23/2026",
-      "Market Value": "299986.5",
-      "Weight": "0.880067",
+      "Market Value": "299987.07",
+      "Weight": "0.879942",
       "Shares Held": "300000"
     },
     {
@@ -480,8 +504,8 @@
       "Coupon": "4.72",
       "Weighted Average Maturity Date": "07/21/2027",
       "Weighted Average Liquidity Date": "07/21/2027",
-      "Market Value": "299782.83",
-      "Weight": "0.879469",
+      "Market Value": "299844.51",
+      "Weight": "0.879524",
       "Shares Held": "300000"
     },
     {
@@ -492,8 +516,8 @@
       "Coupon": "4.09",
       "Weighted Average Maturity Date": "04/27/2027",
       "Weighted Average Liquidity Date": "04/27/2027",
-      "Market Value": "299122.5",
-      "Weight": "0.877532",
+      "Market Value": "299136.81",
+      "Weight": "0.877448",
       "Shares Held": "300000"
     },
     {
@@ -504,8 +528,8 @@
       "Coupon": "0.01",
       "Weighted Average Maturity Date": "10/15/2027",
       "Weighted Average Liquidity Date": "10/15/2027",
-      "Market Value": "287173.92",
-      "Weight": "0.842478",
+      "Market Value": "287354.94",
+      "Weight": "0.842889",
       "Shares Held": "300000"
     },
     {
@@ -516,8 +540,8 @@
       "Coupon": "0",
       "Weighted Average Maturity Date": "10/15/2027",
       "Weighted Average Liquidity Date": "10/15/2027",
-      "Market Value": "287132.7",
-      "Weight": "0.842358",
+      "Market Value": "287316.48",
+      "Weight": "0.842776",
       "Shares Held": "300000"
     },
     {
@@ -528,8 +552,20 @@
       "Coupon": "4.22",
       "Weighted Average Maturity Date": "03/18/2027",
       "Weighted Average Liquidity Date": "03/18/2027",
-      "Market Value": "250095.65",
-      "Weight": "0.733702",
+      "Market Value": "250096.43",
+      "Weight": "0.733599",
+      "Shares Held": "250000"
+    },
+    {
+      "Investment Category": "BANKERS ACCEPTANCE",
+      "Name": "SVENSKA HANDELSBANKEN AB 05/27 VAR",
+      "Identifier": "US86959TXH49",
+      "Principal Amount": "250000",
+      "Coupon": "4.22",
+      "Weighted Average Maturity Date": "05/04/2027",
+      "Weighted Average Liquidity Date": "05/04/2027",
+      "Market Value": "250040.53",
+      "Weight": "0.733435",
       "Shares Held": "250000"
     },
     {
@@ -540,8 +576,8 @@
       "Coupon": "4.18",
       "Weighted Average Maturity Date": "01/05/2027",
       "Weighted Average Liquidity Date": "01/05/2027",
-      "Market Value": "250040.73",
-      "Weight": "0.733541",
+      "Market Value": "250040.03",
+      "Weight": "0.733434",
       "Shares Held": "250000"
     },
     {
@@ -552,20 +588,8 @@
       "Coupon": "4.25",
       "Weighted Average Maturity Date": "12/18/2026",
       "Weighted Average Liquidity Date": "12/18/2026",
-      "Market Value": "250038.73",
-      "Weight": "0.733535",
-      "Shares Held": "250000"
-    },
-    {
-      "Investment Category": "BANKERS ACCEPTANCE",
-      "Name": "SVENSKA HANDELSBANKEN AB 05/27 VAR",
-      "Identifier": "US86959TXH49",
-      "Principal Amount": "250000",
-      "Coupon": "4.21",
-      "Weighted Average Maturity Date": "05/04/2027",
-      "Weighted Average Liquidity Date": "05/04/2027",
-      "Market Value": "250037.33",
-      "Weight": "0.733531",
+      "Market Value": "250037.35",
+      "Weight": "0.733426",
       "Shares Held": "250000"
     },
     {
@@ -576,8 +600,8 @@
       "Coupon": "4.29",
       "Weighted Average Maturity Date": "12/17/2026",
       "Weighted Average Liquidity Date": "12/17/2026",
-      "Market Value": "250012.02",
-      "Weight": "0.733457",
+      "Market Value": "250011.46",
+      "Weight": "0.73335",
       "Shares Held": "250000"
     },
     {
@@ -588,20 +612,8 @@
       "Coupon": "4.28",
       "Weighted Average Maturity Date": "07/20/2027",
       "Weighted Average Liquidity Date": "07/20/2027",
-      "Market Value": "250000.2",
-      "Weight": "0.733422",
-      "Shares Held": "250000"
-    },
-    {
-      "Investment Category": "REPOS",
-      "Name": "BANQUE NATIONALE DU CANADA TD - 25Nov26",
-      "Identifier": "ATD25Q816",
-      "Principal Amount": "250000",
-      "Coupon": "3.92",
-      "Weighted Average Maturity Date": "11/25/2026",
-      "Weighted Average Liquidity Date": "-",
-      "Market Value": "250000",
-      "Weight": "0.733422",
+      "Market Value": "250000.73",
+      "Weight": "0.733319",
       "Shares Held": "250000"
     },
     {
@@ -613,7 +625,7 @@
       "Weighted Average Maturity Date": "11/27/2026",
       "Weighted Average Liquidity Date": "-",
       "Market Value": "250000",
-      "Weight": "0.733422",
+      "Weight": "0.733317",
       "Shares Held": "250000"
     },
     {
@@ -625,7 +637,7 @@
       "Weighted Average Maturity Date": "03/05/2027",
       "Weighted Average Liquidity Date": "-",
       "Market Value": "250000",
-      "Weight": "0.733422",
+      "Weight": "0.733317",
       "Shares Held": "250000"
     },
     {
@@ -637,7 +649,7 @@
       "Weighted Average Maturity Date": "02/26/2027",
       "Weighted Average Liquidity Date": "-",
       "Market Value": "250000",
-      "Weight": "0.733422",
+      "Weight": "0.733317",
       "Shares Held": "250000"
     },
     {
@@ -649,7 +661,19 @@
       "Weighted Average Maturity Date": "04/09/2027",
       "Weighted Average Liquidity Date": "04/09/2027",
       "Market Value": "249999.63",
-      "Weight": "0.733421",
+      "Weight": "0.733315",
+      "Shares Held": "250000"
+    },
+    {
+      "Investment Category": "COMMERCIAL PAPER",
+      "Name": "VERTO CAP I COMPARTMENT",
+      "Identifier": "US92541DM274",
+      "Principal Amount": "249805.56",
+      "Coupon": "0",
+      "Weighted Average Maturity Date": "12/02/2026",
+      "Weighted Average Liquidity Date": "12/02/2026",
+      "Market Value": "249833.34",
+      "Weight": "0.732828",
       "Shares Held": "250000"
     },
     {
@@ -660,8 +684,8 @@
       "Coupon": "4.03",
       "Weighted Average Maturity Date": "02/17/2027",
       "Weighted Average Liquidity Date": "02/17/2027",
-      "Market Value": "249773.83",
-      "Weight": "0.732758",
+      "Market Value": "249780.35",
+      "Weight": "0.732672",
       "Shares Held": "250000"
     },
     {
@@ -672,7 +696,7 @@
       "Coupon": "4.64",
       "Weighted Average Maturity Date": "07/08/2027",
       "Weighted Average Liquidity Date": "07/08/2027",
-      "Market Value": "249694.48",
+      "Market Value": "249730.58",
       "Weight": "0.732526",
       "Shares Held": "250000"
     },
@@ -684,8 +708,8 @@
       "Coupon": "0",
       "Weighted Average Maturity Date": "12/08/2026",
       "Weighted Average Liquidity Date": "12/08/2026",
-      "Market Value": "249571.93",
-      "Weight": "0.732166",
+      "Market Value": "249601",
+      "Weight": "0.732146",
       "Shares Held": "250000"
     },
     {
@@ -696,8 +720,8 @@
       "Coupon": "4.1",
       "Weighted Average Maturity Date": "04/07/2027",
       "Weighted Average Liquidity Date": "04/07/2027",
-      "Market Value": "249490.45",
-      "Weight": "0.731927",
+      "Market Value": "249495.88",
+      "Weight": "0.731838",
       "Shares Held": "250000"
     },
     {
@@ -708,8 +732,8 @@
       "Coupon": "3.75",
       "Weighted Average Maturity Date": "02/25/2027",
       "Weighted Average Liquidity Date": "02/25/2027",
-      "Market Value": "249479.18",
-      "Weight": "0.731894",
+      "Market Value": "249486.3",
+      "Weight": "0.73181",
       "Shares Held": "250000"
     },
     {
@@ -720,8 +744,8 @@
       "Coupon": "0",
       "Weighted Average Maturity Date": "01/27/2027",
       "Weighted Average Liquidity Date": "01/27/2027",
-      "Market Value": "248010.88",
-      "Weight": "0.727586",
+      "Market Value": "248038.23",
+      "Weight": "0.727562",
       "Shares Held": "250000"
     },
     {
@@ -732,8 +756,8 @@
       "Coupon": "0",
       "Weighted Average Maturity Date": "04/01/2027",
       "Weighted Average Liquidity Date": "04/01/2027",
-      "Market Value": "246001.9",
-      "Weight": "0.721693",
+      "Market Value": "246036.15",
+      "Weight": "0.72169",
       "Shares Held": "250000"
     },
     {
@@ -741,24 +765,12 @@
       "Name": "TOYOTA MOTOR CREDIT CORP",
       "Identifier": "US89236TQG30",
       "Principal Amount": "220000",
-      "Coupon": "4.25",
+      "Coupon": "4.26",
       "Weighted Average Maturity Date": "08/13/2027",
       "Weighted Average Liquidity Date": "08/13/2027",
-      "Market Value": "220072.6",
-      "Weight": "0.645624",
+      "Market Value": "220068.2",
+      "Weight": "0.645519",
       "Shares Held": "220000"
-    },
-    {
-      "Investment Category": "CORPORATE BONDS",
-      "Name": "TOYOTA MOTOR CREDIT CORP",
-      "Identifier": "US89236TQC26",
-      "Principal Amount": "200000",
-      "Coupon": "4.26",
-      "Weighted Average Maturity Date": "06/11/2027",
-      "Weighted Average Liquidity Date": "06/11/2027",
-      "Market Value": "200024",
-      "Weight": "0.586808",
-      "Shares Held": "200000"
     },
     {
       "Investment Category": "REPOS",
@@ -769,7 +781,19 @@
       "Weighted Average Maturity Date": "11/27/2026",
       "Weighted Average Liquidity Date": "-",
       "Market Value": "200000",
-      "Weight": "0.586737",
+      "Weight": "0.586653",
+      "Shares Held": "200000"
+    },
+    {
+      "Investment Category": "CORPORATE BONDS",
+      "Name": "TOYOTA MOTOR CREDIT CORP",
+      "Identifier": "US89236TQC26",
+      "Principal Amount": "200000",
+      "Coupon": "4.27",
+      "Weighted Average Maturity Date": "06/11/2027",
+      "Weighted Average Liquidity Date": "06/11/2027",
+      "Market Value": "200000",
+      "Weight": "0.586653",
       "Shares Held": "200000"
     },
     {
@@ -780,8 +804,8 @@
       "Coupon": "0",
       "Weighted Average Maturity Date": "01/21/2027",
       "Weighted Average Liquidity Date": "01/21/2027",
-      "Market Value": "198647.48",
-      "Weight": "0.58277",
+      "Market Value": "198671.38",
+      "Weight": "0.582756",
       "Shares Held": "200000"
     },
     {
@@ -792,8 +816,8 @@
       "Coupon": "4.27",
       "Weighted Average Maturity Date": "03/01/2027",
       "Weighted Average Liquidity Date": "03/01/2027",
-      "Market Value": "175000.59",
-      "Weight": "0.513397",
+      "Market Value": "175000.63",
+      "Weight": "0.513323",
       "Shares Held": "175000"
     },
     {
@@ -804,8 +828,8 @@
       "Coupon": "4.27",
       "Weighted Average Maturity Date": "03/02/2027",
       "Weighted Average Liquidity Date": "03/02/2027",
-      "Market Value": "175000.55",
-      "Weight": "0.513397",
+      "Market Value": "175000.59",
+      "Weight": "0.513323",
       "Shares Held": "175000"
     },
     {
@@ -813,11 +837,11 @@
       "Name": "HSBC BANK PLC",
       "Identifier": "US40433FWJ47",
       "Principal Amount": "150000",
-      "Coupon": "4.26",
+      "Coupon": "4.27",
       "Weighted Average Maturity Date": "05/10/2027",
       "Weighted Average Liquidity Date": "05/10/2027",
-      "Market Value": "150032.96",
-      "Weight": "0.44015",
+      "Market Value": "150033.26",
+      "Weight": "0.440087",
       "Shares Held": "150000"
     },
     {
@@ -825,11 +849,11 @@
       "Name": "MUFG BK LTD 02/27 VAR",
       "Identifier": "US55381BWU87",
       "Principal Amount": "100000",
-      "Coupon": "4.2",
+      "Coupon": "4.21",
       "Weighted Average Maturity Date": "02/12/2027",
       "Weighted Average Liquidity Date": "02/12/2027",
-      "Market Value": "100009.93",
-      "Weight": "0.293398",
+      "Market Value": "100010.46",
+      "Weight": "0.293357",
       "Shares Held": "100000"
     },
     {
@@ -840,8 +864,8 @@
       "Coupon": "0",
       "Weighted Average Maturity Date": "03/11/2027",
       "Weighted Average Liquidity Date": "03/11/2027",
-      "Market Value": "98697.24",
-      "Weight": "0.289547",
+      "Market Value": "98710.61",
+      "Weight": "0.289544",
       "Shares Held": "100000"
     },
     {
@@ -852,8 +876,8 @@
       "Coupon": "4.22",
       "Weighted Average Maturity Date": "05/14/2027",
       "Weighted Average Liquidity Date": "05/14/2027",
-      "Market Value": "74999.56",
-      "Weight": "0.220025",
+      "Market Value": "74999.53",
+      "Weight": "0.219994",
       "Shares Held": "75000"
     }
   ]
