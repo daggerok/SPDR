@@ -2,7 +2,7 @@
   "ticker": "GLD",
   "page": 5,
   "pageSize": 1000,
-  "totalRows": 5579,
+  "totalRows": 5580,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "01-Mar-2011",
+      "NAV": "138.589111",
+      "Shares Outstanding": "399000000",
+      "Total Net Assets": "55297055107.53"
+    },
     {
       "Date": "28-Feb-2011",
       "NAV": "137.639244",
@@ -6003,12 +6009,6 @@
       "NAV": "63.73686",
       "Shares Outstanding": "154700000",
       "Total Net Assets": "9860092235.18"
-    },
-    {
-      "Date": "13-Mar-2007",
-      "NAV": "64.485774",
-      "Shares Outstanding": "156700000",
-      "Total Net Assets": "10104920852.66"
     }
   ]
 }
