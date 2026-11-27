@@ -2,7 +2,7 @@
   "ticker": "GWX",
   "page": 9,
   "pageSize": 250,
-  "totalRows": 2081,
+  "totalRows": 2080,
   "headers": [
     "Name",
     "Ticker",
@@ -15,31 +15,31 @@
   ],
   "rows": [
     {
-      "Name": "MILESTONE PHARMACEUTICALS IN",
-      "Ticker": "MIST",
-      "Identifier": "59935V107",
-      "SEDOL": "BGRX6Q1",
-      "Weight": "0.001189",
-      "Sector": "-",
-      "Shares Held": "28054",
-      "Local Currency": "USD"
-    },
-    {
       "Name": "EONE DIAGNOMICS GENOME CENTE",
       "Ticker": "-",
       "Identifier": "BDFX1Y908",
       "SEDOL": "BDFX1Y5",
-      "Weight": "0.001157",
+      "Weight": "0.00116",
       "Sector": "-",
       "Shares Held": "31927",
       "Local Currency": "KRW"
+    },
+    {
+      "Name": "US DOLLAR",
+      "Ticker": "-",
+      "Identifier": "999USDZ92",
+      "SEDOL": "-",
+      "Weight": "0.001077",
+      "Sector": "-",
+      "Shares Held": "9157.55",
+      "Local Currency": "USD"
     },
     {
       "Name": "NOVONIX LTD",
       "Ticker": "-",
       "Identifier": "BYZ6CM903",
       "SEDOL": "BYZ6CM6",
-      "Weight": "0.001008",
+      "Weight": "0.000976",
       "Sector": "-",
       "Shares Held": "177504",
       "Local Currency": "AUD"
@@ -49,7 +49,7 @@
       "Ticker": "-",
       "Identifier": "638217901",
       "SEDOL": "6382177",
-      "Weight": "0.001003",
+      "Weight": "0.000956",
       "Sector": "-",
       "Shares Held": "2780",
       "Local Currency": "KRW"
@@ -69,7 +69,7 @@
       "Ticker": "-",
       "Identifier": "648638906",
       "SEDOL": "6486381",
-      "Weight": "0.000833",
+      "Weight": "0.00083",
       "Sector": "-",
       "Shares Held": "66982",
       "Local Currency": "AUD"
@@ -89,7 +89,7 @@
       "Ticker": "-",
       "Identifier": "999CHFZ99",
       "SEDOL": "-",
-      "Weight": "0.000534",
+      "Weight": "0.000539",
       "Sector": "-",
       "Shares Held": "3810.74",
       "Local Currency": "CHF"
@@ -99,7 +99,7 @@
       "Ticker": "-",
       "Identifier": "BYTP6K909",
       "SEDOL": "BYTP6K5",
-      "Weight": "0.000444",
+      "Weight": "0.000418",
       "Sector": "-",
       "Shares Held": "928000",
       "Local Currency": "HKD"
@@ -109,7 +109,7 @@
       "Ticker": "-",
       "Identifier": "B0L4MT901",
       "SEDOL": "B0L4MT3",
-      "Weight": "0.000419",
+      "Weight": "0.000392",
       "Sector": "-",
       "Shares Held": "1338",
       "Local Currency": "KRW"
@@ -119,7 +119,7 @@
       "Ticker": "-",
       "Identifier": "635696008",
       "SEDOL": "6356967",
-      "Weight": "0.000355",
+      "Weight": "0.00036",
       "Sector": "-",
       "Shares Held": "200",
       "Local Currency": "JPY"
@@ -129,7 +129,7 @@
       "Ticker": "-",
       "Identifier": "BKKKMS904",
       "SEDOL": "BKKKMS1",
-      "Weight": "0.000337",
+      "Weight": "0.000324",
       "Sector": "-",
       "Shares Held": "1684",
       "Local Currency": "KRW"
@@ -139,7 +139,7 @@
       "Ticker": "-",
       "Identifier": "549923902",
       "SEDOL": "5499238",
-      "Weight": "0.000248",
+      "Weight": "0.000249",
       "Sector": "-",
       "Shares Held": "12",
       "Local Currency": "EUR"
@@ -149,7 +149,7 @@
       "Ticker": "VUECF",
       "Identifier": "92339J107",
       "SEDOL": "BNRQDQ8",
-      "Weight": "0.000176",
+      "Weight": "0.000194",
       "Sector": "-",
       "Shares Held": "11313",
       "Local Currency": "USD"
@@ -163,16 +163,6 @@
       "Sector": "-",
       "Shares Held": "3648",
       "Local Currency": "KRW"
-    },
-    {
-      "Name": "CDL HOSPITALITY REAL ESTATE",
-      "Ticker": "-",
-      "Identifier": "957TSZ904",
-      "SEDOL": "C0K3Q21",
-      "Weight": "0.000118",
-      "Sector": "-",
-      "Shares Held": "186134",
-      "Local Currency": "SGD"
     },
     {
       "Name": "KH FEELUX CO LTD",
@@ -189,7 +179,7 @@
       "Ticker": "-",
       "Identifier": "698801909",
       "SEDOL": "6988014",
-      "Weight": "0.000052",
+      "Weight": "0.000053",
       "Sector": "-",
       "Shares Held": "546",
       "Local Currency": "KRW"
@@ -215,16 +205,6 @@
       "Local Currency": "KRW"
     },
     {
-      "Name": "TELUS CORP",
-      "Ticker": "-",
-      "Identifier": "87971M962",
-      "SEDOL": "2381093",
-      "Weight": "0.000004",
-      "Sector": "-",
-      "Shares Held": "3",
-      "Local Currency": "CAD"
-    },
-    {
       "Name": "PAN AMERICAN SILVER CORP",
       "Ticker": "-",
       "Identifier": "697900959",
@@ -232,6 +212,16 @@
       "Weight": "0.000004",
       "Sector": "-",
       "Shares Held": "1",
+      "Local Currency": "CAD"
+    },
+    {
+      "Name": "TELUS CORP",
+      "Ticker": "-",
+      "Identifier": "87971M962",
+      "SEDOL": "2381093",
+      "Weight": "0.000004",
+      "Sector": "-",
+      "Shares Held": "3",
       "Local Currency": "CAD"
     },
     {
@@ -353,6 +343,16 @@
       "Sector": "-",
       "Shares Held": "33459",
       "Local Currency": "KRW"
+    },
+    {
+      "Name": "CDL HOSPITALITY REAL ESTATE",
+      "Ticker": "-",
+      "Identifier": "957TSZ904",
+      "SEDOL": "C0K3Q21",
+      "Weight": "0",
+      "Sector": "-",
+      "Shares Held": "186134",
+      "Local Currency": "SGD"
     },
     {
       "Name": "CHINA HOUSEHOLD HOLDINGS LTD",
@@ -683,16 +683,6 @@
       "Sector": "-",
       "Shares Held": "21307",
       "Local Currency": "SEK"
-    },
-    {
-      "Name": "SERVICE STREAM LIMITED",
-      "Ticker": "-",
-      "Identifier": "958PXH905",
-      "SEDOL": "C0GDFJ5",
-      "Weight": "0",
-      "Sector": "-",
-      "Shares Held": "63056",
-      "Local Currency": "AUD"
     },
     {
       "Name": "SOUTHERN CROSS PAY LTD UNL",
