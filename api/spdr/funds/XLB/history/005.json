@@ -2,7 +2,7 @@
   "ticker": "XLB",
   "page": 5,
   "pageSize": 1000,
-  "totalRows": 5786,
+  "totalRows": 5787,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "04-Jan-2011",
+      "NAV": "38.502611",
+      "Shares Outstanding": "67623725",
+      "Total Net Assets": "2603689980.42"
+    },
     {
       "Date": "03-Jan-2011",
       "NAV": "38.705255",
@@ -6003,12 +6009,6 @@
       "NAV": "35.222876",
       "Shares Outstanding": "28016088",
       "Total Net Assets": "986807205.25"
-    },
-    {
-      "Date": "17-Jan-2007",
-      "NAV": "35.392381",
-      "Shares Outstanding": "27166088",
-      "Total Net Assets": "961472539.72"
     }
   ]
 }

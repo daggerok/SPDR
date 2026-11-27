@@ -2,7 +2,7 @@
   "ticker": "SPTI",
   "page": 3,
   "pageSize": 1000,
-  "totalRows": 4908,
+  "totalRows": 4909,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "11-Dec-2018",
+      "NAV": "58.7022",
+      "Shares Outstanding": "10500168",
+      "Total Net Assets": "616382961.69"
+    },
     {
       "Date": "10-Dec-2018",
       "NAV": "58.792569",
@@ -6003,12 +6009,6 @@
       "NAV": "59.898232",
       "Shares Outstanding": "3000168",
       "Total Net Assets": "179704760.07"
-    },
-    {
-      "Date": "19-Dec-2014",
-      "NAV": "59.90317",
-      "Shares Outstanding": "3000168",
-      "Total Net Assets": "179719574.01"
     }
   ]
 }

@@ -2,7 +2,7 @@
   "ticker": "SPYV",
   "page": 4,
   "pageSize": 1000,
-  "totalRows": 6575,
+  "totalRows": 6576,
   "headers": [
     "Date",
     "NAV",
@@ -10,6 +10,12 @@
     "Total Net Assets"
   ],
   "rows": [
+    {
+      "Date": "19-Dec-2014",
+      "NAV": "101.832976",
+      "Shares Outstanding": "2350716",
+      "Total Net Assets": "239380406.84"
+    },
     {
       "Date": "18-Dec-2014",
       "NAV": "101.90443",
@@ -6003,12 +6009,6 @@
       "NAV": "65.929947",
       "Shares Outstanding": "2600870.5",
       "Total Net Assets": "171475252.24"
-    },
-    {
-      "Date": "04-Jan-2011",
-      "NAV": "65.591378",
-      "Shares Outstanding": "2600870.5",
-      "Total Net Assets": "170594678.5"
     }
   ]
 }
